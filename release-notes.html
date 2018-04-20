@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Release Notes | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li class="active"><a href="release-notes">Release Notes</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="release-notes">Release Notes</h1>
+
+<h2 id="10-april-2018">1.0 (april 2018)</h2>
+
+<h3 id="incompatible-and-breaking-changes">Incompatible and Breaking Changes</h3>
+
+<p><strong>New log filename format</strong></p>
+
+<p>The log files that are uploaded to S3 have a new naming scheme.
+The old naming scheme was ‘<service>-<pid>-<id>-<timestamp>-<guid>.log'.
+The new naming scheme is: '<timestamp>-<service>-<ip>-<id>-<guid>.log'.</guid></id></ip></service></timestamp></guid></timestamp></id></pid></service></p>
+
+<p>*** Rest server returns decimal data as string, instead of double</p>
+
+<p>Decimal data is converted to string, when data is accessed using rest server.
+The json resultset changed the output type to string to prevent any precision loss.</p>
+
+<h2 id="090-april-2018">0.9.0 (april 2018)</h2>
+
+<p>0.9.0 contains two major features but is otherwise identical to 0.8.1.</p>
+
+<h3 id="new-features">New features</h3>
+
+<p><strong>Clusters services as Kubernetes daemonsets</strong></p>
+
+<p>CDAS worker nodes have been converted to daemonsets. With this change,
+as the CDAS cluster is scaled up/down, the number of CDAS worker pods
+is scaled up/down automatically. Multiple service pods do not bunch up
+on the same host.</p>
+
+<p><strong>Better Application Health Check</strong></p>
+
+<p>CDAS  improves the notion of “healthy” service in this release. It runs application specific
+requests, instead of a IP(TCP/IP) ping. This ensures that service is not merely up but is actually
+servicing application requests. Examples include running an actual query for planner/worker, running
+a metadata request for catalog health check. A service that fails application requests consequitively
+is considered unhealthy and is restarted.</p>
+
+<p><strong>Support for struct types</strong></p>
+
+<p>CDAS and the client libraries now support struct as a data type. This allows the engine
+to handle nested data. For details, see the <a href="/complex-types">docs</a>.</p>
+
+<p><strong>Support for scanning last partition of a table</strong></p>
+
+<p>CDAS’s query language has been extended to easily support just reading the last partition
+of a partitioned table. This is a common pattern in multiple use cases.
+See <a href="/supported-sql#last-partition">supported sql</a> for more details.</p>
+
+<h3 id="incompatible-changes">Incompatible changes</h3>
+
+<p>The REST API now by default does not format the JSON result (does’t intent it and put
+new lines). Clients often consume this via a tool and the formatting is an unnecessary
+cost. Users can pass the <code class="highlighter-rouge">?format</code> option to enable server side formatting.</p>
+
+<p>For example:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl localhost:11050/scan/cerebro_sample.sample
+<span class="o">[{</span><span class="s2">"record"</span>:<span class="s2">"This is a sample test file."</span><span class="o">}</span>,<span class="o">{</span><span class="s2">"record"</span>:<span class="s2">"It should consist of two lines."</span><span class="o">}]</span>
+<span class="o">&gt;</span> curl localhost:11050/scan/cerebro_sample.sample?format
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"record"</span>: <span class="s2">"This is a sample test file."</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"record"</span>: <span class="s2">"It should consist of two lines."</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></div>
+
+<h2 id="081-march-2018">0.8.1 (march 2018)</h2>
+
+<p>0.8.1 is a minor release which addresses a few specific issues in 0.8.0 as well as
+updates to the pycerebro python client library.</p>
+
+<h3 id="pycerebro">PyCerebro</h3>
+
+<p>The initial release in 0.8.0 was an opportunity to get feedback on the client API.
+(Thanks everyone that did!). We’ve updated the API in response. The APIs in this
+version are expected to be compatible going forward. Note that this does require
+the server to also be updated to 0.8.1. Significant changes:</p>
+
+<ul>
+  <li>Removed or renamed mentions to ‘planner’ and made them ‘connection’. We expect typical
+end users to not need to know internal services.</li>
+  <li>Moved some APIs into the connection object instead of module-wide APIs</li>
+  <li>Removed explicit need to differentiate dataset vs sql arguments in the scan APIs.</li>
+  <li>Fixed issues with null handling in some cases.</li>
+  <li>Renamed <code class="highlighter-rouge">create_context()</code> to <code class="highlighter-rouge">context()</code></li>
+</ul>
+
+<p>For more details, see the <a href="/pycerebro">docs</a>.</p>
+
+<p>Users can upgrade to this by upgrading to the latest package with pip.</p>
+
+<h3 id="bug-fixes">Bug Fixes</h3>
+
+<ul>
+  <li>
+    <p>Fix bug in configuring LDAP domain and LDAP base DN. Configuring both lead to
+the base DN config always being used instead of the domain configuration. Starting
+in this release, users wanting to set a default domain should <em>not</em> set LDAP_BASE_DN.</p>
+  </li>
+  <li>
+    <p>Fix server crash when executing some unsupported DDL. This only affected these DDL
+statements: <code class="highlighter-rouge">CREATE TABLE AS SELECT</code> and <code class="highlighter-rouge">COMPUTE STATS</code>. These now fail with not
+supported.</p>
+  </li>
+  <li>
+    <p>Allow revoking permissions to s3 bucket URI without a trailing slash. In general
+we do not treat bucket URIs without a trailing slash as valid URI. For example,
+<code class="highlighter-rouge">s3://bucket</code> is invalid and should be <code class="highlighter-rouge">s3://bucket/</code>. Note that this is specific for
+how buckets behave; subdirectories do not need to end in a slash. This has always
+been the behavior in CDAS but other tools or existing metadata may have allowed invalid
+URIs to be persisted. In this release we allow revoking both kinds of URIs so that
+the invalid entries can be corrected.</p>
+  </li>
+</ul>
+
+<h2 id="080-feb-2018">0.8.0 (Feb 2018)</h2>
+
+<p>0.8.0 is a major release. It includes all fixes from the prior releases.</p>
+
+<h3 id="new-features-1">New Features</h3>
+
+<p><strong>Datasets with errors in Web UI</strong></p>
+
+<p>The datasets list page now shows datasets that have errors
+associated with them, possibly due to misconfiguration or incorrect definition.</p>
+
+<p><strong>New layout for datasets list page in Web UI</strong></p>
+
+<p>The datasets list page in the Web UI has been updated to allow for faster
+browsing of datasets, with an in-page view of the dataset’s details.</p>
+
+<p><strong>Native python client (beta)</strong></p>
+
+<p>Add a beta release of a native python client, the pycerebro library. The goal is to
+provide a native python experience with the performance and functionality similar to
+what is possible through the java client.</p>
+
+<p>In this initial release, we primarily want to ensure the library is easy to install,
+and supports the required authentication mechanisms in a variety of environments. It has
+support for executing DDL and scan statements against the CDAS servers. In the next
+release, we will optimize the scan APIs further.</p>
+
+<p>For more details, see the <a href="/pycerebro">docs</a>.</p>
+
+<p><strong>Improved support for partitioned tables when using them from EMR</strong></p>
+
+<p>In previous releases, Cerebro would return the tables as unpartitioned tables to hive.
+While this allowed the tables to be scanned and partition pruning worked correctly (via
+the more general predicate pushdown mechanism), it meant that commands such as
+<code class="highlighter-rouge">show partitions</code> did not work. In this release, we more faithfully return the
+partitioning information to Hive, and the Cerebro partitioned tables behave much more
+similar to standard hive partitioned tables.</p>
+
+<p><strong>Remove cases where CDAS may need write permissions to underlying storage system</strong></p>
+
+<p>In typical usage patterns, CDAS only needs read access to the underlying storage system.
+For example, it should not be necessary to give CDAS write access to the S3 buckets where
+the data is stored, just read access. While CDAS has never written or modified data files
+it manages, there were specific cases where CDAS would try to create the directory
+structure. For example, creating a table over a non-existent path could result in CDAS
+trying to create that path. This could result in some DDL commands failing if CDAS
+only had read access. In this release, removed those cases and these DDL commands
+should complete successfully.</p>
+
+<p><strong>Support for CREATE TABLE AS SELECT (CTAS) when run from Hive in EMR</strong></p>
+
+<p>This is supported if the Hive warehouse has been configured to use S3, instead of the
+EMR-local HDFS cluster. See the
+<a href="https://github.com/cerebro-data/external-docs/blob/master/docs/EMRIntegration.md#cluster-local-dbs">cluster-local DBs</a>
+section of the EMR docs for more details.</p>
+
+<p><strong>Support for ALTER TABLE RECOVER PARTITIONS</strong></p>
+
+<p>This command behaves identical to the HiveQL command to reconstruct partitions
+automatically from the file system structure. This must be run from a Cerebro native
+API, such as the REST API or via <code class="highlighter-rouge">dbcli</code>. It is not possible to run this from hive emr.</p>
+
+<p><strong>Support for user defined functions (UDFs) registered in CDAS to be available to EMR</strong></p>
+
+<p>UDFs that have been registered in CDAS are now accessible to Hive. Previously these
+UDFs would have to be registered once in CDAS and then once again for each EMR cluster.
+For more details, see <a href="/extending-cdas#using-it-from-hive-emr">this</a>.</p>
+
+<p><strong>Support for specifying an existing Hive Metastore RDBMS database</strong></p>
+
+<p>Users with an existing Hive Metastore can not configure the CDAS catalog to just use
+the same underlying (i.e. RDS) database. This is useful to migrate to the CDAS catalog or
+to bootstrap the CDAS catalog.See the advanced install
+<a href="/advanced-install#sharing-existing-hive-metastore-rdbms">docs</a> for more details.</p>
+
+<p><strong>Spark predicate pushdown improvements</strong></p>
+
+<p>Predicate pushdown has been enhanced to include the following:</p>
+<ul>
+  <li>is null</li>
+  <li>is not null</li>
+  <li>LIKE predicates (e.g. <code class="highlighter-rouge">name like '%ber%'</code>)</li>
+</ul>
+
+<p><strong>Java 9 is now supported</strong></p>
+
+<p><strong>Planner APIs now support SELECT without FROM clause</strong></p>
+
+<p>This supports for example, <code class="highlighter-rouge">select UDF('test-value')</code>. These type of queries are typically
+just to verify connectivity or the behavior of builtins and UDFs.</p>
+
+<p><strong>Support for token auto-renewal</strong></p>
+
+<p>The Hive and Spark CDAS client libraries have been updated to call a user-defined token
+acquisition script to refresh an expired token.
+Configuration details and script requirements can be found in the
+<a href="/emr-integration">EMR documentation</a>.</p>
+
+<p><strong>Performance improvements DDL statements on highly partitioned table</strong></p>
+
+<p>Significant performance for <code class="highlighter-rouge">alter table recover partitions</code> and <code class="highlighter-rouge">show partitions</code> on
+a highly partitioned table.</p>
+
+<h3 id="bug-fixes-1">Bug Fixes</h3>
+
+<ul>
+  <li>
+    <p>Fixed an issue where DbCli, the REST server, and the Web UI were reporting
+field values as <code class="highlighter-rouge">0</code> when they were in fact <code class="highlighter-rouge">null</code>.</p>
+  </li>
+  <li>
+    <p>Fixed an issue where in some cases users were unable to see databases if the user
+only had partial (i.e. a subset of columns) to all objects in the database. Databases
+are now visible to user if they have any access to any objects in it.</p>
+  </li>
+  <li>
+    <p>Fixed an issue in the Web UI where if the user logged in via OAuth, the
+UI showed a Cerebro Token instead of an SSO Token.</p>
+  </li>
+</ul>
+
+<h3 id="incompatible-and-breaking-changes-1">Incompatible and Breaking Changes</h3>
+
+<ul>
+  <li>
+    <p>The REST server, DbCLI and the WebUI now correctly report <code class="highlighter-rouge">null</code> field values
+which were previously incorrectly reported as <code class="highlighter-rouge">0</code>. This may cause incompatibilities
+for users reading directly from the REST API that depended on the previous behavior.</p>
+  </li>
+  <li>
+    <p>CEREBRO_DB_NAME has been deprecated and replaced by CEREBRO_DM_DB_NAME. The
+Deployment Manager will fail to start if both env variables are set with conflicting
+values. While we maintain compability of this flag in this release, the old
+setting (‘CEREBRO_DB_NAME’) will be removed in a future release. Custom scripts
+referencing CEREBRO_DB_NAME will need to be updated eventually.</p>
+  </li>
+  <li>
+    <p>In 0.8.0 and beyond the Cerebro web UI no longer supports IE 11.</p>
+  </li>
+  <li>
+    <p>Deployments using unix-based group resolution now treat group names as case sensitive.
+For example, granting roles to <code class="highlighter-rouge">GROUP</code> is no longer the same as granting to <code class="highlighter-rouge">group</code>. Note
+that this is specific to deployments configured to get user group information from the
+host unix VM.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">CEREBRO_OAUTH_SUB_ENDPOINT</code> is no longer required nor supported. It can
+be safely removed from any configuration locations.</p>
+  </li>
+  <li>
+    <p>For EMR clusters, we have made internal changes to how tokens are managed.
+This requires that a given user’s home directory has the appropriate permissions set
+prior to a token being written to it. To support this, we have added another bootstrap
+script that should be run after the existing bootstrap script. See the
+<a href="/emr-integration">EMR docs</a> documentation for details.</p>
+  </li>
+</ul>
+
+<h3 id="known-issues">Known issues</h3>
+
+<ul>
+  <li>Tableau WDC connector does not support custom signed SSL certificates. If SSL is
+enabled and the certificate is self signed, the Tableau connector will fail with an
+SSL handshake error. The issue is that Tableau is unable to find the self signed
+certificate in all cases. Potential workarounds are to use a certificate signed by a
+CA or to connect to CDAS through a JDBC enabled framework, such as presto.</li>
+</ul>
+
+<h2 id="073-feb-2018">0.7.3 (feb 2018)</h2>
+
+<p>0.7.3 is a patch release. It contains a critical presto client issue and we recommend
+all presto users upgrade. Versions prior to 0.7.3 are no longer supported for EMR Presto.
+Note that it is perfectly fine to run a 0.7.3 client (e.g. EMR) against a 0.7.2 CDAS
+cluster.</p>
+
+<h3 id="bug-fixes-2">Bug Fixes</h3>
+
+<ul>
+  <li>
+    <p>Fixed session leak in presto client. In some cases, sessions started by the presto
+client may not get properly closed. This can cause issues as those connections will not
+close for a very long time, which can starve out other clients.</p>
+  </li>
+  <li>
+    <p>Fixed server crash trying to load unsupported schemas in some cases. In prior versions,
+trying to load avro schemas when the avro schema file is deleted from storage after
+creating the table, the server can crash. This has been fixed.</p>
+  </li>
+  <li>
+    <p>Fixed some issues related to HTTP proxy settings. We now properly handle proxy
+settings that block access to S3. Previously, the DeploymentManager agent running on
+all the CDAS cluster VMs would not use the proxy settings in all cases. This issue
+manifests if access to the storage system needs to happen through an HTTP proxy.</p>
+  </li>
+</ul>
+
+<h2 id="072-jan-2018">0.7.2 (jan 2018)</h2>
+
+<p>0.7.2 includes stability fixes. We recommend all 0.7.0/0.7.1 users upgrade.</p>
+
+<h3 id="bug-fixes-3">Bug Fixes</h3>
+
+<ul>
+  <li>
+    <p>Improved REST server scalability in the presence of long running scan requests.
+Previously, long running scans could block out other requests, including the service
+health check. This causes DeploymentManager to report the service as unhealthy. This has
+been fixed so there are separate request handlers for long requests.</p>
+  </li>
+  <li>
+    <p>Fix to planner refusing all connections due to race conditions when logging. Specific
+request patterns to CDAS can get the planner in a state where it refuses all subsequent
+connections. This causes the services to report as 5/7 healthy as well as the REST
+server going into a restart loop. This is caused by race conditions resulting in logs
+not being drained properly. This has been resolved by upgrading our bundled docker version
+(to 1.12.6) as well as log handling improvements.</p>
+  </li>
+  <li>
+    <p>Fixed deployment in environments which require HTTP proxy configurations. Some of
+the new validations added in 0.7 were not properly using HTTP proxy configurations in all
+cases, causing those calls to fail. No configuration changes are required. We now
+properly use the proxy configurations if set.</p>
+  </li>
+  <li>
+    <p>Fixed deployment when the cluster’s private IP range conflicts with what CDAS
+requires. Specifically, in 0.7.2, we resolved the conflict on the IP range <code class="highlighter-rouge">10.32.0.0/12</code>.</p>
+  </li>
+  <li>
+    <p>Fixed token expiration display for Json Web Tokens (JWT) in the UI. The value displayed
+in the previous version was incorrect and much longer than the actual expiration. Note
+that this was a presentation issue only; the tokens would have expired correctly.</p>
+  </li>
+  <li>
+    <p>Fixed issue where catalog does not load properly when there are invalid catalog objects.
+These catalog objects are unreadable by Cerebro but now this no longer causes other
+catalog objects to be skipped.</p>
+  </li>
+  <li>
+    <p>Support LDAP default domains and SSL enabled servers. Previously, CDAS only supported
+distinguished names. Now it is possible to login with a domain name, for example
+<code class="highlighter-rouge">USERS\user</code>. It is also possible to configure a default domain and just login with
+<code class="highlighter-rouge">user</code>.</p>
+  </li>
+  <li>
+    <p>Updated packaged docker version from 1.12.2 to 1.12.6, which includes multiple
+stability fixes.</p>
+  </li>
+</ul>
+
+<h2 id="071-dec-2017">0.7.1 (dec 2017)</h2>
+
+<h3 id="new-features-2">New Features</h3>
+
+<ul>
+  <li>Support for Json Web Token (JWT) authentication using public key and external server.
+In previous releases, CDAS could only be configured to use one or the other. It is not
+possible to configure both at the same time. For more information see
+<a href="/cdas-authentication">here</a>.</li>
+</ul>
+
+<h3 id="bug-fixes-4">Bug Fixes</h3>
+
+<ul>
+  <li>
+    <p>Support for non-reneweable keytabs
+0.6.2 contains a single fix for kerberized clusters. All CDAS services have been updated
+to be more robust to non-renewable keytabs. Previously, services may become unstable
+when the kerberos tickets expired when using these kind of keytabs.</p>
+  </li>
+  <li>
+    <p>UI no longer shows zero datasets in the case that some failed to load
+In 0.7.0 and previous releases, the UI would show no datasets in the Datasets page
+list, even if only one failed to load. In 0.7.1, the UI will show all datasets
+that were loaded without error.</p>
+  </li>
+</ul>
+
+<h2 id="bug-fixes-5">bug fixes</h2>
+
+<h2 id="062-dec-2017">0.6.2 (dec 2017)</h2>
+
+<p>0.6.2 contains a single fix for kerberized clusters. All CDAS services have been updated
+to be more robust to non-renewable keytabs. Previously, services may become unstable
+when the kerberos tickets expired when using these kind of keytabs.</p>
+
+<h2 id="070-nov-2017">0.7.0 (nov 2017)</h2>
+
+<p>0.7.0 is a major release.</p>
+
+<h3 id="new-features-3">New Features</h3>
+
+<p><strong>JSON structured audit logs</strong></p>
+
+<p>By default, the planner audit log is now output as json in the planner logs. The new
+format contains more information, is much easier to parse and will be stable over time.
+For more information on its schema and how to use it, see the <a href="/auditing">docs</a>.</p>
+
+<p><strong>Support for Hive SerDes</strong></p>
+
+<p>Prior versions of CDAS had limited support for tables which require a custom Hive SerDe
+to read. In this release, we extended the support to all the CDAS supported types, the
+ability to read SerDe libraries from S3 and builtin, HiveQL compatible support in the
+various CDAS <code class="highlighter-rouge">hive-ddl</code> APIs. For more information, see <a href="/extending-cdas">here</a>.</p>
+
+<p><strong>Support for external views</strong></p>
+
+<p>In prior version of CDAS, views created in Cerebro had to be evaluated in CDAS. This is
+critical for views which enforce data security related transformations. For example, if
+the view anonymizes user data, the view must be evaluated in CDAS before it is returned
+to the client. In this release, we added support for <code class="highlighter-rouge">external views</code>, which are used
+to store views to store data transformations and have no security implications. These
+views are used strictly for tracking what can be evaluated in CDAS or in the compute
+application.
+For more details, see <a href="/supported-sql">here</a>.</p>
+
+<p><strong>Support to drop permissions when dropping catalog objects</strong></p>
+
+<p>Dropping a database, table or view does not drop the permissions on the object. This
+means if the same object with the same name is created, it will retain the permissions
+from the dropped object. This pattern is sometimes used, for example in ETL, where
+the permissions and catalog object (re)creation are decoupled. This behavior is not
+ideal in other cases. In this release we extended the <code class="highlighter-rouge">DROP [DATABASE|TABLE|VIEW]</code>
+DDL commands to support optionally dropping the associated permissions as well. If not
+specified, this command is backwards compatible and keeps the previous semantics.
+For more information see <a href="/supported-sql">this</a>.</p>
+
+<p><strong>Dynamic REST API scan page size</strong></p>
+
+<p>Previously the REST scan page size was fixed (by default 10000 records). This can be
+problematic for tables with very many columns and requests would cause timeouts or
+other bad behavior. In this release, the page size is dynamic (up to 10000 by default)
+and adjusts based on how long the requests are taking.</p>
+
+<p><strong>Improved client connection related errors</strong></p>
+
+<p>Previously, the errors related to failed connections from the Java client libraries
+required looking at the CDAS service logs. These errors should now be returned to
+the client. Note that this requires updating the client library to the latest version
+(beta-9) as well. Older clients are compatible and will continue to work, but may not
+see the improved error reporting in all cases.</p>
+
+<p><strong>Filtered dataset search in the UI</strong></p>
+
+<p>The Cerebro UI now has enhanced dataset search capabilities, allowing users to search
+for datasets by name and/or database name, as well as filter by any set of databases.</p>
+
+<p><strong>Dataset access inspection in the UI</strong></p>
+
+<p>Dataset stewards (or anyone with all access to a dataset) can inspect which groups or set
+of groups has access to their datasets as well as which fields in those datasets.</p>
+
+<h3 id="bug-fixes-6">Bug Fixes</h3>
+
+<ul>
+  <li>
+    <p>Fixed an issue where the 30-second timeout for session_ids issued
+by the /api/scanpage endpoint was starting from the beginning of a query,
+resulting in the user being “charged” for system time. This was corrected
+and the timer now starts when CDAS begins returning data to the user.</p>
+  </li>
+  <li>
+    <p>Fixed /api/scanpage endpoint so that for fetching more than 10,000 records, the total
+number of records to be fetched only needs to be specified on the first call. Subsequent
+calls can use the session_id to return the remaining records in batches of up to 10,000
+entries. If the record number is specified in subsequent calls, it will be ignored.</p>
+  </li>
+  <li>
+    <p>Unable to see a database if the user has only been granted access to that database’s
+columns. This issue has been resolved and the user can properly see a database even if
+they only have partial access to objects in the database.</p>
+  </li>
+  <li>
+    <p>Allow dropping views even if its metadata becomes invalid. In previous versions, it
+would sometimes not be possible to drop views if its metadata became invalid. This can
+happen for example, if the base table for the views are deleted. These views can now
+be dropped.</p>
+  </li>
+  <li>
+    <p>Fixed an issue where permission granted to a top-level S3 bucket was not being
+propagated to sub-directories.</p>
+  </li>
+  <li>
+    <p>Fixed an issue were detailed error messages were not being returned to clients for
+server-side errors (they were being overwritten with generic error messages).</p>
+  </li>
+  <li>
+    <p>Fixed an issue where Hive in EMR 5.8 and later would not work with CDAS.
+EMR 5.8.0 upgraded Hive from 2.1.1 to 2.3.0 which introduced a backward compatibility
+breaking api change, which has been addressed.</p>
+  </li>
+</ul>
+
+<h4 id="incompatible-and-breaking-changes-2">Incompatible and Breaking Changes</h4>
+
+<ul>
+  <li>
+    <p>The records parameter for the /api/scanpage REST endpoint now indicates
+the total number of records that the query should return. This had
+previously indicated the batch size to be used for each page. Results are
+now returned in batches of up to 10,000 entries.</p>
+  </li>
+  <li>
+    <p>Number of services in standalone cluster reduced from 8 to 7. In the release, the
+earlier version of the UI was completely removed, reducing the number of services by 1.
+In 0.6.x, this service was running but not externally exposed by default (for example,
+even in 0.6.x, endpoints did not report the earlier UI).</p>
+  </li>
+  <li>
+    <p>Root user required to run kubectl commands on kubernetes master.
+Previously, <code class="highlighter-rouge">kubectl</code> could be run as any user, for example, <code class="highlighter-rouge">ec2-user</code>. It is now
+required to be <code class="highlighter-rouge">root</code> to run <code class="highlighter-rouge">kubectl</code>.</p>
+  </li>
+  <li>
+    <p>Existing launch scripts will not work with 0.7.0. We have enhanced our validation of
+launch scripts when they are registered during the cerebro_cli “environments create”
+call. The changes required to perform that validation necessitates that all launch scripts
+must to be replaced with ones based on the new template provided in the 0.7.0 release.
+Launch scripts based on earlier templates will cause the “environments create” call
+to fail. All of the values that need to be configured have been moved to a dedicated
+section towards the top of the script in the new template, so porting older launch files
+should be fairly quick. Launch scripts based on the 0.7.0 template are backwards
+compatible with older CDAS releases.</p>
+  </li>
+</ul>
+
+<h3 id="known-issues-1">Known issues</h3>
+
+<p>**After installing a new version of DM, upgrading a component in existing cluster does
+not work</p>
+
+<p>The workaround is to upgrade the existing cluster component(s) to the newer version
+before newer DM is installed and restarted.</p>
+
+<p>** Java 9 is not supported</p>
+
+<p>There is an issue with the new module changes in Java 9 that will be addressed in future
+versions of CDAS.</p>
+
+<h2 id="053--november-2017">0.5.3  (november 2017)</h2>
+
+<p>0.5.3 is a minor release consisting of backports of select fixes from the
+0.6.1 release. Those patches are:</p>
+<ul>
+  <li>Invalid JSON encountered when retrieving cluster status</li>
+  <li>Incorrect user when using /api/scanpage endpoint</li>
+  <li>add_date function does not work with view creation</li>
+  <li>REST server scaling issues</li>
+</ul>
+
+<h2 id="061-oct-2017">0.6.1 (oct 2017)</h2>
+
+<p>0.6.1 is a minor release and we recommend all 0.6.0 users upgrade.</p>
+
+<h3 id="new-features-4">New Features</h3>
+
+<p><strong>OAUTH integration</strong></p>
+
+<p>The Web UI now supports authentication using OAUTH. If configured, users will be
+redirected to the identity provider’s login page, for example logging in with their
+gmail account.</p>
+
+<p><strong>Improved SSL support</strong></p>
+
+<p>Some clients (e.g. latest version of chrome) require the REST server to have a DNS
+domain name (instead of IP) if SSL is enabled as additional security. In this release, we
+added a configuration to specify the DNS name for the REST server. This is not required
+for SSL to be enabled and not all clients require the server to be configured this way.</p>
+
+<p>This configuration is <code class="highlighter-rouge">CEREBRO_SSL_FQDN</code>. For example:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_SSL_FQDN</span><span class="o">=</span>cluster1.cloud.com
+</code></pre></div></div>
+
+<p>Note that due to our traffic routing, this can be the DNS name of any machine in the
+cluster, for example, the CNAME for the cluster.</p>
+
+<h3 id="bug-fixes-7">Bug Fixes</h3>
+
+<p><strong>Support for EMR up to 5.9</strong>
+Hive in EMR 5.8, introduced a non backwards compatible change which caused issues for
+older versions (0.6 and before) of Cerebro EMR clients. This has been fixed in 0.6.1
+and now supports all versions from 5.3 to 5.9.</p>
+
+<h2 id="060-sep-2017">0.6.0 (sep 2017)</h2>
+
+<p>0.6.0 is a major release. It includes major new features and numerous improvements
+across the Cerebro services.</p>
+
+<h3 id="new-features-5">New Features</h3>
+
+<p><strong>New Web UI</strong></p>
+
+<p>The Web UI has been revamped with a new look-and-feel, enhanced stability, and
+several new features, including improvements to dataset discoverability, metadata, and
+account information.</p>
+
+<p>Datasets are now searchable from the dataset browser; search for datasets by name.</p>
+
+<p>Dataset information has been expanded. We now explicitly display which columns the
+current user has access to and which groups grant access to those columns without
+access. We also show which columns are partitioning columns. Finally, a description
+of how to integrate a dataset with <code class="highlighter-rouge">R</code> has been added.</p>
+
+<p>On the home page, account details are displayed, including the token for the current
+user, which groups the current user belongs to, the roles the current user has,
+and the groups granting those roles.</p>
+
+<p>See the <a href="WebUI.md">docs</a> for more information.</p>
+
+<p><strong>Significantly improved integration with EMR</strong></p>
+
+<p>EMR integration has been significantly improved, allowing better pushdown into CDAS
+across the engines, improved multi-tenant user experience, work scheduling, etc. See
+<a href="/emr-integration">EMR docs</a> for more details.</p>
+
+<p><strong>Support for SSL</strong></p>
+
+<p>This release adds SSL support to the REST server and WebUI. If configured, users should
+switch to https, whenever interacting with either of these services.</p>
+
+<h3 id="minor-features">Minor Features</h3>
+
+<ul>
+  <li>Added cli commands to specify the number of planners. See
+<a href="/cluster-administration">docs</a> for more details.</li>
+  <li>Added cli commands to specify additional arguments for the planners and workers.</li>
+  <li>Improved load balancing for worker tasks. Users should see more consistent load on
+workers, particularly in the case when there are a smaller number of total tasks.</li>
+  <li>Significantly reduced memory usage when executing joins.</li>
+  <li>Improved install times. Cerebro binary sizes have been significantly reduced.</li>
+</ul>
+
+<h3 id="incompatible-and-breaking-changes-3">Incompatible and breaking changes</h3>
+
+<p><strong>Deprecating specifying user token as part of URL for REST server</strong></p>
+
+<p>We will be deprecating supporting specifying user tokens as part of the URL in a
+subsequent release and recommend users start switching now when using the REST server.
+For example, instead of querying <code class="highlighter-rouge">rest-server-host:port/api/databases?user=&lt;TOKEN&gt;</code>,
+clients should instead specify the token as part of the Authorization header. See these
+<a href="/cdas-authentication">docs</a> for more details.</p>
+
+<p><strong>WebUI port renamed</strong></p>
+
+<p>The name of the webui port has been renamed from <code class="highlighter-rouge">cerebro_catalog_ui:webui</code> to
+<code class="highlighter-rouge">cerebro_web:webui</code>. This value is used when configuring ports
+(<code class="highlighter-rouge">CEREBRO_PORT_CONFIGURATION</code>) as well as the output from listing the service endpoints.</p>
+
+<p><strong>Permission roles are now consistently case insensitive</strong></p>
+
+<p>Case sensitivity in roles was inconsistent and now we’ve made them consistently case
+insensitive. This means that commands such as <code class="highlighter-rouge">CREATE ROLE admin_role</code> and
+<code class="highlighter-rouge">CREATE ROLE ADMIN_ROLE</code> now are identical.</p>
+
+<p><strong>Output of <code class="highlighter-rouge">cerebro_cli clusters nodes</code> changed</strong></p>
+
+<p>The output is no space separated and not commas to make it easier to interop with
+ecosystem tools. If this was consumed from scripts, they may need to be updated.</p>
+
+<h3 id="known-issues-2">Known issues</h3>
+
+<p><strong>Dataset preview in Web UI or Catalog REST API shows 0s instead of NULLs</strong></p>
+
+<p>When navigating to a particular dataset in the Web UI and clicking “Show Preview”,
+if the value of a particular cell is NULL, it is displayed as 0. This issue
+additionally exists when querying the Catalog REST API at <code class="highlighter-rouge">/api/scanpage/&lt;dataset&gt;</code>.</p>
+
+<p>The workaround to determine the correct value of the cell is to query the dataset
+records via alternate Cerebro clients, like <code class="highlighter-rouge">dbcli</code>.</p>
+
+<p><strong>Unable to upgrade an existing cluster from 0.5 to 0.6</strong></p>
+
+<p>The install binary format has changed in 0.6, meaning clusters prior to 0.6 will not
+be able to handle the binary images. Note that the metadata stored in a 0.5 cluster <em>can</em>
+be read by a 0.6 cluster. Users can create a new 0.6 cluster instead. If upgrading an
+existing cluster is important, contact us and we can manually do this.</p>
+
+<p><strong>Unable to see databases if user has only been granted columns to objects in database</strong></p>
+
+<p>If a user has been granted only partial access to all objects (table or views)
+in a database, they are not able to see the database or any of the contents in it. Users
+are only able to properly see the objects if they’ve been granted full access to at
+least one table or view in that database (at which point the access controls work as
+expected).</p>
+
+<p>Workaround: create a dummy table in these database and grant users full select on this
+table.</p>
+
+<p><strong>Hive in EMR does not support all DDL commands</strong></p>
+
+<p>The Hive Cerebro integration for EMR does not currently support all DDL commands. It
+does not support GRANT/REVOKE statement and ALTER TABLE statements.</p>
+
+<p>Workaround: use the DbCli or connect through a kerberized Hive installation.</p>
+
+<h2 id="043-and-051-release-notes-august-2017">0.4.3 and 0.5.1 release notes (august 2017)</h2>
+
+<p>0.4.3 and 0.5.1 are minor patch release that contain significant performance fixes
+as well as critical fixes for the Hive EMR integration.</p>
+
+<p>It is recommended that all 0.4.x and 0.5.x users upgrade.</p>
+
+<p>In particular:</p>
+
+<ul>
+  <li>Significant speedups handling tables with larger number of partitions</li>
+  <li>Improved column pruning and predicate pushdown when using Hive in EMR.</li>
+</ul>
+
+<h3 id="new-features-6">New Features</h3>
+
+<p>The EMR integration has been updated on the configs that are required for better
+Spark and Hive integration. In particular, we recommend specifying the Cerebro
+planner.hostports config for <em>Spark’s</em> hive-site.xml config. This has been
+updated in the EMR. <a href="/supported-sql">docs</a></p>
+
+<p>We’ve also updated the client versions to 0.5.1 and EMR clusters should be
+bootstrapped with this version (from 0.5.0).</p>
+
+<h2 id="050-release-notes-july-2017">0.5.0 release notes (july 2017)</h2>
+
+<p>0.5.0 is a  major release. It contains all the bug fixes from 0.4.1 and 0.4.2 and
+numerous other bug fixes.</p>
+
+<h3 id="new-features-7">New Features</h3>
+
+<p><strong>JSON Web Token and SSO support</strong></p>
+
+<p>This release adds support for authentication with CDAS using JSON Web Tokens(JWT).
+These tokens can verified by CDAS using either public/private keys or via an
+external SSO server. This can be used in addition to or instead of kerberos
+authentication. If an external SSO server is configured, Cerebro can also be
+configured to generated SSO tokens in our webui.</p>
+
+<p><strong>Support for joins with views</strong></p>
+
+<p>Support has been added to create views which contain joins. Previously, views only
+support filters and projections. This enables use cases where the sensitive data
+needs to be joined against a (dynamic) whitelist. After creating the view, the
+identical grant/revoke statements can be used to control access to it. The kind
+of joins we enable is limited, see <a href="/supported-sql">docs</a> for more details.</p>
+
+<p><strong>Improved support for EMR, including Hive and Presto</strong></p>
+
+<p>While previous versions could support EMR, we’ve improved the integration experience,
+providing a bootstrap action which enables deeper integration. See the
+<a href="/emr-integration">EMR Integration docs</a> for details.</p>
+
+<p><strong>Simplified Install Process</strong></p>
+
+<p>DeploymentManager config verification has been improved significantly to catch
+more configuration issues as well as report the issues more intuitively. Please
+let us know how to improve this further. We’ve also removed the steps to upload
+any config files to S3 manually as part of the install.</p>
+
+<p><strong>Hadoop client updates</strong></p>
+
+<p>This release corresponds to the beta-6 release of the Hadoop client libraries. While
+previous clients are API compatible, we advise upgrading to this version.</p>
+
+<h3 id="incompatible-and-breaking-changes-4">Incompatible and breaking changes</h3>
+<p><strong>Planner_worker service port renamed</strong></p>
+
+<p>The cerebro_planner_worker service ports have been split into cerebro_planner and
+cerebro_worker. Specifically:</p>
+<ul>
+  <li>cerebro_planner_worker:planner is now cerebro_planner:planner</li>
+  <li>cerebro_planner_worker:worker is now cerebro_worker:worker</li>
+</ul>
+
+<p>This will need to be updated in the CEREBRO_PORT_CONFIGURATION value as well as the
+output of ‘cerebro_cli clusters list.’</p>
+
+<p><strong>Java client token authentication change</strong></p>
+
+<p>Previously, Hadoop java clients (e.g. MapReduce, Spark, Pig, etc) needed to specify
+the service name if they were using token authentication. This service name had to
+match the principal of the cerebro cluster. For example, if the Cerebro cluster had
+the kerberos principal ‘cdas/service@REALM’, the service name had to be ‘cdas’. This
+value could change from CDAS cluster to CDAS cluster which can be difficult.</p>
+
+<p>In 0.5.0, we’ve update it so this value should always be ‘cerebro’ and we recommend
+that clients not set it at all (it is the default in the updated client jars). Clients
+that were setting it will see connection failures.</p>
+
+<p>For example, in spark, applications should remove specifying:
+‘spark.recordservice.delegation-token.service-name’.</p>
+
+<p><strong>Environment variable name change</strong></p>
+
+<p>The environment variable CEREBRO_JWT_SERVICE_TOKEN_FILE has been replaced with
+CEREBRO_SYSTEM_TOKEN. Users upgrading from 0.4.5 will need to update this config.</p>
+
+<h3 id="known-issues-3">Known issues</h3>
+
+<p><strong>Unable to see databases if user has only been granted columns to objects in database</strong></p>
+
+<p>If a user has been granted only partial access to all objects (table or views)
+in a database, they are not able to see the database or any of the contents in it. Users
+are only able to properly see the objects if they’ve been granted full access to at
+least one table or view in that database (at which point the access controls work as
+expected).</p>
+
+<p>Workaround: create a dummy table in these database and grant users full select on this
+table.</p>
+
+<p><strong>Hive in EMR does not support all DDL commands</strong></p>
+
+<p>The Hive Cerebro integration for EMR does not currently support all DDL commands. It
+does not support GRANT/REVOKE statement and ALTER TABLE statements.</p>
+
+<p>Workaround: use the DbCli or connect through a kerberized Hive installation.</p>
+
+<h2 id="042-release-notes-july-2017">0.4.2 release notes (july 2017)</h2>
+
+<p>0.4.2 contains a critical bug fix for users running a newer kernel with the Stack Guard.
+protection. This will result in the CDAS services (planner and worker) crashing on start.</p>
+
+<p>Kernels with this version are known to be affected: kernel-3.10.0-514.21.2.el7.x86_64.
+We recommend all 0.4.x users upgrade.</p>
+
+<p>For more information, see <a href="https://access.redhat.com/solutions/3091371">this</a></p>
+
+<h2 id="045-release-notes">0.4.5 release notes</h2>
+
+<h3 id="june-2017">June-2017</h3>
+
+<p>0.4.5 contains support support for JSON Web Tokens (JWT) for authentication. Users not
+using JWTs do not need to upgrade to this version. For details on how to configure JWT
+support, see the install docs.</p>
+
+<h4 id="incompatible-and-breaking-changes-5">Incompatible and breaking changes</h4>
+<p><strong>Planner_worker service port renamed</strong></p>
+
+<p>The cerebro_planner_worker service ports have been split into cerebro_planner and
+cerebro_worker. Specifically:</p>
+<ul>
+  <li>cerebro_planner_worker:planner is now cerebro_planner:planner</li>
+  <li>cerebro_planner_worker:worker is now cerebro_worker:worker</li>
+</ul>
+
+<p>This will need to be updated in the CEREBRO_PORT_CONFIGURATION value as well as the
+output of ‘cerebro_cli clusters list.’</p>
+
+<h2 id="041-release-notes">0.4.1 release notes</h2>
+
+<h3 id="june-2017-1">June-2017</h3>
+
+<p>0.4.1 contains bug fixes for 0.4.0 and it is recommended to upgrade all 0.4.0 clusters.</p>
+
+<h3 id="upgrading">Upgrading</h3>
+<p>First, upgrade the DeploymentManager. While the upgrade is happening, existing CDAS
+clusters will continue to be operational.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/cerebro # Or where your existing install directory is.
+
+
+## get the tarball from s3.
+curl -O https://s3.amazonaws.com/cerebrodata-release-useast/0.4.1/deployment-manager-0.4.1.tar.gz
+
+
+## extract the bits.
+rm -f deployment-manager
+tar xzf deployment-manager-0.4.1.tar.gz &amp;&amp; rm deployment-manager-0.4.1.tar.gz &amp;&amp; ln -s deployment-manager-0.4.1 deployment-manager
+
+
+## restart the deploymentmanager
+/opt/cerebro/deployment-manager/bin/deployment-manager
+
+
+## upon restarting, the new deploymentmanager will take a few seconds to health check
+
+## the existing services.
+</code></pre></div></div>
+
+<p>When all the existing clusters report READY, upgrade those clusters one by one. For
+each cluster, run:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters upgrade --version=0.4.1 &lt;CLUSTER_ID&gt;
+</code></pre></div></div>
+
+<p>This will take a few minutes to download the updated binaries and restart the cluster
+afterwards. The existing services will be operational while the download is occurring.
+See the cluster admin docs for more details.</p>
+
+<h3 id="bug-fixes-8">Bug Fixes</h3>
+<ul>
+  <li>Fixes to the Tableau WDC connector to be tolerant to catalog errors.</li>
+  <li>Fixes for users specifying a custom ‘core-site.xml’ or ‘hive-site.xml’ config. In
+0.4.0, we were not picking up these configs files correctly.</li>
+</ul>
+
+<h3 id="new-features-8">New Features</h3>
+<p>In addition, we’ve added a new feature to allow the user to configure CNAMEs for
+service endpoints. This is useful for example, if end users should only access the
+cdas_rest_server API endpoint behind a CNAME.
+In the example below, the service endpoint <code class="highlighter-rouge">cdas_rest_server:api</code> maps to the CNAME
+<code class="highlighter-rouge">cname1.example.com</code></p>
+
+<p>Update the CEREBRO_SERVICE_CNAME_MAP config in your env.sh file as follows:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">CEREBRO_SERVICE_CNAME_MAP</span><span class="o">=</span><span class="s2">"&lt;service_endpoint_host&gt;:&lt;service_endpoint_port&gt;:&lt;CNAME&gt;"</span>
+</code></pre></div></div>
+
+<p>In the case of the above example this becomes:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">CEREBRO_SERVICE_CNAME_MAP</span><span class="o">=</span><span class="s2">"cdas_rest_server:api:cname1.example.com"</span>
+</code></pre></div></div>
+<p>Once set, restart your DeploymentManager.</p>
+
+<p><strong>NOTE:</strong> If you upgrade your DeploymentManager to 0.4.1, make sure you upgrade CDAS to
+0.4.1 as well.</p>
+
+<h2 id="040-release-notes">0.4.0 release notes</h2>
+
+<h3 id="may-2017">May-2017</h3>
+
+<h4 id="new-features-9">New Features</h4>
+
+<p><strong>Cluster Administration</strong></p>
+
+<p>Cluster administration has been significantly enhanced to protect your cluster from
+accidental termination, scaling an existing cluster, and upgrading to newer versions
+of CDAS components.
+See <a href="/cluster-administration">Cluster Administration</a> for further details.</p>
+
+<p><strong>SQL Statement Processing</strong></p>
+
+<p>The Record Service daemon and catalog-admin rest endpoint scan and scanpage APIs now
+process SQL statements through a POST interface.</p>
+
+<p><strong>Database Command Line Interface (CLI)</strong></p>
+
+<p>End-user database and dataset functionality is made available through a command line (CLI)
+tool, dbcli.  The tool enables users to acquire tokens, list databases, list datasets in
+a database, show the schema for a dataset (describe), view a sample of data, create tables
+and grant permissions through Hive DDL.</p>
+
+<p>See <a href="/cerebro-database-cli">Database CLI</a> for details.</p>
+
+<p><strong>Basic Authentication using LDAP</strong></p>
+
+<p>With this release, Basic authentication using LDAP is introduced, which should
+allow Cerebro users to authenticate using their Active Directory credentials.</p>
+
+<p>The user now has an option to either use the REST API or the new
+web-based login UI to get their Cerebro token using their Active Directory
+username and password.</p>
+
+<p>See the <a href="/secure-cerebro-rest-api-ldap">LDAP Basic Auth Document</a> for details.</p>
+
+<h4 id="changes">Changes</h4>
+<p><strong>cerebro_cli utility</strong></p>
+
+<p>The following subcommands were added:</p>
+<ul>
+  <li><code class="highlighter-rouge">cerebro_cli agents state</code>
+    <ul>
+      <li>lists the state of all agents, grouped by cluster</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">cerebro_cli clusters nodes &lt;cluster id&gt;</code>
+    <ul>
+      <li>lists the nodes that constitute the indicated cluster</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">cerebro_cli clusters set_default_version
+    --version &lt;version&gt;
+    --components &lt;componenta:version,componentb:version&gt; &lt;clusterID&gt;</code>
+    <ul>
+      <li>Sets the version to be used by clusters that are subsequently created.
+The version flag sets the version of CDAS to install and the
+components flag allows for specific components to run a different, likely higher,
+version of that component. This command wipes out any existing version and
+component settings. The –version argument must be a valid version,
+–components is also required but can be an empty string.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>AWS Region Configuration</strong></p>
+
+<p>Deployment Manager will now detect the AWS region that it is running in if one is not
+configured via the AWS_DEFAULT_REGION value. The result is cached, requiring a
+Deployment Manager restart (following a change in your configuration) if you want to
+manage a cluster in another AWS region.</p>
+
+<p><strong>Kerberos</strong></p>
+
+<p>DeploymentManager allows a kerberos principal for the REST API to be explicitly specified.
+Previously this was assumed to be derived from the service principal
+(i.e. HTTP/<service_host>).
+See [Kerberos](/kerberos-cluster-setup) docs for more details.</service_host></p>
+
+<p><strong>Deployment Manager</strong></p>
+
+<p>The S3_STAGING_DIR environment variable is now validated during Deployment Manager
+startup.
+Improved reporting of issues that arise during agent startup.
+Configured service port uniqueness is now enforced during Deployment Manager startup.</p>
+
+<p><strong>Using Encrypted S3 buckets</strong></p>
+
+<p>Writes to S3 buckets now set the server-side encryption flag on the S3 write or copy
+request if the S3_STAGING_ENCRYPTION configuration is set to true.</p>
+
+<h4 id="incompatible-and-breaking-changes-6">Incompatible and Breaking Changes</h4>
+<p><strong>Change to CEREBRO_KERBEROS_KEYTAB_FILE config</strong></p>
+
+<p>Previously, this config used to be the basename of the keytab file and the user was
+required to upload the file to Cerebro’s S3 staging directory. In this release, this
+config has been updated to be the full path to the keytab. The path can be on the
+DeploymentManager machine (e.g. /etc/keytabs/cerebro.keytab) or on S3. No steps are
+now required to upload the keytab to the staging directory.</p>
+
+<p>The prior config will no longer validate and the DeploymentManager will not
+start up. Users coming from a previous release will need to update their configs.
+For example, by changing:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export CEREBRO_KERBEROS_KEYTAB_FILE=cerebro.keytab
+
+## to
+export CEREBRO_KERBEROS_KEYTAB_FILE=/path/on/deployment-manager/cerebro.keytab
+</code></pre></div></div>
+
+<p><strong>Rename database to db</strong></p>
+
+<p>Some REST APIs used the field name ‘database’ and others used the field name ‘db’.
+All APIs were changed to consistently use the term ‘db’  This impacts the following APIs:</p>
+
+<ul>
+  <li>api/datasets [POST]</li>
+  <li>api/datasets/{name} [POST]</li>
+</ul>
+
+<p>For detail see: <a href="/catalog-rest-api">Catalog REST API</a>.</p>
+
+<h4 id="known-issues-4">Known issues</h4>
+<p><strong>Errors during Deployment Manager configuration file writes prevent restart</strong></p>
+
+<p>If the configuration file for Deployment Manager is not correctly written to RDS (due to
+an issue occurring during the write), then the Deployment Manager  will not be able to
+start again. The workaround is to manually update (correct) the underlying configuration
+file.</p>
+
+<p><strong>Unable to delete a launching cluster</strong></p>
+
+<p>In some cases, it is not possible to immediately terminate a cluster that is launching
+and the delete will only go into effect after it is done launching. To get the cluster
+to delete immediately, manually terminating/shutting down the launching machines will
+work.</p>
+
+<h2 id="030-release-notes">0.3.0 release notes</h2>
+
+<h3 id="february-2017">February-2017</h3>
+<p>This is the feature complete release candidate of CDAS.</p>
+
+<h4 id="new-features-10">New Features</h4>
+<p><strong>Tableau Cerebro Catalog Integration</strong></p>
+
+<p>You can access data stored in Cerebro using Tableau.
+See <a href="/tableau-web-data-connector">Tableau WDC</a> for details.</p>
+
+<p><strong>Catalog UI</strong></p>
+
+<p>Beta release of the catalog webui. You can see the datasets that are in the system and
+how to read them from a variety of integration points. Just navigate to the
+cerebro_catalog_ui:webui end point and log in with your user token.</p>
+
+<p><strong>Catalog REST API Integration</strong></p>
+
+<p>Changes were made to the Catalog REST API.  See <a href="/catalog-rest-api">Catalog API</a> and the
+<a href="CatalogApiTutorial.md">tutorial</a> for further details.</p>
+
+<p><strong>Installation Process</strong></p>
+
+<p>The installation process has been enhanced by providing customizable templates for
+launching EC2 instances and initializing cluster nodes.  See:
+<a href="/install">Installation Guide</a>, “Starting up a CDAS cluster” for details.</p>
+
+<p><strong>Authentication</strong></p>
+
+<p>With this release, all Cerebro services can run with authentication enabled end-to-end.
+See: <a href="/cdas-authentication">Authentication</a>
+for further details. This includes non-kerberized clients (for example the catalog webui)
+using tokens.</p>
+
+<p>For information on setting up a Kerberized cluster, see:
+<a href="/kerberos-cluster-setup">Kerberized Cluster Setup</a></p>
+
+<h4 id="changes-1">Changes</h4>
+<p><strong>Admin Dashboard</strong></p>
+
+<p>The Kubernetes admin dashboard has been upgraded to version 1.5.1 from version 1.4.2.
+See <a href="/kubernetes-dashboard-quickstart">Kubernetes Quickstart</a> for details.</p>
+
+<p><strong>Kubernetes</strong></p>
+
+<p>Kubernetes has been upgraded to version 1.5.3 from version 1.4.2.</p>
+
+<h4 id="incompatible-and-breaking-changes-7">Incompatible and Breaking Changes</h4>
+<p>Renamed <em>cerebro_catalog_ui</em> to <em>cdas_rest_server</em>.  This is a port configuration
+change and will require users to update their env file. Note that this point will also
+need to be exposed.</p>
+
+<p>Installation instructions moved components from /var/run/cerebro to /etc/cerebro. Prior
+versions of the install script recommended you place various files (on the
+DeploymentManager machine) in /var/run/cerebro.
+If you have built scripts and automation following those steps, those should be adapted
+to use /etc/cerebro instead.</p>
+
+<h4 id="known-issues-5">Known issues</h4>
+<p>Catalog UI sometimes does not refresh databases correctly. Refresh from the browser as a
+workaround.</p>
+
+<h2 id="020-release-notes">0.2.0 release notes</h2>
+
+<h3 id="02-03-2017">02-03-2017</h3>
+<p>0.2.0 Cerebro CDAS release makes significant improvements on usability, security and
+reliability.</p>
+
+<h4 id="new-features-11">New Features</h4>
+<p><strong>Installation</strong></p>
+
+<p>Install process has been further simplified with fewer steps and faster deployment.
+Configuration steps include examples. See <code class="highlighter-rouge">Install.md</code>
+Logging improvements assist in faster problem determination, if any.</p>
+
+<p><strong>Server</strong></p>
+
+<p>Deployment Manager(DM) server has evolved to an agent architecture. Each of the cluster
+nodes will now run a DM agent to deploy and launch Kubernetes services.</p>
+
+<p>See <code class="highlighter-rouge">Install.md</code> for details.</p>
+
+<p><strong>Security</strong></p>
+
+<p>With this release, REST api to deployment manager can be secured using Kerberos.
+Along with Kerberos authentication, authorization may be configured for admin access to deployment manager.
+See <code class="highlighter-rouge">Security.md</code> for additional details.</p>
+
+<p><strong>Admin Dashboard</strong></p>
+
+<p>You may now use the Kubernetes admin dashboard for managing the Cerebro cluster.
+See <code class="highlighter-rouge">KubernetesDashboardQuickStart.md</code> for details.</p>
+
+<p><strong>CLI interface</strong></p>
+
+<p>cerebro_cli has new commands to interact with the DM REST API and the agents.
+See <code class="highlighter-rouge">CerebroCLI.md</code> for details. <code class="highlighter-rouge">Install.md</code> has a few examples.
+Run <code class="highlighter-rouge">cerebro_cli help</code> to see the much improved command line options.</p>
+
+<h4 id="incompatible-changes-1">Incompatible Changes</h4>
+<p>No known incompatibilities exist.</p>
+
+<h4 id="known-issues-6">Known issues</h4>
+<p><strong>Cluster create fails occasionally</strong></p>
+
+<p>This manifests with an error message like:
+Unreachable external machine: 10.1.10.101:8085.
+Expecting Cerebro agent to be running at: 10.1.10.101:8085.</p>
+
+<p>The workaround is to rerun the command few seconds later.</p>
+
+<p><strong>Duplicate IP address in cluster machine list will cause launch failures</strong>
+If an IP address appears more than once in the machines list, the install process
+will fail.</p>
+
+<p>The workaround is to ensure that there are no dups.</p>
+
+<h2 id="release-notes-1">release notes</h2>
+
+<h3 id="12-6-2016">12-6-2016</h3>
+<p>Multiple updates were made on how to interact with the Cerebro catalog. Some of these
+changes are not backwards compatible.</p>
+
+<h4 id="new-features-12">New Features</h4>
+<p><strong>CLI interface for catalog</strong></p>
+
+<p>The REST API was intended for programmatic access. While it is possible to use it
+interactively (using curl), it is not very user friendly. We have added a CLI that
+sits on top of the REST API. It provides identical capabilities to going against the
+REST API directly.</p>
+
+<p><strong>Permissions API</strong></p>
+
+<p>We added a permissions API to both the REST API and CLI which can be useful to examine
+the aggregate result of the policies that have been set. It is useful to answer
+questions such as:</p>
+<ul>
+  <li>What datasets (and pieces of them) does this particular user/group have?</li>
+  <li>What are all the users/groups that have access to this dataset?</li>
+</ul>
+
+<h4 id="incompatible-changes-2">Incompatible Changes</h4>
+<p><strong>Policy API has changed</strong>.</p>
+
+<p>The endpoints are different (/api/grant-policy, /api/revoke-policy). The arguments are
+largely the same. It is no longer necessary to delete policies and not possible to view
+them.</p>
+
+<h4 id="known-issues-7">Known issues:</h4>
+<p><strong>Creating the dataset with ‘storage_url’ currently requires the dataset to be parquet.</strong></p>
+
+<p>The workaround is to specify the request using hiveql.</p>
+
+<p><strong>Granting a policy with filters is disabled</strong></p>
+
+<p>This causes compatibility issues with clients such as Impala. The workaround is to register
+the dataset with the filter and grant the policy on the new dataset.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Frequently Asked Questions about the Cerebro Platorm | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="faq">Frequently Asked Questions</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="frequently-asked-questions-about-the-cerebro-platorm">Frequently Asked Questions about the Cerebro Platorm</h1>
+
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
+<!-- TOC Automatically generated by markdown-toc Atom plugin -->
+<ul>
+  <li><a href="#basic-product-questions">Basic Product Questions</a>
+    <ul>
+      <li><a href="#what-is-cerebro">What is Cerebro?</a></li>
+      <li><a href="#why-do-i-need-cerebro">Why do I need Cerebro?</a></li>
+      <li><a href="#is-cerebro-a-database">Is Cerebro a database?</a></li>
+      <li><a href="#where-does-cerebro-fit-in-my-infrastructure-stack">Where does Cerebro fit in my infrastructure stack?</a></li>
+      <li><a href="#does-cerebro-colocate-with-my-existing-hadoop-clusters">Does Cerebro colocate with my existing Hadoop clusters?</a></li>
+      <li><a href="#how-does-cerebro-impact-performance">How does Cerebro impact performance?</a></li>
+      <li><a href="#do-i-still-need-to-prep-the-data-if-i-have-cerebro">Do I still need to prep the data if I have Cerebro?</a></li>
+      <li><a href="#do-i-still-need-a-data-catalog-if-i-have-cerebro">Do I still need a data catalog if I have Cerebro?</a></li>
+      <li><a href="#once-set-up-will-all-data-access-be-through-cerebro">Once set up, will all data access be through Cerebro?</a></li>
+      <li><a href="#how-does-cerebro-handle-identity-management-and-authentication">How does Cerebro handle identity management and authentication?</a></li>
+    </ul>
+  </li>
+  <li><a href="#technology-questions">Technology Questions</a>
+    <ul>
+      <li><a href="#what-data-formats-does-cerebro-support">What data formats does Cerebro support?</a></li>
+      <li><a href="#does-cerero-support-any-user-defined-functions-udfs">Does Cerero support any user-defined functions (UDFs)?</a></li>
+      <li><a href="#does-cerebro-use-yarn">Does Cerebro use YARN?</a></li>
+      <li><a href="#how-does-cerebro-route-front-end-requests">How does Cerebro route front-end requests?</a></li>
+      <li><a href="#how-does-cerebro-solve-the-small-files-problem">How does Cerebro solve the small-files problem?</a></li>
+      <li><a href="#can-cerebro-catalog-span-multiple-data-centers">Can Cerebro Catalog span multiple data centers?</a></li>
+      <li><a href="#does-cerebro-support-any-type-of-data-indexing">Does Cerebro support any type of data indexing?</a></li>
+      <li><a href="#does-cerebro-guarantee-backward-compatibility-with-amazon-emr">Does Cerebro guarantee backward compatibility with Amazon EMR?</a></li>
+      <li><a href="#are-there-differences-between-msck-repair-table-in-hive-vs-alter-table-recover-partitions-in-cdas">Are there differences between MSCK REPAIR TABLE in Hive vs ALTER TABLE RECOVER PARTITIONS in CDAS?</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- /TOC -->
+
+<h2 id="basic-product-questions">Basic Product Questions</h2>
+
+<h3 id="what-is-cerebro">What is Cerebro?</h3>
+
+<p>Cerebro solves the complex issue of managing and controlling access to many big data datasources.
+It transparently integrates into Hadoop, S3, EMR, and Spark (and many more architectures!) to provide a unified metadata catalog and access control policy store.
+Data access, as well as policy access and enforcement, are managed by Cerebro services.</p>
+
+<p>Like massively parallel processing (MPP) databases, Cerebro is always available, taking on requests from a growing set of data processing systems, such as Spark, Python, Presto, Impala, and Hive, with no delay and no additional overhead.
+Its scalability and high availability features make Cerebro the ideal backend for all access to data in many of the common storage systems, like S3, HDFS, and Kafka.
+Such storage tools often only provide coarse-grained security controls.
+With Cerebro, all access to data is vetted against the central access control policies and logged for auditing.
+Because of Cerebro’s optimized access to data using state-of-the-art technologies, queries are accelerated and can take further advantage of acceleration mechanisms provided by Cerebro.</p>
+
+<p>Through the integration with industry-standard security mechanisms such as Kerberos authenticaton protocol and Microsoft Active Directory servers, access to data is authenticated against the existing company-wide user management systems.</p>
+
+<p>All of this ensures that Cerebro is not introducing any additional complexity, but rather simplifies your life and makes access to data a reliable, secure, and transparent experience.</p>
+
+<p>For more, see <a href="product-overview">Cerebro Platform Overview</a>.</p>
+
+<h3 id="why-do-i-need-cerebro">Why do I need Cerebro?</h3>
+
+<p>We live in a time when technology and data are exploding exponentially, making their integration more and more complicated.
+At the same time, users are asking for easier access to both, in an attempt to focus on business problems, without having to learn yet another interface.
+On top of that, providing secure access to the data is not trivial and certainly not easy; each technology has its own way of securing data, and where that mechanism is delegated to a shared service, it may only offer only coarse-grained access.</p>
+
+<p>This is where Cerebro comes in: combining disjointed APIs into one unified system that offers a central schema catalog, access policy store, and shared data access layer.
+Using Cerebro, all metadata and data access is simplified, as the unnecessary need to add access policies to many systems is removed.
+Fine-grained control over data down to the object, row, and a column, enables users to access what they need seamlessly.
+In addition, Cerebro has the ability to speed up common access patterns and thereby increase the effectiveness of applications, increasing the return on investment.</p>
+
+<h3 id="is-cerebro-a-database">Is Cerebro a database?</h3>
+
+<p>Cerebro manages data access and governance, not storage, per se.
+Yet as a matter of course, the platform does provide much of the functionality you may expect from conventional databases but have not found in Big Data infrastructure.
+Cerebro maintains a schema registry that maps datasources, objects, and fields similarly to some features of relational database management systems (RDBMSes).
+See <a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> for more.</p>
+
+<h3 id="where-does-cerebro-fit-in-my-infrastructure-stack">Where does Cerebro fit in my infrastructure stack?</h3>
+
+<p>Cerebro provides access to underlying data sources.
+It offers functionality for end-user query access to data using various applications (business intelligence tools) or programmatically (such as by Apache Spark or Python scripts).</p>
+
+<p>Typically the provisioning of data to the underlying data stores (for example, S3 or HDFS) is carried out by common ingest pipelines, which have full and direct access to the data sources and write access to the storage infrastructure.
+That is, you ingest, organize, and store your data how you see fit.</p>
+
+<p>An instance of the Cerebro platform takes the form of a host cluster that has access to your data sources.
+All your key applications have access to your data over <a href="cdas-overview">CDAS</a>, according to schemas and rules you impose using <a href="cerebro-catalog-overview">Cerebro Catalog</a>.</p>
+
+<p>See <a href="cdas-overview">Cerebro Data Access Service Overview</a> for more.</p>
+
+<h3 id="does-cerebro-colocate-with-my-existing-hadoop-clusters">Does Cerebro colocate with my existing Hadoop clusters?</h3>
+
+<p>Cerebro can be installed collocated with your current Hadoop infrastructure or separately.
+Both models are fully supported.
+Which model you pick depends on your environment and needs.</p>
+
+<ul>
+  <li>
+    <p>If you’re deploying in the data center where all services are collocated on a set of physical machines, Cerebro can be deployed on the cluster, collocated with the other services.</p>
+  </li>
+  <li>
+    <p>If you’re deploying in the cloud and have different kinds of access frameworks (Spark, Presto, Python) accessing data via Cerebro but not necessarily all collocated on the same machines, Cerebro can be deployed standalone as an independent service.</p>
+  </li>
+  <li>
+    <p>With Amazon’s Elastic MapReduce (EMR), you can deploy Cerebro collocated with the EMR nodes.</p>
+  </li>
+</ul>
+
+<h3 id="how-does-cerebro-impact-performance">How does Cerebro impact performance?</h3>
+
+<p>Cerebro has been designed with performance in mind.</p>
+
+<ul>
+  <li>The I/O and data path are tuned to be highly efficient.</li>
+  <li>Clusters have been proven to scale to 800+ nodes.</li>
+</ul>
+
+<p>Cerebro deployment supports federation (deploying multiple clusters with hundreds of nodes).
+In many workloads, using the most-popular Hadoop analytic frameworks (Spark, MapReduce), performance often improves between 10-20% due to the data path efficiency.
+One way to think about this is that the MapReduce/Java application offloads the initial processing to Cerebro, including I/O, file parsing, decompression, and filtering.</p>
+
+<h3 id="do-i-still-need-to-prep-the-data-if-i-have-cerebro">Do I still need to prep the data if I have Cerebro?</h3>
+
+<p>Yes.
+Data prep involves modeling the data to suit your business and transforming data needed in the process of ingesting and storing it.
+Once modeled, data can be published with Cerebro.
+Cerebro thereafter provides self-service access to your business users, analysts, and scientists, all using their favorite utilities, apps, scripting languages like Python and R.</p>
+
+<h3 id="do-i-still-need-a-data-catalog-if-i-have-cerebro">Do I still need a data catalog if I have Cerebro?</h3>
+
+<p>Cerebo provides you a Catalog for what we call “technical metadata”.
+This is the information required to access the data sets: schemas, location, access policies.
+For some users, this is sufficient.
+For others, we’ve seen them build a catalog that is designed to more specifically model their business objects.
+In this case, the system would work with the Cerebro Catalog.
+Cerebro Catalog could contain the lower-level information, but the catalog would contain higher-level information associated with specific business processes.</p>
+
+<p>To be explicit, customers that are used to running Hive Metastore or Sentry Store do not need to do so anymore.</p>
+
+<h3 id="once-set-up-will-all-data-access-be-through-cerebro">Once set up, will all data access be through Cerebro?</h3>
+
+<p>There is no strict requirement to have Cerebro manage all data access.
+The platform can be configured such that certain users can go directly to the raw data.
+Anything that accesses raw files directly will be unable to leverage the security and governance functionality the Cerebro platform provides.</p>
+
+<h3 id="how-does-cerebro-handle-identity-management-and-authentication">How does Cerebro handle identity management and authentication?</h3>
+
+<p>Cerebro honors user groups established integrated by Unix systems and Active Directory.
+When useers supply authentication credentials the Cerebro platform, their existing authorizations are applied, permitting them access only to the datasets, objects, and columns indicated by their group assignments.</p>
+
+<h2 id="technology-questions">Technology Questions</h2>
+
+<h3 id="what-data-formats-does-cerebro-support">What data formats does Cerebro support?</h3>
+
+<p>Cerebro supports the following data formats:</p>
+
+<ul>
+  <li>Anything in the Hadoop ecosystem</li>
+  <li>Anything that you can provide a <a href="https://cwiki.apache.org/confluence/display/Hive/SerDe">Hive SerDe</a></li>
+</ul>
+
+<p>The list includes CSV, JSON, AVRO, Parquet, RC/ORC, and Thrift.</p>
+
+<h3 id="does-cerero-support-any-user-defined-functions-udfs">Does Cerero support any user-defined functions (UDFs)?</h3>
+
+<p>Cerebro supports <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Hive’s UDFs</a>.</p>
+
+<h3 id="does-cerebro-use-yarn">Does Cerebro use YARN?</h3>
+
+<p>Cerebro does not use YARN.
+The Cerebro components are deployed using Docker containers and use Kubernetes under the hood to manage the distributed system deployment.</p>
+
+<h3 id="how-does-cerebro-route-front-end-requests">How does Cerebro route front-end requests?</h3>
+
+<p>For traffic routing, all <em>non</em>-worker services run behind a load balancer.
+This means you can call the REST server, planner, or catalog via any hostname or IP on the cluster and the request will get routed to the right place.</p>
+
+<p>To enable Cerebro to carefully control the load and efficiency on the data path, the worker services are not load balanced.
+This is why, for example, you can use the REST server CNAME for the planner.
+The CNAME resolves to an IP on the cluster, and then gets routed through Cerebro as necessary.</p>
+
+<h3 id="how-does-cerebro-solve-the-small-files-problem">How does Cerebro solve the small-files problem?</h3>
+
+<p>There are a few problems with small files, both from the storage side and the compute side.
+For storage, small files lead to more metadata overhead gumming up the works.
+This is particularly problematic for HDFS NameNode.
+For most Hadoop compute frameworks, small files can cause the computation to be much slower due to the high per file/per task overhead.</p>
+
+<p>For compute, CDAS will combine small files automatically which often provides significant performance benefits. Cerebro does not currently manage writing files so does not directly help with the issue on the storage side. For non-HDFS storage managers, this may not be an issue at all. Users will want to do background compaction/ETL to combine small files. Cerebro does help with this illicitly by decoupling applications reading the data from the storage (i.e. file path details).</p>
+
+<h3 id="can-cerebro-catalog-span-multiple-data-centers">Can Cerebro Catalog span multiple data centers?</h3>
+
+<p>The Catalog itself cannot span multiple data centers.
+The data backing is stored in MySQL (or Aurora on AWS), and we recommend replication of the backing DB.
+The contents in the Catalog can span multiple clusters.
+For example, datasets that are from different data centers).</p>
+
+<h3 id="does-cerebro-support-any-type-of-data-indexing">Does Cerebro support any type of data indexing?</h3>
+
+<p>There are no plans to support indices in the short or medium term.
+Some of the use cases indexing enables can be solved using good partitioning schemes and enabling certain features when writing parquet.</p>
+
+<h3 id="does-cerebro-guarantee-backward-compatibility-with-amazon-emr">Does Cerebro guarantee backward compatibility with Amazon EMR?</h3>
+
+<p>New versions of CDAS will maintain compatibility with EMR client jars.
+Functionality introduced in newer versions of CDAS may not work with old EMR client jars, but none of the existing functionality will break as a result of a CDAS upgrade.</p>
+
+<h3 id="are-there-differences-between-msck-repair-table-in-hive-vs-alter-table-recover-partitions-in-cdas">Are there differences between MSCK REPAIR TABLE in Hive vs ALTER TABLE RECOVER PARTITIONS in CDAS?</h3>
+
+<p><code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> is effectively an alias for <code class="highlighter-rouge">MSCK REPAIR TABLE</code>.
+The primary difference in usability is that <code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> works from Cerebro’s database CLI utility (dbcli) or through the REST API.
+The <code class="highlighter-rouge">MSCK REPAIR TABLE</code> command must be run directly from Hive.
+Hive then translates the <code class="highlighter-rouge">MSCK</code> call to <code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> and distributes it to the planner as a call to each partition.
+The overhead of this translation and distribution results in slower performance from Hive vs. natively through CDAS.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

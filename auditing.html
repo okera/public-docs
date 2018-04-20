@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Auditing | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="auditing">Auditing</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="auditing">Auditing</h1>
+
+<p>All data and metadata requests are audited.
+All of these audit logs are generated by the Planner service.
+There may be additional audit logs by higher level services, such as the REST service and Web UI, but requests to get data or metadata will eventually go through the Planner.
+These logs are periodically uploaded to S3 in the cluster’s install location.</p>
+
+<h2 id="audit-log-format">Audit Log Format</h2>
+
+<p>Each audit log is a json record with this schema.
+These fields are considered stable and will not be removed in future releases.
+It is expected that more fields may be added in the future.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">request_time</code></td>
+      <td>string</td>
+      <td>Human-formatted GMT time when the request started.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">start_unix_time</code></td>
+      <td>int64</td>
+      <td>Unix epoch time at which the request completed (or failed).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">end_unix_time</code></td>
+      <td>int64</td>
+      <td>Unix epoch time at which the audit entry was generated.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">request_id</code></td>
+      <td>string</td>
+      <td>Unique ID for this request.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">auth_failure</code></td>
+      <td>boolean</td>
+      <td>Set to true if the request failed due to authorization or authentication failure.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">status</code></td>
+      <td>string</td>
+      <td>Status message of the request. “ok” if the request succeeded; error details otherwise.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">user</code></td>
+      <td>string</td>
+      <td>The effective user running the request. This is the user whose access permissions are used to validate the request.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">connected_user</code></td>
+      <td>string</td>
+      <td>The user that is authenticated at the network connection level. This can be different than <code class="highlighter-rouge">user</code> if the connected user is running on behalf of another user.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">client_network_address</code></td>
+      <td>string</td>
+      <td>The client host and port.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">client_application</code></td>
+      <td>string</td>
+      <td>The client application that originated the request. Examples: <code class="highlighter-rouge">execute-ddl</code>, <code class="highlighter-rouge">presto</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">statement_type</code></td>
+      <td>string</td>
+      <td>The type of the request.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">statement</code></td>
+      <td>string</td>
+      <td>Log of the request. Depending on the statement type, this will vary in format but captures the request being made.</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Note:</strong> Only stable fields are documented here.
+Others found in the logs are not considered stable and are subject to deprecation or unannounced removal.</p>
+</blockquote>
+
+<h2 id="service-logs">Service Logs</h2>
+
+<p>The audit logs are prefixed in the service log with <code class="highlighter-rouge">Audit.log</code>, on a single line.
+For example, the service log with 3 entries may look like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proc stderr: I1114 16:00:32.785622   127] Audit.log: {"request_time":"2017-11-14 16:00:32.444431000","request_id":"5c4ea821bc255858:5c402db736b49f93","start_unix_time":1510675232444,"end_unix_time":1510704032785,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"127.0.0.1:48024","client_application":"execute-ddl","statement_type":"DDL","default_db":"default","statement":"CREATE DATABASE IF NOT EXISTS cerebro_sample;"}
+proc stderr: I1114 16:00:33.601177   128] Audit.log: {"request_time":"2017-11-14 16:00:32.801185000","request_id":"749a2d993fd0f15:dec37270e0b477bd","start_unix_time":1510675232801,"end_unix_time":1510704033601,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"127.0.0.1:48026","client_application":"execute-ddl","statement_type":"DDL","default_db":"default","statement":"CREATE EXTERNAL TABLE IF NOT EXISTS cerebro_sample.sample(record STRING)   LOCATION 'file:///opt/data/sample';"}
+proc stderr: I1114 16:00:33.658776   129] Audit.log: {"request_time":"2017-11-14 16:00:33.615871000","request_id":"9b4e49b3d3542e6a:c48ba960358f918f","start_unix_time":1510675233615,"end_unix_time":1510704033658,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"127.0.0.1:48028","client_application":"execute-ddl","statement_type":"DDL","default_db":"default","statement":"CREATE EXTERNAL TABLE IF NOT EXISTS cerebro_sample.users(     uid STRING,     dob STRING,     gender STRING,     ccn STRING)   STORED AS PARQUET LOCATION 'file:///opt/data/users';"}
+</code></pre></div></div>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

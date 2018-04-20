@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Secure Cerebro REST API Access Using LDAP | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="secure-cerebro-rest-api-access-using-ldap">Secure Cerebro REST API Access Using LDAP</h1>
+
+<p>Cerebro now supports LDAP Basic Authentication. This document explains how to allow
+Cerebro users to authenticate using their Active Directory credentials using Basic
+authentication.</p>
+
+<h2 id="ldap-basic-authentication">LDAP Basic Authentication</h2>
+
+<p>In this section we will cover:</p>
+
+<ul>
+  <li><a href="#prerequisites-to-enable-ldap-basic-authentication-on-cerebro">Prerequisites to enable LDAP Basic Authentication on Cerebro</a></li>
+  <li><a href="#setting-up-ldap-related-configurations">Setting up LDAP related configurations</a></li>
+  <li><a href="#verify-ldap-basic-authentication-using-curl">Verify LDAP Basic Authentication using curl</a></li>
+  <li><a href="#use-the-web-ui-to-authenticate-and-get-cerebro-token">Use the Web UI to authenticate and get a Cerebro token</a></li>
+  <li><a href="#exploring-ldap-related-logs">Exploring LDAP related logs</a></li>
+</ul>
+
+<h3 id="prerequisites-to-enable-ldap-basic-authentication-on-cerebro">Prerequisites to enable LDAP Basic authentication on Cerebro</h3>
+
+<p>You will need the following pieces of information for CDAS to support LDAP:</p>
+
+<ul>
+  <li><strong>Hostname</strong>
+This must be the IP address or the hostname of the Active Directory server
+instance you are using.</li>
+  <li><strong>Port Number</strong>
+This is the port number on which the Active Directory instance is listening. If none is
+specified the This default, <code class="highlighter-rouge">389</code>, is used.</li>
+  <li><strong>Base DN</strong>
+This refers to the Base Distinguished Name used by the AD server to look for users.</li>
+</ul>
+
+<h3 id="setting-up-ldap-related-configurations">Setting up LDAP related configurations</h3>
+
+<p>To enable LDAP Basic authentication for CDAS access, set the following environment
+variables in your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file:</p>
+
+<ul>
+  <li><strong>CEREBRO_LDAP_HOST</strong>
+eg. <code class="highlighter-rouge">example.com</code> or <code class="highlighter-rouge">127.0.0.4</code>.</li>
+  <li><strong>CEREBRO_LDAP_PORT</strong>
+This has a <strong>default value of 389</strong> if not set.</li>
+  <li><strong>CEREBRO_LDAP_BASE_DN</strong>
+<strong>Please note:</strong> Cerebro accepts the base DN in a particular notation as described here.
+If your base DN is of the format <code class="highlighter-rouge">dc=example,dc=com</code>, the value to be passed in should
+be <code class="highlighter-rouge">example.com</code></li>
+  <li><strong>CEREBRO_LDAP_USE_SSL</strong>
+By default, Cerebro assumes the LDAP server has SSL enabled. We recommend this for
+all production configurations in which case this config does not need to be specified. For
+test deployments, this can be set to <code class="highlighter-rouge">false</code> if the LDAP server does not have SSL enabled.</li>
+  <li><strong>CEREBRO_LDAP_DOMAIN</strong>
+This is the default domain for users. For example, if set to <code class="highlighter-rouge">ALL USERS</code> and a user
+tries to log in with their username, <code class="highlighter-rouge">userid</code>,  Cerebro will authenticate (i.e. bind)
+with the LDAP server using <code class="highlighter-rouge">ALL USERS\\userid</code>. If a domain is explicitly specified when
+logging in, Cerebro will ignore this value. For example, in the same identical
+configuration, if the user explicitly logged in as <code class="highlighter-rouge">TEST DOMAIN\\userid</code>, then we will
+authenticate with LDAP using exactly that login. By default, this is not set and there
+is no default domain. If this is set, CEREBRO_LDAP_BASE_DN should not be set.</li>
+</ul>
+
+<p>For clarity, in your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file, the following variables need to be
+uncommented and set:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
+<span class="c"># export cerebro_ldap_host=your_ad_hostname</span>
+<span class="c"># export cerebro_ldap_port=your_ad_port</span>
+<span class="c"># export cerebro_ldap_base_dn=your_ad_base_dn</span>
+</code></pre></div></div>
+
+<p>For example, for an LDAP Host at <code class="highlighter-rouge">example.com:324</code>, and Base DN of <code class="highlighter-rouge">dc=example,dc=com</code>,
+the LDAP related variables will look like:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
+<span class="nb">export </span><span class="nv">CEREBRO_LDAP_HOST</span><span class="o">=</span>example.com
+<span class="nb">export </span><span class="nv">CEREBRO_LDAP_PORT</span><span class="o">=</span>324
+<span class="nb">export </span><span class="nv">CEREBRO_LDAP_BASE_DN</span><span class="o">=</span>example.com
+</code></pre></div></div>
+
+<h3 id="verify-ldap-basic-authentication-using-curl">Verify LDAP Basic authentication using curl</h3>
+
+<p>Before we begin this section, make sure you have a set of LDAP credentials that you
+intend to use for authentication:</p>
+
+<ul>
+  <li>
+    <p><strong>Check the LDAP connection using CURL</strong>:</p>
+
+    <p>The following curl command should return the authenticated client name</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>curl &lt;CDAS_REST_SERVER&gt;/api/health-authenticated <span class="nt">-u</span> &lt;AD_USERNAME&gt;
+  Enter host password <span class="k">for </span>user <span class="s1">'&lt;AD_USERNAME&gt;'</span>:
+  <span class="o">{</span>
+    <span class="s2">"health"</span>: <span class="s2">"ok"</span>,
+    <span class="s2">"token"</span>: null,
+    <span class="s2">"user"</span>: <span class="s2">"&lt;AD_USERNAME&gt;"</span>
+  <span class="o">}</span>
+
+  <span class="c"># An example for Catalog REST server running at localhost:5000, and AD username</span>
+  <span class="c"># "testuser" is as follows</span>
+  <span class="nv">$ </span>curl localhost:5000/api/health-authenticated <span class="nt">-u</span> testuser
+  Enter host password <span class="k">for </span>user <span class="s1">'testuser'</span>:
+  <span class="o">{</span>
+    <span class="s2">"health"</span>: <span class="s2">"ok"</span>,
+    <span class="s2">"token"</span>: null,
+    <span class="s2">"user"</span>: <span class="s2">"testuser"</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Authenticate user and get token using CURL</strong>:</p>
+
+    <p>The following curl command should return a Cerebro token on successful authentication</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>curl <span class="nt">-X</span> POST &lt;CDAS_REST_SERVER&gt;/api/get-token <span class="nt">-u</span> &lt;AD_USERNAME&gt;
+  Enter host password <span class="k">for </span>user <span class="s1">'&lt;AD_USERNAME&gt;'</span>:
+  <span class="o">{</span>
+    <span class="s2">"token"</span>: <span class="s2">"&lt;Token&gt;"</span>
+  <span class="o">}</span>
+
+  <span class="c"># An example for Catalog REST server running at localhost:5000, and AD username</span>
+  <span class="c"># "testuser" is as follows</span>
+  <span class="nv">$ </span>curl <span class="nt">-X</span> POST localhost:5000/api/get-token <span class="nt">-u</span> testuser
+  Enter host password <span class="k">for </span>user <span class="s1">'testuser'</span>:
+  <span class="o">{</span>
+    <span class="s2">"token"</span>: <span class="s2">"AAdzYXVyYWJoAAdzYXVyYWJoigFcIb5C_IoBXEXKxvwBAg</span><span class="nv">$$</span><span class="s2">.xvm3yXp3_CZX377y0BqFVBmjKIY$"</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="use-the-web-ui-to-authenticate-and-get-a-cerebro-token">Use the Web UI to authenticate and get a Cerebro token</h3>
+
+<p>It is now possible to get a Cerebro token using the Cerebro Web UI. Point your browser to
+the login page in the Web UI and enter your credentials.</p>
+
+<h3 id="exploring-ldap-related-logs">Exploring LDAP related logs</h3>
+
+<p>To verify if the LDAP related values are set as intended, and for LDAP related debugging,
+look for the following logs in your Catalog Admin container. You should see the following
+lines in your Catalog REST server logs:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># the general format of expected logs</span>
+LDAP configurations initialized
+LDAP Server: &lt;LDAP_HOST&gt;:&lt;LDAP_PORT&gt;
+LDAP Server Base DN: &lt;base DN <span class="k">in</span> <span class="s1">'dc=x'</span> format&gt;
+
+<span class="c"># assuming your ldap server is at 127.0.0.4:389 and base dn is "example.com"</span>
+LDAP configurations initialized
+LDAP Server: 127.0.0.4:389
+LDAP Server Base DN: <span class="nv">dc</span><span class="o">=</span>example,dc<span class="o">=</span>com
+</code></pre></div></div>
+
+<p>If the above lines are not present, your Catalog instance did not start with LDAP Basic
+authentication enabled.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

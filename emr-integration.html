@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Cerebro Data Access Service EMR Integration | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="emr-integration">EMR Integration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="cerebro-data-access-service-emr-integration">Cerebro Data Access Service EMR Integration</h1>
+
+<p>This documents describes how to use Cerebro Data Access Service (CDAS) from EMR and how to configure each of the supported EMR services.
+It assumes that the CDAS cluster is already running.</p>
+
+<p>As part of the installation, specify:</p>
+
+<ul>
+  <li>
+    <p>A bootstrap action to download the Cerebro client library on the cluster nodes</p>
+  </li>
+  <li>
+    <p>A bootstrap script to set the appropriate user accounts permissions on an EMR cluster</p>
+  </li>
+  <li>
+    <p>A configuration to set the client library to use a CDAS install</p>
+  </li>
+</ul>
+
+<p>This is optional for some components.
+An EMR cluster that is using multiple components should apply each configuration.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> EMR versions 5.3.0 through 5.9.0 are supported through the latest bootstrap scripts.</p>
+</blockquote>
+
+<h2 id="client-node-bootstrap">Client Node Bootstrap</h2>
+
+<p>The first bootstrap action places the client jars in the <code class="highlighter-rouge">/usr/lib/cerebro</code> directory and creates links into component-specific library paths.</p>
+
+<p>To bootstrap the cluster, run the script, and specify the version and components you have installed.</p>
+
+<p>The bootstrap script is located at:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3://cerebrodata-release-useast/utils/emr/cdas-emr-bootstrap.sh
+</code></pre></div></div>
+
+<h3 id="script-usage">Script Usage</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh &lt;cdas version&gt; [options] &lt;list_of_components&gt;
+</code></pre></div></div>
+
+<p><strong>Options</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">--planner-hostports &lt;HOSTPORT&gt;</code> – Link to the <code class="highlighter-rouge">cerebro_planner:planner</code> endpoint</li>
+  <li><code class="highlighter-rouge">--token &lt;TOKEN&gt;</code> – The token that identifies the user</li>
+</ul>
+
+<p>For example, to bootstrap a Spark 2 cluster from the Cerebro 0.8.1 client release, provide the arguments <code class="highlighter-rouge">0.8.1 spark-2.x</code>.
+If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">0.8.1 spark-2.x hive</code>.</p>
+
+<p>The complete list of supported components are:</p>
+
+<ul>
+  <li>Apache Spark 2 (<code class="highlighter-rouge">spark-2.x</code>)</li>
+  <li>Apache Hive (<code class="highlighter-rouge">hive</code>)</li>
+  <li>Presto (<code class="highlighter-rouge">presto</code>)</li>
+</ul>
+
+<p>Non-compute components can also be used and do not require any CDAS-related steps.
+These include:</p>
+
+<ul>
+  <li>Apache Zeppelin</li>
+  <li>Ganglia</li>
+  <li>Apache ZooKeeper</li>
+  <li>Apache Hue</li>
+</ul>
+
+<blockquote>
+  <p><strong>NOTE:</strong> CDAS client version must be 0.7.3 or later, when EMR Presto is used.</p>
+</blockquote>
+
+<h2 id="user-setup-bootstrap">User Setup Bootstrap</h2>
+
+<p>For the second bootstrap action, the following script is used to configure one or more users.
+Run this script for at least one user (likely the default EMR user, <code class="highlighter-rouge">hadoop</code>).</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3://cerebrodata-release-useast/utils/emr/bootstrap-users.sh
+</code></pre></div></div>
+
+<h3 id="script-usage-1">Script Usage</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bootstrap-users.sh &lt;list_of_users&gt;
+</code></pre></div></div>
+
+<p>Where the <code class="highlighter-rouge">&lt;list_of_users&gt;</code> is delimited by spaces.</p>
+
+<p><strong>Example:</strong> Setting up an EMR cluster for users <code class="highlighter-rouge">alice</code> and <code class="highlighter-rouge">bob</code></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bootstrap-users.sh alice bob
+</code></pre></div></div>
+
+<p>This script:</p>
+
+<ul>
+  <li>creates the group <code class="highlighter-rouge">cerebro</code>;</li>
+  <li>creates a script in <code class="highlighter-rouge">/tmp/</code> that waits for the given account to exist, for each service account (<code class="highlighter-rouge">hive</code>, <code class="highlighter-rouge">presto</code>, <code class="highlighter-rouge">spark</code>), each script running in the background;</li>
+  <li>adds the account to the <code class="highlighter-rouge">cerebro</code> group;</li>
+  <li>sets the expected permissions on both the given user’s home directory and the <code class="highlighter-rouge">.cerebro</code> directory within their home directory.</li>
+</ul>
+
+<p>The preceding steps result in the EMR service users having permission to read (and possibly write) a user’s token, because of their membership in the <code class="highlighter-rouge">cerebro</code> group.
+Group membership enables the Cerebro client libraries to authenticate the user by passing the user’s token to the CDAS cluster with each call.</p>
+
+<h2 id="end-to-end-operational-example">End-to-End Operational Example</h2>
+
+<p>As an end-to-end operational example, start up a multi-tenant EMR cluster running Spark 2.x, Hive, and Presto, configured to run against CDAS Planner, and running at <code class="highlighter-rouge">10.1.10.104:12050</code>.</p>
+
+<p>Select “Go to advanced options” at the top of the “Create Cluster” screen
+  <img src="assets/images/screen-emr-create-cluster.png" alt="EMR Config" /></p>
+
+<p><strong>Step 1: Choose your components.</strong>
+Pick <strong>Spark</strong>, <strong>Hive</strong>, and <strong>Presto</strong> from the list of EMR components.
+ <img src="assets/images/screen-emr-config-3.png" alt="EMR Config" />
+Set the Spark and Hive specific configs (more details below).</p>
+
+<p>Optionally, pick Hue and Zeppelin as components that do not require CDAS related steps:</p>
+
+<p>Configuration example (you can copy/paste this and replace the IP addresses with the IP of your Planner):</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"spark-defaults"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"spark.recordservice.planner.hostports"</span><span class="p">:</span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"spark-hive-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"recordservice.planner.hostports"</span><span class="p">:</span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"hive.fetch.task.conversion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minimal"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hive.metastore.rawstore.impl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"com.cerebro.hive.metastore.CerebroObjectStore"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recordservice.planner.hostports"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Additional configuration examples are found in the program-specific sections below.</p>
+
+<p><strong>Step 2: Use your preferred EMR hardware setup.</strong></p>
+
+<p><strong>Step 3: - Name your cluster something other than the default.</strong></p>
+
+<p>Configure the EMR cluster to use the Cerebro bootstrap script. Do the following:</p>
+
+<ul>
+  <li>Add a ‘Custom action’ under bootstrap actions</li>
+  <li>The script is currently located at <code class="highlighter-rouge">s3://cerebrodata-release-useast/utils/emr/cdas-emr-bootstrap.sh</code></li>
+  <li>Specify the <code class="highlighter-rouge">--planner-hostports</code> option. Since this is multi-tenant, there is no need to provide an access token to the bootstrap script.
+ All options should be specified before the list of components.</li>
+  <li>Add the list of supported components to the bootstrap script.
+ Since we’re starting with Hive, Presto and Spark, specify <code class="highlighter-rouge">hive</code>, <code class="highlighter-rouge">presto</code>, and <code class="highlighter-rouge">spark-2.x</code>:</li>
+</ul>
+
+<p><img src="assets/images/screen-emr-bootstrap-2.png" alt="EMR Bootstrap" /></p>
+
+<p><strong>Step 4: Set up the security options.</strong></p>
+
+<p>Specify additional security groups in order for the EMR cluster to communicate with the CDAS cluster.
+Add whatever security groups you specified for the CDAS hosts to the <strong>Master</strong>, <strong>Core</strong>, and <strong>Task</strong> rows.</p>
+
+<p><img src="assets/images/screen-emr-security-groups.png" alt="EMR Config" /></p>
+
+<p><strong>Step 5: Create the EMR cluster and wait for it to be ready.</strong></p>
+
+<p>The Cerebro components have been installed and configured when the cluster reports a ready status.</p>
+
+<p>Since this is a multi-tenant cluster, care must be taken to manage users that have access to this cluster.
+Each user can authenticate to Cerebro with their own token, using access control, handled by Cerebro.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The EMR username does not need to be the same as the subject in the user access token.
+When the user is authenticated, Cerebro uses the username specified in the token.
+The token can be installed with the following commands:</p>
+  <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir <span class="nt">-p</span> /home/&lt;user&gt;/.cerebro/
+<span class="nb">echo</span> <span class="s2">"longstringtoken"</span> <span class="o">&gt;</span> ~/.cerebro/token
+</code></pre></div>  </div>
+  <p>Where <code class="highlighter-rouge">longstringtoken</code> is the user’s long string token.</p>
+</blockquote>
+
+<p>The token must be owned by the group <code class="highlighter-rouge">cerebro</code> and have its permissions set so that the group can list and read the token.
+Write access is required if you are using a token refresh script, as described in the <a href="/cdas-authentication">Authentication doc</a>.</p>
+
+<p>Cerebro supplies a script to set the permissions on a token appropriately.
+Make sure that the service accounts are in the <code class="highlighter-rouge">cerebro</code> group and then run the script located at:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/lib/cerebro/set_token_access.sh
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note</strong>: this script must be run by a user with sudo privileges</p>
+</blockquote>
+
+<p>The Hadoop, Hive, Spark and Presto services should be restarted to update the groups to which those services have been added.</p>
+
+<p>A script to restart the pertinent services is located at <code class="highlighter-rouge">/usr/lib/cerebro/restart_emr.sh</code>.</p>
+
+<p>A similar user hierarchy should also be created in the Hadoop filesystem (HDFS or EMRFS).</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hadoop fs <span class="nt">-mkdir</span> /user/&lt;user&gt;
+<span class="nv">$ </span>hadoop fs <span class="nt">-chown</span> &lt;user&gt;:&lt;user&gt; /user/&lt;user&gt;
+<span class="nv">$ </span>hadoop fs <span class="nt">-chmod</span> 750 /user/&lt;user&gt;
+</code></pre></div></div>
+
+<p>The user can now use the following the EMR components to access data managed by Cerebro:</p>
+
+<p><strong>Example:</strong> Accessing data with presto-cli</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>./presto <span class="nt">--server</span> localhost:8080 <span class="nt">--catalog</span> hive <span class="nt">--schema</span> default
+presto&gt; show catalogs<span class="p">;</span>
+<span class="c"># This should return 'recordservice' among others.</span>
+presto&gt; SHOW TABLES <span class="k">in </span>recordservice.cerebro_sample<span class="p">;</span>
+presto&gt; <span class="k">select</span> <span class="k">*</span> from recordservice.cerebro_sample.sample<span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Accessing data with Hive</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hive
+hive&gt; show databases<span class="p">;</span>
+hive&gt; <span class="k">select</span> <span class="k">*</span> from cerebro_sample.sample<span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Accessing data with Beeline</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>beeline <span class="nt">-u</span> jdbc:hive2://localhost:10000/default <span class="nt">-n</span> hadoop
+beeline&gt; show tables <span class="k">in </span>cerebro_sample<span class="p">;</span>
+beeline&gt; <span class="k">select</span> <span class="k">*</span> from cerebro_sample.users limit 100<span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Accessing data with Spark shell (Scala)</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>spark-shell
+scala&gt; spark.conf.set<span class="o">(</span><span class="s2">"spark.recordservice.delegation-token.token"</span>, <span class="s2">"&lt;USER TOKEN&gt;"</span><span class="o">)</span>
+scala&gt; val df <span class="o">=</span> spark.sqlContext.read.format<span class="o">(</span><span class="s2">"com.cerebro.recordservice.spark"</span><span class="o">)</span>.load<span class="o">(</span><span class="s2">"cerebro_sample.sample"</span><span class="o">)</span>
+scala&gt; df.show<span class="o">()</span>
+</code></pre></div></div>
+
+<h2 id="storing-tokens-on-multi-tenant-clusters">Storing Tokens on Multi-Tenant Clusters</h2>
+
+<p>Cerebro supports multi-tenant EMR clusters, as each Cerebro request includes the caller’s token.
+Requests by users on the same EMR cluster but using different tokens are independently authorized by Cerebro’s access controls.
+They potentially see different data.</p>
+
+<p>It is the responsibility of the EMR cluster to make sure that it is not easy for users on the same cluster to access other users’ tokens or data.
+The token is never logged in its entirety by Cerebro, but the user needs to make sure that the token is not accidentally exposed through the OS.
+For a secure multi-tenant cluster, Cerebro recommends users do not log in as the same user (for example, <code class="highlighter-rouge">hadoop</code>) and that the users logging in do not have root permissions.
+Otherwise, the local cluster OS is not secure.
+Similarly, not logging in as the same user, prevents users from viewing each other’s intermediate files in HDFS.</p>
+
+<p>Cerebro recommends that each user on the cluster persist their token under their home directory and make sure the directory is not world readable.</p>
+
+<p><strong>Example:</strong> Secure token management</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mkdir <span class="nt">-p</span> ~/.cerebro/
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"longstringtoken"</span> <span class="o">&gt;&gt;</span> ~/.cerebro/token
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> The EMR user need not match the token’s subject.
+Cerebro authenticates the user using the token only.</p>
+</blockquote>
+
+<h2 id="per-component-configuration">Per-Component Configuration</h2>
+
+<p>In this section the configurations required to configure each supported EMR component are detailed.</p>
+
+<p>With all components, Cerebro requires specifying the Planner hostport and can optionally take the access token.
+For single-tenant clusters, specifying the token early eliminates the need to specify the token after the cluster is up.</p>
+
+<blockquote>
+  <p><strong>Warning:</strong> This apporach should not be used in a multi-tenant cluster.</p>
+</blockquote>
+
+<h3 id="spark">Spark</h3>
+
+<h4 id="setting-up-spark">Setting up Spark</h4>
+
+<p><strong>Multi-tenant cluster:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"spark-defaults"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"spark.recordservice.planner.hostports"</span><span class="p">:</span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"spark-hive-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"recordservice.planner.hostports"</span><span class="p">:</span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Single-tenant cluster:</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"spark-defaults"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"spark.recordservice.planner.hostports"</span><span class="p">:</span><span class="s2">"10.1.10.104:12050"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"spark.recordservice.delegation-token.token"</span><span class="p">:</span><span class="s2">"&lt;TOKEN&gt;"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"spark-hive-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"recordservice.planner.hostports"</span><span class="p">:</span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="using-spark">Using Spark</h4>
+
+<p>Once the cluster is set-up, you can interact with the spark-shell as follows.</p>
+
+<ol>
+  <li>Specify the user’s token if this was not specified above.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scala&gt; spark.conf.set<span class="o">(</span><span class="s2">"spark.recordservice.delegation-token.token"</span>, <span class="s2">"&lt;user_token&gt;"</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>For CDAS versions up to 0.4.5, specify the service name.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scala&gt; spark.conf.set<span class="o">(</span><span class="s2">"spark.recordservice.delegation-token.service-name"</span>, <span class="s2">"&lt;PLANNER SERVICE NAME&gt;"</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Load a cerebro table, and you’re good to go.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scala&gt; val df <span class="o">=</span> spark.sqlContext.read.format<span class="o">(</span><span class="s2">"com.cerebro.recordservice.spark"</span><span class="o">)</span>.load<span class="o">(</span><span class="s2">"&lt;DB.TABLE&gt;"</span><span class="o">)</span>
+scala&gt; df.show<span class="o">()</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="hive">Hive</h3>
+
+<h4 id="setting-up-hive">Setting up Hive</h4>
+
+<p>In addition to the common flags, Hive requires another configuration, using <code class="highlighter-rouge">hive.metastore.rawstoreimpl</code>, to integrate with the Cerebro catalog.</p>
+
+<p><strong>Multi-tenant cluster:</strong></p>
+
+<p><strong>Example:</strong> Connecting to Planner at <code class="highlighter-rouge">10.1.10.104:12050</code> on a multi-tenant cluster</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"hive.fetch.task.conversion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minimal"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hive.metastore.rawstore.impl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"com.cerebro.hive.metastore.CerebroObjectStore"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recordservice.planner.hostports"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Single-tenant cluster:</strong></p>
+
+<p><strong>Example:</strong> Connecting to Planner on a single-tenant cluster</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"hive.fetch.task.conversion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minimal"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hive.metastore.rawstore.impl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"com.cerebro.hive.metastore.CerebroObjectStore"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"recordservice.planner.hostports"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.1.10.104:12050"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Classification"</span><span class="p">:</span><span class="s2">"core-site"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Properties"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"recordservice.delegation-token.token"</span><span class="p">:</span><span class="s2">"&lt;TOKEN&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="using-hive">Using Hive</h4>
+
+<p>You can use Hive in a very similar way to before, by using Hive or Beeline, as shown below.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hive
+hive&gt; show databases<span class="p">;</span>
+hive&gt; <span class="k">select</span> <span class="k">*</span> from cerebro_sample.sample<span class="p">;</span>
+</code></pre></div></div>
+
+<p>Users must specify their local Unix user (for example, <code class="highlighter-rouge">hadoop</code>) at connection time:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>beeline <span class="nt">-u</span> jdbc:hive2://localhost:10000/default <span class="nt">-n</span> hadoop
+beeline&gt; show tables <span class="k">in </span>cerebro_sample<span class="p">;</span>
+beeline&gt; <span class="k">select</span> <span class="k">*</span> from cerebro_sample.users limit 100<span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="cluster-local-dbs">Cluster local DBs</h4>
+
+<p>With the default install, the Hive Metastore (HMS) running on the cluster populates all of its contents from Cerebro Catalog.
+In other cases, it could be useful to use HMS to register cluster-local (tmp) tables, for example, for intermediate results.</p>
+
+<p>This can be done by configuring the set of databases that should only exist locally, either during bootstrap or by updating <code class="highlighter-rouge">hive-site.xml</code> and restarting HMS.
+For example, the setup could be configured so that any Hive operation to the database <code class="highlighter-rouge">localdb</code> is cluster-local.
+This includes tables, views, and so forth.
+This database is never reflected in Cerebro, and access to data or metadata in these databases do not use Cerebro.</p>
+
+<p>If Spark is included in the EMR cluster, the <code class="highlighter-rouge">global_temp</code> database is automatically setup to be cluster-local.</p>
+
+<p>Local DBs are also useful in creating materialized views (caches of datasets from queries) for faster access.
+An example would be to create a table in localdb using data from Cerebro datasets (using create table as select statement).</p>
+
+<p><strong>Example:</strong> Creatinga table in localdb</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">localdb</span><span class="p">.</span><span class="n">european_users</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="s1">'europe'</span>
+</code></pre></div></div>
+
+<p>The location for these tables can be changed to S3 bucket.
+This can be set in <code class="highlighter-rouge">hive-site.xml</code>.</p>
+
+<p><strong>Example:</strong> Changing table locations to an S3 bucket</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>hive.metastore.warehouse.dir<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;</span>s3://cerebrodata/warehouse<span class="nt">&lt;/value&gt;</span>
+  <span class="nt">&lt;description&gt;</span>location of default database for the warehouse<span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></div>
+
+<p>External storage location is supported for S3 buckets only.</p>
+
+<p>In the case where the local database has the same name as a Cerebro database, the local database takes precedence, and the user is not able see the contents in that Cerebro database from Hive.</p>
+
+<p><strong>Example:</strong> Configuring local databases in <code class="highlighter-rouge">hive-site.xml</code></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>cerebro.local.dbs<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;</span>localdb,testdb<span class="nt">&lt;/value&gt;</span>
+  <span class="nt">&lt;description&gt;</span>
+    Comma-separate list of local database names. These don't need to already exist.
+  <span class="nt">&lt;/description&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Configuring local databases using bootstrap script</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"Classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-site"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cerebro.local.dbs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localdb,testdb"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note on local DBs</strong></p>
+
+  <p>Any local database, and the datasets in it, are not accessible by CDAS.
+The local database is ephemeral and goes away when the EMR cluster is shutdown.
+If the storage is externalized to S3, or shared HDFS, then a new external table definition, with location set to the S3 folder, could be used to access the dataset.</p>
+</blockquote>
+
+<h4 id="known-incompatibilies">Known Incompatibilies</h4>
+
+<p>With CDAS installation, Hive uses externalized metadata managed by CDAS.</p>
+
+<p>As a result, it is not possible to alter the location of a table or partition to a Cerebro dataset by way of Hive.
+Instead, altering the location is done by way of a native Cerebro client; for example, the dbcli client.</p>
+
+<p>Hive treats externals table created using Hive against CDAS, as external, non-native type.
+<code class="highlighter-rouge">ALTER TABLE</code> is not supported on external, non-native tables.</p>
+
+<p><strong>Example:</strong> Using dbcli to alter the table location</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dbcli</span> <span class="n">dataset</span> <span class="n">hive</span><span class="o">-</span><span class="n">ddl</span> <span class="nv">"alter table cerebro.users set location 's3a://cerebrodata/correctedlocation'"</span>
+</code></pre></div></div>
+
+<h4 id="limitations">Limitations</h4>
+
+<blockquote>
+  <p><strong>Note:</strong> The CDAS authorization is not currently supported from the Hive CLI.
+For example, <code class="highlighter-rouge">SHOW ROLES</code> does not list the CDAS roles.</p>
+</blockquote>
+
+<p>SQL data manipulation (DML), such as <code class="highlighter-rouge">INSERT</code> statements, is not supported in Hive.</p>
+
+<h3 id="presto">Presto</h3>
+
+<h4 id="setting-up-presto">Setting up Presto</h4>
+
+<p>Presto requires configurations to be passed as arguments to the bootstrap script instead of providing them as configurations, but otherwise requires similar configs as the other components.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The options must come <em>before</em> the list of components.</p>
+</blockquote>
+
+<p><strong>Example:</strong> Multi-tenant Presto setup</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh 0.8.1 <span class="nt">--planner-hostports</span> 10.1.10.104:12050 presto
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Single-tenant Presto setup</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh 0.8.1 <span class="nt">--planner-hostports</span> 10.1.10.104:12050 <span class="nt">--token</span> longstringtoken presto
+</code></pre></div></div>
+
+<h4 id="using-presto">Using Presto</h4>
+
+<p>Once the EMR cluster is launched, and the token has been stored, if necessary, you can interact with <code class="highlighter-rouge">presto-cli</code>, as you typically would.</p>
+
+<p><strong>Example:</strong> Displaying catalogs using presto-cli</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>presto-cli
+presto&gt; show catalogs<span class="p">;</span>
+</code></pre></div></div>
+<p>This should return <code class="highlighter-rouge">recordservice</code> among others.</p>
+
+<p><strong>Example:</strong> Querying metadata and select form tables</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; SHOW TABLES <span class="k">in </span>recordservice.cerebro_sample<span class="p">;</span>
+presto&gt; <span class="k">select</span> <span class="k">*</span> from recordservice.cerebro_sample.sample<span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="known-limitations">Known Limitations</h4>
+
+<p>The <code class="highlighter-rouge">ddl</code> and <code class="highlighter-rouge">dml</code> commands are not supported in Presto.</p>
+
+<h2 id="logging">Logging</h2>
+
+<p>On the EMR instances, the bootstrapping logs are located in <code class="highlighter-rouge">/var/log/bootstrap-actions/</code>.
+This is helpful if the cluster is not starting up and could indicate a misconfiguration of the bootstrap action.</p>
+
+<h3 id="presto-1">Presto</h3>
+
+<p>EMR precludes us from fully configuring logging for Presto.
+To complete the configuration, edit the file located at <code class="highlighter-rouge">/etc/presto/conf.dist/jvm.config</code>, and add this line to the end of it:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-Dlog4j</span>.configuration<span class="o">=</span>file:/etc/presto/conf/log4j.properties
+</code></pre></div></div>
+
+<p>In order for the Cerebro Presto plugin to log correctly, restart the Presto services on all of the nodes in the cluster.</p>
+
+<h2 id="configs">Configs</h2>
+
+<p>Configs are generally written to <code class="highlighter-rouge">/etc/[component]</code>.
+Configs should replicate the configurations that were specified during cluster creation.</p>
+
+<h2 id="updating-cdas-client-libraries">Updating CDAS Client Libraries</h2>
+
+<p>CDAS client libraries are located in the <code class="highlighter-rouge">/usr/lib/cerebro</code> directory on each of the EMR instances.
+To upgrade CDAS client, become root user, download the client library, and restart the corresponding services.
+Replace <code class="highlighter-rouge">VERSION</code> with the version of CDAS client to which you are upgrading.
+To restart the services, refer to
+<a href="https://aws.amazon.com/premiumsupport/knowledge-center/restart-service-emr/">Amazon’s service restart instructions</a>.</p>
+
+<h3 id="updating-client-libraries-presto">Updating Client Libraries: Presto</h3>
+
+<ol>
+  <li>SSH to <strong>each</strong> EC2 node in the EMR.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/cerebro
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/&lt;VERSION&gt;/client/recordservice-presto.jar
+</code></pre></div>    </div>
+  </li>
+  <li>Restart the presto server on <strong>all</strong> the EC2 nodes.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stop presto-server
+start presto-server
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="updating-client-libraries-hive">Updating Client Libraries: Hive</h3>
+
+<ol>
+  <li>SSH to <strong>each</strong> of the EC2 nodes in the EMR.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/cerebro/
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/&lt;version&gt;/client/recordservice-hive.jar
+</code></pre></div>    </div>
+  </li>
+  <li>On the <em>master</em> EC2 node, download the Hive metastore jar and restart both the hive-server and the Hive metastore.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/cerebro/
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/&lt;version&gt;/client/cerebro-hive-metastore.jar
+stop hive-hcatalog-server
+stop hive-server2
+start hive-hcatalog-server
+start hive-server2
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

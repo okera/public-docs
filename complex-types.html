@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Complex Data Types | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="complex-types">Complex Data Types</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="complex-data-types">Complex Data Types</h1>
+
+<p>This document describes CDAS’s support for complex types.
+Complex types usually consist of:</p>
+
+<ul>
+  <li>structs</li>
+  <li>lists</li>
+  <li>maps</li>
+  <li>unions</li>
+</ul>
+
+<p>CDAS currently only supports structs but will support lists and maps soon.
+There is no plan to support unions (see exception for Avro below).</p>
+
+<h2 id="file-format-support">File format support</h2>
+
+<p>Complex types are only supported when the underlying data files are in Parquet or Avro format.</p>
+
+<h2 id="struct">Struct</h2>
+
+<p>CDAS supports struct types with up to 100 levels of nesting.
+Struct types are useful to model nested data, such as logs or event data that originated as JSON.</p>
+
+<p>As a running example, let’s use this JSON data.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"san francisco"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="create-ddl">CREATE DDL</h3>
+
+<p>The syntax for creating the table is compatible with HiveQL, using the struct type and listing the fields inside.
+For this schema:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">users</span><span class="p">(</span>
+  <span class="n">uid</span> <span class="n">BIGINT</span><span class="p">,</span>
+  <span class="k">user</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">address</span> <span class="n">STRUCT</span><span class="o">&lt;</span>
+    <span class="n">city</span><span class="p">:</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="k">state</span><span class="p">:</span> <span class="n">STRING</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">age</span> <span class="n">INT</span>
+<span class="p">)</span> <span class="n">STORED</span> <span class="k">AS</span> <span class="n">AVRO</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://cerebrodata-test/rs-complex-users/'</span>
+</code></pre></div></div>
+
+<p>Describing the table should look something like:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">users</span><span class="p">;</span>
+<span class="n">uid</span>	<span class="n">bigint</span>
+<span class="n">name</span>	<span class="n">string</span>
+<span class="n">address</span>	<span class="n">struct</span><span class="o">&lt;</span>
+  <span class="n">city</span><span class="p">:</span><span class="n">string</span><span class="p">,</span>
+  <span class="k">state</span><span class="p">:</span><span class="n">string</span>
+<span class="o">&gt;</span>
+<span class="n">age</span>	<span class="n">int</span>
+</code></pre></div></div>
+
+<h3 id="scanning-via-rest-api">Scanning via REST API</h3>
+
+<p>The REST API has always returned JSON and fully supports nested types.
+For example, curling this endpoint now returns:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl REST_SERVER:PORT/scan/users?format
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"uid"</span>: 100,
+        <span class="s2">"user"</span>: <span class="s2">"alice"</span>,
+        <span class="s2">"address"</span>: <span class="o">{</span>
+            <span class="s2">"city"</span>: <span class="s2">"san francisco"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"ca"</span>
+        <span class="o">}</span>,
+        <span class="s2">"age"</span>: 25
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"uid"</span>: 101,
+        <span class="s2">"user"</span>: <span class="s2">"bob"</span>,
+        <span class="s2">"address"</span>: <span class="o">{</span>
+            <span class="s2">"city"</span>: <span class="s2">"seattle"</span>,
+            <span class="s2">"state"</span>: <span class="s2">"wa"</span>
+        <span class="o">}</span>,
+        <span class="s2">"age"</span>: 25
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></div>
+
+<h3 id="scanning-via-sparksql">Scanning via SparkSQL</h3>
+
+<p>Support for struct types behaves as expected in Spark, integrating with Spark’s record type.
+For example, valid queries on this table include:</p>
+
+<ul>
+  <li>Create an ephemeral table:
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="n">s</span><span class="s">"""
+        |CREATE TEMPORARY TABLE users
+        |USING com.cerebro.recordservice.spark.DefaultSource
+        |OPTIONS (RecordServiceTable 'users')
+   """</span><span class="o">.</span><span class="n">stripMargin</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Just return the count:
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT count(*) from users"</span><span class="o">).</span><span class="n">collect</span><span class="o">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Select just the first column:
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT uid from users"</span><span class="o">).</span><span class="n">collect</span><span class="o">()</span>
+</code></pre></div>    </div>
+    <p>The <em>type</em> of this is <code class="highlighter-rouge">BIGINT</code>.</p>
+  </li>
+  <li>Select the first column and a field in the struct. This “flattens” the nested type:
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT uid, address.city from users"</span><span class="o">).</span><span class="n">collect</span><span class="o">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Select the first column and the column with the struct:
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT uid, address from users"</span><span class="o">).</span><span class="n">collect</span><span class="o">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Select all the fields from the data:
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">val</span> <span class="n">row</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT * from users"</span><span class="o">).</span><span class="n">collect</span><span class="o">()(</span><span class="mi">0</span><span class="o">)</span>  <span class="c1">// Row for 'alice'
+</span> <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="mi">100</span><span class="o">)</span>
+ <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="s">"alice"</span><span class="o">)</span>
+ <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">Row</span><span class="o">](</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="s">"seattle"</span><span class="o">)</span>
+ <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">Row</span><span class="o">](</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="s">"wa"</span><span class="o">)</span>
+ <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">==</span> <span class="mi">25</span><span class="o">)</span>
+</code></pre></div>    </div>
+    <p>The top level record consists of 4 fields <code class="highlighter-rouge">[BIGINT, STRING, STRUCT, INT]</code>.</p>
+  </li>
+</ul>
+
+<h3 id="scanning-via-hive">Scanning via Hive</h3>
+
+<p>The struct type maps to hive’s struct type.
+For example, to describe the schema:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   hive&gt; describe users
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   OK
+   uid                 	bigint
+   user                	string
+   address             	struct&lt;city:string,state:string&gt;
+   age                 	int
+</code></pre></div></div>
+
+<p>Here are a few more examples of scans:</p>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+<span class="o">{</span><span class="s2">"city"</span>:<span class="s2">"san francisco"</span>,<span class="s2">"state"</span>:<span class="s2">"ca"</span><span class="o">}</span>	25
+<span class="o">{</span><span class="s2">"city"</span>:<span class="s2">"seattle"</span>,<span class="s2">"state"</span>:<span class="s2">"wa"</span><span class="o">}</span>	25
+</code></pre></div></div>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>uid, <span class="sb">`</span>user<span class="sb">`</span> from users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+100	alice
+101	bob
+</code></pre></div></div>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>uid, address from users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+100	<span class="o">{</span><span class="s2">"city"</span>:<span class="s2">"san francisco"</span>,<span class="s2">"state"</span>:<span class="s2">"ca"</span><span class="o">}</span>
+101	<span class="o">{</span><span class="s2">"city"</span>:<span class="s2">"seattle"</span>,<span class="s2">"state"</span>:<span class="s2">"wa"</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>uid, address.city from users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+100	san francisco
+101	seattle
+</code></pre></div></div>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users where uid <span class="o">=</span> 100
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+100	alice	<span class="o">{</span><span class="s2">"city"</span>:<span class="s2">"san francisco"</span>,<span class="s2">"state"</span>:<span class="s2">"ca"</span><span class="o">}</span>	25
+</code></pre></div></div>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>address.city, count<span class="o">(</span><span class="k">*</span><span class="o">)</span> from users group by address.city
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+seattle	1
+san francisco	1
+</code></pre></div></div>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users where address.state <span class="o">=</span> <span class="s1">'wa'</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+101	bob	<span class="o">{</span><span class="s2">"city"</span>:<span class="s2">"seattle"</span>,<span class="s2">"state"</span>:<span class="s2">"wa"</span><span class="o">}</span>	25
+san francisco	1
+</code></pre></div></div>
+
+<h3 id="scanning-via-presto">Scanning via Presto</h3>
+
+<p>Presto has support for struct types.
+The behavior should be a typical Presto experience.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; describe recordservice.default.users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Column  |               Type               | Extra | Comment
+<span class="nt">---------</span>+----------------------------------+-------+---------
+ uid     | bigint                           |       |
+ user    | varchar                          |       |
+ address | row<span class="o">(</span>city varchar, state varchar<span class="o">)</span> |       |
+ age     | integer                          |       |
+</code></pre></div></div>
+
+<p>Here are some exmple scans.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select</span> <span class="k">*</span> from recordservice.default.users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> uid | user  |            address             | age
+<span class="nt">-----</span>+-------+--------------------------------+-----
+ 100 | alice | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>san francisco, <span class="nv">state</span><span class="o">=</span>ca<span class="o">}</span> |  25
+ 101 | bob   | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>seattle, <span class="nv">state</span><span class="o">=</span>wa<span class="o">}</span>       |  25
+<span class="o">(</span>2 rows<span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select </span>uid, user from recordservice.default.users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uid | user
+<span class="nt">-----</span>+-------
+ 100 | alice
+ 101 | bob
+<span class="o">(</span>2 rows<span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select </span>uid, address from recordservice.default.users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> uid |            address
+<span class="nt">-----</span>+--------------------------------
+ 100 | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>san francisco, <span class="nv">state</span><span class="o">=</span>ca<span class="o">}</span>
+ 101 | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>seattle, <span class="nv">state</span><span class="o">=</span>wa<span class="o">}</span>
+<span class="o">(</span>2 rows<span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select </span>uid, address.city from recordservice.default.users<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> uid |     city
+<span class="nt">-----</span>+---------------
+ 100 | san francisco
+ 101 | seattle
+<span class="o">(</span>2 rows<span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select</span> <span class="k">*</span> from recordservice.default.users where uid <span class="o">=</span> 100<span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uid | user  |            address             | age
+<span class="nt">-----</span>+-------+--------------------------------+-----
+ 100 | alice | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>san francisco, <span class="nv">state</span><span class="o">=</span>ca<span class="o">}</span> |  25
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select </span>address.city, count<span class="o">(</span><span class="k">*</span><span class="o">)</span> from recordservice.default.users group by address.city
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     city      | _col1
+<span class="nt">---------------</span>+-------
+ san francisco |     1
+ seattle       |     1
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select</span> <span class="k">*</span> from recordservice.default.users where address.state <span class="o">=</span> <span class="s1">'wa'</span><span class="p">;</span>
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> uid | user |         address          | age
+<span class="nt">-----</span>+------+--------------------------+-----
+ 101 | bob  | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>seattle, <span class="nv">state</span><span class="o">=</span>wa<span class="o">}</span> |  25
+<span class="o">(</span>1 row<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="union-avro">Union (Avro)</h2>
+
+<p>Avro uses unions to represent nullable types by expressing it as a union of the NULL type and the actual type.
+All types in CDAS are nullable, and this specific use of Avro unions is supported.
+Other uses, such as a union between a string and int, are not supported.</p>
+
+<h2 id="enums-avro">Enums (Avro)</h2>
+
+<p>Enum is a type specific to Avro which Avro considers as a complex type.
+We do not support enum as a catalog type (i.e. it is not possible to create a table and specify a column as <code class="highlighter-rouge">ENUM</code>).
+Instead, create the column with the type <code class="highlighter-rouge">STRING</code> and the enum will be transparently converted.
+This is the identical behavior as Hive.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

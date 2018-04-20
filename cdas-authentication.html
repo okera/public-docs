@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Cerebro Data Access Service Authentication | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li class="active"><a href="cdas-authentication">Authentication</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="cerebro-data-access-service-authentication">Cerebro Data Access Service Authentication</h1>
+
+<p>Every request to a CDAS service performs the following steps:</p>
+
+<ol>
+  <li><em>Authenticates</em> the username.</li>
+  <li><em>Looks up</em> the set of groups that the user belongs to.</li>
+  <li>Using those groups and the permissions database, <em>authorizes</em> the request.</li>
+</ol>
+
+<p>The above sequence occurs regardless of the configured authorization.</p>
+
+<p>User and group management occurs outside of Cerebro, and that information is accessed via integrations with supported identity services like Active Directory (AD) or LDAP.</p>
+
+<p>A user has the union of permissions of all the groups that they are in.
+Cerebro supports multiple methods for authenticating users and for resolving the set of groups that a user belongs to.
+Details about those methods as well as limitations on which can be used in conjunction follows.</p>
+
+<h2 id="user-authentication">User Authentication</h2>
+
+<p>Cerebro can authenticate a user via:</p>
+
+<ol>
+  <li>Kerberos</li>
+  <li>AD username and password</li>
+  <li>Tokens, either Cerebro-managed or JSON Web Tokens (JWT), with multiple ways to authenticate the token.</li>
+  <li>OAuth</li>
+</ol>
+
+<p>Cerebro accepts that multiple methods will be enabled in a typical configuration.
+For example, batch applications may prefer tokens or Kerberos but end-users may prefer AD or OAuth.</p>
+
+<h2 id="group-resolution">Group Resolution</h2>
+
+<p>Currently, Cerebro resolves the groups that a user belongs to in one of the following ways:</p>
+
+<ol>
+  <li>
+    <p>By asking the host machine (i.e. EC2 machine) for the Unix groups for the user.
+An example would be the output of <code class="highlighter-rouge">id &lt;username&gt;</code>. In this case, group names are case-sensitive, as they are in Unix.</p>
+  </li>
+  <li>
+    <p>By reading the user’s group from the supplied JWT token.
+In this case, group names are case insensitive.</p>
+  </li>
+</ol>
+
+<p>Only one of these configurations can be used at any time.
+Approach 2 is used if <em>only</em> JWT support is configured (a system token is specified).
+In all other situations, including if both JWT and Kerberos are configured, approach 1 will be used for all users, including those that authenticate via a JWT.</p>
+
+<h2 id="supported-configurations">Supported Configurations</h2>
+
+<p>Cerebro uses access service authentication.
+All Cerebro services are authenticated.
+The following mechanisms are used for authentication:</p>
+
+<ul>
+  <li>Kerberos and Cerebro Tokens</li>
+  <li>JSON Web Tokens (JWT)</li>
+</ul>
+
+<p>You can configure Kerberos and Cerebro Tokens alone, use JWTs for all authentication, or configure Kerberos and Cerebro Tokens along with JWTs.</p>
+
+<p>If both Kerberos and Cerebro Tokens are configured with JWTs, clients can authenticate with <em>either</em> (1) Kerberos and Cerebro Tokens or (2) JSON Web Tokens.</p>
+
+<h3 id="kerberos-and-cerebro-tokens">Kerberos and Cerebro Tokens</h3>
+
+<p>Clusters configured to use Cerebro tokens require Kerberos authentication, as Kerberos is used to bootstrap Cerebro tokens.
+Token-based authentication is optional, depending on the needs of the client application.
+We recommend using Kerberos authentication if possible (as with <a href="#hadoop-integration">Hadoop integration</a>) and using token-based authentication for non-Kerberized clients (for example, Python).</p>
+
+<blockquote>
+  <p><strong>Note:</strong> To get a Cerebro token, you are required to connect with a Kerberized connection.
+You cannot get a user token in any other way.</p>
+</blockquote>
+
+<h3 id="json-web-tokens">JSON Web Tokens</h3>
+
+<p>Cerebro can use <a href="https://jwt.io/introduction/">JSON Web Tokens (JWT)</a> for authentication.
+These tokens can either be generated externally and provided to CDAS, or else CDAS can be configured to work with an external service (via REST) to acquire and validate JWTs.
+If only JWTs are used for authentication, CDAS also requires that a system token be generated for use in authentication with internal services.
+This is typically a token with <code class="highlighter-rouge">cerebro</code> as the subject.</p>
+
+<p>Cerebro supports the standard JWT claims including:</p>
+
+<ul>
+  <li>sub</li>
+  <li>exp</li>
+  <li>nbf</li>
+</ul>
+
+<p>Cerebro requires that JWTs have a <code class="highlighter-rouge">sub</code> claim.
+For specifying groups that the token subject is a member of, Cerebro suggests using the claim <code class="highlighter-rouge">groups</code> and storing the associated value as a list of strings.</p>
+
+<p>Example JWT payload:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cerebrodata.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"web_user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"philatelist"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cat_person"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590510807</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="hadoop-integration">Hadoop Integration</h2>
+
+<p>When using Hadoop analytics tools, in the <code class="highlighter-rouge">mapred-site.xml</code> or <code class="highlighter-rouge">yarn-site.xml</code> file, as part of client configurations, set <code class="highlighter-rouge">recordservice.kerberos.principal</code> to the value of <code class="highlighter-rouge">CEREBRO_KERBEROS_PRINCIPAL</code>.</p>
+
+<h2 id="kerberos-authentication">Kerberos Authentication</h2>
+
+<p>There are multiple clients available for use with Cerebro’s REST API.
+As indicated in this document, using curl is a good choice, because it is widely available.
+However, when possible, it is recommended that a language-specific library be used.
+As an example, for Python, it is recommended that you use the <a href="https://github.com/requests/requests-kerberos">request_kerberos package</a>.</p>
+
+<h3 id="testing-authentication">Testing Authentication</h3>
+
+<p>Testing authentication assumes the user has already logged in to Kerberos by way of <code class="highlighter-rouge">kinit</code>.</p>
+
+<p>To connect from curl, add <code class="highlighter-rouge">--negotiate -u :</code> to the command.</p>
+
+<p><strong>Example:</strong> Curl connection to</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : CDAS_REST_SERVER_HOST:PORT/api/health-authenticated
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+  <span class="s2">"health"</span>: <span class="s2">"ok"</span>,
+  <span class="s2">"token"</span>: null,
+  <span class="s2">"user"</span>: <span class="s2">"YOU@REALM"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="kerberos-principals">Kerberos Principals</h3>
+
+<p>Many REST clients, including curl, assume the REST server’s Kerberos principal is:
+<code class="highlighter-rouge">HTTP/&lt;hostname&gt;@REALM</code>.
+Cerebro does not have this requirement and can use any hostname as the principal.
+If you have not configured Cerebro to have the expected principal, you should specify additional arguments for curl.</p>
+
+<p>The command above should instead be:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : <span class="nt">--resolve</span>
+ &lt;cerebro_principal_service_host&gt;:&lt;port&gt;:&lt;IP_address_of_REST_server&gt; http://&lt;cerebro_principal_service_host&gt;/api/health-authenticated
+</code></pre></div></div>
+
+<p>For example, if the Cerebro service Kerberos principal is <code class="highlighter-rouge">HTTP/cerebro-service@REALM</code>, and
+the server is using port 7000 on the host with the IP address <code class="highlighter-rouge">1.1.1.1</code>,
+the connection string would be:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : <span class="nt">--resolve</span> cerebro-service:7000:1.1.1.1 http://cerebro-service:7000/api/health-authenticated
+</code></pre></div></div>
+
+<p>If using the requests-kerberos Python library, this can be achieved by specifying the <code class="highlighter-rouge">--hostname_override</code> option.
+In this example, specify <code class="highlighter-rouge">cerebro-service</code> for the value.</p>
+
+<h2 id="cerebro-token-authentication">Cerebro Token Authentication</h2>
+
+<p>Cerebro tokens are suitable when accessing through a client that may not have a Kerberized connection to CDAS.
+In this case, the user can request a token and make requests using the token.
+CDAS resolves the token to the user that originally requested it.</p>
+
+<p>The token is used to authenticate all calls to the REST server by additionally providing it to the REST API.</p>
+
+<h3 id="getting-a-cerebro-token">Getting a Cerebro Token</h3>
+
+<p>To get a Cerebro token, call the get-token REST API.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> You must be Kerberos authenticated.</p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : <span class="nt">-X</span> POST http://cerebro-service:7000/api/get-token
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+  <span class="s2">"token"</span>: <span class="s2">"AARub25nABFub25nQENFUkVCUk8uVEVTVIoBWoZGWxKKAVqqUt8SAQI</span><span class="nv">$.</span><span class="s2">pklsqRlTrFFyEPSHVjItxqBrZ28$"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can verify the token with:</p>
+
+<blockquote>
+  <p><strong>Note:</strong> This does not required a Kerberized connection.</p>
+</blockquote>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s1">'authorization: Bearer AARub25nABFub25nQENFUkVCUk8uVEVTVIoBWoZGWxKKAVqqUt8SAQI$.pklsqRlTrFFyEPSHVjItxqBrZ28$'</span> http://cerebro-service:7000/api/get-user
+</code></pre></div></div>
+<p>This should return your username, among other elements.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+  <span class="s2">"user"</span>: <span class="s2">"your_uname"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="using-the-token">Using the Token</h3>
+
+<p>To use the token, specify the token in the auth header.</p>
+
+<p>For example, to scan data:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s1">'authorization: Bearer &lt;token&gt;'</span> &lt;CDAS_REST_host:port&gt;/api/scan/&lt;dataset&gt;
+</code></pre></div></div>
+
+<p>For example, to get the databases:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s1">'authorization: Bearer &lt;token&gt;'</span> &lt;CDAS_REST_host:port&gt;/api/databases
+</code></pre></div></div>
+
+<h2 id="jwt">JWT</h2>
+
+<p>JWTs can be used in two different approaches:</p>
+
+<ol>
+  <li>
+    <p>Providing services with both the <em>public key</em> used to sign the tokens and the <em>algorithm</em> that was used (RSA256, RSA512, etc.).</p>
+  </li>
+  <li>
+    <p>Configuring two remote endpoints – one for <em>acquiring</em> tokens, the other for <em>validating</em> tokens.</p>
+  </li>
+</ol>
+
+<p>For either of these approaches, if you are using JWT for authenticating communication between services, generate a token with the subject <code class="highlighter-rouge">cerebro</code> that can be read by the method you setup.</p>
+
+<p>For example:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export SYSTEM_TOKEN=/etc/cerebro.token
+</code></pre></div></div>
+
+<h3 id="public-key-approach">Public Key Approach</h3>
+
+<p>To configure the public key, the environment variable, <code class="highlighter-rouge">JWT_PUBLIC_KEY</code>, should be a full path to the public key.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> This key must be in OpenSSL <code class="highlighter-rouge">PKCS#8</code> format.</p>
+</blockquote>
+
+<p>To configure the algorithm, the environment variable <code class="highlighter-rouge">JWT_ALGORITHM</code> must be set to a string indicating the algorithm used.
+Currently, support algorithms are RSA256 and RSA512.</p>
+
+<p>For example:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JWT_PUBLIC_KEY</span><span class="o">=</span>/etc/id_rsa.512.pub
+<span class="nb">export </span><span class="nv">JWT_ALGORITHM</span><span class="o">=</span>RSA512
+</code></pre></div></div>
+
+<h3 id="remote-endpoint-approach">Remote Endpoint Approach</h3>
+
+<p>To configure the external service approach, configure an endpoint for validating tokens remotely by way of the <code class="highlighter-rouge">JWT_AUTHENTICATION_SERVER_URL</code> configuration.
+Optionally, if you want users to be able to acquire tokens (for example, by way of the <code class="highlighter-rouge">dbcli get-token</code> command), you can configure an endpoint that accepts a REST request with the <code class="highlighter-rouge">username</code> and <code class="highlighter-rouge">password</code> fields in the body.
+The configuration for the external token-granting endpoint is <code class="highlighter-rouge">SSO_URL</code>.</p>
+
+<p><strong>Example:</strong> Setting external endpoint environment variables</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JWT_AUTHENTICATION_SERVER_URL</span><span class="o">=</span>http://10.1.11.153:8900/idp/userinfo.openid
+<span class="nb">export </span><span class="nv">SSO_URL</span><span class="o">=</span>http://10.1.11.153:8900/as/token.oauth2
+</code></pre></div></div>
+
+<h3 id="using-both-approaches">Using Both Approaches</h3>
+
+<p>If you have the requirement to support both approaches, configure the environment variables for both, and each is instantiated.
+The external endpoint is used first.
+If the JWT is not validated by that service, it is passed to the public-key authenticator for validation.</p>
+
+<h2 id="using-a-jwt-with-curl">Using a JWT with Curl</h2>
+
+<p>Usage of the JWT token is identical to a Cerebro token.
+They can be used interchangeably.</p>
+
+<p>To list the databases via curl, the JWT can be passed in the authorization header.</p>
+
+<p><strong>Example:</strong> JWT over curl for listing databases</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl &lt;CDAS_REST_host:port&gt;/api/databases <span class="nt">-H</span> <span class="s1">'authorization: Bearer &lt;token&gt;'</span>
+</code></pre></div></div>
+
+<h2 id="automating-token-management">Automating Token Management</h2>
+
+<p>Token management can be automated.
+The end-user experience can be simplified by running a script that specifies, by way of the <code class="highlighter-rouge">CEREBRO_TOKEN_RETRIEVAL_SCRIPT</code> environment variable, a method to acquire and refresh tokens.
+The value associated with the environment variable should be the absolute path to an executable.
+The executable will be called with no arguments provided.
+When the executable is run, it must output a single string containing a valid token.</p>
+
+<p>This script is called in any of the following situations:</p>
+
+<ol>
+  <li>A query is issued to CDAS when no token is present.</li>
+  <li>A CDAS query fails due to an expired token.</li>
+</ol>
+
+<p>In either scenario, if the specified script successfully executes, the returned value is placed into a token file in the home directory of the user that ran the query.
+Subsequent queries use this token.
+If the token expires, the resulting failure triggers another execution of the configured script.
+The expired token is replaced with the new, valid token.</p>
+
+<h3 id="emr">EMR</h3>
+<p>Configuring application environment variables for Amazon’s <a href="EMR.md">Elastic MapReduce (EMR)</a> platform can vary between applications, so we offer several scenarios.</p>
+
+<p>In the following examples, assume that the script for acquiring a token is located at <code class="highlighter-rouge">/usr/lib/cerebro/get_token.sh</code> and that the current user has sufficient permission to execute it.</p>
+
+<h4 id="spark">Spark</h4>
+<p>Export the environment variable in your shell.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_TOKEN_RETRIEVAL_SCRIPT</span><span class="o">=</span>/usr/lib/cerebro/get_token.sh
+spark-shell
+</code></pre></div></div>
+
+<h4 id="hive">Hive</h4>
+
+<p>The Hive environment variable should be configured in the file located at <code class="highlighter-rouge">/etc/hive/conf.dist/hive-env.sh</code>.
+Append it to the end of the file.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;lines omitted&gt;
+<span class="nb">export </span><span class="nv">HIVE_AUX_JARS_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">HIVE_AUX_JARS_PATH</span><span class="k">}${</span><span class="nv">HIVE_AUX_JARS_PATH</span>:+:<span class="k">}</span>/usr/lib/hive-hcatalog/share/hcatalog
+<span class="nb">export </span><span class="nv">HADOOP_HEAPSIZE</span><span class="o">=</span>1000
+<span class="nb">export </span><span class="nv">USE_HADOOP_SLF4J_BINDING</span><span class="o">=</span><span class="nb">false
+export </span><span class="nv">CEREBRO_TOKEN_RETRIEVAL_SCRIPT</span><span class="o">=</span>/usr/lib/cerebro/get_token.sh
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> You must restart the Hive services for it to take effect.</p>
+</blockquote>
+
+<h4 id="presto">Presto</h4>
+
+<p>Presto requires that the environment variable be exported in the configuration file for the
+ service itself, located at <code class="highlighter-rouge">/etc/init/presto-server.conf</code>.
+Add it to the bottom of the block that looks like this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+env <span class="nv">CONF_DIR</span><span class="o">=</span><span class="s2">"/etc/presto/conf"</span>
+env <span class="nv">PIDFILE</span><span class="o">=</span><span class="s2">"/var/run/presto/presto-server.pid"</span>
+env <span class="nv">WORKING_DIR</span><span class="o">=</span><span class="s2">"/var/lib/presto"</span>
+env <span class="nv">CEREBRO_TOKEN_RETRIEVAL_SCRIPT</span><span class="o">=</span><span class="s2">"/usr/lib/cerebro/get_token.sh"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> You must restart the Presto services for it to take effect.</p>
+</blockquote>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

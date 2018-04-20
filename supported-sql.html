@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Supported SQL | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="supported-sql">Supported SQL</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="supported-sql">Supported SQL</h1>
+
+<p>CDAS enables the use of SQL for defining datasets.
+This is done by creating base datasets and then defining views.
+CDAS is not a full massively parallel processing (MPP) analytics engine, as only a subset of SQL is permitted.
+This document describes the supported SQL subset.</p>
+
+<p>CDAS in general supports the identical data model as Apache Hive and is generally compatible with HiveQL.
+Supported functionality may differ depending on the client.</p>
+
+<h2 id="data-definition-language-ddl-statements">Data Definition Language (DDL) Statements</h2>
+
+<p>CDAS generally supports and is compatible with HiveQL DDL statements.
+In some cases, CDAS is not compatible.
+In other cases, the supported SQL has been extended for CDAS-specific capabilities – including all statements that modify the catalog and do not read any data (for example, <code class="highlighter-rouge">CREATE</code>, <code class="highlighter-rouge">DROP</code>, <code class="highlighter-rouge">ALTER</code>).</p>
+
+<h3 id="msck-repair">MSCK REPAIR</h3>
+
+<p>CDAS does not support the Hive <code class="highlighter-rouge">MSCK REPAIR TABLE &lt;table_name&gt;</code>.
+Instead it supports the alternative, <code class="highlighter-rouge">ALTER TABLE &lt;table_name&gt; RECOVER PARTITIONS</code>.
+This command otherwise behaves identically, automatically adding partitions to the table based on the storage directory structure.</p>
+
+<h3 id="extensions">Extensions</h3>
+
+<h4 id="optionally-drop-permissions">Optionally Drop Permissions</h4>
+
+<p>There are use cases where it is valid to retain or drop permissions when the corresponding Catalog object (database, table, or view) is dropped.
+CDAS extends the <code class="highlighter-rouge">DROP DATABASE</code>, <code class="highlighter-rouge">DROP TABLE</code>, and <code class="highlighter-rouge">DROP VIEW</code> statements to optionally specify whether the associated permissions should also be dropped.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">DATABASE</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="n">db</span> <span class="p">[</span><span class="k">CASCADE</span><span class="p">]</span> <span class="p">[(</span><span class="k">INCLUDING</span> <span class="o">|</span> <span class="k">EXCLUDING</span><span class="p">)</span> <span class="n">PERMISSIONS</span><span class="p">];</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="n">tbl</span> <span class="p">[(</span><span class="k">INCLUDING</span> <span class="o">|</span> <span class="k">EXCLUDING</span><span class="p">)</span> <span class="n">PERMISSIONS</span><span class="p">];</span>
+<span class="k">DROP</span> <span class="k">VIEW</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="n">v</span> <span class="p">[(</span><span class="k">INCLUDING</span> <span class="o">|</span> <span class="k">EXCLUDING</span><span class="p">)</span> <span class="n">PERMISSIONS</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>If <code class="highlighter-rouge">INCLUDING PERMISSIONS</code> is specified, the corresponding permissions are also dropped.
+Otherwise, permissions will <em>not</em> be dropped, and they will be applied to future catalog objects with that name.
+If <code class="highlighter-rouge">CASCADE</code> is specified, then all permissions on the tables and views in the database are dropped.</p>
+
+<p>It is recommended that users default to the <code class="highlighter-rouge">INCLUDING PERMISSIONS</code> behavior and update existing workflows so as to not rely on permissions being retained longer than the object for which they are created.</p>
+
+<p><strong>Example:</strong> DROP directives with <code class="highlighter-rouge">INCLUDING PERMISSIONS</code></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">DATABASE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">database1</span> <span class="k">CASCADE</span> <span class="k">INCLUDING</span> <span class="n">PERMISSIONS</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">database2</span><span class="p">.</span><span class="n">table1</span> <span class="k">INCLUDING</span> <span class="n">PERMISSIONS</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">VIEW</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">database2</span><span class="p">.</span><span class="n">view1</span> <span class="k">INCLUDING</span> <span class="n">PERMISSIONS</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For users to drop the permissions, they must have grant permissions on the catalog object.
+For example, to be able to drop a database and its permissions, the user must be able to issue <code class="highlighter-rouge">GRANT</code>/<code class="highlighter-rouge">REVOKE</code> statements on the database.
+The user needs to be a catalog admin or having been granted grant permissions.</p>
+
+<h4 id="create-table-as-select">CREATE TABLE AS SELECT</h4>
+
+<p>CDAS supports tables created by this method with the following restrictions:</p>
+
+<ul>
+  <li>
+    <p>The table must be created from Hive in EMR.</p>
+  </li>
+  <li>
+    <p>The Hive warehouse must have been configured to use S3 (as opposed to using the EMR-local HDFS cluster).</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong> This functionality is not supported from dbcli.</p>
+</blockquote>
+
+<h4 id="registering-hive-serializationdeserialization-serde-libraries">Registering Hive Serialization/Deserialization (SerDe) Libraries</h4>
+
+<p>See <a href="/extending-cdas">Extending CDAS</a> for the DDL grammar and other SerDe considerations.</p>
+
+<h4 id="creating-user-defined-functions-udfs">Creating User Defined Functions (UDFs)</h4>
+
+<p>See <a href="/extending-cdas">Extending CDAS</a> for the DDL grammar and other UDF considerations.</p>
+
+<h4 id="internal-verses-external-views">Internal verses External Views</h4>
+
+<p>Cerebro views can be defined as either internal or external.
+This distinction defines how Cerebro evaluates data at runtime.
+It could have a profound effect when evaluating joins between tables and views.</p>
+
+<p>In both internal and external cases, data resides in its source systems.
+Cerebro managed data continues to be managed in Cerebro.
+External views continue to be managed by their non-Cerebro source.</p>
+
+<p>The primary difference between internal and external views is that external data is not evaluated during a CDAS query.
+External data does not have fine-grained access control, UDFs, and other features that Cerebro provides to managed datasets.</p>
+
+<p>It is because of this property that joins are handled differently in internal views verses external views.</p>
+
+<p>All views <em>created in Cerebro</em> are considered <strong>internally defined joined views</strong>.
+Cerebro manages the join of internal views created from two tables or views, internal or external, at the query level.
+Cerebro evaluates the join prior to it being sent to the analytics/compute engine for further processing.
+This allows for fine-grained access control and UDF functionality to be applied to the entire view, regardless of where the source data resides.</p>
+
+<blockquote>
+  <p><strong>Note</strong></p>
+
+  <p>CDAS is not a compute engine. Full SQL functionality is not available through the CDAS SQL interface.
+The use of a compute engine for full analytics functionality is required.
+For a list of known SQL incompatibilities, refer to the <a href="#known-incompatibilities">Known Incompatabilities</a> section in this document.</p>
+</blockquote>
+
+<p><strong>Externally joined views</strong> are evaluated like all other external views in CDAS.
+Like the internally defined joined view, Cerebro-managed data will still be evaluated by CDAS, but the evaluation of the join will be executed by the analytics engine.
+External data will not benefit from access control, UDFs, and other features that Cerebro can provide to managed datasets.</p>
+
+<p>External views created of two tables or views, internal or external, are evaluated in a slightly different way.
+Data managed by CDAS continues to be evaluated within the CDAS cluster.
+But, the join between the two tables or views occurs in the analytics/compute engine.
+The advantage of this approach is that CDAS continues to provide fine-grained access control and UDFs on CDAS managed data, while allowing the sometimes heavy compute of a join to be done outside the CDAS system.</p>
+
+<p>External views are not supported via the REST API.
+They require an analytics engine such as Hive or Spark to process aggregate requests and complete the join prior to execution.</p>
+
+<h3 id="creating-external-views">Creating External Views</h3>
+
+<p>This section provides a number of example common <code class="highlighter-rouge">EXTERNAL</code> view uses.
+To create views that do not require evaluation in CDAS, an external view can be used.</p>
+
+<p><strong>Example:</strong> Creating an external view that requires no evaluation in CDAS</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">VIEW</span> <span class="n">random_user_subset</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">all_users</span> <span class="k">WHERE</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> Views on aggregate functions need to be created as <code class="highlighter-rouge">EXTERNAL</code> views, since the aggregates are computed in compute applications like Hive or Spark.</p>
+</blockquote>
+
+<p><strong>Example:</strong> Creating external views with aggregate functions</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">VIEW</span> <span class="n">maxRevenue</span><span class="p">,</span> <span class="n">minRevenue</span>
+<span class="k">AS</span> <span class="k">SELECT</span> <span class="k">min</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span> <span class="k">max</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">cal_sales</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="s1">'california'</span>
+</code></pre></div></div>
+
+<p>Since compute applications do not accept the “<code class="highlighter-rouge">EXTERNAL</code> view” syntax, it can be executed using dbcli or Cerebro Web UI.</p>
+
+<p>By default, views without <code class="highlighter-rouge">EXTERNAL</code> are evaluated in Cerebro, maintaining backwards compatibility.</p>
+
+<h4 id="last-partition">LAST PARTITION</h4>
+
+<p>CDAS extends the SQL grammar to easily restrict a table scan to just the last partition.
+For example, if the data is partitioned by day, <code class="highlighter-rouge">LAST PARTITION</code> can be used to always return the results for the last day.</p>
+
+<p><code class="highlighter-rouge">LAST PARTITION</code> is added as an additional clause to a table name.</p>
+
+<p><strong>Example:</strong> Returning the last day’s results using <code class="highlighter-rouge">LAST PARTITION</code></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>This refers to the last partition of the table after sorting by partition.
+Note that this may not be the partition from when data was most recently added.
+It is <em>not</em> the last-modified partition.</p>
+
+<p>As an example, if the table is partitioned by year, month, and day, it will always return the last date regardless of when the partitions were added or when the data in the partitions changed.</p>
+
+<p>The <code class="highlighter-rouge">LAST PARTITION</code> computation occurs after partition pruning is done.</p>
+
+<p><strong>Example:</strong> Filtering the window for which to select the last partition</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="n">LAST_PARTITION</span><span class="p">)</span> <span class="k">where</span> <span class="k">year</span> <span class="o">=</span> <span class="mi">2010</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="n">LAST_PARTITION</span><span class="p">)</span> <span class="k">where</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</code></pre></div></div>
+<p>These queries respectively return the last partition, the last partition in 2010, and the last partition in June.</p>
+
+<p>Since <code class="highlighter-rouge">LAST PARTITION</code> is specified per table, it is possible to specify it for each table in a query independently.</p>
+
+<p>For example:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">)</span>
+<span class="k">JOIN</span> <span class="n">t2</span> <span class="p">...</span>
+<span class="k">JOIN</span> <span class="n">t3</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h5 id="last-partition-limitations">LAST PARTITION Limitations</h5>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">LAST PARTITION</code> can only be used in internal views as other compute engines may not be able to support it.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">LAST PARTITION</code> can only be used for base tables.</p>
+  </li>
+</ul>
+
+<p><strong>Example:</strong> Improper query with no view</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">)</span>
+</code></pre></div></div>
+<p><strong>Example:</strong> Recommended alternative with view creation</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">t_last_partition</span> <span class="k">as</span> <span class="k">SELECT</span> <span class="o">*</span>
+ <span class="k">from</span> <span class="n">t</span> <span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t_last_partition</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="known-incompatibilities">Known Incompatibilities</h3>
+
+<h4 id="stricter-type-promotion">Stricter Type Promotion**</h4>
+
+<p>Hive/HiveQL is very permissive in type promotions, allowing implicit conversions between most types.
+In CDAS, only lossless type promotion is implicit (for example, INT -&gt; BIGINT).
+Explicit <code class="highlighter-rouge">cast()</code> functions may need to be added for existing SQL statements.</p>
+
+<h4 id="disallowing-explicit-partitioning-clause-when-creating-views">Disallowing Explicit Partitioning Clause when Creating Views**</h4>
+
+<p>Hive/HiveQL is used for creating views with an explicit partitioning clause.</p>
+
+<p><strong>Example:</strong> Creating views with an explicit partitioning clause</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">v</span> <span class="k">as</span> <span class="k">SELECT</span> <span class="p">...</span> <span class="k">FROM</span> <span class="n">base_tbl</span>
+<span class="n">PARTITIONED</span> <span class="k">BY</span> <span class="n">c1</span>
+</code></pre></div></div>
+
+<p>CDAS does not allow partitioning to be specified for views.
+Partitioning is instead inferred based on the view statement and base table.
+The partitioning on the base table is preserved for the view.</p>
+
+<p>This is disallowed.
+It is unclear what the semantics are, if the partitioning specified in the view is different from the base table, and what the resulting performance implications might be.</p>
+
+<h2 id="data-manipulation-language-dml-statements">Data Manipulation Language (DML) Statements</h2>
+
+<p>CDAS is not a distributed SQL engine.
+It only supports a subset of SQL statements.
+It does not support the other DML statements (such as <code class="highlighter-rouge">INSERT</code>, <code class="highlighter-rouge">DELETE</code>, <code class="highlighter-rouge">UPDATE</code>, etc).
+End even for <code class="highlighter-rouge">SELECT</code> statements, only a subset of the SQL standard is supported.
+A typical configuration is to run a SQL engine (on top of Spark or Presto) on top of CDAS.</p>
+
+<p><code class="highlighter-rouge">SELECT</code> statements with projection and filters are fully supported.</p>
+
+<p><code class="highlighter-rouge">COUNT(*)</code> with no grouping is the only aggregation supported.
+Multiple records are returned for this query, each containing a partial count.
+Summing up all the counts returns the complete result.</p>
+
+<h3 id="joins">JOINs</h3>
+
+<p>When using views, CDAS supports a limited set of joins for the purpose of restricting access to specific rows for particular users.
+A canonical use case could be having a fact dataset for user transactions, which contains a column for the user ID.
+Another, much-smaller dataset, contains the set of user ids that allow analytics to be carried out on their activity.
+CDAS would support filtering the transactions dataset by creating a view that is a join over the two.</p>
+
+<p>The specific limitations are:</p>
+
+<ul>
+  <li>Only <code class="highlighter-rouge">INNER</code> and <code class="highlighter-rouge">LEFT</code> (optionally with <code class="highlighter-rouge">OUTER</code>, <code class="highlighter-rouge">SEMI</code>, <code class="highlighter-rouge">ANTI</code>) joins are allowed.</li>
+  <li>The smaller tables must be under a maximum configured size.
+If the smaller tables exceed the maximum configured size, the request fails at runtime.</li>
+</ul>
+
+<p>Subquery rewrites are supported but must be executable subject to the same constraints.</p>
+
+<h4 id="configurations">Configurations</h4>
+
+<p>Configurations can be specified at cluster creation time by using the CLI.</p>
+
+<p>By default, joins are enabled with a maximum memory of 128MB per join.</p>
+
+<p><strong>Example:</strong> Disabling joins entirely during cluster creation</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--plannerConfigs</span> <span class="s2">"enable_joins=false"</span> ...
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Setting the maximum memory during cluster creation to 256MB</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--workerConfigs</span> <span class="s2">"join_max_mem=256000000"</span> ...
+</code></pre></div></div>
+
+<p>See the <a href="/cluster-sizing">Cluster Sizing</a> document for more information on how much memory joins need and how that affects cluster node requirements.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

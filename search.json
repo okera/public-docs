@@ -1,0 +1,450 @@
+[
+
+
+{
+"title": "Advanced Installation Procedures",
+"tags": "",
+"keywords": "",
+"url": "advanced-install",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Auditing",
+"tags": "",
+"keywords": "",
+"url": "auditing",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Data Access Service Authentication",
+"tags": "",
+"keywords": "",
+"url": "cdas-authentication",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Data Access Service CDH Integration",
+"tags": "",
+"keywords": "",
+"url": "cdas-cdh-integration",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Catalog REST API",
+"tags": "",
+"keywords": "",
+"url": "catalog-rest-api",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "cerebro client configurations",
+"tags": "",
+"keywords": "",
+"url": "client-configs",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Data Access Service Integration",
+"tags": "",
+"keywords": "",
+"url": "client-integration",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cluster Launch Plugin API",
+"tags": "",
+"keywords": "",
+"url": "cluster-launch-plugin-api",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cluster Sizing Guide",
+"tags": "",
+"keywords": "",
+"url": "cluster-sizing",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cluster Types",
+"tags": "",
+"keywords": "",
+"url": "cluster-types",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Complex Data Types",
+"tags": "",
+"keywords": "",
+"url": "complex-types",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Data Types",
+"tags": "",
+"keywords": "",
+"url": "data-types",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Database Command-Line Interface",
+"tags": "",
+"keywords": "",
+"url": "cerebro-database-cli",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Docker Quickstart",
+"tags": "",
+"keywords": "",
+"url": "docker-quickstart",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Data Access Service EMR Integration",
+"tags": "",
+"keywords": "",
+"url": "emr-integration",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Extending CDAS",
+"tags": "",
+"keywords": "",
+"url": "extending-cdas",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Frequently Asked Questions about the Cerebro Platorm",
+"tags": "",
+"keywords": "",
+"url": "faq",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "IP Address Management",
+"tags": "",
+"keywords": "",
+"url": "ip-address-management",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Installation",
+"tags": "",
+"keywords": "",
+"url": "install",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Configuring Cerebro and Kerberos",
+"tags": "",
+"keywords": "",
+"url": "kerberos-cluster-setup",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Kubernetes Dashboard Quickstart",
+"tags": "",
+"keywords": "",
+"url": "kubernetes-dashboard-quickstart",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Secure Cerebro REST API Access Using LDAP",
+"tags": "",
+"keywords": "",
+"url": "secure-cerebro-rest-api-ldap",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Platform Memory Usage",
+"tags": "",
+"keywords": "",
+"url": "memory-usage",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Secure Cerebro REST API Access using OAuth",
+"tags": "",
+"keywords": "",
+"url": "secure-cerebro-rest-api-oath",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "CDAS Overview",
+"tags": "",
+"keywords": "",
+"url": "cdas-overview",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Catalog Overview",
+"tags": "",
+"keywords": "",
+"url": "cerebro-catalog-overview",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Unified Data Access Platform Overview",
+"tags": "",
+"keywords": "",
+"url": "product-overview",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "PyCerebro",
+"tags": "",
+"keywords": "",
+"url": "pycerebro",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Platform Quick Technical Solutions",
+"tags": "",
+"keywords": "",
+"url": "quick-recipes",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Release Notes",
+"tags": "",
+"keywords": "",
+"url": "release-notes",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Secure DeploymentManager REST API Access",
+"tags": "",
+"keywords": "",
+"url": "secure-deployment-manager-rest-api",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Service Port Assignments",
+"tags": "",
+"keywords": "",
+"url": "service-port-assignments",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Supported SQL",
+"tags": "",
+"keywords": "",
+"url": "supported-sql",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Tableau Web Data Connector (WDC)",
+"tags": "",
+"keywords": "",
+"url": "tableau-web-data-connector",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Web UI for Administrators",
+"tags": "",
+"keywords": "",
+"url": "web-ui-admin",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Web UI Basics",
+"tags": "",
+"keywords": "",
+"url": "web-ui-basics",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cerebro Data User Docs",
+"tags": "",
+"keywords": "",
+"url": "",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "",
+"tags": "",
+"keywords": "",
+"url": "search",
+"summary": ""
+}
+,
+
+
+
+
+
+
+
+{
+"title": "",
+"tags": "",
+"keywords": "",
+"url": "assetscssstyle.css",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Cluster Administration",
+"tags": "",
+"keywords": "",
+"url": "cluster-administration",
+"summary": ""
+}
+
+
+
+
+
+
+]

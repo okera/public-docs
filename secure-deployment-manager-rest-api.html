@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Secure DeploymentManager REST API Access | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="secure-deploymentmanager-rest-api-access">Secure DeploymentManager REST API Access</h1>
+
+<p>This document explains how to enable Kerberos-based authentication and admin rights authorization for the DeploymentManager REST APIs.</p>
+
+<h2 id="kerberos-authentication">Kerberos Authentication</h2>
+
+<p>This section covers:</p>
+
+<ul>
+  <li><a href="#prerequisites-to-enable-kerberos-on-deploymentmanager">Prerequisites to enable Kerberos on the DeploymentManager REST API server</a></li>
+  <li><a href="#setting-up-the-required-configurations">Setting up the required configurations</a></li>
+  <li><a href="#verifying-kerberos-authentication-using-curl">Verify Kerberos authentication using curl</a></li>
+</ul>
+
+<h3 id="prerequisites-to-enable-kerberos-on-deploymentmanager">Prerequisites to Enable Kerberos on DeploymentManager</h3>
+
+<blockquote>
+  <p><strong>Note:</strong>  Make sure that your organization has a KDC configured and available.
+You need to configure your SNP or <em>ServiceNamePrincipal</em> with the KDC.</p>
+</blockquote>
+
+<p><strong>SNP:</strong> The ServiceNamePrincipal is divided into three parts, in the
+format <code class="highlighter-rouge">primary/instance@KDC_REALM</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">primary</code> – Typically HTTP.</li>
+  <li><code class="highlighter-rouge">instance</code> – Hostname for the DM REST API Server.</li>
+  <li><code class="highlighter-rouge">KDC_REALM</code> – The Kerberos realm. Typically in uppercase letters.</li>
+</ul>
+
+<h4 id="setting-up-the-required-configurations">Setting up the Required Configurations</h4>
+
+<p>To enable Kerberos on the DeploymentManager REST API Server, set the following two environment variables:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">DM_PRINCIPAL</code> – The SNP goes here. For example, if your DeploymentManager is hosted at <code class="highlighter-rouge">http://hostname:8085</code>:
+    <ul>
+      <li><code class="highlighter-rouge">DM_PRINCIPAL</code> should be <code class="highlighter-rouge">HTTP/hostname@&lt;KDC_REALM&gt;</code></li>
+      <li><code class="highlighter-rouge">DM_KEYTAB_FILE</code> - The absolute path to the Keytab file, corresponding to the SNP and <code class="highlighter-rouge">DM_PRINCIPAL</code> specified above.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Tip: Proper Configuration</strong></p>
+
+  <p>Both of these environment variables must be properly configured to enable Kerberos for your DeploymentManager REST API Server.</p>
+  <ul>
+    <li>Be sure the <code class="highlighter-rouge">DM_PRINCIPAL</code> is a 3-part Kerberos Principal and has the 3 components: <code class="highlighter-rouge">primary</code>, <code class="highlighter-rouge">instance</code>, and <code class="highlighter-rouge">KDC_REALM</code>.</li>
+    <li>In case the keytab file specified is not present at the location, or only one of the configurations is present, an appropriate error message is returned.</li>
+  </ul>
+</blockquote>
+
+<p>In order to run DeploymentManager with Kerberos authentication disabled, make sure neither of these variables is set before starting DeploymentManager.</p>
+
+<p>In addition, make sure <strong>/etc/krb5.conf</strong> has the correct <code class="highlighter-rouge">default_realm</code> and <code class="highlighter-rouge">realm</code> information.</p>
+
+<h4 id="verifying-kerberos-state-at-startup">Verifying Kerberos state at startup</h4>
+
+<p>When starting DeploymentManager with Kerberos enabled, the following lines are displayed in the logs:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DeploymentManager REST API Server running with Kerberos enabled
+</code></pre></div></div>
+
+<p>When starting the DeploymentManager with Kerberos disabled, the following line are displayed in the logs:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DeploymentManager REST API Server running with Kerberos disabled
+</code></pre></div></div>
+
+<h3 id="verifying-kerberos-authentication-using-curl">Verifying Kerberos authentication using curl</h3>
+
+<p>Once you have DeploymentManager running with Kerberos, use the steps below to verify Kerberos authentication:</p>
+
+<h4 id="obtain-a-tgt">Obtain a TGT</h4>
+
+<p>Make sure you have a valid <em>ticket-granting ticket</em> (TGT) for the client principal you intend to use for authentication.
+The way to do this is using the <code class="highlighter-rouge">kinit</code> command.
+For example, for the client principal <code class="highlighter-rouge">john@&lt;KDC_REALM&gt;</code> that you intend to use for authentication, do the following:</p>
+
+<ol>
+  <li>Enter the principal password (if you know it). The command is:
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kinit &lt;principal_name&gt;
+</code></pre></div>    </div>
+
+    <p><strong>Example:</strong> principal entry</p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kinit john
+</code></pre></div>    </div>
+  </li>
+  <li>Enter the keytab for the principal. The command is:
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kinit <span class="nt">-kt</span> &lt;path_to_keytab&gt; &lt;principal_name&gt;
+</code></pre></div>    </div>
+    <p><strong>Example:</strong></p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kinit <span class="nt">-kt</span> /Users/john/john.keytab john
+</code></pre></div>    </div>
+  </li>
+  <li>Initiate the curl request.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : &lt;HOSTNAME&gt;:&lt;PORT&gt;/api/kerberos/client
+</code></pre></div>    </div>
+    <p>This should return the client name.</p>
+
+    <p><strong>Example:</strong> curl request</p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : hostname:8085/api/kerberos/client
+</code></pre></div>    </div>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authenticated client name is: john
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>If the output is the client name expected, Kerberos authentication setup for the DeploymentManager REST API Server is now complete.</p>
+
+<h2 id="dm-administrator-authorization">DM Administrator Authorization</h2>
+
+<p>The DeploymentManager REST API service supports an administrator role.</p>
+
+<p>This section covers:</p>
+
+<ul>
+  <li><a href="#setting-up-users-and-groups-with-admin-privileges">Setting up users and groups with administrator privileges</a></li>
+  <li><a href="#verifying-admin-authorization-using-curl">Verifying administrator authorization using curl</a></li>
+  <li><a href="#authorization-of-authenticated-vs-unauthenticated-clients">Authorization of authenticated vs unauthenticated clients</a></li>
+</ul>
+
+<h3 id="setting-up-users-and-groups-with-admin-privileges">Setting Up Users and Groups with Admin Privileges</h3>
+
+<p>In order to enable Administrator authorization on DeploymentManager and its REST API service, set the <code class="highlighter-rouge">DM_ADMIN_USERS</code> environment variable.
+The names of all individual users and Unix groups that have administrator privileges to the DeploymentManager go here as a CSV.</p>
+
+<p>For example, if the user <code class="highlighter-rouge">john</code> is an admin, and all users in the group <code class="highlighter-rouge">sysadmins</code> are admins, the following value should be set <code class="highlighter-rouge">john,sysadmins</code>.</p>
+
+<h3 id="verifying-admin-authorization-using-curl">Verifying Admin Authorization Using Curl</h3>
+<p><strong>Curl commands for a server running with Kerberos enabled:</strong></p>
+
+<ul>
+  <li>Once the DeploymentManager is running with <code class="highlighter-rouge">DM_ADMIN_USERS</code> set, follow the steps
+  <a href="#verifying-kerberos-authentication-using-curl">above</a> to <code class="highlighter-rouge">kinit</code> and get a <em>TGT</em> for
+  the client.</li>
+  <li>The following curl commands return the client’s admin authorization status:</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># This REST API is for Kerberos authenticated clients only</span>
+  <span class="nv">$ </span>curl <span class="nt">--negotiate</span> <span class="nt">-u</span> : hostname:8085/api/kerberos/isAdmin
+
+  <span class="nb">true</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># The general API endpoint for authorization</span>
+  <span class="c"># Assuming kinit john on client</span>
+  <span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'{"user":"sally","token":""}'</span> <span class="nt">--negotiate</span> <span class="nt">-u</span> : hostname:8085/api/system/isAdmin
+
+  john is admin
+</code></pre></div></div>
+
+<ul>
+  <li>For the call to <code class="highlighter-rouge">/api/system/isAdmin</code>, if the server is Kerberized, check for an
+  authenticated client principal, irrespective of the user supplied in the POST request.</li>
+</ul>
+
+<p><strong>Curl command for server running with Kerberos disabled:</strong></p>
+
+<ul>
+  <li>The following curl command should return the client’s admin authorization status:</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'{"user":"john","token":"xyz"}'</span> <span class="nt">--negotiate</span> <span class="nt">-u</span> : hostname:8085/api/system/isAdmin
+
+  john is admin
+</code></pre></div></div>
+
+<h3 id="authorization-of-authenticated-vs-unauthenticated-clients">Authorization of authenticated vs. unauthenticated clients.</h3>
+
+<p>Keep in mind the following points:</p>
+
+<ul>
+  <li>Authentication and authorization are independent.</li>
+  <li>If the client is Kerberos authenticated, then the Kerberos principal used by the client
+is used to authorize the user as an Admin,
+<strong>irrespective of the user information stored in the request.</strong></li>
+  <li>If the client is not Kerberos authenticated, the user information provided in the
+request is used to authorize the client.</li>
+  <li>In either case, <em>the user being authorized must be a valid Unix user</em>.If this is not
+the case, an appropriate error message is returned.</li>
+</ul>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

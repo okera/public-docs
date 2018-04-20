@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Advanced Installation Procedures | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="advanced-install">Advanced Installation Option</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="advanced-installation-procedures">Advanced Installation Procedures</h1>
+
+<p>This document describes advanced Cerebro installs.
+This document assumes the user is familiar with the <a href="/install">base installation</a> and will describe changes relative to that process.</p>
+
+<h2 id="special-hive-metastore-management">Special Hive Metastore Management</h2>
+
+<p>In a typical Cerebro Data Access Service install, CDAS will start up and manage a service compatible with Hive Metastore (HMS).
+You are not restricted to this default arrangement.</p>
+
+<h3 id="external-hive-metastore">External Hive Metastore</h3>
+
+<p>If you prefer to have CDAS use an existing, externally managed HMS instance, you can do so.
+In this configuration, CDAS will simply read and write from the external HMS, but all other behavior is unchanged.</p>
+
+<p>CDAS is supports Hive 1.1.0 and up.</p>
+
+<p>To use an external HMS, add this config to your DeploymentManager configs,
+typically <code class="highlighter-rouge">/etc/cerebro/env.sh</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_EXTERNAL_HMS_CONFIG</span><span class="o">=</span>&lt;path to hive-site.xml&gt;
+</code></pre></div></div>
+
+<p>The value should be a full path to the <code class="highlighter-rouge">hive-site.xml</code> client config for the external HMS.
+The path must be accessible from the DeploymentManager process but can be either local or remote (for example, S3).
+After setting the config and restarting the DeploymentManager, newly created clusters will use the external HMS.
+When restarted, existing clusters will update to use the external HMS config.</p>
+
+<p>It is possible to have multiple CDAS clusters use the same external HMS, subject to the concurrency settings of your HMS.</p>
+
+<h3 id="sharing-existing-hive-metastore-rdbms">Sharing Existing Hive Metastore RDBMS</h3>
+
+<p>It is also possible to start a Cerebro catalog which shares the same RDBMS database as an existing Hive Metastore.
+This is useful, for example, during migration to have the Cerebro catalog use the same underlying database as the existing Hive Metastore.
+This allows the existing catalog information to be automatically visible through Cerebro.</p>
+
+<p>To do so, configure <code class="highlighter-rouge">CEREBRO_DB_URL</code> (when starting up the DeploymentManager) to be the same database instance (MySQL server) as the one used by the existing Hive Metastore
+Then, when creating the cluster, specify <code class="highlighter-rouge">--hmsDbName</code> when creating the cluster from the CLI.</p>
+
+<p><strong>Example:</strong> Pointing an existing Cerebro cluster to the Hive Metastore in <code class="highlighter-rouge">env.sh</code></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_DB_URL</span><span class="o">=</span>hms.db.mycompany.com:3306
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Creating a cluster with metadata in hive_db</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--hmsDbName</span><span class="o">=</span>hive_db <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
+</code></pre></div></div>
+
+<h2 id="advanced-networking">Advanced Networking</h2>
+
+<h3 id="configuring-the-ip-range-that-a-cdas-cluster-should-use-for-internal-routing">Configuring the IP range that a CDAS cluster should use for internal routing</h3>
+
+<p>Each Cerebro cluster configures a private network for communication within the cluster.
+By default, Cerebro will use the <code class="highlighter-rouge">172.30.0.0/16</code> range for internal communication.
+The environment variable <code class="highlighter-rouge">CEREBRO_CDAS_INTERNAL_NETWORK_IP_RANGE</code> on the DeploymentManager can be used to configure this setting.</p>
+
+<blockquote>
+  <p><strong>Note</strong></p>
+
+  <p>AWS attaches an HTTP server to every instance at IP address <code class="highlighter-rouge">169.254.169.254</code>.
+You should never configure an internal network range that would overlap with that IP address.
+If that occurs, then AWS libraries will not be able to query the HTTP server for the instance’s IAM credentials, precluding access to AWS resources.</p>
+</blockquote>
+
+<h3 id="cerebro-port-allocation">Cerebro Port Allocation</h3>
+
+<p>Cerebro utilizes network ports for external (user-facing) and internal system communication.
+This section outlines the default minimum port requirements for successful cluster functionality.</p>
+
+<blockquote>
+  <p><strong>Warning</strong></p>
+
+  <p>Please note that for optimal cluster performance, it is assumed that all internal ports between cluster node instances are open.
+If environment policy requires that only essential ports remain open, be aware that it is possible that the cluster may perform sub-optimally as the underlying Kubernetes and Docker layers are optimized over time.</p>
+</blockquote>
+
+<p>External ports to the DeploymentManager and other CDAS services are used for CDAS cluster and data administration.
+It is assumed that these ports are available to administrative users.</p>
+
+<h4 id="static-ports">Static Ports</h4>
+
+<p>Cerebro reserves the following ports for Cerebro service functionality.
+These ports are not user configurable and are required for cluster creation, management, and operation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Port</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">443</code></td>
+      <td>Kubernetes Master Communication</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">6443</code></td>
+      <td>Kubernetes API Server</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">6783</code></td>
+      <td>Kubernetes Weave</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">8085</code></td>
+      <td>Cerebro Master Host</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="customizable-ports">Customizable Ports</h4>
+
+<p>Cerebro supports changing the following port assignments in the <code class="highlighter-rouge">/etc/cerebro/env.sh</code> configuration file for your environment’s DeploymentManager instance.</p>
+
+<p>The table below lists the suggested port assignments as defined by Cerbero.
+All port assignments listed below are optional, and any that are not explicitly assigned will be assigned by Kubernetes during cluster creation.</p>
+
+<p>In the case that no ports are assigned, ports will be assigned in the 30000-32000 port range.
+In cases where ports are partially assigned, Kubernetes will assign ports to the unassigned services in the port range between (1) the lowest-numbered port assignment and (2a) the highest-numbered assignment or (2b) 2000 ports from the lowest-assigned port – whichever range is larger.</p>
+
+<p><strong>Example 1:</strong></p>
+<ul>
+  <li>Lowest configured port: <code class="highlighter-rouge">5000</code> (CDAS REST Server)</li>
+  <li>Highest configured port: <code class="highlighter-rouge">10020</code> (Planner)</li>
+  <li>Port range for possible assignment of non-assigned ports: <code class="highlighter-rouge">5000</code>-<code class="highlighter-rouge">10020</code></li>
+</ul>
+
+<p><strong>Example 2:</strong></p>
+<ul>
+  <li>Lowest configured port: <code class="highlighter-rouge">5000</code> (CDAS REST Server)</li>
+  <li>Highest configured port: <code class="highlighter-rouge">5010</code> (Planner)</li>
+  <li>Port range for possible assignment of non-assigned ports: <code class="highlighter-rouge">5000</code>-<code class="highlighter-rouge">7000</code></li>
+</ul>
+
+<p>External ports are required for user administration as well as cluster creation, maintenance, and usage.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Port</th>
+      <th>Usage</th>
+      <th>Access</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">5000-13050</code></td>
+      <td>Kubernetes Dynamic Range</td>
+      <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">5000</code></td>
+      <td>CDAS REST Server</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">7180</code></td>
+      <td>Cerebro HMS</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">7181</code></td>
+      <td>Cerebro Planner Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">7187</code></td>
+      <td>Kubernetes Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">8083</code></td>
+      <td>Cerebro Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">9098</code></td>
+      <td>Cerebro Canary</td>
+      <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">11050</code></td>
+      <td>Planner Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">11060</code></td>
+      <td>Sentry</td>
+      <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">11061</code></td>
+      <td>Cerebro HMS</td>
+      <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">12050</code></td>
+      <td>Planner</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">13050</code></td>
+      <td>Cerebro Worker</td>
+      <td>external</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

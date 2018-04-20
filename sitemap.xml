@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+
+
+  
+  
+  <url>
+    <loc>http://localhost:4400/advanced-install</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/auditing</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cdas-authentication</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cdas-cdh-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/catalog-rest-api</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/client-configs</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/client-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cluster-launch-plugin-api</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cluster-sizing</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cluster-types</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/complex-types</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/data-types</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cerebro-database-cli</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/docker-quickstart</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/emr-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/extending-cdas</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/faq</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/ip-address-management</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/install</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/kerberos-cluster-setup</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/kubernetes-dashboard-quickstart</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/secure-cerebro-rest-api-ldap</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/memory-usage</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/secure-cerebro-rest-api-oath</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cdas-overview</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cerebro-catalog-overview</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/product-overview</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/pycerebro</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/quick-recipes</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/release-notes</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/secure-deployment-manager-rest-api</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/service-port-assignments</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/supported-sql</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/tableau-web-data-connector</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/web-ui-admin</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/web-ui-basics</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/search</loc>
+  </url>
+  
+  
+  
+  
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/assets/css/style.css</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/cluster-administration</loc>
+  </url>
+  
+  
+</urlset>

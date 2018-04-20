@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Secure Cerebro REST API Access using OAuth | Cerebro Data User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="theme/css/theme-green.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                
+                
+                
+                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="cdas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="secure-cerebro-rest-api-access-using-oauth">Secure Cerebro REST API Access using OAuth</h1>
+<p>The Cerebro REST API supports OAuth integration, primarily to enable easier Web UI
+access. This document explains how to set up the REST API with OAuth to make the Web UI
+login easier.</p>
+
+<h2 id="oauth-basics">OAuth Basics</h2>
+
+<p>In setting up the REST API with basic OAuth integration, the REST API will be able to
+accept an OAuth code token and exchange it for a Cerebro token automatically. This
+allows the Web UI to redirect a Cerebro user from the Cerebro Login Page to a
+preconfigured OAuth service provider (e.g. Google, Ping, etc.), enabling the user to
+login from the external OAuth service. Once logged in, the Web UI uses the CDAS REST
+API to exchange the resulting OAuth token for a Cerebro token to gain access to the
+Cerebro Web UI. The user can also then copy his or her token to use it for any Cerebro
+integration point.</p>
+
+<h2 id="prerequisites-to-enable-oauth">Prerequisites to enable OAuth</h2>
+
+<p>You will need the following pieces of information about your OAuth service provider:</p>
+
+<ul>
+  <li><strong>Client ID</strong>
+This is the OAuth client ID that the service provider requires for authenticating
+against Cerebro. OAuth service providers allow you to create new clients; as part of
+this, you will obtain a Client ID.</li>
+  <li><strong>Authentication URI</strong>
+This is the URI that the OAuth service requires the user to be redirected to when
+requesting authentication. Typically, it renders an HTML login page for that service
+provider. Once the user has successfully interacted with this page, the user is
+redirect back to Cerebro with an ephemeral <code class="highlighter-rouge">access code</code>.</li>
+  <li><strong>Token URI</strong>
+This is the URI that Cerebro must use to exchange the <code class="highlighter-rouge">access code</code> for a service
+provider <code class="highlighter-rouge">token</code>. This exchange happens in the REST API.</li>
+  <li><strong>Client Secret</strong>
+This value is provided by the OAuth service provider as part of setting up a new
+client. It is required for Cerebro to establish trust when attempting the token
+exchange.</li>
+  <li><strong>Redirect URIs</strong>
+This is a list of URIs that will be recognized as acceptable URIs to navigate to
+once the Authentication URI flow is over. These need to be configured in the OAuth
+service provider in the client configuration. Typically, this is just one URI: the
+location of the Cerebro Web UI’s login page, e.g. <code class="highlighter-rouge">https://my-cerebro-host:8083/login</code>.</li>
+  <li><strong>Origin URIs</strong>
+These URIs are the same as the Redirect URIs, without the <code class="highlighter-rouge">/login</code> part. For example
+<code class="highlighter-rouge">https://my-cerebro-host:8083</code>. These values also need to be configured in the OAuth
+service provider, so it will allow redirects from the Cerebro Web UI.</li>
+  <li><strong>OAuth Scopes (Optional)</strong>
+The scopes determine which information the OAuth service provider will allow the user
+to access once the token is obtained. Cerebro needs only very basic information, namely
+the subject (<code class="highlighter-rouge">sub</code>) in order to generate a Cerebro token. Typically, the default here
+(<code class="highlighter-rouge">openid profile email</code>). If there are other scopes required by your OAuth service
+provider to obtain the <code class="highlighter-rouge">sub</code>, you will need to set them.</li>
+  <li><strong>Subject Endpoint (Optional)</strong>
+In some deployments, there may be a need to not encode the subject (<code class="highlighter-rouge">sub</code>) in the JWT
+response from the OAuth token exchange. In this case, Cerebro needs to know the
+endpoint to call to retrieve the subject, which is the unique user ID that Cerebro
+can use to generate the token. This endpoint is expected to return a JSON response
+with <code class="highlighter-rouge">sub</code> being a key on the top-level JSON object, e.g. <code class="highlighter-rouge">{"sub": "abc123", ...}</code>.</li>
+</ul>
+
+<h3 id="setting-up-oauth-configurations">Setting up OAuth configurations</h3>
+
+<h4 id="client_secretsjson">client_secrets.json</h4>
+
+<p>Once you have the above information, you will need to create a JSON file with this
+information encoded in it. The JSON file has the following form:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"web"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Client</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Authentication</span><span class="w"> </span><span class="err">URI&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Token</span><span class="w"> </span><span class="err">URI&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Client</span><span class="w"> </span><span class="err">Secret&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Redirect</span><span class="w"> </span><span class="err">URIs&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"javascript_origins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Origin</span><span class="w"> </span><span class="err">URIs&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>For example, if Google OAuth were to be used, after setting up a new Google OAuth
+project, we might have the following file:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"web"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example12345.apps.googleusercontent.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/token"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"very-secret"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"https://ec2-1234.compute.amazonaws.com:8083/login"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"javascript_origins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"https://ec2-1234.compute.amazonaws.com:8083"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Save this file to <code class="highlighter-rouge">/etc/cerebro/client_secrets.json</code>.</p>
+
+<h4 id="environment-variables">Environment variables</h4>
+
+<p>Cerebro looks for certain environment variables to be set in order to enable OAuth. In
+your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file, set the following environment variables:</p>
+<ul>
+  <li><strong>CEREBRO_OAUTH_SECRETS</strong>, to <code class="highlighter-rouge">/etc/cerebro/client_secrets.json</code>, or wherever the
+ <code class="highlighter-rouge">client_secrets.json</code> file is located. Setting this environment variable enables
+ Cerebro OAuth.</li>
+  <li><strong>CEREBRO_OAUTH_SCOPES</strong> (optional). Space-separated list of scopes required to
+ obtain the <code class="highlighter-rouge">sub</code>. This is typically OK to leave unset, in which case the default is
+ <code class="highlighter-rouge">"openid profile email"</code>.</li>
+</ul>
+
+<p>As an example, the OAuth part of your <code class="highlighter-rouge">env.sh</code> might look like this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_OAUTH_SECRETS</span><span class="o">=</span><span class="s2">"/etc/cerebro/client_secrets.json"</span>
+<span class="nb">export </span><span class="nv">CEREBRO_OAUTH_SCOPES</span><span class="o">=</span><span class="s2">"openid profile"</span>
+</code></pre></div></div>
+
+<h3 id="verify-oauth">Verify OAuth</h3>
+
+<p>Once you’ve deployed Cerebro with OAuth enabled, verify that it’s working properly.</p>
+
+<ul>
+  <li>
+    <p><strong>Check the OAuth connection using CURL</strong>:
+The following curl command should return the authentication URI (with client secrets as
+params) in the <code class="highlighter-rouge">oauth_url</code> section:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl &lt;CDAS REST Server Host/Port&gt;/api/info
+<span class="o">{</span>
+  ...,
+  <span class="s2">"oauth_url"</span>: <span class="s2">"&lt;your authentication URI plus client secrets params&gt;"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+  <span class="s2">"oauth_url"</span>: <span class="s2">"https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&amp;redirect_uri=.../login&amp;response_type=code&amp;client_id=abc123.apps.googleusercontent.com&amp;access_type=offline"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="use-the-web-ui">Use the Web UI</h3>
+
+<p>Navigate to the Cerebro Web UI and there should be a new login option on the login page:
+“Login with OAuth”. Upon clicking it, the UI should redirect to your OAuth service
+provider’s login screen. Upon successful login, the UI should redirect back to the
+Cerebro Web UI and log you in.</p>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p>If you encounter issues, look in the logs of the CDAS REST Server container, which will
+typically contain information about what went wrong.</p>
+
+<p>Additionally, verify the JSON validity of <code class="highlighter-rouge">client_secrets.json</code>. If it is not
+well-formed, the CDAS REST Server cannot read it.</p>
+
+<p>Finally, ensure Cerebro information is probably configured in the OAuth service
+provider, e.g. Cerebro’s Web UI host/port is configured as a valid redirect URI, the
+scopes are valid, etc.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
+ Site last generated: Apr 20, 2018 <br />
+<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>
