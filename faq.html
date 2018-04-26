@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Frequently Asked Questions about the Cerebro Platorm | Cerebro Data User Documentation</title>
+<title>Frequently Asked Questions about the Okera Platorm | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,36 +558,36 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="frequently-asked-questions-about-the-cerebro-platorm">Frequently Asked Questions about the Cerebro Platorm</h1>
+  <h1 id="frequently-asked-questions-about-the-okera-platorm">Frequently Asked Questions about the Okera Platorm</h1>
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:0 orderedList:0 -->
 <!-- TOC Automatically generated by markdown-toc Atom plugin -->
 <ul>
   <li><a href="#basic-product-questions">Basic Product Questions</a>
     <ul>
-      <li><a href="#what-is-cerebro">What is Cerebro?</a></li>
-      <li><a href="#why-do-i-need-cerebro">Why do I need Cerebro?</a></li>
-      <li><a href="#is-cerebro-a-database">Is Cerebro a database?</a></li>
-      <li><a href="#where-does-cerebro-fit-in-my-infrastructure-stack">Where does Cerebro fit in my infrastructure stack?</a></li>
-      <li><a href="#does-cerebro-colocate-with-my-existing-hadoop-clusters">Does Cerebro colocate with my existing Hadoop clusters?</a></li>
-      <li><a href="#how-does-cerebro-impact-performance">How does Cerebro impact performance?</a></li>
-      <li><a href="#do-i-still-need-to-prep-the-data-if-i-have-cerebro">Do I still need to prep the data if I have Cerebro?</a></li>
-      <li><a href="#do-i-still-need-a-data-catalog-if-i-have-cerebro">Do I still need a data catalog if I have Cerebro?</a></li>
-      <li><a href="#once-set-up-will-all-data-access-be-through-cerebro">Once set up, will all data access be through Cerebro?</a></li>
-      <li><a href="#how-does-cerebro-handle-identity-management-and-authentication">How does Cerebro handle identity management and authentication?</a></li>
+      <li><a href="#what-is-okera">What is Okera?</a></li>
+      <li><a href="#why-do-i-need-okera">Why do I need Okera?</a></li>
+      <li><a href="#is-okera-a-database">Is Okera a database?</a></li>
+      <li><a href="#where-does-okera-fit-in-my-infrastructure-stack">Where does Okera fit in my infrastructure stack?</a></li>
+      <li><a href="#does-okera-colocate-with-my-existing-hadoop-clusters">Does Okera colocate with my existing Hadoop clusters?</a></li>
+      <li><a href="#how-does-okera-impact-performance">How does Okera impact performance?</a></li>
+      <li><a href="#do-i-still-need-to-prep-the-data-if-i-have-okera">Do I still need to prep the data if I have Okera?</a></li>
+      <li><a href="#do-i-still-need-a-data-catalog-if-i-have-okera">Do I still need a data catalog if I have Okera?</a></li>
+      <li><a href="#once-set-up-will-all-data-access-be-through-okera">Once set up, will all data access be through Okera?</a></li>
+      <li><a href="#how-does-okera-handle-identity-management-and-authentication">How does Okera handle identity management and authentication?</a></li>
     </ul>
   </li>
   <li><a href="#technology-questions">Technology Questions</a>
     <ul>
-      <li><a href="#what-data-formats-does-cerebro-support">What data formats does Cerebro support?</a></li>
+      <li><a href="#what-data-formats-does-okera-support">What data formats does Okera support?</a></li>
       <li><a href="#does-cerero-support-any-user-defined-functions-udfs">Does Cerero support any user-defined functions (UDFs)?</a></li>
-      <li><a href="#does-cerebro-use-yarn">Does Cerebro use YARN?</a></li>
-      <li><a href="#how-does-cerebro-route-front-end-requests">How does Cerebro route front-end requests?</a></li>
-      <li><a href="#how-does-cerebro-solve-the-small-files-problem">How does Cerebro solve the small-files problem?</a></li>
-      <li><a href="#can-cerebro-catalog-span-multiple-data-centers">Can Cerebro Catalog span multiple data centers?</a></li>
-      <li><a href="#does-cerebro-support-any-type-of-data-indexing">Does Cerebro support any type of data indexing?</a></li>
-      <li><a href="#does-cerebro-guarantee-backward-compatibility-with-amazon-emr">Does Cerebro guarantee backward compatibility with Amazon EMR?</a></li>
-      <li><a href="#are-there-differences-between-msck-repair-table-in-hive-vs-alter-table-recover-partitions-in-cdas">Are there differences between MSCK REPAIR TABLE in Hive vs ALTER TABLE RECOVER PARTITIONS in CDAS?</a></li>
+      <li><a href="#does-okera-use-yarn">Does Okera use YARN?</a></li>
+      <li><a href="#how-does-okera-route-front-end-requests">How does Okera route front-end requests?</a></li>
+      <li><a href="#how-does-okera-solve-the-small-files-problem">How does Okera solve the small-files problem?</a></li>
+      <li><a href="#can-okera-catalog-span-multiple-data-centers">Can Okera Catalog span multiple data centers?</a></li>
+      <li><a href="#does-okera-support-any-type-of-data-indexing">Does Okera support any type of data indexing?</a></li>
+      <li><a href="#does-okera-guarantee-backward-compatibility-with-amazon-emr">Does Okera guarantee backward compatibility with Amazon EMR?</a></li>
+      <li><a href="#are-there-differences-between-msck-repair-table-in-hive-vs-alter-table-recover-partitions-in-odas">Are there differences between MSCK REPAIR TABLE in Hive vs ALTER TABLE RECOVER PARTITIONS in ODAS?</a></li>
     </ul>
   </li>
 </ul>
@@ -595,120 +596,120 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="basic-product-questions">Basic Product Questions</h2>
 
-<h3 id="what-is-cerebro">What is Cerebro?</h3>
+<h3 id="what-is-okera">What is Okera?</h3>
 
-<p>Cerebro solves the complex issue of managing and controlling access to many big data datasources.
+<p>Okera solves the complex issue of managing and controlling access to many big data datasources.
 It transparently integrates into Hadoop, S3, EMR, and Spark (and many more architectures!) to provide a unified metadata catalog and access control policy store.
-Data access, as well as policy access and enforcement, are managed by Cerebro services.</p>
+Data access, as well as policy access and enforcement, are managed by Okera services.</p>
 
-<p>Like massively parallel processing (MPP) databases, Cerebro is always available, taking on requests from a growing set of data processing systems, such as Spark, Python, Presto, Impala, and Hive, with no delay and no additional overhead.
-Its scalability and high availability features make Cerebro the ideal backend for all access to data in many of the common storage systems, like S3, HDFS, and Kafka.
+<p>Like massively parallel processing (MPP) databases, Okera is always available, taking on requests from a growing set of data processing systems, such as Spark, Python, Presto, Impala, and Hive, with no delay and no additional overhead.
+Its scalability and high availability features make Okera the ideal backend for all access to data in many of the common storage systems, like S3, HDFS, and Kafka.
 Such storage tools often only provide coarse-grained security controls.
-With Cerebro, all access to data is vetted against the central access control policies and logged for auditing.
-Because of Cerebro’s optimized access to data using state-of-the-art technologies, queries are accelerated and can take further advantage of acceleration mechanisms provided by Cerebro.</p>
+With Okera, all access to data is vetted against the central access control policies and logged for auditing.
+Because of Okera’s optimized access to data using state-of-the-art technologies, queries are accelerated and can take further advantage of acceleration mechanisms provided by Okera.</p>
 
 <p>Through the integration with industry-standard security mechanisms such as Kerberos authenticaton protocol and Microsoft Active Directory servers, access to data is authenticated against the existing company-wide user management systems.</p>
 
-<p>All of this ensures that Cerebro is not introducing any additional complexity, but rather simplifies your life and makes access to data a reliable, secure, and transparent experience.</p>
+<p>All of this ensures that Okera is not introducing any additional complexity, but rather simplifies your life and makes access to data a reliable, secure, and transparent experience.</p>
 
-<p>For more, see <a href="product-overview">Cerebro Platform Overview</a>.</p>
+<p>For more, see <a href="product-overview">Okera Platform Overview</a>.</p>
 
-<h3 id="why-do-i-need-cerebro">Why do I need Cerebro?</h3>
+<h3 id="why-do-i-need-okera">Why do I need Okera?</h3>
 
 <p>We live in a time when technology and data are exploding exponentially, making their integration more and more complicated.
 At the same time, users are asking for easier access to both, in an attempt to focus on business problems, without having to learn yet another interface.
 On top of that, providing secure access to the data is not trivial and certainly not easy; each technology has its own way of securing data, and where that mechanism is delegated to a shared service, it may only offer only coarse-grained access.</p>
 
-<p>This is where Cerebro comes in: combining disjointed APIs into one unified system that offers a central schema catalog, access policy store, and shared data access layer.
-Using Cerebro, all metadata and data access is simplified, as the unnecessary need to add access policies to many systems is removed.
+<p>This is where Okera comes in: combining disjointed APIs into one unified system that offers a central schema catalog, access policy store, and shared data access layer.
+Using Okera, all metadata and data access is simplified, as the unnecessary need to add access policies to many systems is removed.
 Fine-grained control over data down to the object, row, and a column, enables users to access what they need seamlessly.
-In addition, Cerebro has the ability to speed up common access patterns and thereby increase the effectiveness of applications, increasing the return on investment.</p>
+In addition, Okera has the ability to speed up common access patterns and thereby increase the effectiveness of applications, increasing the return on investment.</p>
 
-<h3 id="is-cerebro-a-database">Is Cerebro a database?</h3>
+<h3 id="is-okera-a-database">Is Okera a database?</h3>
 
-<p>Cerebro manages data access and governance, not storage, per se.
+<p>Okera manages data access and governance, not storage, per se.
 Yet as a matter of course, the platform does provide much of the functionality you may expect from conventional databases but have not found in Big Data infrastructure.
-Cerebro maintains a schema registry that maps datasources, objects, and fields similarly to some features of relational database management systems (RDBMSes).
-See <a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> for more.</p>
+Okera maintains a schema registry that maps datasources, objects, and fields similarly to some features of relational database management systems (RDBMSes).
+See <a href="okera-catalog-overview">Okera Catalog Overview</a> for more.</p>
 
-<h3 id="where-does-cerebro-fit-in-my-infrastructure-stack">Where does Cerebro fit in my infrastructure stack?</h3>
+<h3 id="where-does-okera-fit-in-my-infrastructure-stack">Where does Okera fit in my infrastructure stack?</h3>
 
-<p>Cerebro provides access to underlying data sources.
+<p>Okera provides access to underlying data sources.
 It offers functionality for end-user query access to data using various applications (business intelligence tools) or programmatically (such as by Apache Spark or Python scripts).</p>
 
 <p>Typically the provisioning of data to the underlying data stores (for example, S3 or HDFS) is carried out by common ingest pipelines, which have full and direct access to the data sources and write access to the storage infrastructure.
 That is, you ingest, organize, and store your data how you see fit.</p>
 
-<p>An instance of the Cerebro platform takes the form of a host cluster that has access to your data sources.
-All your key applications have access to your data over <a href="cdas-overview">CDAS</a>, according to schemas and rules you impose using <a href="cerebro-catalog-overview">Cerebro Catalog</a>.</p>
+<p>An instance of the Okera platform takes the form of a host cluster that has access to your data sources.
+All your key applications have access to your data over <a href="odas-overview">ODAS</a>, according to schemas and rules you impose using <a href="okera-catalog-overview">Okera Catalog</a>.</p>
 
-<p>See <a href="cdas-overview">Cerebro Data Access Service Overview</a> for more.</p>
+<p>See <a href="odas-overview">Okera Data Access Service Overview</a> for more.</p>
 
-<h3 id="does-cerebro-colocate-with-my-existing-hadoop-clusters">Does Cerebro colocate with my existing Hadoop clusters?</h3>
+<h3 id="does-okera-colocate-with-my-existing-hadoop-clusters">Does Okera colocate with my existing Hadoop clusters?</h3>
 
-<p>Cerebro can be installed collocated with your current Hadoop infrastructure or separately.
+<p>Okera can be installed collocated with your current Hadoop infrastructure or separately.
 Both models are fully supported.
 Which model you pick depends on your environment and needs.</p>
 
 <ul>
   <li>
-    <p>If you’re deploying in the data center where all services are collocated on a set of physical machines, Cerebro can be deployed on the cluster, collocated with the other services.</p>
+    <p>If you’re deploying in the data center where all services are collocated on a set of physical machines, Okera can be deployed on the cluster, collocated with the other services.</p>
   </li>
   <li>
-    <p>If you’re deploying in the cloud and have different kinds of access frameworks (Spark, Presto, Python) accessing data via Cerebro but not necessarily all collocated on the same machines, Cerebro can be deployed standalone as an independent service.</p>
+    <p>If you’re deploying in the cloud and have different kinds of access frameworks (Spark, Presto, Python) accessing data vian Okera but not necessarily all collocated on the same machines, Okera can be deployed standalone as an independent service.</p>
   </li>
   <li>
-    <p>With Amazon’s Elastic MapReduce (EMR), you can deploy Cerebro collocated with the EMR nodes.</p>
+    <p>With Amazon’s Elastic MapReduce (EMR), you can deploy Okera collocated with the EMR nodes.</p>
   </li>
 </ul>
 
-<h3 id="how-does-cerebro-impact-performance">How does Cerebro impact performance?</h3>
+<h3 id="how-does-okera-impact-performance">How does Okera impact performance?</h3>
 
-<p>Cerebro has been designed with performance in mind.</p>
+<p>Okera has been designed with performance in mind.</p>
 
 <ul>
   <li>The I/O and data path are tuned to be highly efficient.</li>
   <li>Clusters have been proven to scale to 800+ nodes.</li>
 </ul>
 
-<p>Cerebro deployment supports federation (deploying multiple clusters with hundreds of nodes).
+<p>Okera deployment supports federation (deploying multiple clusters with hundreds of nodes).
 In many workloads, using the most-popular Hadoop analytic frameworks (Spark, MapReduce), performance often improves between 10-20% due to the data path efficiency.
-One way to think about this is that the MapReduce/Java application offloads the initial processing to Cerebro, including I/O, file parsing, decompression, and filtering.</p>
+One way to think about this is that the MapReduce/Java application offloads the initial processing to Okera, including I/O, file parsing, decompression, and filtering.</p>
 
-<h3 id="do-i-still-need-to-prep-the-data-if-i-have-cerebro">Do I still need to prep the data if I have Cerebro?</h3>
+<h3 id="do-i-still-need-to-prep-the-data-if-i-have-okera">Do I still need to prep the data if I have Okera?</h3>
 
 <p>Yes.
 Data prep involves modeling the data to suit your business and transforming data needed in the process of ingesting and storing it.
-Once modeled, data can be published with Cerebro.
-Cerebro thereafter provides self-service access to your business users, analysts, and scientists, all using their favorite utilities, apps, scripting languages like Python and R.</p>
+Once modeled, data can be published with Okera.
+Okera thereafter provides self-service access to your business users, analysts, and scientists, all using their favorite utilities, apps, scripting languages like Python and R.</p>
 
-<h3 id="do-i-still-need-a-data-catalog-if-i-have-cerebro">Do I still need a data catalog if I have Cerebro?</h3>
+<h3 id="do-i-still-need-a-data-catalog-if-i-have-okera">Do I still need a data catalog if I have Okera?</h3>
 
 <p>Cerebo provides you a Catalog for what we call “technical metadata”.
 This is the information required to access the data sets: schemas, location, access policies.
 For some users, this is sufficient.
 For others, we’ve seen them build a catalog that is designed to more specifically model their business objects.
-In this case, the system would work with the Cerebro Catalog.
-Cerebro Catalog could contain the lower-level information, but the catalog would contain higher-level information associated with specific business processes.</p>
+In this case, the system would work with the Okera Catalog.
+Okera Catalog could contain the lower-level information, but the catalog would contain higher-level information associated with specific business processes.</p>
 
 <p>To be explicit, customers that are used to running Hive Metastore or Sentry Store do not need to do so anymore.</p>
 
-<h3 id="once-set-up-will-all-data-access-be-through-cerebro">Once set up, will all data access be through Cerebro?</h3>
+<h3 id="once-set-up-will-all-data-access-be-through-okera">Once set up, will all data access be through Okera?</h3>
 
-<p>There is no strict requirement to have Cerebro manage all data access.
+<p>There is no strict requirement to have Okera manage all data access.
 The platform can be configured such that certain users can go directly to the raw data.
-Anything that accesses raw files directly will be unable to leverage the security and governance functionality the Cerebro platform provides.</p>
+Anything that accesses raw files directly will be unable to leverage the security and governance functionality the Okera platform provides.</p>
 
-<h3 id="how-does-cerebro-handle-identity-management-and-authentication">How does Cerebro handle identity management and authentication?</h3>
+<h3 id="how-does-okera-handle-identity-management-and-authentication">How does Okera handle identity management and authentication?</h3>
 
-<p>Cerebro honors user groups established integrated by Unix systems and Active Directory.
-When useers supply authentication credentials the Cerebro platform, their existing authorizations are applied, permitting them access only to the datasets, objects, and columns indicated by their group assignments.</p>
+<p>Okera honors user groups established integrated by Unix systems and Active Directory.
+When users supply authentication credentials the Okera platform, their existing authorizations are applied, permitting them access only to the datasets, objects, and columns indicated by their group assignments.</p>
 
 <h2 id="technology-questions">Technology Questions</h2>
 
-<h3 id="what-data-formats-does-cerebro-support">What data formats does Cerebro support?</h3>
+<h3 id="what-data-formats-does-okera-support">What data formats does Okera support?</h3>
 
-<p>Cerebro supports the following data formats:</p>
+<p>Okera supports the following data formats:</p>
 
 <ul>
   <li>Anything in the Hadoop ecosystem</li>
@@ -719,55 +720,55 @@ When useers supply authentication credentials the Cerebro platform, their existi
 
 <h3 id="does-cerero-support-any-user-defined-functions-udfs">Does Cerero support any user-defined functions (UDFs)?</h3>
 
-<p>Cerebro supports <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Hive’s UDFs</a>.</p>
+<p>Okera supports <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">Hive’s UDFs</a>.</p>
 
-<h3 id="does-cerebro-use-yarn">Does Cerebro use YARN?</h3>
+<h3 id="does-okera-use-yarn">Does Okera use YARN?</h3>
 
-<p>Cerebro does not use YARN.
-The Cerebro components are deployed using Docker containers and use Kubernetes under the hood to manage the distributed system deployment.</p>
+<p>Okera does not use YARN.
+The Okera components are deployed using Docker containers and use Kubernetes under the hood to manage the distributed system deployment.</p>
 
-<h3 id="how-does-cerebro-route-front-end-requests">How does Cerebro route front-end requests?</h3>
+<h3 id="how-does-okera-route-front-end-requests">How does Okera route front-end requests?</h3>
 
 <p>For traffic routing, all <em>non</em>-worker services run behind a load balancer.
 This means you can call the REST server, planner, or catalog via any hostname or IP on the cluster and the request will get routed to the right place.</p>
 
-<p>To enable Cerebro to carefully control the load and efficiency on the data path, the worker services are not load balanced.
+<p>To enable Okera to carefully control the load and efficiency on the data path, the worker services are not load balanced.
 This is why, for example, you can use the REST server CNAME for the planner.
-The CNAME resolves to an IP on the cluster, and then gets routed through Cerebro as necessary.</p>
+The CNAME resolves to an IP on the cluster, and then gets routed through Okera as necessary.</p>
 
-<h3 id="how-does-cerebro-solve-the-small-files-problem">How does Cerebro solve the small-files problem?</h3>
+<h3 id="how-does-okera-solve-the-small-files-problem">How does Okera solve the small-files problem?</h3>
 
 <p>There are a few problems with small files, both from the storage side and the compute side.
 For storage, small files lead to more metadata overhead gumming up the works.
 This is particularly problematic for HDFS NameNode.
 For most Hadoop compute frameworks, small files can cause the computation to be much slower due to the high per file/per task overhead.</p>
 
-<p>For compute, CDAS will combine small files automatically which often provides significant performance benefits. Cerebro does not currently manage writing files so does not directly help with the issue on the storage side. For non-HDFS storage managers, this may not be an issue at all. Users will want to do background compaction/ETL to combine small files. Cerebro does help with this illicitly by decoupling applications reading the data from the storage (i.e. file path details).</p>
+<p>For compute, ODAS will combine small files automatically which often provides significant performance benefits. Okera does not currently manage writing files so does not directly help with the issue on the storage side. For non-HDFS storage managers, this may not be an issue at all. Users will want to do background compaction/ETL to combine small files. Okera does help with this illicitly by decoupling applications reading the data from the storage (i.e. file path details).</p>
 
-<h3 id="can-cerebro-catalog-span-multiple-data-centers">Can Cerebro Catalog span multiple data centers?</h3>
+<h3 id="can-okera-catalog-span-multiple-data-centers">Can Okera Catalog span multiple data centers?</h3>
 
 <p>The Catalog itself cannot span multiple data centers.
 The data backing is stored in MySQL (or Aurora on AWS), and we recommend replication of the backing DB.
 The contents in the Catalog can span multiple clusters.
 For example, datasets that are from different data centers).</p>
 
-<h3 id="does-cerebro-support-any-type-of-data-indexing">Does Cerebro support any type of data indexing?</h3>
+<h3 id="does-okera-support-any-type-of-data-indexing">Does Okera support any type of data indexing?</h3>
 
 <p>There are no plans to support indices in the short or medium term.
 Some of the use cases indexing enables can be solved using good partitioning schemes and enabling certain features when writing parquet.</p>
 
-<h3 id="does-cerebro-guarantee-backward-compatibility-with-amazon-emr">Does Cerebro guarantee backward compatibility with Amazon EMR?</h3>
+<h3 id="does-okera-guarantee-backward-compatibility-with-amazon-emr">Does Okera guarantee backward compatibility with Amazon EMR?</h3>
 
-<p>New versions of CDAS will maintain compatibility with EMR client jars.
-Functionality introduced in newer versions of CDAS may not work with old EMR client jars, but none of the existing functionality will break as a result of a CDAS upgrade.</p>
+<p>New versions of ODAS will maintain compatibility with EMR client jars.
+Functionality introduced in newer versions of ODAS may not work with old EMR client jars, but none of the existing functionality will break as a result of a ODAS upgrade.</p>
 
-<h3 id="are-there-differences-between-msck-repair-table-in-hive-vs-alter-table-recover-partitions-in-cdas">Are there differences between MSCK REPAIR TABLE in Hive vs ALTER TABLE RECOVER PARTITIONS in CDAS?</h3>
+<h3 id="are-there-differences-between-msck-repair-table-in-hive-vs-alter-table-recover-partitions-in-odas">Are there differences between MSCK REPAIR TABLE in Hive vs ALTER TABLE RECOVER PARTITIONS in ODAS?</h3>
 
 <p><code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> is effectively an alias for <code class="highlighter-rouge">MSCK REPAIR TABLE</code>.
-The primary difference in usability is that <code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> works from Cerebro’s database CLI utility (dbcli) or through the REST API.
+The primary difference in usability is that <code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> works from Okera’s database CLI utility (odb) or through the REST API.
 The <code class="highlighter-rouge">MSCK REPAIR TABLE</code> command must be run directly from Hive.
 Hive then translates the <code class="highlighter-rouge">MSCK</code> call to <code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> and distributes it to the planner as a call to each partition.
-The overhead of this translation and distribution results in slower performance from Hive vs. natively through CDAS.</p>
+The overhead of this translation and distribution results in slower performance from Hive vs. natively through ODAS.</p>
 
 
     <div class="tags">
@@ -784,9 +785,11 @@ The overhead of this translation and distribution results in slower performance 
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

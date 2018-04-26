@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Extending ODAS | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
+                
+                
+                
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                
+                
+                
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">ODAS Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Use</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Admin Web UI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="odas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="extending-odas">Extending ODAS</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="extending-odas">Extending ODAS</h1>
+
+<p>You can extend Okera Data Access Service (ODAS)’s functionality in two ways:</p>
+
+<ul>
+  <li>running user defined functions (UDFs)</li>
+  <li>Hive Serialization/Deserialization libraries (SerDes).</li>
+</ul>
+
+<p>UDFs and SerDes provide powerful ways to extend the capabilities of
+ODAS. Example use cases include support for:</p>
+
+<ul>
+  <li>UDF - Custom anonymization or data encryption algorithm</li>
+  <li>UDF - Complicated filters that are more naturally expressed in code vs. SQL</li>
+  <li>SerDe - Reading a file format (i.e. Multi-delimited CSV) that is not supported by ODAS</li>
+  <li>SerDe - Custom in-house file format</li>
+</ul>
+
+<h2 id="security">Security</h2>
+
+<p>UDFs and SerDes run using the same process and the same permissions as the rest of ODAS
+(typically run as the system user). These libraries have access to all
+the data that ODAS has access to. A malicious library can potentially access data that is
+currently being processed. It is assumed that the libraries are <em>trusted</em>. Currently the only
+measure to protect against ill-behaving libraries is to restrict who can register them.</p>
+
+<p>Only users who are catalog admins can register and unregister UDFs and SerDes.
+It is not possible to delegate this capability to other users (i.e. in the same way the
+permission to grant can be delegated).</p>
+
+<p>As a best practice, it is recommended that library locations be secured to
+prevent other users from replacing it with malicious binaries (i.e. most users should
+not have write access to that location.)</p>
+
+<h2 id="udfs">UDFs</h2>
+
+<p>To use UDFs, the steps are:</p>
+
+<ol>
+  <li>Register the UDF in the ODAS catalog. Only the catalog admins can do this.</li>
+  <li>Create views (or issue queries) that use the UDF with typical SQL statements. Any user
+can use the UDF (assuming they have access to the UDF database).</li>
+  <li>Read data from the view. The UDF is evaluated by ODAS before the data is returned.</li>
+</ol>
+
+<p>For example, use a UDF that accepts strings and masks all
+characters in it:</p>
+
+<p><code class="highlighter-rouge">mask('hello')-&gt; 'xxxxx'</code>.</p>
+
+<p>ODAS supports UDFs written against the Hive <a href="https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/exec/UDF.java">interface</a>.
+These JARs should be compatible with Hive, and require no additional steps.</p>
+
+<p>For this UDF, the code might look like:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">cerebro</span><span class="o">.</span><span class="na">hiveudf</span><span class="o">;</span>
+
+  <span class="kn">import</span> <span class="nn">org.apache.hadoop.hive.ql.exec.UDF</span><span class="o">;</span>
+  <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Text</span><span class="o">;</span>
+
+  <span class="cm">/**
+   * UDF which masks all characters from the input string.
+   *
+   * SELECT mask('hello')
+   * &gt; 'xxxx'
+   */</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaskUDF</span> <span class="kd">extends</span> <span class="n">UDF</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Text</span> <span class="nf">evaluate</span><span class="o">(</span><span class="n">Text</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+      <span class="kt">byte</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">t</span><span class="o">.</span><span class="na">getBytes</span><span class="o">().</span><span class="na">length</span><span class="o">];</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="sc">'x'</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nf">Text</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="registering-the-udf">Registering the UDF</h3>
+
+<p>To register the UDF, use one of our client tools (<code class="highlighter-rouge">odb</code>, <code class="highlighter-rouge">curl</code>, etc.) to execute DDL
+statements against ODAS.
+For example:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db_name</span><span class="p">.]</span><span class="n">function_name</span><span class="p">([</span><span class="n">arg_type</span><span class="p">[,</span> <span class="n">arg_type</span><span class="p">...])</span>
+    <span class="k">RETURNS</span> <span class="n">return_type</span>
+    <span class="k">LOCATION</span> <span class="s1">'s3_path'</span>
+    <span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'class name of UDF'</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Tip:</strong> Function overloading is supported. Functions can have the same name with
+different signatures.</p>
+</blockquote>
+
+<p>For example, the <code class="highlighter-rouge">MaskUDF</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span>
+    <span class="k">RETURNS</span> <span class="n">STRING</span>
+    <span class="k">LOCATION</span> <span class="s1">'s3://cerebrodata-public-east/udfs/mask-udf.jar'</span>
+    <span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'com.cerebro.hiveudf.MaskUDF'</span>
+</code></pre></div></div>
+
+<p>To drop the UDF, use the <code class="highlighter-rouge">DROP FUNCTION</code> statement:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db_name</span><span class="p">.]</span><span class="n">function_name</span><span class="p">([</span><span class="n">arg_type</span><span class="p">[,</span> <span class="n">arg_type</span><span class="p">...])</span>
+
+  <span class="c1">-- For example</span>
+  <span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="using-the-udf-directly">Using the UDF directly</h2>
+
+<p>If directly issuing SQL against the planner, the UDF is used like any other builtin.</p>
+
+<p>For example:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="n">record</span><span class="p">,</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">sample</span>
+
+  <span class="o">|</span> <span class="n">record</span>        <span class="o">|</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="o">|</span>
+  <span class="o">|</span> <span class="c1">------------- |:-------------:|</span>
+  <span class="o">|</span><span class="n">This</span> <span class="k">is</span> <span class="n">a</span> <span class="n">sample</span> <span class="n">test</span> <span class="n">file</span><span class="p">.</span><span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
+  <span class="o">|</span><span class="n">It</span> <span class="n">should</span> <span class="n">consist</span> <span class="k">of</span> <span class="n">two</span> <span class="n">lines</span><span class="p">.</span><span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
+</code></pre></div></div>
+
+<h2 id="using-the-udf-from-views">Using the UDF from views</h2>
+
+<p>When accessing ODAS with another SQL tool, possibly unable to handle the UDFs,
+you may “hide” the UDF behind a ODAS view. In the on-going example, if you want to protect
+the <code class="highlighter-rouge">okera_sample.sample</code> dataset with the UDF, create a view that applies the
+UDF to the columns in it. Then, grant access to the view.</p>
+
+<p>For example:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span> <span class="k">as</span>
+  <span class="k">SELECT</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">as</span> <span class="n">record</span>
+  <span class="k">FROM</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">sample</span>
+  <span class="c1">-- GRANT SELECT ON table okera_sample.secure_sample to ROLE &lt;ROLE&gt;</span>
+</code></pre></div></div>
+
+<p>Then select from this view. The UDF is automatically applied.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span>
+
+  <span class="o">|</span> <span class="n">record</span>        <span class="o">|</span>
+  <span class="o">|</span> <span class="c1">------------- |</span>
+  <span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
+  <span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
+</code></pre></div></div>
+
+<p>In this case, the UDF is completely hidden from the compute tool talking to ODAS. The tool
+does not know about, and therefore does not have access to, the UDF binary, in any way.</p>
+
+<h2 id="using-it-from-hive-emr">Using it from Hive EMR</h2>
+
+<p>Since the UDFs are Hive compatible, they are automatically usable from a ODAS integrated
+Hive EMR cluster. Hive UDF (i.e. function) commands work transparently. For
+example, if the UDF <code class="highlighter-rouge">okera_sample.mask</code> is registered in ODAS, it can be used
+from Hive, with no additional changes or configs.</p>
+
+<p>For example from the Hive CLI:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  show functions like <span class="s2">"okera_sample.*"</span><span class="p">;</span>
+  OK
+  okera_sample.mask
+
+  hive&gt; <span class="k">select </span>okera_sample.mask<span class="o">(</span><span class="s1">'abcd'</span><span class="o">)</span><span class="p">;</span>
+  Added <span class="o">[</span>/mnt/tmp/53ad548e-5f83-44dd-985b-3c9c267fe736_resources/mask-udf.jar] to class path
+  Added resources: <span class="o">[</span>s3://cerebrodata-dev/udfs/mask-udf.jar]
+  OK
+  xxxx
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> This is available starting in the 0.8 release. It is not possible to register
+a ODAS UDF from Hive. The UDF must be registered in ODAS and then is visible
+through Hive. It is possible to register UDFs in Hive that are local to the EMR cluster,
+by creating the UDF (through Hive) in a local db.</p>
+</blockquote>
+
+<h2 id="common-errors">Common Errors</h2>
+
+<p><strong>User is not admin</strong></p>
+
+<p>The user is not a catalog admin and sees:</p>
+
+<p><code class="highlighter-rouge">AuthorizationException: User 'dev-user' does not have privileges to CREATE/DROP functions.</code></p>
+
+<p><strong>Dropping a function that is being used</strong></p>
+
+<p>The views that depend on it fails with the error:</p>
+
+<p><code class="highlighter-rouge">AnalysisException: okera_sample.mask() unknown.</code></p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p><strong>Cannot grant on UDF</strong></p>
+
+<p>Access controls on the UDF is not provided. Only admins can create them before all users
+ can use them. It is not possible to grant usage of a UDF to a particular
+user or group.</p>
+
+<p><strong>Cannot issue CREATE/DROP FUNCTION through hive CLI/beeline</strong></p>
+
+<p>The Hive client integration currently does not support the DDL statement. It is
+expected to be added in the near future.</p>
+
+<h2 id="serdes">SerDes</h2>
+
+<p>ODAS supports a subset of valid Hive SerDes. The SerDes must use  <code class="highlighter-rouge">text</code> serialization.
+That file format consists of line by line text, with arbitrary line serialization.</p>
+
+<p>Examples of supported SerDes:</p>
+
+<ul>
+  <li>Regex SerDe - each line content can be extracted by RegEx</li>
+  <li>Thrift SerDe - each line is a serialized thrift object</li>
+  <li>Json SerDe - each line is json</li>
+  <li>Multi-Delimiter CSV SerDe - each line has a CSV structure with many options</li>
+</ul>
+
+<p>Examples of unsupported SerDes include the following file formats for sophisticated
+file structures:</p>
+
+<ul>
+  <li>SequenceFile</li>
+  <li>Avro</li>
+  <li>Parquet</li>
+  <li>Orc</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong> SequenceFile, Avro, and Parquet are natively supported by ODAS and do not
+require a SerDe.</p>
+</blockquote>
+
+<h3 id="using-a-serde">Using a SerDe</h3>
+
+<p>The SerDe library must be specified when creating the table. The DDL to use a SerDe
+is an extension of the <code class="highlighter-rouge">CREATE TABLE</code> statement with additional options. The path to
+the SerDe jar must be specified; It can be any URI, but typically is an S3 path.
+The fully qualified Java class name must be specified as well. Optionally, any additional
+properties for the SerDe can be provided. The table can be partitioned or created with
+comments, in a similar way to other tables.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="p">[</span><span class="k">EXTERNAL</span><span class="p">]</span> <span class="p">[</span><span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">tbl</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="k">SCHEMA</span><span class="o">&gt;</span><span class="p">)</span>
+  <span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">SERDE</span> <span class="s1">'&lt;PATH TO SERDE JAR&gt;'</span> <span class="n">SYMBOL</span> <span class="s1">'&lt;CLASS NAME OF SERDE&gt;'</span>
+  <span class="p">[</span><span class="k">WITH</span> <span class="n">SERDEPROPERTIES</span><span class="p">(</span><span class="s1">'&lt;key&gt;'</span> <span class="o">=</span> <span class="s1">'value'</span><span class="p">)]</span>
+  <span class="p">[</span><span class="k">LOCATION</span> <span class="o">|</span> <span class="k">COMMENT</span> <span class="o">|</span> <span class="p">...]</span>
+</code></pre></div></div>
+
+<p>For example, when using the Hive <a href="https://github.com/apache/hive/blob/trunk/contrib/src/java/org/apache/hadoop/hive/contrib/serde2/RegexSerDe.java">RegexSerDe</a>,
+it assumes the library is available at: <code class="highlighter-rouge">s3://my-company/serdes/regex-serde.jar</code>:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">apachelog</span> <span class="p">(</span>
+    <span class="k">host</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="k">identity</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="k">user</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">ts</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">request</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">status</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="k">size</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">referrer</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">agent</span> <span class="n">STRING</span><span class="p">)</span>
+  <span class="k">ROW</span> <span class="n">FORMAT</span>
+  <span class="n">SERDE</span> <span class="s1">'org.apache.hadoop.hive.serde2.RegexSerDe'</span>
+  <span class="n">JAR_PATH</span> <span class="s1">'s3://my-company/serdes/regex-serde.jar'</span>
+  <span class="k">WITH</span> <span class="n">SERDEPROPERTIES</span> <span class="p">(</span>
+    <span class="nv">"input.regex"</span> <span class="o">=</span> <span class="nv">"([^]*) ([^]*) ([^]*) (-|</span><span class="se">\\</span><span class="nv">[^</span><span class="se">\\</span><span class="nv">]*</span><span class="se">\\</span><span class="nv">]) ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">[^</span><span class="se">\"</span><span class="nv">]*</span><span class="se">\"</span><span class="nv">) (-|[0-9]*) (-|[0-9]*)(?: ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">.*</span><span class="se">\"</span><span class="nv">) ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">.*</span><span class="se">\"</span><span class="nv">))?"</span>
+  <span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="tutorial-for-using-Ç-cedilla-c-as-a-delimiter">Tutorial for using Ç (Cedilla-C) as a delimiter</h3>
+
+<p>As an end to end example, load a dataset in S3 that uses the <a href="https://en.wikipedia.org/wiki/Ç">Cedilla-C</a>
+as the delimiter, and uses the Hive <a href="https://github.com/apache/hive/blob/0af6cb42725659740a022044c6cc464ef1cf4e6b/contrib/src/java/org/apache/hadoop/hive/contrib/serde2/MultiDelimitSerDe.java">MultiDelimitSerde</a>.</p>
+
+<p>The folder used in this tutorial is available at:</p>
+<pre><code class="language-s3://cerebro-datasets/cedilla_sample/```.">
+The folder contains a file named `cedilla_sample.txt`, with the following contents:
+
+</code></pre>
+<p>1Ç23
+  Ç45</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+The steps are:
+
+
+1. Create the database
+
+    ```shell
+    $ ./odb dataset hive-ddl "create database if not exists multibyte_db"
+
+
+2. Create a table that uses Ç as the field delimiter
+
+
+    $ ./odb dataset hive-ddl "CREATE EXTERNAL TABLE multibyte_db.cedilla_sample(
+      int1 int,
+      int2 int)
+    ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.MultiDelimitSerDe'
+    WITH SERDEPROPERTIES ('field.delim' = 'Ç')
+    STORED AS TEXTFILE
+    LOCATION 's3://cerebro-datasets/cedilla_sample/'"
+
+
+3. Read from the table to make sure everything works
+
+
+    $ ./odb dataset cat multibyte_db.cedilla_sample
+
+
+4. The output expected is:
+
+
+    --- multibyte_db.cedilla_sample ---
+    [
+        {
+            "int1": 1,
+            "int2": 23
+        },
+        {
+            "int1": 0,
+            "int2": 45
+        }
+    ]
+</code></pre></div></div>
+
+<h2 id="permission-cascading">Permission Cascading</h2>
+
+<p>When permissions are granted on S3 URIs, they are applied to any subdirectories contained
+within the directory to which the permissions are granted. This allows access to be granted
+on a top-level S3 bucket, or any arbitrarily deep subdirectory.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

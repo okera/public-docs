@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Advanced Installation Procedures | Cerebro Data User Documentation</title>
+<title>Advanced Installation Procedures | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -559,58 +560,104 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="advanced-installation-procedures">Advanced Installation Procedures</h1>
 
-<p>This document describes advanced Cerebro installs.
+<p>This document describes advanced Okera installs.
 This document assumes the user is familiar with the <a href="/install">base installation</a> and will describe changes relative to that process.</p>
+
+<p>This document covers the following categories of additional installation options:</p>
+
+<ul>
+  <li><a href="#deployment-manager-configuration">Deployment Manager Configuration</a></li>
+  <li><a href="#special-hive-metastore-management">Special Hive Metastore Management</a></li>
+  <li><a href="#advanced-networking">Advanced Networking</a></li>
+</ul>
+
+<h2 id="deployment-manager-configuration">Deployment Manager Configuration</h2>
+
+<p>Basic DM setup is instructed in the main <a href="/install#dm-configuration-options">Installaton Guide</a>.
+This section describes some additional options.</p>
+
+<h3 id="a-note-about-changing-dm-configuration-values">A Note about Changing DM Configuration Values</h3>
+
+<p>The environment variables set in the <code class="highlighter-rouge">env.sh</code> script are stored by the deployment manager when it starts up.
+When a deployment manager creates an Okera cluster, the current values of those environment variables are applied to the new cluster.
+That cluster retains those values independent of any configuration changes on the deployment manager.
+To change the values used by a deployment manager, you must either update the <code class="highlighter-rouge">env.sh</code> script (assuming that it’s in the default location of <code class="highlighter-rouge">/etc/okera/</code>), or update your environment variables.
+Then, restart the deployment manager by running:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager
+</code></pre></div></div>
+
+<p>Clusters created after the deployment manager is restarted use the new configuration values.</p>
+
+<p>An existing Okera cluster that is restarted by way of a deployment manager does not pick up changes in the deployment manager’s configuration.
+Rather, the Okera cluster retains the configuration values that were used during the cluster creation.</p>
+
+<h3 id="working-with-deployment_manager_install_dir">Working with DEPLOYMENT_MANAGER_INSTALL_DIR</h3>
+
+<p>The value of <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> has no effect on where Deployment Manager loads the <code class="highlighter-rouge">/etc/okera/env.sh</code> file.
+The Deployment Manager always attempts to read config values from <code class="highlighter-rouge">/etc/okera/env.sh</code>, if it exists.
+If <code class="highlighter-rouge">env.sh</code> does not exist in <code class="highlighter-rouge">/etc/okera</code>, the Deployment Manager falls back to the config values from environment variables.
+The setting <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code>, defined either in environment variables or in <code class="highlighter-rouge">/etc/okera/env.sh</code>, is used after the Deployment Manager is successfully configured and running; it is for writing additional files.</p>
+
+<h3 id="okera_server_hostport">OKERA_SERVER_HOSTPORT</h3>
+
+<p>This is the host:port for running the Deployment Manager.
+The host listens to all interfaces (by default) and runs on port 8085 (e.g. 0.0.0.0:8085).
+This port does not need to be made accessible to the typical user who accesses data, but it is required by the one who administers Okera clusters.</p>
+
+<p><strong>Example:</strong> Setting the DM’s host and port</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SERVER_HOSTPORT</span><span class="o">=</span>10.10.1.123:8085
+</code></pre></div></div>
 
 <h2 id="special-hive-metastore-management">Special Hive Metastore Management</h2>
 
-<p>In a typical Cerebro Data Access Service install, CDAS will start up and manage a service compatible with Hive Metastore (HMS).
+<p>In a typical Okera Data Access Service install, ODAS will start up and manage a service compatible with Hive Metastore (HMS).
 You are not restricted to this default arrangement.</p>
 
 <h3 id="external-hive-metastore">External Hive Metastore</h3>
 
-<p>If you prefer to have CDAS use an existing, externally managed HMS instance, you can do so.
-In this configuration, CDAS will simply read and write from the external HMS, but all other behavior is unchanged.</p>
+<p>If you prefer to have ODAS use an existing, externally managed HMS instance, you can do so.
+In this configuration, ODAS will simply read and write from the external HMS, but all other behavior is unchanged.</p>
 
-<p>CDAS is supports Hive 1.1.0 and up.</p>
+<p>ODAS is supports Hive 1.1.0 and up.</p>
 
-<p>To use an external HMS, add this config to your DeploymentManager configs,
-typically <code class="highlighter-rouge">/etc/cerebro/env.sh</code>.</p>
+<p>To use an external HMS, add this config to your Deployment Manager configs,
+typically <code class="highlighter-rouge">/etc/okera/env.sh</code>.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_EXTERNAL_HMS_CONFIG</span><span class="o">=</span>&lt;path to hive-site.xml&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_EXTERNAL_HMS_CONFIG</span><span class="o">=</span>&lt;path to hive-site.xml&gt;
 </code></pre></div></div>
 
 <p>The value should be a full path to the <code class="highlighter-rouge">hive-site.xml</code> client config for the external HMS.
-The path must be accessible from the DeploymentManager process but can be either local or remote (for example, S3).
-After setting the config and restarting the DeploymentManager, newly created clusters will use the external HMS.
+The path must be accessible from the Deployment Manager process but can be either local or remote (for example, S3).
+After setting the config and restarting the Deployment Manager, newly created clusters will use the external HMS.
 When restarted, existing clusters will update to use the external HMS config.</p>
 
-<p>It is possible to have multiple CDAS clusters use the same external HMS, subject to the concurrency settings of your HMS.</p>
+<p>It is possible to have multiple ODAS clusters use the same external HMS, subject to the concurrency settings of your HMS.</p>
 
 <h3 id="sharing-existing-hive-metastore-rdbms">Sharing Existing Hive Metastore RDBMS</h3>
 
-<p>It is also possible to start a Cerebro catalog which shares the same RDBMS database as an existing Hive Metastore.
-This is useful, for example, during migration to have the Cerebro catalog use the same underlying database as the existing Hive Metastore.
-This allows the existing catalog information to be automatically visible through Cerebro.</p>
+<p>It is also possible to start an Okera catalog which shares the same RDBMS database as an existing Hive Metastore.
+This is useful, for example, during migration to have the Okera catalog use the same underlying database as the existing Hive Metastore.
+This allows the existing catalog information to be automatically visible through Okera.</p>
 
-<p>To do so, configure <code class="highlighter-rouge">CEREBRO_DB_URL</code> (when starting up the DeploymentManager) to be the same database instance (MySQL server) as the one used by the existing Hive Metastore
+<p>To do so, configure <code class="highlighter-rouge">OKERA_DB_URL</code> (when starting up the Deployment Manager) to be the same database instance (MySQL server) as the one used by the existing Hive Metastore
 Then, when creating the cluster, specify <code class="highlighter-rouge">--hmsDbName</code> when creating the cluster from the CLI.</p>
 
-<p><strong>Example:</strong> Pointing an existing Cerebro cluster to the Hive Metastore in <code class="highlighter-rouge">env.sh</code></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_DB_URL</span><span class="o">=</span>hms.db.mycompany.com:3306
+<p><strong>Example:</strong> Pointing an existing Okera cluster to the Hive Metastore in <code class="highlighter-rouge">env.sh</code></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_DB_URL</span><span class="o">=</span>hms.db.mycompany.com:3306
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Creating a cluster with metadata in hive_db</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--hmsDbName</span><span class="o">=</span>hive_db <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--hmsDbName</span><span class="o">=</span>hive_db <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
 </code></pre></div></div>
 
 <h2 id="advanced-networking">Advanced Networking</h2>
 
-<h3 id="configuring-the-ip-range-that-a-cdas-cluster-should-use-for-internal-routing">Configuring the IP range that a CDAS cluster should use for internal routing</h3>
+<h3 id="configuring-the-ip-range-that-a-odas-cluster-should-use-for-internal-routing">Configuring the IP range that a ODAS cluster should use for internal routing</h3>
 
-<p>Each Cerebro cluster configures a private network for communication within the cluster.
-By default, Cerebro will use the <code class="highlighter-rouge">172.30.0.0/16</code> range for internal communication.
-The environment variable <code class="highlighter-rouge">CEREBRO_CDAS_INTERNAL_NETWORK_IP_RANGE</code> on the DeploymentManager can be used to configure this setting.</p>
+<p>Each Okera cluster configures a private network for communication within the cluster.
+By default, Okera will use the <code class="highlighter-rouge">172.30.0.0/16</code> range for internal communication.
+The environment variable <code class="highlighter-rouge">OKERA_ODAS_INTERNAL_NETWORK_IP_RANGE</code> on the Deployment Manager can be used to configure this setting.</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -620,9 +667,9 @@ You should never configure an internal network range that would overlap with tha
 If that occurs, then AWS libraries will not be able to query the HTTP server for the instance’s IAM credentials, precluding access to AWS resources.</p>
 </blockquote>
 
-<h3 id="cerebro-port-allocation">Cerebro Port Allocation</h3>
+<h3 id="okera-port-allocation">Okera Port Allocation</h3>
 
-<p>Cerebro utilizes network ports for external (user-facing) and internal system communication.
+<p>Okera utilizes network ports for external (user-facing) and internal system communication.
 This section outlines the default minimum port requirements for successful cluster functionality.</p>
 
 <blockquote>
@@ -632,12 +679,12 @@ This section outlines the default minimum port requirements for successful clust
 If environment policy requires that only essential ports remain open, be aware that it is possible that the cluster may perform sub-optimally as the underlying Kubernetes and Docker layers are optimized over time.</p>
 </blockquote>
 
-<p>External ports to the DeploymentManager and other CDAS services are used for CDAS cluster and data administration.
+<p>External ports to the Deployment Manager and other ODAS services are used for ODAS cluster and data administration.
 It is assumed that these ports are available to administrative users.</p>
 
 <h4 id="static-ports">Static Ports</h4>
 
-<p>Cerebro reserves the following ports for Cerebro service functionality.
+<p>Okera reserves the following ports for Okera service functionality.
 These ports are not user configurable and are required for cluster creation, management, and operation.</p>
 
 <table>
@@ -662,14 +709,14 @@ These ports are not user configurable and are required for cluster creation, man
     </tr>
     <tr>
       <td><code class="highlighter-rouge">8085</code></td>
-      <td>Cerebro Master Host</td>
+      <td>Okera Master Host</td>
     </tr>
   </tbody>
 </table>
 
 <h4 id="customizable-ports">Customizable Ports</h4>
 
-<p>Cerebro supports changing the following port assignments in the <code class="highlighter-rouge">/etc/cerebro/env.sh</code> configuration file for your environment’s DeploymentManager instance.</p>
+<p>Okera supports changing the following port assignments in the <code class="highlighter-rouge">/etc/okera/env.sh</code> configuration file for your environment’s Deployment Manager instance.</p>
 
 <p>The table below lists the suggested port assignments as defined by Cerbero.
 All port assignments listed below are optional, and any that are not explicitly assigned will be assigned by Kubernetes during cluster creation.</p>
@@ -679,14 +726,14 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
 
 <p><strong>Example 1:</strong></p>
 <ul>
-  <li>Lowest configured port: <code class="highlighter-rouge">5000</code> (CDAS REST Server)</li>
+  <li>Lowest configured port: <code class="highlighter-rouge">5000</code> (ODAS REST Server)</li>
   <li>Highest configured port: <code class="highlighter-rouge">10020</code> (Planner)</li>
   <li>Port range for possible assignment of non-assigned ports: <code class="highlighter-rouge">5000</code>-<code class="highlighter-rouge">10020</code></li>
 </ul>
 
 <p><strong>Example 2:</strong></p>
 <ul>
-  <li>Lowest configured port: <code class="highlighter-rouge">5000</code> (CDAS REST Server)</li>
+  <li>Lowest configured port: <code class="highlighter-rouge">5000</code> (ODAS REST Server)</li>
   <li>Highest configured port: <code class="highlighter-rouge">5010</code> (Planner)</li>
   <li>Port range for possible assignment of non-assigned ports: <code class="highlighter-rouge">5000</code>-<code class="highlighter-rouge">7000</code></li>
 </ul>
@@ -709,17 +756,17 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
     </tr>
     <tr>
       <td><code class="highlighter-rouge">5000</code></td>
-      <td>CDAS REST Server</td>
+      <td>ODAS REST Server</td>
       <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">7180</code></td>
-      <td>Cerebro HMS</td>
+      <td>Okera HMS</td>
       <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">7181</code></td>
-      <td>Cerebro Planner Web UI</td>
+      <td>Okera Planner Web UI</td>
       <td>external</td>
     </tr>
     <tr>
@@ -729,12 +776,12 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
     </tr>
     <tr>
       <td><code class="highlighter-rouge">8083</code></td>
-      <td>Cerebro Web UI</td>
+      <td>Okera Web UI</td>
       <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">9098</code></td>
-      <td>Cerebro Canary</td>
+      <td>Okera Canary</td>
       <td>internal</td>
     </tr>
     <tr>
@@ -749,7 +796,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
     </tr>
     <tr>
       <td><code class="highlighter-rouge">11061</code></td>
-      <td>Cerebro HMS</td>
+      <td>Okera HMS</td>
       <td>internal</td>
     </tr>
     <tr>
@@ -759,7 +806,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
     </tr>
     <tr>
       <td><code class="highlighter-rouge">13050</code></td>
-      <td>Cerebro Worker</td>
+      <td>Okera Worker</td>
       <td>external</td>
     </tr>
   </tbody>
@@ -780,9 +827,11 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

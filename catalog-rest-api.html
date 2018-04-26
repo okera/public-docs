@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Catalog REST API | Cerebro Data User Documentation</title>
+<title>Catalog REST API | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -559,13 +560,13 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="catalog-rest-api">Catalog REST API</h1>
 
-<p>This document describes the REST API of the Cerebro Catalog. This is intended for clients
-that want to leverage all of the Cerebro functionality. In addition to this, clients can
+<p>This document describes the REST API of the Okera Catalog. This is intended for clients
+that want to leverage all of the Okera functionality. In addition to this, clients can
 connect using existing APIs, such as the Hive Metastore API.</p>
 
 <p>The purpose of this API is to provide programmatic access to interact with the catalog.
 For users that want to interactively access the catalog, it is recommended to use the
-<code class="highlighter-rouge">dbcli</code>, which provides a more traditional CLI experience built on top of these
+<code class="highlighter-rouge">odb</code>, which provides a more traditional CLI experience built on top of these
  APIs.</p>
 
 <h2 id="authentication">Authentication</h2>
@@ -574,7 +575,7 @@ For users that want to interactively access the catalog, it is recommended to us
 authentication can be done via Kerberos or by tokens. For token based authentication,
 simply specify the token in the auth header: <code class="highlighter-rouge">authorization: Bearer &lt;TOKEN&gt;</code>.</p>
 
-<p>See the <a href="/cdas-authentication">authentication document</a>
+<p>See the <a href="/odas-authentication">authentication document</a>
 for details on how to get tokens and check if token authentication is working.</p>
 
 <h2 id="ssl">SSL</h2>
@@ -653,7 +654,7 @@ information.</p>
 
 <p>Example:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST localhost:5000/api/datasets/cerebro_sample.sample
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST localhost:5000/api/datasets/okera_sample.sample
 </code></pre></div></div>
 
 <h2 id="scanning-a-dataset">Scanning a Dataset</h2>
@@ -668,7 +669,7 @@ a handle that can be used to retrieve all the records.</p>
 
 <p>Example:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:5000/api/scan/cerebro_sample.sample
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl localhost:5000/api/scan/okera_sample.sample
 </code></pre></div></div>
 
 <p>The POST request takes as a parameter:</p>
@@ -681,7 +682,7 @@ a handle that can be used to retrieve all the records.</p>
 <p>Example:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' \
--d '{"query" : "select uid, ccn from cerebro.sample.users"}' localhost:5000/api/scan
+-d '{"query" : "select uid, ccn from okera.sample.users"}' localhost:5000/api/scan
 </code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">scanpage</code> API accepts two optional argument <code class="highlighter-rouge">records=</code>, which is the total number
@@ -691,13 +692,13 @@ of up to 10,000.</p>
 <p>The <code class="highlighter-rouge">session_id</code> value is used on subsequent queries to return successive batches of
 records. It must be omitted on the first query.</p>
 
-<p>NOTE: session ids are only valid for 30-seconds, starting from the time that the CDAS
+<p>NOTE: session ids are only valid for 30-seconds, starting from the time that the ODAS
 cluster starts returning data. That timer is reset each time a query is received for
 a given session_id.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl &lt;cdas_rest_server_endpoint&gt;/api/scanpage/products?user<span class="o">=</span>presto
-<span class="nv">$ </span>curl &lt;cdas_rest_server_endpoint&gt;/api/scanpage/products?user<span class="o">=</span>presto&amp;records<span class="o">=</span>25000
-<span class="nv">$ </span>curl &lt;cdas_rest_server_endpoint&gt;/api/scanpage/products?user<span class="o">=</span>presto&amp;session_id<span class="o">=</span>77480ad07d743bb1:b4f7822f036c6c91
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl &lt;odas_rest_server_endpoint&gt;/api/scanpage/products?user<span class="o">=</span>presto
+<span class="nv">$ </span>curl &lt;odas_rest_server_endpoint&gt;/api/scanpage/products?user<span class="o">=</span>presto&amp;records<span class="o">=</span>25000
+<span class="nv">$ </span>curl &lt;odas_rest_server_endpoint&gt;/api/scanpage/products?user<span class="o">=</span>presto&amp;session_id<span class="o">=</span>77480ad07d743bb1:b4f7822f036c6c91
 </code></pre></div></div>
 
 <p>Each returned object contains:</p>
@@ -723,9 +724,11 @@ a given session_id.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

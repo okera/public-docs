@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cluster Launch Plugin API | Okera User Documentation</title>
+<title>Okera Data Access Service CDH Integration | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -334,7 +334,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="cluster-launch-plugin-api">Cluster Launch API</a></li>
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -378,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li class="active"><a href="odas-cdh-integration">CDH Integration</a></li>
           
           
           
@@ -558,59 +558,210 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cluster-launch-plugin-api">Cluster Launch Plugin API</h1>
+  <h1 id="okera-data-access-service-cdh-integration">Okera Data Access Service CDH Integration</h1>
 
-<p>The <strong>Deployment Manager</strong> provides a plugin API to customize how nodes are launched.
-The steps are split into two categories.
-<strong>Launch scripts</strong> run on the Deployment Manager to launch nodes, while <strong>init scripts</strong> run on the launched nodes.</p>
+<p>This documents describes how to use Okera Data Access Service (ODAS) from a cluster
+admin perspective. It describes how to configure an existing CDH cluster to an existing
+Okera deployment.</p>
 
-<p>This topic describes the detailed API for each kind of script.</p>
-
-<h2 id="general">General</h2>
-
-<p>The scripts need to be available to the Deployment Manager.
-They can either be files on a shared FileSystem (including S3) or available on the Deployment Manager host.
-The Deployment Manager will make a copy of the scripts so subsequent edits do not affect existing uses.</p>
-
-<p>The scripts can be written in any language and we do not inspect them.
-We simply run them.
-We recommend writing them in Bash, as it will run without requiring bootstrapping (for example, installing Python).</p>
-
-<p>The scripts should return 0 on success and non-zero on error.
-The scripts should print to stderr for diagnostics (ignored by Okera except for logging) and print the result to stdout.
-Okera parses the output from standard out and it must be output exactly as described in this document.</p>
-
-<h2 id="launch-script">Launch script</h2>
-
-<p>This script is required and is responsible for starting a new instance when called.
-Examples of actions in this script are:</p>
-
+<p>Prerequisites:</p>
 <ul>
-  <li>Launch the EC2 instance in the desired VPC, with SSH keys and the correct security group.</li>
-  <li>Tag the instance as required.</li>
+  <li>ODAS running. We need the endpoints for the Okera Catalog components referred to as
+ODAS HMS and ODAS Sentry. We also need the Okera planner endpoint referred to as
+ODAS Planner.</li>
+  <li>If kerberized, the principal for ODAS (referred to as ODAS Principal)</li>
+  <li>CDH (5.7+) running and managed by Cloudera Manager (CM). This cluster should be fully
+functional with kerberos enabled (if desired) and Sentry enabled. This can included any
+subset of the CDH components.</li>
 </ul>
 
-<p>This script must accept a single argument, which must be passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance.</p>
+<p>The result of these configuration changes will have CDH use the Okera Catalog,
+replacing the HiveMetastore and Sentry Store components. Note that even if these
+components are still running, when properly configured, they will not be used. No
+clients should be interacting with them.</p>
 
-<p>This script should print the <code class="highlighter-rouge">instance_id</code> to stdout.
-It <em>cannot</em> output anything else to stdout.</p>
+<p>A summary of what we will do is:</p>
+<ol>
+  <li>Configure HMS clients to talk to the Okera catalog. This includes other services
+such as Impala and HiveServer2 as well as gateway client configs for Spark, Pig, etc.</li>
+  <li>Configure Sentry clients to talk to the Okera catalog. Clients typically do not
+contact this service directly, we will only need to update HiveServer2 and Impala.</li>
+  <li>Configure the gateway client configs to use Okera’s data access service. This
+provides the functionality that the RecordService service provided.</li>
+</ol>
 
-<h3 id="template">Template</h3>
+<p>These steps are repeated across multiple CDH clusters allowing them to share the
+same metadata.</p>
 
-<p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-machine-example.sh</code>.
-This script can help you get started.
-The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
+<h2 id="hms-configs">HMS Configs</h2>
 
-<h2 id="init-scripts">Init scripts</h2>
+<p>We need to make these configuration changes in multiple places for the different HMS
+clients. The configs are:</p>
 
-<p>The Deployment Manager allows you to specify a list of scripts that should be run on the instance when it is first provisioned.
-This is equivalent to running all of these scripts as part of the <code class="highlighter-rouge">--user-data</code> AWS EC2 configuration.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>hive.metastore.uris<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;</span>thrift://<span class="nt">&lt;ODAS</span> <span class="err">HMS</span> <span class="err">Host:Port</span><span class="nt">&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>hive.metastore.kerberos.principal<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;ODAS</span> <span class="err">Principal</span><span class="nt">&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></div>
 
-<p>These scripts are run in the order provided, always before any Okera instance setup scripts.
-We’ve included an example that will set up the package repo to an internal location:
-<code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/setup-repo-example.sh</code>.</p>
+<p>If the cluster is not kerberized, then the kerberos principal is not necessary.</p>
 
-<p>Init scripts should return non-zero on error and can log to stdout or stderr.</p>
+<h4 id="hive-service-configs">Hive service configs</h4>
+
+<p>The configs need to be set in Hive -&gt; Service Wide -&gt; Hive Service Advanced Configuration
+Snippet (Safety Value) for <code class="highlighter-rouge">hive-site.xml</code></p>
+
+<p>This will require restarting the hive service. You can verify this is set properly by
+going on the machine (requires root) running HiveServer2 and looking in
+<code class="highlighter-rouge">/var/run/cloudera-scm-agent/process/&lt;latest folder for hive server2&gt;/hive-site.xml</code>.</p>
+
+<p>The CM generated config should make it very clear that these two values have been
+overridden.</p>
+
+<p><strong>Note</strong> This will result in the Hive Metastore Server as unhealthy. This is expected
+and can be safely ignored. <strong>HiveServer2</strong> health should be healthy.</p>
+
+<h4 id="hive-client-configs">Hive client configs</h4>
+
+<p>The configs need to be set in Hive -&gt; Gateway -&gt; Hive Client Advanced Configuration
+Snippet (Safety Value) for <code class="highlighter-rouge">hive-site.xml</code></p>
+
+<p>This will require deploying the client configs and restarting dependent services.
+You can verify this is set properly by going to any gateway machine and looking in
+<code class="highlighter-rouge">/etc/hive/conf/hive-site.xml</code>.</p>
+
+<h4 id="impala-configs">Impala configs</h4>
+
+<p>Impala will also need to be configured to the Okera catalog. This involves updating
+the above two configs in Impala -&gt; Impala Catalog Server -&gt; Catalog Server Hive Advanced
+Configuration Snippet (Safety Valve)</p>
+
+<h2 id="sentry-store-configs">Sentry store configs</h2>
+
+<p>For Sentry use, we require that these configs are set. Again, the kerberos principal is
+only required for kerberized clusters.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>sentry.service.client.server.rpc-address<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;ODAS</span> <span class="err">Sentry</span> <span class="err">Host</span><span class="nt">&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>sentry.service.client.server.rpc-port<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;ODAS</span> <span class="err">Sentry</span> <span class="err">Port</span><span class="nt">&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>sentry.service.principal<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;ODAS</span> <span class="err">Principal</span><span class="nt">&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></div>
+
+<h4 id="hive-server-2">Hive Server 2</h4>
+
+<p>This will need to be set in: Hive -&gt; Service Wide -&gt; Hive Service Advanced Configuration
+Snippet (Safety Valve) for <code class="highlighter-rouge">sentry-site.xml</code></p>
+
+<p>This will require restarting the dependent services. These can be verified by looking in
+the generated config for the HiveServer2 service (see above for the HMS config on
+details).</p>
+
+<h4 id="impala">Impala</h4>
+
+<p>This will need to be set in: Impala -&gt; Service Wide -&gt; Impala Service Advanced
+Configuration Snippet (Safety Valve) for <code class="highlighter-rouge">sentry-site.xml</code></p>
+
+<p>This will require restarting Impala.</p>
+
+<p><strong>NOTE</strong>: For Impala integration, the Impala principal’s primary (typically ‘impala’)
+must also be in the list of Okera catalog admins (env: <code class="highlighter-rouge">OKERA_CATALOG_ADMINS</code>).</p>
+
+<h2 id="recordservice-configs">RecordService Configs</h2>
+
+<p>RecordService configs can be set in either mapred-site.xml or yarn-site.xml depending on
+which one you are using. The configuration is:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>recordservice.planner.hostports<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;ODAS</span> <span class="err">Planner</span> <span class="err">Host:Port</span><span class="nt">&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+</code></pre></div></div>
+
+<p>This has to be set in the safety valves in Yarn -&gt; Gateway -&gt; MapReduce Client Advanced
+Configuration Snippet (Safety Valve) for <code class="highlighter-rouge">mapred-site.xml</code> and Yarn -&gt; Gateway -&gt; YARN
+Client Advanced Configuration Snippet (Safety Valve) for <code class="highlighter-rouge">yarn-site.xml</code></p>
+
+<p>This requires redeploying the client configs. You can verify it is set by going on any
+gateway machine and looking in <code class="highlighter-rouge">/etc/hadoop/conf/[mapred|yarn]-site.xml</code>.</p>
+
+<h2 id="client-jars">Client jars</h2>
+
+<p>Okera publishes jars that are API compatible with the RecordService jars.</p>
+
+<h3 id="pom-configuration">POM configuration</h3>
+
+<p>To use these jars from maven, you can configure the pom to use our repo and version.
+This can be added to the pom.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;recordservice.version&gt;</span>1.0.0-beta-9<span class="nt">&lt;/recordservice.version&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="c">&lt;!-- For MapReduce --&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.cloudera.recordservice<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>recordservice-mr<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${recordservice.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+
+  <span class="c">&lt;!-- For Spark 1.6 --&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.cloudera.recordservice<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>recordservice-spark<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${recordservice.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+
+  <span class="c">&lt;!-- For Spark 2.0 --&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.cloudera.recordservice<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>recordservice-spark-2.0<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${recordservice.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+
+  <span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>cerebro.releases.repo<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>libs-release<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://cerebro.jfrog.io/okera/libs-release<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>okera.snapshots.repo<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>libs-snapshot<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://cerebro.jfrog.io/okera/libs-snapshot<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+  <span class="nt">&lt;/repositories&gt;</span>
+</code></pre></div></div>
+
+<h2 id="downloading-the-jars">Downloading the jars</h2>
+
+<p>All of the release jars are also available in S3 in the release location. They are
+available at</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3://cerebrodata-release-useast/&lt;version&gt;/client
+<span class="nt">---</span>
+permalink: <span class="k">for </span>example:
+<span class="nt">---</span>
+<span class="c"># for example:</span>
+s3://cerebrodata-release-useast/0.8.1/client
+</code></pre></div></div>
 
 
     <div class="tags">

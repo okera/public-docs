@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cerebro Unified Data Access Platform Overview | Cerebro Data User Documentation</title>
+<title>Okera Active Data Access Platform Overview | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,16 +558,16 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cerebro-unified-data-access-platform-overview">Cerebro Unified Data Access Platform Overview</h1>
+  <h1 id="okera-active-data-access-platform-overview">Okera Active Data Access Platform Overview</h1>
 
-<p>Cerebro is cataloging and access management for enterprise-scale data operations with complex technical and organizational infrastructure.
-It enables IT administrators, data analysts, and application developers alike to engage with any company data appropriate to their role, using their preferred querying and visualization tools.
-Cerebro accomplishes this while obeying security- and regulatory-based access limitations.</p>
+<p>Okera is data access management for enterprise-scale operations with complex technical and organizational infrastructure.
+It enables data stewards, analysts or scientists, and application developers alike to engage with any company data appropriate to their role, using their preferred querying and visualization tools.
+Okera accomplishes this while obeying security- and regulatory-based access limitations.</p>
 
-<p>Whatever your storage or streaming environments, Cerebro your data together with a common cataloging service and retrieval platform, expanding and simplifying overall access without exposing data improperly.
+<p>Whatever your storage or streaming environments, Okera brings your data together with a common retrieval platform, which includes cataloging services such as a schema registry, while expanding and simplifying overall access without exposing data improperly.
 The platform provides largely self-service access to data consumers through consistent schemas, intelligent governance, and familiar interfaces.</p>
 
-<h2 id="why-cerebro">Why Cerebro</h2>
+<h2 id="why-okera">Why Okera</h2>
 
 <p>Let’s agree: you already have too many data storage and management systems, each with their own administration and query overhead.
 Some of them are governed by schemas and sophisticated access controls, but others likely are not.
@@ -574,69 +575,69 @@ None of the data sources or structures plays nice with any global system for fil
 
 <p>The only way yet another data platform deserves a place in your overcrowded stack is by creating coherence out of disparate underlying systems, from RDBMS to NoSQL systems alike, all while unifying data access management without sacrificing fine-grained control.</p>
 
-<p>Cerebro’s unified data access platform lives between your disjointed data storage systems and the tools used use to access and analyze data.
-Deployable on any kind of infrastructure, the Cerebro platform enables a consistent user experience while accessing data across environments.
-Whether you’re running Hadoop in your own datacenter or Elastic MapReduce in Amazon Web Services, Cerebro ties your sources together.</p>
+<p>Okera’s unified data access platform lives between your disjointed data storage systems and the tools used to access and analyze data.
+Deployable on any kind of infrastructure, the Okera platform enables a consistent user experience while accessing data across environments.
+Whether you’re running, for example, Hadoop in your own datacenter or Elastic MapReduce in Amazon Web Services, Okera ties your sources together.</p>
 
-<p>Cerebro reduces the incentive to store data in ways that make less sense just to provide better access.
-Cerebro also enables business users to engage with data using their preferred tools where often they have been relegated to systems that conformed to the underlying data needs.</p>
+<p>Okera reduces the incentive to store data in ways that make less sense just to provide better access.
+Okera also enables business users to engage with data using their preferred tools where often they have been relegated to systems that conformed to the underlying data needs.</p>
 
 <p>The platform also enables data-engineering teams to automate complex management tasks required to support this variety of workloads and combination of systems.
-The alternative is multiple and complex engineering efforts with long devopment cycles, which thwarts the goal of efficient, fast, secure, and governable self-service access.</p>
+The alternative is multiple and complex engineering efforts with long development cycles, which thwarts the goal of efficient, fast, secure, and governable self-service access.</p>
 
 <h2 id="the-platform">The Platform</h2>
 
-<p>Cerebro’s core components provide unified schemas and access interfaces in the form of readily scalable, fault-tolerant, distributed services.</p>
+<p>Okera’s core components provide unified metadata and data access interfaces in the form of readily scalable, fault-tolerant, distributed services.</p>
 
-<h3 id="cerebro-catalog">Cerebro Catalog</h3>
+<h3 id="okera-catalog">Okera Catalog</h3>
 
-<p>Cerebro Catalog is a distributed service that coordinates storing dataset definitions, access policies, and other metadata.
-The Catalog is intended to be shared across multiple teams, consolidating effort and standardizing the way data infrastructure is understood across he enterprise.</p>
+<p><em>Okera Catalog</em> is a set of distributed services that coordinate, for example, storing dataset definitions, access policies, and other metadata.
+The Catalog services are intended to be shared across multiple teams, consolidating effort and standardizing the way data infrastructure is understood across the enterprise.</p>
 
-<p>Using Cerebro Catalog, <em>data owners or stewards</em> publish access policies and datasets.
+<p>Using Okera Catalog, <em>data owners</em> or <em>stewards</em> publish access policies and datasets.
 They also audit access to data they want to share with specific roles or teams, such as for analytics or building new applications and data pipelines.
-Meanwhile, <em>data analysts</em> use the Catalog to discover and understand datasets.
+Meanwhile, <em>data analysts</em> or <em>scientists</em> use the Catalog to discover and understand datasets.
 The Catalog enables these end users to request access to data as needed.</p>
 
-<p>For more about Cerebro Catalog, see the <a href="cerebro-catalog-overview">Cerebro Catalog Overview</a>.</p>
+<p>For more about Okera Catalog, see the <a href="okera-catalog-overview">Okera Catalog Overview</a>.</p>
 
-<h3 id="cerebro-data-access-service">Cerebro Data Access Service</h3>
+<h3 id="okera-data-access-service">Okera Data Access Service</h3>
 
-<p><em>Cerebro Data Access Service</em> enables analytics tools and other custom or third-party applications interact with data governed by Cerebro Catalog.
-CDAS provisions data to third-party tools with schema, fine-grained security, and data transformations applied.
+<p><em>Okera Data Access Service</em> (ODAS) enables analytics tools and other custom or third-party applications to interact with data governed by the Okera platform.
+ODAS provisions data to third-party tools with schema, fine-grained security, and data transformations applied.
 The platform facilitates abstraction in the familiar forms of tables or files in formats the user may request.
-Different retrieval, streaming, and analytics tools like Spark, Python, SQL engines, and business intelligence tools like Tableau, Excel, and so forth.</p>
+Different retrieval, streaming, and analytics tools like Spark, Python, SQL engines, Notebooks, and business intelligence tools like Tableau, Excel, and so forth work seamlessly and transparently to the end-user.</p>
 
-<p>Multiple instances of CDAS can run in a single environment.
+<p>Multiple instances of ODAS can run in a single environment.
 Some may be ephemeral, others persistent.
 Some may be running as independent services whereas others may be co-located with the analytics framework.
 The deployment model depends on the performance and isolation requirements.</p>
 
-<p>For more about CDAS, see the <a href="cdas-overview">CDAS Overview</a>.</p>
+<p>For more about ODAS, see the <a href="odas-overview">ODAS Overview</a>.</p>
 
-<h2 id="where-cerebro-fits">Where Cerebro Fits</h2>
+<h2 id="where-okera-fits">Where Okera Fits</h2>
 
-<p>Now that we know a bit about what Cerebro <em>does</em>, let’s look at where it sits.
-Cerebro runs on a dedicated cluster, either on premesis or in your preferred cloud environment, such as AWS.
-A typical Cerebro setup involves a single Catalog service and one or more instances of CDAS, as needed.</p>
+<p>Now that we know a bit about what Okera <em>does</em>, let’s look at where it sits.
+Okera runs on a dedicated cluster, either on-premises or in your preferred cloud environment, such as AWS.
+A typical Okera setup involves a single set of shared Catalog services and one or more instances of ODAS, as needed.</p>
 
-<p><img src="assets/images/architecture-typical-deployment.png" alt="A typical Cerebro deployment layout" title="A typical Cerebro platform deployment layout" /></p>
+<p><img src="assets/images/architecture-typical-deployment.png" alt="A typical Okera deployment layout" title="A typical Okera platform deployment layout" /></p>
 
-<h2 id="cerebro-user-roles">Cerebro User Roles</h2>
+<h2 id="okera-user-roles">Okera User Roles</h2>
 
-<p>Users interact with Cerebro platform in one or both of two broad roles: producers and consumers.
-Consumers and producers alike need to know how to find, contextualize, and retrieve data over the Cerebro platform.
-Consumers’ may interact with Cerebro-managed data exclusively through the Cerebro platform.
+<p>Users interact with Okera platform in one or both of two broad roles: producers and consumers.
+Consumers and producers alike need to know how to find, contextualize, and retrieve data over the Okera platform.
+Consumers may interact with Okera-managed data exclusively through the Okera platform.
 Producers, on the other hand, are typically responsible for writing or managing data directly, which means they use the Catalog service to manage metadata.</p>
 
 <h3 id="data-consumers">Data Consumers</h3>
 
-<p>Business analysts and data scientists access data over CDAS as consumers.
-They use Cerebro Catalog to discover and contextualize datasets, but not necessarily to manage them.</p>
+<p>Business analysts and data scientists access data over ODAS as consumers.
+They use Okera Catalog to discover and contextualize datasets, but not necessarily to manage them.</p>
 
 <h3 id="data-producers">Data Producers</h3>
 
-<p>Data engineers and data stewards, and possibly analysts or scientists with responsibility for <em>managing</em> data will use Cerebro Catalog to register new datasets as well as apply metadata and schemas.
+<p>Data engineers and data stewards, and possibly analysts or scientists with responsibility for <em>managing</em> data will use Okera Catalog to register new datasets as well as apply metadata and schemas.
 Producers also audit other users’ access to datasets.</p>
 
 
@@ -654,9 +655,11 @@ Producers also audit other users’ access to datasets.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

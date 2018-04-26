@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Supported SQL | Cerebro Data User Documentation</title>
+<title>Supported SQL | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -559,23 +560,23 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="supported-sql">Supported SQL</h1>
 
-<p>CDAS enables the use of SQL for defining datasets.
+<p>ODAS enables the use of SQL for defining datasets.
 This is done by creating base datasets and then defining views.
-CDAS is not a full massively parallel processing (MPP) analytics engine, as only a subset of SQL is permitted.
+ODAS is not a full massively parallel processing (MPP) analytics engine, as only a subset of SQL is permitted.
 This document describes the supported SQL subset.</p>
 
-<p>CDAS in general supports the identical data model as Apache Hive and is generally compatible with HiveQL.
+<p>ODAS in general supports the identical data model as Apache Hive and is generally compatible with HiveQL.
 Supported functionality may differ depending on the client.</p>
 
 <h2 id="data-definition-language-ddl-statements">Data Definition Language (DDL) Statements</h2>
 
-<p>CDAS generally supports and is compatible with HiveQL DDL statements.
-In some cases, CDAS is not compatible.
-In other cases, the supported SQL has been extended for CDAS-specific capabilities – including all statements that modify the catalog and do not read any data (for example, <code class="highlighter-rouge">CREATE</code>, <code class="highlighter-rouge">DROP</code>, <code class="highlighter-rouge">ALTER</code>).</p>
+<p>ODAS generally supports and is compatible with HiveQL DDL statements.
+In some cases, ODAS is not compatible.
+In other cases, the supported SQL has been extended for ODAS-specific capabilities – including all statements that modify the catalog and do not read any data (for example, <code class="highlighter-rouge">CREATE</code>, <code class="highlighter-rouge">DROP</code>, <code class="highlighter-rouge">ALTER</code>).</p>
 
 <h3 id="msck-repair">MSCK REPAIR</h3>
 
-<p>CDAS does not support the Hive <code class="highlighter-rouge">MSCK REPAIR TABLE &lt;table_name&gt;</code>.
+<p>ODAS does not support the Hive <code class="highlighter-rouge">MSCK REPAIR TABLE &lt;table_name&gt;</code>.
 Instead it supports the alternative, <code class="highlighter-rouge">ALTER TABLE &lt;table_name&gt; RECOVER PARTITIONS</code>.
 This command otherwise behaves identically, automatically adding partitions to the table based on the storage directory structure.</p>
 
@@ -584,7 +585,7 @@ This command otherwise behaves identically, automatically adding partitions to t
 <h4 id="optionally-drop-permissions">Optionally Drop Permissions</h4>
 
 <p>There are use cases where it is valid to retain or drop permissions when the corresponding Catalog object (database, table, or view) is dropped.
-CDAS extends the <code class="highlighter-rouge">DROP DATABASE</code>, <code class="highlighter-rouge">DROP TABLE</code>, and <code class="highlighter-rouge">DROP VIEW</code> statements to optionally specify whether the associated permissions should also be dropped.</p>
+ODAS extends the <code class="highlighter-rouge">DROP DATABASE</code>, <code class="highlighter-rouge">DROP TABLE</code>, and <code class="highlighter-rouge">DROP VIEW</code> statements to optionally specify whether the associated permissions should also be dropped.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">DATABASE</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="n">db</span> <span class="p">[</span><span class="k">CASCADE</span><span class="p">]</span> <span class="p">[(</span><span class="k">INCLUDING</span> <span class="o">|</span> <span class="k">EXCLUDING</span><span class="p">)</span> <span class="n">PERMISSIONS</span><span class="p">];</span>
 <span class="k">DROP</span> <span class="k">TABLE</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db</span><span class="p">.]</span><span class="n">tbl</span> <span class="p">[(</span><span class="k">INCLUDING</span> <span class="o">|</span> <span class="k">EXCLUDING</span><span class="p">)</span> <span class="n">PERMISSIONS</span><span class="p">];</span>
@@ -609,7 +610,7 @@ The user needs to be a catalog admin or having been granted grant permissions.</
 
 <h4 id="create-table-as-select">CREATE TABLE AS SELECT</h4>
 
-<p>CDAS supports tables created by this method with the following restrictions:</p>
+<p>ODAS supports tables created by this method with the following restrictions:</p>
 
 <ul>
   <li>
@@ -621,53 +622,53 @@ The user needs to be a catalog admin or having been granted grant permissions.</
 </ul>
 
 <blockquote>
-  <p><strong>Note:</strong> This functionality is not supported from dbcli.</p>
+  <p><strong>Note:</strong> This functionality is not supported from odb.</p>
 </blockquote>
 
 <h4 id="registering-hive-serializationdeserialization-serde-libraries">Registering Hive Serialization/Deserialization (SerDe) Libraries</h4>
 
-<p>See <a href="/extending-cdas">Extending CDAS</a> for the DDL grammar and other SerDe considerations.</p>
+<p>See <a href="/extending-odas">Extending ODAS</a> for the DDL grammar and other SerDe considerations.</p>
 
 <h4 id="creating-user-defined-functions-udfs">Creating User Defined Functions (UDFs)</h4>
 
-<p>See <a href="/extending-cdas">Extending CDAS</a> for the DDL grammar and other UDF considerations.</p>
+<p>See <a href="/extending-odas">Extending ODAS</a> for the DDL grammar and other UDF considerations.</p>
 
 <h4 id="internal-verses-external-views">Internal verses External Views</h4>
 
-<p>Cerebro views can be defined as either internal or external.
-This distinction defines how Cerebro evaluates data at runtime.
+<p>Okera views can be defined as either internal or external.
+This distinction defines how Okera evaluates data at runtime.
 It could have a profound effect when evaluating joins between tables and views.</p>
 
 <p>In both internal and external cases, data resides in its source systems.
-Cerebro managed data continues to be managed in Cerebro.
-External views continue to be managed by their non-Cerebro source.</p>
+Okera managed data continues to be managed in Okera.
+External views continue to be managed by their non-Okera source.</p>
 
-<p>The primary difference between internal and external views is that external data is not evaluated during a CDAS query.
-External data does not have fine-grained access control, UDFs, and other features that Cerebro provides to managed datasets.</p>
+<p>The primary difference between internal and external views is that external data is not evaluated during a ODAS query.
+External data does not have fine-grained access control, UDFs, and other features that Okera provides to managed datasets.</p>
 
 <p>It is because of this property that joins are handled differently in internal views verses external views.</p>
 
-<p>All views <em>created in Cerebro</em> are considered <strong>internally defined joined views</strong>.
-Cerebro manages the join of internal views created from two tables or views, internal or external, at the query level.
-Cerebro evaluates the join prior to it being sent to the analytics/compute engine for further processing.
+<p>All views <em>created in Okera</em> are considered <strong>internally defined joined views</strong>.
+Okera manages the join of internal views created from two tables or views, internal or external, at the query level.
+Okera evaluates the join prior to it being sent to the analytics/compute engine for further processing.
 This allows for fine-grained access control and UDF functionality to be applied to the entire view, regardless of where the source data resides.</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
 
-  <p>CDAS is not a compute engine. Full SQL functionality is not available through the CDAS SQL interface.
+  <p>ODAS is not a compute engine. Full SQL functionality is not available through the ODAS SQL interface.
 The use of a compute engine for full analytics functionality is required.
 For a list of known SQL incompatibilities, refer to the <a href="#known-incompatibilities">Known Incompatabilities</a> section in this document.</p>
 </blockquote>
 
-<p><strong>Externally joined views</strong> are evaluated like all other external views in CDAS.
-Like the internally defined joined view, Cerebro-managed data will still be evaluated by CDAS, but the evaluation of the join will be executed by the analytics engine.
-External data will not benefit from access control, UDFs, and other features that Cerebro can provide to managed datasets.</p>
+<p><strong>Externally joined views</strong> are evaluated like all other external views in ODAS.
+Like the internally defined joined view, Okera-managed data will still be evaluated by ODAS, but the evaluation of the join will be executed by the analytics engine.
+External data will not benefit from access control, UDFs, and other features that Okera can provide to managed datasets.</p>
 
 <p>External views created of two tables or views, internal or external, are evaluated in a slightly different way.
-Data managed by CDAS continues to be evaluated within the CDAS cluster.
+Data managed by ODAS continues to be evaluated within the ODAS cluster.
 But, the join between the two tables or views occurs in the analytics/compute engine.
-The advantage of this approach is that CDAS continues to provide fine-grained access control and UDFs on CDAS managed data, while allowing the sometimes heavy compute of a join to be done outside the CDAS system.</p>
+The advantage of this approach is that ODAS continues to provide fine-grained access control and UDFs on ODAS managed data, while allowing the sometimes heavy compute of a join to be done outside the ODAS system.</p>
 
 <p>External views are not supported via the REST API.
 They require an analytics engine such as Hive or Spark to process aggregate requests and complete the join prior to execution.</p>
@@ -675,9 +676,9 @@ They require an analytics engine such as Hive or Spark to process aggregate requ
 <h3 id="creating-external-views">Creating External Views</h3>
 
 <p>This section provides a number of example common <code class="highlighter-rouge">EXTERNAL</code> view uses.
-To create views that do not require evaluation in CDAS, an external view can be used.</p>
+To create views that do not require evaluation in ODAS, an external view can be used.</p>
 
-<p><strong>Example:</strong> Creating an external view that requires no evaluation in CDAS</p>
+<p><strong>Example:</strong> Creating an external view that requires no evaluation in ODAS</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">VIEW</span> <span class="n">random_user_subset</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">all_users</span> <span class="k">WHERE</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div></div>
@@ -692,13 +693,13 @@ To create views that do not require evaluation in CDAS, an external view can be 
 <span class="k">FROM</span> <span class="n">cal_sales</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="s1">'california'</span>
 </code></pre></div></div>
 
-<p>Since compute applications do not accept the “<code class="highlighter-rouge">EXTERNAL</code> view” syntax, it can be executed using dbcli or Cerebro Web UI.</p>
+<p>Since compute applications do not accept the “<code class="highlighter-rouge">EXTERNAL</code> view” syntax, it can be executed using odb or Okera Web UI.</p>
 
-<p>By default, views without <code class="highlighter-rouge">EXTERNAL</code> are evaluated in Cerebro, maintaining backwards compatibility.</p>
+<p>By default, views without <code class="highlighter-rouge">EXTERNAL</code> are evaluated in Okera, maintaining backwards compatibility.</p>
 
 <h4 id="last-partition">LAST PARTITION</h4>
 
-<p>CDAS extends the SQL grammar to easily restrict a table scan to just the last partition.
+<p>ODAS extends the SQL grammar to easily restrict a table scan to just the last partition.
 For example, if the data is partitioned by day, <code class="highlighter-rouge">LAST PARTITION</code> can be used to always return the results for the last day.</p>
 
 <p><code class="highlighter-rouge">LAST PARTITION</code> is added as an additional clause to a table name.</p>
@@ -756,7 +757,7 @@ It is <em>not</em> the last-modified partition.</p>
 <h4 id="stricter-type-promotion">Stricter Type Promotion**</h4>
 
 <p>Hive/HiveQL is very permissive in type promotions, allowing implicit conversions between most types.
-In CDAS, only lossless type promotion is implicit (for example, INT -&gt; BIGINT).
+In ODAS, only lossless type promotion is implicit (for example, INT -&gt; BIGINT).
 Explicit <code class="highlighter-rouge">cast()</code> functions may need to be added for existing SQL statements.</p>
 
 <h4 id="disallowing-explicit-partitioning-clause-when-creating-views">Disallowing Explicit Partitioning Clause when Creating Views**</h4>
@@ -768,7 +769,7 @@ Explicit <code class="highlighter-rouge">cast()</code> functions may need to be 
 <span class="n">PARTITIONED</span> <span class="k">BY</span> <span class="n">c1</span>
 </code></pre></div></div>
 
-<p>CDAS does not allow partitioning to be specified for views.
+<p>ODAS does not allow partitioning to be specified for views.
 Partitioning is instead inferred based on the view statement and base table.
 The partitioning on the base table is preserved for the view.</p>
 
@@ -777,11 +778,11 @@ It is unclear what the semantics are, if the partitioning specified in the view 
 
 <h2 id="data-manipulation-language-dml-statements">Data Manipulation Language (DML) Statements</h2>
 
-<p>CDAS is not a distributed SQL engine.
+<p>ODAS is not a distributed SQL engine.
 It only supports a subset of SQL statements.
 It does not support the other DML statements (such as <code class="highlighter-rouge">INSERT</code>, <code class="highlighter-rouge">DELETE</code>, <code class="highlighter-rouge">UPDATE</code>, etc).
 End even for <code class="highlighter-rouge">SELECT</code> statements, only a subset of the SQL standard is supported.
-A typical configuration is to run a SQL engine (on top of Spark or Presto) on top of CDAS.</p>
+A typical configuration is to run a SQL engine (on top of Spark or Presto) on top of ODAS.</p>
 
 <p><code class="highlighter-rouge">SELECT</code> statements with projection and filters are fully supported.</p>
 
@@ -791,10 +792,10 @@ Summing up all the counts returns the complete result.</p>
 
 <h3 id="joins">JOINs</h3>
 
-<p>When using views, CDAS supports a limited set of joins for the purpose of restricting access to specific rows for particular users.
+<p>When using views, ODAS supports a limited set of joins for the purpose of restricting access to specific rows for particular users.
 A canonical use case could be having a fact dataset for user transactions, which contains a column for the user ID.
 Another, much-smaller dataset, contains the set of user ids that allow analytics to be carried out on their activity.
-CDAS would support filtering the transactions dataset by creating a view that is a join over the two.</p>
+ODAS would support filtering the transactions dataset by creating a view that is a join over the two.</p>
 
 <p>The specific limitations are:</p>
 
@@ -813,11 +814,11 @@ If the smaller tables exceed the maximum configured size, the request fails at r
 <p>By default, joins are enabled with a maximum memory of 128MB per join.</p>
 
 <p><strong>Example:</strong> Disabling joins entirely during cluster creation</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--plannerConfigs</span> <span class="s2">"enable_joins=false"</span> ...
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--plannerConfigs</span> <span class="s2">"enable_joins=false"</span> ...
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Setting the maximum memory during cluster creation to 256MB</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--workerConfigs</span> <span class="s2">"join_max_mem=256000000"</span> ...
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--workerConfigs</span> <span class="s2">"join_max_mem=256000000"</span> ...
 </code></pre></div></div>
 
 <p>See the <a href="/cluster-sizing">Cluster Sizing</a> document for more information on how much memory joins need and how that affects cluster node requirements.</p>
@@ -837,9 +838,11 @@ If the smaller tables exceed the maximum configured size, the request fails at r
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

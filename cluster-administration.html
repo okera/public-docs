@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cluster Administration | Cerebro Data User Documentation</title>
+<title>Cluster Administration | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -563,15 +564,15 @@ $('#toc').on('click', 'a', function() {
 Refer to the <a href="/install">Installation</a> document for details on how to create new clusters.</p>
 
 <blockquote>
-  <p><strong>Note:</strong> A single DeploymentManager can administer multiple CDAS clusters.</p>
+  <p><strong>Note:</strong> A single Deployment Manager can administer multiple ODAS clusters.</p>
 </blockquote>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
-<p>The utility <code class="highlighter-rouge">cerebro_cli</code> must be installed and configured to the DeploymentManager.
-You can ensure cerebro cli connectivity by using:</p>
+<p>The utility <code class="highlighter-rouge">ocadm</code> must be installed and configured to the Deployment Manager.
+You can ensure okera cli connectivity by using:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli status
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm status
 </code></pre></div></div>
 
 <h2 id="scaling-an-existing-cluster">Scaling an Existing Cluster</h2>
@@ -579,16 +580,16 @@ You can ensure cerebro cli connectivity by using:</p>
 <p>An existing cluster can be scaled to a new size.
 Scaling is performed from the CLI using the update command:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters update <span class="nt">--numNodes</span><span class="o">=</span>&lt;desired size&gt; &lt;cluster_id&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="nt">--numNodes</span><span class="o">=</span>&lt;desired size&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Scaling cluster nodes 1 to 20:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters update <span class="nt">--numNodes</span><span class="o">=</span>20 1
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="nt">--numNodes</span><span class="o">=</span>20 1
 </code></pre></div></div>
 
 <p>This command is used to scale a cluster up or down in size.
-Cerebro manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.</p>
+Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.</p>
 
 <blockquote>
   <p><strong>Note:</strong> The cluster must have been created using the <code class="highlighter-rouge">--launchScript</code> option.</p>
@@ -596,10 +597,10 @@ Cerebro manages the underlying machines life cycle by launching new ones, and te
 
 <h2 id="setting-the-number-of-planners">Setting the Number of Planners</h2>
 
-<p>Cerebro, by default, picks the number of planners to run.
+<p>Okera, by default, picks the number of planners to run.
 The optimal number of planners depends on the environment and workload. For users who desire to fine tune the cluster, the number of planners is controlled using the <code class="highlighter-rouge">clusters update</code> command.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters update <span class="nt">--numPlanners</span><span class="o">=</span>&lt;number&gt; &lt;cluster_id&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="nt">--numPlanners</span><span class="o">=</span>&lt;number&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
 <blockquote>
@@ -616,17 +617,17 @@ This disabling and enabling cycle prevents the accidental misconfiguration of a 
 
 <p>To enable or disable terminal protection:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters update <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="se">\</span>
  <span class="nt">--terminationProtectionEnabled</span><span class="o">=</span>&lt;<span class="nb">true</span>|false&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Enabling termination protection for cluster 5</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters update <span class="nt">--terminationProtectionEnabled</span><span class="o">=</span><span class="nb">true </span>5
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="nt">--terminationProtectionEnabled</span><span class="o">=</span><span class="nb">true </span>5
 </code></pre></div></div>
 
 <h2 id="upgrading-an-existing-cluster">Upgrading an Existing Cluster</h2>
 
-<p>An existing cluster can be upgraded with a new version of CDAS components.
+<p>An existing cluster can be upgraded with a new version of ODAS components.
 The CLI command is used to upgrade one or more components.
 After upgrading the cluster, it is restarted with the newer components and features.</p>
 
@@ -637,37 +638,37 @@ After upgrading the cluster, it is restarted with the newer components and featu
 <p>To upgrade all components in an existing cluster to a new version, specify version only.
 To upgrade specific cluster components to a different version, specify components only.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters upgrade <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters upgrade <span class="se">\</span>
  <span class="nt">--components</span><span class="o">=</span>&lt;components_version_list&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters upgrade <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters upgrade <span class="se">\</span>
  <span class="nt">--version</span> &lt;upgrade_version&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
 <p><strong>Note:</strong> Specified components take the form of <code class="highlighter-rouge">component:version</code>.</p>
 
-<p><strong>Example:</strong> Upgrading cluster 2’s CDAS components to version 0.8.0 and web UI to 0.8.1:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters upgrade <span class="nt">--components</span><span class="o">=</span>cdas:0.8.0,web-ui:0.8.1 2
+<p><strong>Example:</strong> Upgrading cluster 2’s ODAS components to version 0.8.0 and web UI to 0.8.1:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters upgrade <span class="nt">--components</span><span class="o">=</span>cdas:0.8.0,web-ui:0.8.1 2
 </code></pre></div></div>
 
-<p><strong>Example:</strong> Upgrading all CDAS components in cluster 3 to version 0.4.5.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters upgrade <span class="nt">--version</span><span class="o">=</span>0.4.5 3
+<p><strong>Example:</strong> Upgrading all ODAS components in cluster 3 to version 0.4.5.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters upgrade <span class="nt">--version</span><span class="o">=</span>0.4.5 3
 </code></pre></div></div>
 
 <h3 id="setting-a-new-cluster-version">Setting a New Cluster Version</h3>
 
-<p>To configure DeploymentManager so that new clusters use upgraded version of CDAS components, use the <code class="highlighter-rouge">set_default_version</code> command.
+<p>To configure Deployment Manager so that new clusters use upgraded version of ODAS components, use the <code class="highlighter-rouge">set_default_version</code> command.
 Exceptions can be assigned with the <code class="highlighter-rouge">--components</code> option.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters set_default_version <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters set_default_version <span class="se">\</span>
  <span class="nt">--version</span><span class="o">=</span>&lt;upgrade_version&gt; <span class="se">\</span>
  <span class="nt">--components</span><span class="o">=</span>&lt;compnents_version_list&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Setting new clusters to 1.0.0, with the planner and workers at 1.0.1</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters set_default_version <span class="nt">--version</span><span class="o">=</span>1.0.0 <span class="nt">--components</span><span class="o">=</span>cdas:1.0.1
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters set_default_version <span class="nt">--version</span><span class="o">=</span>1.0.0 <span class="nt">--components</span><span class="o">=</span>cdas:1.0.1
 </code></pre></div></div>
 
 <blockquote>
@@ -676,9 +677,9 @@ Exceptions can be assigned with the <code class="highlighter-rouge">--components
 
 <h2 id="checking-cluster-status">Checking Cluster Status</h2>
 
-<p>Use the <code class="highlighter-rouge">list</code> command to query the status of all clusters controlled by DeploymentManager.</p>
+<p>Use the <code class="highlighter-rouge">list</code> command to query the status of all clusters controlled by Deployment Manager.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters list
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters list
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Cluster list command results</p>
@@ -704,7 +705,7 @@ Lower-numbered services having issues preclude a higher-numbered service from co
 
 <p>A service successfully passing its health check does not preclude it from returning an error on a given request.
 Rather, it indicates that the service was able to startup successfully, including passing all initial service configuration validations.
-The service responded to the most recent DeploymentManager request to its health check endpoint.</p>
+The service responded to the most recent Deployment Manager request to its health check endpoint.</p>
 
 <h2 id="cluster-diagnosis">Cluster diagnosis</h2>
 
@@ -713,19 +714,19 @@ a functional issue or performance issue occurs. A cluster can be commanded to co
 a gzipped tar-ball of all system logs over the previous day and upload the archive to
 a cluster’s S3 logging bucket with a simple command:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cerebro_cli clusters diag 137
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ocadm clusters diag 137
 </code></pre></div></div>
 
 <p>This produces the following output:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  A tar-gzip file containing cluster logs will be uploaded to the following path shortly:
-  s3://contoso-logging-bucket/diagnostics/2018-04-06-21-03-15-614/cluster1/bb717d32-253e-4617-a504-5bec14ace6f7/cerebro_diag_1_1.tgz
+  s3://contoso-logging-bucket/diagnostics/2018-04-06-21-03-15-614/cluster1/bb717d32-253e-4617-a504-5bec14ace6f7/okera_diag_1_1.tgz
 </code></pre></div></div>
 
 <p>Additionally, the cluster can be commanded to compile logs for a specified number of days
 in the past and upload the tarball to a preferred S3 URI path with a specific file name:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cerebro_cli clusters diag <span class="nt">--days</span> 3 <span class="nt">--file</span> analytics_hiccup.tar.gz <span class="nt">--s3-upload-path</span> s3://contoso-private/analytics-team 137
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ocadm clusters diag <span class="nt">--days</span> 3 <span class="nt">--file</span> analytics_hiccup.tar.gz <span class="nt">--s3-upload-path</span> s3://contoso-private/analytics-team 137
 </code></pre></div></div>
 
 <p>This produces the following output:</p>
@@ -744,7 +745,7 @@ S3 path with a specific filename.</p>
 Any changes made directly to the Sentry database in the Catalog might take up to a minute to reflect in the Planner nodes.</p>
 
 <p>Planner nodes cache the role and permissions information from the Catalog.
-When multiple Planner nodes are present in a CDAS cluster, a policy is followed of eventual consistency for maintaining cache coherence.
+When multiple Planner nodes are present in a ODAS cluster, a policy is followed of eventual consistency for maintaining cache coherence.
 This policy could be fine tuned in the future if needed.</p>
 
 
@@ -762,9 +763,11 @@ This policy could be fine tuned in the future if needed.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

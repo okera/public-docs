@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cerebro Installation | Cerebro Data User Documentation</title>
+<title>Okera Installation | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,131 +558,154 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cerebro-installation">Cerebro Installation</h1>
+  <h1 id="okera-installation">Okera Installation</h1>
 
-<p>The Cerebro installation process, resulting in a fully operational Cerebro cluster,
-consisting of the DeploymentManager, and running the Cerebro Data Access Service (CDAS)
-cluster.</p>
+<p>Here we walk through the entire installation process for a basic setup of the Okera platform.
+These steps will result in a fully operational Okera cluster for development, testing, or production.
+A full deployment consisting of the Deployment Manager, and a running Okera Data Access Service (ODAS) cluster, including Okera Catalog.</p>
 
-<p>This includes:</p>
-
-<ul>
-  <li><a href="#prerequisites">AWS Prerequisites</a></li>
-  <li><a href="#installing-the-deploymentmanager">Installing the Deployment Manager</a></li>
-  <li><a href="#starting-up-a-cdas-cluster">Starting up a CDAS Cluster</a></li>
-  <li><a href="#cerebro-upgrade">Cerebro Upgrades</a></li>
-</ul>
-
-<h2 id="aws-prerequisites">AWS Prerequisites</h2>
-
-<p>Before you can install the various Cerebro components, the following preparatory
-work is required.</p>
-
-<h3 id="aws-prerequisites-1">AWS Prerequisites</h3>
-
-<p>Before installing Cerebro, the following AWS services must be set up. The AWS services
-include an S3 Bucket, RDS, and IAM credentials.</p>
+<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:0 orderedList:0 -->
 
 <ul>
-  <li>
-    <p>S3 Bucket - Cerebro uses the S3 bucket to store log files and to stage intermediate
-configuration files. The S3 bucket is set to readable and writable by all instances running
-Cerebro components. The S3 bucket is referred to as <code class="highlighter-rouge">CEREBRO_S3_STAGING_DIR</code> later in this
-document.</p>
+  <li><a href="#prerequisites">Prerequisites</a>
+    <ul>
+      <li><a href="#aws-requirements">AWS Requirements</a></li>
+      <li><a href="#deployment-manager-host-requirements">Deployment Manager Host Requirements</a></li>
+      <li><a href="#cluster-node-requirements">Cluster Node Requirements</a></li>
+      <li><a href="#network-requirements">Network Requirements</a></li>
+      <li><a href="#cli-requirements">CLI Requirements</a></li>
+      <li><a href="#supported-browsers">Supported Browsers</a></li>
+    </ul>
   </li>
-  <li>
-    <p>RDS instance with MySQL 5.6, or Aurora (MpSQL 5.6.x compatible) - Provisioned with the
-configuration of your choice. Cerebro instances require read and write access to the
-<code class="highlighter-rouge">CEREBRO_DB_URL</code> database.</p>
+  <li><a href="#setting-up-the-deployment-manager">Setting Up the Deployment Manager</a>
+    <ul>
+      <li><a href="#install-the-aws-cli-tool">Install the AWS CLI Tool</a></li>
+      <li><a href="#acquire-and-extract-the-dm-tarball">Acquire and Extract the DM Tarball</a></li>
+      <li><a href="#acquire-the-okera-cli">Acquire the Okera CLI</a></li>
+      <li><a href="#establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</a></li>
+      <li><a href="#configure-the-deployment-manager">Configure the Deployment Manager</a>
+        <ul>
+          <li><a href="#dm-configuration-options">DM Configuration Options</a></li>
+        </ul>
+      </li>
+      <li><a href="#start-the-deployment-manager">Start the Deployment Manager</a>
+        <ul>
+          <li><a href="#deployment-manager-config-validator">Deployment Manager Config Validator</a></li>
+        </ul>
+      </li>
+      <li><a href="#configure-the-command-line-interface">Configure the Command Line Interface</a></li>
+    </ul>
   </li>
-  <li>
-    <p>IAM credentials - Cerebro instances require read and write access to
-CEREBRO_S3_STAGING_DIR and CEREBRO_DB_URL. The DeploymentManager requires the ability to
-provision instances. The cluster machines require credentials to your data. These
-credentials can be one IAM profile with all the credentials, or two separate roles. The
-IAM role for the Deployment Manager (DM) is referred to as <code class="highlighter-rouge">IAM_MANAGER</code> and the IAM
-role for the cluster machines is referred to as <code class="highlighter-rouge">IAM_CLUSTER</code>.</p>
+  <li><a href="#setting-up-a-odas-cluster">Setting up a ODAS Cluster</a>
+    <ul>
+      <li><a href="#configure-node-settings">Configure Node Settings</a></li>
+      <li><a href="#prep-the-cluster">Prep the Cluster</a></li>
+      <li><a href="#create-a-cluster">Create a Cluster</a>
+        <ul>
+          <li><a href="#restarting-a-failed-cluster-after-addressing-issues">Restarting a Failed Cluster after Addressing Issues</a></li>
+          <li><a href="#starting-multiple-okera-catalogs-sharing-the-same-metadata">Starting Multiple Okera Catalogs Sharing the Same Metadata</a></li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
 
-<h2 id="installing-the-deploymentmanager">Installing the DeploymentManager</h2>
+<!-- /TOC -->
 
-<p>The DeploymentManager runs on a machine separate from the cluster machines. It is not
-required that the DeploymentManager is its own machine.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 
-<h3 id="machine-and-package-prerequisites">Machine and Package Prerequisites</h3>
+<h3 id="aws-requirements">AWS Requirements</h3>
 
-<p>The machine and package requirements include requirements for the DeploymentManager
-machine, the cluster machine, the network, CLI, and browser.</p>
+<p>Before installing Okera, the following AWS services must be set up.
+The AWS services include an S3 Bucket, RDS, and IAM credentials.</p>
 
-<h4 id="deploymentmanager-machine-requirements">DeploymentManager machine requirements</h4>
+<ul>
+  <li>
+    <p><strong>S3 Bucket</strong></p>
 
-<p>The DeploymentManager machine requirements include:</p>
+    <p>Okera uses the S3 bucket to store log files and to stage intermediate configuration files.
+ The S3 bucket is set to readable and writable by all instances running Okera components.
+ The S3 bucket is referred to as <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> later in this document.</p>
+  </li>
+  <li>
+    <p><strong>RDS instance</strong></p>
+
+    <p>Okera is backed by a relational database, either MySQL 5.6 or Aurora (MySQL 5.6.x compatible), provisioned with the configuration of your choice.
+ Okera instances require read and write access to the <code class="highlighter-rouge">OKERA_DB_URL</code> database.</p>
+  </li>
+  <li>
+    <p><strong>IAM credentials</strong></p>
+
+    <p>Okera instances require read and write access to <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> and <code class="highlighter-rouge">OKERA_DB_URL</code>. The Deployment Manager requires the ability to provision instances.
+ The cluster nodes require credentials to your data.
+ These credentials can be one IAM profile with all the credentials, or two separate roles.
+ The IAM role for the Deployment Manager (DM) is referred to as <code class="highlighter-rouge">IAM_MANAGER</code> and the IAM role for the cluster nodes is referred to as <code class="highlighter-rouge">IAM_CLUSTER</code>.</p>
+  </li>
+</ul>
+
+<h3 id="deployment-manager-host-requirements">Deployment Manager Host Requirements</h3>
+
+<p>The Deployment Manager does not require a dedicated host, but its host must be separate from any clusters or nodes it manages.</p>
 
 <ul>
   <li>Linux installed</li>
-  <li>Java 7+ installed (OpenJDK or Sun JVM).
-    <ul>
-      <li>Java 8 is recommended as Sun has ceased providing security updates for Java 7</li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">IAM_MANAGER</code> credentials.</li>
+  <li>Java 8 or higher installed (<a href="http://openjdk.java.net/install/index.html">OpenJDK</a> or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Oracle JVM</a>).</li>
+  <li><code class="highlighter-rouge">IAM_MANAGER</code> credentials</li>
   <li>Minimum instance type: <code class="highlighter-rouge">t2.small</code></li>
   <li><code class="highlighter-rouge">awscli</code> installed</li>
 </ul>
 
-<h4 id="cluster-machine-requirements">Cluster machine requirements</h4>
+<h3 id="cluster-node-requirements">Cluster Node Requirements</h3>
 
-<p>The cluster machine requirements are created by the deployment manager and based on a
-user-defined launch script. The cluster machine requirements include:</p>
-
-<ul>
-  <li>RHEL 7: (Cerebro installs Java if not present.) Note: If your environment uses
-non-standard package management, see additional steps below.</li>
-  <li><code class="highlighter-rouge">IAM_CLUSTER</code> credentials.</li>
-  <li>Minimum instance type: <code class="highlighter-rouge">t2.large</code> with a minimum of 40GB local storage.</li>
-</ul>
-
-<h4 id="network-requirements">Network requirements</h4>
-<p>The network requirements include:</p>
+<p>The cluster nodes are created by the Deployment Manager and based on a user-defined launch script.
+The cluster node requirements include:</p>
 
 <ul>
-  <li>There must be full network connectivity between the machines in the cluster and the
-DeploymentManager machine.</li>
+  <li><strong>CentOS 7/RHEL 7</strong>
+ Okera installs Java if not present.
+ If your environment uses non-standard package management, see additional steps below.</li>
+  <li><code class="highlighter-rouge">IAM_CLUSTER</code> credentials</li>
+  <li>Minimum instance type: <code class="highlighter-rouge">t2.large</code> with a minimum of 40GB local storage</li>
 </ul>
 
-<h4 id="cli-requirements">CLI requirements</h4>
-<blockquote>
-  <p><strong>Note:</strong> The machine running the CLI must have network access to the
-DeploymentManager and cluster machines. The CLI can be installed on the DeploymentManager
-or a local development machine.</p>
-</blockquote>
+<h3 id="network-requirements">Network Requirements</h3>
+
+<p>There must be full network connectivity between the nodes in the cluster and the Deployment Manager host and any CLI instances.</p>
+
+<h3 id="cli-requirements">CLI Requirements</h3>
+
+<p>Any machine running the Okera CLI must have network access to the Deployment Manager and cluster machines.
+The CLI can be installed on the Deployment Manager host or any workstation or development environment with network access to it and the cluster.</p>
 
 <p>The CLI requirements include:</p>
 
 <ul>
-  <li>RHEL 6+ or Ubuntu 14.04+</li>
-  <li>OS X Darwin 10.11+ (OS X El Capitan+)</li>
+  <li>OS
+    <ul>
+      <li>RHEL 6 or later</li>
+      <li>Ubuntu 14.04 orlater</li>
+      <li>OS X Darwin 10.11 (OS X El Capitan) or later</li>
+    </ul>
+  </li>
+  <li>Network access to DM and cluster nodes</li>
 </ul>
 
-<h4 id="browser-requirements---web-ui">Browser requirements - Web UI</h4>
-<p>The browsers must be the latest version. The browser requirements include:</p>
+<h3 id="supported-browsers">Supported Browsers</h3>
+
+<p>Okera’s Web UI is tested against the latest versions of the following browsers:</p>
 
 <ul>
-  <li>Chrome</li>
-  <li>Firefox</li>
-  <li>Safari</li>
+  <li>Google Chrome</li>
+  <li>Mozilla Firefox</li>
+  <li>Apple Safari</li>
   <li>Microsoft Edge</li>
 </ul>
 
-<h3 id="installing-the-aws-commandline-tool">Installing the AWS Commandline Tool</h3>
+<h2 id="setting-up-the-deployment-manager">Setting Up the Deployment Manager</h2>
 
-<p>To install the awscli commandline tool on the DeploymentManager machine, follow
-these steps.</p>
+<h3 id="install-the-aws-cli-tool">Install the AWS CLI Tool</h3>
 
-<ol>
-  <li>Install the tools, and install &amp; configure the <code class="highlighter-rouge">awscli</code>.</li>
-</ol>
+<p>To install the awscli command-line tool on a newly provisioned Deployment Manager host, perform these commands.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum install wget
 <span class="nb">sudo </span>wget https://bootstrap.pypa.io/get-pip.py
@@ -690,18 +714,18 @@ these steps.</p>
 aws configure
 </code></pre></div></div>
 
-<h2 id="getting-the-deploymentmanager-tarball">Getting the DeploymentManager Tarball</h2>
+<h3 id="acquire-and-extract-the-dm-tarball">Acquire and Extract the DM Tarball</h3>
 
-<p>Follow these steps to get the DeploymentManager Tarball.</p>
+<p>Follow these steps to get the Deployment Manager tarball on the DM host.</p>
 
 <ol>
-  <li>Download and extract the DeploymentManager tarball. The recommended download location is
-<code class="highlighter-rouge">/opt/cerebro</code> but it can be downloaded from any location.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /opt/cerebro <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /opt/cerebro
+  <li>Download and extract the Deployment Manager tarball.
+The recommended download location is <code class="highlighter-rouge">/opt/okera</code>, but it can be downloaded to anywhere.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /opt/okera <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /opt/okera
 </code></pre></div>    </div>
   </li>
   <li>Update ownership of the destination directory.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /opt/cerebro
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /opt/okera
 </code></pre></div>    </div>
   </li>
   <li>Get the tarball from S3.
@@ -712,552 +736,487 @@ aws configure
     <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-0.8.1.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-0.8.1.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-0.8.1 deployment-manager
 </code></pre></div>    </div>
   </li>
-  <li>Download the shell binary for either Linux or OS X (depending on which OS is running the CLI).
-    <ul>
-      <li>For Linux:
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/cli/linux/cerebro_cli <span class="o">&amp;&amp;</span> chmod +x cerebro_cli
-</code></pre></div>        </div>
-      </li>
-      <li>For OS X:
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/cli/darwin/cerebro_cli <span class="o">&amp;&amp;</span> chmod +x cerebro_cli
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
 </ol>
 
-<h3 id="deploymentmanager-logging-and-install-directory">DeploymentManager Logging and Install Directory</h3>
+<h3 id="acquire-the-okera-cli">Acquire the Okera CLI</h3>
 
-<p>Configure the logging and local install directories. These directories should be paths on
-the local file system. The install directory should be restored if this machine is moved.
-By default, the directories are <code class="highlighter-rouge">/var/log/cerebro</code> and <code class="highlighter-rouge">/etc/cerebro</code>. The directories can
-be changed by setting <code class="highlighter-rouge">DEPLOYMENT_MANAGER_LOG_DIR</code> and <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code>
-in the environment.</p>
+<p>Perform this for any machine on which you want to run the Okera CLI tool.
+Download the shell binary for either Linux or OS X (depending on which OS is running the CLI).</p>
+<ul>
+  <li><strong>Linux</strong>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+</code></pre></div>    </div>
+  </li>
+  <li><strong>OS X</strong>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+</code></pre></div>    </div>
+  </li>
+</ul>
 
-<p>For a standard install, enter:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/cerebro <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/cerebro <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>chmod 700 /etc/cerebro
+<h3 id="establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</h3>
+
+<p>Configure the logging and local install directories.
+These directories should be paths on the local file system.
+The install directory should be restored if this machine is moved.
+By default, the directories are <code class="highlighter-rouge">/var/log/okera</code> and <code class="highlighter-rouge">/etc/okera</code>.
+The directories can be changed by setting <code class="highlighter-rouge">DEPLOYMENT_MANAGER_LOG_DIR</code> and <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> in the environment.</p>
+
+<p><strong>Example:</strong> Creating the Logging and Install Directories</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/okera
+<span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/okera
+<span class="nb">sudo </span>chmod 700 /etc/okera
 </code></pre></div></div>
 
-<p>The DeploymentManager user needs exclusive access to those directories. If the directories
-are created with a different user than the DeploymentManager user, run:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /var/log/cerebro
-<span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /etc/cerebro
+<p>The Deployment Manager user needs exclusive access to those directories.
+If the directories are created with a different user than the Deployment Manager user, run:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /var/log/okera
+<span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /etc/okera
 </code></pre></div></div>
 
-<h3 id="configuring-the-deploymentmanager">Configuring the DeploymentManager</h3>
+<h3 id="configure-the-deployment-manager">Configure the Deployment Manager</h3>
 
-<p>You must configure the DeploymentManager before it can be run. The configuration is done
-by using environment variables and before starting up the server. It is recommended that
-you copy the template configuration and update it. The steps below assume that the standard
-install paths were used.</p>
+<p>You must configure the Deployment Manager before it can be run.
+The configuration is done by using environment variables and before starting up the server.
+It is recommended that you copy the template configuration and update it.
+The steps below assume that the standard install paths were used.</p>
 
 <ol>
-  <li>Copy the DeploymentManager environment.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/cerebro/deployment-manager/conf/env-template.sh /etc/cerebro/env.sh
+  <li>Copy the Deployment Manager environment.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/okera/deployment-manager/conf/env-template.sh /etc/okera/env.sh
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Open and edit <code class="highlighter-rouge">env.sh</code>, modifying it as necessary. The config script from
-<code class="highlighter-rouge">/etc/cerebro/env.sh</code> is automatically loaded when starting the DeploymentManager. If this
-is the path used, it is not necessary to source the script.</p>
+    <p>Open and edit <code class="highlighter-rouge">env.sh</code>, modifying it as necessary.
+The config script from <code class="highlighter-rouge">/etc/okera/env.sh</code> is automatically loaded when starting the Deployment Manager.
+If this is the path used, it is not necessary to source the script.</p>
   </li>
   <li>Restart the deployment manager by running:
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/cerebro/deployment-manager/bin/deployment-manager
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager
 </code></pre></div>    </div>
   </li>
 </ol>
 
-<blockquote>
-  <p><strong>Note:</strong> About <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code></p>
+<h4 id="dm-configuration-options">DM Configuration Options</h4>
 
-  <p>The value of <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> has no effect on where DeploymentManager
-loads the <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file. The DeploymentManager always attempts to read
-config values from <code class="highlighter-rouge">/etc/cerebro/env.sh</code>, if it exists. If <code class="highlighter-rouge">env.sh</code> does not exist
-in <code class="highlighter-rouge">/etc/cerebro</code>, the DeploymentManager falls back to the config values from
-environment variables. <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code>, set either in environment
-variables or in <code class="highlighter-rouge">/etc/cerebro/env.sh</code>, is used after the DeploymentManager is
-successfully configured and running to write other files.</p>
-</blockquote>
+<p>Below are the available Okera configuration options.
+They can be set as environment variables or in <code class="highlighter-rouge">/etc/okera/env.sh</code>, as explained above.
+They are loaded when the Deployment Manager starts.</p>
 
-<blockquote>
-  <p><strong>Note:</strong> About changing configuration values</p>
+<p>For additional Deployment Manager configuration options, see <a href="/advanced-install#deployment-manager-configuration">Advanced Installation: DM Configs</a>.</p>
 
-  <ul>
-    <li>The environment variables set in the <code class="highlighter-rouge">env.sh</code> script are stored by the deployment manager
-when it starts up.</li>
-    <li>When a deployment manager creates a Cerebro cluster, the current values of those
-environment variables are applied to the new cluster. That cluster retains those values
-independent of any configuration changes on the deployment manager.</li>
-    <li>
-      <p>To change the values used by a deployment manager, you must either update the <code class="highlighter-rouge">env.sh</code>
-script (assuming that it’s in the default location of <code class="highlighter-rouge">/etc/cerebro/</code>), or update your
-.environment variables. Then, restart the deployment manager by running:</p>
+<h5 id="okera_s3_staging_dir">OKERA_S3_STAGING_DIR</h5>
 
-      <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /opt/cerebro/deployment-manager/bin/deployment-manager
-</code></pre></div>      </div>
-    </li>
-  </ul>
+<p>This directory is the <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> for logs and install files.
+It can exist anywhere in S3 that makes sense for your organization.
+Okera creates in this directory a number of required subdirectories.</p>
 
-  <p>Clusters created after the deployment manager is restarted use the new configuration
-values.</p>
-
-  <p>An existing Cerebro cluster that is restarted by way of a deployment manager does not
-pick up changes in the deployment manager’s configuration. Rather, the Cerebro cluster
-retains the configuration values that were used during the cluster creation.</p>
-</blockquote>
-
-<h3 id="configuration-options">Configuration options</h3>
-
-<p>Below are the available Cerebro configuration options. They can be set as environment
-variables or in <code class="highlighter-rouge">/etc/cerebro/env.sh</code>, as explained above. They are loaded when
-DeploymentManager starts.</p>
-
-<h4 id="cerebro_s3_staging_dir"><code class="highlighter-rouge">CEREBRO_S3_STAGING_DIR</code></h4>
-
-<p>This directory is the CEREBRO_S3_STAGING_DIR for logs and install files. It can exist
-anywhere in S3 that makes sense for your organization. Cerebro creates in this directory a
-number of subdirectories that are required</p>
-
-<p>For example, run:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_S3_STAGING_DIR</span><span class="o">=</span>s3://&lt;your cerebro dir&gt;
+<p><strong>Example:</strong> Setting the S3 staging directory</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_S3_STAGING_DIR</span><span class="o">=</span>s3://&lt;your_okera_dir&gt;
 </code></pre></div></div>
 
-<h4 id="cerebro_db_urlcerebro_db_usernamecerebro_db_password"><code class="highlighter-rouge">CEREBRO_DB_URL/CEREBRO_DB_USERNAME/CEREBRO_DB_PASSWORD</code></h4>
+<h5 id="relational-database-credentials">Relational Database Credentials</h5>
 
-<p>This is the end point and database credentials for CEREBRO_DB_URL.
-The DB_URL should be host/port (typically 3306) of the running mysql instance.</p>
+<p>The settings <code class="highlighter-rouge">OKERA_DB_URL</code>, <code class="highlighter-rouge">OKERA_DB_USERNAME</code> <code class="highlighter-rouge">OKERA_DB_PASSWORD</code> are the end point and credentials for the DM’s RDB backend.
+The <code class="highlighter-rouge">OKERA_DB_URL</code> should be host:port (typically port <code class="highlighter-rouge">3306</code>) of the running MySQL/Aurora instance.</p>
 
-<p>For example, run:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_DB_URL</span><span class="o">=</span>cerebro.xyzzzz.rds.amazonaws.com:3306
+<p><strong>Example:</strong> Setting the database location and credentials</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_DB_URL</span><span class="o">=</span>okera.xyzzzz.rds.amazonaws.com:3306
+<span class="nb">export </span><span class="nv">OKERA_DB_USERNAME</span><span class="o">=</span>okera
+<span class="nb">export </span><span class="nv">OKERA_DB_PASSWORD</span><span class="o">=</span>&lt;password&gt;
 </code></pre></div></div>
 
-<h4 id="cerebro_db_name"><code class="highlighter-rouge">CEREBRO_DB_NAME</code></h4>
+<h5 id="okera_dm_db_name">OKERA_DM_DB_NAME</h5>
 
-<p>This is deprecated. See CEREBRO_DM_DB_NAME.</p>
+<p>This is the name of the relational database at the <code class="highlighter-rouge">OKERA_DB_URL</code> location (the RDB instance) that the Deployment Manager uses.
+If this RDS instance is only backing a single Deployment Manager install, the <code class="highlighter-rouge">OKERA_DM_DB_NAME</code> does not need to be set.
+Otherwise, each installation can have a different database.
+The database does not need to exist before starting the DM as long as its host instance is available.</p>
 
-<h4 id="cerebro_dm_db_name"><code class="highlighter-rouge">CEREBRO_DM_DB_NAME</code></h4>
-
-<p>This is the DB name inside the CEREBRO_DB_URL that the DeploymentManager uses. If this RDS
-instance is only backing a single DeploymentManager install, the CEREBRO_DB_NAME does not
-need to be set. Otherwise, each install can have a different database. The
-database does not need to be pre-created.</p>
-
-<p>For example, run:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_DB_NAME</span><span class="o">=</span>cerebro
+<p><strong>Example:</strong> Setting the relational database name</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_DM_DB_NAME</span><span class="o">=</span>okera_db
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">CEREBRO_DM_DB_NAME</code> value has format restrictions.  It must begin with an alphabetic
-character and subsequent characters are restricted to alphanumerics and the underscore
-character (‘_’).</p>
+<p>The <code class="highlighter-rouge">OKERA_DM_DB_NAME</code> value has format restrictions.
+It must begin with an alphabetic character and subsequent characters are restricted to alphanumerics and the underscore character (‘_’).</p>
 
-<p>Run the following command to validate the CEREBRO_DM_DB_NAME value:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span> <span class="s2">"</span><span class="nv">$CEREBRO_DM_DB_NAME</span><span class="s2">"</span> <span class="o">=</span>~ ^[A-Za-z][A-Za-z0-9_]<span class="k">*</span><span class="nv">$ </span><span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Is valid."</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Is not valid."</span>
+<p>This command will evaluate the validity of the database name once the enviroment variable is established.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span> <span class="s2">"</span><span class="nv">$OKERA_DM_DB_NAME</span><span class="s2">"</span> <span class="o">=</span>~ ^[A-Za-z][A-Za-z0-9_]<span class="k">*</span><span class="nv">$ </span><span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Is valid."</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Is not valid."</span>
 </code></pre></div></div>
 
-<h4 id="cerebro_catalog_admins"><code class="highlighter-rouge">CEREBRO_CATALOG_ADMINS</code></h4>
+<h5 id="okera_catalog_admins">OKERA_CATALOG_ADMINS</h5>
 
-<p>CDAS clusters by default start up with one user which has admin on the system. The admin
-users can create and manage roles, grant roles to other users and read all datasets. This
-default admin user depends on which authentication mechanism was chosen:</p>
+<p>ODAS clusters by default start up with one user which has admin on the system.
+The admin users can create and manage roles, grant roles to other users and read all datasets.
+This default admin user depends on which authentication mechanism was chosen:</p>
 
-<p>Kerberos - The admin user is the first part of the kerberos principal</p>
+<p>With <strong>Kerberos</strong>, the admin user is the first part of the kerberos principal.</p>
 
-<p>JWT - The admin user is the subject in the <code class="highlighter-rouge">CEREBRO_SYSTEM_TOKEN</code></p>
+<p>When using <strong>JSON Web Tokens (JST)</strong>, the admin user is the subject in the <code class="highlighter-rouge">OKERA_SYSTEM_TOKEN</code>.</p>
 
-<p>Unauthenticated - The admin user is ‘root’.
-To specify other admin users, edit the comma-separated list of admins and/or groups.</p>
+<p>With no authenticaton, the admin user is ‘root’.
+To specify other admin users, edit the comma-separated list of admin users and groups.</p>
 
-<p>For example:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_CATALOG_ADMINS</span><span class="o">=</span>admin,username1,admin-group
+<p><strong>Example:</strong> Setting the list of admin users and groups.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_CATALOG_ADMINS</span><span class="o">=</span>admin,username1,admin-group
 </code></pre></div></div>
 
-<p>Admins users can grant permissions to other users/groups including the ability to grant
-to other users. However, <em>only</em> admin users can create new roles.</p>
+<p>Admins users can grant permissions to other users/groups including the ability to grant to other users.
+However, only admin users can create new roles.</p>
 
-<h3 id="cerebro_server_hostport"><code class="highlighter-rouge">CEREBRO_SERVER_HOSTPORT</code></h3>
+<h5 id="okera_port_configuration">OKERA_PORT_CONFIGURATION</h5>
 
-<p>This is the host:port for running the DeploymentManager. The host listens to all interfaces
-(by default) and runs on port 8085 (e.g. 0.0.0.0:8085). This port does not need to be made
-accessible to the typical user who accesses data, but it is required by the one who
-administers Cerebro clusters.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_SERVER_HOSTPORT</span><span class="o">=</span>0.0.0.0:8085
-</code></pre></div></div>
-
-<h3 id="cerebro_port_configuration"><code class="highlighter-rouge">CEREBRO_PORT_CONFIGURATION</code></h3>
-
-<p>This configuration specifies the ports on which cluster services run. These ports do need
-to be available for all users connecting to Cerebro for metadata and data. The ports are
-contained in a comma-separated list of service:portname:port number. If the ports are not
-specified, Cerebro randomly selects available ports on which to expose these services.</p>
+<p>This configuration specifies the ports on which cluster services run.
+These ports do need to be available for all users connecting to Okera for metadata and data.
+The ports are contained in a comma-separated list of service:portname:port number.
+If the ports are not specified, Okera randomly selects available ports on which to expose these services.</p>
 
 <p>Below are the ports that are required for clients.</p>
 
 <ul>
-  <li>cdas_rest_server:api</li>
-  <li>cerebro_catalog:hms</li>
-  <li>cerebro_catalog:sentry</li>
-  <li>cerebro_planner:planner</li>
-  <li>cerebro_planner:webui</li>
-  <li>cerebro_web:webui</li>
-  <li>cerebro_worker:worker</li>
-  <li>kubernetes_dashboard:admin_ui</li>
+  <li><code class="highlighter-rouge">cdas_rest_server:api</code></li>
+  <li><code class="highlighter-rouge">cerebro_catalog:hms</code></li>
+  <li><code class="highlighter-rouge">cerebro_catalog:sentry</code></li>
+  <li><code class="highlighter-rouge">cerebro_planner:planner</code></li>
+  <li><code class="highlighter-rouge">cerebro_planner:webui</code></li>
+  <li><code class="highlighter-rouge">cerebro_web:webui</code></li>
+  <li><code class="highlighter-rouge">cerebro_worker:worker</code></li>
+  <li><code class="highlighter-rouge">kubernetes_dashboard:admin_ui</code></li>
 </ul>
 
 <p>An example configuration:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"cerebro_worker:worker:7185,cerebro_catalog:sentry:7182"</span>
-<span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$CEREBRO_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:7184"</span>
-<span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$CEREBRO_PORT_CONFIGURATION</span><span class="s2">,cerebro_planner:planner:7183"</span>
-<span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$CEREBRO_PORT_CONFIGURATION</span><span class="s2">,cerebro_planner:webui:7181"</span>
-<span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$CEREBRO_PORT_CONFIGURATION</span><span class="s2">,cerebro_catalog:hms:7180"</span>
-<span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$CEREBRO_PORT_CONFIGURATION</span><span class="s2">,cerebro_web:webui:7186"</span>
-<span class="nb">export </span><span class="nv">CEREBRO_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$CEREBRO_PORT_CONFIGURATION</span><span class="s2">,kubernetes_dashboard:admin_ui:7350"</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"okera_worker:worker:7185,cerebro_catalog:sentry:7182"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:7184"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_planner:planner:7183"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_planner:webui:7181"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_catalog:hms:7180"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_web:webui:7186"</span>
+<span class="nb">export </span><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,kubernetes_dashboard:admin_ui:7350"</span>
 </code></pre></div></div>
 
-<h3 id="kerberos"><code class="highlighter-rouge">KERBEROS</code></h3>
+<h5 id="kerberos-configuration">Kerberos Configuration</h5>
 
 <p>To enable Kerberos, specify these configurations:</p>
 
 <ul>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_KERBEROS_PRINCIPAL</code> - Principal for non-REST Cerebro services.</p>
+    <p><code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code></p>
+
+    <p>Principal for non-REST Okera services.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_KERBEROS_HTTP_PRINCIPAL</code> - Principal for REST Cerebro services. By convention,
-this configuration should start with HTTP/ and is highly recommend for maintaining
-compatibility with exiting tools.</p>
+    <p><code class="highlighter-rouge">OKERA_KERBEROS_HTTP_PRINCIPAL</code></p>
+
+    <p>Principal for REST Okera services.
+ By convention, this configuration should start with <code class="highlighter-rouge">HTTP/</code> and is highly recommend for maintaining compatibility with exiting tools.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_KERBEROS_KEYTAB_FILE</code> - Path to the keytab file containing both principals. This
- path should be accessible from the DeploymentManager, either on the local file system or
- in S3.</p>
+    <p><code class="highlighter-rouge">OKERA_KERBEROS_KEYTAB_FILE</code></p>
+
+    <p>Path to the keytab file containing both principals.
+ This path should be accessible from the Deployment Manager, either on the local file system or in S3.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_KERBEROS_ENABLED_REALMS</code> - List of comma-separated cross realms from which to
-accept connections. This configuration does not need to be specified if only connections
-from the <code class="highlighter-rouge">CEREBRO_KERBEROS_PRINCIPAL</code> realm are allowed to connect.</p>
+    <p><code class="highlighter-rouge">OKERA_KERBEROS_ENABLED_REALMS</code></p>
+
+    <p>List of comma-separated cross realms from which to accept connections.
+ This configuration does not need to be specified if only connections from the <code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code> realm are allowed to connect.</p>
   </li>
 </ul>
 
-<p>For example:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_KERBEROS_PRINCIPAL</span><span class="o">=</span><span class="s2">"cerebro/cname.example.com@REALM.com"</span>
-
-<span class="nb">export </span><span class="nv">CEREBRO_KERBEROS_HTTP_PRINCIPAL</span><span class="o">=</span><span class="s2">"HTTP/cname.example.com@REALM.com"</span>
-
-<span class="nb">export </span><span class="nv">CEREBRO_KERBEROS_KEYTAB_FILE</span><span class="o">=</span><span class="s2">"/etc/cerebro.keytab"</span>
+<p><strong>Example:</strong> Setting up Kerberos principal variables</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_KERBEROS_PRINCIPAL</span><span class="o">=</span><span class="s2">"okera/cname.example.com@REALM.com"</span>
+<span class="nb">export </span><span class="nv">OKERA_KERBEROS_HTTP_PRINCIPAL</span><span class="o">=</span><span class="s2">"HTTP/cname.example.com@REALM.com"</span>
+<span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span><span class="s2">"/etc/okera.keytab"</span>
 </code></pre></div></div>
 
-<p>For more information on how to set up a kerberized cluster, see <a href="/kerberos-cluster-setup">Kerberos Cluster Setup</a>.</p>
+<p>For more information on how to set up a Kerberized cluster, see <a href="/kerberos-cluster-setup">Kerberos Cluster Setup</a>.</p>
 
-<h3 id="json-web-token"><code class="highlighter-rouge">JSON Web Token</code></h3>
+<h5 id="json-web-tokens-jwt-configuration">JSON Web Tokens (JWT) Configuration</h5>
 
 <p>To enable authentication using JSON Web Tokens (JWT), specify these configurations:</p>
 
 <ul>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_JWT_PUBLIC_KEY</code> - Path to the public key to decrypt tokens. It must be
-accessible on the DeploymentManager machine, but can be on the local machine, or in S3.</p>
+    <p><code class="highlighter-rouge">OKERA_JWT_PUBLIC_KEY</code></p>
+
+    <p>Path to the public key to decrypt tokens.
+ It must be accessible on the Deployment Manager machine, but can be on the local machine or in S3.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_JWT_ALGORITHM</code> - Algorithm used to decrypt tokens. It must be set to “RSA256” or “RSA512”</p>
+    <p><code class="highlighter-rouge">OKERA_JWT_ALGORITHM</code></p>
+
+    <p>Algorithm used to decrypt tokens.
+ Must be set to <code class="highlighter-rouge">RSA256</code> or <code class="highlighter-rouge">RSA512</code>.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_JWT_AUTHENTICATION_SERVER_URL</code> - URL used to authenticate JWT tokens. A POST
-call is issued to this URL, specifying the token to authenticate. This cannot be set
-if the CEREBRO_JWT_PUBLIC_KEY is set.</p>
+    <p><code class="highlighter-rouge">OKERA_JWT_AUTHENTICATION_SERVER_URL</code></p>
+
+    <p>URL used to authenticate JWT tokens.
+ A POST call is issued to this URL, specifying the token to authenticate.
+ This cannot be set if the <code class="highlighter-rouge">OKERA_JWT_PUBLIC_KEY</code> is set.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_SYSTEM_TOKEN</code> - Path to a file that contains the token (on a single line) that
-Cerebro services uses to authenticate itself. The subject for this token acts as the
-Cerebro system user.</p>
+    <p><code class="highlighter-rouge">OKERA_SYSTEM_TOKEN</code></p>
+
+    <p>Path to a file that contains the token (on a single line) that Okera services uses to authenticate itself.
+ The subject for this token acts as the Okera system user.</p>
   </li>
 </ul>
 
-<p>For example:</p>
+<p><strong>Example:</strong> Setting the JWT token variables with a local path</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_JWT_PUBLIC_KEY</span><span class="o">=</span><span class="s2">"/etc/jwt.512.pub"</span>
-<span class="nb">export </span><span class="nv">CEREBRO_JWT_ALGORITHM</span><span class="o">=</span><span class="s2">"RSA512"</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_JWT_PUBLIC_KEY</span><span class="o">=</span><span class="s2">"/etc/jwt.512.pub"</span>
+<span class="nb">export </span><span class="nv">OKERA_JWT_ALGORITHM</span><span class="o">=</span><span class="s2">"RSA512"</span>
 </code></pre></div></div>
 
-<p>Or:</p>
+<p><strong>Example:</strong> Setting the JWT token variables for a REST call and a token to pass</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_JWT_AUTHENTICATION_SERVER_URL</span><span class="o">=</span><span class="s2">"http://sso/verify-token"</span>
-<span class="nb">export </span><span class="nv">CEREBRO_SYSTEM_TOKEN</span><span class="o">=</span><span class="s2">"/etc/cerebro.token"</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_JWT_AUTHENTICATION_SERVER_URL</span><span class="o">=</span><span class="s2">"http://sso/verify-token"</span>
+<span class="nb">export </span><span class="nv">OKERA_SYSTEM_TOKEN</span><span class="o">=</span><span class="s2">"/etc/okera.token"</span>
 </code></pre></div></div>
 
-<h3 id="https"><code class="highlighter-rouge">HTTPS</code></h3>
+<p>For more about authentication with JWTs, see <a href="/odas-authentication#json-web-tokens">ODAS Authentication</a>.</p>
 
-<p>To enable HTTPS, specify the SSL certificate and private key that Cerebro uses. Setting the
-certificate and key enables HTTPS on the REST server and web UI.</p>
+<h5 id="https-configuration">HTTPS Configuration</h5>
+
+<p>To enable HTTPS, specify the SSL certificate and private key that Okera uses.
+Setting the certificate and key enables HTTPS on the REST server and Web UI.</p>
 
 <ul>
   <li>
-    <p>CEREBRO_SSL_CERTIFICATE_FILE - Path to the certificate file.</p>
+    <p><code class="highlighter-rouge">OKERA_SSL_CERTIFICATE_FILE</code></p>
+
+    <p>Path to the certificate file.</p>
   </li>
   <li>
-    <p>CEREBRO_SSL_KEY_FILE - Path to the file with the private key.</p>
+    <p><code class="highlighter-rouge">OKERA_SSL_KEY_FILE</code></p>
+
+    <p>Path to the file with the private key.</p>
   </li>
   <li>
-    <p>CEREBRO_SSL_FQDN - [Optional] Fully qualified domain name for the cluster. If set, this
-must be a valid ‘Subject Alternate Name’ in the certificate. This can be the FQDN for any
-node in this cluster (typically the CNAME for the REST service). This is required for some
-clients (e.g. newer versions of chrome) which do not allow IP addresses if SSL is enabled.</p>
+    <p><code class="highlighter-rouge">OKERA_SSL_FQDN</code> (optional)</p>
+
+    <p>Fully qualified domain name for the cluster.
+ If set, this must be a valid “Subject Alternate Name” in the certificate.
+ This can be the fully qualified domain name for any node in this cluster (typically the CNAME for the REST service).
+ This is required for some clients, which often do not allow navigating IP addresses with SSL is enabled, such as newer versions of Chrome.</p>
   </li>
 </ul>
 
-<p>For example.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_SSL_CERTIFICATE_FILE</span><span class="o">=</span>/etc/cerebro.cert
-<span class="nb">export </span><span class="nv">CEREBRO_SSL_KEY_FILE</span><span class="o">=</span>/etc/cerebro.key
-<span class="nb">export </span><span class="nv">CEREBRO_SSL_FQDN</span><span class="o">=</span>rest-server.cerebro.com
+<p><strong>Example:</strong> Setting the HTTPS environment variables</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SSL_CERTIFICATE_FILE</span><span class="o">=</span>/etc/okera.cert
+<span class="nb">export </span><span class="nv">OKERA_SSL_KEY_FILE</span><span class="o">=</span>/etc/okera.key
+<span class="nb">export </span><span class="nv">OKERA_SSL_FQDN</span><span class="o">=</span>rest-server.okera.com
 </code></pre></div></div>
 
-<h3 id="ldap"><code class="highlighter-rouge">LDAP</code></h3>
+<h5 id="ldap-configuration">LDAP Configuration</h5>
 
-<p>For information on how to set LDAP Basic Auth related environment variables, see
-<a href="/secure-cerebro-rest-api-ldap#setting-up-ldap-related-configurations">LDAP Basic Auth</a>.</p>
+<p>For information on how to set LDAP Basic Auth related environment variables, see <a href="/secure-okera-rest-api-ldap#setting-up-ldap-related-configurations">LDAP Basic Auth</a>.</p>
 
-<p>For more details on interactions with authenticated Cerebro, see:</p>
+<p>For more details on interactions with authenticated Okera, see:</p>
 
 <ul>
-  <li><a href="/cdas-authentication">Authentication</a></li>
+  <li><a href="/odas-authentication">Authentication</a></li>
   <li><a href="/secure-deployment-manager-rest-api">Security</a></li>
 </ul>
 
-<h3 id="oauth"><code class="highlighter-rouge">OAuth</code></h3>
+<h5 id="oauth-configuration">OAuth Configuration</h5>
 
-<p>Cerebro can be deployed with OAuth enabled for easier Web UI login. For more information,
-see</p>
+<p>Okera can be deployed with OAuth enabled for easier Web UI login. For more information, see</p>
 <ul>
-  <li><a href="/secure-cerebro-rest-api-oath">OAuth Guide</a>.</li>
+  <li><a href="/secure-okera-rest-api-oauth">OAuth Guide</a>.</li>
 </ul>
 
-<h2 id="starting-the-deploymentmanager">Starting the DeploymentManager</h2>
+<h3 id="start-the-deployment-manager">Start the Deployment Manager</h3>
 
-<p>After setting the environment variables and sourcing them, start the DeploymentManager by
-running:</p>
+<p>After setting the environment variables and sourcing them, start the Deployment Manager.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/cerebro/deployment-manager/bin/deployment-manager
+<p><strong>Example:</strong> Deployment Manager startup</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager
 </code></pre></div></div>
 
-<p>This should output ‘System up and running’ and the server hostport.</p>
+<p>This should output <code class="highlighter-rouge">System up and running</code> and the server hostport.</p>
 
 <blockquote>
-  <p><strong>Note:</strong> This step is not expected to take more than 30 seconds. It usually indicates a
-configuration issue if the DeploymentManager does not come up in a reasonable amount
-of time.</p>
+  <p><strong>Note:</strong> This step is not expected to take more than 30 seconds.
+It usually indicates a configuration issue if the Deployment Manager does not come up in a reasonable amount of time.</p>
 </blockquote>
 
-<p>The DeploymentManager runs as a daemon and the logs can be viewed by entering:</p>
+<p>The Deployment Manager runs as a daemon
+Its logs can be viewed by entering:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>less /var/log/cerebro/deployment-manager.log
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>less /var/log/okera/deployment-manager.log
 </code></pre></div></div>
 
-<p>If there are configuration issues, they should be visible at the end of the log.</p>
+<p>Any configuration issues should be visible at the end of the log.</p>
 
-<h2 id="deploymentmanager-config-validator">DeploymentManager config validator</h2>
+<h4 id="deployment-manager-config-validator">Deployment Manager Config Validator</h4>
 
-<p>It is possible to run the DeploymentManager config validation without restarting the
-DeploymentManager process. This is convenient to test new configs or to more quickly
-diagnose problematic configs.</p>
+<p>It is possible to run the Deployment Manager config validation without restarting the Deployment Manager process.
+This is convenient to test new configs or to quickly diagnose problematic configs.</p>
 
-<p>To run the DeploymentManager config validation without restarting the DeploymentManager,
-run the deployment-manager script with the <code class="highlighter-rouge">verify-configs-only</code> argument.</p>
+<p>To run the Deployment Manager config validation without restarting the Deployment Manager, run the deployment-manager script with the <code class="highlighter-rouge">verify-configs-only</code> argument.</p>
 
-<p>For example:</p>
+<p><strong>Example:</strong> Validating a DM config without starting the DM</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/opt/cerebro/deployment-manager/bin/deployment-manager verify-configs-only
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager verify-configs-only
 ...
 <span class="k">*************************************************************</span>
   Config validation successful.
 <span class="k">*************************************************************</span>
 </code></pre></div></div>
 
-<h2 id="configuring-the-cli">Configuring the CLI</h2>
+<h3 id="configure-the-command-line-interface">Configure the Command Line Interface</h3>
 
-<p>Configure the CLI to connect with a running DeploymentManager.</p>
+<p>Configure the CLI to connect with a running Deployment Manager.</p>
 
 <p>Run the following:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;path to&gt;/cerebro_cli configure <span class="nt">--server</span> &lt;host:port of DeploymentManager&gt;
-
-&lt;path to&gt;/cerebro_cli status
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/ocadm configure <span class="nt">--server</span> &lt;DM_host:port&gt;
+/opt/ocadm status
 </code></pre></div></div>
 
-<p>Running the “status” command should return the result:
-‘Service available. Status: Running.’</p>
+<p>Running the <code class="highlighter-rouge">status</code> command should return the result:
+<code class="highlighter-rouge">Service available. Status: Running.</code></p>
 
-<h2 id="starting-up-a-cdas-cluster">Starting up a CDAS Cluster</h2>
+<h2 id="setting-up-a-odas-cluster">Setting up a ODAS Cluster</h2>
 
-<p>Start up the CDAS clusters. It is assumed that the DeploymentManager is running.</p>
+<p>To create and launch a ODAS cluster, the Deployment Manager must be running.</p>
 
-<h3 id="configure-machine-settings">Configure Machine Settings</h3>
+<h3 id="configure-node-settings">Configure Node Settings</h3>
 
-<p>Cluster launch is broken up into two parts - actions required on the DeploymentManager and
-actions required on each launched EC2 machine.</p>
+<p>Cluster launch is broken up into two parts: actions required on the Deployment Manager and actions required on each launched EC2 instance.</p>
 
-<ul>
-  <li>
-    <p>Actions required on the DeploymentManager, referred to as the <code class="highlighter-rouge">launch-script</code>.
-The launch-script is required, and when called, should provision a new EC2 instance. The
-<code class="highlighter-rouge">lanuch-script</code> is run from the DeploymentManager machine. This script launches the
-machine with all the required EC2 configurations described in the ‘Cluster machine’ in the
-prerequisites (e.g. VPC, security groups, IAM Roles, etc). This script is the best place to
-tag machines or do other setup required by your organization.</p>
-  </li>
-  <li>
-    <p>Actions required on each launched EC2 machine, referred to as the init-scripts. The
-init scripts is an optional list of scripts that run when the instance is launched on the
-instance machine. For example, one of these scripts could install any monitoring software
-that you use or configure the machine to use custom package repo locations.</p>
-  </li>
-</ul>
+<p>Actions required on the Deployment Manager are referred to as the <strong>launch script</strong>.
+The launch script is required, and when called, should provision a new EC2 instance.
+The launch script is run from the DM host.
+This script launches the instance with all the required EC2 configurations described in the Cluster machine in the prerequisites (for example, VPC, security groups, IAM Roles, etc).
+This script is the best place to tag machines or do other setup required by your organization.</p>
 
-<p>Cerebro has provided a template launch script in the
-<code class="highlighter-rouge">/opt/cerebro/deployment-manager/bin/start-ec2-machine-example.sh</code> directory. Copy the
-script and adapt it to your requirements. The user-configurable values are at the top of
-the file, marked “USER” in a comment. At a minimum, a subnet ID, and security group ID,
-must be added to the script.</p>
+<p>Actions required on each launched EC2 machine are referred to as the <strong>init scripts</strong>.
+The init scripts are an optional set of scripts that run when the instance is launched on the instance machine.
+For example, one of these scripts could install any monitoring software that you use or configure the machine to use custom package repo locations.</p>
 
-<p>For example:</p>
+<p>Okera has provided a template launch script in the <code class="highlighter-rouge">/opt/okera/deployment-manager/bin/start-ec2-machine-example.sh</code> directory.
+Copy the script and adapt it to your requirements.
+The user-configurable values are at the top of the file, marked <code class="highlighter-rouge">USER</code> in a comment.
+At a minimum, a subnet ID and security group ID must be added to the script.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/cerebro/deployment-manager/bin/start-ec2-machine-example.sh /etc/cerebro/launch-ec2.sh
+<p><strong>Example:</strong> Migrating the launch script for editing</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/okera/deployment-manager/bin/start-ec2-machine-example.sh /etc/okera/launch-ec2.sh
 </code></pre></div></div>
 
-<p>To verify the launch script, Cerebro recommends running it with no arguments, from the
-DeploymentManager machine, as the same user as the DeploymentManager, with identical proxy
-settings (if any), and identical AWS settings. The script should run successfully with no
-arguments, and it should output the instance-id and ip addresses of the newly launched
-instance.</p>
+<p>To verify the launch script, Okera recommends running it with no arguments, from the Deployment Manager machine, as the same user as the Deployment Manager, with identical proxy settings (if any), and identical AWS settings.
+The script should run successfully with no arguments, and it should output the instance-id and ip addresses of the newly launched instance.</p>
 
-<p>Launch script validation was recently added to CDAS. This requires that launch scripts
-support a “–dryrun” flag and exit with a status of zero when invoked with that flag.</p>
+<p>Launch script validation was recently added to ODAS.
+This requires that launch scripts support a <code class="highlighter-rouge">--dryrun</code> flag and exit with a status of <code class="highlighter-rouge">0</code> when invoked with that flag.</p>
 
-<p>For example:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/etc/cerebro/launch-ec2.sh
-<span class="nt">--dryrun</span> Dry run succeeded
-<span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$?</span> 0
+<p><strong>Example:</strong> Launch script validation</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/okera/launch-ec2.sh <span class="nt">--dryrun</span> Dry run succeeded
+<span class="nb">echo</span> <span class="nv">$?</span>
+0
 </code></pre></div></div>
 
-<p>The “Dry run succeeded” line is not required.</p>
-
-<p>When a launch script is invoked without the “–dryrun” flag, it is expected to return a
-string of the form:</p>
-
-<p><code class="highlighter-rouge">&lt;instance id&gt;,&lt;public ip&gt;,&lt;private ip&gt;</code></p>
+<p>When a launch script is invoked without the <code class="highlighter-rouge">--dryrun</code> flag, it is expected to return a string of the form:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
+</code></pre></div></div>
 
 <blockquote>
-  <p><strong>Note:</strong> The public ip value is optional. If your setup does not use it,
-simply output: <code class="highlighter-rouge">&lt;instance id&gt;,,&lt;private ip&gt;</code></p>
+  <p><strong>Note:</strong> The public IP value is optional.
+If your setup does not use it, its spot will appear blank.</p>
 </blockquote>
 
-<p>With the script built, start a cluster from the CLI.</p>
+<h3 id="prep-the-cluster">Prep the Cluster</h3>
 
-<p>First create an environment. An environment captures all the configurations required to
-launch clusters.</p>
+<p>We’re almost ready to start a cluster from the CLI.</p>
 
-<p>Examples of environments might be ‘dev’ or ‘prod’.</p>
+<p>First create an environment.
+An environment captures all the configurations required to launch clusters.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli environments create <span class="nt">--name</span><span class="o">=</span>&lt;Name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>&lt;Absolute path on DeploymentManager machine&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;Comma separated list of init scripts&gt;
+<p>Examples of environments might be for development or production, with the basic template:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>&lt;DM_path_to_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
 </code></pre></div></div>
 
-<p>For example:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./cerebro_cli environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>/etc/cerebro/launch-ec2.sh
+<p><strong>Example:</strong> Environment definition</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>/etc/okera/launch-ec2.sh
 </code></pre></div></div>
 
-<h3 id="creating-a-cluster">Creating a Cluster</h3>
+<h3 id="create-a-cluster">Create a Cluster</h3>
 
-<p>Create a cluster in the environment. Multiple clusters can be created with the same
-environment.</p>
+<p>Next we create at least one cluster in the environment.
+Multiple clusters can be created with the same environment.</p>
 
 <blockquote>
   <p><strong>Note:</strong> See <a href="/cluster-types">Cluster Types</a> for the available option when using the <code class="highlighter-rouge">--type</code> parameter.</p>
 </blockquote>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters create <span class="nt">--name</span><span class="o">=</span>&lt;Name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;Number of nodes&gt; <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>&lt;ID from environments create&gt;
+<p>Cluster creation follows this template:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>&lt;cluster_name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;node_count&gt; <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>&lt;environment_ID&gt;
 </code></pre></div></div>
 
-<p>For example:</p>
+<p>Where the <code class="highlighter-rouge">&lt;environment_ID&gt;</code> is the numeric ID assigned after environment creation in the previous section.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./cerebro_cli clusters create <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
+<p><strong>Example:</strong> Creating a new cluster for environment <code class="highlighter-rouge">1</code></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
 </code></pre></div></div>
 
-<p>List the running clusters. The newly created cluster should be visible.</p>
+<p>List the running clusters.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters list
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters list
 </code></pre></div></div>
 
-<p>The cluster should be shown as ‘Provisioning’. You can see more details, including how long
-it has been in this state using the cerebro_cli. This assumes the cluster as id ‘1’.
-If not, get the id from the ‘clusters list’.</p>
+<p>The newly created cluster should be returned and shown as “Provisioning”.
+You can see more details, including how long it has been in this state using the Okera CLI.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters status <span class="nt">--detail</span> 1
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters status <span class="nt">--detail</span> &lt;cluster_ID&gt;
 </code></pre></div></div>
 
-<p>It might be convenient to ‘watch’ the cluster until the state transitions to ‘READY’. It
-takes a few minutes to provision the machines, install CDAS, and start up all the services.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch cerebro_cli clusters status 1
+<p>It might be convenient to watch the cluster until the state transitions to “READY”.
+It takes a few minutes to provision the machines, install ODAS, and start up all the services.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch ocadm clusters status &lt;cluster_ID&gt;
 </code></pre></div></div>
 
-<p>At this point all of Cerebro is up and running. To see the externally configured end
-points, run:</p>
+<p><strong>At this point all of Okera is up and running!</strong></p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters endpoints 1
-</code></pre></div></div>
-<h3 id="determine-the-url-for-the-web-ui">Determine the URL for the Web UI</h3>
-
-<p>The Web UI will operate at a distinct port in your cluster.</p>
-
-<p>Determine the created endpoints.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters endpoints &lt;cluster_id&gt;
+<p>To see the externally configured endpoints, run the <code class="highlighter-rouge">clusters endpoints</code> command.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters endpoints 1
 </code></pre></div></div>
 
-<p>The <strong>host</strong> and <strong>port</strong> of the Web UI are listed with the component named <code class="highlighter-rouge">cerebro_web:webui</code>.</p>
+<blockquote>
+  <p><strong>Note:</strong> The host and port of the Web UI are listed with the component named <code class="highlighter-rouge">okera_web:webui</code>.
+The Web UI will respond at <code class="highlighter-rouge">http://&lt;host&gt;:&lt;port&gt;</code>, or <code class="highlighter-rouge">https://&lt;host&gt;:&lt;port&gt;</code> if using SSL.</p>
+</blockquote>
 
-<p>The Web UI will respond at <code class="highlighter-rouge">http://&lt;host&gt;:&lt;port&gt;</code>, or <code class="highlighter-rouge">https://&lt;host&gt;:&lt;port&gt;</code> if using SSL.</p>
+<h4 id="restarting-a-failed-cluster-after-addressing-issues">Restarting a Failed Cluster after Addressing Issues</h4>
 
-<h3 id="restarting-failed-cluster-after-addressing-issues">Restarting Failed Cluster after Addressing Issues</h3>
+<p>During an Okera environment creation, the launch scripts, init scripts, and config files are copied to the Okera install directory.
+Copying the config files is done to ensure that the clusters using that environment are unaffected by any new environments or clusters with different configurations.</p>
 
-<p>During a Cerebro environment creation, the launch, init scripts, and config files are
-copied to the Cerebro install directory. Copying the config files is done to ensure that
-the clusters using that environment are unaffected by any new environments or clusters with
-different configurations.</p>
+<p>If the script or config files in the environment contain errors, then the errors need to be corrected and the affected clusters restarted.
+This includes issues with the <code class="highlighter-rouge">launch-ec2.sh</code> script and any specified init scripts.</p>
 
-<p>If the script or config files in the environment have errors, then the errors need to be
-corrected and the affected clusters restarted. This includes issues with the
-<code class="highlighter-rouge">launch-ec2.sh</code> script and any specified init scripts.</p>
+<p>The Okera install scripts and config files are located at the
+<code class="highlighter-rouge">$DEPLOYMENT_MANAGER_INSTALL_DIR/env/&lt;environment_id&gt;</code> directory.
+The <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> environment variable defaults to <code class="highlighter-rouge">/etc/okera</code>.</p>
 
-<p>The Cerebro install scripts and config files are located at the
-<code class="highlighter-rouge">$DEPLOYMENT_MANAGER_INSTALL_DIR/env/&lt;environmentid&gt;</code> directory.
-The <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> environment variable defaults to <code class="highlighter-rouge">/etc/cerebro</code>.</p>
+<h4 id="starting-multiple-okera-catalogs-sharing-the-same-metadata">Starting Multiple Okera Catalogs Sharing the Same Metadata</h4>
 
-<h3 id="starting-multiple-cdas-catalogs-sharing-the-same-metadata">Starting Multiple CDAS Catalogs Sharing the Same Metadata</h3>
+<p>Okera catalogs can be configured to share underlying metadata.
+This feature is supported for “active-passive” configurations.
+When creating the multiple clusters, supply the <code class="highlighter-rouge">catalogDbNamePrefix</code> option using the same argument value in both cases.
+Catalogs that share the same name also share the same metadata.</p>
 
-<p>Cerebro catalogs can be configured to share underlying metadata. This feature is supported
-for “active-passive” configurations. When creating the multiple clusters, supply the
-catalogDbNamePrefix argument. Catalogs that share the same name also share the
-same metadata.</p>
+<p><strong>Example:</strong> Creating two clusters that share metadata:</p>
 
-<p>For example, to create two clusters that share metadata:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./cerebro_cli clusters create <span class="nt">--name</span><span class="o">=</span>prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1 <span class="nt">--catalogDbNamePrefix</span><span class="o">=</span>metadata
-./cerebro_cli clusters create <span class="nt">--name</span><span class="o">=</span>prod-backup <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1 <span class="nt">--catalogDbNamePrefix</span><span class="o">=</span>metadata
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1 <span class="nt">--catalogDbNamePrefix</span><span class="o">=</span>metadata
+ocadm clusters create <span class="nt">--name</span><span class="o">=</span>prod-backup <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1 <span class="nt">--catalogDbNamePrefix</span><span class="o">=</span>metadata
 </code></pre></div></div>
 
 <blockquote>
   <p><strong>Note:</strong> If the <code class="highlighter-rouge">--catalogDbNamePrefix</code> was not explicitly specified during cluster
 creation, then it is the name of the cluster.</p>
 </blockquote>
-
-<h2 id="cerebro-upgrade">Cerebro Upgrade</h2>
-
-<p>Starting with 0.4.0, Cerebro upgrades to newer CDAS versions and patches can be applied using the cerebro_cli command.</p>
-
-<p>See <a href="/cluster-administration">Cluster Administration</a> for further details.</p>
 
 
     <div class="tags">
@@ -1274,9 +1233,11 @@ creation, then it is the name of the cluster.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cluster Launch Plugin API | Okera User Documentation</title>
+<title>ODAS Overview | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -204,7 +204,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li class="active"><a href="odas-overview">ODAS Overview</a></li>
           
           
           
@@ -334,7 +334,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="cluster-launch-plugin-api">Cluster Launch API</a></li>
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -558,59 +558,64 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cluster-launch-plugin-api">Cluster Launch Plugin API</h1>
+  <h1 id="odas-overview">ODAS Overview</h1>
 
-<p>The <strong>Deployment Manager</strong> provides a plugin API to customize how nodes are launched.
-The steps are split into two categories.
-<strong>Launch scripts</strong> run on the Deployment Manager to launch nodes, while <strong>init scripts</strong> run on the launched nodes.</p>
+<p>Okera Data Access Service (ODAS) is a scalable, fault-tolerant distributed service for analytics tools to interact with.
+ODAS performs the I/O and provisions data to third-party tools after applying schema, fine-grained security, and other transformations (user-defined functions, tokenization, masking, and so forth).
+The data is provisioned in the form of familiar abstractions, either tables or files in formats the user may request.
+Different analytics tools like Spark, Python, SQL engines, BI tools, Excel etc interact with this service.</p>
 
-<p>This topic describes the detailed API for each kind of script.</p>
+<h2 id="apis">APIs</h2>
 
-<h2 id="general">General</h2>
+<p>There are three ways to interface with data over ODAS: Java API, Python API, and REST API.</p>
 
-<p>The scripts need to be available to the Deployment Manager.
-They can either be files on a shared FileSystem (including S3) or available on the Deployment Manager host.
-The Deployment Manager will make a copy of the scripts so subsequent edits do not affect existing uses.</p>
+<h3 id="java-api">Java API</h3>
 
-<p>The scripts can be written in any language and we do not inspect them.
-We simply run them.
-We recommend writing them in Bash, as it will run without requiring bootstrapping (for example, installing Python).</p>
+<p>See Extending ODAS</p>
 
-<p>The scripts should return 0 on success and non-zero on error.
-The scripts should print to stderr for diagnostics (ignored by Okera except for logging) and print the result to stdout.
-Okera parses the output from standard out and it must be output exactly as described in this document.</p>
+<h3 id="python-api">Python API</h3>
 
-<h2 id="launch-script">Launch script</h2>
+<p>PyCerebro is the native Python library for clients interacting with ODAS.
+It is similar to the Java libraries and calls the lower level ODAS services.
+The library directly interacts with the planner and worker services.
+There are alternate ways it can interact with ODAS from Python.
+In particular, it can interact by way of the REST API.
+This library can provide more overall control and better performance.
+For simple applications, the REST API may be sufficient.
+We recommend this native library for reading larger volumes of data.</p>
 
-<p>This script is required and is responsible for starting a new instance when called.
-Examples of actions in this script are:</p>
+<p>See the <a href="/pycerebro">PyCerebro documentation</a> for more.</p>
 
-<ul>
-  <li>Launch the EC2 instance in the desired VPC, with SSH keys and the correct security group.</li>
-  <li>Tag the instance as required.</li>
-</ul>
+<h3 id="rest-api">REST API</h3>
 
-<p>This script must accept a single argument, which must be passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance.</p>
+<h2 id="services">Services</h2>
+<p>ODAS is made up of sub-services.</p>
 
-<p>This script should print the <code class="highlighter-rouge">instance_id</code> to stdout.
-It <em>cannot</em> output anything else to stdout.</p>
+<h3 id="planners">Planners</h3>
 
-<h3 id="template">Template</h3>
+<h3 id="workers">Workers</h3>
 
-<p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-machine-example.sh</code>.
-This script can help you get started.
-The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
+<h3 id="web-ui">Web UI</h3>
 
-<h2 id="init-scripts">Init scripts</h2>
+<h3 id="deployment-manager">Deployment Manager</h3>
 
-<p>The Deployment Manager allows you to specify a list of scripts that should be run on the instance when it is first provisioned.
-This is equivalent to running all of these scripts as part of the <code class="highlighter-rouge">--user-data</code> AWS EC2 configuration.</p>
+<p>This is the deployment administration service, responsible for managing all other ODAS components in your enterprise.
+It provides capabilities to spin up and down other services and monitor their status.</p>
 
-<p>These scripts are run in the order provided, always before any Okera instance setup scripts.
-We’ve included an example that will set up the package repo to an internal location:
-<code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/setup-repo-example.sh</code>.</p>
+<h2 id="architectural-options">Architectural Options</h2>
 
-<p>Init scripts should return non-zero on error and can log to stdout or stderr.</p>
+<p>an Okera installation can include multiple instances of ODAS running within your data environment.
+Some may be ephemeral, while others may be persistent.
+Some may be running as independent services whereas others may be co-located with the analytics framework.
+The deployment model depends on the performance and isolation requirements.</p>
+
+<p>First let’s look at a simple ODAS arrangement, with all data and tooling running through a consolidated instance of the access service.</p>
+
+<p><img src="assets/images/architecture-odas-single.png" alt="Singular ODAS instance" title="Example: Singular ODAS instance" /></p>
+
+<p>Next we see a layout with multiple ODAS instances running, governed by a single Okera Catalog service.</p>
+
+<p><img src="assets/images/architecture-odas-multi.png" alt="Multiple ODAS instances" title="Example: Multiple ODAS instances" /></p>
 
 
     <div class="tags">

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cerebro Data Access Service Integration | Cerebro Data User Documentation</title>
+<title>Okera Data Access Service Integration | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,18 +558,18 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cerebro-data-access-service-integration">Cerebro Data Access Service Integration</h1>
+  <h1 id="okera-data-access-service-integration">Okera Data Access Service Integration</h1>
 
-<p>This documents describes how to use Cerebro Data Access Service (CDAS) from a user’s
-perspective. It describes how to configure those tools to use Cerebro.</p>
+<p>This documents describes how to use Okera Data Access Service (ODAS) from a user’s
+perspective. It describes how to configure those tools to use Okera.</p>
 
 <h2 id="hadoop-ecosystem-tools-spark-mapreduce-hive-presto">Hadoop ecosystem tools (spark, mapreduce, hive, presto)</h2>
 
 <h3 id="client-libraries">Client libraries</h3>
 
-<p>For all of the Hadoop ecosystem tools, it is required to include the Cerebro client
+<p>For all of the Hadoop ecosystem tools, it is required to include the Okera client
 libraries. These libraries leverage the analytic tool’s pluggable interfaces to
-communicate and handle the communication and data exchange with the Cerebro servers.
+communicate and handle the communication and data exchange with the Okera servers.
 Depending on the analytics tool, this library can be provided in different ways. For
 example, it can be installed on a system wide class path, can be provided at the time
 the job is submitted (e.g. <code class="highlighter-rouge">spark submit --jars</code>) or bundled into the application (e.g.
@@ -587,7 +588,7 @@ be <code class="highlighter-rouge">spark.recordservice.kerberos.principal.</code
 
 <p><strong>recordservice.planner.hostports</strong></p>
 
-<p>This is always required and is a comma separated list of host:ports where the CDAS
+<p>This is always required and is a comma separated list of host:ports where the ODAS
 planners are running.</p>
 
 <h4 id="authentication-configs">Authentication configs</h4>
@@ -596,12 +597,12 @@ planners are running.</p>
 
 <p>This is the principal of the planner service to connect to. This is a 3 part
 principal: <code class="highlighter-rouge">SERVICE_NAME/SERVICE_HOST@REALM</code>, for example,
-<code class="highlighter-rouge">cerebro/planner.cerebro.com@CEREBRO.COM</code>. This is required if the client is
-authenticating with CDAS using kerberos.</p>
+<code class="highlighter-rouge">okera/planner.okera.com@OKERA.COM</code>. This is required if the client is
+authenticating with ODAS using kerberos.</p>
 
 <p><strong>recordservice.delegation-token.token</strong></p>
 
-<p>This is the token string for this user. CDAS can be configured to accept multiple
+<p>This is the token string for this user. ODAS can be configured to accept multiple
 kinds of tokens but it is the same config for clients.</p>
 
 <p>Note: If both token and principal are specified, the client will only authenticate
@@ -616,14 +617,14 @@ using the token.</p>
 <p>The original hive shell (‘hive’) is also supported.</p>
 
 <p>From the user’s point of view, they simply connect to HS2 as always. HS2 in fact is not
-provided by Cerebro and clients talk to the same HS2 without directly interacting with
-Cerebro (HS2 is configured and integrated with Cerebro). Authentication works exactly
+provided by Okera and clients talk to the same HS2 without directly interacting with
+Okera (HS2 is configured and integrated with Okera). Authentication works exactly
 as always.</p>
 
 <h5 id="setting-up-the-admin-role-quick-start">Setting up the admin role quick start</h5>
 
 <p>These are quick start steps to set up the admin role which has full access to the
-server. The user running these commands needs to have admin to the Cerebro Catalog.</p>
+server. The user running these commands needs to have admin to the Okera Catalog.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>beeline&gt; <span class="o">!</span>connect jdbc:hive2://&lt;host:port of hs2&gt;/default<span class="p">;</span><span class="nv">principal</span><span class="o">=</span>&lt;hs2_principal&gt;
 beeline&gt; CREATE ROLE admin_role<span class="p">;</span>
@@ -633,7 +634,7 @@ beeline&gt; GRANT ROLE admin_role TO GROUP &lt;YOUR ADMIN USER/GROUP&gt;<span cl
 
 <p><strong>Note</strong>: These steps assume a few things about your set up that are no different than
 typical HS2 requirements. The admin user or group that is granted must exist on the unix
-system in both Cerebro and HS2.</p>
+system in both Okera and HS2.</p>
 
 <h5 id="creating-a-dataset">Creating a dataset</h5>
 
@@ -644,8 +645,8 @@ beeline&gt; show tables;
 beeline&gt; select * from sample;
 </code></pre></div></div>
 
-<p>At this point we have added a dataset to Cerebro By default only the admin user/group has
-access to the dataset, which is now accessible to all the Cerebro integrated clients.
+<p>At this point we have added a dataset to Okera By default only the admin user/group has
+access to the dataset, which is now accessible to all the Okera integrated clients.
 Other users accessing this dataset should see the request fail.</p>
 
 <p><strong>Note:</strong> These steps also assumes that the beeline client has access to this location.
@@ -747,7 +748,7 @@ automatically and the only required dependency jars is the
 
 <h3 id="hue-integration">Hue Integration</h3>
 
-<p>Hue does not require any additional steps to work with Cerebro. Hue also connects to
+<p>Hue does not require any additional steps to work with Okera. Hue also connects to
 HiveServer2 and is integrated very similarly as beeline.</p>
 
 <h5 id="troubleshooting">Troubleshooting</h5>
@@ -757,7 +758,7 @@ The user must exist on (as a unix user):</p>
 
 <ul>
   <li>Machine running HS2.</li>
-  <li>Cerebro catalog.</li>
+  <li>Okera catalog.</li>
 </ul>
 
 <h3 id="impala-integration">Impala Integration</h3>
@@ -787,7 +788,7 @@ access control policies (grant/revoke).</p>
 
 <p>Spark requires a single configuration that is the host port of the planner:
 <code class="highlighter-rouge">spark.recordservice.planner.hostports</code>. This should be set to a list of comma
-separated host:port where the Cerebro planners are running. This configuration can
+separated host:port where the Okera planners are running. This configuration can
 either be set system wide (typically <code class="highlighter-rouge">/etc/spark/conf/spark-defaults.conf</code>) or can be
 specified when launching <code class="highlighter-rouge">spark-shell</code> or <code class="highlighter-rouge">spark-submit</code>. For example, you can connect
 to a particular planner with:</p>
@@ -797,20 +798,20 @@ to a particular planner with:</p>
 spark-submit --conf spark.recordservice.hostports=IP:PORT &lt;rest of args&gt;
 </code></pre></div></div>
 
-<p>If using the HiveContext to directly interact with HiveMetastore, the Cerebro catalog
+<p>If using the HiveContext to directly interact with HiveMetastore, the Okera catalog
 configs will need to be set. This requires a configured hive client which is by default
 located in <code class="highlighter-rouge">/etc/hive/conf/hive-site.xml</code>. The configuration should be configured by
 the cluster admin as it can require various settings, particularly if kerberos is
-enabled. To spot check, the config <code class="highlighter-rouge">hive.metastore.uris</code> should be set to the Cerebro
+enabled. To spot check, the config <code class="highlighter-rouge">hive.metastore.uris</code> should be set to the Okera
 catalog.</p>
 
 <h3 id="rest-scan-api">REST Scan API</h3>
 
-<p>CDAS exposes a REST API that returns data as JSON. This API is only intended to read
+<p>ODAS exposes a REST API that returns data as JSON. This API is only intended to read
 data, not to register datasets or update their policies.</p>
 
 <p>The REST API simply exposes a HTTP endpoint. This endpoint is referenced in other
-documents as the <em>CDAS REST server</em> endpoint. To read data, you can simply reach:</p>
+documents as the <em>ODAS REST server</em> endpoint. To read data, you can simply reach:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://&lt;hostport&gt;/api/scan/&lt;dataset name&gt;
 # you can optionally specify how many records with:
@@ -828,7 +829,7 @@ curl &lt;hostport&gt;/api/scan/sample
 curl --negotiate -u : hostport/api/scan/sample
 </code></pre></div></div>
 
-<p>Note that this API, like the other CDAS scan APIs, is intended to feed data into analytics tools.
+<p>Note that this API, like the other ODAS scan APIs, is intended to feed data into analytics tools.
 The analytics tools perform any final computation. For example, an aggregate query like
 “select count(*) from nytaxi.parquet_data” may return multiple rows with partial sums.
 Here, the client (pandas/R/presto etc.) would perform the final computation and return a single row.
@@ -909,9 +910,11 @@ Optional configuration for the hinted maximum number of tasks to generate per Pl
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cluster Launch Plugin API | Okera User Documentation</title>
+<title>Okera Catalog Overview | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -211,7 +211,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          <li class="active"><a href="catalog-overview">Okera Catalog Overview</a></li>
           
           
           
@@ -334,7 +334,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="cluster-launch-plugin-api">Cluster Launch API</a></li>
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -558,59 +558,128 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cluster-launch-plugin-api">Cluster Launch Plugin API</h1>
+  <h1 id="okera-catalog-overview">Okera Catalog Overview</h1>
 
-<p>The <strong>Deployment Manager</strong> provides a plugin API to customize how nodes are launched.
-The steps are split into two categories.
-<strong>Launch scripts</strong> run on the Deployment Manager to launch nodes, while <strong>init scripts</strong> run on the launched nodes.</p>
-
-<p>This topic describes the detailed API for each kind of script.</p>
-
-<h2 id="general">General</h2>
-
-<p>The scripts need to be available to the Deployment Manager.
-They can either be files on a shared FileSystem (including S3) or available on the Deployment Manager host.
-The Deployment Manager will make a copy of the scripts so subsequent edits do not affect existing uses.</p>
-
-<p>The scripts can be written in any language and we do not inspect them.
-We simply run them.
-We recommend writing them in Bash, as it will run without requiring bootstrapping (for example, installing Python).</p>
-
-<p>The scripts should return 0 on success and non-zero on error.
-The scripts should print to stderr for diagnostics (ignored by Okera except for logging) and print the result to stdout.
-Okera parses the output from standard out and it must be output exactly as described in this document.</p>
-
-<h2 id="launch-script">Launch script</h2>
-
-<p>This script is required and is responsible for starting a new instance when called.
-Examples of actions in this script are:</p>
+<p>Okera Catalog is a unified, common set of services that provide vital details to users and the Okera platform itself. Currently the following services are included:</p>
 
 <ul>
-  <li>Launch the EC2 instance in the desired VPC, with SSH keys and the correct security group.</li>
-  <li>Tag the instance as required.</li>
+  <li><a href="#okera-schema-registry">Schema Registry</a></li>
+  <li><a href="#okera-policy-engine">Policy Engine</a></li>
 </ul>
 
-<p>This script must accept a single argument, which must be passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance.</p>
+<p>Each of these is described in the next sections.
+First though, a clarification of the roles of users we see in practice, and how they relate to the Cerbero Catalog services.</p>
 
-<p>This script should print the <code class="highlighter-rouge">instance_id</code> to stdout.
-It <em>cannot</em> output anything else to stdout.</p>
+<h2 id="roles">Roles</h2>
 
-<h3 id="template">Template</h3>
+<p>Data <em>owners</em> or <em>stewards</em> publish datasets and access policies.
+They audit access to data they want to share with others, such as for analytics or building new applications and data flows.
+Meanwhile, data <em>analysts</em> use the Catalog services to discover and understand datasets.</p>
 
-<p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-machine-example.sh</code>.
-This script can help you get started.
-The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
+<p>Data <em>producers</em> publish datasets that they want to share with others for analytics or building new applications and workflows.
+They typically use the following functionality:</p>
 
-<h2 id="init-scripts">Init scripts</h2>
+<ul>
+  <li>Register datasets</li>
+  <li>Define tags and other metadata</li>
+  <li>Define descriptions of datasets</li>
+  <li>Define access policies</li>
+  <li>See audit trail of access</li>
+</ul>
 
-<p>The Deployment Manager allows you to specify a list of scripts that should be run on the instance when it is first provisioned.
-This is equivalent to running all of these scripts as part of the <code class="highlighter-rouge">--user-data</code> AWS EC2 configuration.</p>
+<p>The first three tasks are handled by the Okera Schema Registry, while the access policies are handled by the Okera Policy Engine.</p>
 
-<p>These scripts are run in the order provided, always before any Okera instance setup scripts.
-We’ve included an example that will set up the package repo to an internal location:
-<code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/setup-repo-example.sh</code>.</p>
+<p>Further, <em>consumers</em> (for example, the data analysts) use the Catalog services to discover and understand datasets as well as request access where they don’t have access.
+Consumers typically use the following functionality:</p>
 
-<p>Init scripts should return non-zero on error and can log to stdout or stderr.</p>
+<ul>
+  <li>Discover datasets</li>
+  <li>Understand metadata (description, schema)</li>
+  <li>Understand what they have access to</li>
+  <li>Preview samples</li>
+  <li>Request access</li>
+</ul>
+
+<p>The first two are handled by the Schema Registry, while the last is done using the Policy Engine.</p>
+
+<h2 id="okera-schema-registry">Okera Schema Registry</h2>
+
+<p>The Schema Registry is providing big-data stacks with the ability to store and consume dataset metadata in a platform-agnostic manner.
+The Schema Registry makes metadata and capabilities around metadata a function of the data itself rather than depend on the platform being used to store or process the data.
+The disaggregation of the data stack has enabled companies to construct data platforms using different storage systems and different access engines, each suited for its role, without being limited to a vertically integrated solution that constrains the functionality to what the system provides.</p>
+
+<p>The Schema Registry is a distributed service that coordinates the storage of dataset definitions and other dataset related metadata.
+Typically, a single instance of Okera Schema Registry is deployed that is shared across multiple teams.
+The Schema Registry exposes standard interfaces of the Hive Metastore and REST APIs for interacting with the metadata.
+This makes it the long running, common metastore for the different clients, including the many Hadoop components, irrespective of which infrastructure they are running in (on-premises or cloud) and which analytics tools are used for consuming data (such as AWS’s EMR, Cloudera, HWX, MapR, or a custom implementation of any of the frameworks they are based on).</p>
+
+<p>Typically a data producer – which could be a user interactively using the system or an automated data pipeline job – would send a <em>data-definition language</em> (DDL) SQL statement to the Schema Registry service (by means of the Catalog API). For example, the following statement creates a table over an existing location in AWS S3.</p>
+
+<p><strong>Example:</strong> Creating an external TABLE schema</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">(</span>
+  <span class="n">txnid</span> <span class="n">BIGINT</span><span class="p">,</span>
+  <span class="n">dt_time</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">sku</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">userid</span> <span class="n">INT</span><span class="p">,</span>
+  <span class="n">price</span> <span class="n">FLOAT</span><span class="p">,</span>
+  <span class="n">creditcard</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">ip</span> <span class="n">STRING</span><span class="p">)</span>
+  <span class="k">COMMENT</span> <span class="nv">"Online transactions 2016"</span>
+  <span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
+  <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="nv">","</span>
+  <span class="k">LOCATION</span> <span class="nv">"s3://sales-data/transactions"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>There are commands to CREATE, ALTER, or DROP objects, including databases and tables.
+In the context of the Okera platform, tables are generically referred to as <em>datasets</em>, such as the one shown in the example.</p>
+
+<p>Further reading:</p>
+
+<ul>
+  <li>See the <a href="/catalog-rest-api">Catalog API</a> document for the list of REST endpoints supported by the Catalog services.</li>
+</ul>
+
+<h2 id="okera-policy-engine">Okera Policy Engine</h2>
+
+<p>The Policy Engine enables end users to request access to data as needed.
+It also enforces the granted access levels of users as they consume the data.
+Like the Schema Registry, the Policy Engine is a shared service which is able to handle many ODAS clusters.</p>
+
+<p>All the access to database, datasets, and so on, commonly referred to as <em>objects</em>, is assigned to arbitrary <em>roles</em>.
+These roles are then assigned to groups of known users, enabling the so-called <em>role-based access control</em>.
+The user groups are provided using a variety of sources, including Active Directory (AD), LDAP, JWT, and more.
+The next example is creating a role, and assigns it to two different user groups.</p>
+
+<p><strong>Example:</strong> Creating a role and assigning it to user groups</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">analyst_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">analysts</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">admins</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Then we can define a VIEW over the table created in the previous section, applying tokenization and masking functions that allow only the user <code class="highlighter-rouge">admin</code> to gain full access to the field data.
+All the other users would see the redacted content only.
+The GRANT statement is required to give <em>read</em> access to the shared role.</p>
+
+<p><strong>Example:</strong> Creating a VIEW with masking and allowing access to it</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
+  <span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
+    <span class="n">dt_time</span><span class="p">,</span>
+    <span class="n">sku</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">creditcard</span><span class="p">,</span> <span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
+    <span class="n">decode</span> <span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">AS</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">ip</span>
+  <span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Using the <code class="highlighter-rouge">GRANT &lt;PRIVILEGE&gt; ... WITH GRANT OPTION</code> variant of the statement allows, like in an RDBMS, to delegate control over a subset of the data to a dedicated set of users (via a role again).</p>
+
+<p>The assigned privileges are stored by the Policy Engine and enforced by ODAS as data is accessed by a client.</p>
 
 
     <div class="tags">

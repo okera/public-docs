@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cluster Launch Plugin API | Okera User Documentation</title>
+<title>Okera Database Command-Line Interface | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -334,7 +334,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="cluster-launch-plugin-api">Cluster Launch API</a></li>
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -348,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="okera-database-cli">Database CLI</a> </li>
+          <li class="active"><a href="okera-database-cli">Database CLI</a></li>
           
           
           
@@ -558,59 +558,138 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cluster-launch-plugin-api">Cluster Launch Plugin API</h1>
+  <h1 id="okera-database-command-line-interface">Okera Database Command-Line Interface</h1>
 
-<p>The <strong>Deployment Manager</strong> provides a plugin API to customize how nodes are launched.
-The steps are split into two categories.
-<strong>Launch scripts</strong> run on the Deployment Manager to launch nodes, while <strong>init scripts</strong> run on the launched nodes.</p>
+<p>The Database Command-line Interface (CLI) provides client access to running Okera
+Database services.</p>
 
-<p>This topic describes the detailed API for each kind of script.</p>
+<h2 id="installation">Installation</h2>
 
-<h2 id="general">General</h2>
+<p>For a fresh setup, you can install with:</p>
 
-<p>The scripts need to be available to the Deployment Manager.
-They can either be files on a shared FileSystem (including S3) or available on the Deployment Manager host.
-The Deployment Manager will make a copy of the scripts so subsequent edits do not affect existing uses.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># linux</span>
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/cli/linux/odb <span class="o">&amp;&amp;</span> chmod 755 ./odb
 
-<p>The scripts can be written in any language and we do not inspect them.
-We simply run them.
-We recommend writing them in Bash, as it will run without requiring bootstrapping (for example, installing Python).</p>
+<span class="c"># osx</span>
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/cli/darwin/odb <span class="o">&amp;&amp;</span> chmod 755 ./odb
 
-<p>The scripts should return 0 on success and non-zero on error.
-The scripts should print to stderr for diagnostics (ignored by Okera except for logging) and print the result to stdout.
-Okera parses the output from standard out and it must be output exactly as described in this document.</p>
+<span class="c"># verify the download executes</span>
+./odb <span class="nt">--help</span>
+</code></pre></div></div>
 
-<h2 id="launch-script">Launch script</h2>
+<h2 id="configuration">Configuration</h2>
 
-<p>This script is required and is responsible for starting a new instance when called.
-Examples of actions in this script are:</p>
+<p>The server location and/or default database can be specified to the CLI through the
+<code class="highlighter-rouge">database use</code> command or can be configured from a configuration file which is helpful
+if interacting with the same server and/or database repeatedly. The configuration file
+is stored in <code class="highlighter-rouge">~/.okera/configs.json</code>.</p>
 
-<ul>
-  <li>Launch the EC2 instance in the desired VPC, with SSH keys and the correct security group.</li>
-  <li>Tag the instance as required.</li>
-</ul>
+<p>To configure the location of the catalog service, the file should contain:</p>
 
-<p>This script must accept a single argument, which must be passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+  <span class="s2">"cdas_rest_server"</span>: <span class="s2">"&lt;host:port of catalog admin&gt;"</span>
+  <span class="s2">"database"</span>: <span class="s2">"&lt;name of the database&gt;"</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
-<p>This script should print the <code class="highlighter-rouge">instance_id</code> to stdout.
-It <em>cannot</em> output anything else to stdout.</p>
+<h2 id="quick-start">Quick Start</h2>
 
-<h3 id="template">Template</h3>
+<p>Below are the set of commands to get started with the DBCli and demonstrate some of
+Okera’s capabilities. In this tutorial, authentication is done using tokens that
+have already been created.</p>
 
-<p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-machine-example.sh</code>.
-This script can help you get started.
-The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># configure odb as admin user, verify it can see the sample tables</span>
+./odb database <span class="nt">--cdas_rest_server</span> &lt;host:port of catalog admin&gt; use okera_sample
+./odb set-token &lt;TOKEN&gt;
+./odb set-ssl <span class="nb">enable</span> <span class="o">(</span>only required <span class="k">if </span>SSL is enabled <span class="k">in </span>ODAS<span class="o">)</span>
+./odb show configs
+./odb database list
+./odb dataset <span class="nb">cat </span>sample
 
-<h2 id="init-scripts">Init scripts</h2>
+<span class="c"># we, by default, create a single role, the admin_role, which has system wide access. as</span>
 
-<p>The Deployment Manager allows you to specify a list of scripts that should be run on the instance when it is first provisioned.
-This is equivalent to running all of these scripts as part of the <code class="highlighter-rouge">--user-data</code> AWS EC2 configuration.</p>
+<span class="c"># the admin, you can create and grant roles. we'll create a role, "test_role" and grant</span>
 
-<p>These scripts are run in the order provided, always before any Okera instance setup scripts.
-We’ve included an example that will set up the package repo to an internal location:
-<code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/setup-repo-example.sh</code>.</p>
+<span class="c"># that to users in the "test" group.</span>
+./odb dataset hive-ddl <span class="s2">"show tables in okera_sample"</span>
+./odb dataset hive-ddl <span class="s2">"create role test_role"</span>
+./odb dataset hive-ddl <span class="s2">"show roles"</span>
+./odb dataset hive-ddl <span class="s2">"grant role test_role to group test"</span>
 
-<p>Init scripts should return non-zero on error and can log to stdout or stderr.</p>
+<span class="c"># next, we will give select (aka read) access to the sample table to this new role"</span>
+./odb dataset hive-ddl <span class="s2">"grant select on table okera_sample.sample to role test_role"</span>
+
+<span class="c"># switch to a user that only has the test role, they should now be able to read from</span>
+
+<span class="c"># the sample table. you'll notice they don't have access to the other tables and dbs.</span>
+&lt;switch to user with group <span class="s1">'test'</span><span class="o">&gt;</span>
+
+<span class="c"># run</span>
+./odb set-token &lt;TOKEN&gt;
+./odb dataset list
+./odb dataset <span class="nb">cat </span>sample
+
+<span class="c"># trying to read from the users table will fail with an authorization error as this role</span>
+
+<span class="c"># has only been granted one table.</span>
+./odb dataset <span class="nb">cat </span>users
+
+<span class="c"># to register new databases/datasets, use the database hive-ddl command. this</span>
+
+<span class="c"># is hiveql compatible. for example:</span>
+./odb dataset hive-ddl <span class="s2">"create database test_db"</span>
+./odb dataset hive-ddl <span class="s2">"create external table test_db.new_table(...) LOCATION 's3://...'"</span>
+</code></pre></div></div>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>To get started, run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb --help
+</code></pre></div></div>
+
+<p>Which will display the list of available commands. To use most commands, you will need
+a login token. Use:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb get-token --help
+</code></pre></div></div>
+
+<p>for the available options.</p>
+
+<p>For all commands entering</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb *command* --help
+</code></pre></div></div>
+
+<p>will display the available options and a brief description of each option.</p>
+
+<p>To see your currently saved configuration options, you can enter:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb show configs
+</code></pre></div></div>
+
+<h2 id="database-related-commands">Database Related Commands</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb show status
+</code></pre></div></div>
+
+<p>Will return a response in the form:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Server &lt;host:port&gt; is up and accessible.
+</code></pre></div></div>
+
+<p>When the server is up and available. <code class="highlighter-rouge">&lt;host:port&gt;</code> reflects the configured server
+and port.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb database list
+</code></pre></div></div>
+
+<p>Will list the databases available to you on the configured server.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb dataset list
+</code></pre></div></div>
+
+<p>Will list the datasets available to you in the selected database.</p>
 
 
     <div class="tags">

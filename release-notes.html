@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Release Notes | Cerebro Data User Documentation</title>
+<title>Release Notes | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -559,7 +560,182 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
-<h2 id="10-april-2018">1.0 (april 2018)</h2>
+<h2 id="100-may-1-2018">1.0.0 (May 1, 2018)</h2>
+
+<p>The 1.0.0 release is a major version, introducing significant new functionality and improvements.</p>
+
+<h3 id="name-change-notice">Name Change Notice</h3>
+
+<p>With the 1.0.0 generally available (GA) release, our company and product name changes as well.
+Cerebro Data, Inc is now <strong>Okera, Inc</strong>, and the Cerebro Data Access Platform is now the <strong>Okera Active Data Access Platform</strong>.
+Component names have mostly been updated, and documentation should reflect the current state of all component names.</p>
+
+<h3 id="deprecations-notice">Deprecations Notice</h3>
+
+<ul>
+  <li>Environment variables that begin with <code class="highlighter-rouge">CEREBRO_</code> will continue to be supported only until version 1.2.0 is released.
+For standard environment variables established during installation, <code class="highlighter-rouge">CEREBRO</code> will alias <code class="highlighter-rouge">OKERA</code>.</li>
+</ul>
+
+<h3 id="diagnosability-and-monitoring">Diagnosability and Monitoring</h3>
+
+<ul>
+  <li>
+    <p>Support for collecting logs across all services and machines for diagnostitics. This
+bundle can be sent to Okera or used by users to improve the troubleshooting experience.
+Cluster adminstrators can use the CLI to generate this support bundle across cluster
+services with one command. For more details see TODO.</p>
+  </li>
+  <li>
+    <p>Support for Kubernetes dashboard and Grafana for UI based adminstration and monitoring.
+ODAS now installs and enables the Kubernetes, which helps cluster admins manage a ODAS
+cluster (such as restarting a service, inspecting configs, etc) and Grafana to look at
+metrics across the cluster (cpu usage, memory usage, etc). These can now be optionally
+enabled at cluster creation time. More details TODO.</p>
+  </li>
+</ul>
+
+<h3 id="robustness-and-stability">Robustness and Stability</h3>
+
+<ul>
+  <li>
+    <p>Resolved issue where occasionally multi workers can be assigned to the same VM, causing
+load skew and cluster membership issues.</p>
+  </li>
+  <li>
+    <p>Improved healthchecking to be able to detect service availibity, trigger repair of
+individual containers more reliably. The cluster auto-heals better.</p>
+  </li>
+  <li>
+    <p>Beta support for Amazon Web Services Auto Scaling Groups (ASG). Users can now provide
+an ASG launch script instead of the instance launch script and the ODAS cluster will
+be built using the ASG. This should improve cluster launch times at scale, make it
+easier to manage the VMs (a single ODAS cluster is one ASG) as well as handle node
+failures. When the ASG relaunches a machine for the failed nodes, the Deployment Manager
+will automatically detect this, remove the failed nodes and add the new ones. See TODO.</p>
+  </li>
+</ul>
+
+<h3 id="docs">Docs</h3>
+
+<ul>
+  <li>
+    <p>Documentation now supports search. The documentation is now indexed and supports
+searching.</p>
+  </li>
+  <li>
+    <p>Documentation from zendesk has been consolidated. TODO</p>
+  </li>
+</ul>
+
+<h3 id="ui-improvements">UI improvements</h3>
+
+<ul>
+  <li>
+    <p>Workspace is now enabled for admin users. The workspace provides an easy interface for
+data producers and data stewards to issue DDL and metadata queries against the system,
+without the need to use another tool. Workspace provides basic query capabilities but is
+not intended to be used for analytics. More details TODO.</p>
+  </li>
+  <li>
+    <p>Permissions page has been added to help users understand how permissions have been
+configured. For data stewards, it provides the ability to look up which users have been
+granted access and how. For data consumers, it allows him or her to lookup the information
+to acquire access to more datasets.</p>
+  </li>
+  <li>
+    <p>Users can now tag and favorite datasets to be able to easily work with them again in
+the future. These tags and favorites are currently unique per user.</p>
+  </li>
+</ul>
+
+<h3 id="performance-and-scalability">Performance and scalability</h3>
+
+<ul>
+  <li>
+    <p>Significant performance improvements for metadata operations on large catalogs.
+Numerous improvements were made to the responsiveness of metadata operations (DDL) against
+large catalogs and tables with large number of partitions. This includes operations such
+as <code class="highlighter-rouge">show partitions</code>, <code class="highlighter-rouge">show tables</code>, etc as well as the planning phase at the start of
+each read request.</p>
+  </li>
+  <li>
+    <p>Improvements to task generation in the planner. The planner is responsible for
+generating tasks run by the workers. The tasks generated by the planner should now be
+more even across more cases - for example, skew in partition sizes, data file sizes, etc.</p>
+  </li>
+  <li>
+    <p>Improvements to worker scalability with high concurrency. The workers are now more
+efficient under high concurrency (200+ clients per worker).</p>
+  </li>
+  <li>
+    <p>Better batch size handling in workers. Workers produce results in batches which are
+returned to the client. Improvements were made to manage the batch size and memory usage
+better across a wider range of schemas.</p>
+  </li>
+  <li>
+    <p>Bumped up service sizes. TODO: shekar</p>
+  </li>
+</ul>
+
+<h3 id="emr-integration-improvements">EMR integration improvements</h3>
+
+<ul>
+  <li>
+    <p>Spark: Improved integration to allow running DDL commands from SparkSQL. This
+requires the running user to have ALL access to the datasets.</p>
+  </li>
+  <li>
+    <p>Spark: SparkSQL can be run directly against tables in the catalog with no need to create
+a temporary view. While this worked previous, the integration is improved and now performs
+as well as the temporary view usage pattern. For example, SparkSQL users can just run
+<code class="highlighter-rouge">spark.sql('SELECT * FROM okera_sample.users')</code>.</p>
+  </li>
+  <li>
+    <p>Hive: Numerous integration improvements to run DDL commands from hive.</p>
+  </li>
+  <li>
+    <p>Hive: Improvements to handling of partitioned tables to improve planning performance.</p>
+  </li>
+  <li>
+    <p>Deprecating single-tenant install support. While it is still supported in this release,
+the single-tenant EMR integration is being deprecated. Instead it is recommended to use
+the multi-tenant install but only bootstrap a single (typically hadoop) user. Improvements
+were made to the user bootstrapping and setup scripts. See TODO.</p>
+  </li>
+  <li>
+    <p>HDFS: Support for registering tables that are backed by the local EMR HDFS cluster.
+TODO: explain why.</p>
+  </li>
+  <li>
+    <p>EMR support extended to include 5.1 and 5.2.</p>
+  </li>
+  <li>
+    <p>TODO: what else do we want to include. Token refresh?</p>
+  </li>
+  <li>
+    <p>Hue: TODO (sv)</p>
+  </li>
+</ul>
+
+<h3 id="miscellaneous">Miscellaneous</h3>
+
+<ul>
+  <li>
+    <p>Added support for <code class="highlighter-rouge">BINARY</code> type. This behaves as an alias for the <code class="highlighter-rouge">STRING</code> type.</p>
+  </li>
+  <li>
+    <p>Added support for <code class="highlighter-rouge">REAL</code> type. This behaves as an alias for the <code class="highlighter-rouge">DOUBLE</code> type.</p>
+  </li>
+  <li>
+    <p>Support for registering bucketed tables and views using lateral views. Note that since
+ODAS does not support these, the user must have all access on these tables and views
+and direct access to these files in the file system.</p>
+  </li>
+  <li>
+    <p>Extended ODAS SQL to add <code class="highlighter-rouge">DROP_TABLE_OR_VIEW</code>. TODO(nong)</p>
+  </li>
+</ul>
 
 <h3 id="incompatible-and-breaking-changes">Incompatible and Breaking Changes</h3>
 
@@ -569,40 +745,63 @@ $('#toc').on('click', 'a', function() {
 The old naming scheme was ‘<service>-<pid>-<id>-<timestamp>-<guid>.log'.
 The new naming scheme is: '<timestamp>-<service>-<ip>-<id>-<guid>.log'.</guid></id></ip></service></timestamp></guid></timestamp></id></pid></service></p>
 
-<p>*** Rest server returns decimal data as string, instead of double</p>
+<p><strong>Rest server returns decimal data as string, instead of double</strong></p>
 
 <p>Decimal data is converted to string, when data is accessed using rest server.
-The json resultset changed the output type to string to prevent any precision loss.</p>
+The json result set changed the output type to string to prevent any precision loss.</p>
 
-<h2 id="090-april-2018">0.9.0 (april 2018)</h2>
+<p><strong>Deployment Manager now requires java 8</strong></p>
 
-<p>0.9.0 contains two major features but is otherwise identical to 0.8.1.</p>
+<p><strong>REST server default timeout increased to 60 seconds from 30</strong></p>
+
+<p>This is mostly to accommodate long ddl commands, such as <code class="highlighter-rouge">alter table recover partitions</code>.</p>
 
 <h3 id="new-features">New features</h3>
 
 <p><strong>Clusters services as Kubernetes daemonsets</strong></p>
 
-<p>CDAS worker nodes have been converted to daemonsets. With this change,
-as the CDAS cluster is scaled up/down, the number of CDAS worker pods
+<p>ODAS worker nodes have been converted to daemonsets. With this change,
+as the ODAS cluster is scaled up/down, the number of ODAS worker pods
 is scaled up/down automatically. Multiple service pods do not bunch up
 on the same host.</p>
 
 <p><strong>Better Application Health Check</strong></p>
 
-<p>CDAS  improves the notion of “healthy” service in this release. It runs application specific
+<p>ODAS  improves the notion of “healthy” service in this release. It runs application specific
 requests, instead of a IP(TCP/IP) ping. This ensures that service is not merely up but is actually
 servicing application requests. Examples include running an actual query for planner/worker, running
 a metadata request for catalog health check. A service that fails application requests consequitively
 is considered unhealthy and is restarted.</p>
 
+<p><strong>New data types</strong></p>
+
+<p>ODAS now supports REAL and BINARY data types. For details, refer to <a href="/data-types">docs</a>.</p>
+
+<h3 id="incompatible-and-breaking-changes-1">Incompatible and Breaking Changes</h3>
+
+<p><strong>New log filename format</strong></p>
+
+<p>The log files that are uploaded to S3 have a new naming scheme.
+The old naming scheme was <code class="highlighter-rouge">&lt;service&gt;-&lt;pid&gt;-&lt;id&gt;-&lt;timestamp&gt;-&lt;guid&gt;.log</code>.
+The new naming scheme is: <code class="highlighter-rouge">&lt;timestamp&gt;-&lt;service&gt;-&lt;ip&gt;-&lt;id&gt;-&lt;guid&gt;.log</code>.</p>
+
+<p><strong>ODAS REST Service returns decimal data as string, instead of double</strong></p>
+
+<p>Decimal data is converted to string, when data is accessed using REST service.
+The JSON resultset changed the output type to string in order to prevent any precision loss.</p>
+
+<h2 id="090-april-2018">0.9.0 (april 2018)</h2>
+
+<p>The 0.9.0 introduces two major new features but no significant alterations to existing features or functionality.</p>
+
 <p><strong>Support for struct types</strong></p>
 
-<p>CDAS and the client libraries now support struct as a data type. This allows the engine
+<p>ODAS and the client libraries now support struct as a data type. This allows the engine
 to handle nested data. For details, see the <a href="/complex-types">docs</a>.</p>
 
 <p><strong>Support for scanning last partition of a table</strong></p>
 
-<p>CDAS’s query language has been extended to easily support just reading the last partition
+<p>ODAS’s query language has been extended to easily support just reading the last partition
 of a partitioned table. This is a common pattern in multiple use cases.
 See <a href="/supported-sql#last-partition">supported sql</a> for more details.</p>
 
@@ -613,9 +812,9 @@ new lines). Clients often consume this via a tool and the formatting is an unnec
 cost. Users can pass the <code class="highlighter-rouge">?format</code> option to enable server side formatting.</p>
 
 <p>For example:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl localhost:11050/scan/cerebro_sample.sample
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl localhost:11050/scan/okera_sample.sample
 <span class="o">[{</span><span class="s2">"record"</span>:<span class="s2">"This is a sample test file."</span><span class="o">}</span>,<span class="o">{</span><span class="s2">"record"</span>:<span class="s2">"It should consist of two lines."</span><span class="o">}]</span>
-<span class="o">&gt;</span> curl localhost:11050/scan/cerebro_sample.sample?format
+<span class="o">&gt;</span> curl localhost:11050/scan/okera_sample.sample?format
 <span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">"record"</span>: <span class="s2">"This is a sample test file."</span>
@@ -669,7 +868,7 @@ supported.</p>
 we do not treat bucket URIs without a trailing slash as valid URI. For example,
 <code class="highlighter-rouge">s3://bucket</code> is invalid and should be <code class="highlighter-rouge">s3://bucket/</code>. Note that this is specific for
 how buckets behave; subdirectories do not need to end in a slash. This has always
-been the behavior in CDAS but other tools or existing metadata may have allowed invalid
+been the behavior in ODAS but other tools or existing metadata may have allowed invalid
 URIs to be persisted. In this release we allow revoking both kinds of URIs so that
 the invalid entries can be corrected.</p>
   </li>
@@ -699,28 +898,28 @@ what is possible through the java client.</p>
 
 <p>In this initial release, we primarily want to ensure the library is easy to install,
 and supports the required authentication mechanisms in a variety of environments. It has
-support for executing DDL and scan statements against the CDAS servers. In the next
+support for executing DDL and scan statements against the ODAS servers. In the next
 release, we will optimize the scan APIs further.</p>
 
 <p>For more details, see the <a href="/pycerebro">docs</a>.</p>
 
 <p><strong>Improved support for partitioned tables when using them from EMR</strong></p>
 
-<p>In previous releases, Cerebro would return the tables as unpartitioned tables to hive.
+<p>In previous releases, Okera would return the tables as unpartitioned tables to hive.
 While this allowed the tables to be scanned and partition pruning worked correctly (via
 the more general predicate pushdown mechanism), it meant that commands such as
 <code class="highlighter-rouge">show partitions</code> did not work. In this release, we more faithfully return the
-partitioning information to Hive, and the Cerebro partitioned tables behave much more
+partitioning information to Hive, and the Okera partitioned tables behave much more
 similar to standard hive partitioned tables.</p>
 
-<p><strong>Remove cases where CDAS may need write permissions to underlying storage system</strong></p>
+<p><strong>Remove cases where ODAS may need write permissions to underlying storage system</strong></p>
 
-<p>In typical usage patterns, CDAS only needs read access to the underlying storage system.
-For example, it should not be necessary to give CDAS write access to the S3 buckets where
-the data is stored, just read access. While CDAS has never written or modified data files
-it manages, there were specific cases where CDAS would try to create the directory
-structure. For example, creating a table over a non-existent path could result in CDAS
-trying to create that path. This could result in some DDL commands failing if CDAS
+<p>In typical usage patterns, ODAS only needs read access to the underlying storage system.
+For example, it should not be necessary to give ODAS write access to the S3 buckets where
+the data is stored, just read access. While ODAS has never written or modified data files
+it manages, there were specific cases where ODAS would try to create the directory
+structure. For example, creating a table over a non-existent path could result in ODAS
+trying to create that path. This could result in some DDL commands failing if ODAS
 only had read access. In this release, removed those cases and these DDL commands
 should complete successfully.</p>
 
@@ -734,20 +933,20 @@ section of the EMR docs for more details.</p>
 <p><strong>Support for ALTER TABLE RECOVER PARTITIONS</strong></p>
 
 <p>This command behaves identical to the HiveQL command to reconstruct partitions
-automatically from the file system structure. This must be run from a Cerebro native
-API, such as the REST API or via <code class="highlighter-rouge">dbcli</code>. It is not possible to run this from hive emr.</p>
+automatically from the file system structure. This must be run from an Okera native
+API, such as the REST API or via <code class="highlighter-rouge">odb</code>. It is not possible to run this from hive emr.</p>
 
-<p><strong>Support for user defined functions (UDFs) registered in CDAS to be available to EMR</strong></p>
+<p><strong>Support for user defined functions (UDFs) registered in ODAS to be available to EMR</strong></p>
 
-<p>UDFs that have been registered in CDAS are now accessible to Hive. Previously these
-UDFs would have to be registered once in CDAS and then once again for each EMR cluster.
-For more details, see <a href="/extending-cdas#using-it-from-hive-emr">this</a>.</p>
+<p>UDFs that have been registered in ODAS are now accessible to Hive. Previously these
+UDFs would have to be registered once in ODAS and then once again for each EMR cluster.
+For more details, see <a href="/extending-odas#using-it-from-hive-emr">this</a>.</p>
 
 <p><strong>Support for specifying an existing Hive Metastore RDBMS database</strong></p>
 
-<p>Users with an existing Hive Metastore can not configure the CDAS catalog to just use
-the same underlying (i.e. RDS) database. This is useful to migrate to the CDAS catalog or
-to bootstrap the CDAS catalog.See the advanced install
+<p>Users with an existing Hive Metastore can not configure the ODAS catalog to just use
+the same underlying (i.e. RDS) database. This is useful to migrate to the ODAS catalog or
+to bootstrap the ODAS catalog.See the advanced install
 <a href="/advanced-install#sharing-existing-hive-metastore-rdbms">docs</a> for more details.</p>
 
 <p><strong>Spark predicate pushdown improvements</strong></p>
@@ -768,7 +967,7 @@ just to verify connectivity or the behavior of builtins and UDFs.</p>
 
 <p><strong>Support for token auto-renewal</strong></p>
 
-<p>The Hive and Spark CDAS client libraries have been updated to call a user-defined token
+<p>The Hive and Spark ODAS client libraries have been updated to call a user-defined token
 acquisition script to refresh an expired token.
 Configuration details and script requirements can be found in the
 <a href="/emr-integration">EMR documentation</a>.</p>
@@ -792,11 +991,11 @@ are now visible to user if they have any access to any objects in it.</p>
   </li>
   <li>
     <p>Fixed an issue in the Web UI where if the user logged in via OAuth, the
-UI showed a Cerebro Token instead of an SSO Token.</p>
+UI showed an Okera Token instead of an SSO Token.</p>
   </li>
 </ul>
 
-<h3 id="incompatible-and-breaking-changes-1">Incompatible and Breaking Changes</h3>
+<h3 id="incompatible-and-breaking-changes-2">Incompatible and Breaking Changes</h3>
 
 <ul>
   <li>
@@ -805,14 +1004,14 @@ which were previously incorrectly reported as <code class="highlighter-rouge">0<
 for users reading directly from the REST API that depended on the previous behavior.</p>
   </li>
   <li>
-    <p>CEREBRO_DB_NAME has been deprecated and replaced by CEREBRO_DM_DB_NAME. The
+    <p>OKERA_DB_NAME has been deprecated and replaced by OKERA_DM_DB_NAME. The
 Deployment Manager will fail to start if both env variables are set with conflicting
 values. While we maintain compability of this flag in this release, the old
-setting (‘CEREBRO_DB_NAME’) will be removed in a future release. Custom scripts
-referencing CEREBRO_DB_NAME will need to be updated eventually.</p>
+setting (‘OKERA_DB_NAME’) will be removed in a future release. Custom scripts
+referencing OKERA_DB_NAME will need to be updated eventually.</p>
   </li>
   <li>
-    <p>In 0.8.0 and beyond the Cerebro web UI no longer supports IE 11.</p>
+    <p>In 0.8.0 and beyond the Okera web UI no longer supports IE 11.</p>
   </li>
   <li>
     <p>Deployments using unix-based group resolution now treat group names as case sensitive.
@@ -821,7 +1020,7 @@ that this is specific to deployments configured to get user group information fr
 host unix VM.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">CEREBRO_OAUTH_SUB_ENDPOINT</code> is no longer required nor supported. It can
+    <p><code class="highlighter-rouge">OKERA_OAUTH_SUB_ENDPOINT</code> is no longer required nor supported. It can
 be safely removed from any configuration locations.</p>
   </li>
   <li>
@@ -840,14 +1039,14 @@ script that should be run after the existing bootstrap script. See the
 enabled and the certificate is self signed, the Tableau connector will fail with an
 SSL handshake error. The issue is that Tableau is unable to find the self signed
 certificate in all cases. Potential workarounds are to use a certificate signed by a
-CA or to connect to CDAS through a JDBC enabled framework, such as presto.</li>
+CA or to connect to ODAS through a JDBC enabled framework, such as presto.</li>
 </ul>
 
 <h2 id="073-feb-2018">0.7.3 (feb 2018)</h2>
 
 <p>0.7.3 is a patch release. It contains a critical presto client issue and we recommend
 all presto users upgrade. Versions prior to 0.7.3 are no longer supported for EMR Presto.
-Note that it is perfectly fine to run a 0.7.3 client (e.g. EMR) against a 0.7.2 CDAS
+Note that it is perfectly fine to run a 0.7.3 client (e.g. EMR) against a 0.7.2 ODAS
 cluster.</p>
 
 <h3 id="bug-fixes-2">Bug Fixes</h3>
@@ -865,8 +1064,8 @@ creating the table, the server can crash. This has been fixed.</p>
   </li>
   <li>
     <p>Fixed some issues related to HTTP proxy settings. We now properly handle proxy
-settings that block access to S3. Previously, the DeploymentManager agent running on
-all the CDAS cluster VMs would not use the proxy settings in all cases. This issue
+settings that block access to S3. Previously, the Deployment Manager agent running on
+all the ODAS cluster VMs would not use the proxy settings in all cases. This issue
 manifests if access to the storage system needs to happen through an HTTP proxy.</p>
   </li>
 </ul>
@@ -881,12 +1080,12 @@ manifests if access to the storage system needs to happen through an HTTP proxy.
   <li>
     <p>Improved REST server scalability in the presence of long running scan requests.
 Previously, long running scans could block out other requests, including the service
-health check. This causes DeploymentManager to report the service as unhealthy. This has
+health check. This causes Deployment Manager to report the service as unhealthy. This has
 been fixed so there are separate request handlers for long requests.</p>
   </li>
   <li>
     <p>Fix to planner refusing all connections due to race conditions when logging. Specific
-request patterns to CDAS can get the planner in a state where it refuses all subsequent
+request patterns to ODAS can get the planner in a state where it refuses all subsequent
 connections. This causes the services to report as 5/7 healthy as well as the REST
 server going into a restart loop. This is caused by race conditions resulting in logs
 not being drained properly. This has been resolved by upgrading our bundled docker version
@@ -899,7 +1098,7 @@ cases, causing those calls to fail. No configuration changes are required. We no
 properly use the proxy configurations if set.</p>
   </li>
   <li>
-    <p>Fixed deployment when the cluster’s private IP range conflicts with what CDAS
+    <p>Fixed deployment when the cluster’s private IP range conflicts with what ODAS
 requires. Specifically, in 0.7.2, we resolved the conflict on the IP range <code class="highlighter-rouge">10.32.0.0/12</code>.</p>
   </li>
   <li>
@@ -909,11 +1108,11 @@ that this was a presentation issue only; the tokens would have expired correctly
   </li>
   <li>
     <p>Fixed issue where catalog does not load properly when there are invalid catalog objects.
-These catalog objects are unreadable by Cerebro but now this no longer causes other
+These catalog objects are unreadable by Okera but now this no longer causes other
 catalog objects to be skipped.</p>
   </li>
   <li>
-    <p>Support LDAP default domains and SSL enabled servers. Previously, CDAS only supported
+    <p>Support LDAP default domains and SSL enabled servers. Previously, ODAS only supported
 distinguished names. Now it is possible to login with a domain name, for example
 <code class="highlighter-rouge">USERS\user</code>. It is also possible to configure a default domain and just login with
 <code class="highlighter-rouge">user</code>.</p>
@@ -930,9 +1129,9 @@ stability fixes.</p>
 
 <ul>
   <li>Support for Json Web Token (JWT) authentication using public key and external server.
-In previous releases, CDAS could only be configured to use one or the other. It is not
+In previous releases, ODAS could only be configured to use one or the other. It is not
 possible to configure both at the same time. For more information see
-<a href="/cdas-authentication">here</a>.</li>
+<a href="/odas-authentication">here</a>.</li>
 </ul>
 
 <h3 id="bug-fixes-4">Bug Fixes</h3>
@@ -940,7 +1139,7 @@ possible to configure both at the same time. For more information see
 <ul>
   <li>
     <p>Support for non-reneweable keytabs
-0.6.2 contains a single fix for kerberized clusters. All CDAS services have been updated
+0.6.2 contains a single fix for kerberized clusters. All ODAS services have been updated
 to be more robust to non-renewable keytabs. Previously, services may become unstable
 when the kerberos tickets expired when using these kind of keytabs.</p>
   </li>
@@ -956,7 +1155,7 @@ that were loaded without error.</p>
 
 <h2 id="062-dec-2017">0.6.2 (dec 2017)</h2>
 
-<p>0.6.2 contains a single fix for kerberized clusters. All CDAS services have been updated
+<p>0.6.2 contains a single fix for kerberized clusters. All ODAS services have been updated
 to be more robust to non-renewable keytabs. Previously, services may become unstable
 when the kerberos tickets expired when using these kind of keytabs.</p>
 
@@ -974,19 +1173,19 @@ For more information on its schema and how to use it, see the <a href="/auditing
 
 <p><strong>Support for Hive SerDes</strong></p>
 
-<p>Prior versions of CDAS had limited support for tables which require a custom Hive SerDe
-to read. In this release, we extended the support to all the CDAS supported types, the
+<p>Prior versions of ODAS had limited support for tables which require a custom Hive SerDe
+to read. In this release, we extended the support to all the ODAS supported types, the
 ability to read SerDe libraries from S3 and builtin, HiveQL compatible support in the
-various CDAS <code class="highlighter-rouge">hive-ddl</code> APIs. For more information, see <a href="/extending-cdas">here</a>.</p>
+various ODAS <code class="highlighter-rouge">hive-ddl</code> APIs. For more information, see <a href="/extending-odas">here</a>.</p>
 
 <p><strong>Support for external views</strong></p>
 
-<p>In prior version of CDAS, views created in Cerebro had to be evaluated in CDAS. This is
+<p>In prior version of ODAS, views created in Okera had to be evaluated in ODAS. This is
 critical for views which enforce data security related transformations. For example, if
-the view anonymizes user data, the view must be evaluated in CDAS before it is returned
+the view anonymizes user data, the view must be evaluated in ODAS before it is returned
 to the client. In this release, we added support for <code class="highlighter-rouge">external views</code>, which are used
 to store views to store data transformations and have no security implications. These
-views are used strictly for tracking what can be evaluated in CDAS or in the compute
+views are used strictly for tracking what can be evaluated in ODAS or in the compute
 application.
 For more details, see <a href="/supported-sql">here</a>.</p>
 
@@ -1011,14 +1210,14 @@ and adjusts based on how long the requests are taking.</p>
 <p><strong>Improved client connection related errors</strong></p>
 
 <p>Previously, the errors related to failed connections from the Java client libraries
-required looking at the CDAS service logs. These errors should now be returned to
+required looking at the ODAS service logs. These errors should now be returned to
 the client. Note that this requires updating the client library to the latest version
 (beta-9) as well. Older clients are compatible and will continue to work, but may not
 see the improved error reporting in all cases.</p>
 
 <p><strong>Filtered dataset search in the UI</strong></p>
 
-<p>The Cerebro UI now has enhanced dataset search capabilities, allowing users to search
+<p>The Okera UI now has enhanced dataset search capabilities, allowing users to search
 for datasets by name and/or database name, as well as filter by any set of databases.</p>
 
 <p><strong>Dataset access inspection in the UI</strong></p>
@@ -1033,7 +1232,7 @@ of groups has access to their datasets as well as which fields in those datasets
     <p>Fixed an issue where the 30-second timeout for session_ids issued
 by the /api/scanpage endpoint was starting from the beginning of a query,
 resulting in the user being “charged” for system time. This was corrected
-and the timer now starts when CDAS begins returning data to the user.</p>
+and the timer now starts when ODAS begins returning data to the user.</p>
   </li>
   <li>
     <p>Fixed /api/scanpage endpoint so that for fetching more than 10,000 records, the total
@@ -1061,13 +1260,13 @@ propagated to sub-directories.</p>
 server-side errors (they were being overwritten with generic error messages).</p>
   </li>
   <li>
-    <p>Fixed an issue where Hive in EMR 5.8 and later would not work with CDAS.
+    <p>Fixed an issue where Hive in EMR 5.8 and later would not work with ODAS.
 EMR 5.8.0 upgraded Hive from 2.1.1 to 2.3.0 which introduced a backward compatibility
 breaking api change, which has been addressed.</p>
   </li>
 </ul>
 
-<h4 id="incompatible-and-breaking-changes-2">Incompatible and Breaking Changes</h4>
+<h4 id="incompatible-and-breaking-changes-3">Incompatible and Breaking Changes</h4>
 
 <ul>
   <li>
@@ -1089,14 +1288,14 @@ required to be <code class="highlighter-rouge">root</code> to run <code class="h
   </li>
   <li>
     <p>Existing launch scripts will not work with 0.7.0. We have enhanced our validation of
-launch scripts when they are registered during the cerebro_cli “environments create”
+launch scripts when they are registered during the okera_cli “environments create”
 call. The changes required to perform that validation necessitates that all launch scripts
 must to be replaced with ones based on the new template provided in the 0.7.0 release.
 Launch scripts based on earlier templates will cause the “environments create” call
 to fail. All of the values that need to be configured have been moved to a dedicated
 section towards the top of the script in the new template, so porting older launch files
 should be fairly quick. Launch scripts based on the 0.7.0 template are backwards
-compatible with older CDAS releases.</p>
+compatible with older ODAS releases.</p>
   </li>
 </ul>
 
@@ -1111,7 +1310,7 @@ before newer DM is installed and restarted.</p>
 <p>** Java 9 is not supported</p>
 
 <p>There is an issue with the new module changes in Java 9 that will be addressed in future
-versions of CDAS.</p>
+versions of ODAS.</p>
 
 <h2 id="053--november-2017">0.5.3  (november 2017)</h2>
 
@@ -1143,9 +1342,9 @@ domain name (instead of IP) if SSL is enabled as additional security. In this re
 added a configuration to specify the DNS name for the REST server. This is not required
 for SSL to be enabled and not all clients require the server to be configured this way.</p>
 
-<p>This configuration is <code class="highlighter-rouge">CEREBRO_SSL_FQDN</code>. For example:</p>
+<p>This configuration is <code class="highlighter-rouge">OKERA_SSL_FQDN</code>. For example:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_SSL_FQDN</span><span class="o">=</span>cluster1.cloud.com
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SSL_FQDN</span><span class="o">=</span>cluster1.cloud.com
 </code></pre></div></div>
 
 <p>Note that due to our traffic routing, this can be the DNS name of any machine in the
@@ -1155,13 +1354,13 @@ cluster, for example, the CNAME for the cluster.</p>
 
 <p><strong>Support for EMR up to 5.9</strong>
 Hive in EMR 5.8, introduced a non backwards compatible change which caused issues for
-older versions (0.6 and before) of Cerebro EMR clients. This has been fixed in 0.6.1
+older versions (0.6 and before) of Okera EMR clients. This has been fixed in 0.6.1
 and now supports all versions from 5.3 to 5.9.</p>
 
 <h2 id="060-sep-2017">0.6.0 (sep 2017)</h2>
 
 <p>0.6.0 is a major release. It includes major new features and numerous improvements
-across the Cerebro services.</p>
+across the Okera services.</p>
 
 <h3 id="new-features-5">New Features</h3>
 
@@ -1186,7 +1385,7 @@ and the groups granting those roles.</p>
 
 <p><strong>Significantly improved integration with EMR</strong></p>
 
-<p>EMR integration has been significantly improved, allowing better pushdown into CDAS
+<p>EMR integration has been significantly improved, allowing better pushdown into ODAS
 across the engines, improved multi-tenant user experience, work scheduling, etc. See
 <a href="/emr-integration">EMR docs</a> for more details.</p>
 
@@ -1204,10 +1403,10 @@ switch to https, whenever interacting with either of these services.</p>
   <li>Improved load balancing for worker tasks. Users should see more consistent load on
 workers, particularly in the case when there are a smaller number of total tasks.</li>
   <li>Significantly reduced memory usage when executing joins.</li>
-  <li>Improved install times. Cerebro binary sizes have been significantly reduced.</li>
+  <li>Improved install times. Okera binary sizes have been significantly reduced.</li>
 </ul>
 
-<h3 id="incompatible-and-breaking-changes-3">Incompatible and breaking changes</h3>
+<h3 id="incompatible-and-breaking-changes-4">Incompatible and breaking changes</h3>
 
 <p><strong>Deprecating specifying user token as part of URL for REST server</strong></p>
 
@@ -1215,13 +1414,13 @@ workers, particularly in the case when there are a smaller number of total tasks
 subsequent release and recommend users start switching now when using the REST server.
 For example, instead of querying <code class="highlighter-rouge">rest-server-host:port/api/databases?user=&lt;TOKEN&gt;</code>,
 clients should instead specify the token as part of the Authorization header. See these
-<a href="/cdas-authentication">docs</a> for more details.</p>
+<a href="/odas-authentication">docs</a> for more details.</p>
 
 <p><strong>WebUI port renamed</strong></p>
 
-<p>The name of the webui port has been renamed from <code class="highlighter-rouge">cerebro_catalog_ui:webui</code> to
-<code class="highlighter-rouge">cerebro_web:webui</code>. This value is used when configuring ports
-(<code class="highlighter-rouge">CEREBRO_PORT_CONFIGURATION</code>) as well as the output from listing the service endpoints.</p>
+<p>The name of the webui port has been renamed from <code class="highlighter-rouge">okera_catalog_ui:webui</code> to
+<code class="highlighter-rouge">okera_web:webui</code>. This value is used when configuring ports
+(<code class="highlighter-rouge">OKERA_PORT_CONFIGURATION</code>) as well as the output from listing the service endpoints.</p>
 
 <p><strong>Permission roles are now consistently case insensitive</strong></p>
 
@@ -1229,7 +1428,7 @@ clients should instead specify the token as part of the Authorization header. Se
 insensitive. This means that commands such as <code class="highlighter-rouge">CREATE ROLE admin_role</code> and
 <code class="highlighter-rouge">CREATE ROLE ADMIN_ROLE</code> now are identical.</p>
 
-<p><strong>Output of <code class="highlighter-rouge">cerebro_cli clusters nodes</code> changed</strong></p>
+<p><strong>Output of <code class="highlighter-rouge">okera_cli clusters nodes</code> changed</strong></p>
 
 <p>The output is no space separated and not commas to make it easier to interop with
 ecosystem tools. If this was consumed from scripts, they may need to be updated.</p>
@@ -1243,7 +1442,7 @@ if the value of a particular cell is NULL, it is displayed as 0. This issue
 additionally exists when querying the Catalog REST API at <code class="highlighter-rouge">/api/scanpage/&lt;dataset&gt;</code>.</p>
 
 <p>The workaround to determine the correct value of the cell is to query the dataset
-records via alternate Cerebro clients, like <code class="highlighter-rouge">dbcli</code>.</p>
+records via alternate Okera clients, like <code class="highlighter-rouge">odb</code>.</p>
 
 <p><strong>Unable to upgrade an existing cluster from 0.5 to 0.6</strong></p>
 
@@ -1265,7 +1464,7 @@ table.</p>
 
 <p><strong>Hive in EMR does not support all DDL commands</strong></p>
 
-<p>The Hive Cerebro integration for EMR does not currently support all DDL commands. It
+<p>The Hive Okera integration for EMR does not currently support all DDL commands. It
 does not support GRANT/REVOKE statement and ALTER TABLE statements.</p>
 
 <p>Workaround: use the DbCli or connect through a kerberized Hive installation.</p>
@@ -1287,7 +1486,7 @@ as well as critical fixes for the Hive EMR integration.</p>
 <h3 id="new-features-6">New Features</h3>
 
 <p>The EMR integration has been updated on the configs that are required for better
-Spark and Hive integration. In particular, we recommend specifying the Cerebro
+Spark and Hive integration. In particular, we recommend specifying the Okera
 planner.hostports config for <em>Spark’s</em> hive-site.xml config. This has been
 updated in the EMR. <a href="/supported-sql">docs</a></p>
 
@@ -1303,10 +1502,10 @@ numerous other bug fixes.</p>
 
 <p><strong>JSON Web Token and SSO support</strong></p>
 
-<p>This release adds support for authentication with CDAS using JSON Web Tokens(JWT).
-These tokens can verified by CDAS using either public/private keys or via an
+<p>This release adds support for authentication with ODAS using JSON Web Tokens(JWT).
+These tokens can verified by ODAS using either public/private keys or via an
 external SSO server. This can be used in addition to or instead of kerberos
-authentication. If an external SSO server is configured, Cerebro can also be
+authentication. If an external SSO server is configured, Okera can also be
 configured to generated SSO tokens in our webui.</p>
 
 <p><strong>Support for joins with views</strong></p>
@@ -1325,7 +1524,7 @@ providing a bootstrap action which enables deeper integration. See the
 
 <p><strong>Simplified Install Process</strong></p>
 
-<p>DeploymentManager config verification has been improved significantly to catch
+<p>Deployment Manager config verification has been improved significantly to catch
 more configuration issues as well as report the issues more intuitively. Please
 let us know how to improve this further. We’ve also removed the steps to upload
 any config files to S3 manually as part of the install.</p>
@@ -1335,28 +1534,28 @@ any config files to S3 manually as part of the install.</p>
 <p>This release corresponds to the beta-6 release of the Hadoop client libraries. While
 previous clients are API compatible, we advise upgrading to this version.</p>
 
-<h3 id="incompatible-and-breaking-changes-4">Incompatible and breaking changes</h3>
+<h3 id="incompatible-and-breaking-changes-5">Incompatible and breaking changes</h3>
 <p><strong>Planner_worker service port renamed</strong></p>
 
-<p>The cerebro_planner_worker service ports have been split into cerebro_planner and
-cerebro_worker. Specifically:</p>
+<p>The okera_planner_worker service ports have been split into okera_planner and
+okera_worker. Specifically:</p>
 <ul>
-  <li>cerebro_planner_worker:planner is now cerebro_planner:planner</li>
-  <li>cerebro_planner_worker:worker is now cerebro_worker:worker</li>
+  <li>okera_planner_worker:planner is now okera_planner:planner</li>
+  <li>okera_planner_worker:worker is now okera_worker:worker</li>
 </ul>
 
-<p>This will need to be updated in the CEREBRO_PORT_CONFIGURATION value as well as the
-output of ‘cerebro_cli clusters list.’</p>
+<p>This will need to be updated in the OKERA_PORT_CONFIGURATION value as well as the
+output of ‘okera_cli clusters list.’</p>
 
 <p><strong>Java client token authentication change</strong></p>
 
 <p>Previously, Hadoop java clients (e.g. MapReduce, Spark, Pig, etc) needed to specify
 the service name if they were using token authentication. This service name had to
-match the principal of the cerebro cluster. For example, if the Cerebro cluster had
-the kerberos principal ‘cdas/service@REALM’, the service name had to be ‘cdas’. This
-value could change from CDAS cluster to CDAS cluster which can be difficult.</p>
+match the principal of the okera cluster. For example, if the Okera cluster had
+the kerberos principal ‘odas/service@REALM’, the service name had to be ‘odas’. This
+value could change from ODAS cluster to ODAS cluster which can be difficult.</p>
 
-<p>In 0.5.0, we’ve update it so this value should always be ‘cerebro’ and we recommend
+<p>In 0.5.0, we’ve update it so this value should always be ‘okera’ and we recommend
 that clients not set it at all (it is the default in the updated client jars). Clients
 that were setting it will see connection failures.</p>
 
@@ -1365,8 +1564,8 @@ that were setting it will see connection failures.</p>
 
 <p><strong>Environment variable name change</strong></p>
 
-<p>The environment variable CEREBRO_JWT_SERVICE_TOKEN_FILE has been replaced with
-CEREBRO_SYSTEM_TOKEN. Users upgrading from 0.4.5 will need to update this config.</p>
+<p>The environment variable OKERA_JWT_SERVICE_TOKEN_FILE has been replaced with
+OKERA_SYSTEM_TOKEN. Users upgrading from 0.4.5 will need to update this config.</p>
 
 <h3 id="known-issues-3">Known issues</h3>
 
@@ -1383,7 +1582,7 @@ table.</p>
 
 <p><strong>Hive in EMR does not support all DDL commands</strong></p>
 
-<p>The Hive Cerebro integration for EMR does not currently support all DDL commands. It
+<p>The Hive Okera integration for EMR does not currently support all DDL commands. It
 does not support GRANT/REVOKE statement and ALTER TABLE statements.</p>
 
 <p>Workaround: use the DbCli or connect through a kerberized Hive installation.</p>
@@ -1391,7 +1590,7 @@ does not support GRANT/REVOKE statement and ALTER TABLE statements.</p>
 <h2 id="042-release-notes-july-2017">0.4.2 release notes (july 2017)</h2>
 
 <p>0.4.2 contains a critical bug fix for users running a newer kernel with the Stack Guard.
-protection. This will result in the CDAS services (planner and worker) crashing on start.</p>
+protection. This will result in the ODAS services (planner and worker) crashing on start.</p>
 
 <p>Kernels with this version are known to be affected: kernel-3.10.0-514.21.2.el7.x86_64.
 We recommend all 0.4.x users upgrade.</p>
@@ -1406,18 +1605,18 @@ We recommend all 0.4.x users upgrade.</p>
 using JWTs do not need to upgrade to this version. For details on how to configure JWT
 support, see the install docs.</p>
 
-<h4 id="incompatible-and-breaking-changes-5">Incompatible and breaking changes</h4>
+<h4 id="incompatible-and-breaking-changes-6">Incompatible and breaking changes</h4>
 <p><strong>Planner_worker service port renamed</strong></p>
 
-<p>The cerebro_planner_worker service ports have been split into cerebro_planner and
-cerebro_worker. Specifically:</p>
+<p>The okera_planner_worker service ports have been split into okera_planner and
+okera_worker. Specifically:</p>
 <ul>
-  <li>cerebro_planner_worker:planner is now cerebro_planner:planner</li>
-  <li>cerebro_planner_worker:worker is now cerebro_worker:worker</li>
+  <li>okera_planner_worker:planner is now okera_planner:planner</li>
+  <li>okera_planner_worker:worker is now okera_worker:worker</li>
 </ul>
 
-<p>This will need to be updated in the CEREBRO_PORT_CONFIGURATION value as well as the
-output of ‘cerebro_cli clusters list.’</p>
+<p>This will need to be updated in the OKERA_PORT_CONFIGURATION value as well as the
+output of ‘okera_cli clusters list.’</p>
 
 <h2 id="041-release-notes">0.4.1 release notes</h2>
 
@@ -1426,10 +1625,10 @@ output of ‘cerebro_cli clusters list.’</p>
 <p>0.4.1 contains bug fixes for 0.4.0 and it is recommended to upgrade all 0.4.0 clusters.</p>
 
 <h3 id="upgrading">Upgrading</h3>
-<p>First, upgrade the DeploymentManager. While the upgrade is happening, existing CDAS
+<p>First, upgrade the Deployment Manager. While the upgrade is happening, existing ODAS
 clusters will continue to be operational.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/cerebro # Or where your existing install directory is.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/okera # Or where your existing install directory is.
 
 
 ## get the tarball from s3.
@@ -1442,7 +1641,7 @@ tar xzf deployment-manager-0.4.1.tar.gz &amp;&amp; rm deployment-manager-0.4.1.t
 
 
 ## restart the deploymentmanager
-/opt/cerebro/deployment-manager/bin/deployment-manager
+/opt/okera/deployment-manager/bin/deployment-manager
 
 
 ## upon restarting, the new deploymentmanager will take a few seconds to health check
@@ -1452,7 +1651,7 @@ tar xzf deployment-manager-0.4.1.tar.gz &amp;&amp; rm deployment-manager-0.4.1.t
 
 <p>When all the existing clusters report READY, upgrade those clusters one by one. For
 each cluster, run:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cerebro_cli clusters upgrade --version=0.4.1 &lt;CLUSTER_ID&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>okera_cli clusters upgrade --version=0.4.1 &lt;CLUSTER_ID&gt;
 </code></pre></div></div>
 
 <p>This will take a few minutes to download the updated binaries and restart the cluster
@@ -1469,20 +1668,20 @@ See the cluster admin docs for more details.</p>
 <h3 id="new-features-8">New Features</h3>
 <p>In addition, we’ve added a new feature to allow the user to configure CNAMEs for
 service endpoints. This is useful for example, if end users should only access the
-cdas_rest_server API endpoint behind a CNAME.
-In the example below, the service endpoint <code class="highlighter-rouge">cdas_rest_server:api</code> maps to the CNAME
+odas_rest_server API endpoint behind a CNAME.
+In the example below, the service endpoint <code class="highlighter-rouge">odas_rest_server:api</code> maps to the CNAME
 <code class="highlighter-rouge">cname1.example.com</code></p>
 
-<p>Update the CEREBRO_SERVICE_CNAME_MAP config in your env.sh file as follows:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">CEREBRO_SERVICE_CNAME_MAP</span><span class="o">=</span><span class="s2">"&lt;service_endpoint_host&gt;:&lt;service_endpoint_port&gt;:&lt;CNAME&gt;"</span>
+<p>Update the OKERA_SERVICE_CNAME_MAP config in your env.sh file as follows:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">OKERA_SERVICE_CNAME_MAP</span><span class="o">=</span><span class="s2">"&lt;service_endpoint_host&gt;:&lt;service_endpoint_port&gt;:&lt;CNAME&gt;"</span>
 </code></pre></div></div>
 
 <p>In the case of the above example this becomes:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">CEREBRO_SERVICE_CNAME_MAP</span><span class="o">=</span><span class="s2">"cdas_rest_server:api:cname1.example.com"</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">OKERA_SERVICE_CNAME_MAP</span><span class="o">=</span><span class="s2">"odas_rest_server:api:cname1.example.com"</span>
 </code></pre></div></div>
-<p>Once set, restart your DeploymentManager.</p>
+<p>Once set, restart your Deployment Manager.</p>
 
-<p><strong>NOTE:</strong> If you upgrade your DeploymentManager to 0.4.1, make sure you upgrade CDAS to
+<p><strong>NOTE:</strong> If you upgrade your Deployment Manager to 0.4.1, make sure you upgrade ODAS to
 0.4.1 as well.</p>
 
 <h2 id="040-release-notes">0.4.0 release notes</h2>
@@ -1495,7 +1694,7 @@ In the example below, the service endpoint <code class="highlighter-rouge">cdas_
 
 <p>Cluster administration has been significantly enhanced to protect your cluster from
 accidental termination, scaling an existing cluster, and upgrading to newer versions
-of CDAS components.
+of ODAS components.
 See <a href="/cluster-administration">Cluster Administration</a> for further details.</p>
 
 <p><strong>SQL Statement Processing</strong></p>
@@ -1506,44 +1705,44 @@ process SQL statements through a POST interface.</p>
 <p><strong>Database Command Line Interface (CLI)</strong></p>
 
 <p>End-user database and dataset functionality is made available through a command line (CLI)
-tool, dbcli.  The tool enables users to acquire tokens, list databases, list datasets in
+tool, odb.  The tool enables users to acquire tokens, list databases, list datasets in
 a database, show the schema for a dataset (describe), view a sample of data, create tables
 and grant permissions through Hive DDL.</p>
 
-<p>See <a href="/cerebro-database-cli">Database CLI</a> for details.</p>
+<p>See <a href="/okera-database-cli">Database CLI</a> for details.</p>
 
 <p><strong>Basic Authentication using LDAP</strong></p>
 
 <p>With this release, Basic authentication using LDAP is introduced, which should
-allow Cerebro users to authenticate using their Active Directory credentials.</p>
+allow Okera users to authenticate using their Active Directory credentials.</p>
 
 <p>The user now has an option to either use the REST API or the new
-web-based login UI to get their Cerebro token using their Active Directory
+web-based login UI to get their Okera token using their Active Directory
 username and password.</p>
 
-<p>See the <a href="/secure-cerebro-rest-api-ldap">LDAP Basic Auth Document</a> for details.</p>
+<p>See the <a href="/secure-okera-rest-api-ldap">LDAP Basic Auth Document</a> for details.</p>
 
 <h4 id="changes">Changes</h4>
-<p><strong>cerebro_cli utility</strong></p>
+<p><strong>okera_cli utility</strong></p>
 
 <p>The following subcommands were added:</p>
 <ul>
-  <li><code class="highlighter-rouge">cerebro_cli agents state</code>
+  <li><code class="highlighter-rouge">okera_cli agents state</code>
     <ul>
       <li>lists the state of all agents, grouped by cluster</li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">cerebro_cli clusters nodes &lt;cluster id&gt;</code>
+  <li><code class="highlighter-rouge">okera_cli clusters nodes &lt;cluster id&gt;</code>
     <ul>
       <li>lists the nodes that constitute the indicated cluster</li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">cerebro_cli clusters set_default_version
+  <li><code class="highlighter-rouge">okera_cli clusters set_default_version
     --version &lt;version&gt;
     --components &lt;componenta:version,componentb:version&gt; &lt;clusterID&gt;</code>
     <ul>
       <li>Sets the version to be used by clusters that are subsequently created.
-The version flag sets the version of CDAS to install and the
+The version flag sets the version of ODAS to install and the
 components flag allows for specific components to run a different, likely higher,
 version of that component. This command wipes out any existing version and
 component settings. The –version argument must be a valid version,
@@ -1561,7 +1760,7 @@ manage a cluster in another AWS region.</p>
 
 <p><strong>Kerberos</strong></p>
 
-<p>DeploymentManager allows a kerberos principal for the REST API to be explicitly specified.
+<p>Deployment Manager allows a kerberos principal for the REST API to be explicitly specified.
 Previously this was assumed to be derived from the service principal
 (i.e. HTTP/<service_host>).
 See [Kerberos](/kerberos-cluster-setup) docs for more details.</service_host></p>
@@ -1578,22 +1777,22 @@ Configured service port uniqueness is now enforced during Deployment Manager sta
 <p>Writes to S3 buckets now set the server-side encryption flag on the S3 write or copy
 request if the S3_STAGING_ENCRYPTION configuration is set to true.</p>
 
-<h4 id="incompatible-and-breaking-changes-6">Incompatible and Breaking Changes</h4>
-<p><strong>Change to CEREBRO_KERBEROS_KEYTAB_FILE config</strong></p>
+<h4 id="incompatible-and-breaking-changes-7">Incompatible and Breaking Changes</h4>
+<p><strong>Change to OKERA_KERBEROS_KEYTAB_FILE config</strong></p>
 
 <p>Previously, this config used to be the basename of the keytab file and the user was
-required to upload the file to Cerebro’s S3 staging directory. In this release, this
+required to upload the file to Okera’s S3 staging directory. In this release, this
 config has been updated to be the full path to the keytab. The path can be on the
-DeploymentManager machine (e.g. /etc/keytabs/cerebro.keytab) or on S3. No steps are
+Deployment Manager machine (e.g. /etc/keytabs/okera.keytab) or on S3. No steps are
 now required to upload the keytab to the staging directory.</p>
 
-<p>The prior config will no longer validate and the DeploymentManager will not
+<p>The prior config will no longer validate and the Deployment Manager will not
 start up. Users coming from a previous release will need to update their configs.
 For example, by changing:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export CEREBRO_KERBEROS_KEYTAB_FILE=cerebro.keytab
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export OKERA_KERBEROS_KEYTAB_FILE=okera.keytab
 
 ## to
-export CEREBRO_KERBEROS_KEYTAB_FILE=/path/on/deployment-manager/cerebro.keytab
+export OKERA_KERBEROS_KEYTAB_FILE=/path/on/deployment-manager/okera.keytab
 </code></pre></div></div>
 
 <p><strong>Rename database to db</strong></p>
@@ -1626,19 +1825,19 @@ work.</p>
 <h2 id="030-release-notes">0.3.0 release notes</h2>
 
 <h3 id="february-2017">February-2017</h3>
-<p>This is the feature complete release candidate of CDAS.</p>
+<p>This is the feature complete release candidate of ODAS.</p>
 
 <h4 id="new-features-10">New Features</h4>
-<p><strong>Tableau Cerebro Catalog Integration</strong></p>
+<p><strong>Tableau Okera Catalog Integration</strong></p>
 
-<p>You can access data stored in Cerebro using Tableau.
+<p>You can access data stored in Okera using Tableau.
 See <a href="/tableau-web-data-connector">Tableau WDC</a> for details.</p>
 
 <p><strong>Catalog UI</strong></p>
 
 <p>Beta release of the catalog webui. You can see the datasets that are in the system and
 how to read them from a variety of integration points. Just navigate to the
-cerebro_catalog_ui:webui end point and log in with your user token.</p>
+okera_catalog_ui:webui end point and log in with your user token.</p>
 
 <p><strong>Catalog REST API Integration</strong></p>
 
@@ -1649,12 +1848,12 @@ cerebro_catalog_ui:webui end point and log in with your user token.</p>
 
 <p>The installation process has been enhanced by providing customizable templates for
 launching EC2 instances and initializing cluster nodes.  See:
-<a href="/install">Installation Guide</a>, “Starting up a CDAS cluster” for details.</p>
+<a href="/install">Installation Guide</a>, “Starting up a ODAS cluster” for details.</p>
 
 <p><strong>Authentication</strong></p>
 
-<p>With this release, all Cerebro services can run with authentication enabled end-to-end.
-See: <a href="/cdas-authentication">Authentication</a>
+<p>With this release, all Okera services can run with authentication enabled end-to-end.
+See: <a href="/odas-authentication">Authentication</a>
 for further details. This includes non-kerberized clients (for example the catalog webui)
 using tokens.</p>
 
@@ -1671,16 +1870,16 @@ See <a href="/kubernetes-dashboard-quickstart">Kubernetes Quickstart</a> for det
 
 <p>Kubernetes has been upgraded to version 1.5.3 from version 1.4.2.</p>
 
-<h4 id="incompatible-and-breaking-changes-7">Incompatible and Breaking Changes</h4>
-<p>Renamed <em>cerebro_catalog_ui</em> to <em>cdas_rest_server</em>.  This is a port configuration
+<h4 id="incompatible-and-breaking-changes-8">Incompatible and Breaking Changes</h4>
+<p>Renamed <em>okera_catalog_ui</em> to <em>odas_rest_server</em>.  This is a port configuration
 change and will require users to update their env file. Note that this point will also
 need to be exposed.</p>
 
-<p>Installation instructions moved components from /var/run/cerebro to /etc/cerebro. Prior
+<p>Installation instructions moved components from /var/run/okera to /etc/okera. Prior
 versions of the install script recommended you place various files (on the
-DeploymentManager machine) in /var/run/cerebro.
+Deployment Manager machine) in /var/run/okera.
 If you have built scripts and automation following those steps, those should be adapted
-to use /etc/cerebro instead.</p>
+to use /etc/okera instead.</p>
 
 <h4 id="known-issues-5">Known issues</h4>
 <p>Catalog UI sometimes does not refresh databases correctly. Refresh from the browser as a
@@ -1689,7 +1888,7 @@ workaround.</p>
 <h2 id="020-release-notes">0.2.0 release notes</h2>
 
 <h3 id="02-03-2017">02-03-2017</h3>
-<p>0.2.0 Cerebro CDAS release makes significant improvements on usability, security and
+<p>0.2.0 Okera ODAS release makes significant improvements on usability, security and
 reliability.</p>
 
 <h4 id="new-features-11">New Features</h4>
@@ -1714,14 +1913,14 @@ See <code class="highlighter-rouge">Security.md</code> for additional details.</
 
 <p><strong>Admin Dashboard</strong></p>
 
-<p>You may now use the Kubernetes admin dashboard for managing the Cerebro cluster.
+<p>You may now use the Kubernetes admin dashboard for managing the Okera cluster.
 See <code class="highlighter-rouge">KubernetesDashboardQuickStart.md</code> for details.</p>
 
 <p><strong>CLI interface</strong></p>
 
-<p>cerebro_cli has new commands to interact with the DM REST API and the agents.
-See <code class="highlighter-rouge">CerebroCLI.md</code> for details. <code class="highlighter-rouge">Install.md</code> has a few examples.
-Run <code class="highlighter-rouge">cerebro_cli help</code> to see the much improved command line options.</p>
+<p>okera_cli has new commands to interact with the DM REST API and the agents.
+See <code class="highlighter-rouge">OkeraCLI.md</code> for details. <code class="highlighter-rouge">Install.md</code> has a few examples.
+Run <code class="highlighter-rouge">okera_cli help</code> to see the much improved command line options.</p>
 
 <h4 id="incompatible-changes-1">Incompatible Changes</h4>
 <p>No known incompatibilities exist.</p>
@@ -1731,7 +1930,7 @@ Run <code class="highlighter-rouge">cerebro_cli help</code> to see the much impr
 
 <p>This manifests with an error message like:
 Unreachable external machine: 10.1.10.101:8085.
-Expecting Cerebro agent to be running at: 10.1.10.101:8085.</p>
+Expecting Okera agent to be running at: 10.1.10.101:8085.</p>
 
 <p>The workaround is to rerun the command few seconds later.</p>
 
@@ -1744,7 +1943,7 @@ will fail.</p>
 <h2 id="release-notes-1">release notes</h2>
 
 <h3 id="12-6-2016">12-6-2016</h3>
-<p>Multiple updates were made on how to interact with the Cerebro catalog. Some of these
+<p>Multiple updates were made on how to interact with the Okera catalog. Some of these
 changes are not backwards compatible.</p>
 
 <h4 id="new-features-12">New Features</h4>
@@ -1797,9 +1996,11 @@ the dataset with the filter and grant the policy on the new dataset.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

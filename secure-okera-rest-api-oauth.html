@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cluster Launch Plugin API | Okera User Documentation</title>
+<title>Secure Okera REST API Access using OAuth | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -276,7 +276,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          <li class="active"><a href="secure-okera-rest-api-oauth">OAuth Authentication</a></li>
           
           
           
@@ -334,7 +334,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="cluster-launch-plugin-api">Cluster Launch API</a></li>
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -558,59 +558,169 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cluster-launch-plugin-api">Cluster Launch Plugin API</h1>
+  <h1 id="secure-okera-rest-api-access-using-oauth">Secure Okera REST API Access using OAuth</h1>
+<p>The Okera REST API supports OAuth integration, primarily to enable easier Web UI
+access. This document explains how to set up the REST API with OAuth to make the Web UI
+login easier.</p>
 
-<p>The <strong>Deployment Manager</strong> provides a plugin API to customize how nodes are launched.
-The steps are split into two categories.
-<strong>Launch scripts</strong> run on the Deployment Manager to launch nodes, while <strong>init scripts</strong> run on the launched nodes.</p>
+<h2 id="oauth-basics">OAuth Basics</h2>
 
-<p>This topic describes the detailed API for each kind of script.</p>
+<p>In setting up the REST API with basic OAuth integration, the REST API will be able to
+accept an OAuth code token and exchange it for an Okera token automatically. This
+allows the Web UI to redirect an Okera user from the Okera Login Page to a
+preconfigured OAuth service provider (e.g. Google, Ping, etc.), enabling the user to
+login from the external OAuth service. Once logged in, the Web UI uses the ODAS REST
+API to exchange the resulting OAuth token for an Okera token to gain access to the
+Okera Web UI. The user can also then copy his or her token to use it for any Okera
+integration point.</p>
 
-<h2 id="general">General</h2>
+<h2 id="prerequisites-to-enable-oauth">Prerequisites to enable OAuth</h2>
 
-<p>The scripts need to be available to the Deployment Manager.
-They can either be files on a shared FileSystem (including S3) or available on the Deployment Manager host.
-The Deployment Manager will make a copy of the scripts so subsequent edits do not affect existing uses.</p>
-
-<p>The scripts can be written in any language and we do not inspect them.
-We simply run them.
-We recommend writing them in Bash, as it will run without requiring bootstrapping (for example, installing Python).</p>
-
-<p>The scripts should return 0 on success and non-zero on error.
-The scripts should print to stderr for diagnostics (ignored by Okera except for logging) and print the result to stdout.
-Okera parses the output from standard out and it must be output exactly as described in this document.</p>
-
-<h2 id="launch-script">Launch script</h2>
-
-<p>This script is required and is responsible for starting a new instance when called.
-Examples of actions in this script are:</p>
+<p>You will need the following pieces of information about your OAuth service provider:</p>
 
 <ul>
-  <li>Launch the EC2 instance in the desired VPC, with SSH keys and the correct security group.</li>
-  <li>Tag the instance as required.</li>
+  <li><strong>Client ID</strong>
+This is the OAuth client ID that the service provider requires for authenticating
+against Okera. OAuth service providers allow you to create new clients; as part of
+this, you will obtain a Client ID.</li>
+  <li><strong>Authentication URI</strong>
+This is the URI that the OAuth service requires the user to be redirected to when
+requesting authentication. Typically, it renders an HTML login page for that service
+provider. Once the user has successfully interacted with this page, the user is
+redirect back to Okera with an ephemeral <code class="highlighter-rouge">access code</code>.</li>
+  <li><strong>Token URI</strong>
+This is the URI that Okera must use to exchange the <code class="highlighter-rouge">access code</code> for a service
+provider <code class="highlighter-rouge">token</code>. This exchange happens in the REST API.</li>
+  <li><strong>Client Secret</strong>
+This value is provided by the OAuth service provider as part of setting up a new
+client. It is required for Okera to establish trust when attempting the token
+exchange.</li>
+  <li><strong>Redirect URIs</strong>
+This is a list of URIs that will be recognized as acceptable URIs to navigate to
+once the Authentication URI flow is over. These need to be configured in the OAuth
+service provider in the client configuration. Typically, this is just one URI: the
+location of the Okera Web UI’s login page, e.g. <code class="highlighter-rouge">https://my-okera-host:8083/login</code>.</li>
+  <li><strong>Origin URIs</strong>
+These URIs are the same as the Redirect URIs, without the <code class="highlighter-rouge">/login</code> part. For example
+<code class="highlighter-rouge">https://my-okera-host:8083</code>. These values also need to be configured in the OAuth
+service provider, so it will allow redirects from the Okera Web UI.</li>
+  <li><strong>OAuth Scopes (Optional)</strong>
+The scopes determine which information the OAuth service provider will allow the user
+to access once the token is obtained. Okera needs only very basic information, namely
+the subject (<code class="highlighter-rouge">sub</code>) in order to generate an Okera token. Typically, the default here
+(<code class="highlighter-rouge">openid profile email</code>). If there are other scopes required by your OAuth service
+provider to obtain the <code class="highlighter-rouge">sub</code>, you will need to set them.</li>
+  <li><strong>Subject Endpoint (Optional)</strong>
+In some deployments, there may be a need to not encode the subject (<code class="highlighter-rouge">sub</code>) in the JWT
+response from the OAuth token exchange. In this case, Okera needs to know the
+endpoint to call to retrieve the subject, which is the unique user ID that Okera
+can use to generate the token. This endpoint is expected to return a JSON response
+with <code class="highlighter-rouge">sub</code> being a key on the top-level JSON object, e.g. <code class="highlighter-rouge">{"sub": "abc123", ...}</code>.</li>
 </ul>
 
-<p>This script must accept a single argument, which must be passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance.</p>
+<h3 id="setting-up-oauth-configurations">Setting up OAuth configurations</h3>
 
-<p>This script should print the <code class="highlighter-rouge">instance_id</code> to stdout.
-It <em>cannot</em> output anything else to stdout.</p>
+<h4 id="client_secretsjson">client_secrets.json</h4>
 
-<h3 id="template">Template</h3>
+<p>Once you have the above information, you will need to create a JSON file with this
+information encoded in it. The JSON file has the following form:</p>
 
-<p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-machine-example.sh</code>.
-This script can help you get started.
-The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"web"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Client</span><span class="w"> </span><span class="err">ID&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Authentication</span><span class="w"> </span><span class="err">URI&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Token</span><span class="w"> </span><span class="err">URI&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Client</span><span class="w"> </span><span class="err">Secret&gt;</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Redirect</span><span class="w"> </span><span class="err">URIs&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"javascript_origins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&lt;Your</span><span class="w"> </span><span class="err">Origin</span><span class="w"> </span><span class="err">URIs&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<h2 id="init-scripts">Init scripts</h2>
+<p>For example, if Google OAuth were to be used, after setting up a new Google OAuth
+project, we might have the following file:</p>
 
-<p>The Deployment Manager allows you to specify a list of scripts that should be run on the instance when it is first provisioned.
-This is equivalent to running all of these scripts as part of the <code class="highlighter-rouge">--user-data</code> AWS EC2 configuration.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"web"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example12345.apps.googleusercontent.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/token"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"very-secret"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"https://ec2-1234.compute.amazonaws.com:8083/login"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"javascript_origins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"https://ec2-1234.compute.amazonaws.com:8083"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<p>These scripts are run in the order provided, always before any Okera instance setup scripts.
-We’ve included an example that will set up the package repo to an internal location:
-<code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/setup-repo-example.sh</code>.</p>
+<p>Save this file to <code class="highlighter-rouge">/etc/okera/client_secrets.json</code>.</p>
 
-<p>Init scripts should return non-zero on error and can log to stdout or stderr.</p>
+<h4 id="environment-variables">Environment variables</h4>
+
+<p>Okera looks for certain environment variables to be set in order to enable OAuth. In
+your <code class="highlighter-rouge">/etc/okera/env.sh</code> file, set the following environment variables:</p>
+<ul>
+  <li><strong>OKERA_OAUTH_SECRETS</strong>, to <code class="highlighter-rouge">/etc/okera/client_secrets.json</code>, or wherever the
+ <code class="highlighter-rouge">client_secrets.json</code> file is located. Setting this environment variable enables
+ Okera OAuth.</li>
+  <li><strong>OKERA_OAUTH_SCOPES</strong> (optional). Space-separated list of scopes required to
+ obtain the <code class="highlighter-rouge">sub</code>. This is typically OK to leave unset, in which case the default is
+ <code class="highlighter-rouge">"openid profile email"</code>.</li>
+</ul>
+
+<p>As an example, the OAuth part of your <code class="highlighter-rouge">env.sh</code> might look like this:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_OAUTH_SECRETS</span><span class="o">=</span><span class="s2">"/etc/okera/client_secrets.json"</span>
+<span class="nb">export </span><span class="nv">OKERA_OAUTH_SCOPES</span><span class="o">=</span><span class="s2">"openid profile"</span>
+</code></pre></div></div>
+
+<h3 id="verify-oauth">Verify OAuth</h3>
+
+<p>Once you’ve deployed Okera with OAuth enabled, verify that it’s working properly.</p>
+
+<ul>
+  <li>
+    <p><strong>Check the OAuth connection using CURL</strong>:
+The following curl command should return the authentication URI (with client secrets as
+params) in the <code class="highlighter-rouge">oauth_url</code> section:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl &lt;ODAS REST Server Host/Port&gt;/api/info
+<span class="o">{</span>
+  ...,
+  <span class="s2">"oauth_url"</span>: <span class="s2">"&lt;your authentication URI plus client secrets params&gt;"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>For example:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+  <span class="s2">"oauth_url"</span>: <span class="s2">"https://accounts.google.com/o/oauth2/auth?scope=openid+profile+email&amp;redirect_uri=.../login&amp;response_type=code&amp;client_id=abc123.apps.googleusercontent.com&amp;access_type=offline"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="use-the-web-ui">Use the Web UI</h3>
+
+<p>Navigate to the Okera Web UI and there should be a new login option on the login page:
+“Login with OAuth”. Upon clicking it, the UI should redirect to your OAuth service
+provider’s login screen. Upon successful login, the UI should redirect back to the
+Okera Web UI and log you in.</p>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p>If you encounter issues, look in the logs of the ODAS REST Server container, which will
+typically contain information about what went wrong.</p>
+
+<p>Additionally, verify the JSON validity of <code class="highlighter-rouge">client_secrets.json</code>. If it is not
+well-formed, the ODAS REST Server cannot read it.</p>
+
+<p>Finally, ensure Okera information is probably configured in the OAuth service
+provider, e.g. Okera’s Web UI host/port is configured as a valid redirect URI, the
+scopes are valid, etc.</p>
 
 
     <div class="tags">

@@ -24,10 +24,10 @@
 
 
 {
-"title": "Cerebro Data Access Service Authentication",
+"title": "Okera Data Access Service Authentication",
 "tags": "",
 "keywords": "",
-"url": "cdas-authentication",
+"url": "odas-authentication",
 "summary": ""
 }
 ,
@@ -35,10 +35,10 @@
 
 
 {
-"title": "Cerebro Data Access Service CDH Integration",
+"title": "Okera Data Access Service CDH Integration",
 "tags": "",
 "keywords": "",
-"url": "cdas-cdh-integration",
+"url": "odas-cdh-integration",
 "summary": ""
 }
 ,
@@ -57,7 +57,7 @@
 
 
 {
-"title": "cerebro client configurations",
+"title": "Okera Client Configurations",
 "tags": "",
 "keywords": "",
 "url": "client-configs",
@@ -68,7 +68,7 @@
 
 
 {
-"title": "Cerebro Data Access Service Integration",
+"title": "Okera Data Access Service Integration",
 "tags": "",
 "keywords": "",
 "url": "client-integration",
@@ -134,17 +134,6 @@
 
 
 {
-"title": "Cerebro Database Command-Line Interface",
-"tags": "",
-"keywords": "",
-"url": "cerebro-database-cli",
-"summary": ""
-}
-,
-
-
-
-{
 "title": "Docker Quickstart",
 "tags": "",
 "keywords": "",
@@ -156,7 +145,7 @@
 
 
 {
-"title": "Cerebro Data Access Service EMR Integration",
+"title": "Okera Data Access Service EMR Integration",
 "tags": "",
 "keywords": "",
 "url": "emr-integration",
@@ -167,10 +156,10 @@
 
 
 {
-"title": "Extending CDAS",
+"title": "OKERA, INC.",
 "tags": "",
 "keywords": "",
-"url": "extending-cdas",
+"url": "eula",
 "summary": ""
 }
 ,
@@ -178,7 +167,18 @@
 
 
 {
-"title": "Frequently Asked Questions about the Cerebro Platorm",
+"title": "Extending ODAS",
+"tags": "",
+"keywords": "",
+"url": "extending-odas",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Frequently Asked Questions about the Okera Platorm",
 "tags": "",
 "keywords": "",
 "url": "faq",
@@ -200,7 +200,7 @@
 
 
 {
-"title": "Cerebro Installation",
+"title": "Okera Installation",
 "tags": "",
 "keywords": "",
 "url": "install",
@@ -211,7 +211,7 @@
 
 
 {
-"title": "Configuring Cerebro and Kerberos",
+"title": "Configuring Okera and Kerberos",
 "tags": "",
 "keywords": "",
 "url": "kerberos-cluster-setup",
@@ -233,10 +233,10 @@
 
 
 {
-"title": "Secure Cerebro REST API Access Using LDAP",
+"title": "Secure Okera REST API Access Using LDAP",
 "tags": "",
 "keywords": "",
-"url": "secure-cerebro-rest-api-ldap",
+"url": "secure-okera-rest-api-ldap",
 "summary": ""
 }
 ,
@@ -244,7 +244,7 @@
 
 
 {
-"title": "Cerebro Platform Memory Usage",
+"title": "Okera Platform Memory Usage",
 "tags": "",
 "keywords": "",
 "url": "memory-usage",
@@ -255,10 +255,10 @@
 
 
 {
-"title": "Secure Cerebro REST API Access using OAuth",
+"title": "Secure Okera REST API Access using OAuth",
 "tags": "",
 "keywords": "",
-"url": "secure-cerebro-rest-api-oath",
+"url": "secure-okera-rest-api-oauth",
 "summary": ""
 }
 ,
@@ -266,10 +266,10 @@
 
 
 {
-"title": "CDAS Overview",
+"title": "Okera Database Command-Line Interface",
 "tags": "",
 "keywords": "",
-"url": "cdas-overview",
+"url": "okera-database-cli",
 "summary": ""
 }
 ,
@@ -277,10 +277,10 @@
 
 
 {
-"title": "Cerebro Catalog Overview",
+"title": "Okera Catalog Overview",
 "tags": "",
 "keywords": "",
-"url": "cerebro-catalog-overview",
+"url": "catalog-overview",
 "summary": ""
 }
 ,
@@ -288,7 +288,18 @@
 
 
 {
-"title": "Cerebro Unified Data Access Platform Overview",
+"title": "ODAS Overview",
+"tags": "",
+"keywords": "",
+"url": "odas-overview",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Okera Active Data Access Platform Overview",
 "tags": "",
 "keywords": "",
 "url": "product-overview",
@@ -310,7 +321,7 @@
 
 
 {
-"title": "Cerebro Platform Quick Technical Solutions",
+"title": "Okera Platform Quick Technical Solutions",
 "tags": "",
 "keywords": "",
 "url": "quick-recipes",
@@ -332,7 +343,7 @@
 
 
 {
-"title": "Secure DeploymentManager REST API Access",
+"title": "Secure Deployment Manager REST API Access",
 "tags": "",
 "keywords": "",
 "url": "secure-deployment-manager-rest-api",
@@ -343,7 +354,7 @@
 
 
 {
-"title": "Cerebro Service Port Assignments",
+"title": "Okera Service Port Assignments",
 "tags": "",
 "keywords": "",
 "url": "service-port-assignments",
@@ -387,7 +398,7 @@
 
 
 {
-"title": "Cerebro Web UI Basics",
+"title": "Okera Web UI Basics",
 "tags": "",
 "keywords": "",
 "url": "web-ui-basics",
@@ -398,7 +409,7 @@
 
 
 {
-"title": "Cerebro Data User Docs",
+"title": "Okera User Portal",
 "tags": "",
 "keywords": "",
 "url": "",
@@ -439,6 +450,17 @@
 "tags": "",
 "keywords": "",
 "url": "cluster-administration",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "",
+"tags": "",
+"keywords": "",
+"url": "contenttopicsOverviewArchitecture.html",
 "summary": ""
 }
 

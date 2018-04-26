@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Web UI for Administrators | Cerebro Data User Documentation</title>
+<title>Web UI for Administrators | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -560,10 +561,10 @@ $('#toc').on('click', 'a', function() {
   <h1 id="web-ui-for-administrators">Web UI for Administrators</h1>
 
 <p><em>If you have ALL access on a particular object (database or dataset)</em>, you have access to its administration features.
-You should see this icon: <img src="assets/images/ui-icon-admin.png" alt="Cerebro Admin icon" />.</p>
+You should see this icon: <img src="assets/images/ui-icon-admin.png" alt="Okera Admin icon" />.</p>
 
 <blockquote>
-  <p><strong>Tip:</strong> For basic features accessible to all Cerebro users, see <a href="web-ui-basics">Web UI for Analysts</a>.</p>
+  <p><strong>Tip:</strong> For basic features accessible to all Okera users, see <a href="web-ui-basics">Web UI for Analysts</a>.</p>
 </blockquote>
 
 <h2 id="review-group-access-on-datasets">Review Group Access on Datasets</h2>
@@ -576,7 +577,7 @@ You should see this icon: <img src="assets/images/ui-icon-admin.png" alt="Cerebr
 You can select a group or set of groups to see which datasets those groups can access.
 You can also filter by database to review group access to datasets <em>only</em> inside that database.</p>
 
-<p><img src="assets/images/ui-screen-review-access.png" alt="Cerebro Review Access on Datasets" /></p>
+<p><img src="assets/images/ui-screen-review-access.png" alt="Okera Review Access on Datasets" /></p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -587,9 +588,9 @@ Any group not in the available list has no access to any of the datasets shown.<
 
 <p>A column is added to every dataset’s display showing whether the group or groups being inspected can access any field in the dataset.</p>
 
-<p><img src="assets/images/ui-icon-lock.png" alt="Cerebro lock icon" /> The selected group or set of groups have no access to this dataset.</p>
+<p><img src="assets/images/ui-icon-lock.png" alt="Okera lock icon" /> The selected group or set of groups have no access to this dataset.</p>
 
-<p><img src="assets/images/ui-icon-check.png" alt="Cerebro check icon" /> The selected group, or set of groups, has <em>some level of access</em> to this dataset.</p>
+<p><img src="assets/images/ui-icon-check.png" alt="Okera check icon" /> The selected group, or set of groups, has <em>some level of access</em> to this dataset.</p>
 
 <blockquote>
   <p><strong>Note:</strong></p>
@@ -602,7 +603,7 @@ Any group not in the available list has no access to any of the datasets shown.<
 <p>If you have all access to a particular dataset, you will also see an <strong>Access</strong> tab on the dataset details page.
 There you can inspect which groups have access to which fields on a dataset, similarly to the datasets listing panel.</p>
 
-<p><img src="assets/images/ui-screen-review-schema.png" alt="Cerebro Datasets Details page" /></p>
+<p><img src="assets/images/ui-screen-review-schema.png" alt="Okera Datasets Details page" /></p>
 
 <p>A <strong>multi-select box</strong> enables selection of a group or set of groups to see which fields in that dataset those groups can access.
 Similar to reviewing access to whole datasets, only groups with some level of access to the dataset are shown in this multi-select.</p>
@@ -615,9 +616,9 @@ Similar to reviewing access to whole datasets, only groups with some level of ac
 
 <p>Icons indicate whether or not the currently selected groups have access to the field.</p>
 
-<p><img src="assets/images/ui-icon-lock.png" alt="Cerebro Lock icon" /> The selected group or groups have no access to this field.</p>
+<p><img src="assets/images/ui-icon-lock.png" alt="Okera Lock icon" /> The selected group or groups have no access to this field.</p>
 
-<p><img src="assets/images/ui-icon-check.png" alt="Cerebro check icon" /> The selected group or groups have <em>some level of access</em> to this field.</p>
+<p><img src="assets/images/ui-icon-check.png" alt="Okera check icon" /> The selected group or groups have <em>some level of access</em> to this field.</p>
 
 <p>Use the Access tab to also <strong>compare two different sets of groups’ access</strong> by selecting different sets of groups in the two different access columns.</p>
 
@@ -636,9 +637,11 @@ Similar to reviewing access to whole datasets, only groups with some level of ac
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

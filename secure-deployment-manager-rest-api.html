@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Secure DeploymentManager REST API Access | Cerebro Data User Documentation</title>
+<title>Secure Deployment Manager REST API Access | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,21 +558,21 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="secure-deploymentmanager-rest-api-access">Secure DeploymentManager REST API Access</h1>
+  <h1 id="secure-deployment-manager-rest-api-access">Secure Deployment Manager REST API Access</h1>
 
-<p>This document explains how to enable Kerberos-based authentication and admin rights authorization for the DeploymentManager REST APIs.</p>
+<p>This document explains how to enable Kerberos-based authentication and admin rights authorization for the Deployment Manager REST APIs.</p>
 
 <h2 id="kerberos-authentication">Kerberos Authentication</h2>
 
 <p>This section covers:</p>
 
 <ul>
-  <li><a href="#prerequisites-to-enable-kerberos-on-deploymentmanager">Prerequisites to enable Kerberos on the DeploymentManager REST API server</a></li>
+  <li><a href="#prerequisites-to-enable-kerberos-on-deploymentmanager">Prerequisites to enable Kerberos on the Deployment Manager REST API server</a></li>
   <li><a href="#setting-up-the-required-configurations">Setting up the required configurations</a></li>
   <li><a href="#verifying-kerberos-authentication-using-curl">Verify Kerberos authentication using curl</a></li>
 </ul>
 
-<h3 id="prerequisites-to-enable-kerberos-on-deploymentmanager">Prerequisites to Enable Kerberos on DeploymentManager</h3>
+<h3 id="prerequisites-to-enable-kerberos-on-deployment-manager">Prerequisites to Enable Kerberos on Deployment Manager</h3>
 
 <blockquote>
   <p><strong>Note:</strong>  Make sure that your organization has a KDC configured and available.
@@ -589,10 +590,10 @@ format <code class="highlighter-rouge">primary/instance@KDC_REALM</code>:</p>
 
 <h4 id="setting-up-the-required-configurations">Setting up the Required Configurations</h4>
 
-<p>To enable Kerberos on the DeploymentManager REST API Server, set the following two environment variables:</p>
+<p>To enable Kerberos on the Deployment Manager REST API Server, set the following two environment variables:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">DM_PRINCIPAL</code> – The SNP goes here. For example, if your DeploymentManager is hosted at <code class="highlighter-rouge">http://hostname:8085</code>:
+  <li><code class="highlighter-rouge">DM_PRINCIPAL</code> – The SNP goes here. For example, if your Deployment Manager is hosted at <code class="highlighter-rouge">http://hostname:8085</code>:
     <ul>
       <li><code class="highlighter-rouge">DM_PRINCIPAL</code> should be <code class="highlighter-rouge">HTTP/hostname@&lt;KDC_REALM&gt;</code></li>
       <li><code class="highlighter-rouge">DM_KEYTAB_FILE</code> - The absolute path to the Keytab file, corresponding to the SNP and <code class="highlighter-rouge">DM_PRINCIPAL</code> specified above.</li>
@@ -603,30 +604,30 @@ format <code class="highlighter-rouge">primary/instance@KDC_REALM</code>:</p>
 <blockquote>
   <p><strong>Tip: Proper Configuration</strong></p>
 
-  <p>Both of these environment variables must be properly configured to enable Kerberos for your DeploymentManager REST API Server.</p>
+  <p>Both of these environment variables must be properly configured to enable Kerberos for your Deployment Manager REST API Server.</p>
   <ul>
     <li>Be sure the <code class="highlighter-rouge">DM_PRINCIPAL</code> is a 3-part Kerberos Principal and has the 3 components: <code class="highlighter-rouge">primary</code>, <code class="highlighter-rouge">instance</code>, and <code class="highlighter-rouge">KDC_REALM</code>.</li>
     <li>In case the keytab file specified is not present at the location, or only one of the configurations is present, an appropriate error message is returned.</li>
   </ul>
 </blockquote>
 
-<p>In order to run DeploymentManager with Kerberos authentication disabled, make sure neither of these variables is set before starting DeploymentManager.</p>
+<p>In order to run Deployment Manager with Kerberos authentication disabled, make sure neither of these variables is set before starting Deployment Manager.</p>
 
 <p>In addition, make sure <strong>/etc/krb5.conf</strong> has the correct <code class="highlighter-rouge">default_realm</code> and <code class="highlighter-rouge">realm</code> information.</p>
 
 <h4 id="verifying-kerberos-state-at-startup">Verifying Kerberos state at startup</h4>
 
-<p>When starting DeploymentManager with Kerberos enabled, the following lines are displayed in the logs:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DeploymentManager REST API Server running with Kerberos enabled
+<p>When starting Deployment Manager with Kerberos enabled, the following lines are displayed in the logs:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deployment Manager REST API Server running with Kerberos enabled
 </code></pre></div></div>
 
-<p>When starting the DeploymentManager with Kerberos disabled, the following line are displayed in the logs:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DeploymentManager REST API Server running with Kerberos disabled
+<p>When starting the Deployment Manager with Kerberos disabled, the following line are displayed in the logs:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deployment Manager REST API Server running with Kerberos disabled
 </code></pre></div></div>
 
 <h3 id="verifying-kerberos-authentication-using-curl">Verifying Kerberos authentication using curl</h3>
 
-<p>Once you have DeploymentManager running with Kerberos, use the steps below to verify Kerberos authentication:</p>
+<p>Once you have Deployment Manager running with Kerberos, use the steps below to verify Kerberos authentication:</p>
 
 <h4 id="obtain-a-tgt">Obtain a TGT</h4>
 
@@ -663,11 +664,11 @@ For example, for the client principal <code class="highlighter-rouge">john@&lt;K
   </li>
 </ol>
 
-<p>If the output is the client name expected, Kerberos authentication setup for the DeploymentManager REST API Server is now complete.</p>
+<p>If the output is the client name expected, Kerberos authentication setup for the Deployment Manager REST API Server is now complete.</p>
 
 <h2 id="dm-administrator-authorization">DM Administrator Authorization</h2>
 
-<p>The DeploymentManager REST API service supports an administrator role.</p>
+<p>The Deployment Manager REST API service supports an administrator role.</p>
 
 <p>This section covers:</p>
 
@@ -679,8 +680,8 @@ For example, for the client principal <code class="highlighter-rouge">john@&lt;K
 
 <h3 id="setting-up-users-and-groups-with-admin-privileges">Setting Up Users and Groups with Admin Privileges</h3>
 
-<p>In order to enable Administrator authorization on DeploymentManager and its REST API service, set the <code class="highlighter-rouge">DM_ADMIN_USERS</code> environment variable.
-The names of all individual users and Unix groups that have administrator privileges to the DeploymentManager go here as a CSV.</p>
+<p>In order to enable Administrator authorization on Deployment Manager and its REST API service, set the <code class="highlighter-rouge">DM_ADMIN_USERS</code> environment variable.
+The names of all individual users and Unix groups that have administrator privileges to the Deployment Manager go here as a CSV.</p>
 
 <p>For example, if the user <code class="highlighter-rouge">john</code> is an admin, and all users in the group <code class="highlighter-rouge">sysadmins</code> are admins, the following value should be set <code class="highlighter-rouge">john,sysadmins</code>.</p>
 
@@ -688,7 +689,7 @@ The names of all individual users and Unix groups that have administrator privil
 <p><strong>Curl commands for a server running with Kerberos enabled:</strong></p>
 
 <ul>
-  <li>Once the DeploymentManager is running with <code class="highlighter-rouge">DM_ADMIN_USERS</code> set, follow the steps
+  <li>Once the Deployment Manager is running with <code class="highlighter-rouge">DM_ADMIN_USERS</code> set, follow the steps
   <a href="#verifying-kerberos-authentication-using-curl">above</a> to <code class="highlighter-rouge">kinit</code> and get a <em>TGT</em> for
   the client.</li>
   <li>The following curl commands return the client’s admin authorization status:</li>
@@ -753,9 +754,11 @@ the case, an appropriate error message is returned.</li>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

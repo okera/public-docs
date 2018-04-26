@@ -18,13 +18,13 @@
   
   
   <url>
-    <loc>http://localhost:4400/cdas-authentication</loc>
+    <loc>http://localhost:4400/odas-authentication</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost:4400/cdas-cdh-integration</loc>
+    <loc>http://localhost:4400/odas-cdh-integration</loc>
   </url>
   
   
@@ -78,12 +78,6 @@
   
   
   <url>
-    <loc>http://localhost:4400/cerebro-database-cli</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://localhost:4400/docker-quickstart</loc>
   </url>
   
@@ -96,7 +90,13 @@
   
   
   <url>
-    <loc>http://localhost:4400/extending-cdas</loc>
+    <loc>http://localhost:4400/eula</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/extending-odas</loc>
   </url>
   
   
@@ -132,7 +132,7 @@
   
   
   <url>
-    <loc>http://localhost:4400/secure-cerebro-rest-api-ldap</loc>
+    <loc>http://localhost:4400/secure-okera-rest-api-ldap</loc>
   </url>
   
   
@@ -144,19 +144,25 @@
   
   
   <url>
-    <loc>http://localhost:4400/secure-cerebro-rest-api-oath</loc>
+    <loc>http://localhost:4400/secure-okera-rest-api-oauth</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost:4400/cdas-overview</loc>
+    <loc>http://localhost:4400/okera-database-cli</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost:4400/cerebro-catalog-overview</loc>
+    <loc>http://localhost:4400/catalog-overview</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/odas-overview</loc>
   </url>
   
   
@@ -245,6 +251,12 @@
   
   <url>
     <loc>http://localhost:4400/cluster-administration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4400/content/topics/OverviewArchitecture.html</loc>
   </url>
   
   

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Cerebro Web UI Basics | Cerebro Data User Documentation</title>
+<title>Okera Web UI Basics | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,9 +558,9 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="cerebro-web-ui-basics">Cerebro Web UI Basics</h1>
+  <h1 id="okera-web-ui-basics">Okera Web UI Basics</h1>
 
-<p>The Cerebro Web UI provides a read only-user interface to:</p>
+<p>The Okera Web UI provides a read only-user interface to:</p>
 
 <ul>
   <li>View your <a href="#account-details">account information</a>.</li>
@@ -574,11 +575,11 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="accessing-the-web-ui">Accessing the Web UI</h2>
 
-<p>To access the Web UI, browse to the URL provided by your Cerebro administrator.</p>
+<p>To access the Web UI, browse to the URL provided by your Okera administrator.</p>
 
 <h3 id="supported-browsers">Supported Browsers</h3>
 
-<p>The Cerebro Web UI is supported on the latest versions of the following browsers:</p>
+<p>The Okera Web UI is supported on the latest versions of the following browsers:</p>
 
 <ul>
   <li>Google Chrome</li>
@@ -595,7 +596,7 @@ The login options include:</p>
 
 <ul>
   <li><strong>token login</strong>
- Authenticate with Cerebro, JWT, and SSO tokens.</li>
+ Authenticate with Okera, JWT, and SSO tokens.</li>
   <li><strong>username/password login</strong>
  Authenticate using LDAP credentials.</li>
   <li><strong>OAuth login</strong>
@@ -603,21 +604,21 @@ The login options include:</p>
 </ul>
 
 <h4 id="a-note-on-ssl">A note on SSL</h4>
-<p>If Cerebro is configured to run with SSL enabled using a self-signed certificate, the SSL certificate must be setup on your local system for the Web UI to be accessible to your browser.
+<p>If Okera is configured to run with SSL enabled using a self-signed certificate, the SSL certificate must be setup on your local system for the Web UI to be accessible to your browser.
 If, upon navigating to the Web UI, the browser warns that the site is not trusted, the SSL certificate may need to be installed.</p>
 
-<p>Please note that even if you bypass your browser’s certificate warning, the Cerebro Web UI will likely continue to not work, with the Login screen reporting this message:</p>
+<p>Please note that even if you bypass your browser’s certificate warning, the Okera Web UI will likely continue to not work, with the Login screen reporting this message:</p>
 
 <blockquote>
   <p>Could not contact server. Check your network connection and try again later.</p>
 </blockquote>
 
 <p>If you see this message, it could mean you need to install the SSL certificate.
-Contact your Cerebro administrator.</p>
+Contact your Okera administrator.</p>
 
 <h2 id="using-the-web-ui">Using the Web UI</h2>
 
-<p>Once you are logged in, the Web UI starts you off in your Cerebro <strong>Home</strong> page.
+<p>Once you are logged in, the Web UI starts you off in your Okera <strong>Home</strong> page.
 From here, you can directly access most of your options.</p>
 
 <h3 id="account-details">Account Details</h3>
@@ -625,7 +626,7 @@ From here, you can directly access most of your options.</p>
 <p>The Home page shows your account information:</p>
 
 <ul>
-  <li>your Cerebro username</li>
+  <li>your Okera username</li>
   <li>the groups you belong to</li>
   <li>the roles you have been granted</li>
   <li>the groups granting you those roles</li>
@@ -636,12 +637,12 @@ From here, you can directly access most of your options.</p>
   <p><strong>Tip:</strong> you can use <code class="highlighter-rouge">Ctrl+F</code> or <code class="highlighter-rouge">Cmd+F</code> (Mac) to quickly find a group or role name.</p>
 </blockquote>
 
-<p><img src="assets/images/ui-screen-account-details.png" alt="Cerebro Account Details" /></p>
+<p><img src="assets/images/ui-screen-account-details.png" alt="Okera Account Details" /></p>
 
 <h3 id="about-modal">About Modal</h3>
 
 <p>A modal is triggered by the <strong>About</strong> link at the top right corner next to your username.
-This dialog displays information about your Cerebro cluster:</p>
+This dialog displays information about your Okera cluster:</p>
 
 <ul>
   <li>UI version</li>
@@ -659,7 +660,7 @@ It is available on your <strong>Home</strong> screen, or from any screen by way 
 
 <p>Click <strong>Copy</strong> adjacent to the access token on your home screen.</p>
 
-<p><img src="assets/images/ui-screen-token-home.png" alt="Cerebro Home Page with access token highlighted" /></p>
+<p><img src="assets/images/ui-screen-token-home.png" alt="Okera Home Page with access token highlighted" /></p>
 
 <p>Or choose the <strong>Copy Access Token</strong> menu option revealed by clicking your username.</p>
 
@@ -669,7 +670,7 @@ It is available on your <strong>Home</strong> screen, or from any screen by way 
 
 <p>Click the <strong>Datasets</strong> navigation tab at the top to access the datasets page.</p>
 
-<p>Use the Datasets page to browse, search, filter, and preview your accessible Cerebro datasets.
+<p>Use the Datasets page to browse, search, filter, and preview your accessible Okera datasets.
 With admin dataset access, review group access to datasets fields.</p>
 
 <p>Any dataset where you have any level of access appears in this list.
@@ -677,7 +678,7 @@ Datasets to which you have no access will not appear at all.</p>
 
 <h3 id="searching-and-filtering-datasets">Searching and Filtering Datasets</h3>
 
-<p><img src="assets/images/ui-screen-dataset-search.png" alt="Cerebro Datasets Search" /></p>
+<p><img src="assets/images/ui-screen-dataset-search.png" alt="Okera Datasets Search" /></p>
 
 <p>At the top of the page you can select datasets search and filter options:</p>
 
@@ -698,7 +699,7 @@ name containing your input as a substring is displayed.
 <p>To display a details panel for a given dataset, click its dataset card in the list.
 The details panel will appear on the right side of the screen.</p>
 
-<p><img src="assets/images/ui-screen-dataset-details.png" alt="Cerebro Dataset Details panel" /></p>
+<p><img src="assets/images/ui-screen-dataset-details.png" alt="Okera Dataset Details panel" /></p>
 
 <p>This page contains:</p>
 
@@ -732,14 +733,14 @@ The details panel will appear on the right side of the screen.</p>
 <blockquote>
   <p><strong>Note</strong>
 If a column’s name has a gray background, it is a <strong>partitioning column</strong>
-<br /><img alt="Cerebro partitioning field" src="assets/images/ui-detail-partitioning-field.png" style="width: 150px;" /></p>
+<br /><img alt="Okera partitioning field" src="assets/images/ui-detail-partitioning-field.png" style="width: 150px;" /></p>
 </blockquote>
 
 <h3 id="column-access">Column Access</h3>
 
 <p>If your schema looks similar to the table below, you do not have access to every column in the dataset.</p>
 
-<p><img src="assets/images/ui-screen-schema-access.png" alt="Cerebro See Groups" /></p>
+<p><img src="assets/images/ui-screen-schema-access.png" alt="Okera See Groups" /></p>
 
 <p>To display a list of groups with access to the data column, click <strong>See Groups</strong> associated with the applicable data column name.
 To gain access to that column’s data, you must be added to one of these groups.</p>
@@ -748,7 +749,7 @@ To gain access to that column’s data, you must be added to one of these groups
 
 <p>To preview a dataset, click <strong>Show Preview</strong> in the upper right of the details panel.</p>
 
-<p><img src="assets/images/ui-screen-preview.png" alt="Cerebro Preview Dataset" /></p>
+<p><img src="assets/images/ui-screen-preview.png" alt="Okera Preview Dataset" /></p>
 
 <ul>
   <li>
@@ -766,7 +767,7 @@ To gain access to that column’s data, you must be added to one of these groups
 
 <p>To start using a dataset, click <strong>Get Started</strong> on the upper right of its details panel.</p>
 
-<p><img src="assets/images/ui-screen-get-started.png" alt="Cerebro Get-Started snippets" /></p>
+<p><img src="assets/images/ui-screen-get-started.png" alt="Okera Get-Started snippets" /></p>
 
 <p>Sections of different sample code are displayed, such as for Spark, Hive, Python, R, and CURL.
 Click the tab of your choice to retrieve integration code suitable for your application.</p>
@@ -777,12 +778,12 @@ Click the tab of your choice to retrieve integration code suitable for your appl
 Datasets with errors are listed alongside datasets that loaded properly.
 Clicking a failed dataset reveals the error message on the details page on the right.</p>
 
-<p><img src="assets/images/ui-screen-datasets-with-errors.png" alt="Cerebro datasets with errors" /></p>
+<p><img src="assets/images/ui-screen-datasets-with-errors.png" alt="Okera datasets with errors" /></p>
 
 <blockquote>
   <p><strong>Note</strong></p>
 
-  <p>There may be other datasets with issues in the Cerebro deployment.
+  <p>There may be other datasets with issues in the Okera deployment.
 The UI only lists them here if there are <em>metadata errors</em>.
 Problems in view configuration or in the data itself are not visible in the datasets page.</p>
 </blockquote>
@@ -817,9 +818,11 @@ Be aware of this security issue when sharing access to your computer.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

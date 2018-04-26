@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Configuring Cerebro and Kerberos | Cerebro Data User Documentation</title>
+<title>Configuring Okera and Kerberos | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,15 +558,15 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="configuring-cerebro-and-kerberos">Configuring Cerebro and Kerberos</h1>
+  <h1 id="configuring-okera-and-kerberos">Configuring Okera and Kerberos</h1>
 
-<p>This tutorial demonstrates integrating a Cerebro cluster with Kerberos, with end-to-end authentication enabled.
+<p>This tutorial demonstrates integrating an Okera cluster with Kerberos, with end-to-end authentication enabled.
 This process generally involves the following steps:</p>
 
 <ol>
   <li>Create a keytab with two principals
     <ul>
-      <li>one with its <strong>service name</strong> as <code class="highlighter-rouge">cerebro</code></li>
+      <li>one with its <strong>service name</strong> as <code class="highlighter-rouge">okera</code></li>
       <li>a second with its <strong>service name</strong> as <code class="highlighter-rouge">HTTP</code>.</li>
     </ul>
   </li>
@@ -582,7 +583,7 @@ This process generally involves the following steps:</p>
 
 <h2 id="prerequisites">Prerequisites</h2>
 
-<p>This section lists out the necessary requirements to enable Kerberos for Cerebro.</p>
+<p>This section lists out the necessary requirements to enable Kerberos for Okera.</p>
 
 <ul>
   <li><strong>KDC</strong>
@@ -600,18 +601,18 @@ This process generally involves the following steps:</p>
 
 <h2 id="creating-the-kerberos-principals-and-keytab-files">Creating the Kerberos Principals and Keytab Files.</h2>
 
-<p>In order to allow Cerebro’s internal services to be authenticated end-to-end, we need to create the following <em>2</em> Kerberos principals, and add them to <em>a single keytab file</em>:</p>
+<p>In order to allow Okera’s internal services to be authenticated end-to-end, we need to create the following <em>2</em> Kerberos principals, and add them to <em>a single keytab file</em>:</p>
 <ul>
   <li>
-    <p><strong>Cerebro principal</strong></p>
+    <p><strong>Okera principal</strong></p>
 
-    <p>This is of the format <code class="highlighter-rouge">cerebro/&lt;instance&gt;@REALM</code>. For example, this can be
-  <code class="highlighter-rouge">cerebro/cerebro-service@CEREBRO.TEST</code></p>
+    <p>This is of the format <code class="highlighter-rouge">okera/&lt;instance&gt;@REALM</code>. For example, this can be
+  <code class="highlighter-rouge">okera/okera-service@OKERA.TEST</code></p>
   </li>
   <li>
     <p><strong>HTTP principal</strong></p>
 
-    <p>This is of the format <code class="highlighter-rouge">HTTP/&lt;instance&gt;@REALM</code>. For example, this can be <code class="highlighter-rouge">HTTP/cerebro-service@CEREBRO.TEST</code></p>
+    <p>This is of the format <code class="highlighter-rouge">HTTP/&lt;instance&gt;@REALM</code>. For example, this can be <code class="highlighter-rouge">HTTP/okera-service@OKERA.TEST</code></p>
   </li>
 </ul>
 
@@ -633,37 +634,37 @@ kadmin.local:
   <li>Make sure the required principals don’t exist.
     <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: listprincs
 </code></pre></div>    </div>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prim1/inst1@CERBERO.TEST
-prim2/inst2@CEREBRO.TEST
-prim2/inst3@CERBERO.TEST
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prim1/inst1@OKERA.TEST
+prim2/inst2@OKERA.TEST
+prim2/inst3@OKERA.TEST
 </code></pre></div>    </div>
   </li>
-  <li>Create the cerebro principal.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> cerebro/cerebro-service
+  <li>Create the okera principal.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> okera/okera-service
 </code></pre></div>    </div>
     <ul>
       <li>If you don’t want a password, use the <code class="highlighter-rouge">-randkey</code> flag.</li>
       <li>If you would rather have a password, don’t use the flag.</li>
     </ul>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified for cerebro/cerebro-service@CEREBRO.TEST; defaulting to no policy
-Principal "cerebro/cerebro-service@CEREBRO.TEST" created.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified for okera/okera-service@OKERA.TEST; defaulting to no policy
+Principal "okera/okera-service@OKERA.TEST" created.
 kadmin.local:
 </code></pre></div>    </div>
   </li>
   <li>Create the http principal.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> HTTP/cerebro-service
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> HTTP/okera-service
 </code></pre></div>    </div>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified <span class="k">for </span>HTTP/cerebro-service@CEREBRO.TEST<span class="p">;</span> defaulting to no policy
-Principal <span class="s2">"cerebro/cerebro-service@CEREBRO.TEST"</span> created.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified <span class="k">for </span>HTTP/okera-service@OKERA.TEST<span class="p">;</span> defaulting to no policy
+Principal <span class="s2">"okera/okera-service@OKERA.TEST"</span> created.
 kadmin.local:
 </code></pre></div>    </div>
   </li>
   <li>Create the keytab file.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: ktadd <span class="nt">-kt</span> cerebro.keytab cerebro/cerebro-service HTTP/cerebro-service
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: ktadd <span class="nt">-kt</span> okera.keytab okera/okera-service HTTP/okera-service
 </code></pre></div>    </div>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entry <span class="k">for </span>principal cerebro/cerebro-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:cerebro.keytab.
-Entry <span class="k">for </span>principal HTTP/cerebro-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:cerebro.keytab.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entry <span class="k">for </span>principal okera/okera-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:okera.keytab.
+Entry <span class="k">for </span>principal HTTP/okera-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:okera.keytab.
 </code></pre></div>    </div>
   </li>
   <li>Exit the kadmin utility
@@ -697,35 +698,35 @@ Entry <span class="k">for </span>principal HTTP/cerebro-service with kvno 3, enc
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>klist <span class="nt">-kt</span> &lt;KEYTAB_FILE_NAME&gt;
 </code></pre></div></div>
 
-<p>For example, if the keytab file is called <em>cerebro.keytab</em>, the command looks like this:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ klist -kt cerebro.keytab
+<p>For example, if the keytab file is called <em>okera.keytab</em>, the command looks like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ klist -kt okera.keytab
 Keytab name: FILE:dumdum.keytab
 KVNO Timestamp           Principal
 ---- ------------------- ------------------------------------------------------
-   4 03/02/2017 13:27:57 cerebro/cerebro-service@CEREBRO.TEST
-   4 03/02/2017 13:27:57 HTTP/cerebro-service@CEREBRO.TEST
+   4 03/02/2017 13:27:57 okera/okera-service@OKERA.TEST
+   4 03/02/2017 13:27:57 HTTP/okera-service@OKERA.TEST
 </code></pre></div></div>
 
 <h2 id="setting-the-environment-variables">Setting the Environment Variables</h2>
 
 <p>Set the following environment variables:</p>
 <ul>
-  <li><strong><code class="highlighter-rouge">CEREBRO_KERBEROS_PRINCIPAL</code></strong>
- Set this to the Cerebro principal created above.</li>
-  <li><strong><code class="highlighter-rouge">CEREBRO_KERBEROS_KEYTAB_FILE</code></strong>
+  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code></strong>
+ Set this to the Okera principal created above.</li>
+  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_KEYTAB_FILE</code></strong>
  Set this to the path of the keytab file. This can be a local or remote (s3) path.</li>
-  <li><strong><code class="highlighter-rouge">CEREBRO_KERBEROS_HTTP_PRINCIPAL</code></strong>
+  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_HTTP_PRINCIPAL</code></strong>
  Set this to the HTTP principal if the principal is non-standard.
  This is not required if the principals were created with the steps above.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">CEREBRO_KERBEROS_PRINCIPAL</span><span class="o">=</span>&lt;principal&gt;
- <span class="nb">export </span><span class="nv">CEREBRO_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>&lt;full_path_to_keytab_file&gt;
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">OKERA_KERBEROS_PRINCIPAL</span><span class="o">=</span>&lt;principal&gt;
+ <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>&lt;full_path_to_keytab_file&gt;
 </code></pre></div>    </div>
     <p><strong>Example:</strong></p>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">CEREBERO_KERBEROS_PRINCIPAL</span><span class="o">=</span>cerebro/cerebro-service
- <span class="nb">export </span><span class="nv">CEREBRO_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>cerebro.keytab
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">CEREBERO_KERBEROS_PRINCIPAL</span><span class="o">=</span>okera/okera-service
+ <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>okera.keytab
 </code></pre></div>    </div>
     <p>If changing the shell file, follow similar steps as above and then do the following:</p>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">source</span> /etc/cerebro/env.sh
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">source</span> /etc/okera/env.sh
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -735,7 +736,7 @@ KVNO Timestamp           Principal
 <p>Other docs that might be helpful are:</p>
 
 <ul>
-  <li><a href="/cdas-authentication">Authentication</a></li>
+  <li><a href="/odas-authentication">Authentication</a></li>
   <li><a href="/secure-deployment-manager-rest-api">Security</a></li>
 </ul>
 
@@ -754,9 +755,11 @@ KVNO Timestamp           Principal
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>

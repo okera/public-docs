@@ -4,6 +4,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #2b72bb;
 }
 
 pre.highlight {
@@ -89,7 +90,7 @@ h3[id],
 h4[id],
 h5[id] {
 margin-top: 30px;
-color: #a12331;
+color: #22283a;
 font-weight: bold;
 }
 
@@ -297,17 +298,17 @@ li.dropdownActive a {
   text-decoration: none;
 }
 
-.navbar-brand img {
+.navbar-wordmark {
+    margin-top: 5px;
+}
+
+.navbar-wordmark img {
   width: 100px;
   display: inline;
 }
 
 .post-content .rssfeedLink {
     color: #248EC2;
-}
-
-footer {
-    font-size: smaller;
 }
 
 /* FAQ page */
@@ -370,7 +371,7 @@ a.accordion-toggle, a.accordion-collapsed {
 }
 
 .nav a:hover, .nav li.active > a {
-    background-color: #8D8D8D;
+    background-color: #f5a623;;
     color: #f5f5f5;
 }
 
@@ -439,22 +440,25 @@ span.projectTitle {
     font-weight: bold;
 }
 
+footer {
+  background: #22283A;
+  color: #ffffff;
+  font-size: smaller;
+  padding: 3px;
+}
+
 .footer {
     text-align: right;
 }
 
 .footer img.logo {
-  max-width: 150px;
+  max-width: 30px;
+  float: right;
 }
 
-.footerMeta {
-    background-color: whitesmoke;
-    padding: 10px;
-    max-width: 250px;
-    border-radius: 5px;
-    margin-top: 50px;
-    font-style:italic;
-    font-size:12px;
+.footer-meta {
+  float: right;
+  font-size:12px;
 }
 
 img.screenshotSmall {
@@ -1324,5 +1328,136 @@ div.home-link#resources_index {
 .ulist .title {
   font-family: Helvetica, sans-serif;
   font-style: normal;
+  font-weight: bold;
+}
+
+/* Moved hastily from theme-green.css */
+
+.summary {
+    color: #808080;
+    border-left: 5px solid #E50E51;
+    font-size:16px;
+}
+
+
+h3 {color: #E50E51; }
+h4 {color: #808080; }
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background-color: #248ec2;
+    color: white;
+}
+
+.nav > li.active > a {
+    background-color: #22283a;
+}
+
+.nav > li > a:hover {
+    background-color: #22283a;
+}
+
+div.navbar-collapse .dropdown-menu > li > a:hover {
+    background-color: #22283a;
+}
+
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, a.fa.fa-home.fa-lg.navbar-brand:hover {
+     color: #f0f0f0;
+}
+
+.nav li.thirdlevel > a {
+    background-color: #FAFAFA !important;
+    color: #22283a;
+    font-weight: bold;
+}
+
+a[data-toggle="tooltip"] {
+    color: #649345;
+    font-style: italic;
+    cursor: default;
+}
+
+.navbar-inverse {
+    background-color: #22283a;
+    border-color: #5b893c;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #5b893c;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #5b893c;
+    color: #ffffff;
+}
+
+/* not sure if using this ...*/
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #a12331 !important;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #5b893c;
+    border-color: #5b893c;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    background-color: #a12331;
+    border-color: #5b893c;
+}
+
+.printTitle {
+    color: #5b893c !important;
+}
+
+body.print h1 {color: #5b893c !important; font-size:28px;}
+body.print h2 {color: #595959 !important; font-size:24px;}
+body.print h3 {color: #E50E51 !important; font-size:14px;}
+body.print h4 {color: #679DCE !important; font-size:14px; font-style: italic;}
+
+.anchorjs-link:hover {
+    color: #4f7233;
+}
+
+div.sidebarTitle {
+    color: #E50E51;
+}
+
+li.sidebarTitle {
+    margin-top:20px;
+    font-weight:normal;
+    font-size:130%;
+    color: #ED1951;
+    margin-bottom:10px;
+    margin-left: 5px;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #E50E51;
+}
+
+
+div.landing-strip {
+  background: #22283a url("/assets/images/okera-o-hero-circle-net.png") no-repeat right top;;
+  padding: 20px;
+}
+div.landing-strip p {
+  color: #fff;
+  font-size: 1.4em;
+  line-height: 1.5em;
+}
+div.landing-strip p span.runner {
+  background-color: #22283a;
+}
+div.landing-strip p a {
+  color: #fff;
   font-weight: bold;
 }

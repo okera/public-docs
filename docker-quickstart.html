@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Docker Quickstart | Cerebro Data User Documentation</title>
+<title>Docker Quickstart | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,15 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
+                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +204,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">ODAS Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
           
           
           
@@ -268,14 +269,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
           
           
           
@@ -347,7 +348,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -377,7 +378,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,7 +422,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
@@ -463,7 +464,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -559,10 +560,10 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="docker-quickstart">Docker Quickstart</h1>
 
-<p>This document describes how to run Cerebro Data Access Service (CDAS) in quickstart
-mode using Docker. This will start CDAS in single-node mode which can for example, be
-run on a development machine. The purpose is to experiment with the CDAS APIs and explore
-the CDAS capabilities.</p>
+<p>This document describes how to run Okera Data Access Service (ODAS) in quickstart
+mode using Docker. This will start ODAS in single-node mode which can for example, be
+run on a development machine. The purpose is to experiment with the ODAS APIs and explore
+the ODAS capabilities.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -573,24 +574,24 @@ the CDAS capabilities.</p>
 
 <h3 id="download">Download</h3>
 
-<p>Download the cerebro-quickstart.sh script:</p>
+<p>Download the okera-quickstart.sh script:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/quickstart/cerebro-quickstart.sh <span class="o">&amp;&amp;</span> chmod +x cerebro-quickstart.sh
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/quickstart/okera-quickstart.sh <span class="o">&amp;&amp;</span> chmod +x okera-quickstart.sh
 </code></pre></div></div>
 
 <h3 id="startingstopping-the-quickstart-container">Starting/stopping the quickstart container</h3>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cerebro-quickstart.sh start
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>okera-quickstart.sh start
 </code></pre></div></div>
 
 <p>This should take a few seconds to start the container (Note: This requires for all Docker
 images to be local, otherwise the images will be downloaded on first start, requiring
-more time). This will launch all of the CDAS services and expose them on their default
+more time). This will launch all of the ODAS services and expose them on their default
 ports.</p>
 
 <p>To stop the container:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cerebro-quickstart.sh stop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>okera-quickstart.sh stop
 </code></pre></div></div>
 
 <p>Only one instance of this container can be running at a time, you will need to stop the
@@ -598,12 +599,12 @@ container before trying again.</p>
 
 <h3 id="sample-data">Sample Data</h3>
 
-<p>The quickstart CDAS will come with a few sample datasets that will already be set up.
-The quickstart set up will create the <code class="highlighter-rouge">cerebro_sample</code> database with a few tables in
-it. You should be able to read them through the various CDAS APIs. For example, using
+<p>The quickstart ODAS will come with a few sample datasets that will already be set up.
+The quickstart set up will create the <code class="highlighter-rouge">okera_sample</code> database with a few tables in
+it. You should be able to read them through the various ODAS APIs. For example, using
 the REST API, you can do:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl localhost:11050/scan/cerebro_sample.sample
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl localhost:11050/scan/okera_sample.sample
 <span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">"record"</span>: <span class="s2">"This is a sample test file."</span>
@@ -620,7 +621,7 @@ the REST API, you can do:</p>
 Currently, it is only supported to share a single directory from the host. This can be
 specified when starting up the quickstart image.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cerebro-quickstart.sh start <span class="nt">-mount</span> &lt;Absolute path on host file system&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>okera-quickstart.sh start <span class="nt">-mount</span> &lt;Absolute path on host file system&gt;
 </code></pre></div></div>
 
 <p>This directory will be available <em>inside</em> the container under <code class="highlighter-rouge">/data</code>. This directory
@@ -632,7 +633,7 @@ inside the container.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> /tmp/datasets
 dataset1/  dataset2/
-<span class="nv">$ </span>cerebro-quickstart.sh start <span class="nt">-mount</span> /tmp/datasets
+<span class="nv">$ </span>okera-quickstart.sh start <span class="nt">-mount</span> /tmp/datasets
 
 <span class="c"># datasets are accessible within container under /data. for example, these ddl</span>
 <span class="c"># commands will create the metadata over the datasets.</span>
@@ -646,12 +647,12 @@ not suitable for testing large amounts of data. See the Docker site for more det
 <h3 id="ports">Ports</h3>
 
 <p>The container will use these ports on the Docker host. They can be configured by setting
-the corresponding environment variable (e.g. export CDAS_WEB_PORT=1234).</p>
+the corresponding environment variable (e.g. export ODAS_WEB_PORT=1234).</p>
 
 <ul>
-  <li><code class="highlighter-rouge">CDAS_WEB_PORT</code>: WebUI/REST Api port. Defaults to 11050.</li>
-  <li><code class="highlighter-rouge">CDAS_PLANNER_PORT</code>: Planner RPC port. Defaults to 12050.</li>
-  <li><code class="highlighter-rouge">CDAS_WORKER_PORT</code>: Worker RPC port. Defaults to 13040.</li>
+  <li><code class="highlighter-rouge">ODAS_WEB_PORT</code>: WebUI/REST Api port. Defaults to 11050.</li>
+  <li><code class="highlighter-rouge">ODAS_PLANNER_PORT</code>: Planner RPC port. Defaults to 12050.</li>
+  <li><code class="highlighter-rouge">ODAS_WORKER_PORT</code>: Worker RPC port. Defaults to 13040.</li>
   <li><code class="highlighter-rouge">HMS_PORT</code>: Catalog Hive Metastore Client port. Defaults to 9083.</li>
   <li><code class="highlighter-rouge">SENTRY_PORT</code>: Catalog Sentry Client port. Defaults to 30911.</li>
 </ul>
@@ -669,7 +670,7 @@ to run this script as root.</p>
 
 <p><strong><em>Docker: Error response from daemon: Conflict.</em></strong></p>
 
-<p>The container is already running. First run <code class="highlighter-rouge">cerebro-quickstart.sh stop</code>.</p>
+<p>The container is already running. First run <code class="highlighter-rouge">okera-quickstart.sh stop</code>.</p>
 
 
     <div class="tags">
@@ -686,9 +687,11 @@ to run this script as root.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Apr 26, 2018
+                  </div>
                 </div>
             </div>
 </footer>
