@@ -46,7 +46,7 @@
 
 
 {
-"title": "Catalog REST API",
+"title": "REST API",
 "tags": "",
 "keywords": "",
 "url": "catalog-rest-api",
@@ -189,6 +189,17 @@
 
 
 {
+"title": "Getting Started with Okera",
+"tags": "",
+"keywords": "",
+"url": "getting-started",
+"summary": ""
+}
+,
+
+
+
+{
 "title": "IP Address Management",
 "tags": "",
 "keywords": "",
@@ -222,7 +233,7 @@
 
 
 {
-"title": "Kubernetes Dashboard Quickstart",
+"title": "Monitoring services quickstart",
 "tags": "",
 "keywords": "",
 "url": "kubernetes-dashboard-quickstart",
@@ -270,6 +281,17 @@
 "tags": "",
 "keywords": "",
 "url": "okera-database-cli",
+"summary": ""
+}
+,
+
+
+
+{
+"title": "Okera Platform Architecture Overview",
+"tags": "",
+"keywords": "",
+"url": "okera-architecture-overview",
 "summary": ""
 }
 ,
@@ -387,7 +409,7 @@
 
 
 {
-"title": "Web UI for Administrators",
+"title": "Okera Portal for Administrators",
 "tags": "",
 "keywords": "",
 "url": "web-ui-admin",
@@ -398,7 +420,7 @@
 
 
 {
-"title": "Okera Web UI Basics",
+"title": "Okera Portal Basics",
 "tags": "",
 "keywords": "",
 "url": "web-ui-basics",
@@ -409,7 +431,7 @@
 
 
 {
-"title": "Okera User Portal",
+"title": "Okera User Documentation",
 "tags": "",
 "keywords": "",
 "url": "",
@@ -450,17 +472,6 @@
 "tags": "",
 "keywords": "",
 "url": "cluster-administration",
-"summary": ""
-}
-,
-
-
-
-{
-"title": "",
-"tags": "",
-"keywords": "",
-"url": "contenttopicsOverviewArchitecture.html",
 "summary": ""
 }
 

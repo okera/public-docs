@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li class="active"><a href="catalog-overview">Okera Catalog Overview</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -568,7 +580,7 @@ $('#toc').on('click', 'a', function() {
 </ul>
 
 <p>Each of these is described in the next sections.
-First though, a clarification of the roles of users we see in practice, and how they relate to the Cerbero Catalog services.</p>
+First though, a clarification of the roles of users we see in practice, and how they relate to the Okera Catalog services.</p>
 
 <h2 id="roles">Roles</h2>
 
@@ -625,10 +637,10 @@ This makes it the long running, common metastore for the different clients, incl
   <span class="n">price</span> <span class="n">FLOAT</span><span class="p">,</span>
   <span class="n">creditcard</span> <span class="n">STRING</span><span class="p">,</span>
   <span class="n">ip</span> <span class="n">STRING</span><span class="p">)</span>
-  <span class="k">COMMENT</span> <span class="nv">"Online transactions 2016"</span>
-  <span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
-  <span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="nv">","</span>
-  <span class="k">LOCATION</span> <span class="nv">"s3://sales-data/transactions"</span><span class="p">;</span>
+<span class="k">COMMENT</span> <span class="nv">"Online transactions 2016"</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
+<span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="nv">","</span>
+<span class="k">LOCATION</span> <span class="nv">"s3://sales-data/transactions"</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>There are commands to CREATE, ALTER, or DROP objects, including databases and tables.
@@ -665,14 +677,14 @@ The GRANT statement is required to give <em>read</em> access to the shared role.
 <p><strong>Example:</strong> Creating a VIEW with masking and allowing access to it</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
-  <span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
-    <span class="n">dt_time</span><span class="p">,</span>
-    <span class="n">sku</span><span class="p">,</span>
-    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
-    <span class="n">price</span><span class="p">,</span>
-    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">creditcard</span><span class="p">,</span> <span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
-    <span class="n">decode</span> <span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">AS</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">ip</span>
-  <span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
+  <span class="n">dt_time</span><span class="p">,</span>
+  <span class="n">sku</span><span class="p">,</span>
+  <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
+  <span class="n">price</span><span class="p">,</span>
+  <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">creditcard</span><span class="p">,</span> <span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
+  <span class="n">decode</span> <span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">AS</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">ip</span>
+<span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">;</span>
 
 <span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
 </code></pre></div></div>
@@ -699,7 +711,7 @@ The GRANT statement is required to give <em>read</em> access to the shared role.
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="docker-quickstart">Docker Quickstart</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -574,14 +586,14 @@ the ODAS capabilities.</p>
 
 <h3 id="download">Download</h3>
 
-<p>Download the okera-quickstart.sh script:</p>
+<p>Download the cerebro-quickstart.sh script:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/quickstart/okera-quickstart.sh <span class="o">&amp;&amp;</span> chmod +x okera-quickstart.sh
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/quickstart/cerebro-quickstart.sh <span class="o">&amp;&amp;</span> chmod +x cerebro-quickstart.sh
 </code></pre></div></div>
 
 <h3 id="startingstopping-the-quickstart-container">Starting/stopping the quickstart container</h3>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>okera-quickstart.sh start
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cerebro-quickstart.sh start
 </code></pre></div></div>
 
 <p>This should take a few seconds to start the container (Note: This requires for all Docker
@@ -591,7 +603,7 @@ ports.</p>
 
 <p>To stop the container:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>okera-quickstart.sh stop
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cerebro-quickstart.sh stop
 </code></pre></div></div>
 
 <p>Only one instance of this container can be running at a time, you will need to stop the
@@ -600,11 +612,11 @@ container before trying again.</p>
 <h3 id="sample-data">Sample Data</h3>
 
 <p>The quickstart ODAS will come with a few sample datasets that will already be set up.
-The quickstart set up will create the <code class="highlighter-rouge">okera_sample</code> database with a few tables in
+The quickstart set up will create the <code class="highlighter-rouge">cerebro_sample</code> database with a few tables in
 it. You should be able to read them through the various ODAS APIs. For example, using
 the REST API, you can do:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl localhost:11050/scan/okera_sample.sample
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl localhost:11050/scan/cerebro_sample.sample
 <span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">"record"</span>: <span class="s2">"This is a sample test file."</span>
@@ -647,12 +659,12 @@ not suitable for testing large amounts of data. See the Docker site for more det
 <h3 id="ports">Ports</h3>
 
 <p>The container will use these ports on the Docker host. They can be configured by setting
-the corresponding environment variable (e.g. export ODAS_WEB_PORT=1234).</p>
+the corresponding environment variable (e.g. export CDAS_WEB_PORT=1234).</p>
 
 <ul>
-  <li><code class="highlighter-rouge">ODAS_WEB_PORT</code>: WebUI/REST Api port. Defaults to 11050.</li>
-  <li><code class="highlighter-rouge">ODAS_PLANNER_PORT</code>: Planner RPC port. Defaults to 12050.</li>
-  <li><code class="highlighter-rouge">ODAS_WORKER_PORT</code>: Worker RPC port. Defaults to 13040.</li>
+  <li><code class="highlighter-rouge">CDAS_WEB_PORT</code>: WebUI/REST Api port. Defaults to 11050.</li>
+  <li><code class="highlighter-rouge">CDAS_PLANNER_PORT</code>: Planner RPC port. Defaults to 12050.</li>
+  <li><code class="highlighter-rouge">CDAS_WORKER_PORT</code>: Worker RPC port. Defaults to 13040.</li>
   <li><code class="highlighter-rouge">HMS_PORT</code>: Catalog Hive Metastore Client port. Defaults to 9083.</li>
   <li><code class="highlighter-rouge">SENTRY_PORT</code>: Catalog Sentry Client port. Defaults to 30911.</li>
 </ul>
@@ -690,7 +702,7 @@ to run this script as root.</p>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

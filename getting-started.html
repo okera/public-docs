@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Secure Cerebro REST API Access Using LDAP | Cerebro Data User Documentation</title>
+<title>Getting Started with Okera | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
-<!-- most color styles are extracted out to here -->
-<link rel="stylesheet" href="theme/css/theme-green.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
@@ -49,7 +47,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Cerebro Data User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -122,7 +120,10 @@ $( document ).ready(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/images/cerebro-wordmark-white.png" /></a>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -140,15 +141,11 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://cerebrodata.zendesk.com/hc/en-us" target="_blank">Support</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
-                <li><a href="https://blog.cerebrodata.com/" target="_blank">Cerebro Blog</a></li>
-                
-                
-                
-                <li><a href="https://cerebrodata.com" target="_blank">cerebrodata.com</a></li>
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
                 
                 
                 
@@ -203,14 +200,21 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-overview">CDAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="cerebro-catalog-overview">Cerebro Catalog Overview</a> </li>
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -233,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li class="active"><a href="getting-started">Getting Started</a></li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -241,6 +252,34 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
           
           
           
@@ -261,35 +300,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
-          
-          
-          
-          
-          
-          
-          <li class="active"><a href="secure-cerebro-rest-api-ldap">LDAP Authentication</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="secure-cerebro-rest-api-oath">OAuth Authentication</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-types">Cluster Types</a> </li>
           
           
           
@@ -300,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -347,7 +360,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cerebro-database-cli">Database CLI</a> </li>
+          <li><a href="okera-database-cli">Database CLI</a> </li>
           
           
           
@@ -361,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -377,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -391,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -421,21 +434,21 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cdas-authentication">Authentication</a> </li>
+          <li><a href="supported-sql">Supported SQL</a> </li>
           
           
           
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
+          <li><a href="odas-authentication">Authentication</a> </li>
           
           
           
           
           
           
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -463,7 +476,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="extending-cdas">Extending CDAS</a> </li>
+          <li><a href="extending-odas">Extending ODAS</a> </li>
           
           
           
@@ -557,161 +570,128 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="secure-cerebro-rest-api-access-using-ldap">Secure Cerebro REST API Access Using LDAP</h1>
+  <h1 id="getting-started-with-okera">Getting Started with Okera</h1>
 
-<p>Cerebro now supports LDAP Basic Authentication. This document explains how to allow
-Cerebro users to authenticate using their Active Directory credentials using Basic
-authentication.</p>
+<p>Let’s break down what you should know (or understand) about Okera under the hood.
+We will step through the different layers that make up your new platform for data access and governance.</p>
 
-<h2 id="ldap-basic-authentication">LDAP Basic Authentication</h2>
-
-<p>In this section we will cover:</p>
+<p>If you are totally unfamiliar with Okera, you should review our overview docs first.</p>
 
 <ul>
-  <li><a href="#prerequisites-to-enable-ldap-basic-authentication-on-cerebro">Prerequisites to enable LDAP Basic Authentication on Cerebro</a></li>
-  <li><a href="#setting-up-ldap-related-configurations">Setting up LDAP related configurations</a></li>
-  <li><a href="#verify-ldap-basic-authentication-using-curl">Verify LDAP Basic Authentication using curl</a></li>
-  <li><a href="#use-the-web-ui-to-authenticate-and-get-cerebro-token">Use the Web UI to authenticate and get a Cerebro token</a></li>
-  <li><a href="#exploring-ldap-related-logs">Exploring LDAP related logs</a></li>
+  <li><a href="product-overview">Okera Overview</a></li>
+  <li><a href="odas-overview">Okera Data Access Service Overview</a></li>
+  <li><a href="catalog-overview">Okera Catalog Overview</a></li>
 </ul>
 
-<h3 id="prerequisites-to-enable-ldap-basic-authentication-on-cerebro">Prerequisites to enable LDAP Basic authentication on Cerebro</h3>
+<p>On this page, we will review some third-party resources you will need to be comfortable using in order to install and maintain an instance of Okera.
+Once you know what you’re getting into, we’ll send you to the <a href="install">Okera Installation page</a>, which will provide URLs for release artifacts.</p>
 
-<p>You will need the following pieces of information for CDAS to support LDAP:</p>
+<h2 id="amazon-web-services-aws">Amazon Web Services (AWS)</h2>
+
+<p>Presently, the Okera platform is designed to run on AWS.
+During the process of setting up Okera, you will configure AWS components.
+If your organization already uses AWS, these settings may already be known for your broader enterprise AWS environment.
+If you are an advanced AWS administrator, you may choose to use your preferred settings.</p>
+
+<p>If you are new to AWS, we have included some links in each section below to help get you up to speed.</p>
+
+<h3 id="amazon-elastic-compute-cloud-ec2">Amazon Elastic Compute Cloud (EC2)</h3>
+
+<p>Okera uses <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">EC2</a> to provision hosts for the Okera Data Access Service (ODAS) and associated operations.
+Okera’s Deployment Manager allows for custom Amazon Machine Images (AMI) to be defined in case your organization prefers to use their own.
+We don’t mind; just be sure that is built on <strong>RHEL or CentOS Linux, version 7</strong> or later (see <a href="#linux">Linux</a> below).</p>
+
+<p><strong>Dependency: An AMI to base new instances on</strong></p>
+
+<h3 id="iam-roles">IAM Roles</h3>
+
+<p>You’ll need to be familiar with <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html?icmpid=docs_ec2_console">AWS IAM Roles for EC2</a> for authenticating access to your EC2 instances.
+Okera requires that your Deployment Manager (and admin systems) have a specific IAM role, and your clusters have a different, likely more locked down, IAM role.
+We recommend using the following roles as starters and adjusting them as necessary for your specific environment.</p>
+
+<p><strong>Dependency: IAM roles</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Policies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IAM_MANAGER</td>
+      <td>AmazonRDSFullAccess<br />AmazonEC2FullAccess<br />IAMFullAccess<br />IAMFullAccess<br />AmazonS3FullAccess</td>
+    </tr>
+    <tr>
+      <td>IAM_CLUSTER</td>
+      <td>AmazonRDSFullAccess<br />AmazonS3FullAccess<br />AmazonEC2ReadOnlyAccess</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Assuming you do not have compatible IAM roles already, create these two roles and assign them their attendant policies.</p>
+
+<h3 id="security-groups">Security Groups</h3>
+
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">AWS Security Groups</a> are another security mechanism in the AWS environment.
+These are effectively virtual firewalls that allow you to block incoming and outgoing ports between specific machines.
+We assume that all ports between the DM and ODAS cluster are open and recommend locking down ports with other Security Groups.</p>
+
+<p>As with anything security related, you’ll want to check with your Information Security team (or equivalent) for your organization’s best practices.</p>
+
+<p><strong>Dependency: Security Group</strong></p>
+
+<p>While we recommend fine-tuning your security needs, AWS’s default security group makes a decent start.</p>
+
+<h3 id="s3-buckets">S3 Buckets</h3>
+
+<p>S3 buckets are the storage backbone for ODAS.
+We’ll need one for installation with read and write access accessible to your DM and all the ODAS cluster instances.
+ODAS requires read and write access to one bucket (or prefix in the bucket) for installation and logging.
+For the buckets containing your data, ODAS only requires read access.</p>
+
+<p><strong>Dependency: One S3 installation bucket</strong></p>
+
+<h2 id="linux">Linux</h2>
+
+<p>The Okera platform runs on Linux.
+Linux commands will be provided during installation, but familiarity with these Linux commands and tools is helpful:</p>
 
 <ul>
-  <li><strong>Hostname</strong>
-This must be the IP address or the hostname of the Active Directory server
-instance you are using.</li>
-  <li><strong>Port Number</strong>
-This is the port number on which the Active Directory instance is listening. If none is
-specified the This default, <code class="highlighter-rouge">389</code>, is used.</li>
-  <li><strong>Base DN</strong>
-This refers to the Base Distinguished Name used by the AD server to look for users.</li>
+  <li>sudo</li>
+  <li>mkdir</li>
+  <li>chown</li>
+  <li>curl</li>
+  <li>tar</li>
+  <li>chmod</li>
+  <li>ln</li>
+  <li>export</li>
 </ul>
 
-<h3 id="setting-up-ldap-related-configurations">Setting up LDAP related configurations</h3>
+<h2 id="kubernetes">Kubernetes</h2>
 
-<p>To enable LDAP Basic authentication for CDAS access, set the following environment
-variables in your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file:</p>
+<p>Okera uses Kubernetes for back-end cluster management, monitoring, and port provisioning.
+We’ll let Kubernetes (also sometimes written <em>K8s</em>) <a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/">explain itself</a>, but understanding how Kubernetes works to maintain resources and enable cluster networking will be helpful if you have to troubleshoot the system in the future.
+We do explain the <a href="kubernetes-dashboard-quickstart">use of Kubernetes Dashboard</a> for monitoring Okera resources.</p>
 
-<ul>
-  <li><strong>CEREBRO_LDAP_HOST</strong>
-eg. <code class="highlighter-rouge">example.com</code> or <code class="highlighter-rouge">127.0.0.4</code>.</li>
-  <li><strong>CEREBRO_LDAP_PORT</strong>
-This has a <strong>default value of 389</strong> if not set.</li>
-  <li><strong>CEREBRO_LDAP_BASE_DN</strong>
-<strong>Please note:</strong> Cerebro accepts the base DN in a particular notation as described here.
-If your base DN is of the format <code class="highlighter-rouge">dc=example,dc=com</code>, the value to be passed in should
-be <code class="highlighter-rouge">example.com</code></li>
-  <li><strong>CEREBRO_LDAP_USE_SSL</strong>
-By default, Cerebro assumes the LDAP server has SSL enabled. We recommend this for
-all production configurations in which case this config does not need to be specified. For
-test deployments, this can be set to <code class="highlighter-rouge">false</code> if the LDAP server does not have SSL enabled.</li>
-  <li><strong>CEREBRO_LDAP_DOMAIN</strong>
-This is the default domain for users. For example, if set to <code class="highlighter-rouge">ALL USERS</code> and a user
-tries to log in with their username, <code class="highlighter-rouge">userid</code>,  Cerebro will authenticate (i.e. bind)
-with the LDAP server using <code class="highlighter-rouge">ALL USERS\\userid</code>. If a domain is explicitly specified when
-logging in, Cerebro will ignore this value. For example, in the same identical
-configuration, if the user explicitly logged in as <code class="highlighter-rouge">TEST DOMAIN\\userid</code>, then we will
-authenticate with LDAP using exactly that login. By default, this is not set and there
-is no default domain. If this is set, CEREBRO_LDAP_BASE_DN should not be set.</li>
-</ul>
+<h2 id="docker">Docker</h2>
 
-<p>For clarity, in your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file, the following variables need to be
-uncommented and set:</p>
+<p>In conjunction with Kubernetes, we use <a href="https://docs.docker.com/engine/docker-overview/#what-can-i-use-docker-for">Docker</a> to deliver the actual ODAS executables.
+One way to think of it is that the Deployment Manager spins up the cluster, Kubernetes coordinates the nodes and ports, and Docker runs the services.
+Docker containers create an encapsulated application package that includes OS, application, and any tools required to run that application.
+As long as your host operating system can run the Docker application, you can run pretty much any software in a Docker container.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
-<span class="c"># export cerebro_ldap_host=your_ad_hostname</span>
-<span class="c"># export cerebro_ldap_port=your_ad_port</span>
-<span class="c"># export cerebro_ldap_base_dn=your_ad_base_dn</span>
-</code></pre></div></div>
+<p>Docker allows us to upgrade and improve on Okera applications without requiring you to have to upgrade your infrastructure as often or as dramatically as you would if our applications ran directly on your EC2 instances.
+Less change means less complications. We like that.</p>
 
-<p>For example, for an LDAP Host at <code class="highlighter-rouge">example.com:324</code>, and Base DN of <code class="highlighter-rouge">dc=example,dc=com</code>,
-the LDAP related variables will look like:</p>
+<p>As with Kubernetes, you will likely only have to work in the Docker layer if there is any troubleshooting required.
+In those cases, we’ll work with you and your team to get things back into working order.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
-<span class="nb">export </span><span class="nv">CEREBRO_LDAP_HOST</span><span class="o">=</span>example.com
-<span class="nb">export </span><span class="nv">CEREBRO_LDAP_PORT</span><span class="o">=</span>324
-<span class="nb">export </span><span class="nv">CEREBRO_LDAP_BASE_DN</span><span class="o">=</span>example.com
-</code></pre></div></div>
+<h2 id="installation">Installation</h2>
 
-<h3 id="verify-ldap-basic-authentication-using-curl">Verify LDAP Basic authentication using curl</h3>
-
-<p>Before we begin this section, make sure you have a set of LDAP credentials that you
-intend to use for authentication:</p>
-
-<ul>
-  <li>
-    <p><strong>Check the LDAP connection using CURL</strong>:</p>
-
-    <p>The following curl command should return the authenticated client name</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>curl &lt;CDAS_REST_SERVER&gt;/api/health-authenticated <span class="nt">-u</span> &lt;AD_USERNAME&gt;
-  Enter host password <span class="k">for </span>user <span class="s1">'&lt;AD_USERNAME&gt;'</span>:
-  <span class="o">{</span>
-    <span class="s2">"health"</span>: <span class="s2">"ok"</span>,
-    <span class="s2">"token"</span>: null,
-    <span class="s2">"user"</span>: <span class="s2">"&lt;AD_USERNAME&gt;"</span>
-  <span class="o">}</span>
-
-  <span class="c"># An example for Catalog REST server running at localhost:5000, and AD username</span>
-  <span class="c"># "testuser" is as follows</span>
-  <span class="nv">$ </span>curl localhost:5000/api/health-authenticated <span class="nt">-u</span> testuser
-  Enter host password <span class="k">for </span>user <span class="s1">'testuser'</span>:
-  <span class="o">{</span>
-    <span class="s2">"health"</span>: <span class="s2">"ok"</span>,
-    <span class="s2">"token"</span>: null,
-    <span class="s2">"user"</span>: <span class="s2">"testuser"</span>
-  <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><strong>Authenticate user and get token using CURL</strong>:</p>
-
-    <p>The following curl command should return a Cerebro token on successful authentication</p>
-
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>curl <span class="nt">-X</span> POST &lt;CDAS_REST_SERVER&gt;/api/get-token <span class="nt">-u</span> &lt;AD_USERNAME&gt;
-  Enter host password <span class="k">for </span>user <span class="s1">'&lt;AD_USERNAME&gt;'</span>:
-  <span class="o">{</span>
-    <span class="s2">"token"</span>: <span class="s2">"&lt;Token&gt;"</span>
-  <span class="o">}</span>
-
-  <span class="c"># An example for Catalog REST server running at localhost:5000, and AD username</span>
-  <span class="c"># "testuser" is as follows</span>
-  <span class="nv">$ </span>curl <span class="nt">-X</span> POST localhost:5000/api/get-token <span class="nt">-u</span> testuser
-  Enter host password <span class="k">for </span>user <span class="s1">'testuser'</span>:
-  <span class="o">{</span>
-    <span class="s2">"token"</span>: <span class="s2">"AAdzYXVyYWJoAAdzYXVyYWJoigFcIb5C_IoBXEXKxvwBAg</span><span class="nv">$$</span><span class="s2">.xvm3yXp3_CZX377y0BqFVBmjKIY$"</span>
-  <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="use-the-web-ui-to-authenticate-and-get-a-cerebro-token">Use the Web UI to authenticate and get a Cerebro token</h3>
-
-<p>It is now possible to get a Cerebro token using the Cerebro Web UI. Point your browser to
-the login page in the Web UI and enter your credentials.</p>
-
-<h3 id="exploring-ldap-related-logs">Exploring LDAP related logs</h3>
-
-<p>To verify if the LDAP related values are set as intended, and for LDAP related debugging,
-look for the following logs in your Catalog Admin container. You should see the following
-lines in your Catalog REST server logs:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># the general format of expected logs</span>
-LDAP configurations initialized
-LDAP Server: &lt;LDAP_HOST&gt;:&lt;LDAP_PORT&gt;
-LDAP Server Base DN: &lt;base DN <span class="k">in</span> <span class="s1">'dc=x'</span> format&gt;
-
-<span class="c"># assuming your ldap server is at 127.0.0.4:389 and base dn is "example.com"</span>
-LDAP configurations initialized
-LDAP Server: 127.0.0.4:389
-LDAP Server Base DN: <span class="nv">dc</span><span class="o">=</span>example,dc<span class="o">=</span>com
-</code></pre></div></div>
-
-<p>If the above lines are not present, your Catalog instance did not start with LDAP Basic
-authentication enabled.</p>
+<p>Now that you’re oriented, the fun can begin.
+Our <a href="install">Installation document</a> should be able to get you up and running with a suitable Deployment Manager and your first ODAS cluster.</p>
 
 
     <div class="tags">
@@ -728,9 +708,11 @@ authentication enabled.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-               &copy;2018 Cerebro Data, Inc. All rights reserved. <br />
- Site last generated: Apr 20, 2018 <br />
-<p><img src="assets/images/cerebro-brain-logo.png" alt="Company logo" style="width: 160px" /></p>
+                  <img src="assets/images/favicon.ico" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: May 1, 2018
+                  </div>
                 </div>
             </div>
 </footer>

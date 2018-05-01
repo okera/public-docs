@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Okera Web UI Basics | Okera User Documentation</title>
+<title>Okera Portal Basics | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li class="active"><a href="web-ui-basics">Web UI Basics</a></li>
+          <li class="active"><a href="web-ui-basics">Okera Portal Basics</a></li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -558,28 +570,29 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="okera-web-ui-basics">Okera Web UI Basics</h1>
+  <h1 id="okera-portal-basics">Okera Portal Basics</h1>
 
-<p>The Okera Web UI provides a read only-user interface to:</p>
+<p>The Okera Portal (formerly Web UI) is the browser-based interface used for:</p>
 
 <ul>
-  <li>View your <a href="#account-details">account information</a>.</li>
-  <li><a href="#datasets-page">Find and understand</a> datasets.</li>
-  <li>Understand your access to <a href="#dataset-details">datasets</a> and <a href="#column-access">columns</a>.</li>
-  <li>Get <a href="#get-started-snippets">programmatic access</a> to a dataset.</li>
+  <li>Viewing your <a href="#account-details">account information</a></li>
+  <li><a href="#datasets-page">Find and understand</a> datasets</li>
+  <li>Understanding your access to <a href="#dataset-details">datasets</a> and <a href="#column-access">columns</a></li>
+  <li>Getting <a href="#get-started-snippets">programmatic access</a> to a dataset</li>
+  <li><a href="#permissions-lookup">Checking permissions</a> on any dataset</li>
 </ul>
 
 <blockquote>
-  <p><strong>Tip:</strong> For advanced administrator features, see <a href="web-ui-admin">Web UI for Admins</a></p>
+  <p><strong>Tip:</strong> For advanced administrator features, see <a href="web-ui-admin">Portal for Admins</a></p>
 </blockquote>
 
-<h2 id="accessing-the-web-ui">Accessing the Web UI</h2>
+<h2 id="accessing-the-portal">Accessing the Portal</h2>
 
-<p>To access the Web UI, browse to the URL provided by your Okera administrator.</p>
+<p>To access the Portal, browse to the URL provided by your Okera administrator.</p>
 
 <h3 id="supported-browsers">Supported Browsers</h3>
 
-<p>The Okera Web UI is supported on the latest versions of the following browsers:</p>
+<p>The Okera Portal is supported on the latest versions of the following browsers:</p>
 
 <ul>
   <li>Google Chrome</li>
@@ -590,24 +603,37 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="logging-in">Logging In</h3>
 
-<p>Use the <strong>Login</strong> screen to access the Web UI.
+<p>Use the <strong>Login</strong> screen to access the Portal.
 The Login screen is configured to provide login options depending on your cluster configuration.
 The login options include:</p>
 
 <ul>
-  <li><strong>token login</strong>
- Authenticate with Okera, JWT, and SSO tokens.</li>
-  <li><strong>username/password login</strong>
- Authenticate using LDAP credentials.</li>
-  <li><strong>OAuth login</strong>
- Authenticate with OAuth.</li>
+  <li>
+    <p><strong>token login</strong></p>
+
+    <p>Authenticate with Okera, JWT, and SSO tokens.</p>
+  </li>
+  <li>
+    <p><strong>username/password login</strong></p>
+
+    <p>Authenticate using LDAP credentials.</p>
+  </li>
+  <li>
+    <p><strong>OAuth login</strong></p>
+
+    <p>Authenticate with OAuth.</p>
+  </li>
 </ul>
 
-<h4 id="a-note-on-ssl">A note on SSL</h4>
-<p>If Okera is configured to run with SSL enabled using a self-signed certificate, the SSL certificate must be setup on your local system for the Web UI to be accessible to your browser.
-If, upon navigating to the Web UI, the browser warns that the site is not trusted, the SSL certificate may need to be installed.</p>
+<p><img src="assets/images/ui-screen-login-page.png" alt="Okera Login Screen" />
+<br /><em>Example login screen with Active Directory and Token login</em></p>
 
-<p>Please note that even if you bypass your browser’s certificate warning, the Okera Web UI will likely continue to not work, with the Login screen reporting this message:</p>
+<h4 id="a-note-on-ssl">A note on SSL</h4>
+
+<p>If Okera is configured to run with SSL enabled using a self-signed certificate, the SSL certificate must be setup on your local system for the Portal to be accessible to your browser.
+If, upon navigating to the Portal, the browser warns that the site is not trusted, the SSL certificate may need to be installed.</p>
+
+<p>Please note that even if you bypass your browser’s certificate warning, the Okera Portal will likely continue to not work, with the Login screen reporting this message:</p>
 
 <blockquote>
   <p>Could not contact server. Check your network connection and try again later.</p>
@@ -616,33 +642,39 @@ If, upon navigating to the Web UI, the browser warns that the site is not truste
 <p>If you see this message, it could mean you need to install the SSL certificate.
 Contact your Okera administrator.</p>
 
-<h2 id="using-the-web-ui">Using the Web UI</h2>
+<h2 id="using-the-portal">Using the Portal</h2>
 
-<p>Once you are logged in, the Web UI starts you off in your Okera <strong>Home</strong> page.
+<p>Once you are logged in, the Portal starts you off in your Okera <strong>Home</strong> page.
 From here, you can directly access most of your options.</p>
+
+<p>You will see a <strong>quick access list</strong> of your recently starred datasets and your user tags.
+Clicking on one of the tags opens a list of your datasets with that tag.</p>
 
 <h3 id="account-details">Account Details</h3>
 
 <p>The Home page shows your account information:</p>
 
 <ul>
-  <li>your Okera username</li>
-  <li>the groups you belong to</li>
-  <li>the roles you have been granted</li>
-  <li>the groups granting you those roles</li>
-  <li>your access token, including expiry information</li>
+  <li>your Okera <strong>username</strong></li>
+  <li>the <strong>groups</strong> you belong to</li>
+  <li>the <strong>roles</strong> you have been granted</li>
+  <li>the <strong>groups granting</strong> you those roles</li>
+  <li>your <strong>access token</strong>, including expiry information</li>
 </ul>
 
 <blockquote>
   <p><strong>Tip:</strong> you can use <code class="highlighter-rouge">Ctrl+F</code> or <code class="highlighter-rouge">Cmd+F</code> (Mac) to quickly find a group or role name.</p>
 </blockquote>
 
-<p><img src="assets/images/ui-screen-account-details.png" alt="Okera Account Details" /></p>
+<p><img src="assets/images/ui-screen-account-details.png" alt="Okera Home Page" /></p>
 
 <h3 id="about-modal">About Modal</h3>
 
-<p>A modal is triggered by the <strong>About</strong> link at the top right corner next to your username.
-This dialog displays information about your Okera cluster:</p>
+<p>A modal is triggered by the <strong>About</strong> link at the top right corner next to your username.</p>
+
+<p><img src="assets/images/ui-detail-about-modal.png" style="width: 300px;" /></p>
+
+<p>This dialog displays information about your Okera cluster:</p>
 
 <ul>
   <li>UI version</li>
@@ -656,7 +688,7 @@ This dialog displays information about your Okera cluster:</p>
 <h3 id="copying-your-access-token">Copying Your Access Token</h3>
 
 <p>There are two places you can readily find your access token.
-It is available on your <strong>Home</strong> screen, or from any screen by way of the user menu.</p>
+It is available on your <strong>Home</strong> screen, or from any screen by way of the user menu (your username in the upper-right corner).</p>
 
 <p>Click <strong>Copy</strong> adjacent to the access token on your home screen.</p>
 
@@ -670,8 +702,7 @@ It is available on your <strong>Home</strong> screen, or from any screen by way 
 
 <p>Click the <strong>Datasets</strong> navigation tab at the top to access the datasets page.</p>
 
-<p>Use the Datasets page to browse, search, filter, and preview your accessible Okera datasets.
-With admin dataset access, review group access to datasets fields.</p>
+<p>Use the Datasets page to browse, search, filter, preview, and star your accessible Okera datasets.</p>
 
 <p>Any dataset where you have any level of access appears in this list.
 Datasets to which you have no access will not appear at all.</p>
@@ -680,19 +711,48 @@ Datasets to which you have no access will not appear at all.</p>
 
 <p><img src="assets/images/ui-screen-dataset-search.png" alt="Okera Datasets Search" /></p>
 
-<p>At the top of the page you can select datasets search and filter options:</p>
+<p>At the top of the page, you can select datasets search and filter options:</p>
 
 <ul>
-  <li><strong>Search</strong> box
- Search by dataset name. Any dataset
-name containing your input as a substring is displayed.
+  <li>
+    <p><strong>Search</strong> box</p>
+
+    <p>Search by dataset name. Any dataset
+name containing your input as a substring is displayed.</p>
     <blockquote>
       <p><strong>Tip:</strong> You can quickly clear this box with the ESC key.</p>
     </blockquote>
   </li>
-  <li><strong>Filter by database</strong> multi-select box
- Filter the list to include only datasets in a particular database or set of databases.</li>
+  <li>
+    <p><strong>Filter by database</strong> multi-select box</p>
+
+    <p>Filter the list to include only datasets in a particular database or set of databases.</p>
+  </li>
+  <li>
+    <p><strong>Filter by User Tags</strong> multi-select box</p>
+
+    <p>Filter the list to include only datasets that are tagged as selected.</p>
+  </li>
+  <li>
+    <p><strong>Filter by Starred datasets</strong> checkbox</p>
+
+    <p>Filter the list to show only datasets that you’ve starred.</p>
+  </li>
+  <li>
+    <p><strong>Filter by Admin</strong> checkbox</p>
+
+    <p>Filter the list to show only datasets that you are Admin on (you have ALL access to these datasets).</p>
+  </li>
 </ul>
+
+<h3 id="what-does-admin-mean">What does Admin mean?</h3>
+
+<p><em>If you have ALL access on a particular object (database or dataset)</em>, you are considered an <em>admin</em> for that object within Okera.
+You will also see an “Admin” tag on the dataset details panel.</p>
+
+<p><img src="assets/images/ui-detail-admin-summary-card.png" alt="Okera Admin Summary Card" /></p>
+
+<p>For more about administrative usage, see <a href="web-ui-admin">Portal for Admins</a>.</p>
 
 <h3 id="dataset-details">Dataset Details</h3>
 
@@ -714,11 +774,13 @@ The details panel will appear on the right side of the screen.</p>
       <li>Created (the date and time the dataset was created)</li>
       <li>Metadata Changed (the date and time the metadata was last changed)</li>
       <li>View Definition (if dataset is an external view)</li>
+      <li>Partitioning Columns (if dataset is partitioned)</li>
     </ul>
   </li>
   <li>The dataset schema described in full:
     <ul>
       <li>Total number of columns in the schema (next to ‘Schema’ tab)</li>
+      <li>Partitioning Column (if dataset is partitioned)</li>
       <li>Each column in the dataset is shown, including:
         <ul>
           <li>Name</li>
@@ -732,22 +794,65 @@ The details panel will appear on the right side of the screen.</p>
 
 <blockquote>
   <p><strong>Note</strong>
-If a column’s name has a gray background, it is a <strong>partitioning column</strong>
-<br /><img alt="Okera partitioning field" src="assets/images/ui-detail-partitioning-field.png" style="width: 150px;" /></p>
+If a column’s name has a gray background, it is a <strong>partitioning column</strong></p>
+
+  <p><img alt="Okera partitioning field" src="assets/images/ui-detail-partitioning-field.png" style="width: 150px;" /></p>
 </blockquote>
+
+<h3 id="complex-types-in-the-schema">Complex Types in the Schema</h3>
+
+<p>Complex types will be marked as “STRUCT” datatype in the schema.
+All the nested child elements will appear underneath with the parent elements greyed out.
+See also <a href="#previewing-complex-types">Previewing Complex types</a>.</p>
+
+<p><img src="assets/images/ui-detail-complex-types-schema.png" alt="Okera Struct Datatype" /></p>
 
 <h3 id="column-access">Column Access</h3>
 
 <p>If your schema looks similar to the table below, you do not have access to every column in the dataset.</p>
 
-<p><img src="assets/images/ui-screen-schema-access.png" alt="Okera See Groups" /></p>
+<p><img src="assets/images/ui-screen-column-access.png" alt="Okera See Groups" /></p>
 
 <p>To display a list of groups with access to the data column, click <strong>See Groups</strong> associated with the applicable data column name.
 To gain access to that column’s data, you must be added to one of these groups.</p>
 
+<h3 id="starring-datasets">Starring Datasets</h3>
+
+<p>Clicking on the star next to the dataset name will add that dataset to
+your “Starred datasets” list. You can see a list of your recently starred
+datasets on the <a href="#using-the-web-ui">homepage</a>.</p>
+
+<p><img src="assets/images/ui-detail-starred-dataset.png" alt="Okera Starring Datasets" /></p>
+
+<h3 id="adding-user-tags">Adding User Tags</h3>
+
+<p>You can use the “Tags” input box to add your own personal tags to datasets.
+To create a new tag, simply select “Create option…”</p>
+
+<p><img src="assets/images/ui-detail-adding-user-tags.png" alt="Okera Adding User tags" /></p>
+
+<blockquote>
+  <p><strong>Note</strong> User tags are personal tags only visible to you. No other user will see them.</p>
+</blockquote>
+
+<h3 id="dataset-action-menu">Dataset Action Menu</h3>
+
+<p><img src="assets/images/ui-screen-dataset-actions.png" alt="Okera Dataset Actions" /></p>
+
+<p>At the top right of the dataset details, you will see an Action menu with these options:</p>
+
+<ul>
+  <li><img src="assets/images/ui-icon-preview.png" alt="Okera Preview Dataset Icon" /> <a href="#dataset-preview">Preview Dataset</a></li>
+  <li><img src="assets/images/ui-icon-usage.png" alt="Okera Usage Snippets Icon" /> View <a href="#get-started-snippets">Dataset usage</a> snippets</li>
+  <li><img src="assets/images/ui-icon-permissions.png" alt="Okera Open in Permissions Icon" /> Open dataset in <a href="#permissions-lookup">Permissions</a></li>
+  <li><img src="assets/images/ui-icon-workspace.png" alt="Okera Open in Workspace Icon" /> Open dataset in Workspace (Admins only)</li>
+</ul>
+
 <h3 id="dataset-preview">Dataset Preview</h3>
 
-<p>To preview a dataset, click <strong>Show Preview</strong> in the upper right of the details panel.</p>
+<p>To preview a dataset, click the
+<img src="assets/images/ui-icon-preview.png" alt="Okera Preview Dataset" /> <strong>Show Preview icon</strong> icon
+in the upper right of the details panel.</p>
 
 <p><img src="assets/images/ui-screen-preview.png" alt="Okera Preview Dataset" /></p>
 
@@ -763,9 +868,18 @@ To gain access to that column’s data, you must be added to one of these groups
   </li>
 </ul>
 
+<h3 id="previewing-complex-types">Previewing Complex Types</h3>
+
+<p>When previewing a table with complex types, the data will be displayed as an
+expandable JSON structure. Simply click the + to expand the cell
+and reveal the data values.</p>
+
+<p><img src="assets/images/ui-screen-complex-types-preview.png" alt="Okera Preview Complex types" /></p>
+
 <h3 id="get-started-snippets">Get-Started Snippets</h3>
 
-<p>To start using a dataset, click <strong>Get Started</strong> on the upper right of its details panel.</p>
+<p>To start using a dataset, click
+<img src="assets/images/ui-icon-usage.png" alt="Okera Usage Snippets Icon" /> <strong>View usage icon</strong> on the upper right of its details panel.</p>
 
 <p><img src="assets/images/ui-screen-get-started.png" alt="Okera Get-Started snippets" /></p>
 
@@ -776,7 +890,7 @@ Click the tab of your choice to retrieve integration code suitable for your appl
 
 <p>In the UI, datasets with errors are those that failed to load due to a problem with their metadata (e.g., unsupported datatype).
 Datasets with errors are listed alongside datasets that loaded properly.
-Clicking a failed dataset reveals the error message on the details page on the right.</p>
+Clicking a failed dataset reveals the error message on the details panel on the right.</p>
 
 <p><img src="assets/images/ui-screen-datasets-with-errors.png" alt="Okera datasets with errors" /></p>
 
@@ -799,9 +913,45 @@ Then click <strong>Logout</strong>.</p>
 Be aware of this security issue when sharing access to your computer.</p>
 </blockquote>
 
-<h3 id="admin-features">Admin Features</h3>
+<h2 id="permissions-lookup">Permissions Lookup</h2>
 
-<p>For advanced features accessible to users with special privileges on datasets, see <a href="web-ui-admin">Web UI for Admins</a>.</p>
+<p>The <strong>Permissions</strong> page enables ready review of the permissions on any Okera database or dataset.
+You can easily understand whether or not you have access to it, and find out what groups can give you access.</p>
+
+<p><img src="assets/images/ui-screen-permissions.png" alt="Okera Permissions page" /></p>
+
+<blockquote>
+  <p><strong>Note</strong> You can look up any database name, even if it’s not automatically listed in the dropdown.
+Simply type the database name and select the “Create option…”. The databases in the
+dropdown are ones you already have some level of access to.</p>
+</blockquote>
+
+<p><img src="assets/images/ui-detail-database-create-option.gif" alt="Okera Lookup Database" /></p>
+
+<p>Use the database and dataset input boxes to look up any object.
+If you have access to the specified object, you will see this information:</p>
+
+<p><strong>Access Summary</strong>
+<br />Overview indicates whether you have access, what level of access, and if you can grant or not.</p>
+
+<p><strong>Dataset Details Tab</strong>
+<br />If you have access to the specified dataset, you will see the dataset details information here for easy access.</p>
+
+<p><strong>User Tab</strong>
+<br />If you have access, this tab shows the list of groups that are responsible for your access to the specified database or dataset.</p>
+
+<p><strong>Database Tab</strong>
+<br />Shows your access relative to the specified database.
+If you only have access to specific datasets inside that database, it will show you a list of these.</p>
+
+<p>Clicking on one of these datasets then shows the list of groups responsible for access to that specified database or dataset.</p>
+
+<p><strong>Permissions Tab</strong>
+<br />Shows the full list of groups that have <strong>any</strong> level of access to the specified database or dataset.
+Any group not in the available list has no access to the specified database or dataset.</p>
+
+<p><strong>Admin Permissions</strong>
+<br />If you’re an Admin, you are able to look up any user’s or group’s access on an object.</p>
 
 
     <div class="tags">
@@ -821,7 +971,7 @@ Be aware of this security issue when sharing access to your computer.</p>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

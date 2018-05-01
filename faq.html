@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -574,6 +586,7 @@ $('#toc').on('click', 'a', function() {
       <li><a href="#do-i-still-need-to-prep-the-data-if-i-have-okera">Do I still need to prep the data if I have Okera?</a></li>
       <li><a href="#do-i-still-need-a-data-catalog-if-i-have-okera">Do I still need a data catalog if I have Okera?</a></li>
       <li><a href="#once-set-up-will-all-data-access-be-through-okera">Once set up, will all data access be through Okera?</a></li>
+      <li><a href="#how-do-i-get-support">How do I get support?</a></li>
       <li><a href="#how-does-okera-handle-identity-management-and-authentication">How does Okera handle identity management and authentication?</a></li>
     </ul>
   </li>
@@ -628,7 +641,7 @@ In addition, Okera has the ability to speed up common access patterns and thereb
 <h3 id="is-okera-a-database">Is Okera a database?</h3>
 
 <p>Okera manages data access and governance, not storage, per se.
-Yet as a matter of course, the platform does provide much of the functionality you may expect from conventional databases but have not found in Big Data infrastructure.
+Yet as a matter of course, the platform does provide much of the functionality you may expect from conventional databases but is not found in Big Data infrastructure.
 Okera maintains a schema registry that maps datasources, objects, and fields similarly to some features of relational database management systems (RDBMSes).
 See <a href="okera-catalog-overview">Okera Catalog Overview</a> for more.</p>
 
@@ -705,6 +718,14 @@ Anything that accesses raw files directly will be unable to leverage the securit
 <p>Okera honors user groups established integrated by Unix systems and Active Directory.
 When users supply authentication credentials the Okera platform, their existing authorizations are applied, permitting them access only to the datasets, objects, and columns indicated by their group assignments.</p>
 
+<h3 id="how-do-i-get-support">How do I get support?</h3>
+
+<p>Okera Customer Success engineers provide excellent enterprise support services under the terms of our license.
+To become a valued Okera customer, <a href="http://okera.com">get in touch</a>.
+We do not guarantee support to non-customers, but we <a href="http://okera.com/contact">welcome support inquiries</a>.</p>
+
+<p>If you are already an Okera customer, you or a representative at your organization should have a <a href="https://support.okera.com/hc/en-us">ZenDesk support login</a>.</p>
+
 <h2 id="technology-questions">Technology Questions</h2>
 
 <h3 id="what-data-formats-does-okera-support">What data formats does Okera support?</h3>
@@ -749,8 +770,7 @@ For most Hadoop compute frameworks, small files can cause the computation to be 
 
 <p>The Catalog itself cannot span multiple data centers.
 The data backing is stored in MySQL (or Aurora on AWS), and we recommend replication of the backing DB.
-The contents in the Catalog can span multiple clusters.
-For example, datasets that are from different data centers).</p>
+The contents in the Catalog can span multiple clusters (For example, datasets that are from different data centers).</p>
 
 <h3 id="does-okera-support-any-type-of-data-indexing">Does Okera support any type of data indexing?</h3>
 
@@ -788,7 +808,7 @@ The overhead of this translation and distribution results in slower performance 
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

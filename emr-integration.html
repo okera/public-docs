@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li class="active"><a href="emr-integration">EMR Integration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="emr-integration">EMR Integration</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -581,7 +593,7 @@ It assumes that the ODAS cluster is already running.</p>
 An EMR cluster that is using multiple components should apply each configuration.</p>
 
 <blockquote>
-  <p><strong>Note:</strong> EMR versions 5.3.0 through 5.9.0 are supported by the latest bootstrap scripts.</p>
+  <p><strong>Note:</strong> EMR versions 5.1.0 through 5.9.0 are supported by the latest bootstrap scripts.</p>
 </blockquote>
 
 <h2 id="bootstrap-scripts">Bootstrap Scripts</h2>
@@ -590,9 +602,9 @@ An EMR cluster that is using multiple components should apply each configuration
 These scripts can be run on an existing EMR cluster, or specified as part of the bootstrap actions when creating an EMR cluster using the AWS web-based UI.
 The subsections show the interactive usage of the scripts, while the <a href="#end-to-end-operational-example">end-to-end example</a> is showing their use in the AWS UI.</p>
 
-<h3 id="client-node-bootstrap">Client Node Bootstrap</h3>
+<h3 id="emr-node-bootstrap">EMR Node Bootstrap</h3>
 
-<p>The first bootstrap action places the client jars in the <code class="highlighter-rouge">/usr/lib/okera</code> directory and creates links into component-specific library paths.
+<p>The first bootstrap action places the client jars in the <code class="highlighter-rouge">/usr/lib/cerebro</code> directory and creates links into component-specific library paths.
 To configure an EMR cluster, run the script, and specify the version and components you have installed.</p>
 
 <p>The bootstrap script is located at:</p>
@@ -608,8 +620,7 @@ To configure an EMR cluster, run the script, and specify the version and compone
 <p><strong>Options</strong></p>
 
 <ul>
-  <li><code class="highlighter-rouge">--planner-hostports &lt;hostports&gt;</code> – Link to the <code class="highlighter-rouge">okera_planner:planner</code> endpoint</li>
-  <li><code class="highlighter-rouge">--token &lt;token&gt;</code> – The token that identifies the user</li>
+  <li><code class="highlighter-rouge">--planner-hostports &lt;hostports&gt;</code> – Link to the <code class="highlighter-rouge">cerebro_planner:planner</code> endpoint</li>
   <li><code class="highlighter-rouge">--init &lt;initScript&gt;</code> – s3 path init script to be run as part of bootstrap
 This is useful to set env variables like HTTP_PROXY.
 This script is needed if the EMR installation and bootstrap script needs to run from
@@ -624,11 +635,10 @@ the init script.
 <ul>
   <li>See <a href="/ip-address-management">IP Address Management</a> for details on how to retrieve the Planner endpoint</li>
   <li>See <a href="/client-integration#required">Client Integration</a> for information on the <code class="highlighter-rouge">&lt;hostports&gt;</code> parameter</li>
-  <li>The use of the <code class="highlighter-rouge">--token</code> parameter is for interactive use only</li>
 </ul>
 
-<p>For example, to bootstrap a Spark 2 cluster from the Okera 0.8.1 client release, provide the arguments <code class="highlighter-rouge">0.8.1 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
-If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">0.8.1 spark-2.x hive</code>.</p>
+<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.0.0 release, provide the arguments <code class="highlighter-rouge">1.0.0 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
+If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.0.0 spark-2.x hive</code>.</p>
 
 <p>The complete list of supported components are:</p>
 <ul>
@@ -645,10 +655,6 @@ These include:</p>
   <li>Apache ZooKeeper</li>
   <li>Apache Hue</li>
 </ul>
-
-<blockquote>
-  <p><strong>NOTE:</strong> ODAS client version must be 0.7.3 or later, when EMR Presto is used.</p>
-</blockquote>
 
 <h3 id="user-setup-bootstrap">User Setup Bootstrap</h3>
 
@@ -674,13 +680,13 @@ These include:</p>
 <p>This script</p>
 
 <ul>
-  <li>creates the group <code class="highlighter-rouge">okera</code>;</li>
+  <li>creates the group <code class="highlighter-rouge">cerebro</code>;</li>
   <li>creates a background script in <code class="highlighter-rouge">/tmp/</code> for each service account (that is, <code class="highlighter-rouge">hive</code>, <code class="highlighter-rouge">presto</code>, <code class="highlighter-rouge">spark</code>, and <code class="highlighter-rouge">yarn</code>), waiting for the given account to exist;</li>
-  <li>adds the account to the <code class="highlighter-rouge">okera</code> group;</li>
-  <li>sets the expected permissions on both the given user’s home directory and the <code class="highlighter-rouge">.okera</code> directory within their home directory.</li>
+  <li>adds the account to the <code class="highlighter-rouge">cerebro</code> group;</li>
+  <li>sets the expected permissions on both the given user’s home directory and the <code class="highlighter-rouge">.cerebro</code> directory within their home directory.</li>
 </ul>
 
-<p>The preceding steps result in the EMR service users having permission to read (and possibly write) a user’s token, because of their membership in the <code class="highlighter-rouge">okera</code> group.
+<p>The preceding steps result in the EMR service users having permission to read (and possibly write) a user’s token, because of their membership in the <code class="highlighter-rouge">cerebro</code> group.
 Group membership enables the Okera client libraries to authenticate the user by passing the user’s token to the ODAS cluster with each call.</p>
 
 <h2 id="end-to-end-operational-example">End-to-End Operational Example</h2>
@@ -780,12 +786,11 @@ Since we’re starting with Hive, Presto and Spark, specify <code class="highlig
 
 <p>For example, copy and paste this (and adjust as needed) into the “Optional arguments” box:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.8.0 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.0.0 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
 </code></pre></div></div>
 
 <p>Notes:</p>
 <ul>
-  <li>Since this is multi-tenant, there is no need to provide an access token to the bootstrap script.</li>
   <li>All options should be specified before the list of components.</li>
 </ul>
 
@@ -794,7 +799,7 @@ Since we’re starting with Hive, Presto and Spark, specify <code class="highlig
   <li>Add another “Custom action” under bootstrap actions.</li>
   <li>Set the script/JAR path to <code class="highlighter-rouge">s3://cerebrodata-release-useast/utils/emr/bootstrap-users.sh</code>.</li>
   <li>In the “Optional arguments” box enter the space-separated list of users to the script options (all in one line).
-For example: <code class="highlighter-rouge">alice bob</code>.</li>
+For example: <code class="highlighter-rouge">hadoop alice bob</code>.</li>
 </ul>
 
 <p><img src="assets/images/screen-emr-step-3.png" alt="EMR Step 3" /></p>
@@ -825,38 +830,16 @@ When the user is authenticated, Okera uses the username specified in the token.<
 
 <p>The token can be installed with the following commands:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir <span class="nt">-p</span> ~/.okera/
-<span class="nb">echo</span> <span class="s2">"&lt;longstringtoken&gt;"</span> <span class="o">&gt;</span> ~/.okera/token
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"&lt;longstringtoken&gt;"</span> <span class="o">&gt;</span> ~/.cerebro/token
 </code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">&lt;longstringtoken&gt;</code> placeholder must be replaced with the user’s string token.
-These commands need to be executed on every instance in the EMR cluster.</p>
+These commands need to be executed on every instance in the EMR cluster.
+The <code class="highlighter-rouge">.cerebro</code> directory is created by the <code class="highlighter-rouge">bootstrap-users.sh</code>.
+It is highly recommended to use that script to create this directory as it ensures that permissions are set correctly.</p>
 
-<p>The token must be owned by the group <code class="highlighter-rouge">okera</code> and have its permissions set so that the group can list and read the token.
-Write access is required if you are using a token refresh script, as described in the <a href="/odas-authentication">Authentication document</a>.</p>
-
-<p>Okera supplies a script to set the permissions on a token appropriately.
-Make sure that the service accounts are in the <code class="highlighter-rouge">okera</code> group and then run the script located at:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/lib/okera/set_token_access.sh
-</code></pre></div></div>
-
-<blockquote>
-  <p><strong>Note</strong>: This script must be run by a user with sudo privileges</p>
-</blockquote>
-
-<p>The Hadoop, Hive, Spark and Presto services should be restarted to update the groups to which those services have been added.
-A script to restart the pertinent services is located at <code class="highlighter-rouge">/usr/lib/okera/restart_emr.sh</code>.</p>
-
-<p>A similar user hierarchy should also be created in the Hadoop filesystem (HDFS or EMRFS, as applicable).
-For HDFS, you should execute the following commands:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hadoop fs <span class="nt">-mkdir</span> /user/&lt;user&gt;
-<span class="nv">$ </span>hadoop fs <span class="nt">-chown</span> &lt;user&gt;:&lt;user&gt; /user/&lt;user&gt;
-<span class="nv">$ </span>hadoop fs <span class="nt">-chmod</span> 750 /user/&lt;user&gt;
-</code></pre></div></div>
-
-<p>The user can now use the following EMR components to access data managed by Okera:</p>
+<p><strong>Step 6: Querying data.</strong>
+The user can now use the following EMR components to access data managed by Okera:</p>
 
 <p><strong>Example:</strong> Accessing data with Presto’s CLI</p>
 
@@ -903,7 +886,7 @@ hive&gt; show databases<span class="p">;</span>
 OK
 default
 okera_sample
-okera_system
+cerebro_system
 demo
 Time taken: 0.768 seconds, Fetched: 4 row<span class="o">(</span>s<span class="o">)</span>
 
@@ -942,7 +925,7 @@ beeline&gt; <span class="k">select</span> <span class="k">*</span> from okera_sa
 <p><strong>Example:</strong> Accessing data with Spark shell (Scala)</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>spark-shell
-scala&gt; val df <span class="o">=</span> spark.sqlContext.read.format<span class="o">(</span><span class="s2">"com.cerebro.recordservice.spark"</span><span class="o">)</span>.load<span class="o">(</span><span class="s2">"okera_sample.sample"</span><span class="o">)</span>
+scala&gt; val df <span class="o">=</span> spark.sql<span class="o">(</span><span class="s2">"select * from okera_sample.sample"</span><span class="o">)</span>
 df: org.apache.spark.sql.DataFrame <span class="o">=</span> <span class="o">[</span>record: string]
 
 scala&gt; df.show<span class="o">()</span>
@@ -956,7 +939,7 @@ scala&gt; df.show<span class="o">()</span>
 
 <h2 id="access-token-management">Access Token Management</h2>
 
-<p>Okera supports multi-tenant EMR clusters, as each Okera request includes the caller’s token.
+<p>Okera supports multi-tenant EMR clusters, as each Okera connection includes the caller’s token.
 Requests by users on the same EMR cluster using different tokens are independently authorized by Okera’s access controls.
 They potentially see different data.</p>
 
@@ -966,18 +949,18 @@ For a secure multi-tenant cluster, Okera recommends users do not log in as the s
 Otherwise, the local cluster OS is not secure.
 Similarly, not logging in as the same user, prevents users from viewing each other’s intermediate files in HDFS.</p>
 
-<p>Okera recommends that each user on the cluster persist their token under their home directory and make sure the directory is not world readable.</p>
-
-<p><strong>Example:</strong> Secure token management</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mkdir <span class="nt">-p</span> ~/.okera/
-<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"&lt;longstringtoken&gt;"</span> <span class="o">&gt;&gt;</span> ~/.okera/token
-</code></pre></div></div>
-
 <blockquote>
   <p><strong>Note:</strong> The EMR user does not have to match the token’s subject.
 Okera authenticates the user using the token only.</p>
 </blockquote>
+
+<h3 id="adding-users-to-a-running-cluster">Adding users to a running cluster</h3>
+
+<p>To add a user to a running EMR cluster that has already been ODAS bootstrapped, you can run <code class="highlighter-rouge">/usr/lib/cerebro/add-users.sh</code>.
+Identical to <code class="highlighter-rouge">bootstrap-users.sh</code>, this takes a space-separated list of users. This script assumes that <code class="highlighter-rouge">boostrap-users.sh</code> has been run already and will only add additional users. 
+This script will create the user and the <code class="highlighter-rouge">.cerebro</code> home directory with the proper permissions.</p>
+
+<p>In a common pattern, we expect system users such as <code class="highlighter-rouge">hadoop</code> to be bootstrapped at cluster creation time and additional users be added after.</p>
 
 <h2 id="per-component-configuration">Per-Component Configuration</h2>
 
@@ -991,7 +974,8 @@ You also need to have configured the access token as explained in <a href="#acce
 
 <blockquote>
   <p><strong>Warning:</strong> Previous versions of ODAS included a <em>single-tenant</em> approach, which configured a shared, per-service token in the configuration files of each service.
-This approach is no longer recommended anymore (due to its complexity) and should not be used in a multi-tenant cluster.</p>
+This approach is no longer recommended anymore (due to its complexity) and should not be used anymore.
+Instead for single tenant clusters, simply bootstrap the hadoop user and place the token in this users home directory.</p>
 </blockquote>
 
 <h3 id="spark">Spark</h3>
@@ -1105,7 +1089,7 @@ beeline&gt; <span class="k">select</span> <span class="k">*</span> from okera_sa
 <h4 id="cluster-local-databases">Cluster-local Databases</h4>
 
 <p>With the default install, the Hive Metastore (HMS) running on the cluster populates all of its contents from the Okera Catalog.
-In other cases, it could be useful to use HMS to register cluster-local (that is, temporary) tables, for example, for intermediate query results.</p>
+In some cases, it could be useful to use HMS to register cluster-local (that is, temporary) tables, for example, for intermediate query results.</p>
 
 <p>This can be done by configuring the set of databases that should only exist locally, either during bootstrap or by updating <code class="highlighter-rouge">hive-site.xml</code> and restarting the EMR HMS.
 For example, the setup could be configured so that any Hive operation to the database <code class="highlighter-rouge">localdb</code> is cluster-local; this includes tables, views, and so forth.
@@ -1128,7 +1112,7 @@ This can be set in <code class="highlighter-rouge">hive-site.xml</code>.</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
   <span class="nt">&lt;name&gt;</span>hive.metastore.warehouse.dir<span class="nt">&lt;/name&gt;</span>
-  <span class="nt">&lt;value&gt;</span>s3://cerebrodata/warehouse<span class="nt">&lt;/value&gt;</span>
+  <span class="nt">&lt;value&gt;</span>s3://okera/warehouse<span class="nt">&lt;/value&gt;</span>
   <span class="nt">&lt;description&gt;</span>location of default database for the warehouse<span class="nt">&lt;/description&gt;</span>
 <span class="nt">&lt;/property&gt;</span>
 </code></pre></div></div>
@@ -1140,7 +1124,7 @@ This can be set in <code class="highlighter-rouge">hive-site.xml</code>.</p>
 <p><strong>Example:</strong> Configuring local databases in <code class="highlighter-rouge">hive-site.xml</code></p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;property&gt;</span>
-  <span class="nt">&lt;name&gt;</span>okera.local.dbs<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;name&gt;</span>cerebro.local.dbs<span class="nt">&lt;/name&gt;</span>
   <span class="nt">&lt;value&gt;</span>localdb,testdb<span class="nt">&lt;/value&gt;</span>
   <span class="nt">&lt;description&gt;</span>
     Comma-separate list of local database names. These don't need to already exist.
@@ -1153,7 +1137,7 @@ This can be set in <code class="highlighter-rouge">hive-site.xml</code>.</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"Classification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hive-site"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"okera.local.dbs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localdb,testdb"</span><span class="w">
+    </span><span class="s2">"cerebro.local.dbs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localdb,testdb"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
@@ -1177,7 +1161,7 @@ Instead, altering the location is done through a native Okera client like the od
 
 <p><strong>Example:</strong> Using <code class="highlighter-rouge">odb</code> to alter the table location</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">odb</span> <span class="n">dataset</span> <span class="n">hive</span><span class="o">-</span><span class="n">ddl</span> <span class="nv">"alter table okera.users set location 's3a://okeradata/correctedlocation'"</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">odb</span> <span class="n">dataset</span> <span class="n">hive</span><span class="o">-</span><span class="n">ddl</span> <span class="nv">"alter table okera.users set location 's3a://okera/correctedlocation'"</span>
 </code></pre></div></div>
 
 <h4 id="limitations">Limitations</h4>
@@ -1201,7 +1185,7 @@ For example, <code class="highlighter-rouge">SHOW ROLES</code> does not list the
 
 <p><strong>Example:</strong></p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh 0.8.0 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh 1.0.0 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
 </code></pre></div></div>
 
 <p>See the <a href="#client-node-bootstrap">Client Node Bootstrap</a> section for more details.</p>
@@ -1249,7 +1233,7 @@ Configs should replicate the configurations that were specified during cluster c
 
 <h2 id="updating-odas-client-libraries">Updating ODAS Client Libraries</h2>
 
-<p>The ODAS client libraries are located in the <code class="highlighter-rouge">/usr/lib/okera</code> directory on each of the EMR instances.
+<p>The ODAS client libraries are located in the <code class="highlighter-rouge">/usr/lib/cerebro</code> directory on each of the EMR instances.
 To upgrade the ODAS client, become root user, download the client library, and restart the corresponding services.
 Replace <code class="highlighter-rouge">&lt;odas_version&gt;</code> with the version of the ODAS client to which you are upgrading.
 To restart the services, refer to
@@ -1261,7 +1245,7 @@ To restart the services, refer to
   <li>
     <p>SSH to <strong>each</strong> EC2 node in the EMR cluster and perform the following:</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/okera
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/cerebro
 curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/&lt;odas_version&gt;/client/recordservice-presto.jar
 </code></pre></div>    </div>
   </li>
@@ -1280,14 +1264,14 @@ start presto-server
   <li>
     <p>SSH to <strong>each</strong> of the EC2 nodes in the EMR cluster and do the following:</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/okera/
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/cerebro/
 curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/&lt;odas_version&gt;/client/recordservice-hive.jar
 </code></pre></div>    </div>
   </li>
   <li>
     <p>On the <em>master</em> EC2 node, download the Hive metastore jar and restart both the Hive server and the Hive metastore:</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/okera/
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/cerebro/
 curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/&lt;odas_version&gt;/client/cerebro-hive-metastore.jar
 stop hive-hcatalog-server
 stop hive-server2
@@ -1315,7 +1299,7 @@ start hive-server2
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

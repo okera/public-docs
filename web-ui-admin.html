@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Web UI for Administrators | Okera User Documentation</title>
+<title>Okera Portal for Administrators | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li class="active"><a href="web-ui-admin">Admin Web UI</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="web-ui-admin">Okera Portal for Admins</a></li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -558,69 +570,100 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="web-ui-for-administrators">Web UI for Administrators</h1>
+  <h1 id="okera-portal-for-administrators">Okera Portal for Administrators</h1>
 
-<p><em>If you have ALL access on a particular object (database or dataset)</em>, you have access to its administration features.
-You should see this icon: <img src="assets/images/ui-icon-admin.png" alt="Okera Admin icon" />.</p>
+<p><em>If you have ALL access on a particular object (database or dataset)</em>, you have access to its administrative features and are considered an <em>admin</em> for that object.</p>
 
 <blockquote>
-  <p><strong>Tip:</strong> For basic features accessible to all Okera users, see <a href="web-ui-basics">Web UI for Analysts</a>.</p>
+  <p><strong>Tip:</strong> For basic features accessible to all Okera users, see <a href="web-ui-basics">Okera Portal for Analysts</a>.</p>
 </blockquote>
 
-<h2 id="review-group-access-on-datasets">Review Group Access on Datasets</h2>
+<h2 id="user-permissions-lookup">User Permissions Lookup</h2>
 
-<p>For any databases or datasets to which you have ALL access, the <strong>Admin</strong> tab on the datasets page is visible.</p>
+<p>As an Admin you will also see a user/group input box on the Permissions page next to database and dataset.
+Here you can input any username or group name to understand their access on an object.</p>
 
-<p>This feature <strong>filters the datasets</strong> list to only datasets to which you have ALL access, and it reveals the <strong>Review Access</strong> feature for datasets to which you have Admin access.</p>
+<blockquote>
+  <p><strong>Note:</strong> if the user and group name are the same, the permissions lookup will default to looking up the user.</p>
+</blockquote>
 
-<p>Click <strong>Admin</strong> to see a multi-select box under <strong>Review Access</strong>.
-You can select a group or set of groups to see which datasets those groups can access.
-You can also filter by database to review group access to datasets <em>only</em> inside that database.</p>
+<p><img src="assets/images/ui-screen-admin-permissions.png" alt="Okera Admin Permissions page" /></p>
 
-<p><img src="assets/images/ui-screen-review-access.png" alt="Okera Review Access on Datasets" /></p>
+<p>Depending on if that user has access or not to the specified object, you will see this information:</p>
+
+<p><strong>Access Summary</strong>
+<br />Gives a quick summary on if that has user access or not, what level of access, to what data, and if they have the ability to grant or not for that object.</p>
+
+<p><strong>Dataset Details Tab</strong>
+<br />Shows the dataset details, as well as the schema <em>as that particular user would see it</em>.</p>
+
+<p><strong>User Tab</strong>
+<br />If the user has access, this tab shows the list of groups responsible for that user’s access to the specified database or dataset.</p>
+
+<p><strong>Database Tab</strong>
+<br />Shows that user’s access to the specified database.
+If the user only has access to specific datasets inside that database, it will show you a list of these.</p>
+
+<p>Clicking on one of these datasets then shows the list of groups responsible for access to that specified database or dataset.</p>
+
+<p><strong>Permissions Tab</strong>
+<br />Shows the full list of groups that have access to the specified database or dataset.
+Any group not in the available list has no access to the specified database or dataset.</p>
+
+<h2 id="workspace">Workspace</h2>
 
 <blockquote>
   <p><strong>Note</strong></p>
 
-  <p>Only groups with some level of access to the datasets you administer will be shown in this multi-select.
-Any group not in the available list has no access to any of the datasets shown.</p>
+  <p>The <strong>Workspace</strong> is only available to you if you have administrator permissions.
+The Workspace provides a powerful interface for performing DDL operations (for example, SHOW, GRANT, CREATE) for Admins, as well as running basic SQL queries.</p>
 </blockquote>
 
-<p>A column is added to every dataset’s display showing whether the group or groups being inspected can access any field in the dataset.</p>
+<p>The Workspace <strong>automatically authenticates as the logged in user</strong>, so there’s no need to provide any credentials.</p>
 
-<p><img src="assets/images/ui-icon-lock.png" alt="Okera lock icon" /> The selected group or set of groups have no access to this dataset.</p>
+<p>Simply type your query and click the <strong>Execute</strong> button to run it.
+Your output will be displayed in the output box on the bottom.</p>
 
-<p><img src="assets/images/ui-icon-check.png" alt="Okera check icon" /> The selected group, or set of groups, has <em>some level of access</em> to this dataset.</p>
+<p>Okera is compatible with most HiveQL DDL statements.
+To understand all supported SQL, visit <a href="supported-sql">Supported SQL</a>.</p>
 
 <blockquote>
-  <p><strong>Note:</strong></p>
+  <p><strong>Warning</strong></p>
 
-  <p>Access is treated as a logical <code class="highlighter-rouge">OR</code> of the groups’ individual access – if any of the selected groups have access to a dataset, you will see a checkmark.</p>
+  <p>Large limits can cause long-running and/or resource-intensive queries.
+If you leave the page, your query will continue to run.</p>
 </blockquote>
 
-<h2 id="review-group-access-on-dataset-schema">Review Group Access on Dataset Schema</h2>
+<p><img src="assets/images/ui-screen-admin-workspace-annotated.png" alt="Okera Workspace Page" /></p>
 
-<p>If you have all access to a particular dataset, you will also see an <strong>Access</strong> tab on the dataset details page.
-There you can inspect which groups have access to which fields on a dataset, similarly to the datasets listing panel.</p>
+<p><strong>Recent Command History</strong>
+<br />To the right of the SQL input, you will see a list of your recent commands.
+Clicking on one re-stages the command in the input box.</p>
 
-<p><img src="assets/images/ui-screen-review-schema.png" alt="Okera Datasets Details page" /></p>
+<p><strong>Rerun or re-stage query</strong>
+<br />Next to previously run queries in the output box, you will see two icons.</p>
 
-<p>A <strong>multi-select box</strong> enables selection of a group or set of groups to see which fields in that dataset those groups can access.
-Similar to reviewing access to whole datasets, only groups with some level of access to the dataset are shown in this multi-select.</p>
+<p><img src="assets/images/ui-icon-rerun.png" alt="Okera Rerun icon" /> - Rerun the query</p>
 
-<p><img src="assets/images/ui-screen-schema-access.png" alt="Selected schema access details" /></p>
+<p><img src="assets/images/ui-icon-restage.png" alt="Okera Restage icon" /> - Re-stage the query (load it into query box)</p>
 
-<blockquote>
-  <p><strong>Note:</strong> Any group not shown has no access to this dataset.</p>
-</blockquote>
+<h3 id="formatting-queries-using-keyboard-shortcuts">Formatting Queries Using Keyboard Shortcuts</h3>
 
-<p>Icons indicate whether or not the currently selected groups have access to the field.</p>
+<p>The editor in workspace supports the following keyboard keys and key combinations for formatting your queries and other SQL statements:</p>
 
-<p><img src="assets/images/ui-icon-lock.png" alt="Okera Lock icon" /> The selected group or groups have no access to this field.</p>
+<p><strong>Tab Stops</strong> - To insert a tab stop in a line (in 4 character intervals), use the <code class="highlighter-rouge">TAB</code> key:</p>
 
-<p><img src="assets/images/ui-icon-check.png" alt="Okera check icon" /> The selected group or groups have <em>some level of access</em> to this field.</p>
+<ul>
+  <li>If the cursor is at the beginning of the line, 4 blank spaces are inserted.</li>
+  <li>If the cursor is in the line, enough blank spaces are added to reach the next tab stop.</li>
+</ul>
 
-<p>Use the Access tab to also <strong>compare two different sets of groups’ access</strong> by selecting different sets of groups in the two different access columns.</p>
+<p><strong>Comments</strong> - To comment out a line (or multiple lines), place the cursor anywhere in the line (or highlight the desired lines), hold down the <code class="highlighter-rouge">CMD</code> (Mac) or <code class="highlighter-rouge">CTRL</code> (Windows) key and type a forward slash, <code class="highlighter-rouge">/</code></p>
+
+<p><strong>Multiple Cursors</strong> - To add multiple cursors in the input box, hold down the <code class="highlighter-rouge">CMD</code> (Mac) or <code class="highlighter-rouge">CTRL</code>(Windows) key and click in each new location using the mouse left button or the touchpad.</p>
+
+<p><strong>Select Text Area</strong> - To select a text area, hold down the <code class="highlighter-rouge">OPTION</code> (Mac) or <code class="highlighter-rouge">ALT</code> (Windows) key. The cursor turns into a crosshair.
+Click and drag using the mouse left button or the touchpad.</p>
 
 
     <div class="tags">
@@ -640,7 +683,7 @@ Similar to reviewing access to whole datasets, only groups with some level of ac
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

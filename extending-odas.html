@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -614,27 +626,27 @@ These JARs should be compatible with Hive, and require no additional steps.</p>
 
 <p>For this UDF, the code might look like:</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">cerebro</span><span class="o">.</span><span class="na">hiveudf</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">okera</span><span class="o">.</span><span class="na">hiveudf</span><span class="o">;</span>
 
-  <span class="kn">import</span> <span class="nn">org.apache.hadoop.hive.ql.exec.UDF</span><span class="o">;</span>
-  <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Text</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.hadoop.hive.ql.exec.UDF</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Text</span><span class="o">;</span>
 
-  <span class="cm">/**
-   * UDF which masks all characters from the input string.
-   *
-   * SELECT mask('hello')
-   * &gt; 'xxxx'
-   */</span>
-  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaskUDF</span> <span class="kd">extends</span> <span class="n">UDF</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">Text</span> <span class="nf">evaluate</span><span class="o">(</span><span class="n">Text</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-      <span class="kt">byte</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">t</span><span class="o">.</span><span class="na">getBytes</span><span class="o">().</span><span class="na">length</span><span class="o">];</span>
-      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="sc">'x'</span><span class="o">;</span>
-      <span class="o">}</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="nf">Text</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+<span class="cm">/**
+  * UDF which masks all characters from the input string.
+  *
+  * SELECT mask('hello')
+  * &gt; 'xxxx'
+  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaskUDF</span> <span class="kd">extends</span> <span class="n">UDF</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Text</span> <span class="nf">evaluate</span><span class="o">(</span><span class="n">Text</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">t</span><span class="o">.</span><span class="na">getBytes</span><span class="o">().</span><span class="na">length</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="sc">'x'</span><span class="o">;</span>
     <span class="o">}</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">Text</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
   <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h3 id="registering-the-udf">Registering the UDF</h3>
@@ -643,10 +655,10 @@ These JARs should be compatible with Hive, and require no additional steps.</p>
 statements against ODAS.
 For example:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db_name</span><span class="p">.]</span><span class="n">function_name</span><span class="p">([</span><span class="n">arg_type</span><span class="p">[,</span> <span class="n">arg_type</span><span class="p">...])</span>
-    <span class="k">RETURNS</span> <span class="n">return_type</span>
-    <span class="k">LOCATION</span> <span class="s1">'s3_path'</span>
-    <span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'class name of UDF'</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db_name</span><span class="p">.]</span><span class="n">function_name</span><span class="p">([</span><span class="n">arg_type</span><span class="p">[,</span> <span class="n">arg_type</span><span class="p">...])</span>
+<span class="k">RETURNS</span> <span class="n">return_type</span>
+<span class="k">LOCATION</span> <span class="s1">'s3_path'</span>
+<span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'class name of UDF'</span>
 </code></pre></div></div>
 
 <blockquote>
@@ -656,18 +668,17 @@ different signatures.</p>
 
 <p>For example, the <code class="highlighter-rouge">MaskUDF</code>:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span>
-    <span class="k">RETURNS</span> <span class="n">STRING</span>
-    <span class="k">LOCATION</span> <span class="s1">'s3://cerebrodata-public-east/udfs/mask-udf.jar'</span>
-    <span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'com.cerebro.hiveudf.MaskUDF'</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="n">STRING</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://cerebrodata-public-east/udfs/mask-udf.jar'</span>
+<span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'com.cerebro.hiveudf.MaskUDF'</span>
 </code></pre></div></div>
 
 <p>To drop the UDF, use the <code class="highlighter-rouge">DROP FUNCTION</code> statement:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db_name</span><span class="p">.]</span><span class="n">function_name</span><span class="p">([</span><span class="n">arg_type</span><span class="p">[,</span> <span class="n">arg_type</span><span class="p">...])</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="p">[</span><span class="n">IF</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="p">[</span><span class="n">db_name</span><span class="p">.]</span><span class="n">function_name</span><span class="p">([</span><span class="n">arg_type</span><span class="p">[,</span> <span class="n">arg_type</span><span class="p">...])</span>
 
-  <span class="c1">-- For example</span>
-  <span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span>
+<span class="c1">-- For example</span>
+<span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="using-the-udf-directly">Using the UDF directly</h2>
@@ -676,13 +687,27 @@ different signatures.</p>
 
 <p>For example:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="n">record</span><span class="p">,</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">sample</span>
-
-  <span class="o">|</span> <span class="n">record</span>        <span class="o">|</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="o">|</span>
-  <span class="o">|</span> <span class="c1">------------- |:-------------:|</span>
-  <span class="o">|</span><span class="n">This</span> <span class="k">is</span> <span class="n">a</span> <span class="n">sample</span> <span class="n">test</span> <span class="n">file</span><span class="p">.</span><span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
-  <span class="o">|</span><span class="n">It</span> <span class="n">should</span> <span class="n">consist</span> <span class="k">of</span> <span class="n">two</span> <span class="n">lines</span><span class="p">.</span><span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">record</span><span class="p">,</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">sample</span>
 </code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>record</th>
+      <th style="text-align: center">okera_sample.mask(record)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>This is a sample test file.</td>
+      <td style="text-align: center">xxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+    </tr>
+    <tr>
+      <td>It should consist of two lines.</td>
+      <td style="text-align: center">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="using-the-udf-from-views">Using the UDF from views</h2>
 
@@ -693,21 +718,33 @@ UDF to the columns in it. Then, grant access to the view.</p>
 
 <p>For example:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span> <span class="k">as</span>
-  <span class="k">SELECT</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">as</span> <span class="n">record</span>
-  <span class="k">FROM</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">sample</span>
-  <span class="c1">-- GRANT SELECT ON table okera_sample.secure_sample to ROLE &lt;ROLE&gt;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span> <span class="k">as</span>
+<span class="k">SELECT</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">record</span><span class="p">)</span> <span class="k">as</span> <span class="n">record</span>
+<span class="k">FROM</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">sample</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">table</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>Then select from this view. The UDF is automatically applied.</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span>
-
-  <span class="o">|</span> <span class="n">record</span>        <span class="o">|</span>
-  <span class="o">|</span> <span class="c1">------------- |</span>
-  <span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
-  <span class="o">|</span><span class="n">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><span class="o">|</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">secure_sample</span>
 </code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>record</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+    </tr>
+    <tr>
+      <td>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>In this case, the UDF is completely hidden from the compute tool talking to ODAS. The tool
 does not know about, and therefore does not have access to, the UDF binary, in any way.</p>
@@ -721,22 +758,21 @@ from Hive, with no additional changes or configs.</p>
 
 <p>For example from the Hive CLI:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  show functions like <span class="s2">"okera_sample.*"</span><span class="p">;</span>
-  OK
-  okera_sample.mask
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>show functions like <span class="s2">"okera_sample.*"</span><span class="p">;</span>
+OK
+okera_sample.mask
 
-  hive&gt; <span class="k">select </span>okera_sample.mask<span class="o">(</span><span class="s1">'abcd'</span><span class="o">)</span><span class="p">;</span>
-  Added <span class="o">[</span>/mnt/tmp/53ad548e-5f83-44dd-985b-3c9c267fe736_resources/mask-udf.jar] to class path
-  Added resources: <span class="o">[</span>s3://cerebrodata-dev/udfs/mask-udf.jar]
-  OK
-  xxxx
+hive&gt; <span class="k">select </span>okera_sample.mask<span class="o">(</span><span class="s1">'abcd'</span><span class="o">)</span><span class="p">;</span>
+Added <span class="o">[</span>/mnt/tmp/53ad548e-5f83-44dd-985b-3c9c267fe736_resources/mask-udf.jar] to class path
+Added resources: <span class="o">[</span>s3://cerebrodata-dev/udfs/mask-udf.jar]
+OK
+xxxx
 </code></pre></div></div>
 
 <blockquote>
-  <p><strong>Note:</strong> This is available starting in the 0.8 release. It is not possible to register
-a ODAS UDF from Hive. The UDF must be registered in ODAS and then is visible
-through Hive. It is possible to register UDFs in Hive that are local to the EMR cluster,
-by creating the UDF (through Hive) in a local db.</p>
+  <p><strong>Note:</strong> It is not possible to register an ODAS UDF from Hive. 
+The UDF must be registered in ODAS and then is visible through Hive. 
+It is possible to register UDFs in Hive that are local to the EMR cluster, by creating the UDF (through Hive) in a local db.</p>
 </blockquote>
 
 <h2 id="common-errors">Common Errors</h2>
@@ -804,31 +840,31 @@ The fully qualified Java class name must be specified as well. Optionally, any a
 properties for the SerDe can be provided. The table can be partitioned or created with
 comments, in a similar way to other tables.</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="p">[</span><span class="k">EXTERNAL</span><span class="p">]</span> <span class="p">[</span><span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">tbl</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="k">SCHEMA</span><span class="o">&gt;</span><span class="p">)</span>
-  <span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">SERDE</span> <span class="s1">'&lt;PATH TO SERDE JAR&gt;'</span> <span class="n">SYMBOL</span> <span class="s1">'&lt;CLASS NAME OF SERDE&gt;'</span>
-  <span class="p">[</span><span class="k">WITH</span> <span class="n">SERDEPROPERTIES</span><span class="p">(</span><span class="s1">'&lt;key&gt;'</span> <span class="o">=</span> <span class="s1">'value'</span><span class="p">)]</span>
-  <span class="p">[</span><span class="k">LOCATION</span> <span class="o">|</span> <span class="k">COMMENT</span> <span class="o">|</span> <span class="p">...]</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="p">[</span><span class="k">EXTERNAL</span><span class="p">]</span> <span class="p">[</span><span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">tbl</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="k">SCHEMA</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">SERDE</span> <span class="s1">'&lt;PATH TO SERDE JAR&gt;'</span> <span class="n">SYMBOL</span> <span class="s1">'&lt;CLASS NAME OF SERDE&gt;'</span>
+<span class="p">[</span><span class="k">WITH</span> <span class="n">SERDEPROPERTIES</span><span class="p">(</span><span class="s1">'&lt;key&gt;'</span> <span class="o">=</span> <span class="s1">'value'</span><span class="p">)]</span>
+<span class="p">[</span><span class="k">LOCATION</span> <span class="o">|</span> <span class="k">COMMENT</span> <span class="o">|</span> <span class="p">...]</span>
 </code></pre></div></div>
 
 <p>For example, when using the Hive <a href="https://github.com/apache/hive/blob/trunk/contrib/src/java/org/apache/hadoop/hive/contrib/serde2/RegexSerDe.java">RegexSerDe</a>,
 it assumes the library is available at: <code class="highlighter-rouge">s3://my-company/serdes/regex-serde.jar</code>:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">apachelog</span> <span class="p">(</span>
-    <span class="k">host</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="k">identity</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="k">user</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="n">ts</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="n">request</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="n">status</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="k">size</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="n">referrer</span> <span class="n">STRING</span><span class="p">,</span>
-    <span class="n">agent</span> <span class="n">STRING</span><span class="p">)</span>
-  <span class="k">ROW</span> <span class="n">FORMAT</span>
-  <span class="n">SERDE</span> <span class="s1">'org.apache.hadoop.hive.serde2.RegexSerDe'</span>
-  <span class="n">JAR_PATH</span> <span class="s1">'s3://my-company/serdes/regex-serde.jar'</span>
-  <span class="k">WITH</span> <span class="n">SERDEPROPERTIES</span> <span class="p">(</span>
-    <span class="nv">"input.regex"</span> <span class="o">=</span> <span class="nv">"([^]*) ([^]*) ([^]*) (-|</span><span class="se">\\</span><span class="nv">[^</span><span class="se">\\</span><span class="nv">]*</span><span class="se">\\</span><span class="nv">]) ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">[^</span><span class="se">\"</span><span class="nv">]*</span><span class="se">\"</span><span class="nv">) (-|[0-9]*) (-|[0-9]*)(?: ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">.*</span><span class="se">\"</span><span class="nv">) ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">.*</span><span class="se">\"</span><span class="nv">))?"</span>
-  <span class="p">)</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">apachelog</span> <span class="p">(</span>
+  <span class="k">host</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="k">identity</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="k">user</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">ts</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">request</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">status</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="k">size</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">referrer</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">agent</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span>
+<span class="n">SERDE</span> <span class="s1">'org.apache.hadoop.hive.serde2.RegexSerDe'</span>
+<span class="n">JAR_PATH</span> <span class="s1">'s3://my-company/serdes/regex-serde.jar'</span>
+<span class="k">WITH</span> <span class="n">SERDEPROPERTIES</span> <span class="p">(</span>
+  <span class="nv">"input.regex"</span> <span class="o">=</span> <span class="nv">"([^]*) ([^]*) ([^]*) (-|</span><span class="se">\\</span><span class="nv">[^</span><span class="se">\\</span><span class="nv">]*</span><span class="se">\\</span><span class="nv">]) ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">[^</span><span class="se">\"</span><span class="nv">]*</span><span class="se">\"</span><span class="nv">) (-|[0-9]*) (-|[0-9]*)(?: ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">.*</span><span class="se">\"</span><span class="nv">) ([^ </span><span class="se">\"</span><span class="nv">]*|</span><span class="se">\"</span><span class="nv">.*</span><span class="se">\"</span><span class="nv">))?"</span>
+<span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="tutorial-for-using-Ç-cedilla-c-as-a-delimiter">Tutorial for using Ç (Cedilla-C) as a delimiter</h3>
@@ -836,56 +872,58 @@ it assumes the library is available at: <code class="highlighter-rouge">s3://my-
 <p>As an end to end example, load a dataset in S3 that uses the <a href="https://en.wikipedia.org/wiki/Ç">Cedilla-C</a>
 as the delimiter, and uses the Hive <a href="https://github.com/apache/hive/blob/0af6cb42725659740a022044c6cc464ef1cf4e6b/contrib/src/java/org/apache/hadoop/hive/contrib/serde2/MultiDelimitSerDe.java">MultiDelimitSerde</a>.</p>
 
-<p>The folder used in this tutorial is available at:</p>
-<pre><code class="language-s3://cerebro-datasets/cedilla_sample/```.">
-The folder contains a file named `cedilla_sample.txt`, with the following contents:
+<p>The folder used in this tutorial is available at: <code class="highlighter-rouge">s3://cerebro-datasets/cedilla_sample/</code>.</p>
 
-</code></pre>
-<p>1Ç23
-  Ç45</p>
+<p>The folder contains a file named <code class="highlighter-rouge">cedilla_sample.txt</code>, with the following contents:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-The steps are:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1Ç23
+Ç45
+</code></pre></div></div>
 
+<p>The steps are:</p>
 
-1. Create the database
+<ol>
+  <li>Create the database</li>
+</ol>
 
-    ```shell
-    $ ./odb dataset hive-ddl "create database if not exists multibyte_db"
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb dataset hive-ddl <span class="s2">"create database if not exists multibyte_db"</span>
+</code></pre></div></div>
 
+<ol>
+  <li>Create a table that uses Ç as the field delimiter</li>
+</ol>
 
-2. Create a table that uses Ç as the field delimiter
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb dataset hive-ddl <span class="s2">"CREATE EXTERNAL TABLE multibyte_db.cedilla_sample(
+  int1 int,
+  int2 int)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.MultiDelimitSerDe'
+WITH SERDEPROPERTIES ('field.delim' = 'Ç')
+STORED AS TEXTFILE
+LOCATION 's3://cerebro-datasets/cedilla_sample/'"</span>
+</code></pre></div></div>
 
+<ol>
+  <li>Read from the table to make sure everything works</li>
+</ol>
 
-    $ ./odb dataset hive-ddl "CREATE EXTERNAL TABLE multibyte_db.cedilla_sample(
-      int1 int,
-      int2 int)
-    ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.MultiDelimitSerDe'
-    WITH SERDEPROPERTIES ('field.delim' = 'Ç')
-    STORED AS TEXTFILE
-    LOCATION 's3://cerebro-datasets/cedilla_sample/'"
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./odb dataset <span class="nb">cat </span>multibyte_db.cedilla_sample
+</code></pre></div></div>
 
+<ol>
+  <li>The output expected is:</li>
+</ol>
 
-3. Read from the table to make sure everything works
-
-
-    $ ./odb dataset cat multibyte_db.cedilla_sample
-
-
-4. The output expected is:
-
-
-    --- multibyte_db.cedilla_sample ---
-    [
-        {
-            "int1": 1,
-            "int2": 23
-        },
-        {
-            "int1": 0,
-            "int2": 45
-        }
-    ]
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">---</span> multibyte_db.cedilla_sample <span class="nt">---</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"int1"</span>: 1,
+        <span class="s2">"int2"</span>: 23
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"int1"</span>: 0,
+        <span class="s2">"int2"</span>: 45
+    <span class="o">}</span>
+<span class="o">]</span>
 </code></pre></div></div>
 
 <h2 id="permission-cascading">Permission Cascading</h2>
@@ -912,7 +950,7 @@ on a top-level S3 bucket, or any arbitrarily deep subdirectory.</p>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

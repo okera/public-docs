@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title> | Okera User Documentation</title>
+<title>Okera Platform Architecture Overview | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="okera-architecture-overview">Platform Architecture Overview</a></li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -558,7 +570,147 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  
+  <h1 id="okera-platform-architecture-overview">Okera Platform Architecture Overview</h1>
+
+<p>The <a href="catalog-overview">Catalog Overview</a> and <a href="odas-overview">ODAS Overview</a> documents introduce the two major components of the <em>Okera Active Data Access Platform</em> (ADAP, or Okera Platform for short).
+This document is taking the next step and explains the architecture of the platform and shows the components in action for various client requests.</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>On a more technical level, the Okera Platform is divided into services that are accessible for clients, and a few other services that are only accessible internally by administrators or other services.
+This is intentionally the case to reduce complexity and concentrate access for clients to just a few locations.
+The following diagram shows all of the platform services in context.</p>
+
+<p><img src="assets/images/architecture-overview.png" alt="The Okera Platform Architecture" title="The Opera Platform Architecture" /></p>
+
+<p>First we will introduce how clients are accessing the Okera Platform, and then break up the services shown in the diagram based on their scope.</p>
+
+<h3 id="client-access">Client Access</h3>
+
+<p>The diagram starts in the top right corner with clients of varying kind communicating with the platform.
+There are three major access points:</p>
+
+<ol>
+  <li>
+    <p>The web-based UI</p>
+
+    <p>Clients can use the UI to interact with the platform.
+The UI provides access to the catalog services, such as the Schema Registry and the Policy Engine, and enables self-service dataset discovery.
+You also have a workspace to issue SQL statements against the platform.
+Behind the scenes, the UI is using the REST gateway service to accomplish its tasks.</p>
+  </li>
+  <li>
+    <p>The REST gateway service</p>
+
+    <p>Many clients have support for the ubiquitous REST protocol, avoiding any issues dealing with the implementation of custom protocols.
+The REST gateway server offer a REST service that gives access to the all necessary client API calls.
+This includes both the Schema Registry to create, alter, or drop various objects (such as database, tables, roles etc.), as well as the Policy Engine to grant or revoke access related to all registered objects.
+See the <a href="/catalog-rest-api">Catalog API</a> documentation for the list of supported REST calls.</p>
+  </li>
+  <li>
+    <p>The provided client libraries</p>
+
+    <p>Finally, there is a set of libraries provided by Okera that can be used to talk directly with the external services of the Catalog and ODAS services, including the Planner(s) and the Worker(s).
+This is the recommended way to integrate with the Catalog and ODAS services.</p>
+  </li>
+</ol>
+
+<p>The diagram has a dashed line that separates the external services, which provide the client connectivity, and internal support and management services.
+The following discusses the external and internal components separately, and how they work together to provide the services to all clients alike.</p>
+
+<h3 id="client-accessible-components">Client Accessible Components</h3>
+
+<p>The <em>external</em> components in the architecture provide the major functionality of the platform, which is the data access and metadata management, as needed by clients such as interactive users to automated applications.</p>
+
+<p>Note how the above referred to <em>services</em>, such as the REST API, Planner, and Catalog services.
+For fail-over purposes and continuous availability of these services, it is common in practice to have each service running multiple times, which is explained in more detail in the <a href="/cluster-administration#scaling-an-existing-cluster">Cluster Administration</a> documentation.
+In short, you can use the provided administrative functionality to instruct the platform to add redundant instances of the services (expressed as multiple, stacked boxes in the diagram) so that in case of a node failure the system will continue to operate.</p>
+
+<p>The Planner service is also responsible to expose the Catalog services, which is the Schema Registry and the Policy Engine.
+In effect, the clients use the REST API or client libraries as proxies (as shown in the diagram) to these two Catalog services, provided by the Planner instances.
+The clients also communicate with the Planner as part of a query execution (see <a href="#communication">Communication</a> below).
+For a general overview of all available services and how they can be combined please refer to the <a href="/cluster-types">Cluster Types</a> documentation.</p>
+
+<p>The ODAS client libraries are used by many of the provided, higher-level client integrations, including Hive, Presto, Spark, and so on.
+This integration support is needed to hide Okera as much as possible behind common tools, with which users are already familiar.
+For example, enabling the Hive integration allows for existing Hive setups to switch from direct usage of underlying data sources to use ODAS instead.
+There is no need to alter any metadata at all.</p>
+
+<p>For Python, there are two different ways of communicating with an ODAS cluster, which is using the (legacy) REST API, or the (newer) native PyCerebro library.
+You should use PyCerebro as its performance is much improved over using the REST API.</p>
+
+<h3 id="internal-and-management-components">Internal and Management Components</h3>
+
+<p>Note that these are intentionally referred to as <em>internal</em> services, as Okera may change these over time, as needed.
+Their purpose is to support the external services and allow administrators to manage the ODAS clusters.</p>
+
+<p>For the latter, there is the option to maintain ODAS clusters using the Deployment Manager (DM), which is installed as the first component in the Okera Platform setup.
+See the <a href="/cluster-administration">Cluster Administration</a> document for more details on how to manage ODAS clusters with the DM.</p>
+
+<p>The DM uses Kubernetes (K8s) to manage the cluster services, including the mentioned redundant instance for fail-safety.
+Each service is packaged into its own image and started as a separate container in Kubernetes pods.</p>
+
+<p>The DM does the following when creating new ODAS clusters (simplified):</p>
+
+<ol>
+  <li>
+    <p>Run the specified launch script</p>
+
+    <p>This step provisions the compute resources, for example, the AWS EC2 instances as configured by the administrator.
+It also sets instance specific <em>user data</em> (an EC2 concept) to trigger the next step as part of the instance creation.</p>
+  </li>
+  <li>
+    <p>Install ODAS Agent</p>
+
+    <p>The custom user data provided by the DM contains a shell script that installs the necessary base packages and binaries from a shared staging location (for example, S3, avoiding the need to connect to the Internet), including the DMs own Agent service.
+This happens on each of the provisioned instances, while the DM is waiting for all Agents to report for duty.</p>
+  </li>
+</ol>
+
+<p>After the Agents have started on each node, these next steps happen (again, simplified):</p>
+
+<ol>
+  <li>
+    <p>Install ODAS packages</p>
+
+    <p>Each Agent installs all required ODAS packages on its host.</p>
+  </li>
+  <li>
+    <p>Start Kubernetes Master</p>
+
+    <p>This starts the Kubernetes Control Plane services on the first provisioned EC2 instance.</p>
+  </li>
+  <li>
+    <p>Start Kubernetes Workers</p>
+
+    <p>The ODAS Agents on all other EC2 instances wait for the K8s master to be available, and then start all necessary K8s worker machine components.</p>
+  </li>
+  <li>
+    <p>Start Containers</p>
+
+    <p>Finally, the Kubernetes takes over and starts the managed ODAS services by deploying the ODAS images as containers into pods.</p>
+  </li>
+</ol>
+
+<p>Using the DM command-line tool or API allows an administrator to modify an ODAS cluster setup, which in turn may instruct Kubernetes to run more or less containers.</p>
+
+<h2 id="communication">Communication</h2>
+
+<p>Once the cluster is operational, a client can communicate with the cluster services.
+Refer to the <a href="/odas-authentication">Authentication</a> documentation for more details on how to secure the interactions between clients and an ODAS cluster.</p>
+
+<p>We will discuss a specific common request type next.</p>
+
+<h3 id="read-request">Read Request</h3>
+
+<p>The following sequence diagram show, for example, how Presto, assuming the Okera integration was enabled, is interacting with ODAS.</p>
+
+<p><img src="assets/images/architecture-dml-sequence-1.png" alt="Read Request Sequence Diagram" title="Sequence diagram for a read request" /></p>
+
+<p>Depicted is a read request issued by Zeppelin (an interactive notebook service), showing the various calls made between the client and the services.
+Once a query is submitted in Zeppelin, it will use the Presto JDBC driver to plan and execute the request.
+The ODAS Planner is used to retrieve the dataset schema, and instruct Presto how to distribute the query across its workers.
+Each worker is handed a list of tasks to perform, which is querying a subset of the resulting records.</p>
 
 
     <div class="tags">
@@ -578,7 +730,7 @@ $('#toc').on('click', 'a', function() {
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

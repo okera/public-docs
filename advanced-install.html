@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li class="active"><a href="advanced-install">Advanced Installation Option</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -581,7 +593,7 @@ This section describes some additional options.</p>
 <p>The environment variables set in the <code class="highlighter-rouge">env.sh</code> script are stored by the deployment manager when it starts up.
 When a deployment manager creates an Okera cluster, the current values of those environment variables are applied to the new cluster.
 That cluster retains those values independent of any configuration changes on the deployment manager.
-To change the values used by a deployment manager, you must either update the <code class="highlighter-rouge">env.sh</code> script (assuming that it’s in the default location of <code class="highlighter-rouge">/etc/okera/</code>), or update your environment variables.
+To change the values used by a deployment manager, you must either update the <code class="highlighter-rouge">env.sh</code> script (assuming that it’s in the default location of <code class="highlighter-rouge">/etc/cerebro/</code>), or update your environment variables.
 Then, restart the deployment manager by running:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager
@@ -594,10 +606,10 @@ Rather, the Okera cluster retains the configuration values that were used during
 
 <h3 id="working-with-deployment_manager_install_dir">Working with DEPLOYMENT_MANAGER_INSTALL_DIR</h3>
 
-<p>The value of <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> has no effect on where Deployment Manager loads the <code class="highlighter-rouge">/etc/okera/env.sh</code> file.
-The Deployment Manager always attempts to read config values from <code class="highlighter-rouge">/etc/okera/env.sh</code>, if it exists.
-If <code class="highlighter-rouge">env.sh</code> does not exist in <code class="highlighter-rouge">/etc/okera</code>, the Deployment Manager falls back to the config values from environment variables.
-The setting <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code>, defined either in environment variables or in <code class="highlighter-rouge">/etc/okera/env.sh</code>, is used after the Deployment Manager is successfully configured and running; it is for writing additional files.</p>
+<p>The value of <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code> has no effect on where Deployment Manager loads the <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file.
+The Deployment Manager always attempts to read config values from <code class="highlighter-rouge">/etc/cerebro/env.sh</code>, if it exists.
+If <code class="highlighter-rouge">env.sh</code> does not exist in <code class="highlighter-rouge">/etc/cerebro</code>, the Deployment Manager falls back to the config values from environment variables.
+The setting <code class="highlighter-rouge">DEPLOYMENT_MANAGER_INSTALL_DIR</code>, defined either in environment variables or in <code class="highlighter-rouge">/etc/cerebro/env.sh</code>, is used after the Deployment Manager is successfully configured and running; it is for writing additional files.</p>
 
 <h3 id="okera_server_hostport">OKERA_SERVER_HOSTPORT</h3>
 
@@ -606,7 +618,26 @@ The host listens to all interfaces (by default) and runs on port 8085 (e.g. 0.0.
 This port does not need to be made accessible to the typical user who accesses data, but it is required by the one who administers Okera clusters.</p>
 
 <p><strong>Example:</strong> Setting the DM’s host and port</p>
+
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SERVER_HOSTPORT</span><span class="o">=</span>10.10.1.123:8085
+</code></pre></div></div>
+
+<h3 id="okera_dm_db_name">OKERA_DM_DB_NAME</h3>
+
+<p>This is the name of the relational database at the <code class="highlighter-rouge">OKERA_DB_URL</code> location (the RDB instance) that the Deployment Manager uses.
+If this RDS instance is only backing a single Deployment Manager install, the <code class="highlighter-rouge">OKERA_DM_DB_NAME</code> does not need to be set.
+Otherwise, each installation can have a different database.
+The database does not need to exist before starting the DM as long as its host instance is available.</p>
+
+<p><strong>Example:</strong> Setting the relational database name</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_DM_DB_NAME</span><span class="o">=</span>okera_db
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">OKERA_DM_DB_NAME</code> value has format restrictions.
+It must begin with an alphabetic character and subsequent characters are restricted to alphanumerics and the underscore character (‘_’).</p>
+
+<p>This command will evaluate the validity of the database name once the environment variable is established.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span> <span class="s2">"</span><span class="nv">$OKERA_DM_DB_NAME</span><span class="s2">"</span> <span class="o">=</span>~ ^[A-Za-z][A-Za-z0-9_]<span class="k">*</span><span class="nv">$ </span><span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Is valid."</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Is not valid."</span>
 </code></pre></div></div>
 
 <h2 id="special-hive-metastore-management">Special Hive Metastore Management</h2>
@@ -622,7 +653,7 @@ In this configuration, ODAS will simply read and write from the external HMS, bu
 <p>ODAS is supports Hive 1.1.0 and up.</p>
 
 <p>To use an external HMS, add this config to your Deployment Manager configs,
-typically <code class="highlighter-rouge">/etc/okera/env.sh</code>.</p>
+typically <code class="highlighter-rouge">/etc/cerebro/env.sh</code>.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_EXTERNAL_HMS_CONFIG</span><span class="o">=</span>&lt;path to hive-site.xml&gt;
 </code></pre></div></div>
@@ -657,7 +688,7 @@ Then, when creating the cluster, specify <code class="highlighter-rouge">--hmsDb
 
 <p>Each Okera cluster configures a private network for communication within the cluster.
 By default, Okera will use the <code class="highlighter-rouge">172.30.0.0/16</code> range for internal communication.
-The environment variable <code class="highlighter-rouge">OKERA_ODAS_INTERNAL_NETWORK_IP_RANGE</code> on the Deployment Manager can be used to configure this setting.</p>
+The environment variable <code class="highlighter-rouge">OKERA_CDAS_INTERNAL_NETWORK_IP_RANGE</code> on the Deployment Manager can be used to configure this setting.</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -716,9 +747,9 @@ These ports are not user configurable and are required for cluster creation, man
 
 <h4 id="customizable-ports">Customizable Ports</h4>
 
-<p>Okera supports changing the following port assignments in the <code class="highlighter-rouge">/etc/okera/env.sh</code> configuration file for your environment’s Deployment Manager instance.</p>
+<p>Okera supports changing the following port assignments in the <code class="highlighter-rouge">/etc/cerebro/env.sh</code> configuration file for your environment’s Deployment Manager instance.</p>
 
-<p>The table below lists the suggested port assignments as defined by Cerbero.
+<p>The table below lists the suggested port assignments as defined by Okera.
 All port assignments listed below are optional, and any that are not explicitly assigned will be assigned by Kubernetes during cluster creation.</p>
 
 <p>In the case that no ports are assigned, ports will be assigned in the 30000-32000 port range.
@@ -752,7 +783,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
     <tr>
       <td><code class="highlighter-rouge">5000-13050</code></td>
       <td>Kubernetes Dynamic Range</td>
-      <td>internal</td>
+      <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">5000</code></td>
@@ -760,18 +791,18 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
       <td>external</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">7180</code></td>
-      <td>Okera HMS</td>
-      <td>external</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">7181</code></td>
+      <td><code class="highlighter-rouge">11050</code></td>
       <td>Okera Planner Web UI</td>
       <td>external</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">7187</code></td>
+      <td><code class="highlighter-rouge">10001</code></td>
       <td>Kubernetes Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">10000</code></td>
+      <td>Grafana Dashboard UI</td>
       <td>external</td>
     </tr>
     <tr>
@@ -783,11 +814,6 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
       <td><code class="highlighter-rouge">9098</code></td>
       <td>Okera Canary</td>
       <td>internal</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">11050</code></td>
-      <td>Planner Web UI</td>
-      <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">11060</code></td>
@@ -830,7 +856,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

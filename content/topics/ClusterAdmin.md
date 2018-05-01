@@ -11,7 +11,7 @@ Refer to the [Installation](Install.md) document for details on how to create ne
 ## Prerequisites
 
 The utility `ocadm` must be installed and configured to the Deployment Manager.
-You can ensure okera cli connectivity by using:
+You can ensure connectivity by using:
 
 ```shell
 ocadm status
@@ -26,7 +26,7 @@ Scaling is performed from the CLI using the update command:
 ocadm clusters update --numNodes=<desired size> <cluster_id>
 ```
 
-**Example:** Scaling cluster nodes 1 to 20:
+**Example:** Scaling cluster 1's number of nodes to 20:
 
 ```shell
 ocadm clusters update --numNodes=20 1
@@ -34,8 +34,6 @@ ocadm clusters update --numNodes=20 1
 
 This command is used to scale a cluster up or down in size.
 Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.
-
-> **Note:** The cluster must have been created using the `--launchScript` option.
 
 ## Setting the Number of Planners
 
@@ -72,7 +70,7 @@ ocadm clusters update --terminationProtectionEnabled=true 5
 
 An existing cluster can be upgraded with a new version of ODAS components.
 The CLI command is used to upgrade one or more components.
-After upgrading the cluster, it is restarted with the newer components and features.
+After upgrading the cluster, it is restarted with the upgraded components.
 
 > **Note:** Both version and components options cannot be specified at the same time.
 
@@ -91,9 +89,9 @@ ocadm clusters upgrade \
 
 **Note:** Specified components take the form of `component:version`.
 
-**Example:** Upgrading cluster 2's ODAS components to version 0.8.0 and web UI to 0.8.1:
+**Example:** Upgrading cluster 2's ODAS components to version 1.0.0 and web UI to 1.0.1:
 ```shell
-ocadm clusters upgrade --components=cdas:0.8.0,web-ui:0.8.1 2
+ocadm clusters upgrade --components=cdas:1.0.0,web-ui:1.0.1 2
 ```
 
 **Example:** Upgrading all ODAS components in cluster 3 to version 0.4.5.
@@ -109,7 +107,7 @@ Exceptions can be assigned with the `--components` option.
 ```shell
 ocadm clusters set_default_version \
  --version=<upgrade_version> \
- --components=<compnents_version_list> <cluster_id>
+ --components=<components_version_list> <cluster_id>
 ```
 
 **Example:** Setting new clusters to 1.0.0, with the planner and workers at 1.0.1

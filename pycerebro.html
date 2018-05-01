@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="pycerebro">Native Python Integration</a></li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li class="active"><a href="pycerebro">Native Python Integration</a></li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -607,7 +619,7 @@ There are no plans to support it.</p>
 
 <h3 id="installing-from-pypi">Installing from PyPI</h3>
 
-<p>The Python library is available on <a href="PyPI">https://pypi.python.org/pypi/pycerebro/</a>.
+<p>The Python library is available on <a href="PyPI">https://pypi.org/project/pycerebro/</a>.
 It can be installed using pip.
 Pip assumes that Python3 is already installed on the system.</p>
 
@@ -628,9 +640,9 @@ Pip assumes that Python3 is already installed on the system.</p>
     <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pip3 install pandas
 </code></pre></div>    </div>
     <p>To confirm that the install was successful, try importing it from the interpreter and getting the version.</p>
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">okera.odas</span>
-<span class="n">okera</span><span class="o">.</span><span class="n">odas</span><span class="o">.</span><span class="n">version</span><span class="p">()</span>
-<span class="c"># Should output the version string, for example 0.8.1</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cerebro.cdas</span>
+<span class="n">cerebro</span><span class="o">.</span><span class="n">cdas</span><span class="o">.</span><span class="n">version</span><span class="p">()</span>
+<span class="c"># Should output the version string, for example 1.0.0</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -647,7 +659,7 @@ After installing the dependencies, perform the following steps.</p>
 
 <ol>
   <li>Download the library.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/client/pycerebro.egg
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/client/pycerebro.egg
 </code></pre></div>    </div>
   </li>
   <li>Install the library.
@@ -678,7 +690,7 @@ For example, the base RHEL7 AMI on Amazon AWS.</p>
 curl <span class="s2">"https://bootstrap.pypa.io/get-pip.py"</span> <span class="nt">-o</span> <span class="s2">"get-pip.py"</span>
 <span class="nb">sudo </span>python3 get-pip.py
 <span class="nb">sudo </span>pip3 install six bit_array thriftpy
-curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/client/pycerebro.egg
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/client/pycerebro.egg
 <span class="nb">sudo </span>easy_install pycerebro.egg
 
 <span class="c"># Optional packages (installing pandas can take a while)</span>
@@ -696,7 +708,7 @@ pip3 install Cython numpy pandas
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://bootstrap.pypa.io/get-pip.py"</span> <span class="nt">-o</span> <span class="s2">"get-pip.py"</span>
 <span class="nb">sudo </span>python3 get-pip.py
 <span class="nb">sudo</span> /usr/local/bin/pip3 install six bit_array thriftpy
-curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/0.8.1/client/pycerebro.egg
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/client/pycerebro.egg
 <span class="nb">sudo </span>easy_install-3.4 pycerebro.egg
 
 <span class="c"># Optional packages (installing pandas can take a while)</span>
@@ -707,7 +719,7 @@ curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-use
 
 <p>Once PyCerebro is integrated, development can begin.</p>
 
-<p>The PyCerebro API has its own <a href="https://okera-data.github.io/external-docs/index.html">documentation site</a>.
+<p>The PyCerebro API has its own <a href="https://cerebro-data.github.io/external-docs/index.html">documentation site</a>.
 This includes docs for each of the APIs in detail.</p>
 
 <h3 id="getting-started">Getting Started</h3>
@@ -720,7 +732,7 @@ From the context object, users create connection objects, which can be used to e
 
 <p>The following example reads the first dataset from the <code class="highlighter-rouge">okera_sample</code> database:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
 <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
 <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">12050</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">list_dataset_names</span><span class="p">(</span><span class="s">'okera_sample'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -737,10 +749,10 @@ Authentication information is stored in the <code class="highlighter-rouge">cont
 <h3 id="no-configuration-specified">No Configuration Specified</h3>
 
 <p>When the context object is created, it automatically configures token-based authentication or no authentication.
-If a token for the current user is available (typically in <code class="highlighter-rouge">~/.okera/token</code>), then token auth is configured.</p>
+If a token for the current user is available (typically in <code class="highlighter-rouge">~/.cerebro/token</code>), then token auth is configured.</p>
 
 <p><strong>Example:</strong> Configuring authentication</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
 <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
 <span class="n">ctx</span><span class="o">.</span><span class="n">get_auth</span><span class="p">()</span> <span class="c"># Will be None or 'TOKEN'</span>
 
@@ -757,7 +769,7 @@ If a token for the current user is available (typically in <code class="highligh
 </ul>
 
 <p><strong>Example:</strong> Enabling token authentication</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
 <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
 <span class="n">ctx</span><span class="o">.</span><span class="n">enable_token_auth</span><span class="p">(</span><span class="n">token_str</span><span class="o">=</span><span class="s">'super-secret-token-string'</span><span class="p">)</span>
 <span class="c"># OR</span>
@@ -771,9 +783,9 @@ This assumes you have already run <code class="highlighter-rouge">kinit</code> l
 The caller must specify the service name (first segment of principal) then optionally specify the hostname.</p>
 
 <p><strong>Example:</strong> Connecting to a server with Kerberos principal <code class="highlighter-rouge">okera/service@OKERA.COM</code></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
 <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
-<span class="n">ctx</span><span class="o">.</span><span class="n">enable_kerberos</span><span class="p">(</span><span class="s">'okera'</span><span class="p">,</span> <span class="n">host_override</span><span class="o">=</span><span class="s">'service'</span><span class="p">)</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">enable_kerberos</span><span class="p">(</span><span class="s">'cerebro'</span><span class="p">,</span> <span class="n">host_override</span><span class="o">=</span><span class="s">'service'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="metadata-apis">Metadata APIs</h2>
@@ -800,7 +812,7 @@ The caller must specify the service name (first segment of principal) then optio
  A database name must be specified.</p>
 
     <p>The query in the following example collects the names:</p>
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
  <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
  <span class="c"># Configure auth if necessary</span>
  <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">12050</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
@@ -819,7 +831,7 @@ The caller must specify the service name (first segment of principal) then optio
 
     <p>The result of this API is typically sent to the worker and contains an internally serialized binary payload.
  The result does contain useful low level information:</p>
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
  <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
  <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">12050</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
      <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">plan</span><span class="p">(</span><span class="s">'okera_sample.users'</span><span class="p">)</span>
@@ -843,7 +855,7 @@ The caller must specify the service name (first segment of principal) then optio
  The result set is a table, returned as a list of lists of strings (row major).</p>
 
     <p>As an example, to list the roles and format the output using prettytable (<code class="highlighter-rouge">pip3 install prettytable</code>):</p>
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
  <span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span>
  <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
  <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">12050</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
@@ -874,7 +886,7 @@ The <code class="highlighter-rouge">scan_as_json()</code> API returns the result
 
 <p><strong>Example:</strong> Scanning the <code class="highlighter-rouge">okera_sample.sample</code> dataset as JSON</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
 <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
 <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">12050</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">scan_as_json</span><span class="p">(</span><span class="s">'okera_sample.sample'</span><span class="p">)</span>
@@ -882,7 +894,7 @@ The <code class="highlighter-rouge">scan_as_json()</code> API returns the result
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Returning the first 10000 records as a pandas DataFrame from the user’s ccn number</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">okera</span> <span class="kn">import</span> <span class="n">context</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">cerebro</span> <span class="kn">import</span> <span class="n">context</span>
 <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="p">()</span>
 <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">12050</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">scan_as_pandas</span><span class="p">(</span><span class="s">'SELECT ccn from okera_sample.users'</span><span class="p">,</span> <span class="n">max_records</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
@@ -907,7 +919,7 @@ The <code class="highlighter-rouge">scan_as_json()</code> API returns the result
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

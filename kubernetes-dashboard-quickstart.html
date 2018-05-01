@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Kubernetes Dashboard Quickstart | Okera User Documentation</title>
+<title>Monitoring services quickstart | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 
 
@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a></li>
+          <li class="active"><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a></li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -558,43 +570,78 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</h1>
+  <h1 id="monitoring-services-quickstart">Monitoring services quickstart</h1>
 
-<p>This document describes how to use the Kubernetes Administration Dashboard. Kubernetes
-Dashboard enables the cluster administrator to get overall health of the cluster and
+<p>This document describes how to use the Kubernetes Administration Dashboard and Grafana.
+Kubernetes Dashboard enables the cluster administrator to get overall health of the cluster and
 get details of each node, pod and service that is part of the cluster.</p>
 
-<h3 id="version">Version</h3>
+<p>Refer to https://kubernetes.io/docs for other administration commands.</p>
 
-<ul>
-  <li>Current version of Kubernetes is 1.5.3</li>
-  <li>The admin dashboard version is 1.5.1</li>
-</ul>
+<p>Grafana provides a UI to monitor cluster resource usage (cpu, RAM, etc), giving admins a quick
+way to understand cluster utilization over time.</p>
 
-<h3 id="dashboard-web">Dashboard Web</h3>
+<h2 id="enabling-the-kubernetes-admin-dashboard-and-grafana-monitoring-ui">Enabling the kubernetes admin dashboard and grafana monitoring UI</h2>
 
-<p>The dashboard web interface is accessible through the same port on the IP address of
-any of the cluster nodes. To get the hostport, first get the cluster id, by running get
-clusters command, followed by get details for the cluster.</p>
+<p>The kubernetes admin dashboard can be enabled by configuring a port for it to run on.
+This port can be configured the same way as any ODAS service port, by using the <code class="highlighter-rouge">OKERA_PORT_CONFIGURATAION</code> environment variable.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ocadm agent &lt;masterip&gt; kubernetes-info
-Example:
-<span class="nv">$ </span>ocadm agent 10.1.10.101 kubernetes-info
+<p>To enable the dashboard, set <code class="highlighter-rouge">kubernetes_dashboard:admin_ui</code> to be greater than zero.
+To enable grafana, set <code class="highlighter-rouge">grafana:ui</code> to be greater than zero.</p>
+
+<p><strong>Example:</strong>  to start the k8s dashboard on port 10001 and the grafana UI on port 10000:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,kubernetes_dashboard:admin_ui:10001"</span>
+<span class="nb">export </span><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,grafana:ui:10000"</span>
 </code></pre></div></div>
 
-<p>Note down the dashboardPort value. Using your favorite browser launch the dashboard with
-URL similar to the following example.</p>
+<p>The services can be enabled independently. By default, neither service is enabled.</p>
 
-<p>Example:  http://10.1.10.101:31779</p>
+<p>When enabled, both services are available on any cluster nodes at the configured port.
+Note that the k8s dashboard runs with SSL enabled (https) and grafana does not (http).</p>
 
-<h3 id="basic-navigation">Basic navigation</h3>
+<h3 id="getting-the-admin-endpoints-and-credentials">Getting the admin endpoints and credentials</h3>
+
+<p>To get the endpoints and auto-generated credentials, run <code class="highlighter-rouge">admin-info</code> on the cluster from <code class="highlighter-rouge">ocadm</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ocadm clusters admin-info <span class="o">[</span>CLUSTER ID]
+Example:
+<span class="nv">$ </span>ocadmin cluster admin-info 3
+</code></pre></div></div>
+
+<p>The output looks like below.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+    <span class="s2">"kubernetes-master"</span>: <span class="s2">"10.1.10.178"</span>,
+    <span class="s2">"grafana-ui"</span>: <span class="s2">"http://10.1.10.178:10000"</span>,
+    <span class="s2">"kubernetes-dashboard"</span>: <span class="s2">"https://10.1.10.178:10001"</span>,
+    <span class="s2">"dashboard-admin-token"</span>: <span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWNybXcxIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJlYjAyYWZlNC00NzBkLTExZTgtYjY2My0wMjY2OTBkNWEyY2MiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.N_8CqLphJwawm0oazVepaSD7PqN1HBzAsy4lbdHXTpdwAPyrRHJV_lM4_VloZMq9Wbpe2npqtG7aSTgyK1ESryRt0ReT3H_JnnUSQ4t-UU1OugfTDQ5Fh6w-at7EAjxAM8_HTdpB71Hz_LkACslHKWE2tRtyyKVcZ_Lrdxg8lYzcdG2Si4-qctbc69R-mjks08yzghLK1mWJh8PQhI_peBG7qELq7BxlNqsvSLL46POErTFN8hlKCyV7wN7RsLZSTSVOyikPFbSKojjCcyo2GEuAI5n2ZidACnwdekJrZOKjXs2_ZwifLIVmxSDEw6UjTqUHnaumgoym6K7v7Nc6Gw"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="logging-into-the-dashboard">Logging into the dashboard</h3>
+
+<p>Using your favorite browser go to the dashboard URL. It will prompt you for login credentials.</p>
+
+<p>Example:  https://10.1.10.178:10001</p>
+
+<p>Select “Token” and enter the token string from above to login to the dashboard.</p>
+
+<p>The dashboard requires privileges to login as it allows the logged in user to restart services, looks at configs and look at logs.
+Aside from being able to change the state of the running cluster, the configs and logs may have credentials.
+When the k8s dashboard is installed, ODAS automatically creates an dashboard admin user and <code class="highlighter-rouge">admin-info</code> returns the token for that user.
+It is not recommended to share this token to non-admin users of the system.</p>
+
+<p>The grafana UI does not require login credentials as the UI is read-only and we do not consider any of it to be privileged.</p>
+
+<h3 id="basic-dashboard-navigation">Basic dashboard navigation</h3>
 
 <p>The navigation panel on the left connects to the <code class="highlighter-rouge">default</code> namespace. ODAS services are
 launched in this namespace. <code class="highlighter-rouge">kube-system</code> namespace will show the Kubernetes system pods
 and services.</p>
 
 <p>Kubernetes deploys and schedules containers in groups called pods. A pod typically has
-one or more containers that provides a ODAS service.</p>
+one or more containers that provides an ODAS service.</p>
 
 <p>You may use the dashboard ui to list the various ODAS services and confirm that the
 desired number of pods is running for each service. Typically, you would run one
@@ -603,12 +650,12 @@ desired number of pods is running for each service. Typically, you would run one
 <p>For example, a 10-node ODAS cluster would have the following pods:</p>
 
 <ul>
-  <li>1 canary pod</li>
+  <li>2 canary pod</li>
   <li>1 cerebro-catalog pod</li>
-  <li>1 cdas-rest-server pod</li>
+  <li>2 cdas-rest-server pod</li>
   <li>1 zookeeper pod</li>
   <li>1 cerebro-planner pod</li>
-  <li>9 cerebro-worker pods</li>
+  <li>10 cerebro-worker pods</li>
 </ul>
 
 <p>Let’s try a few of sample dashboard operations:</p>
@@ -626,7 +673,7 @@ your browser. The logs are a quick way to detect any issues with the pod.</li>
 
 <h3 id="additional-information">Additional Information</h3>
 
-<p>Refer to https://kubernetes.io/docs/ for documentation and tutorials on Kubernetes.</p>
+<p>Refer to <a href="https://kubernetes.io/docs/">Kubernetes documentation and tutorials</a> for much more.</p>
 
 
     <div class="tags">
@@ -646,7 +693,7 @@ your browser. The logs are a quick way to detect any issues with the pod.</li>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

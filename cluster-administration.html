@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li class="active"><a href="cluster-administration">Cluster Administration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -570,7 +582,7 @@ Refer to the <a href="/install">Installation</a> document for details on how to 
 <h2 id="prerequisites">Prerequisites</h2>
 
 <p>The utility <code class="highlighter-rouge">ocadm</code> must be installed and configured to the Deployment Manager.
-You can ensure okera cli connectivity by using:</p>
+You can ensure connectivity by using:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm status
 </code></pre></div></div>
@@ -583,17 +595,13 @@ Scaling is performed from the CLI using the update command:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="nt">--numNodes</span><span class="o">=</span>&lt;desired size&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
-<p><strong>Example:</strong> Scaling cluster nodes 1 to 20:</p>
+<p><strong>Example:</strong> Scaling cluster 1’s number of nodes to 20:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters update <span class="nt">--numNodes</span><span class="o">=</span>20 1
 </code></pre></div></div>
 
 <p>This command is used to scale a cluster up or down in size.
 Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.</p>
-
-<blockquote>
-  <p><strong>Note:</strong> The cluster must have been created using the <code class="highlighter-rouge">--launchScript</code> option.</p>
-</blockquote>
 
 <h2 id="setting-the-number-of-planners">Setting the Number of Planners</h2>
 
@@ -629,7 +637,7 @@ This disabling and enabling cycle prevents the accidental misconfiguration of a 
 
 <p>An existing cluster can be upgraded with a new version of ODAS components.
 The CLI command is used to upgrade one or more components.
-After upgrading the cluster, it is restarted with the newer components and features.</p>
+After upgrading the cluster, it is restarted with the upgraded components.</p>
 
 <blockquote>
   <p><strong>Note:</strong> Both version and components options cannot be specified at the same time.</p>
@@ -648,8 +656,8 @@ To upgrade specific cluster components to a different version, specify component
 
 <p><strong>Note:</strong> Specified components take the form of <code class="highlighter-rouge">component:version</code>.</p>
 
-<p><strong>Example:</strong> Upgrading cluster 2’s ODAS components to version 0.8.0 and web UI to 0.8.1:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters upgrade <span class="nt">--components</span><span class="o">=</span>cdas:0.8.0,web-ui:0.8.1 2
+<p><strong>Example:</strong> Upgrading cluster 2’s ODAS components to version 1.0.0 and web UI to 1.0.1:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters upgrade <span class="nt">--components</span><span class="o">=</span>cdas:1.0.0,web-ui:1.0.1 2
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Upgrading all ODAS components in cluster 3 to version 0.4.5.</p>
@@ -663,7 +671,7 @@ Exceptions can be assigned with the <code class="highlighter-rouge">--components
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters set_default_version <span class="se">\</span>
  <span class="nt">--version</span><span class="o">=</span>&lt;upgrade_version&gt; <span class="se">\</span>
- <span class="nt">--components</span><span class="o">=</span>&lt;compnents_version_list&gt; &lt;cluster_id&gt;
+ <span class="nt">--components</span><span class="o">=</span>&lt;components_version_list&gt; &lt;cluster_id&gt;
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Setting new clusters to 1.0.0, with the planner and workers at 1.0.1</p>
@@ -766,7 +774,7 @@ This policy could be fine tuned in the future if needed.</p>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

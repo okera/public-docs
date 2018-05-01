@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -594,7 +606,7 @@ This refers to the Base Distinguished Name used by the AD server to look for use
 <h3 id="setting-up-ldap-related-configurations">Setting up LDAP related configurations</h3>
 
 <p>To enable LDAP Basic authentication for ODAS access, set the following environment
-variables in your <code class="highlighter-rouge">/etc/okera/env.sh</code> file:</p>
+variables in your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file:</p>
 
 <ul>
   <li><strong>OKERA_LDAP_HOST</strong>
@@ -616,25 +628,25 @@ with the LDAP server using <code class="highlighter-rouge">ALL USERS\\userid</co
 logging in, Okera will ignore this value. For example, in the same identical
 configuration, if the user explicitly logged in as <code class="highlighter-rouge">TEST DOMAIN\\userid</code>, then we will
 authenticate with LDAP using exactly that login. By default, this is not set and there
-is no default domain. If this is set, OKERA_LDAP_BASE_DN should not be set.</li>
+is no default domain. If this is set, CEREBRO_LDAP_BASE_DN should not be set.</li>
 </ul>
 
-<p>For clarity, in your <code class="highlighter-rouge">/etc/okera/env.sh</code> file, the following variables need to be
+<p>For clarity, in your <code class="highlighter-rouge">/etc/cerebro/env.sh</code> file, the following variables need to be
 uncommented and set:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
-<span class="c"># export okera_ldap_host=your_ad_hostname</span>
-<span class="c"># export okera_ldap_port=your_ad_port</span>
-<span class="c"># export okera_ldap_base_dn=your_ad_base_dn</span>
+<span class="c"># export CEREBRO_LDAP_HOST=your_ad_hostname</span>
+<span class="c"># export CEREBRO_LDAP_PORT_ldap_port=your_ad_port</span>
+<span class="c"># export CEREBRO_LDAP_BASE_DN=your_ad_base_dn</span>
 </code></pre></div></div>
 
 <p>For example, for an LDAP Host at <code class="highlighter-rouge">example.com:324</code>, and Base DN of <code class="highlighter-rouge">dc=example,dc=com</code>,
 the LDAP related variables will look like:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
-<span class="nb">export </span><span class="nv">OKERA_LDAP_HOST</span><span class="o">=</span>example.com
-<span class="nb">export </span><span class="nv">OKERA_LDAP_PORT</span><span class="o">=</span>324
-<span class="nb">export </span><span class="nv">OKERA_LDAP_BASE_DN</span><span class="o">=</span>example.com
+<span class="nb">export </span><span class="nv">CEREBRO_LDAP_HOST</span><span class="o">=</span>example.com
+<span class="nb">export </span><span class="nv">CEREBRO_LDAP_PORT</span><span class="o">=</span>324
+<span class="nb">export </span><span class="nv">CEREBRO_LDAP_BASE_DN</span><span class="o">=</span>example.com
 </code></pre></div></div>
 
 <h3 id="verify-ldap-basic-authentication-using-curl">Verify LDAP Basic authentication using curl</h3>
@@ -656,7 +668,7 @@ intend to use for authentication:</p>
     <span class="s2">"user"</span>: <span class="s2">"&lt;AD_USERNAME&gt;"</span>
   <span class="o">}</span>
 
-  <span class="c"># An example for Catalog REST server running at localhost:5000, and AD username</span>
+  <span class="c"># An example for REST server running at localhost:5000, and AD username</span>
   <span class="c"># "testuser" is as follows</span>
   <span class="nv">$ </span>curl localhost:5000/api/health-authenticated <span class="nt">-u</span> testuser
   Enter host password <span class="k">for </span>user <span class="s1">'testuser'</span>:
@@ -678,7 +690,7 @@ intend to use for authentication:</p>
     <span class="s2">"token"</span>: <span class="s2">"&lt;Token&gt;"</span>
   <span class="o">}</span>
 
-  <span class="c"># An example for Catalog REST server running at localhost:5000, and AD username</span>
+  <span class="c"># An example for REST server running at localhost:5000, and AD username</span>
   <span class="c"># "testuser" is as follows</span>
   <span class="nv">$ </span>curl <span class="nt">-X</span> POST localhost:5000/api/get-token <span class="nt">-u</span> testuser
   Enter host password <span class="k">for </span>user <span class="s1">'testuser'</span>:
@@ -697,8 +709,8 @@ the login page in the Web UI and enter your credentials.</p>
 <h3 id="exploring-ldap-related-logs">Exploring LDAP related logs</h3>
 
 <p>To verify if the LDAP related values are set as intended, and for LDAP related debugging,
-look for the following logs in your Catalog Admin container. You should see the following
-lines in your Catalog REST server logs:</p>
+look for the following logs in your REST service.
+You should see the following lines in your REST server logs:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># the general format of expected logs</span>
 LDAP configurations initialized
@@ -711,7 +723,7 @@ LDAP Server: 127.0.0.4:389
 LDAP Server Base DN: <span class="nv">dc</span><span class="o">=</span>example,dc<span class="o">=</span>com
 </code></pre></div></div>
 
-<p>If the above lines are not present, your Catalog instance did not start with LDAP Basic
+<p>If the above lines are not present, your REST service did not start with LDAP Basic
 authentication enabled.</p>
 
 
@@ -732,7 +744,7 @@ authentication enabled.</p>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>

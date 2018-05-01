@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -141,11 +141,7 @@ $( document ).ready(function() {
                 
                 
                 
-                <li><a href="https://support.okera.com/hc/en-us" target="_blank">Support</a></li>
-                
-                
-                
-                <li><a href="https://blog.okera.com/" target="_blank">Okera Blog</a></li>
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
                 
                 
                 
@@ -204,7 +200,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-overview">ODAS Overview</a> </li>
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
           
           
           
@@ -212,6 +208,13 @@ $( document ).ready(function() {
           
           
           <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -234,6 +237,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="install">Installation Guide</a> </li>
           
           
@@ -242,20 +252,6 @@ $( document ).ready(function() {
           
           
           <li><a href="advanced-install">Advanced Installation Option</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="memory-usage">Platform Memory Usage</a> </li>
           
           
           
@@ -283,14 +279,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
           
           
           
@@ -301,33 +311,35 @@ $( document ).ready(function() {
       
   
   <li>
-      <a href="#">Use</a>
+      <a href="#">Engage</a>
       <ul>
           
           
           
-          <li><a href="web-ui-basics">Web UI Basics</a> </li>
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
           
           
           
           
-          
-          
-          <li><a href="web-ui-admin">Admin Web UI</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="supported-sql">Supported SQL</a> </li>
-          
-          
-          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
           
           
           
           <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
           
@@ -362,7 +374,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="kubernetes-dashboard-quickstart">Kubernetes Dashboard Quickstart</a> </li>
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
           
           
           
@@ -378,7 +390,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
           
           
           
@@ -392,14 +411,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
           
@@ -422,6 +434,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-authentication">Authentication</a> </li>
           
           
@@ -429,14 +448,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="docker-quickstart">Docker Quickstart</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">Catalog API</a> </li>
+          <li><a href="catalog-rest-api">REST API</a> </li>
           
           
           
@@ -562,13 +574,15 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="100-may-1-2018">1.0.0 (May 1, 2018)</h2>
 
-<p>The 1.0.0 release is a major version, introducing significant new functionality and improvements.</p>
+<p>The 1.0.0 release is a major version, introducing significant new functionality and improvements across the platform.</p>
 
 <h3 id="name-change-notice">Name Change Notice</h3>
 
 <p>With the 1.0.0 generally available (GA) release, our company and product name changes as well.
 Cerebro Data, Inc is now <strong>Okera, Inc</strong>, and the Cerebro Data Access Platform is now the <strong>Okera Active Data Access Platform</strong>.
-Component names have mostly been updated, and documentation should reflect the current state of all component names.</p>
+Component names have mostly been updated, and documentation should reflect the current state of all component names.
+In this release, we have maintained backwards compatibility and existing automation will continue to work.
+The binary paths continue to use the Cerebro name.</p>
 
 <h3 id="deprecations-notice">Deprecations Notice</h3>
 
@@ -577,21 +591,27 @@ Component names have mostly been updated, and documentation should reflect the c
 For standard environment variables established during installation, <code class="highlighter-rouge">CEREBRO</code> will alias <code class="highlighter-rouge">OKERA</code>.</li>
 </ul>
 
+<h3 id="upgrading-from-prior-versions">Upgrading from prior versions</h3>
+
+<p>It is not possible to upgrade an existing ODAS cluster to 1.0.0 (i.e. <code class="highlighter-rouge">ocadm clusters upgrade</code> will not work).
+Instead, a new ODAS cluster must be created.
+Note that this is only the ODAS cluster itself, the catalog metadata from older clusters can be read with no issues.</p>
+
 <h3 id="diagnosability-and-monitoring">Diagnosability and Monitoring</h3>
 
 <ul>
   <li>
-    <p>Support for collecting logs across all services and machines for diagnostitics. This
+    <p>Support for collecting logs across all services and machines for diagnostics. This
 bundle can be sent to Okera or used by users to improve the troubleshooting experience.
-Cluster adminstrators can use the CLI to generate this support bundle across cluster
-services with one command. For more details see TODO.</p>
+Cluster administrators can use the CLI to generate this support bundle across cluster
+services with one command. For more details see <a href="cluster-administration#cluster-diagnosis">here</a>.</p>
   </li>
   <li>
-    <p>Support for Kubernetes dashboard and Grafana for UI based adminstration and monitoring.
+    <p>Support for Kubernetes dashboard and Grafana for UI based administration and monitoring.
 ODAS now installs and enables the Kubernetes, which helps cluster admins manage a ODAS
 cluster (such as restarting a service, inspecting configs, etc) and Grafana to look at
 metrics across the cluster (cpu usage, memory usage, etc). These can now be optionally
-enabled at cluster creation time. More details TODO.</p>
+enabled at cluster creation time. More details see <a href="kubernetes-dashboard-quickstart">here</a>.</p>
   </li>
 </ul>
 
@@ -599,12 +619,12 @@ enabled at cluster creation time. More details TODO.</p>
 
 <ul>
   <li>
-    <p>Resolved issue where occasionally multi workers can be assigned to the same VM, causing
-load skew and cluster membership issues.</p>
+    <p>Resolved issue where occasionally multiple workers can be assigned to the same VM, causing load skew and cluster membership issues.</p>
   </li>
   <li>
-    <p>Improved healthchecking to be able to detect service availibity, trigger repair of
-individual containers more reliably. The cluster auto-heals better.</p>
+    <p>Improved healthchecking to be able to detect service availability, triggering repair of individual containers more reliably.
+The healthcheck now more closely emulates what a client would do.
+If the healthcheck detects an issue, the individual container is restarted.</p>
   </li>
   <li>
     <p>Beta support for Amazon Web Services Auto Scaling Groups (ASG). Users can now provide
@@ -618,15 +638,9 @@ will automatically detect this, remove the failed nodes and add the new ones. Se
 
 <h3 id="docs">Docs</h3>
 
-<ul>
-  <li>
-    <p>Documentation now supports search. The documentation is now indexed and supports
-searching.</p>
-  </li>
-  <li>
-    <p>Documentation from zendesk has been consolidated. TODO</p>
-  </li>
-</ul>
+<p>In this release, the product documentation has been significantly improved.
+Search is now supported throughout the documentation.
+Content has been added to cover FAQs, product overview and many other topics.</p>
 
 <h3 id="ui-improvements">UI improvements</h3>
 
@@ -635,7 +649,8 @@ searching.</p>
     <p>Workspace is now enabled for admin users. The workspace provides an easy interface for
 data producers and data stewards to issue DDL and metadata queries against the system,
 without the need to use another tool. Workspace provides basic query capabilities but is
-not intended to be used for analytics. More details TODO.</p>
+not intended to be used for analytics. Features include: scan queries, DDL queries, and
+query history.</p>
   </li>
   <li>
     <p>Permissions page has been added to help users understand how permissions have been
@@ -647,6 +662,9 @@ to acquire access to more datasets.</p>
     <p>Users can now tag and favorite datasets to be able to easily work with them again in
 the future. These tags and favorites are currently unique per user.</p>
   </li>
+  <li>
+    <p>Performance and scale improvements. The UI scales much better with larger catalogs.</p>
+  </li>
 </ul>
 
 <h3 id="performance-and-scalability">Performance and scalability</h3>
@@ -656,8 +674,8 @@ the future. These tags and favorites are currently unique per user.</p>
     <p>Significant performance improvements for metadata operations on large catalogs.
 Numerous improvements were made to the responsiveness of metadata operations (DDL) against
 large catalogs and tables with large number of partitions. This includes operations such
-as <code class="highlighter-rouge">show partitions</code>, <code class="highlighter-rouge">show tables</code>, etc as well as the planning phase at the start of
-each read request.</p>
+as <code class="highlighter-rouge">show partitions</code> and <code class="highlighter-rouge">show tables</code> as well as the planning phase at the start of
+each scan request.</p>
   </li>
   <li>
     <p>Improvements to task generation in the planner. The planner is responsible for
@@ -674,7 +692,7 @@ returned to the client. Improvements were made to manage the batch size and memo
 better across a wider range of schemas.</p>
   </li>
   <li>
-    <p>Bumped up service sizes. TODO: shekar</p>
+    <p>The default replication factor of some of the services (e.g. odas-rest-server) has been increased to improve fault tolerance and scalability.</p>
   </li>
 </ul>
 
@@ -682,39 +700,22 @@ better across a wider range of schemas.</p>
 
 <ul>
   <li>
-    <p>Spark: Improved integration to allow running DDL commands from SparkSQL. This
-requires the running user to have ALL access to the datasets.</p>
+    <p>Spark: SparkSQL can be run directly against tables in the catalog with no need to create a temporary view.
+While this worked previous, the integration is improved and now performs as well as the temporary view usage pattern.
+For example, SparkSQL users can just run <code class="highlighter-rouge">spark.sql('SELECT * FROM okera_sample.users')</code>.</p>
   </li>
   <li>
-    <p>Spark: SparkSQL can be run directly against tables in the catalog with no need to create
-a temporary view. While this worked previous, the integration is improved and now performs
-as well as the temporary view usage pattern. For example, SparkSQL users can just run
-<code class="highlighter-rouge">spark.sql('SELECT * FROM okera_sample.users')</code>.</p>
-  </li>
-  <li>
-    <p>Hive: Numerous integration improvements to run DDL commands from hive.</p>
-  </li>
-  <li>
-    <p>Hive: Improvements to handling of partitioned tables to improve planning performance.</p>
+    <p>Hive: Improvements to handling of partitioned tables to improve planning performance.
+Queries that scan a few partitions in a dataset with many partitions should see significant improvements.</p>
   </li>
   <li>
     <p>Deprecating single-tenant install support. While it is still supported in this release,
 the single-tenant EMR integration is being deprecated. Instead it is recommended to use
 the multi-tenant install but only bootstrap a single (typically hadoop) user. Improvements
-were made to the user bootstrapping and setup scripts. See TODO.</p>
-  </li>
-  <li>
-    <p>HDFS: Support for registering tables that are backed by the local EMR HDFS cluster.
-TODO: explain why.</p>
+were made to the user bootstrapping and setup scripts. See the [emr docs][emr-integration].</p>
   </li>
   <li>
     <p>EMR support extended to include 5.1 and 5.2.</p>
-  </li>
-  <li>
-    <p>TODO: what else do we want to include. Token refresh?</p>
-  </li>
-  <li>
-    <p>Hue: TODO (sv)</p>
   </li>
 </ul>
 
@@ -722,10 +723,7 @@ TODO: explain why.</p>
 
 <ul>
   <li>
-    <p>Added support for <code class="highlighter-rouge">BINARY</code> type. This behaves as an alias for the <code class="highlighter-rouge">STRING</code> type.</p>
-  </li>
-  <li>
-    <p>Added support for <code class="highlighter-rouge">REAL</code> type. This behaves as an alias for the <code class="highlighter-rouge">DOUBLE</code> type.</p>
+    <p>Added support for <code class="highlighter-rouge">BINARY</code> and <code class="highlighter-rouge">REAL</code> data types. See the data types <a href="data-types">docs</a>.</p>
   </li>
   <li>
     <p>Support for registering bucketed tables and views using lateral views. Note that since
@@ -733,51 +731,20 @@ ODAS does not support these, the user must have all access on these tables and v
 and direct access to these files in the file system.</p>
   </li>
   <li>
-    <p>Extended ODAS SQL to add <code class="highlighter-rouge">DROP_TABLE_OR_VIEW</code>. TODO(nong)</p>
+    <p>Extended ODAS SQL to add <code class="highlighter-rouge">DROP_TABLE_OR_VIEW</code>. See <a href="supported-sql">supported-sql</a> for more details.</p>
+  </li>
+  <li>
+    <p>Audit logs now include the Okera client version as part of the application field. For example,
+instead of <code class="highlighter-rouge">presto</code>, new clients will identity as <code class="highlighter-rouge">presto (1.0.0)</code>.
+Note that this is the version of the Okera client, not the version of presto.</p>
   </li>
 </ul>
 
 <h3 id="incompatible-and-breaking-changes">Incompatible and Breaking Changes</h3>
 
-<p><strong>New log filename format</strong></p>
-
-<p>The log files that are uploaded to S3 have a new naming scheme.
-The old naming scheme was ‘<service>-<pid>-<id>-<timestamp>-<guid>.log'.
-The new naming scheme is: '<timestamp>-<service>-<ip>-<id>-<guid>.log'.</guid></id></ip></service></timestamp></guid></timestamp></id></pid></service></p>
-
-<p><strong>Rest server returns decimal data as string, instead of double</strong></p>
-
-<p>Decimal data is converted to string, when data is accessed using rest server.
-The json result set changed the output type to string to prevent any precision loss.</p>
-
-<p><strong>Deployment Manager now requires java 8</strong></p>
-
 <p><strong>REST server default timeout increased to 60 seconds from 30</strong></p>
 
-<p>This is mostly to accommodate long ddl commands, such as <code class="highlighter-rouge">alter table recover partitions</code>.</p>
-
-<h3 id="new-features">New features</h3>
-
-<p><strong>Clusters services as Kubernetes daemonsets</strong></p>
-
-<p>ODAS worker nodes have been converted to daemonsets. With this change,
-as the ODAS cluster is scaled up/down, the number of ODAS worker pods
-is scaled up/down automatically. Multiple service pods do not bunch up
-on the same host.</p>
-
-<p><strong>Better Application Health Check</strong></p>
-
-<p>ODAS  improves the notion of “healthy” service in this release. It runs application specific
-requests, instead of a IP(TCP/IP) ping. This ensures that service is not merely up but is actually
-servicing application requests. Examples include running an actual query for planner/worker, running
-a metadata request for catalog health check. A service that fails application requests consequitively
-is considered unhealthy and is restarted.</p>
-
-<p><strong>New data types</strong></p>
-
-<p>ODAS now supports REAL and BINARY data types. For details, refer to <a href="/data-types">docs</a>.</p>
-
-<h3 id="incompatible-and-breaking-changes-1">Incompatible and Breaking Changes</h3>
+<p>This is mostly to accommodate long DDL commands, such as <code class="highlighter-rouge">alter table recover partitions</code>.</p>
 
 <p><strong>New log filename format</strong></p>
 
@@ -785,10 +752,15 @@ is considered unhealthy and is restarted.</p>
 The old naming scheme was <code class="highlighter-rouge">&lt;service&gt;-&lt;pid&gt;-&lt;id&gt;-&lt;timestamp&gt;-&lt;guid&gt;.log</code>.
 The new naming scheme is: <code class="highlighter-rouge">&lt;timestamp&gt;-&lt;service&gt;-&lt;ip&gt;-&lt;id&gt;-&lt;guid&gt;.log</code>.</p>
 
+<p>This makes it more efficient to find logs from a given time window.</p>
+
 <p><strong>ODAS REST Service returns decimal data as string, instead of double</strong></p>
 
-<p>Decimal data is converted to string, when data is accessed using REST service.
-The JSON resultset changed the output type to string in order to prevent any precision loss.</p>
+<p>Decimal data is converted to string, when data is accessed via the REST APIs.
+The json result set now returns the decimal values as string to prevent any precision loss.
+Client can now control the rounding behavior in the application and cast the type as needed.</p>
+
+<p><strong>Deployment Manager now requires java 8</strong></p>
 
 <h2 id="090-april-2018">0.9.0 (april 2018)</h2>
 
@@ -878,7 +850,7 @@ the invalid entries can be corrected.</p>
 
 <p>0.8.0 is a major release. It includes all fixes from the prior releases.</p>
 
-<h3 id="new-features-1">New Features</h3>
+<h3 id="new-features">New Features</h3>
 
 <p><strong>Datasets with errors in Web UI</strong></p>
 
@@ -995,7 +967,7 @@ UI showed an Okera Token instead of an SSO Token.</p>
   </li>
 </ul>
 
-<h3 id="incompatible-and-breaking-changes-2">Incompatible and Breaking Changes</h3>
+<h3 id="incompatible-and-breaking-changes-1">Incompatible and Breaking Changes</h3>
 
 <ul>
   <li>
@@ -1125,7 +1097,7 @@ stability fixes.</p>
 
 <h2 id="071-dec-2017">0.7.1 (dec 2017)</h2>
 
-<h3 id="new-features-2">New Features</h3>
+<h3 id="new-features-1">New Features</h3>
 
 <ul>
   <li>Support for Json Web Token (JWT) authentication using public key and external server.
@@ -1163,7 +1135,7 @@ when the kerberos tickets expired when using these kind of keytabs.</p>
 
 <p>0.7.0 is a major release.</p>
 
-<h3 id="new-features-3">New Features</h3>
+<h3 id="new-features-2">New Features</h3>
 
 <p><strong>JSON structured audit logs</strong></p>
 
@@ -1266,7 +1238,7 @@ breaking api change, which has been addressed.</p>
   </li>
 </ul>
 
-<h4 id="incompatible-and-breaking-changes-3">Incompatible and Breaking Changes</h4>
+<h4 id="incompatible-and-breaking-changes-2">Incompatible and Breaking Changes</h4>
 
 <ul>
   <li>
@@ -1327,7 +1299,7 @@ versions of ODAS.</p>
 
 <p>0.6.1 is a minor release and we recommend all 0.6.0 users upgrade.</p>
 
-<h3 id="new-features-4">New Features</h3>
+<h3 id="new-features-3">New Features</h3>
 
 <p><strong>OAUTH integration</strong></p>
 
@@ -1362,7 +1334,7 @@ and now supports all versions from 5.3 to 5.9.</p>
 <p>0.6.0 is a major release. It includes major new features and numerous improvements
 across the Okera services.</p>
 
-<h3 id="new-features-5">New Features</h3>
+<h3 id="new-features-4">New Features</h3>
 
 <p><strong>New Web UI</strong></p>
 
@@ -1406,7 +1378,7 @@ workers, particularly in the case when there are a smaller number of total tasks
   <li>Improved install times. Okera binary sizes have been significantly reduced.</li>
 </ul>
 
-<h3 id="incompatible-and-breaking-changes-4">Incompatible and breaking changes</h3>
+<h3 id="incompatible-and-breaking-changes-3">Incompatible and breaking changes</h3>
 
 <p><strong>Deprecating specifying user token as part of URL for REST server</strong></p>
 
@@ -1483,7 +1455,7 @@ as well as critical fixes for the Hive EMR integration.</p>
   <li>Improved column pruning and predicate pushdown when using Hive in EMR.</li>
 </ul>
 
-<h3 id="new-features-6">New Features</h3>
+<h3 id="new-features-5">New Features</h3>
 
 <p>The EMR integration has been updated on the configs that are required for better
 Spark and Hive integration. In particular, we recommend specifying the Okera
@@ -1498,7 +1470,7 @@ bootstrapped with this version (from 0.5.0).</p>
 <p>0.5.0 is a  major release. It contains all the bug fixes from 0.4.1 and 0.4.2 and
 numerous other bug fixes.</p>
 
-<h3 id="new-features-7">New Features</h3>
+<h3 id="new-features-6">New Features</h3>
 
 <p><strong>JSON Web Token and SSO support</strong></p>
 
@@ -1534,7 +1506,7 @@ any config files to S3 manually as part of the install.</p>
 <p>This release corresponds to the beta-6 release of the Hadoop client libraries. While
 previous clients are API compatible, we advise upgrading to this version.</p>
 
-<h3 id="incompatible-and-breaking-changes-5">Incompatible and breaking changes</h3>
+<h3 id="incompatible-and-breaking-changes-4">Incompatible and breaking changes</h3>
 <p><strong>Planner_worker service port renamed</strong></p>
 
 <p>The okera_planner_worker service ports have been split into okera_planner and
@@ -1605,7 +1577,7 @@ We recommend all 0.4.x users upgrade.</p>
 using JWTs do not need to upgrade to this version. For details on how to configure JWT
 support, see the install docs.</p>
 
-<h4 id="incompatible-and-breaking-changes-6">Incompatible and breaking changes</h4>
+<h4 id="incompatible-and-breaking-changes-5">Incompatible and breaking changes</h4>
 <p><strong>Planner_worker service port renamed</strong></p>
 
 <p>The okera_planner_worker service ports have been split into okera_planner and
@@ -1665,7 +1637,7 @@ See the cluster admin docs for more details.</p>
 0.4.0, we were not picking up these configs files correctly.</li>
 </ul>
 
-<h3 id="new-features-8">New Features</h3>
+<h3 id="new-features-7">New Features</h3>
 <p>In addition, we’ve added a new feature to allow the user to configure CNAMEs for
 service endpoints. This is useful for example, if end users should only access the
 odas_rest_server API endpoint behind a CNAME.
@@ -1688,7 +1660,7 @@ In the example below, the service endpoint <code class="highlighter-rouge">odas_
 
 <h3 id="may-2017">May-2017</h3>
 
-<h4 id="new-features-9">New Features</h4>
+<h4 id="new-features-8">New Features</h4>
 
 <p><strong>Cluster Administration</strong></p>
 
@@ -1777,7 +1749,7 @@ Configured service port uniqueness is now enforced during Deployment Manager sta
 <p>Writes to S3 buckets now set the server-side encryption flag on the S3 write or copy
 request if the S3_STAGING_ENCRYPTION configuration is set to true.</p>
 
-<h4 id="incompatible-and-breaking-changes-7">Incompatible and Breaking Changes</h4>
+<h4 id="incompatible-and-breaking-changes-6">Incompatible and Breaking Changes</h4>
 <p><strong>Change to OKERA_KERBEROS_KEYTAB_FILE config</strong></p>
 
 <p>Previously, this config used to be the basename of the keytab file and the user was
@@ -1827,7 +1799,7 @@ work.</p>
 <h3 id="february-2017">February-2017</h3>
 <p>This is the feature complete release candidate of ODAS.</p>
 
-<h4 id="new-features-10">New Features</h4>
+<h4 id="new-features-9">New Features</h4>
 <p><strong>Tableau Okera Catalog Integration</strong></p>
 
 <p>You can access data stored in Okera using Tableau.
@@ -1870,7 +1842,7 @@ See <a href="/kubernetes-dashboard-quickstart">Kubernetes Quickstart</a> for det
 
 <p>Kubernetes has been upgraded to version 1.5.3 from version 1.4.2.</p>
 
-<h4 id="incompatible-and-breaking-changes-8">Incompatible and Breaking Changes</h4>
+<h4 id="incompatible-and-breaking-changes-7">Incompatible and Breaking Changes</h4>
 <p>Renamed <em>okera_catalog_ui</em> to <em>odas_rest_server</em>.  This is a port configuration
 change and will require users to update their env file. Note that this point will also
 need to be exposed.</p>
@@ -1891,7 +1863,7 @@ workaround.</p>
 <p>0.2.0 Okera ODAS release makes significant improvements on usability, security and
 reliability.</p>
 
-<h4 id="new-features-11">New Features</h4>
+<h4 id="new-features-10">New Features</h4>
 <p><strong>Installation</strong></p>
 
 <p>Install process has been further simplified with fewer steps and faster deployment.
@@ -1946,7 +1918,7 @@ will fail.</p>
 <p>Multiple updates were made on how to interact with the Okera catalog. Some of these
 changes are not backwards compatible.</p>
 
-<h4 id="new-features-12">New Features</h4>
+<h4 id="new-features-11">New Features</h4>
 <p><strong>CLI interface for catalog</strong></p>
 
 <p>The REST API was intended for programmatic access. While it is possible to use it
@@ -1999,7 +1971,7 @@ the dataset with the filter and grant the policy on the new dataset.</p>
                   <img src="assets/images/favicon.ico" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Apr 26, 2018
+ Site last generated: May 1, 2018
                   </div>
                 </div>
             </div>
