@@ -8,7 +8,7 @@
 <meta name="keywords" content=" ">
 <title>Cluster Launch Plugin API | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
-
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
 <script src="https://use.fontawesome.com/d9343c4626.js"></script>
 
@@ -592,9 +592,11 @@ We recommend writing them in Bash, as it will run without requiring bootstrappin
 The scripts should print to stderr for diagnostics (ignored by Okera except for logging) and print the result to stdout.
 Okera parses the output from standard out and it must be output exactly as described in this document.</p>
 
+<p>Either a launch script or a cluster launch script are required to create an environment.</p>
+
 <h2 id="launch-script">Launch script</h2>
 
-<p>This script is required and is responsible for starting a new instance when called.
+<p>This script is responsible for creating one EC2 instance when called.
 Examples of actions in this script are:</p>
 
 <ul>
@@ -602,14 +604,55 @@ Examples of actions in this script are:</p>
   <li>Tag the instance as required.</li>
 </ul>
 
-<p>This script must accept a single argument, which must be passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance.</p>
+<p>This script must accept a single argument, which is passed as the <code class="highlighter-rouge">--user-data</code> option when launching the instance in AWS.</p>
 
-<p>This script should print the <code class="highlighter-rouge">instance_id</code> to stdout.
+<p>The script must also support the <code class="highlighter-rouge">--dryrun</code> flag.
+The Deployment Manager (DM) will invoke the launch script with this flag when executing an <code class="highlighter-rouge">environments create</code> command.
+When the launch script is called with the <code class="highlighter-rouge">--dryrun</code> flag specified, the DM expects the launch script to exit with a return code of zero (indicating success), regardless of whether the script does anything when the <code class="highlighter-rouge">--dryrun</code> flag is passed (that is, it can be a no-op).
+This functionality (the DM calling the script with <code class="highlighter-rouge">--dryrun</code>) is an opportunity to instrument your script to pass the parameters that it would use to AWS in combination with the <code class="highlighter-rouge">--dry-run</code> flag in order to detect configuration or permissions issues early in the install process.
+The launch script must not actually launch compute instances when called with the <code class="highlighter-rouge">--dryrun</code> flag.</p>
+
+<p>This script should print <code class="highlighter-rouge">&lt;instance_id&gt;,&lt;public ip&gt;,&lt;private ip&gt;</code> to stdout.
+If the host lacks a public IP, then the output would be <code class="highlighter-rouge">&lt;instance id&gt;,,&lt;private ip&gt;</code>.
 It <em>cannot</em> output anything else to stdout.</p>
 
 <h3 id="template">Template</h3>
 
 <p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-machine-example.sh</code>.
+This script can help you get started.
+The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
+
+<h2 id="cluster-launch-script">Cluster Launch script</h2>
+
+<p>The cluster launch script must create an AWS autoscaling group (ASG) when invoked.
+This script must support the following flags:</p>
+<ul>
+  <li><code class="highlighter-rouge">--host &lt;# of hosts&gt;</code> specifies how many hosts the ASG should contain at any point</li>
+  <li><code class="highlighter-rouge">--name &lt;ASG name&gt;</code> the name of the ASG</li>
+</ul>
+
+<p>NOTE: the cluster launch script does not currently support the <code class="highlighter-rouge">--dryrun</code> flag because the
+underlying AWS call does not support that functionality.</p>
+
+<p>Examples of actions in this script are:</p>
+
+<ul>
+  <li>Create a launch configuration with the desired IAM role and security groups specified.</li>
+  <li>Launch an autoscaling group in the desired VPC, using the aforementioned launch
+configuration.</li>
+  <li>Tagging the autoscaling group with the specification that the tags be applied to
+EC2 instances created by the autoscaling group.</li>
+</ul>
+
+<p>This script should print out a list of n lines to stdout with each containing
+<code class="highlighter-rouge">&lt;instance id&gt;,&lt;public ip&gt;,&lt;private ip&gt;</code> where n is the value passed with the
+<code class="highlighter-rouge">--host</code> flag. If the ASG lacks a public IP, then the output
+would be <code class="highlighter-rouge">&lt;instance id&gt;,,&lt;private ip&gt;</code>.
+It <em>cannot</em> output anything else to stdout.</p>
+
+<h3 id="template-1">Template</h3>
+
+<p>We recommend looking at the template file that comes as part of the Okera install, by default found at <code class="highlighter-rouge">/opt/okera/deploymentmanager/bin/start-ec2-asg-example.sh</code>.
 This script can help you get started.
 The sections in it marked by <code class="highlighter-rouge">USER</code> are the most common customizations.</p>
 
@@ -639,7 +682,7 @@ We’ve included an example that will set up the package repo to an internal loc
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-                  <img src="assets/images/favicon.ico" class="logo" />
+                  <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
  Site last generated: May 1, 2018

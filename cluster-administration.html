@@ -8,7 +8,7 @@
 <meta name="keywords" content=" ">
 <title>Cluster Administration | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
-
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
 <script src="https://use.fontawesome.com/d9343c4626.js"></script>
 
@@ -603,6 +603,11 @@ Scaling is performed from the CLI using the update command:</p>
 <p>This command is used to scale a cluster up or down in size.
 Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.</p>
 
+<blockquote>
+  <p><strong>Note:</strong> The cluster must have been created using either the <code class="highlighter-rouge">--launchScript</code> or
+<code class="highlighter-rouge">--clusterLaunchScript</code> options.</p>
+</blockquote>
+
 <h2 id="setting-the-number-of-planners">Setting the Number of Planners</h2>
 
 <p>Okera, by default, picks the number of planners to run.
@@ -771,7 +776,7 @@ This policy could be fine tuned in the future if needed.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-                  <img src="assets/images/favicon.ico" class="logo" />
+                  <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
  Site last generated: May 1, 2018

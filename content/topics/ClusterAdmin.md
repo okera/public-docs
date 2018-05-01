@@ -35,6 +35,9 @@ ocadm clusters update --numNodes=20 1
 This command is used to scale a cluster up or down in size.
 Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.
 
+> **Note:** The cluster must have been created using either the `--launchScript` or
+`--clusterLaunchScript` options.
+
 ## Setting the Number of Planners
 
 Okera, by default, picks the number of planners to run.

@@ -1461,3 +1461,14 @@ div.landing-strip p a {
   color: #fff;
   font-weight: bold;
 }
+
+img.zoom {
+  padding: 50px;
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+img.zoom:hover {
+    transform: scale(1.7); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

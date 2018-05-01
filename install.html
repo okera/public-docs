@@ -8,7 +8,7 @@
 <meta name="keywords" content=" ">
 <title>Okera Installation | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
-
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
 <script src="https://use.fontawesome.com/d9343c4626.js"></script>
 
@@ -1081,11 +1081,11 @@ This is convenient to test new configs or to quickly diagnose problematic config
 
 <p>Cluster launch is broken up into two parts: actions required on the Deployment Manager and actions required on each launched EC2 instance.</p>
 
-<p>Actions required on the Deployment Manager are referred to as the <strong>launch script</strong>.
-The launch script is required, and when called, should provision a new EC2 instance.
-The launch script is run from the DM host.
-This script launches the instance with all the required EC2 configurations described in the Cluster machine in the prerequisites (for example, VPC, security groups, IAM Roles, etc).
-This script is the best place to tag machines or do other setup required by your organization.</p>
+<p>Actions required on the Deployment Manager are referred to as the <strong>launch script</strong> or <strong>cluster launch script</strong>.
+One of those two scripts are required, and when called, should provision either a new EC2 instance or a new autoscaling group, respectively.
+The configured script is run from the DM master and should specify all of the required configurations described in the Cluster machine section in the prerequisites (for example, VPC, security groups, IAM Roles, etc).
+This script is the best place to tag machines or do other setup required by your organization.
+Details about launch scripts and cluster launch scripts can be found in <a href="/cluster-launch-plugin-api">Cluster Launch Plugin API</a>.</p>
 
 <p>Actions required on each launched EC2 machine are referred to as the <strong>init scripts</strong>.
 The init scripts are an optional set of scripts that run when the instance is launched on the instance machine.
@@ -1114,6 +1114,15 @@ Dry run succeeded
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
 </code></pre></div></div>
 
+<p>Supplied cluster launch scripts do not need to support the –dryrun flag, as the associated
+AWS cli commands do not support that functionality.</p>
+
+<p>Cluster launch scripts are expected to return the same output as the launch scripts
+with the exception that cluster launch scripts can return n lines, where each is formatted:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
+</code></pre></div></div>
+<p>and each represent a host that was launched within the specified autoscaling group (ASG).</p>
+
 <blockquote>
   <p><strong>Note:</strong> The public IP value is optional.
 If your setup does not use it, its spot will appear blank.</p>
@@ -1130,8 +1139,17 @@ An environment captures all the configurations required to launch clusters.</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>&lt;DM_path_to_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
 </code></pre></div></div>
 
+<p>To run your cluster on an AWS autoscaling group (ASG), specify a –clusterLaunchScript
+instead of a –launchScript (those two flags are mutually exclusive)</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>&lt;DM_path_to_cluster_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
+</code></pre></div></div>
+
 <p><strong>Example:</strong> Environment definition</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>/etc/cerebro/launch-ec2.sh
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Environment definition that uses AWS ASGs</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>/etc/cerebro/launch-asg.sh
 </code></pre></div></div>
 
 <h3 id="create-a-cluster">Create a Cluster</h3>
@@ -1225,7 +1243,7 @@ creation, then it is the name of the cluster.</p>
 <footer>
             <div class="row">
                 <div class="col-lg-12 footer">
-                  <img src="assets/images/favicon.ico" class="logo" />
+                  <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
  Site last generated: May 1, 2018
