@@ -186,6 +186,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/planner-integration</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/pycerebro</loc>
   </url>
   

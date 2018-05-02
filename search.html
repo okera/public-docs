@@ -411,6 +411,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="odas-cdh-integration">CDH Integration</a> </li>
           
           
@@ -577,10 +584,15 @@ $('#toc').on('click', 'a', function() {
 
     let url = `${hit.url}#${hit.anchor}`;
 
-    const title = hit._highlightResult.title.value;
+    let title = hit._highlightResult.title && hit._highlightResult.title.value;
 
     let breadcrumbs = '';
     if (hit._highlightResult.headings) {
+      if (!title) {
+        title = hit._highlightResult.headings.length &&
+          hit._highlightResult.headings[0] &&
+          hit._highlightResult.headings[0].value;
+      }
       breadcrumbs = hit._highlightResult.headings.map(match => {
         return `<span class="post-breadcrumb">${match.value}</span>`
       }).join(' > ')
@@ -589,7 +601,7 @@ $('#toc').on('click', 'a', function() {
     const content = hit._highlightResult.html.value;
 
     return `
-        <a href="${url}" class="hit-title">${title}</a><br />
+        ${title ? `<a href="${url}" class="hit-title">${title}</a><br />` : ''}
         <a href="${url}" class="post-breadcrumbs">&gt; ${breadcrumbs}</a>
         <div class="post-snippet">${content}</div>
     `;
