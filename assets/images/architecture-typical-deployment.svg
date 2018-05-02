@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="117.5 -52.5 1040 278.55" width="1040" height="278.55">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.7.1 
+    <dc:date>2018-05-01 23:01:08 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_12">
+        <rect x="127" y="-43" width="93.5" height="259.55" fill="#22283a"/>
+        <rect x="127" y="-43" width="93.5" height="259.55" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(132 57.57883)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="18.638" y="16">Okera</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="11.982" y="35.46411">Catalog</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="9.15" y="54.92822">Services</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <rect x="235.5" y="-43" width="173.43649" height="114" fill="white"/>
+        <rect x="235.5" y="-43" width="173.43649" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(240.5 -4.9560547)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="16.102243" y="16">Ephemeral Spark</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="23.638243" y="34.46411">(e.g. Databricks)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_10">
+        <rect x="605.03176" y="-43" width="173.43649" height="114" fill="white"/>
+        <rect x="605.03176" y="-43" width="173.43649" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(610.03176 -14.68811)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="10.142243" y="16">Long Running SQL </tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="53.414243" y="35.46411">Service</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="10.446243" y="53.92822">(e.g. Presto, Impala)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_9">
+        <rect x="420.2659" y="-43" width="173.43649" height="114" fill="white"/>
+        <rect x="420.2659" y="-43" width="173.43649" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(425.2659 -4.9560547)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="3.9262434" y="16">Long Running Spark</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="29.422243" y="34.46411">(e.g. Cloudera)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <rect x="789.7976" y="-43" width="173.43649" height="114" fill="white"/>
+        <rect x="789.7976" y="-43" width="173.43649" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(794.7976 4.2679443)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="30.150243" y="16">Python Script</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <rect x="974.5635" y="-43" width="173.43649" height="114" fill="white"/>
+        <rect x="974.5635" y="-43" width="173.43649" height="114" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(979.5635 -4.9560547)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="55.662243" y="16">BI Tool</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="34.454243" y="34.46411">(e.g. Tableau)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <rect x="235.5" y="92" width="229.62816" height="52" fill="#20283b"/>
+        <rect x="235.5" y="92" width="229.62816" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(240.5 99.04395)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="86.99008" y="16">ODAS</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="white" x="26.390078" y="34.46411">(Dedicated, Ephemeral)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <rect x="235.5" y="164.55" width="449.705" height="52" fill="white"/>
+        <rect x="235.5" y="164.55" width="449.705" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(240.5 171.59395)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="145.93249" y="16">Streaming Systems</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="149.6205" y="34.46411">(e.g. Kafka, Kinesis)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <rect x="480.12816" y="92" width="667.87184" height="52" fill="#20283b"/>
+        <rect x="480.12816" y="92" width="667.87184" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(485.12816 99.04395)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="225.07192" y="16">Okera Data Access Service</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="white" x="244.91192" y="34.46411">(Long Running, Shared)</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <rect x="698.295" y="164.55" width="449.705" height="52" fill="white"/>
+        <rect x="698.295" y="164.55" width="449.705" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(703.295 171.59395)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="154.9565" y="16">Storage Systems</tspan>
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="141.17249" y="34.46411">(e.g. HDFS, S3, Ceph)</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

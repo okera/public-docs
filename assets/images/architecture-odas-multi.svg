@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="64 26.5 735 266" width="735" height="266">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 8 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="700">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Bold"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.7.1 
+    <dc:date>2018-05-01 21:16:29 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" stroke="none" stroke-opacity="1" fill="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_18">
+        <rect x="73.5" y="36" width="134" height="52" fill="white"/>
+        <rect x="73.5" y="36" width="134" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(78.5 52.267944)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="35.32" y="16">Python</tspan>
+        </text>
+      </g>
+      <g id="Graphic_17">
+        <rect x="231" y="36" width="134" height="52" fill="white"/>
+        <rect x="231" y="36" width="134" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(236 52.267944)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="41.272" y="16">Excel</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <rect x="73.5" y="133.5" width="291.5" height="52" fill="#22283a"/>
+        <rect x="73.5" y="133.5" width="291.5" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(78.5 149.76794)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="36.886" y="16">Okera Data Access Service</tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <rect x="388.5" y="36" width="134" height="52" fill="white"/>
+        <rect x="388.5" y="36" width="134" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(393.5 52.267944)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="43.784" y="16">EMR</tspan>
+        </text>
+      </g>
+      <g id="Graphic_14">
+        <rect x="546" y="36" width="243.5" height="52" fill="white"/>
+        <rect x="546" y="36" width="243.5" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(551 52.267944)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="black" x="91.854" y="16">Presto</tspan>
+        </text>
+      </g>
+      <g id="Graphic_13">
+        <rect x="546" y="133.5" width="243.5" height="52" fill="#22283a"/>
+        <rect x="546" y="133.5" width="243.5" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(551 149.76794)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="12.886" y="16">Okera Data Access Service</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <rect x="395.5" y="125" width="134" height="52" fill="#22283a"/>
+        <rect x="395.5" y="125" width="134" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(400.5 141.26794)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="39.176" y="16">ODAS</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <rect x="388.5" y="133.5" width="134" height="52" fill="#22283a"/>
+        <rect x="388.5" y="133.5" width="134" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(393.5 149.76794)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="39.176" y="16">ODAS</tspan>
+        </text>
+      </g>
+      <g id="Line_10">
+        <line x1="140.1289" y1="133.5" x2="140.31368" y2="97.89987" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_9">
+        <line x1="297.22266" y1="133.5" x2="297.6097" y2="97.89941" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_8">
+        <line x1="455.5" y1="133.5" x2="455.5" y2="97.9" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_7">
+        <line x1="667.75" y1="133.5" x2="667.75" y2="97.9" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_6">
+        <rect x="334.25" y="231" width="242.5" height="52" fill="#22283a"/>
+        <rect x="334.25" y="231" width="242.5" height="52" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(339.25 247.26794)" fill="white">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="700" fill="white" x="61.146" y="16">Okera Catalog</tspan>
+        </text>
+      </g>
+      <g id="Line_5">
+        <line x1="394.875" y1="231" x2="315.89094" y2="190.05619" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_4">
+        <line x1="455.5" y1="231" x2="455.5" y2="195.4" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_3">
+        <line x1="516.125" y1="231" x2="603.6593" y2="189.7225" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>
