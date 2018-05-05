@@ -56,7 +56,7 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://localhost:4400/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -769,6 +769,15 @@ Client can now control the rounding behavior in the application and cast the typ
 
 <p><strong>Deployment Manager now requires java 8</strong></p>
 
+<h3 id="known-issues">Known issues</h3>
+
+<p><strong>Using AWS autoscaling groups</strong></p>
+
+<p>If an ODAS cluster is created using a clusterLaunchScript, it will instantiate an
+autoscaling group of the specified size in AWS. Scaling an ODAS cluster that is running on
+an ASG is not supported in 1.0.0. Specifically, scaling down is known to have issues.
+This will be remedied in the next release.</p>
+
 <h2 id="090-april-2018">0.9.0 (april 2018)</h2>
 
 <p>The 0.9.0 introduces two major new features but no significant alterations to existing features or functionality.</p>
@@ -1011,7 +1020,7 @@ script that should be run after the existing bootstrap script. See the
   </li>
 </ul>
 
-<h3 id="known-issues">Known issues</h3>
+<h3 id="known-issues-1">Known issues</h3>
 
 <ul>
   <li>Tableau WDC connector does not support custom signed SSL certificates. If SSL is
@@ -1278,7 +1287,7 @@ compatible with older ODAS releases.</p>
   </li>
 </ul>
 
-<h3 id="known-issues-1">Known issues</h3>
+<h3 id="known-issues-2">Known issues</h3>
 
 <p>**After installing a new version of DM, upgrading a component in existing cluster does
 not work</p>
@@ -1412,7 +1421,7 @@ insensitive. This means that commands such as <code class="highlighter-rouge">CR
 <p>The output is no space separated and not commas to make it easier to interop with
 ecosystem tools. If this was consumed from scripts, they may need to be updated.</p>
 
-<h3 id="known-issues-2">Known issues</h3>
+<h3 id="known-issues-3">Known issues</h3>
 
 <p><strong>Dataset preview in Web UI or Catalog REST API shows 0s instead of NULLs</strong></p>
 
@@ -1546,7 +1555,7 @@ that were setting it will see connection failures.</p>
 <p>The environment variable OKERA_JWT_SERVICE_TOKEN_FILE has been replaced with
 OKERA_SYSTEM_TOKEN. Users upgrading from 0.4.5 will need to update this config.</p>
 
-<h3 id="known-issues-3">Known issues</h3>
+<h3 id="known-issues-4">Known issues</h3>
 
 <p><strong>Unable to see databases if user has only been granted columns to objects in database</strong></p>
 
@@ -1786,7 +1795,7 @@ All APIs were changed to consistently use the term ‘db’  This impacts the fo
 
 <p>For detail see: <a href="/catalog-rest-api">Catalog REST API</a>.</p>
 
-<h4 id="known-issues-4">Known issues</h4>
+<h4 id="known-issues-5">Known issues</h4>
 <p><strong>Errors during Deployment Manager configuration file writes prevent restart</strong></p>
 
 <p>If the configuration file for Deployment Manager is not correctly written to RDS (due to
@@ -1860,7 +1869,7 @@ Deployment Manager machine) in /var/run/okera.
 If you have built scripts and automation following those steps, those should be adapted
 to use /etc/okera instead.</p>
 
-<h4 id="known-issues-5">Known issues</h4>
+<h4 id="known-issues-6">Known issues</h4>
 <p>Catalog UI sometimes does not refresh databases correctly. Refresh from the browser as a
 workaround.</p>
 
@@ -1904,7 +1913,7 @@ Run <code class="highlighter-rouge">okera_cli help</code> to see the much improv
 <h4 id="incompatible-changes-1">Incompatible Changes</h4>
 <p>No known incompatibilities exist.</p>
 
-<h4 id="known-issues-6">Known issues</h4>
+<h4 id="known-issues-7">Known issues</h4>
 <p><strong>Cluster create fails occasionally</strong></p>
 
 <p>This manifests with an error message like:
@@ -1950,7 +1959,7 @@ questions such as:</p>
 largely the same. It is no longer necessary to delete policies and not possible to view
 them.</p>
 
-<h4 id="known-issues-7">Known issues:</h4>
+<h4 id="known-issues-8">Known issues:</h4>
 <p><strong>Creating the dataset with ‘storage_url’ currently requires the dataset to be parquet.</strong></p>
 
 <p>The workaround is to specify the request using hiveql.</p>
@@ -1978,7 +1987,7 @@ the dataset with the filter and grant the policy on the new dataset.</p>
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 2, 2018
+ Site last generated: May 5, 2018
                   </div>
                 </div>
             </div>
