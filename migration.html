@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Configuring Okera and Kerberos | Okera User Documentation</title>
+<title>Migration | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -247,7 +247,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="kerberos-cluster-setup">Kerberos</a></li>
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
           
           
           
@@ -587,165 +587,71 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="configuring-okera-and-kerberos">Configuring Okera and Kerberos</h1>
+  <h1 id="migration">Migration</h1>
 
-<p>This tutorial demonstrates integrating an Okera cluster with Kerberos, with end-to-end authentication enabled.
-This process generally involves the following steps:</p>
+<p>This document describes steps required to migrate from versions before 1.1.0 to versions after.
+These steps are required as multiple paths have been renamed from <code class="highlighter-rouge">cerebro</code> to <code class="highlighter-rouge">okera</code>.</p>
 
-<ol>
-  <li>Create a keytab with two principals
-    <ul>
-      <li>one with its <strong>service name</strong> as <code class="highlighter-rouge">okera</code></li>
-      <li>a second with its <strong>service name</strong> as <code class="highlighter-rouge">HTTP</code>.</li>
-    </ul>
-  </li>
-  <li>Set the keytab and principal configs in the environment.</li>
-</ol>
+<h2 id="deploymentmanager">DeploymentManager</h2>
 
-<p>The tutorial breaks the above steps into the following:</p>
+<p>** Default logging directory renamed from <code class="highlighter-rouge">/var/log/cerebro</code> to <code class="highlighter-rouge">/var/log/okera</code>.</p>
 
-<ul>
-  <li><a href="#prerequisites">Prerequisites</a></li>
-  <li><a href="#creating-the-kerberos-principals-and-keytab-files">Creating the Kerberos Principals and Keytab files</a></li>
-  <li><a href="#setting-the-environment-variables">Setting the Environment Variables</a></li>
-</ul>
+<p>This directory is typically automatically created by the DM install script so no changes need to be made there.
+Scripts or users reading the logs will need to be updated to the new location.</p>
 
-<h2 id="prerequisites">Prerequisites</h2>
+<p>** Default install directory changed from <code class="highlighter-rouge">/opt/cerebro</code> to <code class="highlighter-rouge">/opt/okera</code>.</p>
 
-<p>This section lists out the necessary requirements to enable Kerberos for Okera.</p>
+<p>This directory is completely user controlled and should not impact any existing automation.
+This is the directory specified when the DM tarball is downloaded and extracted.
+We recommend updating this in the automation to avoid future confusion.</p>
 
-<ul>
-  <li><strong>KDC</strong>
- Make sure that you have a KDC set up and available, and can either request for credentials, or have access to the KDC to set up credentials yourself.</li>
-  <li><strong>Ensure client-side Kerberos packages are installed</strong>
- Try running <code class="highlighter-rouge">kinit</code> and <code class="highlighter-rouge">klist</code> and make sure these utilities are installed.</li>
-  <li><strong>Kerberos Configuration File</strong>
- This file is known as the <strong>krb5.conf</strong> file and this contains the information needed to authenticate a client against a KDC.
-    <ul>
-      <li>Make sure that this file exists in the location <strong>/etc/krb5.conf</strong>.</li>
-    </ul>
-  </li>
-</ul>
+<p>** Default config directory changed from <code class="highlighter-rouge">/etc/cerebro</code> to <code class="highlighter-rouge">/etc/okera</code>.</p>
 
-<h2 id="creating-the-kerberos-principals-and-keytab-files">Creating the Kerberos Principals and Keytab Files.</h2>
+<p>This directory contains numerous configurations that will need to be updated.</p>
 
-<p>In order to allow Okera’s internal services to be authenticated end-to-end, we need to create the following <em>2</em> Kerberos principals, and add them to <em>a single keytab file</em>:</p>
 <ul>
   <li>
-    <p><strong>Okera principal</strong></p>
-
-    <p>This is of the format <code class="highlighter-rouge">okera/&lt;instance&gt;@REALM</code>. For example, this can be
-  <code class="highlighter-rouge">okera/okera-service@OKERA.TEST</code></p>
+    <p>This is where <code class="highlighter-rouge">env.sh</code> is sourced from, which contains the system wide configs.</p>
   </li>
   <li>
-    <p><strong>HTTP principal</strong></p>
-
-    <p>This is of the format <code class="highlighter-rouge">HTTP/&lt;instance&gt;@REALM</code>. For example, this can be <code class="highlighter-rouge">HTTP/okera-service@OKERA.TEST</code></p>
+    <p>This is where we recommend <code class="highlighter-rouge">launch-ec2-machine.sh</code> and other related launch scripts are.
+These are typically used in <code class="highlighter-rouge">ocadm environments create</code>.</p>
+  </li>
+  <li>
+    <p>This directory is where we recommend other config files, such as <code class="highlighter-rouge">krb5.conf</code> or oauth client secret files are stored.
+These paths are typically referenced in <code class="highlighter-rouge">/etc/okera/env.sh</code> and will need to be updated as well.</p>
   </li>
 </ul>
 
-<p>To do this, log in with kadmin, and run the following command for each of the principals that needs to be created:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>addprinc -randkey &lt;principal_name&gt;`
+<p>** Agent path updates</p>
+
+<p>These changes are also applicable to the ODAS cluster machines that runs the DM agent.
+End users typically do not need to modify anything on the ODAS cluster so this should be transparent to most usage patterns.</p>
+
+<h2 id="emr">EMR</h2>
+
+<p>** Hadoop services are now part of group <code class="highlighter-rouge">okera</code> instead of <code class="highlighter-rouge">cerebro</code>.
+This includes for, example, hive, spark, and yarn.
+As this is usually handled by the bootstrap automation script, this should not impact most use cases.</p>
+
+<p>** User token now placed in <code class="highlighter-rouge">~/.okera</code> instead of <code class="highlighter-rouge">~/.cerebro</code>.
+The <code class="highlighter-rouge">~/.cerebro</code> directory is now a symlink but will be removed in a future release.</p>
+
+<h2 id="environment-variables">Environment Variables</h2>
+
+<p>** Environment variables renamed from <code class="highlighter-rouge">CEREBRO_</code> to <code class="highlighter-rouge">OKERA_</code>.
+The old values starting with <code class="highlighter-rouge">CEREBRO_</code> will continue to work in this release for backwards compatibility will be be disabled in a future release.</p>
+
+<p>This should be safe to do via search and replace.
+On linux we recommend running as a starting point:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find ./bin <span class="nt">-type</span> f <span class="nt">-exec</span> sed <span class="nt">-i</span> <span class="s1">'s/CEREBRO_/OKERA_/g'</span> <span class="o">{}</span> <span class="se">\;</span>
 </code></pre></div></div>
 
-<p>Once the principals are created, create a single keytab file which contains both principals.
-Log into the kadmin utility and run the following command:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ktadd <span class="nt">-kt</span> &lt;keytab_file_name&gt; &lt;principal_name_1&gt; &lt;principal_name_2&gt;<span class="sb">`</span>
+<p>On OSX:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find ./bin <span class="nt">-type</span> f <span class="nt">-exec</span> sed <span class="nt">-i</span> <span class="s1">''</span> <span class="s1">'s/CEREBRO_/OKERA_/g'</span> <span class="o">{}</span> <span class="se">\;</span>
 </code></pre></div></div>
 
-<ol>
-  <li>Log into your kadmin tool.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>kadmin.local
-kadmin.local:
-</code></pre></div>    </div>
-  </li>
-  <li>Make sure the required principals don’t exist.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: listprincs
-</code></pre></div>    </div>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prim1/inst1@OKERA.TEST
-prim2/inst2@OKERA.TEST
-prim2/inst3@OKERA.TEST
-</code></pre></div>    </div>
-  </li>
-  <li>Create the okera principal.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> okera/okera-service
-</code></pre></div>    </div>
-    <ul>
-      <li>If you don’t want a password, use the <code class="highlighter-rouge">-randkey</code> flag.</li>
-      <li>If you would rather have a password, don’t use the flag.</li>
-    </ul>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified for okera/okera-service@OKERA.TEST; defaulting to no policy
-Principal "okera/okera-service@OKERA.TEST" created.
-kadmin.local:
-</code></pre></div>    </div>
-  </li>
-  <li>Create the http principal.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> HTTP/okera-service
-</code></pre></div>    </div>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified <span class="k">for </span>HTTP/okera-service@OKERA.TEST<span class="p">;</span> defaulting to no policy
-Principal <span class="s2">"okera/okera-service@OKERA.TEST"</span> created.
-kadmin.local:
-</code></pre></div>    </div>
-  </li>
-  <li>Create the keytab file.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: ktadd <span class="nt">-kt</span> okera.keytab okera/okera-service HTTP/okera-service
-</code></pre></div>    </div>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entry <span class="k">for </span>principal okera/okera-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:okera.keytab.
-Entry <span class="k">for </span>principal HTTP/okera-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:okera.keytab.
-</code></pre></div>    </div>
-  </li>
-  <li>Exit the kadmin utility
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: q
-<span class="err">$</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h2 id="verifying-keytab-file-principles">Verifying Keytab File Principles</h2>
-
-<p>Verify that both the principals are present in the keytab file.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>klist <span class="nt">-kt</span> &lt;KEYTAB_FILE_NAME&gt;
-</code></pre></div></div>
-
-<p>For example, if the keytab file is called <em>okera.keytab</em>, the command looks like this:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ klist -kt okera.keytab
-Keytab name: FILE:dumdum.keytab
-KVNO Timestamp           Principal
----- ------------------- ------------------------------------------------------
-   4 03/02/2017 13:27:57 okera/okera-service@OKERA.TEST
-   4 03/02/2017 13:27:57 HTTP/okera-service@OKERA.TEST
-</code></pre></div></div>
-
-<h2 id="setting-the-environment-variables">Setting the Environment Variables</h2>
-
-<p>Set the following environment variables:</p>
-<ul>
-  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code></strong>
- Set this to the Okera principal created above.</li>
-  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_KEYTAB_FILE</code></strong>
- Set this to the path of the keytab file. This can be a local or remote (s3) path.</li>
-  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_HTTP_PRINCIPAL</code></strong>
- Set this to the HTTP principal if the principal is non-standard.
- This is not required if the principals were created with the steps above.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">OKERA_KERBEROS_PRINCIPAL</span><span class="o">=</span>&lt;principal&gt;
- <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>&lt;full_path_to_keytab_file&gt;
-</code></pre></div>    </div>
-    <p><strong>Example:</strong></p>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">CEREBERO_KERBEROS_PRINCIPAL</span><span class="o">=</span>okera/okera-service
- <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>okera.keytab
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="more-information">More Information</h2>
-
-<p>Other docs that might be helpful are:</p>
-
-<ul>
-  <li><a href="odas-authentication">Authentication</a></li>
-  <li><a href="secure-deployment-manager-rest-api">Security</a></li>
-</ul>
 
 
     <div class="tags">

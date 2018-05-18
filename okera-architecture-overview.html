@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -613,7 +623,7 @@ Behind the scenes, this web application uses the REST API gateway service to int
     <p>Many clients have support for the ubiquitous REST protocol, avoiding most of the issues that arise when dealing with custom protocols.
 The REST gateway service gives access to the all necessary client API calls.
 This includes both the <strong>Schema Registry</strong> for creating, altering, or dropping various objects, as well as the <strong>Policy Engine</strong> for granting or revoking access related to all registered objects.
-See the <a href="/catalog-rest-api">Catalog API</a> documentation for the list of supported REST calls.</p>
+See the <a href="catalog-rest-api">Catalog API</a> documentation for the list of supported REST calls.</p>
   </li>
   <li>
     <p><strong>The provided client libraries</strong></p>
@@ -632,13 +642,13 @@ The following discusses the external and internal components separately, and how
 
 <p>Note how the above referred to <em>services</em>, such as the REST API, Planner, and Catalog services.
 For failover purposes and continuous availability of these services, it is common in practice to have each service running multiple times.
-This is explained in greater detail in the <a href="/cluster-administration#scaling-an-existing-cluster">Cluster Administration</a> documentation.
+This is explained in greater detail in the <a href="cluster-administration#scaling-an-existing-cluster">Cluster Administration</a> documentation.
 In short, you can use the provided administrative functionality to instruct the platform to add redundant instances of the services (expressed as multiple, stacked boxes in the diagram) so that in case of a node failure the system will continue to operate.</p>
 
 <p>The Planner service is also responsible for exposing the Catalog services: the Schema Registry and Policy Engine.
 In effect, the clients use the REST API or client libraries as proxies (as shown in the diagram) to these two Catalog services, provided by the Planner instances.
 The clients also communicate with the Planner as part of a query execution (see <a href="#communication">Communication</a> below).
-For a general overview of all available services and how they can be combined, please refer to the <a href="/cluster-types">Cluster Types</a> documentation.</p>
+For a general overview of all available services and how they can be combined, please refer to the <a href="cluster-types">Cluster Types</a> documentation.</p>
 
 <p>The ODAS client libraries are used by many of the provided higher-level client integrations, including Hive, Presto, Spark, and others.
 This integration support is needed to hide Okera as much as possible behind common tools, with which users are already familiar.
@@ -655,7 +665,7 @@ There is no need to alter any metadata at all.</p>
 Their purpose is to support the external services and enable administrators to manage the ODAS clusters.</p>
 
 <p>For the latter, there is the option to maintain ODAS clusters using the <strong>Deployment Manager</strong> (DM), which is installed as the first component in the Okera Platform setup.
-See the <a href="/cluster-administration">Cluster Administration</a> document for more details on how to manage ODAS clusters with the DM.</p>
+See the <a href="cluster-administration">Cluster Administration</a> document for more details on how to manage ODAS clusters with the DM.</p>
 
 <p>The DM uses Kubernetes (K8s) to manage the cluster services, including the redundant instance for fail-safety.
 Each service is packaged into its own image and started as a separate container in Kubernetes pods.</p>
@@ -707,7 +717,7 @@ This happens on each of the provisioned instances, while the DM is waiting for a
 <h2 id="communication">Communication</h2>
 
 <p>Once the cluster is operational, a client can communicate with the cluster services.
-Refer to the <a href="/odas-authentication">Authentication</a> documentation for more details on how to secure the interactions between clients and an ODAS cluster.</p>
+Refer to the <a href="odas-authentication">Authentication</a> documentation for more details on how to secure the interactions between clients and an ODAS cluster.</p>
 
 <h3 id="read-request">Read Request</h3>
 
@@ -738,7 +748,7 @@ Each worker is handed a list of tasks to perform, which is querying a subset of 
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

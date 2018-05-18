@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -626,7 +636,7 @@ There are no plans to support it.</p>
 
 <h3 id="installing-from-pypi">Installing from PyPI</h3>
 
-<p>The Python library is available on <a href="PyPI">https://pypi.org/project/pycerebro/</a>.
+<p>The Python library is available on <a href="https://pypi.org/project/pycerebro/">PyPI</a>.
 It can be installed using pip.
 Pip assumes that Python3 is already installed on the system.</p>
 
@@ -649,7 +659,7 @@ Pip assumes that Python3 is already installed on the system.</p>
     <p>To confirm that the install was successful, try importing it from the interpreter and getting the version.</p>
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cerebro.cdas</span>
 <span class="n">cerebro</span><span class="o">.</span><span class="n">cdas</span><span class="o">.</span><span class="n">version</span><span class="p">()</span>
-<span class="c"># Should output the version string, for example 1.0.0</span>
+<span class="c"># Should output the version string, for example 1.0.1</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -666,7 +676,7 @@ After installing the dependencies, perform the following steps.</p>
 
 <ol>
   <li>Download the library.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/client/pycerebro.egg
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.1/client/pycerebro.egg
 </code></pre></div>    </div>
   </li>
   <li>Install the library.
@@ -697,7 +707,7 @@ For example, the base RHEL7 AMI on Amazon AWS.</p>
 curl <span class="s2">"https://bootstrap.pypa.io/get-pip.py"</span> <span class="nt">-o</span> <span class="s2">"get-pip.py"</span>
 <span class="nb">sudo </span>python3 get-pip.py
 <span class="nb">sudo </span>pip3 install six bit_array thriftpy
-curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/client/pycerebro.egg
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.1/client/pycerebro.egg
 <span class="nb">sudo </span>easy_install pycerebro.egg
 
 <span class="c"># Optional packages (installing pandas can take a while)</span>
@@ -715,7 +725,7 @@ pip3 install Cython numpy pandas
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://bootstrap.pypa.io/get-pip.py"</span> <span class="nt">-o</span> <span class="s2">"get-pip.py"</span>
 <span class="nb">sudo </span>python3 get-pip.py
 <span class="nb">sudo</span> /usr/local/bin/pip3 install six bit_array thriftpy
-curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/client/pycerebro.egg
+curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.1/client/pycerebro.egg
 <span class="nb">sudo </span>easy_install-3.4 pycerebro.egg
 
 <span class="c"># Optional packages (installing pandas can take a while)</span>
@@ -926,7 +936,7 @@ The <code class="highlighter-rouge">scan_as_json()</code> API returns the result
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

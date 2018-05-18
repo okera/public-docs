@@ -2,462 +2,360 @@
 
 
 {
-"title": "Advanced Installation Procedures",
-"tags": "",
-"keywords": "",
 "url": "advanced-install",
-"summary": ""
+"file": "content/topics/AdvancedInstall.md",
 }
 ,
 
 
 
 {
-"title": "Auditing",
-"tags": "",
-"keywords": "",
 "url": "auditing",
-"summary": ""
+"file": "content/topics/Auditing.md",
 }
 ,
 
 
 
 {
-"title": "Okera Data Access Service Authentication",
-"tags": "",
-"keywords": "",
 "url": "odas-authentication",
-"summary": ""
+"file": "content/topics/Authentication.md",
 }
 ,
 
 
 
 {
-"title": "Okera Data Access Service CDH Integration",
-"tags": "",
-"keywords": "",
+"url": "authorization",
+"file": "content/topics/Authorization.md",
+}
+,
+
+
+
+{
 "url": "odas-cdh-integration",
-"summary": ""
+"file": "content/topics/CDHIntegration.md",
 }
 ,
 
 
 
 {
-"title": "REST API",
-"tags": "",
-"keywords": "",
 "url": "catalog-rest-api",
-"summary": ""
+"file": "content/topics/CatalogApi.md",
 }
 ,
 
 
 
 {
-"title": "Okera Client Configurations",
-"tags": "",
-"keywords": "",
 "url": "client-configs",
-"summary": ""
+"file": "content/topics/ClientConfigurations.md",
 }
 ,
 
 
 
 {
-"title": "Okera Data Access Service Integration",
-"tags": "",
-"keywords": "",
 "url": "client-integration",
-"summary": ""
+"file": "content/topics/ClientIntegration.md",
 }
 ,
 
 
 
 {
-"title": "Cluster Launch Plugin API",
-"tags": "",
-"keywords": "",
 "url": "cluster-launch-plugin-api",
-"summary": ""
+"file": "content/topics/ClusterLaunchPluginApi.md",
 }
 ,
 
 
 
 {
-"title": "Cluster Sizing Guide",
-"tags": "",
-"keywords": "",
 "url": "cluster-sizing",
-"summary": ""
+"file": "content/topics/ClusterSizing.md",
 }
 ,
 
 
 
 {
-"title": "Cluster Types",
-"tags": "",
-"keywords": "",
 "url": "cluster-types",
-"summary": ""
+"file": "content/topics/ClusterTypes.md",
 }
 ,
 
 
 
 {
-"title": "Complex Data Types",
-"tags": "",
-"keywords": "",
 "url": "complex-types",
-"summary": ""
+"file": "content/topics/ComplexTypes.md",
 }
 ,
 
 
 
 {
-"title": "Data Types",
-"tags": "",
-"keywords": "",
 "url": "data-types",
-"summary": ""
+"file": "content/topics/DataType.md",
 }
 ,
 
 
 
 {
-"title": "Docker Quickstart",
-"tags": "",
-"keywords": "",
 "url": "docker-quickstart",
-"summary": ""
+"file": "content/topics/DockerQuickstart.md",
 }
 ,
 
 
 
 {
-"title": "Okera Data Access Service EMR Integration",
-"tags": "",
-"keywords": "",
 "url": "emr-integration",
-"summary": ""
+"file": "content/topics/EMRIntegration.md",
 }
 ,
 
 
 
 {
-"title": "OKERA, INC.",
-"tags": "",
-"keywords": "",
 "url": "eula",
-"summary": ""
+"file": "content/legal/EULA.md",
 }
 ,
 
 
 
 {
-"title": "Extending ODAS",
-"tags": "",
-"keywords": "",
 "url": "extending-odas",
-"summary": ""
+"file": "content/topics/ExtendingODAS.md",
 }
 ,
 
 
 
 {
-"title": "Frequently Asked Questions about the Okera Platorm",
-"tags": "",
-"keywords": "",
 "url": "faq",
-"summary": ""
+"file": "content/topics/FAQ.md",
 }
 ,
 
 
 
 {
-"title": "Getting Started with Okera",
-"tags": "",
-"keywords": "",
 "url": "getting-started",
-"summary": ""
+"file": "content/topics/GettingStarted.md",
 }
 ,
 
 
 
 {
-"title": "IP Address Management",
-"tags": "",
-"keywords": "",
 "url": "ip-address-management",
-"summary": ""
+"file": "content/topics/IPAM.md",
 }
 ,
 
 
 
 {
-"title": "Okera Installation",
-"tags": "",
-"keywords": "",
 "url": "install",
-"summary": ""
+"file": "content/topics/Install.md",
 }
 ,
 
 
 
 {
-"title": "Configuring Okera and Kerberos",
-"tags": "",
-"keywords": "",
 "url": "kerberos-cluster-setup",
-"summary": ""
+"file": "content/topics/KerberosClusterSetup.md",
 }
 ,
 
 
 
 {
-"title": "Monitoring services quickstart",
-"tags": "",
-"keywords": "",
 "url": "kubernetes-dashboard-quickstart",
-"summary": ""
+"file": "content/topics/KubernetesDashboardQuickStart.md",
 }
 ,
 
 
 
 {
-"title": "Secure Okera REST API Access Using LDAP",
-"tags": "",
-"keywords": "",
 "url": "secure-okera-rest-api-ldap",
-"summary": ""
+"file": "content/topics/LdapAuthentication.md",
 }
 ,
 
 
 
 {
-"title": "Okera Platform Memory Usage",
-"tags": "",
-"keywords": "",
 "url": "memory-usage",
-"summary": ""
+"file": "content/topics/MemoryUsage.md",
 }
 ,
 
 
 
 {
-"title": "Secure Okera REST API Access using OAuth",
-"tags": "",
-"keywords": "",
+"url": "migration",
+"file": "content/topics/Migration.md",
+}
+,
+
+
+
+{
 "url": "secure-okera-rest-api-oauth",
-"summary": ""
+"file": "content/topics/OAuthGuide.md",
 }
 ,
 
 
 
 {
-"title": "Okera Database Command-Line Interface",
-"tags": "",
-"keywords": "",
 "url": "okera-database-cli",
-"summary": ""
+"file": "content/topics/Odb.md",
 }
 ,
 
 
 
 {
-"title": "Okera Platform Architecture Overview",
-"tags": "",
-"keywords": "",
 "url": "okera-architecture-overview",
-"summary": ""
+"file": "content/topics/OverviewArchitecture.md",
 }
 ,
 
 
 
 {
-"title": "Okera Catalog Overview",
-"tags": "",
-"keywords": "",
 "url": "catalog-overview",
-"summary": ""
+"file": "content/topics/OverviewCatalog.md",
 }
 ,
 
 
 
 {
-"title": "ODAS Overview",
-"tags": "",
-"keywords": "",
 "url": "odas-overview",
-"summary": ""
+"file": "content/topics/OverviewODAS.md",
 }
 ,
 
 
 
 {
-"title": "Okera Active Data Access Platform Overview",
-"tags": "",
-"keywords": "",
 "url": "product-overview",
-"summary": ""
+"file": "content/topics/OverviewProduct.md",
 }
 ,
 
 
 
 {
-"title": "ODAS Planner Services Integration - Best Practices",
-"tags": "",
-"keywords": "",
 "url": "planner-integration",
-"summary": ""
+"file": "content/topics/PlannerIntegration.md",
 }
 ,
 
 
 
 {
-"title": "PyCerebro",
-"tags": "",
-"keywords": "",
 "url": "pycerebro",
-"summary": ""
+"file": "content/topics/PyCerebro.md",
 }
 ,
 
 
 
 {
-"title": "Okera Platform Quick Technical Solutions",
-"tags": "",
-"keywords": "",
 "url": "quick-recipes",
-"summary": ""
+"file": "content/topics/QuickRecipes.md",
 }
 ,
 
 
 
 {
-"title": "Release Notes",
-"tags": "",
-"keywords": "",
 "url": "release-notes",
-"summary": ""
+"file": "content/topics/ReleaseNotes.md",
 }
 ,
 
 
 
 {
-"title": "Secure Deployment Manager REST API Access",
-"tags": "",
-"keywords": "",
+"url": "schema-design",
+"file": "content/topics/SchemaDesign.md",
+}
+,
+
+
+
+{
 "url": "secure-deployment-manager-rest-api",
-"summary": ""
+"file": "content/topics/Security.md",
 }
 ,
 
 
 
 {
-"title": "Okera Service Port Assignments",
-"tags": "",
-"keywords": "",
 "url": "service-port-assignments",
-"summary": ""
+"file": "content/topics/ServicePorts.md",
 }
 ,
 
 
 
 {
-"title": "Supported SQL",
-"tags": "",
-"keywords": "",
 "url": "supported-sql",
-"summary": ""
+"file": "content/topics/SupportedSQL.md",
 }
 ,
 
 
 
 {
-"title": "Tableau Web Data Connector (WDC)",
-"tags": "",
-"keywords": "",
 "url": "tableau-web-data-connector",
-"summary": ""
+"file": "content/topics/TableauWDC.md",
 }
 ,
 
 
 
 {
-"title": "Okera Portal for Administrators",
-"tags": "",
-"keywords": "",
 "url": "web-ui-admin",
-"summary": ""
+"file": "content/topics/WebUIAdmin.md",
 }
 ,
 
 
 
 {
-"title": "Okera Portal Basics",
-"tags": "",
-"keywords": "",
 "url": "web-ui-basics",
-"summary": ""
+"file": "content/topics/WebUIUser.md",
 }
 ,
 
 
 
 {
-"title": "Okera User Documentation",
-"tags": "",
-"keywords": "",
 "url": "",
-"summary": ""
+"file": "content/index.md",
 }
 ,
 
 
 
 {
-"title": "",
-"tags": "",
-"keywords": "",
 "url": "search",
-"summary": ""
+"file": "search.html",
 }
 ,
 
@@ -468,22 +366,16 @@
 
 
 {
-"title": "",
-"tags": "",
-"keywords": "",
 "url": "assetscssstyle.css",
-"summary": ""
+"file": "assets/css/style.scss",
 }
 ,
 
 
 
 {
-"title": "Cluster Administration",
-"tags": "",
-"keywords": "",
 "url": "cluster-administration",
-"summary": ""
+"file": "content/topics/ClusterAdmin.md",
 }
 
 

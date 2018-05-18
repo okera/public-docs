@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -600,7 +610,7 @@ This is the duration for which the current instance of a given docker container 
 
 <h3 id="passing-hyphenated-names-via-rest-api">Passing Hyphenated Names via REST API</h3>
 
-<p>When passing <code class="highlighter-rouge">GRANT ROLE</code> to the <a href="/catalog-rest-api">Catalog REST API</a>, hyphenated usernames will throw an error, due to a limitation in the REST service.</p>
+<p>When passing <code class="highlighter-rouge">GRANT ROLE</code> to the <a href="catalog-rest-api">Catalog REST API</a>, hyphenated usernames will throw an error, due to a limitation in the REST service.</p>
 
 <p><strong>Example:</strong> Hyphenated group name with improper syntax</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:7184/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
@@ -621,7 +631,7 @@ This is the duration for which the current instance of a given docker container 
 
 <p>Using <code class="highlighter-rouge">SHOW CREATE VIEW</code> in Hive fails with a <code class="highlighter-rouge">NoViableAltException(303@[])</code> error due to a limitation in Hive, which does not support external storage handlers.
 Hive only permits <code class="highlighter-rouge">SHOW CREATE TABLE</code>, which shows the resulting (optionally joined) table.
-To see the definition, you have to use the <a href="/okera-database-cli">odb utility</a>.</p>
+To see the definition, you have to use the <a href="okera-database-cli">odb utility</a>.</p>
 
 <p>Using the same commands here should return the expected result.</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb dataset hive-ddl <span class="s2">"show create table testdb.sampleview"</span>
@@ -659,7 +669,7 @@ If the data cannot be converted at its source or upon display, you may convert i
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

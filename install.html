@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -583,7 +593,7 @@ $('#toc').on('click', 'a', function() {
 These steps will result in a fully operational Okera cluster for development, testing, or production.
 A full deployment consisting of the Deployment Manager, and a running Okera Data Access Service (ODAS) cluster, including Okera Catalog.</p>
 
-<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:0 orderedList:0 -->
+<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 <ul>
   <li><a href="#prerequisites">Prerequisites</a>
@@ -612,7 +622,6 @@ A full deployment consisting of the Deployment Manager, and a running Okera Data
           <li><a href="#deployment-manager-config-validator">Deployment Manager Config Validator</a></li>
         </ul>
       </li>
-      <li><a href="#configure-the-command-line-interface">Configure the Command Line Interface</a></li>
     </ul>
   </li>
   <li><a href="#setting-up-a-odas-cluster">Setting up a ODAS Cluster</a>
@@ -748,11 +757,11 @@ The recommended download location is <code class="highlighter-rouge">/opt/okera<
 </code></pre></div>    </div>
   </li>
   <li>Get the tarball from S3.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/deployment-manager-1.0.0.tar.gz
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.1/deployment-manager-1.0.1.tar.gz
 </code></pre></div>    </div>
   </li>
   <li>Extract the bits.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.0.0.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.0.0.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.0.0 deployment-manager
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.0.1.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.0.1.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.0.1 deployment-manager
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -763,11 +772,11 @@ The recommended download location is <code class="highlighter-rouge">/opt/okera<
 Download the shell binary for either Linux or OS X (depending on which OS is running the CLI).</p>
 <ul>
   <li><strong>Linux</strong>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.1/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div>    </div>
   </li>
   <li><strong>OS X</strong>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.0/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.0.1/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -821,7 +830,7 @@ If this is the path used, it is not necessary to source the script.</p>
 They can be set as environment variables or in <code class="highlighter-rouge">/etc/cerebro/env.sh</code>, as explained above.
 They are loaded when the Deployment Manager starts.</p>
 
-<p>For additional Deployment Manager configuration options, see <a href="/advanced-install#deployment-manager-configuration">Advanced Installation: DM Configs</a>.</p>
+<p>For additional Deployment Manager configuration options, see <a href="advanced-install#deployment-manager-configuration">Advanced Installation: DM Configs</a>.</p>
 
 <h5 id="okera_s3_staging_dir">OKERA_S3_STAGING_DIR</h5>
 
@@ -930,7 +939,7 @@ If the ports are not specified, Okera randomly selects available ports on which 
 <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span><span class="s2">"/etc/cerebro.keytab"</span>
 </code></pre></div></div>
 
-<p>For more information on how to set up a Kerberized cluster, see <a href="/kerberos-cluster-setup">Kerberos Cluster Setup</a>.</p>
+<p>For more information on how to set up a Kerberized cluster, see <a href="kerberos-cluster-setup">Kerberos Cluster Setup</a>.</p>
 
 <h5 id="json-web-tokens-jwt-configuration">JSON Web Tokens (JWT) Configuration</h5>
 
@@ -976,7 +985,7 @@ If the ports are not specified, Okera randomly selects available ports on which 
 <span class="nb">export </span><span class="nv">OKERA_SYSTEM_TOKEN</span><span class="o">=</span><span class="s2">"/etc/cerebro.token"</span>
 </code></pre></div></div>
 
-<p>For more about authentication with JWTs, see <a href="/odas-authentication#json-web-tokens">ODAS Authentication</a>.</p>
+<p>For more about authentication with JWTs, see <a href="odas-authentication#json-web-tokens">ODAS Authentication</a>.</p>
 
 <h5 id="https-configuration">HTTPS Configuration</h5>
 
@@ -1012,20 +1021,20 @@ Setting the certificate and key enables HTTPS on the REST server and Web UI.</p>
 
 <h5 id="ldap-configuration">LDAP Configuration</h5>
 
-<p>For information on how to set LDAP Basic Auth related environment variables, see <a href="/secure-okera-rest-api-ldap#setting-up-ldap-related-configurations">LDAP Basic Auth</a>.</p>
+<p>For information on how to set LDAP Basic Auth related environment variables, see <a href="secure-okera-rest-api-ldap#setting-up-ldap-related-configurations">LDAP Basic Auth</a>.</p>
 
 <p>For more details on interactions with authenticated Okera, see:</p>
 
 <ul>
-  <li><a href="/odas-authentication">Authentication</a></li>
-  <li><a href="/secure-deployment-manager-rest-api">Security</a></li>
+  <li><a href="odas-authentication">Authentication</a></li>
+  <li><a href="secure-deployment-manager-rest-api">Security</a></li>
 </ul>
 
 <h5 id="oauth-configuration">OAuth Configuration</h5>
 
 <p>Okera can be deployed with OAuth enabled for easier Web UI login. For more information, see</p>
 <ul>
-  <li><a href="/secure-okera-rest-api-oauth">OAuth Guide</a>.</li>
+  <li><a href="secure-okera-rest-api-oauth">OAuth Guide</a>.</li>
 </ul>
 
 <h3 id="start-the-deployment-manager">Start the Deployment Manager</h3>
@@ -1092,7 +1101,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
 One of those two scripts are required, and when called, should provision either a new EC2 instance or a new autoscaling group, respectively.
 The configured script is run from the DM master and should specify all of the required configurations described in the Cluster machine section in the prerequisites (for example, VPC, security groups, IAM Roles, etc).
 This script is the best place to tag machines or do other setup required by your organization.
-Details about launch scripts and cluster launch scripts can be found in <a href="/cluster-launch-plugin-api">Cluster Launch Plugin API</a>.</p>
+Details about launch scripts and cluster launch scripts can be found in <a href="cluster-launch-plugin-api">Cluster Launch Plugin API</a>.</p>
 
 <p>Actions required on each launched EC2 machine are referred to as the <strong>init scripts</strong>.
 The init scripts are an optional set of scripts that run when the instance is launched on the instance machine.
@@ -1165,7 +1174,7 @@ instead of a –launchScript (those two flags are mutually exclusive)</p>
 Multiple clusters can be created with the same environment.</p>
 
 <blockquote>
-  <p><strong>Note:</strong> See <a href="/cluster-types">Cluster Types</a> for the available option when using the <code class="highlighter-rouge">--type</code> parameter.</p>
+  <p><strong>Note:</strong> See <a href="cluster-types">Cluster Types</a> for the available option when using the <code class="highlighter-rouge">--type</code> parameter.</p>
 </blockquote>
 
 <p>Cluster creation follows this template:</p>
@@ -1253,7 +1262,7 @@ creation, then it is the name of the cluster.</p>
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Configuring Okera and Kerberos | Okera User Documentation</title>
+<title>Schema Design | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -247,7 +247,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="kerberos-cluster-setup">Kerberos</a></li>
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
           
           
           
@@ -335,7 +335,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="schema-design">Schema Design</a> </li>
+          <li class="active"><a href="schema-design">Schema Design</a></li>
           
           
           
@@ -587,165 +587,143 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="configuring-okera-and-kerberos">Configuring Okera and Kerberos</h1>
+  <h1 id="schema-design">Schema Design</h1>
 
-<p>This tutorial demonstrates integrating an Okera cluster with Kerberos, with end-to-end authentication enabled.
-This process generally involves the following steps:</p>
+<h2 id="goal-and-audience">Goal and Audience</h2>
 
-<ol>
-  <li>Create a keytab with two principals
-    <ul>
-      <li>one with its <strong>service name</strong> as <code class="highlighter-rouge">okera</code></li>
-      <li>a second with its <strong>service name</strong> as <code class="highlighter-rouge">HTTP</code>.</li>
-    </ul>
-  </li>
-  <li>Set the keytab and principal configs in the environment.</li>
-</ol>
+<p>This document is for DBAs, developers, and data architects, who are trying to understand the schema design adjustments necessary when working with the Okera Platform.</p>
 
-<p>The tutorial breaks the above steps into the following:</p>
+<h2 id="introduction">Introduction</h2>
 
-<ul>
-  <li><a href="#prerequisites">Prerequisites</a></li>
-  <li><a href="#creating-the-kerberos-principals-and-keytab-files">Creating the Kerberos Principals and Keytab files</a></li>
-  <li><a href="#setting-the-environment-variables">Setting the Environment Variables</a></li>
-</ul>
+<p>As shown in the <a href="okera-architecture-overview">Architecture Overview</a>, the Okera Platform is a distributed, scalable, efficient, and high performance data access system, which has, among other things, a Schema Registry that maps raw data into tables.
+While these schemas can be arbitrarily complex, not all of the functionality should be delegated to Okera, but rather be handled in more specific clients, such as SQL engines.
+See the notes about <em>external views</em> in the <a href="supported-sql#internal-versus-external-views">Supported SQL</a> documentation for more information.</p>
 
-<h2 id="prerequisites">Prerequisites</h2>
+<h2 id="layers">Layers</h2>
 
-<p>This section lists out the necessary requirements to enable Kerberos for Okera.</p>
-
-<ul>
-  <li><strong>KDC</strong>
- Make sure that you have a KDC set up and available, and can either request for credentials, or have access to the KDC to set up credentials yourself.</li>
-  <li><strong>Ensure client-side Kerberos packages are installed</strong>
- Try running <code class="highlighter-rouge">kinit</code> and <code class="highlighter-rouge">klist</code> and make sure these utilities are installed.</li>
-  <li><strong>Kerberos Configuration File</strong>
- This file is known as the <strong>krb5.conf</strong> file and this contains the information needed to authenticate a client against a KDC.
-    <ul>
-      <li>Make sure that this file exists in the location <strong>/etc/krb5.conf</strong>.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="creating-the-kerberos-principals-and-keytab-files">Creating the Kerberos Principals and Keytab Files.</h2>
-
-<p>In order to allow Okera’s internal services to be authenticated end-to-end, we need to create the following <em>2</em> Kerberos principals, and add them to <em>a single keytab file</em>:</p>
-<ul>
-  <li>
-    <p><strong>Okera principal</strong></p>
-
-    <p>This is of the format <code class="highlighter-rouge">okera/&lt;instance&gt;@REALM</code>. For example, this can be
-  <code class="highlighter-rouge">okera/okera-service@OKERA.TEST</code></p>
-  </li>
-  <li>
-    <p><strong>HTTP principal</strong></p>
-
-    <p>This is of the format <code class="highlighter-rouge">HTTP/&lt;instance&gt;@REALM</code>. For example, this can be <code class="highlighter-rouge">HTTP/okera-service@OKERA.TEST</code></p>
-  </li>
-</ul>
-
-<p>To do this, log in with kadmin, and run the following command for each of the principals that needs to be created:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>addprinc -randkey &lt;principal_name&gt;`
-</code></pre></div></div>
-
-<p>Once the principals are created, create a single keytab file which contains both principals.
-Log into the kadmin utility and run the following command:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ktadd <span class="nt">-kt</span> &lt;keytab_file_name&gt; &lt;principal_name_1&gt; &lt;principal_name_2&gt;<span class="sb">`</span>
-</code></pre></div></div>
+<p>Working with Okera, it is recommended to adopt a specific design approach when defining datasets.
+You should think of schemas defined along the following layers:</p>
 
 <ol>
-  <li>Log into your kadmin tool.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>kadmin.local
-kadmin.local:
-</code></pre></div>    </div>
-  </li>
-  <li>Make sure the required principals don’t exist.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: listprincs
-</code></pre></div>    </div>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prim1/inst1@OKERA.TEST
-prim2/inst2@OKERA.TEST
-prim2/inst3@OKERA.TEST
-</code></pre></div>    </div>
-  </li>
-  <li>Create the okera principal.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> okera/okera-service
-</code></pre></div>    </div>
-    <ul>
-      <li>If you don’t want a password, use the <code class="highlighter-rouge">-randkey</code> flag.</li>
-      <li>If you would rather have a password, don’t use the flag.</li>
-    </ul>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified for okera/okera-service@OKERA.TEST; defaulting to no policy
-Principal "okera/okera-service@OKERA.TEST" created.
-kadmin.local:
-</code></pre></div>    </div>
-  </li>
-  <li>Create the http principal.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: addprinc <span class="nt">-randkey</span> HTTP/okera-service
-</code></pre></div>    </div>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARNING: no policy specified <span class="k">for </span>HTTP/okera-service@OKERA.TEST<span class="p">;</span> defaulting to no policy
-Principal <span class="s2">"okera/okera-service@OKERA.TEST"</span> created.
-kadmin.local:
-</code></pre></div>    </div>
-  </li>
-  <li>Create the keytab file.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: ktadd <span class="nt">-kt</span> okera.keytab okera/okera-service HTTP/okera-service
-</code></pre></div>    </div>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entry <span class="k">for </span>principal okera/okera-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:okera.keytab.
-Entry <span class="k">for </span>principal HTTP/okera-service with kvno 3, encryption <span class="nb">type </span>aes256-cts-hmac-sha1-96 added to keytab WRFILE:okera.keytab.
-</code></pre></div>    </div>
-  </li>
-  <li>Exit the kadmin utility
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kadmin.local: q
-<span class="err">$</span>
-</code></pre></div>    </div>
-  </li>
+  <li><strong>Physical Layer</strong></li>
+  <li><strong>Base Table Layer</strong></li>
+  <li><strong>Cleanup View Layer</strong></li>
+  <li><strong>Access Control Layer</strong></li>
 </ol>
 
-<h2 id="verifying-keytab-file-principles">Verifying Keytab File Principles</h2>
+<p>The following diagram shows this in more details.</p>
 
-<p>Verify that both the principals are present in the keytab file.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>klist <span class="nt">-kt</span> &lt;KEYTAB_FILE_NAME&gt;
+<p><img src="assets/images/schema-design.png" class="zoom" alt="Schema Design" /></p>
+
+<p>We will discuss the layers in the next sections.</p>
+
+<h3 id="physical-layer">Physical Layer</h3>
+
+<p>Here you will find the storage in its <em>raw</em> format, for example, as files on S3 or HDFS, or as a database table in an RDBMS.
+For files-based storage, there is usually one or more files in one or more directory.
+The latter may convey special meaning, like the <em>partitions</em> supported by Hive.</p>
+
+<p>Important to note is that <em>only</em> Okera should have access to this layer.
+In other words, only administrators and the Okera Platform can see the raw data that is the foundation for all higher level access.</p>
+
+<h3 id="base-table-layer">Base Table Layer</h3>
+
+<p>This layer defines the first set of metadata, mapping the raw data as-is into Okera’s Schema Registry.
+Only tables are defined at this level, and they are referred to as <em>base tables</em>.
+Their schema comes directly from the source, retaining all the naming and data type declarations.</p>
+
+<p><strong>Example:</strong> Creating an external base table over the raw data</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">(</span>
+  <span class="n">txnid</span> <span class="n">BIGINT</span><span class="p">,</span>
+  <span class="n">field_87</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">field_06</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">field_12</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">field_73</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">field_33</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">ip</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">COMMENT</span> <span class="nv">"Raw online transactions"</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
+<span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="nv">","</span>
+<span class="k">LOCATION</span> <span class="nv">"s3://sales-data/transactions"</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>For example, if the keytab file is called <em>okera.keytab</em>, the command looks like this:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ klist -kt okera.keytab
-Keytab name: FILE:dumdum.keytab
-KVNO Timestamp           Principal
----- ------------------- ------------------------------------------------------
-   4 03/02/2017 13:27:57 okera/okera-service@OKERA.TEST
-   4 03/02/2017 13:27:57 HTTP/okera-service@OKERA.TEST
+<p>You may note that some fields are arbitrarily named and all of them are defined as type <code class="highlighter-rouge">STRING</code>.
+For this example we assume that this is not correct, but that instead some fields are of different type.</p>
+
+<p>Access to these base tables is restricted to Okera administrators, who are those defined by configuration (or by someone granted administrative rights).
+No direct access by any user or application is allowed.</p>
+
+<h3 id="cleanup-view-layer">Cleanup View Layer</h3>
+
+<p>Now that we have defined the lowest mapping, we can apply a view on top of the base table to fix any immediate issues.
+For example, and as shown in the example, we can reorder fields to comply to some company policies, cast the field types, and rename arbitrary fields into readable names.</p>
+
+<p><strong>Example:</strong> Creating a cleanup view over a base table</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_clean</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
+  <span class="n">field_12</span> <span class="k">AS</span> <span class="n">dt_time</span><span class="p">,</span>
+  <span class="n">field_33</span> <span class="k">AS</span> <span class="n">sku</span><span class="p">,</span>
+  <span class="k">cast</span><span class="p">(</span><span class="n">field_87</span> <span class="k">AS</span> <span class="n">INT</span><span class="p">)</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
+  <span class="k">cast</span><span class="p">(</span><span class="n">field_73</span> <span class="k">AS</span> <span class="n">FLOAT</span><span class="p">)</span> <span class="k">AS</span> <span class="n">price</span><span class="p">,</span>
+  <span class="n">field_06</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
+  <span class="n">ip</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h2 id="setting-the-environment-variables">Setting the Environment Variables</h2>
+<p>There is a strict 1:1 mapping between base table and cleanup view, that is, no JOINs are performed at this level but only schema transformations.</p>
 
-<p>Set the following environment variables:</p>
-<ul>
-  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code></strong>
- Set this to the Okera principal created above.</li>
-  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_KEYTAB_FILE</code></strong>
- Set this to the path of the keytab file. This can be a local or remote (s3) path.</li>
-  <li><strong><code class="highlighter-rouge">OKERA_KERBEROS_HTTP_PRINCIPAL</code></strong>
- Set this to the HTTP principal if the principal is non-standard.
- This is not required if the principals were created with the steps above.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">OKERA_KERBEROS_PRINCIPAL</span><span class="o">=</span>&lt;principal&gt;
- <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>&lt;full_path_to_keytab_file&gt;
-</code></pre></div>    </div>
-    <p><strong>Example:</strong></p>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">CEREBERO_KERBEROS_PRINCIPAL</span><span class="o">=</span>okera/okera-service
- <span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span>okera.keytab
-</code></pre></div>    </div>
-  </li>
-</ul>
+<p>No user will be given access to cleanup views that contain <em>sensitive</em> data; only dedicated staff, such as administrators or data stewards are allowed to access those.
+In case of cleanup views that contain only publicly accessible data, it is permissible to grant direct access to non-administrative users as well.</p>
 
-<h2 id="more-information">More Information</h2>
+<h3 id="access-control-view-layer">Access Control View Layer</h3>
 
-<p>Other docs that might be helpful are:</p>
+<p>Finally, we can define the proper access to the data, using more complex views that apply filters, projections, masking, tokenization and so on.
+For example, we can define a new access view over the cleanup view created in the previous section, applying tokenization and masking functions that allow only the user <code class="highlighter-rouge">admin</code> to gain full access to the field data.
+All the other users would see the redacted content only.</p>
 
-<ul>
-  <li><a href="odas-authentication">Authentication</a></li>
-  <li><a href="secure-deployment-manager-rest-api">Security</a></li>
-</ul>
+<p><strong>Example:</strong> Creating an access view with masking and tokenization</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
+  <span class="n">dt_time</span><span class="p">,</span>
+  <span class="n">sku</span><span class="p">,</span>
+  <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
+  <span class="n">price</span><span class="p">,</span>
+  <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">creditcard</span><span class="p">,</span> <span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
+  <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">AS</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">ip</span>
+<span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_clean</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>So far we only dealt with the Okera Schema Registry (implicitly), which is responsible to store the platform wide dataset metadata.
+Next we have to allow access to those datasets, which is handled by the Okera Policy Engine, and comes in the form of <code class="highlighter-rouge">GRANT</code> statements.
+All the access to databases, datasets, and so on, commonly referred to as <em>objects</em>, is assigned to arbitrary <em>roles</em>.
+These roles are then assigned to groups of known users, enabling the so-called <em>role-based access control</em>.
+The user groups are provided using a variety of sources, including Active Directory (AD), LDAP, JWT, and more.
+The next example creates a role and assigns it to a user groups.</p>
+
+<p><strong>Example:</strong> Creating a role and assigning it to a user group</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">analyst_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">analysts</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The last step in the ongoing example is another <code class="highlighter-rouge">GRANT</code> statement to give <em>read</em> access to the newly created role.</p>
+
+<p><strong>Example:</strong> Granting read access to a role</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>NOTE</strong>: The examples show <em>Hive QL</em> syntax.
+Hive does not distinguish between Okera views or tables, that is why the grant statement is on a table instead.</p>
+</blockquote>
+
+<p>The access view is allowed to do all the necessary table joining, but should refrain from any analytical processing (see <a href="supported-sql">Supported SQL</a> for what can be used).
+A common use-case for a <code class="highlighter-rouge">JOIN</code> that takes place in the Okera Platform is the so-called <em>white-/blacklist filtering</em>, which uses a smaller table with, for example, users who have opted out of their data use for non-essential processing.
+Such a filter view would contain a <code class="highlighter-rouge">SELECT</code> statement that joins the main user table and the filter table, removing all users that have revoked the right to use their data.</p>
 
 
     <div class="tags">

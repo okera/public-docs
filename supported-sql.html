@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -646,13 +656,13 @@ The user needs to be a catalog admin or having been granted grant permissions.</
 
 <h4 id="registering-hive-serializationdeserialization-serde-libraries">Registering Hive Serialization/Deserialization (SerDe) Libraries</h4>
 
-<p>See <a href="/extending-odas">Extending ODAS</a> for the DDL grammar and other SerDe considerations.</p>
+<p>See <a href="extending-odas">Extending ODAS</a> for the DDL grammar and other SerDe considerations.</p>
 
 <h4 id="creating-user-defined-functions-udfs">Creating User Defined Functions (UDFs)</h4>
 
-<p>See <a href="/extending-odas">Extending ODAS</a> for the DDL grammar and other UDF considerations.</p>
+<p>See <a href="extending-odas">Extending ODAS</a> for the DDL grammar and other UDF considerations.</p>
 
-<h4 id="internal-verses-external-views">Internal verses External Views</h4>
+<h4 id="internal-versus-external-views">Internal versus External Views</h4>
 
 <p>Okera views can be defined as either internal or external.
 This distinction defines how Okera evaluates data at runtime.
@@ -677,7 +687,7 @@ This allows for fine-grained access control and UDF functionality to be applied 
 
   <p>ODAS is not a compute engine. Full SQL functionality is not available through the ODAS SQL interface.
 The use of a compute engine for full analytics functionality is required.
-For a list of known SQL incompatibilities, refer to the <a href="#known-incompatibilities">Known Incompatabilities</a> section in this document.</p>
+For a list of known SQL incompatibilities, refer to the <a href="#known-incompatibilities">Known Incompatibilities</a> section in this document.</p>
 </blockquote>
 
 <p><strong>Externally joined views</strong> are evaluated like all other external views in ODAS.
@@ -738,8 +748,8 @@ It is <em>not</em> the last-modified partition.</p>
 
 <p><strong>Example:</strong> Filtering the window for which to select the last partition</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">);</span>
-<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="n">LAST_PARTITION</span><span class="p">)</span> <span class="k">where</span> <span class="k">year</span> <span class="o">=</span> <span class="mi">2010</span><span class="p">;</span>
-<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="n">LAST_PARTITION</span><span class="p">)</span> <span class="k">where</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">)</span> <span class="k">where</span> <span class="k">year</span> <span class="o">=</span> <span class="mi">2010</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">part_tbl</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">)</span> <span class="k">where</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
 </code></pre></div></div>
 <p>These queries respectively return the last partition, the last partition in 2010, and the last partition in June.</p>
 
@@ -847,7 +857,7 @@ If the smaller tables exceed the maximum configured size, the request fails at r
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--workerConfigs</span> <span class="s2">"join_max_mem=256000000"</span> ...
 </code></pre></div></div>
 
-<p>See the <a href="/cluster-sizing">Cluster Sizing</a> document for more information on how much memory joins need and how that affects cluster node requirements.</p>
+<p>See the <a href="cluster-sizing">Cluster Sizing</a> document for more information on how much memory joins need and how that affects cluster node requirements.</p>
 
 
     <div class="tags">
@@ -867,7 +877,7 @@ If the smaller tables exceed the maximum configured size, the request fails at r
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

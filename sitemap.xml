@@ -24,6 +24,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/authorization</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/odas-cdh-integration</loc>
   </url>
   
@@ -150,6 +156,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/migration</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/secure-okera-rest-api-oauth</loc>
   </url>
   
@@ -205,6 +217,12 @@
   
   <url>
     <loc>http://127.0.0.1/release-notes</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/schema-design</loc>
   </url>
   
   

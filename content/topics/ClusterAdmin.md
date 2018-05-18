@@ -4,7 +4,7 @@ permalink: cluster-administration
 # Cluster Administration
 
 This document describes how to use the CLI for administering running clusters.
-Refer to the [Installation](Install.md) document for details on how to create new clusters.
+Refer to the [Installation](install) document for details on how to create new clusters.
 
 > **Note:** A single Deployment Manager can administer multiple ODAS clusters.
 
@@ -141,7 +141,7 @@ The services are always enumerated in a fixed order, enabling an administrator t
 
 
 The set of services running on a given cluster depends on the cluster's configuration.
-Refer to the [Cluster Types](ClusterTypes.md) document for the listing that applies to your given setup.
+Refer to the [Cluster Types](cluster-types) document for the listing that applies to your given setup.
 
 As an example, consider the situation where a standalone cluster had an issue with the planner configuration where the planner could not start up.
 In that scenario, the number of running services would be listed as `3/7`.

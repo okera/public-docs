@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -578,6 +588,40 @@ $('#toc').on('click', 'a', function() {
     
 
   <h1 id="release-notes">Release Notes</h1>
+
+<h2 id="101-may-2018">1.0.1 (May, 2018)</h2>
+
+<p>1.0.1 is a patch release that fixes some critical issues in 1.0.0.
+We recommend all 1.0.0 users switch to this version for both the server and java client libraries.
+The java client library for this release is also 1.0.1.</p>
+
+<h3 id="fixes">Fixes</h3>
+
+<ul>
+  <li>
+    <p>Fix issue health checking planner and workers with kerberos enabled.
+The health checks were failing continously causing the cluster stability issues.</p>
+  </li>
+  <li>
+    <p>Fix to diagnostic bundler when some of the collected log files are either very big or corrupt.
+In some cases, log files on the host OS in <code class="highlighter-rouge">/var/log</code> could be corrupt or very large.
+This used to cause the bundle to fail and now they are skipped with the issue logged.</p>
+  </li>
+  <li>
+    <p>Fix issue when dropping favorited datasets in the UI.
+In some cases, looking at favorited datasets that don’t exist anymore or are no longer accessible were displayed incorrectly.</p>
+  </li>
+  <li>
+    <p>Enable small row-group optimizable when reading parquet.
+Parquet files with small row groups had very poor performance in some cases, particularly if the table had many columns.
+The implementation for how these kind of files are read has been changed to handle this case better.</p>
+  </li>
+  <li>
+    <p>Fix some queries when scanning partitioned tables from hive with filters.
+Some queries using filters on partitioned tables would result in the client library generated an invalid planner request.
+This issue was specific to some very particular hive queries but has been resolved in this version.</p>
+  </li>
+</ul>
 
 <h2 id="100-may-1-2018">1.0.0 (May 1, 2018)</h2>
 
@@ -791,7 +835,7 @@ to handle nested data. For details, see the <a href="/complex-types">docs</a>.</
 
 <p>ODAS’s query language has been extended to easily support just reading the last partition
 of a partitioned table. This is a common pattern in multiple use cases.
-See <a href="/supported-sql#last-partition">supported sql</a> for more details.</p>
+See <a href="supported-sql#last-partition">supported sql</a> for more details.</p>
 
 <h3 id="incompatible-changes">Incompatible changes</h3>
 
@@ -834,7 +878,7 @@ end users to not need to know internal services.</li>
   <li>Renamed <code class="highlighter-rouge">create_context()</code> to <code class="highlighter-rouge">context()</code></li>
 </ul>
 
-<p>For more details, see the <a href="/pycerebro">docs</a>.</p>
+<p>For more details, see the <a href="pycerebro">docs</a>.</p>
 
 <p>Users can upgrade to this by upgrading to the latest package with pip.</p>
 
@@ -889,7 +933,7 @@ and supports the required authentication mechanisms in a variety of environments
 support for executing DDL and scan statements against the ODAS servers. In the next
 release, we will optimize the scan APIs further.</p>
 
-<p>For more details, see the <a href="/pycerebro">docs</a>.</p>
+<p>For more details, see the <a href="pycerebro">docs</a>.</p>
 
 <p><strong>Improved support for partitioned tables when using them from EMR</strong></p>
 
@@ -915,7 +959,7 @@ should complete successfully.</p>
 
 <p>This is supported if the Hive warehouse has been configured to use S3, instead of the
 EMR-local HDFS cluster. See the
-<a href="https://github.com/cerebro-data/external-docs/blob/master/docs/EMRIntegration.md#cluster-local-dbs">cluster-local DBs</a>
+<a href="https://github.com/cerebro-data/external-docs/blob/master/docs/emr-integration#cluster-local-dbs">cluster-local DBs</a>
 section of the EMR docs for more details.</p>
 
 <p><strong>Support for ALTER TABLE RECOVER PARTITIONS</strong></p>
@@ -928,14 +972,14 @@ API, such as the REST API or via <code class="highlighter-rouge">odb</code>. It 
 
 <p>UDFs that have been registered in ODAS are now accessible to Hive. Previously these
 UDFs would have to be registered once in ODAS and then once again for each EMR cluster.
-For more details, see <a href="/extending-odas#using-it-from-hive-emr">this</a>.</p>
+For more details, see <a href="extending-odas#using-it-from-hive-emr">this</a>.</p>
 
 <p><strong>Support for specifying an existing Hive Metastore RDBMS database</strong></p>
 
 <p>Users with an existing Hive Metastore can not configure the ODAS catalog to just use
 the same underlying (i.e. RDS) database. This is useful to migrate to the ODAS catalog or
 to bootstrap the ODAS catalog.See the advanced install
-<a href="/advanced-install#sharing-existing-hive-metastore-rdbms">docs</a> for more details.</p>
+<a href="advanced-install#sharing-existing-hive-metastore-rdbms">docs</a> for more details.</p>
 
 <p><strong>Spark predicate pushdown improvements</strong></p>
 
@@ -958,7 +1002,7 @@ just to verify connectivity or the behavior of builtins and UDFs.</p>
 <p>The Hive and Spark ODAS client libraries have been updated to call a user-defined token
 acquisition script to refresh an expired token.
 Configuration details and script requirements can be found in the
-<a href="/emr-integration">EMR documentation</a>.</p>
+<a href="./emr-integration">EMR documentation</a>.</p>
 
 <p><strong>Performance improvements DDL statements on highly partitioned table</strong></p>
 
@@ -1016,7 +1060,7 @@ be safely removed from any configuration locations.</p>
 This requires that a given user’s home directory has the appropriate permissions set
 prior to a token being written to it. To support this, we have added another bootstrap
 script that should be run after the existing bootstrap script. See the
-<a href="/emr-integration">EMR docs</a> documentation for details.</p>
+<a href="emr-integration">EMR docs</a> documentation for details.</p>
   </li>
 </ul>
 
@@ -1119,7 +1163,7 @@ stability fixes.</p>
   <li>Support for Json Web Token (JWT) authentication using public key and external server.
 In previous releases, ODAS could only be configured to use one or the other. It is not
 possible to configure both at the same time. For more information see
-<a href="/odas-authentication">here</a>.</li>
+<a href="odas-authentication">here</a>.</li>
 </ul>
 
 <h3 id="bug-fixes-4">Bug Fixes</h3>
@@ -1157,14 +1201,14 @@ when the kerberos tickets expired when using these kind of keytabs.</p>
 
 <p>By default, the planner audit log is now output as json in the planner logs. The new
 format contains more information, is much easier to parse and will be stable over time.
-For more information on its schema and how to use it, see the <a href="/auditing">docs</a>.</p>
+For more information on its schema and how to use it, see the <a href="auditing">docs</a>.</p>
 
 <p><strong>Support for Hive SerDes</strong></p>
 
 <p>Prior versions of ODAS had limited support for tables which require a custom Hive SerDe
 to read. In this release, we extended the support to all the ODAS supported types, the
 ability to read SerDe libraries from S3 and builtin, HiveQL compatible support in the
-various ODAS <code class="highlighter-rouge">hive-ddl</code> APIs. For more information, see <a href="/extending-odas">here</a>.</p>
+various ODAS <code class="highlighter-rouge">hive-ddl</code> APIs. For more information, see <a href="extending-odas">here</a>.</p>
 
 <p><strong>Support for external views</strong></p>
 
@@ -1175,7 +1219,7 @@ to the client. In this release, we added support for <code class="highlighter-ro
 to store views to store data transformations and have no security implications. These
 views are used strictly for tracking what can be evaluated in ODAS or in the compute
 application.
-For more details, see <a href="/supported-sql">here</a>.</p>
+For more details, see <a href="supported-sql">here</a>.</p>
 
 <p><strong>Support to drop permissions when dropping catalog objects</strong></p>
 
@@ -1186,7 +1230,7 @@ the permissions and catalog object (re)creation are decoupled. This behavior is 
 ideal in other cases. In this release we extended the <code class="highlighter-rouge">DROP [DATABASE|TABLE|VIEW]</code>
 DDL commands to support optionally dropping the associated permissions as well. If not
 specified, this command is backwards compatible and keeps the previous semantics.
-For more information see <a href="/supported-sql">this</a>.</p>
+For more information see <a href="supported-sql">this</a>.</p>
 
 <p><strong>Dynamic REST API scan page size</strong></p>
 
@@ -1369,13 +1413,13 @@ of how to integrate a dataset with <code class="highlighter-rouge">R</code> has 
 user, which groups the current user belongs to, the roles the current user has,
 and the groups granting those roles.</p>
 
-<p>See the <a href="WebUI.md">docs</a> for more information.</p>
+<p>See the <a href="web-ui-basics">docs</a> for more information.</p>
 
 <p><strong>Significantly improved integration with EMR</strong></p>
 
 <p>EMR integration has been significantly improved, allowing better pushdown into ODAS
 across the engines, improved multi-tenant user experience, work scheduling, etc. See
-<a href="/emr-integration">EMR docs</a> for more details.</p>
+<a href="emr-integration">EMR docs</a> for more details.</p>
 
 <p><strong>Support for SSL</strong></p>
 
@@ -1386,7 +1430,7 @@ switch to https, whenever interacting with either of these services.</p>
 
 <ul>
   <li>Added cli commands to specify the number of planners. See
-<a href="/cluster-administration">docs</a> for more details.</li>
+<a href="cluster-administration">docs</a> for more details.</li>
   <li>Added cli commands to specify additional arguments for the planners and workers.</li>
   <li>Improved load balancing for worker tasks. Users should see more consistent load on
 workers, particularly in the case when there are a smaller number of total tasks.</li>
@@ -1402,7 +1446,7 @@ workers, particularly in the case when there are a smaller number of total tasks
 subsequent release and recommend users start switching now when using the REST server.
 For example, instead of querying <code class="highlighter-rouge">rest-server-host:port/api/databases?user=&lt;TOKEN&gt;</code>,
 clients should instead specify the token as part of the Authorization header. See these
-<a href="/odas-authentication">docs</a> for more details.</p>
+<a href="odas-authentication">docs</a> for more details.</p>
 
 <p><strong>WebUI port renamed</strong></p>
 
@@ -1476,7 +1520,7 @@ as well as critical fixes for the Hive EMR integration.</p>
 <p>The EMR integration has been updated on the configs that are required for better
 Spark and Hive integration. In particular, we recommend specifying the Okera
 planner.hostports config for <em>Spark’s</em> hive-site.xml config. This has been
-updated in the EMR. <a href="/supported-sql">docs</a></p>
+updated in the EMR. <a href="supported-sql">docs</a></p>
 
 <p>We’ve also updated the client versions to 0.5.1 and EMR clusters should be
 bootstrapped with this version (from 0.5.0).</p>
@@ -1502,13 +1546,13 @@ configured to generated SSO tokens in our webui.</p>
 support filters and projections. This enables use cases where the sensitive data
 needs to be joined against a (dynamic) whitelist. After creating the view, the
 identical grant/revoke statements can be used to control access to it. The kind
-of joins we enable is limited, see <a href="/supported-sql">docs</a> for more details.</p>
+of joins we enable is limited, see <a href="supported-sql">docs</a> for more details.</p>
 
 <p><strong>Improved support for EMR, including Hive and Presto</strong></p>
 
 <p>While previous versions could support EMR, we’ve improved the integration experience,
 providing a bootstrap action which enables deeper integration. See the
-<a href="/emr-integration">EMR Integration docs</a> for details.</p>
+<a href="emr-integration">EMR Integration docs</a> for details.</p>
 
 <p><strong>Simplified Install Process</strong></p>
 
@@ -1683,7 +1727,7 @@ In the example below, the service endpoint <code class="highlighter-rouge">odas_
 <p>Cluster administration has been significantly enhanced to protect your cluster from
 accidental termination, scaling an existing cluster, and upgrading to newer versions
 of ODAS components.
-See <a href="/cluster-administration">Cluster Administration</a> for further details.</p>
+See <a href="cluster-administration">Cluster Administration</a> for further details.</p>
 
 <p><strong>SQL Statement Processing</strong></p>
 
@@ -1697,7 +1741,7 @@ tool, odb.  The tool enables users to acquire tokens, list databases, list datas
 a database, show the schema for a dataset (describe), view a sample of data, create tables
 and grant permissions through Hive DDL.</p>
 
-<p>See <a href="/okera-database-cli">Database CLI</a> for details.</p>
+<p>See <a href="okera-database-cli">Database CLI</a> for details.</p>
 
 <p><strong>Basic Authentication using LDAP</strong></p>
 
@@ -1708,7 +1752,7 @@ allow Okera users to authenticate using their Active Directory credentials.</p>
 web-based login UI to get their Okera token using their Active Directory
 username and password.</p>
 
-<p>See the <a href="/secure-okera-rest-api-ldap">LDAP Basic Auth Document</a> for details.</p>
+<p>See the <a href="secure-okera-rest-api-ldap">LDAP Basic Auth Document</a> for details.</p>
 
 <h4 id="changes">Changes</h4>
 <p><strong>okera_cli utility</strong></p>
@@ -1751,7 +1795,7 @@ manage a cluster in another AWS region.</p>
 <p>Deployment Manager allows a kerberos principal for the REST API to be explicitly specified.
 Previously this was assumed to be derived from the service principal
 (i.e. HTTP/<service_host>).
-See [Kerberos](/kerberos-cluster-setup) docs for more details.</service_host></p>
+See [Kerberos](kerberos-cluster-setup) docs for more details.</service_host></p>
 
 <p><strong>Deployment Manager</strong></p>
 
@@ -1793,7 +1837,7 @@ All APIs were changed to consistently use the term ‘db’  This impacts the fo
   <li>api/datasets/{name} [POST]</li>
 </ul>
 
-<p>For detail see: <a href="/catalog-rest-api">Catalog REST API</a>.</p>
+<p>For detail see: <a href="catalog-rest-api">Catalog REST API</a>.</p>
 
 <h4 id="known-issues-5">Known issues</h4>
 <p><strong>Errors during Deployment Manager configuration file writes prevent restart</strong></p>
@@ -1819,7 +1863,7 @@ work.</p>
 <p><strong>Tableau Okera Catalog Integration</strong></p>
 
 <p>You can access data stored in Okera using Tableau.
-See <a href="/tableau-web-data-connector">Tableau WDC</a> for details.</p>
+See <a href="tableau-web-data-connector">Tableau WDC</a> for details.</p>
 
 <p><strong>Catalog UI</strong></p>
 
@@ -1829,30 +1873,30 @@ okera_catalog_ui:webui end point and log in with your user token.</p>
 
 <p><strong>Catalog REST API Integration</strong></p>
 
-<p>Changes were made to the Catalog REST API.  See <a href="/catalog-rest-api">Catalog API</a> and the
-<a href="CatalogApiTutorial.md">tutorial</a> for further details.</p>
+<p>Changes were made to the Catalog REST API.  See <a href="catalog-rest-api">Catalog API</a> and the
+<a href="catalog-rest-api">tutorial</a> for further details.</p>
 
 <p><strong>Installation Process</strong></p>
 
 <p>The installation process has been enhanced by providing customizable templates for
 launching EC2 instances and initializing cluster nodes.  See:
-<a href="/install">Installation Guide</a>, “Starting up a ODAS cluster” for details.</p>
+<a href="install">Installation Guide</a>, “Starting up a ODAS cluster” for details.</p>
 
 <p><strong>Authentication</strong></p>
 
 <p>With this release, all Okera services can run with authentication enabled end-to-end.
-See: <a href="/odas-authentication">Authentication</a>
+See: <a href="odas-authentication">Authentication</a>
 for further details. This includes non-kerberized clients (for example the catalog webui)
 using tokens.</p>
 
 <p>For information on setting up a Kerberized cluster, see:
-<a href="/kerberos-cluster-setup">Kerberized Cluster Setup</a></p>
+<a href="kerberos-cluster-setup">Kerberized Cluster Setup</a></p>
 
 <h4 id="changes-1">Changes</h4>
 <p><strong>Admin Dashboard</strong></p>
 
 <p>The Kubernetes admin dashboard has been upgraded to version 1.5.1 from version 1.4.2.
-See <a href="/kubernetes-dashboard-quickstart">Kubernetes Quickstart</a> for details.</p>
+See <a href="kubernetes-dashboard-quickstart">Kubernetes Quickstart</a> for details.</p>
 
 <p><strong>Kubernetes</strong></p>
 
@@ -1883,7 +1927,7 @@ reliability.</p>
 <p><strong>Installation</strong></p>
 
 <p>Install process has been further simplified with fewer steps and faster deployment.
-Configuration steps include examples. See <code class="highlighter-rouge">Install.md</code>
+Configuration steps include examples. See <code class="highlighter-rouge">install</code>
 Logging improvements assist in faster problem determination, if any.</p>
 
 <p><strong>Server</strong></p>
@@ -1891,23 +1935,23 @@ Logging improvements assist in faster problem determination, if any.</p>
 <p>Deployment Manager(DM) server has evolved to an agent architecture. Each of the cluster
 nodes will now run a DM agent to deploy and launch Kubernetes services.</p>
 
-<p>See <code class="highlighter-rouge">Install.md</code> for details.</p>
+<p>See <code class="highlighter-rouge">install</code> for details.</p>
 
 <p><strong>Security</strong></p>
 
 <p>With this release, REST api to deployment manager can be secured using Kerberos.
 Along with Kerberos authentication, authorization may be configured for admin access to deployment manager.
-See <code class="highlighter-rouge">Security.md</code> for additional details.</p>
+See <code class="highlighter-rouge">secure-deployment-manager-rest-api</code> for additional details.</p>
 
 <p><strong>Admin Dashboard</strong></p>
 
 <p>You may now use the Kubernetes admin dashboard for managing the Okera cluster.
-See <code class="highlighter-rouge">KubernetesDashboardQuickStart.md</code> for details.</p>
+See <code class="highlighter-rouge">kubernetes-dashboard-quickstart</code> for details.</p>
 
 <p><strong>CLI interface</strong></p>
 
 <p>okera_cli has new commands to interact with the DM REST API and the agents.
-See <code class="highlighter-rouge">OkeraCLI.md</code> for details. <code class="highlighter-rouge">Install.md</code> has a few examples.
+See <code class="highlighter-rouge">OkeraCLI.md</code> for details. <code class="highlighter-rouge">install</code> has a few examples.
 Run <code class="highlighter-rouge">okera_cli help</code> to see the much improved command line options.</p>
 
 <h4 id="incompatible-changes-1">Incompatible Changes</h4>
@@ -1987,7 +2031,7 @@ the dataset with the filter and grant the policy on the new dataset.</p>
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

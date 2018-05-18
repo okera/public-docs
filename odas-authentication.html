@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -619,14 +629,32 @@ For example, batch applications may prefer tokens or Kerberos but end-users may 
 An example would be the output of <code class="highlighter-rouge">id &lt;username&gt;</code>. In this case, group names are case-sensitive, as they are in Unix.</p>
   </li>
   <li>
-    <p>By reading the user’s group from the supplied JWT token.
+    <p>By reading the user’s groups from the supplied JWT token.
 In this case, group names are case insensitive.</p>
+  </li>
+  <li>
+    <p>By querying the external REST service specified by the CEREBRO_GROUP_RESOLVER_URL configuration.
+In this case, group names are case insensitive.</p>
+    <blockquote>
+      <p><strong>Note:</strong> This approach currently assumes that the configured REST endpoint supports GET
+requests and that the expected format is <url>/<username> .</username></url></p>
+    </blockquote>
   </li>
 </ol>
 
-<p>Only one of these configurations can be used at any time.
-Approach 2 is used if <em>only</em> JWT support is configured (a system token is specified).
-In all other situations, including if both JWT and Kerberos are configured, approach 1 will be used for all users, including those that authenticate via a JWT.</p>
+<p>Approach 2 and/or 3 will used if <em>only</em> JWT support is configured (a system token is specified).
+If the configuration CEREBRO_GROUP_RESOLVER_URL is set, then approach 2 will be used with approach 3
+used as a fallback (only after approach 2 was attempted). If CEREBRO_GROUP_RESOLVER_URL is unset, then
+approach 2 will be used exclusively.
+In all other situations, including if both JWT and Kerberos are configured, approach 1
+will be used for all users, including those that authenticate via a JWT.</p>
+
+<h3 id="case-sensitivity">Case Sensitivity</h3>
+
+<p>In this case, case sensitivity pertains to the process of comparing the names of groups
+that a user is a member of to the names of groups that were granted a given role.
+A case-insesitive comparison would result in the names <code class="highlighter-rouge">admin</code>, <code class="highlighter-rouge">Admin</code> and <code class="highlighter-rouge">ADMIN</code>
+being viewed as equivalent where a case sensitive approach would consider those each unique.</p>
 
 <h2 id="supported-configurations">Supported Configurations</h2>
 
@@ -868,7 +896,7 @@ If the token expires, the resulting failure triggers another execution of the co
 The expired token is replaced with the new, valid token.</p>
 
 <h3 id="emr">EMR</h3>
-<p>Configuring application environment variables for Amazon’s <a href="/emr-integration">Elastic MapReduce (EMR)</a> platform can vary between applications, so we offer several scenarios.</p>
+<p>Configuring application environment variables for Amazon’s <a href="emr-integration">Elastic MapReduce (EMR)</a> platform can vary between applications, so we offer several scenarios.</p>
 
 <p>In the following examples, assume that the script for acquiring a token is located at <code class="highlighter-rouge">/usr/lib/cerebro/get_token.sh</code> and that the current user has sufficient permission to execute it.</p>
 
@@ -931,7 +959,7 @@ env <span class="nv">OKERA_TOKEN_RETRIEVAL_SCRIPT</span><span class="o">=</span>
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

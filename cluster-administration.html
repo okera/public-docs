@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -580,7 +590,7 @@ $('#toc').on('click', 'a', function() {
   <h1 id="cluster-administration">Cluster Administration</h1>
 
 <p>This document describes how to use the CLI for administering running clusters.
-Refer to the <a href="/install">Installation</a> document for details on how to create new clusters.</p>
+Refer to the <a href="install">Installation</a> document for details on how to create new clusters.</p>
 
 <blockquote>
   <p><strong>Note:</strong> A single Deployment Manager can administer multiple ODAS clusters.</p>
@@ -712,7 +722,7 @@ Exceptions can be assigned with the <code class="highlighter-rouge">--components
 The services are always enumerated in a fixed order, enabling an administrator to understand which services are up and healthy.</p>
 
 <p>The set of services running on a given cluster depends on the cluster’s configuration.
-Refer to the <a href="/cluster-types">Cluster Types</a> document for the listing that applies to your given setup.</p>
+Refer to the <a href="cluster-types">Cluster Types</a> document for the listing that applies to your given setup.</p>
 
 <p>As an example, consider the situation where a standalone cluster had an issue with the planner configuration where the planner could not start up.
 In that scenario, the number of running services would be listed as <code class="highlighter-rouge">3/7</code>.
@@ -786,7 +796,7 @@ This policy could be fine tuned in the future if needed.</p>
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

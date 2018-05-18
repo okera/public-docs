@@ -47,16 +47,12 @@ $( document ).ready(function() {
 });
 </script>
 
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<link rel="alternate" type="application/rss+xml" title="Okera User Guides" href="http://127.0.0.1/feed.xml">
 
     <script>
         $(document).ready(function() {
@@ -219,13 +215,6 @@ $( document ).ready(function() {
           
           
           
-          
-          
-          <li><a href="faq">Frequently Asked Questions</a> </li>
-          
-          
-          
-          
       </ul>
    </li>
      
@@ -346,7 +335,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Authorization</a> </li>
           
           
           
@@ -375,6 +371,13 @@ $( document ).ready(function() {
           
           
           <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
           
           
           
@@ -426,6 +429,13 @@ $( document ).ready(function() {
           
           
           <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
           
           
           
@@ -513,7 +523,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="service-port-assignments">Service Ports</a> </li>
+          <li><a href="faq">Frequently Asked Questions</a> </li>
           
           
           
@@ -640,12 +650,12 @@ the init script.
 
 <p>Notes:</p>
 <ul>
-  <li>See <a href="/ip-address-management">IP Address Management</a> for details on how to retrieve the Planner endpoint</li>
-  <li>See <a href="/client-integration#required">Client Integration</a> for information on the <code class="highlighter-rouge">&lt;hostports&gt;</code> parameter</li>
+  <li>See <a href="ip-address-management">IP Address Management</a> for details on how to retrieve the Planner endpoint</li>
+  <li>See <a href="client-integration#required">Client Integration</a> for information on the <code class="highlighter-rouge">&lt;hostports&gt;</code> parameter</li>
 </ul>
 
-<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.0.0 release, provide the arguments <code class="highlighter-rouge">1.0.0 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
-If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.0.0 spark-2.x hive</code>.</p>
+<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.0.1 release, provide the arguments <code class="highlighter-rouge">1.0.1 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
+If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.0.1 spark-2.x hive</code>.</p>
 
 <p>The complete list of supported components are:</p>
 <ul>
@@ -693,7 +703,7 @@ These include:</p>
   <li>sets the expected permissions on both the given user’s home directory and the <code class="highlighter-rouge">.cerebro</code> directory within their home directory.</li>
 </ul>
 
-<p>The preceding steps result in the EMR service users having permission to read (and possibly write) a user’s token, because of their membership in the <code class="highlighter-rouge">cerebro</code> group.
+<p>The preceding steps result in the EMR service users having permission to read (and possibly write) a user’s token, because of their membership in the <code class="highlighter-rouge">okera</code> group.
 Group membership enables the Okera client libraries to authenticate the user by passing the user’s token to the ODAS cluster with each call.</p>
 
 <h2 id="end-to-end-operational-example">End-to-End Operational Example</h2>
@@ -704,7 +714,7 @@ Group membership enables the Okera client libraries to authenticate the user by 
 <ul>
   <li><em>Multi-tenant</em> here means that each EMR user is assigned their own authentication token.
 This is the default and the recommended way of configuring the cluster.</li>
-  <li>See <a href="/ip-address-management">IP Address Management</a> for details on how to retrieve the actual Planner endpoint, and why using a DNS registered name is recommended.</li>
+  <li>See <a href="ip-address-management">IP Address Management</a> for details on how to retrieve the actual Planner endpoint, and why using a DNS registered name is recommended.</li>
 </ul>
 
 <p><strong>Prerequisites</strong></p>
@@ -793,7 +803,7 @@ Since we’re starting with Hive, Presto and Spark, specify <code class="highlig
 
 <p>For example, copy and paste this (and adjust as needed) into the “Optional arguments” box:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.0.0 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.0.1 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
 </code></pre></div></div>
 
 <p>Notes:</p>
@@ -1192,10 +1202,10 @@ For example, <code class="highlighter-rouge">SHOW ROLES</code> does not list the
 
 <p><strong>Example:</strong></p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh 1.0.0 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cdas-emr-bootstrap.sh 1.0.1 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
 </code></pre></div></div>
 
-<p>See the <a href="#client-node-bootstrap">Client Node Bootstrap</a> section for more details.</p>
+<p>See the <a href="#emr-node-bootstrap">EMR Node Bootstrap</a> section for more details.</p>
 
 <h4 id="using-presto">Using Presto</h4>
 
@@ -1306,7 +1316,7 @@ start hive-server2
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: May 8, 2018
+ Site last generated: May 18, 2018
                   </div>
                 </div>
             </div>

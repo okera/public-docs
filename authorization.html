@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Authorization | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://blog.cerebrodata.com/" target="_blank">Okera Blog</a></li>
+                
+                
+                
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Discover</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Install</a>
+      <ul>
+          
+          
+          
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Option</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Engage</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administer</a>
+      <ul>
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="authorization">Authorization</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrate</a>
+      <ul>
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pycerebro">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Develop</a>
+      <ul>
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-authentication">Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-odas">Extending ODAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="authorization">Authorization</h1>
+
+<h2 id="goal-and-audience">Goal and Audience</h2>
+
+<p>This document is for DBAs, developers, and data architects, who are looking for information about how authorization works, as related to the Okera Policy Engine.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>As introduced in the <a href="catalog-overview">Catalog Overview</a> documentation, the Okera Catalog services include the Okera Policy Engine, which is used throughout the platform to power the self-service authorization process.
+The Okera Platform is in many ways similar to an RDBMS, as it exposes data primarily through a table structure, no matter what the underlying storage technology provides.
+Okera also exposes RDBMS-like functionality when it comes to authorizing access to data.</p>
+
+<p>By default, no data is accessible when standing up an Okera Active Data Access Platform and pointing users to it.
+Instead, the initial administrators of the platform (which must be configured at the cluster level) can grant access to objects in a variety of ways.
+The administrator can also delegate administrative rights of an object and its child objects to regular users or groups of users.
+For example, an initial admin could grant full access and administrative rights for the database <code class="highlighter-rouge">"sales"</code> to the <code class="highlighter-rouge">"salesadmin"</code> user group.
+The Policy Engine supports this by providing a very flexible approach, called <em>role-based access control</em> (RBAC).</p>
+
+<h2 id="roles-based-access-control">Roles-Based Access Control</h2>
+
+<p>Instead of linking users or groups of users directly to resources, such as database or datasets, the Policy Engine decouples the former from the latter using <em>roles</em>.
+These are arbitrarily named collections of permissions that pertained objects in the Schema Registry.
+For instance, you could create a role <code class="highlighter-rouge">"admins"</code> that has full access to the entire server, which subsumes all objects contained.
+Or you could create a role for just a particular purpose inside the sales department, such as being able to read and write all tables necessary for customer relationship management (CRM).
+The following diagram shows how users are commonly grouped together and then assigned roles from the Policy Engine.</p>
+
+<p><img src="assets/images/authz-rbac.png" class="zoom" alt="Role-based Access Control" /></p>
+
+<p>The advantage of decoupling roles from the user groups is that the roles can be combined to assign all the required permissions to the users of a particular group.
+You can define a role that can read a subset of a particular table, and another that allows to write into another table subset.
+Assigning both these roles to a group of users will enable that group to do both operations.
+Then you assign a user to such a group and give immediate access to the combined functionality.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> It is common for Linux/Unix based operating systems (OS) to assign a user a dedicated group that has the same name as the user.
+You can use that specific group to assign particular roles at a user level.
+Im practice though it is more common to create broader groups with more than one user to assign permissions in bulk.</p>
+</blockquote>
+
+<h3 id="managing-roles">Managing Roles</h3>
+
+<p>The syntax for creating (or removing) a role is straight forward:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">ROLE</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Using this command is equally simple:</p>
+
+<p><strong>Example:</strong> Creating a role</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> When you drop a role, all of its assigned permissions are removed as well (as expected).</p>
+</blockquote>
+
+<h3 id="privileges">Privileges</h3>
+
+<p>For role-based access control, each role can be assigned a permission, called privileges, to a specific object.
+The Okera Policy Engine supports the following privileges (which map to specific SQL <em>actions</em>):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Privilege</th>
+      <th>Syntax</th>
+      <th>Actions</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>All</td>
+      <td><code class="highlighter-rouge">ALL</code></td>
+      <td><code class="highlighter-rouge">CREATE</code>, <code class="highlighter-rouge">ALTER</code>, <code class="highlighter-rouge">DROP</code></td>
+      <td>Full and unrestricted access to object</td>
+    </tr>
+    <tr>
+      <td>Read Access</td>
+      <td><code class="highlighter-rouge">SELECT</code></td>
+      <td><code class="highlighter-rouge">SELECT</code></td>
+      <td>Read access to object</td>
+    </tr>
+    <tr>
+      <td>Write Access</td>
+      <td><code class="highlighter-rouge">INSERT</code></td>
+      <td><code class="highlighter-rouge">INSERT</code>, <code class="highlighter-rouge">TRUNCATE</code></td>
+      <td>Write access to object</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following actions require either <code class="highlighter-rouge">ALL</code>, <code class="highlighter-rouge">SELECT</code>, or <code class="highlighter-rouge">INSERT</code> privileges:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">CREATE TABLE LIKE</code></li>
+  <li><code class="highlighter-rouge">DESCRIBE</code></li>
+  <li><code class="highlighter-rouge">SHOW CREATE FUNCTION</code></li>
+  <li><code class="highlighter-rouge">SHOW CREATE TABLE</code></li>
+  <li><code class="highlighter-rouge">SHOW FILES</code></li>
+  <li><code class="highlighter-rouge">SHOW STATS</code></li>
+</ul>
+
+<h3 id="object-types-and-scope">Object Types and Scope</h3>
+
+<p>All permissions are usually <em>scoped</em> at a specific level.
+The level is implicitly given by naming the <em>object</em> a permission should apply to.</p>
+
+<h4 id="objects">Objects</h4>
+
+<p>Here are the object types supported by Okera:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Object</th>
+      <th>Syntax</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Server</td>
+      <td><code class="highlighter-rouge">SERVER</code></td>
+      <td>Global scope for all objects in the Catalog</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td><code class="highlighter-rouge">DATABASE &lt;db_name&gt;</code></td>
+      <td>Scope on a single database and all included objects</td>
+    </tr>
+    <tr>
+      <td>Table</td>
+      <td><code class="highlighter-rouge">TABLE &lt;table_name&gt;</code></td>
+      <td>Permissions for a specific table, with all columns</td>
+    </tr>
+    <tr>
+      <td>Column</td>
+      <td><code class="highlighter-rouge">(col1, coln) TABLE &lt;table_name&gt;</code></td>
+      <td>As before, but for a subset of columns only</td>
+    </tr>
+    <tr>
+      <td>URI</td>
+      <td><code class="highlighter-rouge">URI &lt;uri&gt;</code></td>
+      <td>Specific to a file-based resource.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can think of most of these like a hierarchy, with the exception of URIs.
+The latter is a separate object, while all the others subsume each other from left to right, as shown in the diagram.</p>
+
+<p><img src="assets/images/authz-scope.png" class="zoom" alt="Scope and hierarchy of objects" /></p>
+
+<h4 id="scope">Scope</h4>
+
+<p>Scope is the selection of an object at some point in the hierarchy, and knowing that all child objects are included.
+For example, if you allow read access of a specific database for a certain role, all user groups that are associated with that role will be able to read all datasets (that is, all tables and views) inside the database.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> You cannot revoke permissions on a scope that were granted on a higher scope.
+If you grant access for a database to a specific role, you cannot revoke access to some of the datasets included in that database.</p>
+</blockquote>
+
+<p>Assigning permissions for child objects are commonly issued at the next higher scope.
+For instance, you need to permit <em>create</em> permissions for a role on the database level, allowing the role owners to create new tables and views inside that database.</p>
+
+<p>Views are handled using the same scope as tables.
+In other words, when addressing views as part of the authorization commands, refer to the table documentation.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> A known issue with views is that column level scope is not enforced.</p>
+</blockquote>
+
+<h4 id="uri-objects">URI Objects</h4>
+
+<p>URIs are a special kind of object, registering paths or specific resource files (such as Java JARs) that are accessible for non-administrative users.
+There are a handful types of actions that require file system permissions:</p>
+
+<ul>
+  <li>Creating databases</li>
+  <li>Creating external tables</li>
+  <li>Creating functions</li>
+  <li>Altering an external table’s location</li>
+  <li>Altering a table’s set of partitions</li>
+</ul>
+
+<p>In general, any action that requires the <code class="highlighter-rouge">LOCATION</code> or <code class="highlighter-rouge">ROW FORMAT SERDE</code> keywords is checked for file system permissions before it is allowed by the platform.
+Some of the above operations are <em>only</em> allowed at the server level scope, implicitly making anyone allowed at that level a global administrator.
+And since global administrators are unrestricted, it is assumed they have unrestricted access to the underlying file systems.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The file system checks for global administrators fall back to the Okera Data Access Service (ODAS) having access to the file resources.
+In practice, every ODAS setup will run with an authenticated technical user account, which needs to have access to all resources that are referenced by any of the location dependent SQL statements.</p>
+</blockquote>
+
+<p>The following table shows each affected action with the scope and privilege they require, and what that means for the file system checks:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Action Type</th>
+      <th>Scope</th>
+      <th>Privilege</th>
+      <th>File System Check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create Database</td>
+      <td>Server</td>
+      <td>All</td>
+      <td>Not needed</td>
+    </tr>
+    <tr>
+      <td>Create Function</td>
+      <td>Server</td>
+      <td>All</td>
+      <td>Not needed</td>
+    </tr>
+    <tr>
+      <td>Create External Table</td>
+      <td>Database</td>
+      <td>All</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td>Alter External Table Location</td>
+      <td>Database</td>
+      <td>All</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td>Alter Table Partitions</td>
+      <td>Database</td>
+      <td>All</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Legend: <sup>1</sup> Applies to non-administrative users only</p>
+
+<blockquote>
+  <p><strong>Note:</strong> URIs only are supported in combination with the <em>All</em> privilege, as shown in the table.</p>
+</blockquote>
+
+<p>For non-specific URIs, that is those which are not referencing a specific resource file (see <a href="extending-odas">Extending ODAS</a> for an example), access is checked for the given file system path.
+Any file or directory inside that location is automatically included.
+That allows, for example, an administrator to permit access to a specific root path for a given role.
+Any user that is associated with that role is allowed the same level of access inside that root path.</p>
+
+<p>Finally, any SQL statement that uses one of those resources implicitly, like a <code class="highlighter-rouge">SELECT</code> statement using a UDF, does <em>not</em> require a file system permission check again.
+This makes sense as first a table or function must be created before it can be used.
+In other words, an administrator or elevated user (with “All” privileges on the server or database level respectively) creates the object or function using the explicit location URI.
+Any other user with, for example, a read-only role is allowed to access the object or function without requiring explicit access to the underlying resources.</p>
+
+<p>Here are examples showing the difference:</p>
+
+<p><strong>Example:</strong> SQL statements that require explicit access to the specified resources</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">(</span>
+  <span class="n">txnid</span> <span class="n">BIGINT</span><span class="p">,</span>
+  <span class="n">dt_time</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">sku</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">userid</span> <span class="n">INT</span><span class="p">,</span>
+  <span class="n">price</span> <span class="n">FLOAT</span><span class="p">,</span>
+  <span class="n">creditcard</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">ip</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
+<span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="nv">","</span>
+<span class="k">LOCATION</span> <span class="nv">"s3://acme-sales-data/transactions"</span><span class="s1">';
+
+ALTER TABLE sales.transactions_raw
+ADD PARTITION (year=2018, month=05, day=15)
+LOCATION "s3://acme-sales-data/transactions/..."'</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">sales</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="n">STRING</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://acme-udfs-public/udfs/mask-udf.jar'</span>
+<span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'com.acme.hiveudf.MaskUDF'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> SQL statements that do <em>not</em> require explicit access to the underlying resources</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="n">txnid</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">;</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span>
+<span class="k">ADD</span> <span class="n">PARTITION</span> <span class="p">(</span><span class="k">year</span><span class="o">=</span><span class="mi">2018</span><span class="p">,</span> <span class="k">month</span><span class="o">=</span><span class="mi">05</span><span class="p">,</span> <span class="k">day</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
+  <span class="k">SELECT</span>
+    <span class="n">txnid</span><span class="p">,</span>
+    <span class="n">dt_time</span><span class="p">,</span>
+    <span class="n">sku</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">as</span> <span class="n">userid</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">creditcard</span><span class="p">,</span><span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">as</span> <span class="n">creditcard</span><span class="p">,</span>
+    <span class="n">decode</span> <span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">as</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">as</span> <span class="n">ip</span>
+  <span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="s1">';
+</span></code></pre></div></div>
+
+<p>How this is used in practice is explained in <a href="#best-practices">Best Practices</a>.</p>
+
+<!--
+TODO: Link to FAQ/KB entry discussing granting on URI
+-->
+
+<h2 id="managing-data-access">Managing Data Access</h2>
+
+<p>The combination of role, privilege, and object is referred to as <em>granting</em> in SQL.
+Okera supports the following SQL statements to give or remove access to roles:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span>
+    <span class="o">&lt;</span><span class="n">privilege_level</span><span class="o">&gt;</span> <span class="p">[(</span><span class="o">&lt;</span><span class="n">column_list</span><span class="o">&gt;</span><span class="p">)]</span>
+    <span class="k">ON</span> <span class="o">&lt;</span><span class="n">object_type_name</span><span class="o">&gt;</span>
+    <span class="k">TO</span> <span class="p">[</span><span class="k">ROLE</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span>
+    <span class="p">[</span><span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">]</span>
+
+<span class="k">REVOKE</span>
+    <span class="p">[</span><span class="k">GRANT</span> <span class="k">OPTION</span> <span class="k">FOR</span><span class="p">]</span>
+    <span class="o">&lt;</span><span class="n">privilege_level</span><span class="o">&gt;</span>
+    <span class="k">ON</span> <span class="o">&lt;</span><span class="n">obejct_type_name</span><span class="o">&gt;</span>
+    <span class="k">FROM</span> <span class="p">[</span><span class="k">ROLE</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">privilege_level</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
+    <span class="k">ALL</span>
+  <span class="o">|</span> <span class="k">SELECT</span>
+  <span class="o">|</span> <span class="k">INSERT</span>
+<span class="err">}</span>
+
+<span class="o">&lt;</span><span class="n">object_type_name</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
+    <span class="n">SERVER</span>
+  <span class="o">|</span> <span class="k">DATABASE</span> <span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span>
+  <span class="o">|</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
+  <span class="o">|</span> <span class="n">URI</span> <span class="o">&lt;</span><span class="n">uri</span><span class="o">&gt;</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<p>Further, the following commands can be used to add to and remove roles from user groups:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span>
+    <span class="k">ROLE</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span>
+    <span class="k">TO</span> <span class="k">GROUP</span> <span class="o">&lt;</span><span class="n">group_name</span><span class="o">&gt;</span>
+
+<span class="k">REVOKE</span>
+    <span class="k">ROLE</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span>
+    <span class="k">FROM</span> <span class="k">GROUP</span> <span class="o">&lt;</span><span class="n">group_name</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>The following short examples show how these statements are used:</p>
+
+<p><strong>Example:</strong> Granting full read access for a table to a role</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Granting read access for specific columns of a table to a role</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="p">(</span><span class="n">txnid</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Combining a role with a group of users is shown in the next set of examples:</p>
+
+<p><strong>Example:</strong> Granting a role to a user group</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">analyst_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">test</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Granting a role to a specific user</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">janedoe</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<p>Using roles, privileges, and permissions properly takes practice.
+The following sections discuss the best-practices as recommended by Okera, based on working with enterprise customers.</p>
+
+<h3 id="role-mapping">Role Mapping</h3>
+
+<p>Roles can be used complementary, that is, they can be combined to form an <em>effective</em> user access profile.
+Dependent on the business role a user is assigned to, it makes sense to define specific roles that are then assigned to the appropriate user groups.</p>
+
+<h4 id="global-administrators">Global Administrators</h4>
+
+<p>There are two ways of defining global administrators, which are those user that have unrestricted access to the entire ODAS cluster and its associated Catalog.</p>
+
+<ol>
+  <li>
+    <p>By Configuration</p>
+
+    <p>You can define a list of user groups that are given global administrative rights as part of the Deployment Manager configuration:</p>
+
+    <p><strong>Example:</strong> Defining specific user groups as global catalog administrators</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_CATALOG_ADMINS</span><span class="o">=</span><span class="s2">"sysadmins,devadmins,dataadmins"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>By Role</p>
+
+    <p>The other option is to define a role that grants all permissions to at the server level:</p>
+
+    <p><strong>Example:</strong> Granting global administrative rights to a role</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="n">SERVER</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">global_admin_role</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">global_admin_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">admins</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Either way, through configuration or role, any user in such a group is considered a global administrator.
+The difference is that the latter can be modified without having to restart the ODAS cluster providing the Catalog services.</p>
+
+<h4 id="data-stewards">Data Stewards</h4>
+
+<p>With the advent of big data there has been an increase in the number of datasets an organization has to manage.
+The business role of <em>data steward</em> has been gaining importance in this context, as its tasks include the classification of datasets for use by regular data consumers, such as analysts or data scientists.
+In a way the data steward is an administrative role that needs to have access to all datasets, and being able to grant access to those datasets with varying levels of permissions.</p>
+
+<p>Since data stewards are not system administrators, their scope can be limited as needed.
+For example, there could be multiple data steward roles for different parts of the business.
+The general approach is shown in the following example:</p>
+
+<p><strong>Example:</strong> Defining a global data steward role</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">data_stewards</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">SERVER</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">data_stewards</span> <span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="compartmentalized-data-access">Compartmentalized Data Access</h4>
+
+<p>It is common in practice to group databases and datasets together based on a specific business requirement.
+An example here is to group catalog objects by departments, such as <em>sales</em>, <em>marketing</em>, or <em>administration</em>.
+Within each group of objects it is recommended to split up responsibilities in group administrators and regular users.
+This is achieved by defining two roles for each object grouping, while giving each the appropriate privileges:</p>
+
+<p><strong>Example:</strong> Defining admin and user roles for an object group</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">sales_admins</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">sales</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_admins</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="n">URI</span> <span class="s1">'s3://acme-data/department/sales'</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_admins</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">sales</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The example creates a role for all admins of the <em>sales</em> department, and another role for all analysts that need to access the data.
+Note that since the sales administrator role has no global rights, it is necessary to grant it access to the URI pointing to where its data is located.</p>
+
+<h4 id="public-data">Public Data</h4>
+
+<p>Another use-case for roles is to define a shared role that is opening access to all public datasets.</p>
+
+<p><strong>Example:</strong> Defining a global role for access to all public datasets</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="k">public</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">publicdata</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="k">public</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="k">public</span><span class="p">;</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>The example creates the role and grants access to as many public datasets as required.
+Granting this role to any user group will immediately open access to all public datasets for reading.
+And since all public datasets are covered by one role, it is easy to add or remove a dataset and instantly have this reflected for all users.</p>
+
+<h3 id="developing-functions">Developing Functions</h3>
+
+<p>As explained in <a href="#uri-objects">URI Objects</a>, only administrators are allowed to register user-defined functions (UDFs).
+This is deliberately the case to protect the ODAS services from faulty, erroneous, or even malicious code being executed in the server processes.
+It is normal in practice for ODAS service to run for many days, weeks, or months before a scheduled maintenance is taking place.
+How can a developer design, implement, test, and deploy a new function or SerDe (see <a href="extending-odas">Extending ODAS</a>) without disruption of production services?</p>
+
+<p>Okera recommends a multi-step process that can solve this problem:</p>
+
+<ol>
+  <li>
+    <p><strong>Develop UDF using Hive</strong></p>
+
+    <p>Using Hive with the <code class="highlighter-rouge">ADD JAR</code> statement allows adding a resource under development in Hive only.
+The JAR will not be loaded into (or even be made aware to) the ODAS processes, and creating a view making use of it would execute in the context of Hive only.
+In this case ODAS will provide the lower-level tables only.</p>
+
+    <blockquote>
+      <p><strong>Note:</strong> For users who use Hive provided by EMR that is integrated with ODAS, Okera recommends the use of <a href="emr-integration#cluster-local-databases">cluster local databases</a> to circumvent any interference with ODAS.
+An alternative is the use of <a href="supported-sql#internal-versus-external-views">external views</a>, which are evaluated only in the context of Hive, which includes the UDF that is in development.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>Add to ODAS for long-term use</strong></p>
+
+    <p>Once the UDF is considered done, it can be moved into ODAS by uploading the resources (that is, the JAR file containing the code) to a release directory that is accessible by the ODAS processes (commonly a shared file system such as S3 in case of AWS setups) and declaring the function as usual.</p>
+  </li>
+</ol>
+
+<h3 id="local-databases">Local Databases</h3>
+
+<p>Extending on the example of UDFs above, Okera recommends the use of <a href="emr-integration#cluster-local-databases">cluster local databases</a> for all temporary schema tasks.
+Okera recommends to define a proper, company-wide naming scheme for local databases, as they share the same namespace as other databases.
+Should a user have a local and managed database with the same name, the local one takes preference.
+This is intentionally allowing a developer to experiment with existing databases by temporarily overlaying them with something different.
+Otherwise it is advised to use specific names for local database, for example, by prefixing the name with <code class="highlighter-rouge">"localdb_"</code>.</p>
+
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+                  <img src="assets/images/icon-footer.png" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: May 18, 2018
+                  </div>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>
