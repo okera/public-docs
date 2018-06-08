@@ -400,7 +400,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
@@ -415,6 +415,13 @@ $( document ).ready(function() {
           
           
           <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="third-party-integration">Third-Party Integration</a> </li>
           
           
           
@@ -589,7 +596,24 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
-<h2 id="110-may-2018">1.1.0 (May, 2018)</h2>
+<h2 id="110-in-development">1.1.0 (In Development)</h2>
+
+<p>The 1.1.0 introduces two major items but no significant alterations to existing features or functionality.
+It includes all of the fixes from 1.0.1.</p>
+
+<h3 id="support-for-array-and-map-collection-data-types">Support for Array and Map collection data types</h3>
+
+<p>This completes the complex types support started in 0.9.0, when the struct type wwas introduced.
+This release adds support for Arrays and Maps.
+As with struct support, only data stored in Avro or Parquet is supported.
+See the <a href="complex-types">docs</a> for more details.</p>
+
+<h3 id="migration-from-company-rename">Migration from company rename</h3>
+
+<p>In 1.0.0, we renamed the product but maintained backwards compatibility.
+For example, system paths that contained the product or company name were not changed.
+In 1.1.0, we have completely the product renaming and users upgrading will need to migrate.
+See the migration <a href="migration">guide</a> for details on the changes and their implications.</p>
 
 <h3 id="incompatible-and-breaking-changes">Incompatible and Breaking Changes</h3>
 <ul>
@@ -887,7 +911,7 @@ cost. Users can pass the <code class="highlighter-rouge">?format</code> option t
 <h2 id="081-march-2018">0.8.1 (march 2018)</h2>
 
 <p>0.8.1 is a minor release which addresses a few specific issues in 0.8.0 as well as
-updates to the pycerebro python client library.</p>
+updates to the pyokera python client library.</p>
 
 <h3 id="pycerebro">PyCerebro</h3>
 
@@ -905,7 +929,7 @@ end users to not need to know internal services.</li>
   <li>Renamed <code class="highlighter-rouge">create_context()</code> to <code class="highlighter-rouge">context()</code></li>
 </ul>
 
-<p>For more details, see the <a href="pycerebro">docs</a>.</p>
+<p>For more details, see the <a href="pyokera">docs</a>.</p>
 
 <p>Users can upgrade to this by upgrading to the latest package with pip.</p>
 
@@ -960,7 +984,7 @@ and supports the required authentication mechanisms in a variety of environments
 support for executing DDL and scan statements against the ODAS servers. In the next
 release, we will optimize the scan APIs further.</p>
 
-<p>For more details, see the <a href="pycerebro">docs</a>.</p>
+<p>For more details, see the <a href="pyokera">docs</a>.</p>
 
 <p><strong>Improved support for partitioned tables when using them from EMR</strong></p>
 

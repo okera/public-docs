@@ -400,7 +400,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="pycerebro">Native Python Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
@@ -415,6 +415,13 @@ $( document ).ready(function() {
           
           
           <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="third-party-integration">Third-Party Integration</a> </li>
           
           
           
@@ -594,12 +601,13 @@ Complex types usually consist of:</p>
 
 <ul>
   <li>structs</li>
-  <li>lists</li>
+  <li>arrays</li>
   <li>maps</li>
   <li>unions</li>
 </ul>
 
-<p>ODAS currently only supports structs but will support lists and maps soon.
+<p>ODAS currently supports arrays and lists.
+Support for maps will come soon.
 There is no plan to support unions (see exception for Avro below).</p>
 
 <h2 id="file-format-support">File format support</h2>
@@ -639,7 +647,7 @@ For this schema:</p>
 <span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-users/'</span>
 </code></pre></div></div>
 
-<p>Describing the table should look something like:</p>
+<p>Describing the table should look like:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">users</span><span class="p">;</span>
 <span class="n">uid</span>	<span class="n">bigint</span>
@@ -900,6 +908,130 @@ The behavior should be a typical Presto experience.</p>
  101 | bob  | <span class="o">{</span><span class="nv">city</span><span class="o">=</span>seattle, <span class="nv">state</span><span class="o">=</span>wa<span class="o">}</span> |  25
 <span class="o">(</span>1 row<span class="o">)</span>
 </code></pre></div></div>
+
+<h2 id="array">Array</h2>
+
+<p>The DDL for creating tables with an array type is identical to standard HiveQL.
+For example,</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">user_phone_numbers</span><span class="p">(</span>
+   <span class="n">phone_numbers</span> <span class="n">struct</span><span class="o">&lt;</span>
+    <span class="n">uid</span><span class="p">:</span> <span class="n">BIGINT</span><span class="p">,</span>
+    <span class="n">numbers</span><span class="p">:</span> <span class="n">ARRAY</span><span class="o">&lt;</span><span class="n">STRING</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">user</span><span class="p">:</span> <span class="n">STRING</span>
+  <span class="o">&gt;</span>
+<span class="p">)</span> <span class="n">STORED</span> <span class="k">AS</span> <span class="n">AVRO</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-users/'</span>
+</code></pre></div></div>
+
+<p>Describing the table should look like:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">phone_numbers</span><span class="p">;</span>
+<span class="n">uid</span>	<span class="n">bigint</span>
+<span class="n">numbers</span> <span class="n">array</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+<span class="n">name</span> <span class="n">string</span>
+</code></pre></div></div>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>Only arrays of primitives are currently support.
+It is not possible, for example, to have arrays of structs or arrays.</p>
+
+<h3 id="scanning-via-rest-api-1">Scanning via REST API</h3>
+
+<p>The REST API has always returned JSON.
+Arrays are returned as a json list.
+For example, curling this endpoint now returns:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl REST_SERVER:PORT/api/scan/user_phone_numbers?records<span class="o">=</span>1
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"phone_numbers"</span>: <span class="o">{</span>
+            <span class="s2">"uid"</span>: 123,
+            <span class="s2">"numbers"</span>: <span class="o">[</span>
+                <span class="s2">"111-222-3333"</span>,
+                <span class="s2">"444-555-6666"</span>
+            <span class="o">]</span>,
+            <span class="s2">"user"</span>: <span class="s2">"john"</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">]</span>
+</code></pre></div></div>
+
+<h3 id="scanning-via-sparksql-1">Scanning via SparkSQL</h3>
+
+<p>Support for array types behaves as expected in Spark, integrating with Spark’s array type.</p>
+
+<p>Select with all fields and array field only are shown below.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="n">s</span><span class="s">"""
+    |CREATE TEMPORARY VIEW user_phone_numbers
+    |USING com.cerebro.recordservice.spark.DefaultSource
+    |OPTIONS (RecordServiceTable 'rs_complex.user_phone_numbers')
+"""</span><span class="o">.</span><span class="n">stripMargin</span><span class="o">)</span>
+</code></pre></div></div>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT * FROM user_phone_numbers"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
+<span class="o">+--------------------+</span>
+<span class="o">|</span>       <span class="n">phone_numbers</span><span class="o">|</span>
+<span class="o">+--------------------+</span>
+<span class="o">|[</span><span class="err">123</span>,<span class="kt">WrappedArray...|</span>
+<span class="kt">|</span><span class="o">[</span><span class="err">234</span>,<span class="kt">WrappedArray...|</span>
+<span class="kt">|</span><span class="o">[</span><span class="err">345</span>,<span class="kt">WrappedArray...|</span>
+<span class="kt">+--------------------+</span>
+</code></pre></div></div>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"select phone_numbers.numbers from user_phone_numbers"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
+<span class="o">+--------------------+</span>
+<span class="o">|</span>             <span class="n">numbers</span><span class="o">|</span>
+<span class="o">+--------------------+</span>
+<span class="o">|[</span><span class="err">111</span><span class="kt">-</span><span class="err">222</span><span class="kt">-</span><span class="err">3333</span>, <span class="err">44</span><span class="kt">...|</span>
+<span class="kt">|</span><span class="o">[</span><span class="err">222</span><span class="kt">-</span><span class="err">333</span><span class="kt">-</span><span class="err">4444</span>, <span class="err">55</span><span class="kt">...|</span>
+<span class="kt">|</span>      <span class="o">[</span><span class="err">111</span><span class="kt">-</span><span class="err">222</span><span class="kt">-</span><span class="err">5555</span><span class="o">]</span><span class="kt">|</span>
+<span class="kt">+--------------------+</span>
+</code></pre></div></div>
+
+<h3 id="scanning-via-hive-1">Scanning via Hive</h3>
+
+<p>Support for array types integrates with Hive’s array type.</p>
+
+<p>Select with all fields and array field only are shown below.</p>
+
+<pre><code class="language-hive">hive&gt; SELECT * FROM user_phone_numbers
+{"uid":123,"numbers":["111-222-3333","444-555-6666"],"user":"john"}
+{"uid":234,"numbers":["222-333-4444","555-666-7777"],"user":"jim"}
+{"uid":345,"numbers":["111-222-5555"],"user":"jack"}
+</code></pre>
+
+<pre><code class="language-hive">hive&gt; select phone_numbers.numbers from user_phone_numbers
+["111-222-3333","444-555-6666"]
+["222-333-4444","555-666-7777"]
+["111-222-5555"]
+</code></pre>
+
+<h3 id="scanning-via-presto-1">Scanning via Presto</h3>
+
+<p>Support for array types integrates with Presto’s array type.</p>
+
+<p>Select just the array field and user name from the data:</p>
+
+<pre><code class="language-presto">presto&gt; select * from recordservice.rs_complex.user_phone_numbers;
+                       phone_numbers
+------------------------------------------------------------
+ {uid=123, numbers=[111-222-3333, 444-555-6666], user=john}
+ {uid=234, numbers=[222-333-4444, 555-666-7777], user=jim}
+ {uid=345, numbers=[111-222-5555], user=jack}
+</code></pre>
+
+<pre><code class="language-presto">presto&gt; select phone_numbers.numbers from recordservice.rs_complex.user_phone_numbers;
+           numbers
+------------------------------
+ [111-222-3333, 444-555-6666]
+ [222-333-4444, 555-666-7777]
+ [111-222-5555]
+</code></pre>
 
 <h2 id="union-avro">Union (Avro)</h2>
 

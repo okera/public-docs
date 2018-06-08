@@ -266,8 +266,8 @@
 
 
 {
-"url": "pycerebro",
-"file": "content/topics/PyCerebro.md",
+"url": "pyokera",
+"file": "content/topics/PyOkera.md",
 }
 ,
 
@@ -324,6 +324,14 @@
 {
 "url": "tableau-web-data-connector",
 "file": "content/topics/TableauWDC.md",
+}
+,
+
+
+
+{
+"url": "third-party-integration",
+"file": "content/topics/ThirdPartyIntegration.md",
 }
 ,
 
