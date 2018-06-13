@@ -659,6 +659,30 @@ For this schema:</p>
 <span class="n">age</span>	<span class="n">int</span>
 </code></pre></div></div>
 
+<h4 id="create-ddl-for-avro">Create DDL for Avro</h4>
+
+<p>If the schemas are available in avro, we recommend creating the table using the schema file directly, rather than replicating it in the DDL statement.</p>
+
+<p>For example, in the above <code class="highlighter-rouge">users</code> example, if the avro schema file (typically .avsc, a human-readable json file), you could do:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">users</span>
+<span class="k">LIKE</span> <span class="n">AVRO</span> <span class="s1">'s3://path/to/schemas/users.avsc'</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-users/'</span>
+</code></pre></div></div>
+
+<p>In this case, ODAS will parse the schema file and automatically populate the expected schema.</p>
+
+<p>This approach alleviates a few issues:</p>
+<ul>
+  <li>Schemas can be long and for nested types in particular, can be error prone to replicate.</li>
+  <li>Avro resolves schemas by name, meaning the engine cannot tell a typo from a new field (schema evolution) which can be difficult to track down.</li>
+  <li>Some avro constructs don’t map to a SQL data model and our engine will automatically handle those.
+For example, Avro allows records that have no fields, but it is not possible to create a table with an empty struct.
+This conversion is handled automatically.</li>
+  <li>If the schema is very big (contains structs that serialize to over 4K characters), then specifying it as a file is the only option.
+If the schema is explicitly typed, it will error with an error saying the field is over 4K characters.</li>
+</ul>
+
 <h3 id="create-view">CREATE VIEW</h3>
 
 <p>A view can be created on subfields of complex type fields. Since fields may not contain a dot(.),
@@ -1064,7 +1088,7 @@ This is the identical behavior as Hive.</p>
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Jun 8, 2018
+ Site last generated: Jun 13, 2018
                   </div>
                 </div>
             </div>

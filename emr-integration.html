@@ -617,7 +617,8 @@ It assumes that the ODAS cluster is already running.</p>
 An EMR cluster that is using multiple components should apply each configuration.</p>
 
 <blockquote>
-  <p><strong>Note:</strong> EMR versions 5.1.0 through 5.9.0 are supported by the latest bootstrap scripts.</p>
+  <p><strong>Note:</strong> EMR versions 5.1.0 through 5.9.0 are supported by the latest bootstrap scripts.
+<strong>Note:</strong> Presto support is enabled only starting in EMR 5.3.0</p>
 </blockquote>
 
 <h2 id="bootstrap-scripts">Bootstrap Scripts</h2>
@@ -1292,7 +1293,7 @@ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/&l
     <p>On the <em>master</em> EC2 node, download the Hive metastore jar and restart both the Hive server and the Hive metastore:</p>
 
     <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/okera
-curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/&lt;odas_version&gt;/client/cerebro-hive-metastore.jar
+curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/&lt;odas_version&gt;/client/okera-hive-metastore.jar
 stop hive-hcatalog-server
 stop hive-server2
 start hive-hcatalog-server
@@ -1319,7 +1320,7 @@ start hive-server2
                   <img src="assets/images/icon-footer.png" class="logo" />
                   <div class="footer-meta">
                &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Jun 8, 2018
+ Site last generated: Jun 13, 2018
                   </div>
                 </div>
             </div>
