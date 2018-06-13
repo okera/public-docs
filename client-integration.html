@@ -676,7 +676,7 @@ system in both Okera and HS2.</p>
 
 <p>In the next step, we will create an external dataset for data in S3.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>beeline&gt; create external table sample (s STRING) LOCATION 's3://cerebrodata/sample'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>beeline&gt; create external table sample (s STRING) LOCATION 's3://okera/sample'
 beeline&gt; show tables;
 beeline&gt; select * from sample;
 </code></pre></div></div>

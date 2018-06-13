@@ -693,7 +693,7 @@ different signatures.</p>
 <p>For example, the <code class="highlighter-rouge">MaskUDF</code>:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="n">STRING</span>
-<span class="k">LOCATION</span> <span class="s1">'s3://cerebrodata-public-east/udfs/mask-udf.jar'</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://okera-public-east/udfs/mask-udf.jar'</span>
 <span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'com.cerebro.hiveudf.MaskUDF'</span>
 </code></pre></div></div>
 
@@ -788,7 +788,7 @@ okera_sample.mask
 
 hive&gt; <span class="k">select </span>okera_sample.mask<span class="o">(</span><span class="s1">'abcd'</span><span class="o">)</span><span class="p">;</span>
 Added <span class="o">[</span>/mnt/tmp/53ad548e-5f83-44dd-985b-3c9c267fe736_resources/mask-udf.jar] to class path
-Added resources: <span class="o">[</span>s3://cerebrodata-dev/udfs/mask-udf.jar]
+Added resources: <span class="o">[</span>s3://okera-public-east/udfs/mask-udf.jar]
 OK
 xxxx
 </code></pre></div></div>
