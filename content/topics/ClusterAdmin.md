@@ -158,7 +158,7 @@ The service responded to the most recent Deployment Manager request to its healt
 
 ## Cluster diagnosis
 
-It may occassionally be helpful to gather system logs from the nodes in a cluster when
+It may occasionally be helpful to gather system logs from the nodes in a cluster when
 a functional issue or performance issue occurs. A cluster can be commanded to compile
 a gzipped tar-ball of all system logs over the previous day and upload the archive to
 a cluster's S3 logging bucket with a simple command:

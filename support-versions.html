@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Schema Design | Okera User Documentation</title>
+<title>Versions | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -282,7 +282,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="support-versions">Versions</a> </li>
+          <li class="active"><a href="support-versions">Versions</a></li>
           
           
           
@@ -363,7 +363,7 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="schema-design">Schema Design</a></li>
+          <li><a href="schema-design">Schema Design</a> </li>
           
           
           
@@ -643,145 +643,153 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="schema-design">Schema Design</h1>
+  <h2 id="versions">Versions</h2>
 
-<h2 id="goal-and-audience">Goal and Audience</h2>
+<h3 id="okera-release-version">Okera Release Version</h3>
 
-<p>This document is for DBAs, developers, and data architects who are trying to understand the schema design adjustments necessary when working with the Okera Platform.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Releases</th>
+      <th style="text-align: left">1.0</th>
+      <th style="text-align: left">1.0.1</th>
+      <th style="text-align: left">1.1.x</th>
+      <th style="text-align: left">1.2 (In Development)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Java (ODAS) Client</td>
+      <td style="text-align: left">1.0.0</td>
+      <td style="text-align: left">1.0.1</td>
+      <td style="text-align: left">1.1</td>
+      <td style="text-align: left">1.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ODAS Server</td>
+      <td style="text-align: left">1.0.0</td>
+      <td style="text-align: left">1.0.1</td>
+      <td style="text-align: left">1.1</td>
+      <td style="text-align: left">1.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PyOkera</td>
+      <td style="text-align: left">0.8.3.1</td>
+      <td style="text-align: left">0.8.3.1</td>
+      <td style="text-align: left">0.8.3.1</td>
+      <td style="text-align: left">1.2</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2 id="introduction">Introduction</h2>
+<h3 id="compute-framework-versions">Compute Framework Versions</h3>
 
-<p>As shown in the <a href="okera-architecture-overview">Architecture Overview</a>, the Okera Platform is a distributed, scalable, efficient, and high performance data access system, which includes a Schema Registry that maps raw data into tables.
-While these schemas can be arbitrarily complex, not all of the functionality should be delegated to Okera, but rather some should be handled in more specific clients, such as SQL engines.
-For additional information on <em>external views</em>, please refer to the <a href="supported-sql#internal-versus-external-views">Supported SQL</a> documentation.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Client Dependencies</th>
+      <th style="text-align: left">1.0</th>
+      <th style="text-align: left">1.0.1</th>
+      <th style="text-align: left">1.1.x</th>
+      <th style="text-align: left">1.2 (In Development)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">EMR</td>
+      <td style="text-align: left">5.3-5.9</td>
+      <td style="text-align: left">5.3-5.9</td>
+      <td style="text-align: left">5.3-5.9</td>
+      <td style="text-align: left">5.3-5.16</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Presto</td>
+      <td style="text-align: left">0.170-0.188</td>
+      <td style="text-align: left">0.170-0.188</td>
+      <td style="text-align: left">1.70-0.188</td>
+      <td style="text-align: left">0.170-0.203</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Hive</td>
+      <td style="text-align: left">2.1-2.3</td>
+      <td style="text-align: left">2.1-2.3</td>
+      <td style="text-align: left">2.1-2.3</td>
+      <td style="text-align: left">2.1-2.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spark</td>
+      <td style="text-align: left">2.0-2.2</td>
+      <td style="text-align: left">2.0-2.2</td>
+      <td style="text-align: left">2.0-2.2</td>
+      <td style="text-align: left">2.0-2.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Hue</td>
+      <td style="text-align: left">4.0.1</td>
+      <td style="text-align: left">4.0.1</td>
+      <td style="text-align: left">4.0.1</td>
+      <td style="text-align: left">4.0.1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Zeppelin</td>
+      <td style="text-align: left">0.7.2-0.7.3</td>
+      <td style="text-align: left">0.7.2-0.7.3</td>
+      <td style="text-align: left">0.7.2-0.7.3</td>
+      <td style="text-align: left">0.7.2-0.7.3</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2 id="layers">Layers</h2>
+<h3 id="platform">Platform</h3>
 
-<p>In working with Okera, it is recommended to adopt a specific design approach when defining datasets.
-You should think of schemas in terms of the following layers:</p>
-
-<ol>
-  <li><strong>Physical Layer</strong></li>
-  <li><strong>Base Table Layer</strong></li>
-  <li><strong>Cleanup View Layer</strong></li>
-  <li><strong>Access Control Layer</strong></li>
-</ol>
-
-<p>The diagram below shows this in greater detail and we will discuss the layers in the next sections.</p>
-
-<p><img src="assets/images/schema-design.png" alt="Schema Design" /></p>
-
-<h3 id="physical-layer">Physical Layer</h3>
-
-<p>The physical layer consists of storage in its <em>raw</em> format as files on S3 or HDFS, or as a database table in an RDBMS.
-For file-based storage, there is usually one or more files in one or more directories.
-The latter may convey special meaning, such as <em>partitions</em> supported by Hive.</p>
-
-<p>It is important to note that in order to ensure data access and governance policy enforcement, the Okera Platform and administrators should be the primary user to this layer.</p>
-
-<h3 id="base-table-layer">Base Table Layer</h3>
-
-<p>The base table layer defines the first set of metadata by mapping the raw data, as-is, into Okera’s Schema Registry.
-Only tables are defined at this level and are referred to as <em>base tables</em>.
-Their schema comes directly from the source retaining all the naming and data type declarations.</p>
-
-<p><strong>Example:</strong> Creating an external base table over the raw data</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">(</span>
-  <span class="n">txnid</span> <span class="n">BIGINT</span><span class="p">,</span>
-  <span class="n">field_87</span> <span class="n">STRING</span><span class="p">,</span>
-  <span class="n">field_06</span> <span class="n">STRING</span><span class="p">,</span>
-  <span class="n">field_12</span> <span class="n">STRING</span><span class="p">,</span>
-  <span class="n">field_73</span> <span class="n">STRING</span><span class="p">,</span>
-  <span class="n">field_33</span> <span class="n">STRING</span><span class="p">,</span>
-  <span class="n">ip</span> <span class="n">STRING</span><span class="p">)</span>
-<span class="k">COMMENT</span> <span class="s1">'Raw online transactions'</span>
-<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
-<span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">','</span>
-<span class="k">LOCATION</span> <span class="s1">'s3://sales-data/transactions'</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>You may note that some fields are arbitrarily named and all of them are defined as type <code class="highlighter-rouge">STRING</code>.
-In this example, we assume that some fields are of a non-string type.
-While still a valid statement, this <code class="highlighter-rouge">CREATE</code> statement is not ideal for direct querying.</p>
-
-<p>Access to these base tables is restricted to Okera administrators (or by someone granted administrative rights).
-No direct access by any user or application is allowed.</p>
-
-<h3 id="cleanup-view-layer">Cleanup View Layer</h3>
-
-<p>The cleanup view layer is an applied view on top of the base table defined to fix any immediate table issues.
-In continuing with the example, we can reorder fields to comply with some company policies, cast the field types, and rename arbitrary fields into readable names.</p>
-
-<p><strong>Example:</strong> Creating a cleanup view over a base table</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_clean</span> <span class="k">AS</span>
-<span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
-  <span class="n">field_12</span> <span class="k">AS</span> <span class="n">dt_time</span><span class="p">,</span>
-  <span class="n">field_33</span> <span class="k">AS</span> <span class="n">sku</span><span class="p">,</span>
-  <span class="k">cast</span><span class="p">(</span><span class="n">field_87</span> <span class="k">AS</span> <span class="n">INT</span><span class="p">)</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
-  <span class="k">cast</span><span class="p">(</span><span class="n">field_73</span> <span class="k">AS</span> <span class="n">FLOAT</span><span class="p">)</span> <span class="k">AS</span> <span class="n">price</span><span class="p">,</span>
-  <span class="n">field_06</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
-  <span class="n">ip</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>There is a strict 1:1 mapping between base table and cleanup view. There are no JOINs performed at this level; only schema transformations.</p>
-
-<p>No user will be given access to cleanup views that contain <em>sensitive</em> data; only dedicated staff, such as administrators or data stewards are allowed access.
-In the case of cleanup views that contain only publicly accessible data, it is permissible to grant direct access to non-administrative users as well.</p>
-
-<h3 id="access-control-view-layer">Access Control View Layer</h3>
-
-<p>The access control view layer is the final layer where we define user access to the data through the use of special views that apply filters, projections, masking, and tokenization.
-Continuing with the example, we can define a new access view over the cleanup view created in the previous section to apply tokenization and masking functions that allow only the user <code class="highlighter-rouge">admin</code> to gain full access to the field data.
-All other users would see only the redacted content.</p>
-
-<p><strong>Example:</strong> Creating an access view with masking and tokenization</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
-<span class="k">SELECT</span> <span class="n">txnid</span><span class="p">,</span>
-  <span class="n">dt_time</span><span class="p">,</span>
-  <span class="n">sku</span><span class="p">,</span>
-  <span class="n">if</span> <span class="p">(</span><span class="n">has_access</span><span class="p">(</span><span class="s1">'sales.transactions_clean'</span><span class="p">),</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">as</span> <span class="n">userid</span><span class="p">,</span>
-  <span class="n">price</span><span class="p">,</span>
-  <span class="n">if</span> <span class="p">(</span><span class="n">has_access</span><span class="p">(</span><span class="s1">'sales.transactions_clean'</span><span class="p">),</span> <span class="n">creditcard</span><span class="p">,</span><span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">as</span> <span class="n">creditcard</span><span class="p">,</span>
-  <span class="n">if</span> <span class="p">(</span><span class="n">has_access</span><span class="p">(</span><span class="s1">'sales.transactions_clean'</span><span class="p">),</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">as</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">as</span> <span class="n">ip</span>
-<span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_clean</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>We have only implicitly dealt with the Okera Schema Registry thus far.
-This service is responsible with storing the platform-wide dataset metadata.
-Next, we will allow access to those datasets through the Okera Policy Engine in the form of <code class="highlighter-rouge">GRANT</code> statements.
-All access to databases and datasets (commonly referred to as <em>objects</em>) is assigned to arbitrary <em>roles</em>.
-These roles are then assigned to groups of known users, enabling the so-called <em>role-based access control</em>.
-The user groups are provided using a variety of sources, including Active Directory (AD), Lightweight Directory Access Protocol (LDAP), and JSON Web Token (JWT).
-The next example creates the analyst role and assigns it to a user group.</p>
-
-<p><strong>Example:</strong> Creating a role and assigning it to a user group</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
-<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">analyst_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">analysts</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>The last step in the example is another <code class="highlighter-rouge">GRANT</code> statement to give <em>read</em> access to the newly created role.</p>
-
-<p><strong>Example:</strong> Granting read access to a role</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst_role</span><span class="p">;</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p><strong>NOTE</strong>: The examples show <em>Hive QL</em> syntax.
-Hive does not distinguish between Okera views or tables, which is why the <code class="highlighter-rouge">GRANT</code> statement is on a table instead.</p>
-</blockquote>
-
-<p>The above example provides an overview of schema design best practices.
-While your organization’s needs may vary, these steps give the best framework to create and manage data through the Okera Platform.</p>
-
-<p>The access view is designed to execute the necessary table joining, but should not be used for any analytical processing (see <a href="supported-sql">Supported SQL</a> for supported functionality).
-A common use-case for a <code class="highlighter-rouge">JOIN</code> executed in the Okera Platform is <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a> <em>white-/blacklist filtering</em>, which uses a smaller table with, for example, users who have opted out of their data use for non-essential processing.
-Such a filter view would contain a <code class="highlighter-rouge">SELECT</code> statement that joins the main user table and the filter table, removing all users that have revoked the right to use their data prior to analysis.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Platform Dependencies</th>
+      <th style="text-align: left">1.0</th>
+      <th style="text-align: left">1.0.1</th>
+      <th style="text-align: left">1.1.x</th>
+      <th style="text-align: left">1.2 (In Development)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Kubernetes</td>
+      <td style="text-align: left">1.7.6</td>
+      <td style="text-align: left">1.7.5</td>
+      <td style="text-align: left">1.7.5</td>
+      <td style="text-align: left">1.10.4</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Kubernetes Admin Dashboard</td>
+      <td style="text-align: left">1.7.0</td>
+      <td style="text-align: left">1.7.0</td>
+      <td style="text-align: left">1.7.0</td>
+      <td style="text-align: left">1.8.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Docker</td>
+      <td style="text-align: left">1.12.6</td>
+      <td style="text-align: left">1.12.6</td>
+      <td style="text-align: left">1.12.6</td>
+      <td style="text-align: left">1.12.6</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Rhel</td>
+      <td style="text-align: left">7.3+</td>
+      <td style="text-align: left">7.3+</td>
+      <td style="text-align: left">7.3+</td>
+      <td style="text-align: left">7.3+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MySql</td>
+      <td style="text-align: left">5.6+</td>
+      <td style="text-align: left">5.6+</td>
+      <td style="text-align: left">5.6+</td>
+      <td style="text-align: left">5.6+</td>
+    </tr>
+  </tbody>
+</table>
 
 
     <div class="tags">

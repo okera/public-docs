@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>JDBC data source | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-wordmark"><a href="/">
+              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+            </div>
+
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="search">Search</a></li>
+                
+                
+                
+                <li><a href="https://www.okera.com/blog" target="_blank">Okera Blog</a></li>
+                
+                
+                
+                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <!-- comment out this block if you want to hide search
+                <li class="dropdown">
+
+                  <div id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+
+                </li>
+                end search -->
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Introduction to Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Installing the Deployment Manager</a>
+      <ul>
+          
+          
+          
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install">Installation Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-authentication">Authentication Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="support-versions">Versions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administering ODAS Clusters</a>
+      <ul>
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Catalog</a>
+      <ul>
+          
+          
+          
+          <li><a href="authorization">Authorization Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization-builtins">Authorization Builtin Functions</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="jdbc-data-source">JDBC Data Source</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-odas">Extending ODAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Web UI</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="datasets-page">Datasets Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="permissions-page">Permissions Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="reports-page">Reports Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="earlier-release-notes">Earlier Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="jdbc-data-source">JDBC data source</h1>
+
+<p>This document outlines ODAS support for JDBC data sources. The JDBC data sources supported
+out of the box are:</p>
+
+<ul>
+  <li>MySQL (5.6,5.7)</li>
+  <li>PostgreSQL (9.6.6)</li>
+  <li>Snowflake (TBD)</li>
+</ul>
+
+<p><em>Note, this JDBC data source is not to be confused with the HMS RDBMS.</em></p>
+
+<h2 id="what-is-jdbc-data-source-support-">What is JDBC data source support ?</h2>
+
+<p>ODAS utilizes the drivers provided for JDBC sources to connect to the underlying database.
+The driver is identified by the <em>driver</em> property specified as part of the connection properties.
+Although, different drivers are used, the functionality remains common. Users will be able
+to perform the same DDL and scan operations across different supported JDBC data sources.</p>
+
+<p>The JDBC driver versions supported are,</p>
+
+<ul>
+  <li>MySQL : 8.0.11</li>
+  <li>PostgreSQL : 9.0-801.jdbc4</li>
+  <li>Snowflake : 3.6.1</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>Connection properties for database can be provided in a file located in a secured place.
+For example, a S3 folder that is secured for access and is accessible from the application may be used.
+A sample properties file, s3://okera/<connectionProps.prop>, would be,</connectionProps.prop></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">driver=&lt;Driver</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">identify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">JDBC</span><span class="w"> </span><span class="err">driver</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">load&gt;</span><span class="w">
+</span><span class="err">host=&lt;A</span><span class="w"> </span><span class="err">cloud</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">host</span><span class="w"> </span><span class="err">accessible</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">application&gt;</span><span class="w">
+</span><span class="err">port=&lt;Port</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">DB&gt;</span><span class="w">
+</span><span class="err">user=&lt;Username&gt;</span><span class="w">
+</span><span class="err">password=&lt;Password&gt;</span><span class="w">
+</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="initializating-metastore-information">Initializating metastore information:</h3>
+
+<p>ODAS supports special SQL constructs to initialize the metadata for the JDBC database
+and table information into metastore. Below are couple of SQL statements that can be used to get started
+quickly and in an automated way. Using these commands will also ensure that the datatype between
+JDBC source and Okera Catalog datatypes are configured correctly.</p>
+
+<p><code class="highlighter-rouge">CREATE DATABASE</code> command supports specifying DBPROPERTIES. DBPROPERTIES are a map of key-&gt;value pairs similar to the TBLPROPERTIES in the table level. Using this map, users should be able to specify the file location with connection information to connect to the JDBC source. This is essential at the database level in order to pull multiple table informations as explained in the subsequent commands. <code class="highlighter-rouge">ALTER DATABASE</code> as well supports adding/modifying the DBPROPERTIES.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">marketingdb</span> <span class="n">DBPROPERTIES</span>
+<span class="p">(</span><span class="s1">'driver'</span> <span class="o">=</span> <span class="s1">'mysql'</span><span class="p">,</span>
+ <span class="s1">'credentials.file'</span> <span class="o">=</span> <span class="s1">'s3://&lt;s3folder&gt;'</span><span class="p">)</span>
+ <span class="s1">'jdbc.db.name'</span> <span class="o">=</span> <span class="s1">'marketingdb'</span>
+</code></pre></div></div>
+
+<p>The next command can be used to bulk load table definitions from the JDBC data source database. The command can be used to,</p>
+<ul>
+  <li>load table definitions for the first time</li>
+  <li>add additional table definitions on existing schema</li>
+  <li>optionally overwrite entire table definitions.</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">marketingdb</span> <span class="k">LOAD</span> <span class="n">DEFINITIONS</span> <span class="p">(</span><span class="n">transactions_schemaed</span><span class="p">,</span> <span class="n">users</span><span class="p">);</span>
+</code></pre></div></div>
+<p>The above command would load table definitions from the JDBC source into Okera Catalog. This can be verified by describe commands.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span><span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span><span class="p">;</span>
+  <span class="n">userid</span>	<span class="n">int</span>
+  <span class="n">fname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">lname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">fullname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+  <span class="n">emailid</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</code></pre></div></div>
+<h4 id="overwrite-option">Overwrite option:</h4>
+
+<p>Running the same command would skip the existing table definitions. However, if you wish to refresh the entire table definition again from the database source, use the <code class="highlighter-rouge">OVERWRITE</code> option in the command. Example,</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">marketingdb</span> <span class="k">LOAD</span> <span class="n">DEFINITIONS</span> <span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="n">OVERWRITE</span>
+</code></pre></div></div>
+
+<h3 id="recover-column-definitions">Recover column definitions:</h3>
+
+<p>JDBC table catalog can be refreshed/recovered at the column level by using the <code class="highlighter-rouge">ALTER TABLE &lt;tableName&gt; RECOVER COLUMNS</code> command. This is specifically useful to ADD/REPLACE existing definitions on a table, column level.
+The statement to add a new column to the existing definition would be:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span> <span class="n">RECOVER</span> <span class="n">COLUMNS</span> <span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="k">ADD</span>
+<span class="o">&gt;</span><span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span><span class="p">;</span>
+  <span class="n">userid</span>	<span class="n">int</span>
+  <span class="n">fname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">lname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">fullname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+  <span class="n">emailid</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+  <span class="n">country</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+<p>To remove existing columns and add specific columns, use <code class="highlighter-rouge">REPLACE</code> option</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span> <span class="n">RECOVER</span> <span class="n">COLUMNS</span> <span class="p">(</span><span class="n">userid</span><span class="p">)</span> <span class="k">REPLACE</span>
+<span class="o">&gt;</span><span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span><span class="p">;</span>
+  <span class="n">userid</span>	<span class="n">int</span>
+</code></pre></div></div>
+<p>Passing an empty list of columns would behave similar to <code class="highlighter-rouge">ALTER DATABASE LOAD DEFINITIONS OVERWRITE</code> for that specific table. Example,</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span> <span class="n">RECOVER</span> <span class="n">COLUMNS</span> <span class="p">()</span> <span class="k">REPLACE</span>
+<span class="o">&gt;</span><span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span><span class="p">;</span>
+  <span class="n">userid</span>	<span class="n">int</span>
+  <span class="n">fname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">lname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">fullname</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">101</span><span class="p">)</span>
+  <span class="n">emailid</span>	<span class="n">varchar</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+  <span class="n">country</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="scan-data">Scan data</h2>
+
+<p>ODAS supports scanning JDBC data much similar to other data sources. For example,</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl REST_SERVER:PORT/api/scan/marketingdb.users
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">"userid"</span>: 4,
+        <span class="s2">"fname"</span>: <span class="s2">"Kevin"</span>,
+        <span class="s2">"lname"</span>: <span class="s2">"Kenneth"</span>,
+        <span class="s2">"fullname"</span>: <span class="s2">"Kevin Kenneth"</span>,
+        <span class="s2">"emailid"</span>: <span class="s2">"Kevin.Kenneth@sample.com"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">"userid"</span>: 5,
+        <span class="s2">"fname"</span>: <span class="s2">"Marie"</span>,
+        <span class="s2">"lname"</span>: <span class="s2">"Donald"</span>,
+        <span class="s2">"fullname"</span>: <span class="s2">"Marie Donald"</span>,
+        <span class="s2">"emailid"</span>: <span class="s2">"Marie.Donald@sample.com"</span>
+    <span class="o">}</span>,
+.....
+<span class="o">]</span>
+</code></pre></div></div>
+
+<h2 id="other-jdbc-operations">Other JDBC operations</h2>
+
+<p>Sample join query between two JDBC tables.</p>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt;select t.<span class="k">*</span>, u.<span class="k">*</span> from marketingdb.transactions_schemaed t left join marketingdb.users u ON <span class="o">(</span>u.userid <span class="o">=</span> t.userid<span class="o">)</span> where t.txnid <span class="o">=</span> 304
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>304|10/26/2016 08:59 PM|sku20|34225|100.000000|9821-5981-3318-9164|819.427.617.534|AU|34225|Melissa|Kenneth|Melissa Kenneth|Melissa.Kenneth@sample.com
+</code></pre></div></div>
+
+<p>ODAS, also supports <code class="highlighter-rouge">union all</code> operation within the same JDBC data source.</p>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt;select <span class="k">*</span> from marketingdb.transactions_schemaed where txnid <span class="o">=</span> 304 union all <span class="k">select</span> <span class="k">*</span> from marketingdb.transactions_schemaed_demo where txnid <span class="o">=</span> 376
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>304|10/26/2016 08:59 PM|sku20|34225|100.000000|9821-5981-3318-9164|819.427.617.534|AU
+376|12/18/2016 08:39 AM|sku19|51145|150.000000|3360-2156-3415-5155|224.872.343.772|FR
+</code></pre></div></div>
+
+<h3 id="jdbc-union-all-with-s3-data-source">JDBC union all with S3 data source</h3>
+
+<p>ODAS supports union all operations between JDBC and S3 data sources. For example if the data id spread across JDBC and S3, we can run <code class="highlighter-rouge">union all</code> query to retrieve them from these two sources in the same combined resultset.</p>
+
+<p><em>Query</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt;select j.txnid, j.dt_time, j.sku, j.userid, j.price, j.creditcard, j.ip from marketingdb.transactions_schemaed_demo j where j.txnid <span class="o">=</span> 304 union all <span class="k">select</span> <span class="k">*</span> from demo_test.transactions s3t where s3t.txnid <span class="o">=</span> 98314894
+</code></pre></div></div>
+<p><em>Results</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>304|10/26/2016 08:59 PM|sku20|34225|100.000000|9821-5981-3318-9164|819.427.617.534
+98314894|03/13/2016 10:41 PM|sku47|22505|960.000000|9018-5233-8275-5887|105.424.939.543
+</code></pre></div></div>
+
+<h2 id="create-table--using-view-as-jdbc-sql-string-statement"><code class="highlighter-rouge">CREATE TABLE ... USING VIEW AS ('JDBC SQL string')</code> Statement:</h2>
+
+<p>Many times, users would want to run complex queries on JDBC data sources. One way to run the repeated queries is to persist the SQL as a view in the database and refer to it as a view on ODAS. However, this could create many bloated views in the JDBC data source. Also users who only have SELECT permissions on the database would not be able to create view on the databases for this purpose. ODAS supports persisting these <code class="highlighter-rouge">INLINE VIEW</code>s as part of the catalog table definitions. Users can create tables with a backing inline view in the form of a SQL string, as part of the <code class="highlighter-rouge">CREATE TABLE</code> command. During scan operations, ODAS would automatically replace the tablename with the actual SQL string (Inline View) specified during table creation. The <code class="highlighter-rouge">SQL string</code> can be specific to the database. For example, if the underlying database is MySQL, the SQL string can be the supported MySQL version compliant SQL statement. The table name provided as part of this command is used as the alias of the resulting inline view of the converted SQL.</p>
+
+<p><em>Additionally, this removes the need to load all table definitions into the catalog.</em></p>
+
+<p><em>Note, this feature is ONLY available for JDBC data source tables</em></p>
+
+<h3 id="command-to-create-table-with-referring-inline-view">Command to create table with referring inline view:</h3>
+
+<p>Below is a sample command to create a catalog table backed by a SQL string (Inline view)</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">external</span> <span class="k">table</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">table_using_jdbc_complex_query</span>
+<span class="n">stored</span> <span class="k">as</span> <span class="n">JDBC</span> <span class="n">TBLPROPERTIES</span>
+<span class="p">(</span><span class="s1">'credentials.file'</span> <span class="o">=</span> <span class="s1">'s3://&lt;s3folder&gt;'</span><span class="p">,</span>
+ <span class="s1">'driver'</span> <span class="o">=</span> <span class="s1">'mysql'</span><span class="p">)</span>
+<span class="k">USING</span> <span class="k">VIEW</span> <span class="k">AS</span>
+<span class="s1">'select t.*, u.fname,lname,fullname,emailid from marketingdb.transactions_schemaed t
+left join marketingdb.users u ON (u.userid = t.userid)'</span>
+</code></pre></div></div>
+<p>Additionally, describe on the table would display the full definition of the resulting schema.</p>
+
+<p><em>Query</em></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">table_using_jdbc_complex_query</span><span class="p">;</span>
+</code></pre></div></div>
+<p><em>Output</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  txnid  bigint
+  dt_time  varchar<span class="o">(</span>30<span class="o">)</span>
+  sku  varchar<span class="o">(</span>40<span class="o">)</span>
+  userid  int
+  price  double
+  creditcard  varchar<span class="o">(</span>40<span class="o">)</span>
+  ip  varchar<span class="o">(</span>40<span class="o">)</span>
+  region  varchar<span class="o">(</span>2<span class="o">)</span>
+  fname  varchar<span class="o">(</span>50<span class="o">)</span>
+  lname  varchar<span class="o">(</span>50<span class="o">)</span>
+  fullname  varchar<span class="o">(</span>101<span class="o">)</span>
+  emailid  varchar<span class="o">(</span>150<span class="o">)</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">Describe formatted</code> would also show the actual query that would used in runtime when retrieving results for this table as part of the TBLPROPERTIES.</p>
+
+<p><em>Query</em></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">table_using_jdbc_complex_query</span>
+</code></pre></div></div>
+<p><em>Output</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Table Column info&gt;
+...
+Table Parameters:	NULL	NULL
+  	EXTERNAL            	TRUE
+  	credentials.file    	s3://&lt;s3location&gt;
+  	driver              	mysql
+  	jdbc.query          	<span class="k">select </span>t.<span class="k">*</span>, u.fname,lname,fullname,emailid from jdbc_demo.transactions_schemaed t
+                                left join jdbc_demo.users u ON <span class="o">(</span>u.userid <span class="o">=</span> t.userid<span class="o">)</span>
+  	mapred.input.table.name	marketingdb.table_using_jdbc_complex_query
+</code></pre></div></div>
+
+<h3 id="scan-data-from-the-table-backend-by-sql-inline-view">Scan data from the table backend by SQL (inline view)</h3>
+
+<p>Scan operations can be similar to on regular tables. Where clauses can be applied on the table.</p>
+
+<p><em>Query</em></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">test_using_jdbc_complex_query</span> <span class="k">where</span> <span class="n">txnid</span> <span class="o">=</span> <span class="mi">304</span>
+</code></pre></div></div>
+<p>internally results into,</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="p">(</span><span class="k">select</span> <span class="n">t</span><span class="p">.</span><span class="o">*</span><span class="p">,</span> <span class="n">u</span><span class="p">.</span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="p">,</span><span class="n">fullname</span><span class="p">,</span><span class="n">emailid</span> <span class="k">from</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">transactions_schemaed</span> <span class="n">t</span>
+<span class="k">left</span> <span class="k">join</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">userid</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">userid</span><span class="p">))</span> <span class="k">as</span> <span class="n">test_using_jdbc_complex_query</span> <span class="k">where</span> <span class="n">txnid</span> <span class="o">=</span> <span class="mi">304</span>
+</code></pre></div></div>
+
+<p>The table can be used for complex joins with other tables as well. <em>Note, this is for representational purpose and we join to same users table to demo</em></p>
+
+<p><em>Query</em></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">n</span><span class="p">.</span><span class="o">*</span> <span class="k">from</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">table_using_jdbc_complex_query</span> <span class="n">n</span> <span class="k">join</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">users</span> <span class="n">u</span> <span class="k">ON</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">userid</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">userid</span><span class="p">)</span> <span class="k">where</span> <span class="n">n</span><span class="p">.</span><span class="n">txnid</span> <span class="o">=</span> <span class="mi">376</span>
+</code></pre></div></div>
+<p><em>Result</em></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>376|12/18/2016 08:39 AM|sku19|51145|150.000000|3360-2156-3415-5155|224.872.343.772|FR|Stephanie|Maria|Stephanie Maria|Stephanie.Maria@sample.com
+</code></pre></div></div>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+                  <img src="assets/images/icon-footer.png" class="logo" />
+                  <div class="footer-meta">
+               &copy;2018 Okera, Inc. All rights reserved. <br />
+ Site last generated: Aug 15, 2018
+                  </div>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

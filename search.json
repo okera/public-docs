@@ -34,6 +34,14 @@
 
 
 {
+"url": "authorization-builtins",
+"file": "content/topics/AuthorizationBuiltins.md",
+}
+,
+
+
+
+{
 "url": "odas-cdh-integration",
 "file": "content/topics/CDHIntegration.md",
 }
@@ -106,6 +114,14 @@
 
 
 {
+"url": "datasets-page",
+"file": "content/topics/DatasetsPage.md",
+}
+,
+
+
+
+{
 "url": "docker-quickstart",
 "file": "content/topics/DockerQuickstart.md",
 }
@@ -124,6 +140,14 @@
 {
 "url": "eula",
 "file": "content/legal/EULA.md",
+}
+,
+
+
+
+{
+"url": "earlier-release-notes",
+"file": "content/topics/EarlierReleaseNotes.md",
 }
 ,
 
@@ -164,6 +188,14 @@
 {
 "url": "install",
 "file": "content/topics/Install.md",
+}
+,
+
+
+
+{
+"url": "jdbc-data-source",
+"file": "content/topics/JdbcDataSource.md",
 }
 ,
 
@@ -258,6 +290,14 @@
 
 
 {
+"url": "permissions-page",
+"file": "content/topics/PermissionsPage.md",
+}
+,
+
+
+
+{
 "url": "planner-integration",
 "file": "content/topics/PlannerIntegration.md",
 }
@@ -284,6 +324,14 @@
 {
 "url": "release-notes",
 "file": "content/topics/ReleaseNotes.md",
+}
+,
+
+
+
+{
+"url": "reports-page",
+"file": "content/topics/Reports.md",
 }
 ,
 
@@ -354,6 +402,14 @@
 
 
 {
+"url": "zeppelin",
+"file": "content/topics/Zeppelin.md",
+}
+,
+
+
+
+{
 "url": "",
 "file": "content/index.md",
 }
@@ -370,6 +426,14 @@
 
 
 
+
+
+
+{
+"url": "support-versions",
+"file": "content/topics/versions.md",
+}
+,
 
 
 
