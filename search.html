@@ -16,25 +16,30 @@
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<!-- Algolia Docusearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="theme/js/jquery.navgoco.min.js"></script>
-
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
 <script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
 
 <script>
 $( document ).ready(function() {
@@ -47,12 +52,16 @@ $( document ).ready(function() {
 });
 </script>
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
+
 
     <script>
         $(document).ready(function() {
@@ -107,65 +116,75 @@ $( document ).ready(function() {
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-wordmark"><a href="/">
-              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-8">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
             </div>
-
+            <form class="navbar-form" id="search-nav-container" role="search">
+                <div class="form-group">
+                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                </div>
+            </form>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
-                <!-- entries without drop-downs appear here -->
-
-
-
-
-                
-                
-                
-                <li class="active"><a href="search">Search</a></li>
-                
-                
-                
-                <li><a href="https://www.okera.com/blog" target="_blank">Okera Blog</a></li>
-                
-                
-                
-                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
-                
-                
-                
-                <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
-                
-                
-                <!-- comment out this block if you want to hide search
-                <li class="dropdown">
-
-                  <div id="search-demo-container">
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
                       <input type="text" name="q" id="search-input" placeholder="Search the docs...">
                       </form>
                   </div>
-
-                </li>
                 end search -->
-            </ul>
-        </div>
-        </div>
+        <!-- New Search Input  -->
+        <!-- <div class="navbar-form" id="search-demo-container">
+                    <input id="search-okera" type="text" placeholder="Search the docs...">
+                </div> -->
+        <!-- END SEARCH -->
         <!-- /.container -->
+    </div>
 </nav>
 
+<!-- Algolia Docusearch Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
+        indexName: 'okera',
+        inputSelector: '#search-okera',
+        debug: false // Set debug to true if you want to inspect the dropdown
+    });
+</script>
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -233,7 +252,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="install">Installation Guide</a> </li>
+          <li><a href="install">Installing the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -356,7 +396,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="authorization">Authorization Guide</a> </li>
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
           
           
           
@@ -593,7 +640,7 @@ $( document ).ready(function() {
          <p class="external">
              <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
          </p>
-         -->
+        -->
     
     <li>
     
@@ -609,7 +656,7 @@ $('#toc').on('click', 'a', function() {
   var target = $(this.getAttribute('href'))
     , scroll_target = target.offset().top
 
-  $(window).scrollTop(scroll_target - 10);
+  $(window).scrollTop(scroll_target - 80);
   return false
 })
 

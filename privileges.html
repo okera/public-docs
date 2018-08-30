@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Privileges | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<!-- Algolia Docusearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
+
+<script>
+$( document ).ready(function() {
+  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
+  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
+  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
+  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
+  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
+  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
+});
+</script>
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+
+        <div class="row">
+            <div class="col-sm-4 col-md-8">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
+            </div>
+            <form class="navbar-form" id="search-nav-container" role="search">
+                <div class="form-group">
+                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                </div>
+            </form>
+        </div>
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+                end search -->
+        <!-- New Search Input  -->
+        <!-- <div class="navbar-form" id="search-demo-container">
+                    <input id="search-okera" type="text" placeholder="Search the docs...">
+                </div> -->
+        <!-- END SEARCH -->
+        <!-- /.container -->
+    </div>
+</nav>
+
+<!-- Algolia Docusearch Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
+        indexName: 'okera',
+        inputSelector: '#search-okera',
+        debug: false // Set debug to true if you want to inspect the dropdown
+    });
+</script>
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Introduction to Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Installing the Deployment Manager</a>
+      <ul>
+          
+          
+          
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install">Installing the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-authentication">Authentication Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="support-versions">Versions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administering ODAS Clusters</a>
+      <ul>
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Catalog</a>
+      <ul>
+          
+          
+          
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="privileges">Privileges</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization-builtins">Authorization Builtin Functions</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="jdbc-data-source">JDBC Data Source</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-odas">Extending ODAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Web UI</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="datasets-page">Datasets Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="permissions-page">Permissions Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="reports-page">Reports Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="earlier-release-notes">Earlier Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="faq">Frequently Asked Questions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+        -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 80);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="privileges">Privileges</h1>
+
+<p>The Okera Policy Engine supports the following privileges:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Privilege</th>
+      <th>Objects</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ALL</code></td>
+      <td>Catalog, Database, Table</td>
+      <td>Grants full and unrestricted access to an object and any descendants. If WITH GRANT OPTION is added, this gives role that the ability to grant the specified permission to other principals. e.g <code class="highlighter-rouge">GRANT ALL on DATABASE okera_sample to role steward_role WITH GRANT OPTION</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">SELECT</code></td>
+      <td>Catalog, Database, Table, Column</td>
+      <td>Grants <strong>read</strong> access to an object and any descendants.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">SHOW</code></td>
+      <td>Catalog, Database, Table</td>
+      <td>Grants <strong>read</strong> access to object <strong>metadata only</strong>. Cannot be granted at a column level. </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">INSERT</code></td>
+      <td>Catalog, Database, Table, Column</td>
+      <td>Write access only to the object. Does not include read access.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CREATE</code></td>
+      <td>Catalog, Database</td>
+      <td>Grants ability to create an object within the object e.g. <code class="highlighter-rouge">GRANT CREATE ON DATABASE  grants the ability to create a table within the database</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ALTER</code></td>
+      <td>Catalog, Database, Table</td>
+      <td>Grants ability to edit metadata for specified object e.g alter table/view definition, add/drop/rename columns, change datatypes, partitions, storage locations, table properties</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="object-types-and-scope">Object Types and Scope</h2>
+
+<p>All permissions are usually <em>scoped</em> at a specific <em>object</em> level.</p>
+
+<h3 id="objects">Objects</h3>
+
+<p>Here are the object types supported by Okera:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Object</th>
+      <th>Syntax</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Catalog</td>
+      <td><code class="highlighter-rouge">CATALOG</code><sup>*</sup></td>
+      <td>Global scope for all objects in the Catalog. Previous syntax was Server.</td>
+    </tr>
+    <tr>
+      <td>Database    </td>
+      <td><code class="highlighter-rouge">DATABASE &lt;db_name&gt;</code></td>
+      <td>Scope on a single database and all included objects</td>
+    </tr>
+    <tr>
+      <td>Table</td>
+      <td><code class="highlighter-rouge">TABLE &lt;table_name&gt;</code></td>
+      <td>Permissions for a specific table, with all its columns</td>
+    </tr>
+    <tr>
+      <td>Column</td>
+      <td><code class="highlighter-rouge">(col1, coln) TABLE &lt;table_name&gt;</code></td>
+      <td>As before, but for a subset of columns only</td>
+    </tr>
+    <tr>
+      <td>URI</td>
+      <td><code class="highlighter-rouge">URI &lt;uri&gt;</code></td>
+      <td>Specific to a file-based resource.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><sup>* If you see SERVER, it’s from the old syntax for CATALOG </sup></p>
+
+<p>You can think of most of these like a hierarchy, with the exception of URIs.
+The latter is a separate object, while all the others subsume each other from left to right, as shown in the diagram.</p>
+
+<p><a name="Scope and hierarchy of objects"></a>
+<img src="assets/images/authz-scope.png" style="width: 100%; max-width:100%;" /></p>
+
+<h2 id="scope">Scope</h2>
+
+<p>Scope is the selection of an object at some point in the hierarchy, and knowing that all child objects are included.
+For example, if you allow read access to a specific database for a certain role, all user groups that are associated with that role will be able to read all datasets (that is, all tables and views) in the database.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> You cannot revoke permissions on a scope that were granted on a higher scope.
+If you grant access for a database to a specific role, you cannot revoke access to some of the datasets included in that database.</p>
+</blockquote>
+
+<p>Assigning permissions for child objects are commonly issued at the next higher scope.
+For instance, you need to permit <em>create</em> permissions for a role on the database level, allowing the role owners to create new tables and views inside that database.</p>
+
+<p>Views are handled using the same scope as tables.
+In other words, when addressing views as part of the authorization commands, refer to the table documentation.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> A known issue with views is that column level scope is not enforced.</p>
+</blockquote>
+
+<h2 id="uri-objects">URI Objects</h2>
+
+<p>URIs are a special kind of object, registering paths or specific resource files (such as Java JARs) that are accessible for non-administrative users.
+There are a handful types of actions that require file system permissions:</p>
+
+<ul>
+  <li>Creating databases</li>
+  <li>Creating external tables</li>
+  <li>Creating functions</li>
+  <li>Altering an external table’s location</li>
+  <li>Altering a table’s set of partitions</li>
+</ul>
+
+<p>In general, any action that requires the <code class="highlighter-rouge">LOCATION</code> or <code class="highlighter-rouge">ROW FORMAT SERDE</code> keywords is checked for file system permissions before it is allowed by the platform.
+Some of the above operations are <em>only</em> allowed at the catalog level scope, implicitly making anyone allowed at that level a global administrator.
+And since global administrators are unrestricted, it is assumed they have unrestricted access to the underlying file systems.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The file system checks for global administrators fall back to the Okera Data Access Service (ODAS) having access to the file resources.
+In practice, every ODAS setup will run with an authenticated technical user account, which needs to have access to all resources that are referenced by any of the location dependent SQL statements.</p>
+</blockquote>
+
+<p>The following table shows each affected action with the scope and privilege they require, and what that means for the file system checks:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Action Type</th>
+      <th>Scope</th>
+      <th>Privilege</th>
+      <th>File System Check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create Database</td>
+      <td>Catalog</td>
+      <td>All</td>
+      <td>Not needed</td>
+    </tr>
+    <tr>
+      <td>Create Function</td>
+      <td>Catalog</td>
+      <td>All</td>
+      <td>Not needed</td>
+    </tr>
+    <tr>
+      <td>Create External Table</td>
+      <td>Database</td>
+      <td>All</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td>Alter External Table Location</td>
+      <td>Database</td>
+      <td>All</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td>Alter Table Partitions</td>
+      <td>Database</td>
+      <td>All</td>
+      <td>Yes<sup>1</sup></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Legend: <sup>1</sup> Applies to non-administrative users only</p>
+
+<blockquote>
+  <p><strong>Note:</strong> URIs only are supported in combination with the <em>All</em> privilege, as shown in the table.</p>
+</blockquote>
+
+<p>For non-specific URIs, that is those which are not referencing a specific resource file (see <a href="extending-odas">Extending ODAS</a> for an example), access is checked for the given file system path.
+Any file or directory inside that location is automatically included.
+That allows, for example, an administrator to permit access to a specific root path for a given role.
+Any user that is associated with that role is allowed the same level of access inside that root path.</p>
+
+<p>Finally, any SQL statement that uses one of those resources implicitly, like a <code class="highlighter-rouge">SELECT</code> statement using a UDF, does <em>not</em> require a file system permission check again.
+This makes sense as first a table or function must be created before it can be used.
+In other words, an administrator or elevated user (with “All” privileges on the catalog or database level respectively) creates the object or function using the explicit location URI.
+Any other user with, for example, a read-only role is allowed to access the object or function without requiring explicit access to the underlying resources.</p>
+
+<p>Here are examples showing the difference:</p>
+
+<p><strong>Example:</strong> SQL statements that require explicit access to the specified resources</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">transactions_schemaed</span><span class="p">(</span>
+  <span class="n">txnid</span> <span class="n">BIGINT</span><span class="p">,</span>
+  <span class="n">dt_time</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">sku</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">userid</span> <span class="n">INT</span><span class="p">,</span>
+  <span class="n">price</span> <span class="n">FLOAT</span><span class="p">,</span>
+  <span class="n">creditcard</span> <span class="n">STRING</span><span class="p">,</span>
+  <span class="n">ip</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
+<span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="s1">','</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://acme-sales-data/transactions'</span><span class="p">;</span>
+
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span> <span class="n">RECOVER</span> <span class="n">PARTITIONS</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">sales</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span> <span class="k">RETURNS</span> <span class="n">STRING</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://acme-udfs-public/udfs/mask-udf.jar'</span>
+<span class="n">SYMBOL</span><span class="o">=</span><span class="s1">'com.acme.hiveudf.MaskUDF'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> SQL statements that do <em>not</em> require explicit access to the underlying resources</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="n">txnid</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
+<span class="k">SELECT</span>
+  <span class="n">txnid</span><span class="p">,</span>
+  <span class="n">dt_time</span><span class="p">,</span>
+  <span class="n">sku</span><span class="p">,</span>
+  <span class="n">if</span> <span class="p">(</span><span class="n">has_access</span><span class="p">(</span><span class="s1">'sales.transactions_schemaed'</span><span class="p">),</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">as</span> <span class="n">userid</span><span class="p">,</span>
+  <span class="n">price</span><span class="p">,</span>
+  <span class="n">if</span> <span class="p">(</span><span class="n">has_access</span><span class="p">(</span><span class="s1">'sales.transactions_schemaed'</span><span class="p">),</span> <span class="n">creditcard</span><span class="p">,</span><span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">as</span> <span class="n">creditcard</span><span class="p">,</span>
+  <span class="n">if</span> <span class="p">(</span><span class="n">has_access</span><span class="p">(</span><span class="s1">'sales.transactions_schemaed'</span><span class="p">),</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">as</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">as</span> <span class="n">ip</span>
+<span class="k">FROM</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>How this is used in practice is explained in <a href="authorization#best-practices">Best Practices</a>.</p>
+
+<!--
+https://s3-us-west-2.amazonaws.com/cerebrodata-internal-release/docs-staging/faq#granting-on-uri
+-->
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+      </div>
+    </div>
+  </div>
+</footer>
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

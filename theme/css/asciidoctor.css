@@ -131,7 +131,7 @@ meta.foundation-mq-large { font-family: "only screen and (min-width:1440px)"; wi
 
 html, body { font-size: 100%; }
 
-body { background: white; color: rgba(0, 0, 0, 0.8); padding: 0; margin: 0; font-family: "Noto Serif", "DejaVu Serif", serif; font-weight: normal; font-style: normal; line-height: 1; position: relative; cursor: auto; }
+body { background: white; color: rgba(0, 0, 0, 0.8); padding: 0; margin: 0; font-family: inherit; font-weight: normal; font-style: normal; line-height: 1; position: relative; cursor: auto; }
 
 a:hover { cursor: pointer; }
 
@@ -188,7 +188,7 @@ p { font-family: inherit; font-weight: normal; font-size: 1em; line-height: 1.6;
 p aside { font-size: 0.875em; line-height: 1.35; font-style: italic; }
 
 /* Default header styles */
-h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { font-family: "Open Sans", "DejaVu Sans", sans-serif; font-weight: 300; font-style: normal; color: #ba3925; text-rendering: optimizeLegibility; margin-top: 1em; margin-bottom: 0.5em; line-height: 1.0125em; }
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 { font-family: inherit; font-style: normal; color: #ba3925; text-rendering: optimizeLegibility; margin-top: 1em; margin-bottom: 0.5em; line-height: 1.0125em; }
 h1 small, h2 small, h3 small, #toctitle small, .sidebarblock > .content > .title small, h4 small, h5 small, h6 small { font-size: 60%; color: #e99b8f; line-height: 0; }
 
 h1 { font-size: 2.125em; }
@@ -208,7 +208,7 @@ hr { border: solid #ddddd8; border-width: 1px 0 0; clear: both; margin: 1.25em 0
 /* Helpful Typography Defaults */
 em, i { font-style: italic; line-height: inherit; }
 
-strong, b { font-weight: bold; line-height: inherit; }
+strong, b { font-weight: 600; line-height: inherit; }
 
 small { font-size: 60%; line-height: inherit; }
 

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Okera Installation | Okera User Documentation</title>
+<title>Okera Installation - Introduction | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -16,25 +16,30 @@
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<!-- Algolia Docusearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="theme/js/jquery.navgoco.min.js"></script>
-
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
 <script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
 
 <script>
 $( document ).ready(function() {
@@ -47,12 +52,16 @@ $( document ).ready(function() {
 });
 </script>
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
+
 
     <script>
         $(document).ready(function() {
@@ -107,65 +116,75 @@ $( document ).ready(function() {
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-wordmark"><a href="/">
-              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-8">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
             </div>
-
+            <form class="navbar-form" id="search-nav-container" role="search">
+                <div class="form-group">
+                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                </div>
+            </form>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
-                <!-- entries without drop-downs appear here -->
-
-
-
-
-                
-                
-                
-                <li><a href="search">Search</a></li>
-                
-                
-                
-                <li><a href="https://www.okera.com/blog" target="_blank">Okera Blog</a></li>
-                
-                
-                
-                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
-                
-                
-                
-                <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
-                
-                
-                <!-- comment out this block if you want to hide search
-                <li class="dropdown">
-
-                  <div id="search-demo-container">
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
                       <input type="text" name="q" id="search-input" placeholder="Search the docs...">
                       </form>
                   </div>
-
-                </li>
                 end search -->
-            </ul>
-        </div>
-        </div>
+        <!-- New Search Input  -->
+        <!-- <div class="navbar-form" id="search-demo-container">
+                    <input id="search-okera" type="text" placeholder="Search the docs...">
+                </div> -->
+        <!-- END SEARCH -->
         <!-- /.container -->
+    </div>
 </nav>
 
+<!-- Algolia Docusearch Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
+        indexName: 'okera',
+        inputSelector: '#search-okera',
+        debug: false // Set debug to true if you want to inspect the dropdown
+    });
+</script>
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -233,7 +252,28 @@ $( document ).ready(function() {
           
           
           
-          <li class="active"><a href="install">Installation Guide</a></li>
+          <li class="active"><a href="install">Installing the Deployment Manager</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -356,7 +396,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="authorization">Authorization Guide</a> </li>
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
           
           
           
@@ -593,7 +640,7 @@ $( document ).ready(function() {
          <p class="external">
              <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
          </p>
-         -->
+        -->
     
     <li>
     
@@ -609,7 +656,7 @@ $('#toc').on('click', 'a', function() {
   var target = $(this.getAttribute('href'))
     , scroll_target = target.offset().top
 
-  $(window).scrollTop(scroll_target - 10);
+  $(window).scrollTop(scroll_target - 80);
   return false
 })
 
@@ -643,691 +690,29 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="okera-installation">Okera Installation</h1>
+  <h1 id="okera-installation---introduction">Okera Installation - Introduction</h1>
 
-<p>Here we walk through the entire installation process for a basic setup of the Okera platform.
+<p>This document will walk you through the entire installation process for a basic setup of the Okera platform.
 These steps will result in a fully operational Okera cluster for development, testing, or production.
 A full deployment consisting of the Deployment Manager, and a running Okera Data Access Service (ODAS) cluster, including Okera Catalog.</p>
+
+<p><strong>The installation consists of 3 high level sections that need to be completed in this order:</strong></p>
 
 <!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 <ul>
-  <li><a href="#prerequisites">Prerequisites</a>
-    <ul>
-      <li><a href="#aws-requirements">AWS Requirements</a></li>
-      <li><a href="#deployment-manager-host-requirements">Deployment Manager Host Requirements</a></li>
-      <li><a href="#cluster-node-requirements">Cluster Node Requirements</a></li>
-      <li><a href="#network-requirements">Network Requirements</a></li>
-      <li><a href="#cli-requirements">CLI Requirements</a></li>
-      <li><a href="#supported-browsers">Supported Browsers</a></li>
-    </ul>
+  <li>
+    <p><a href="okera-prereq">Install Prerequisites</a></p>
   </li>
-  <li><a href="#setting-up-the-deployment-manager">Setting Up the Deployment Manager</a>
-    <ul>
-      <li><a href="#install-the-aws-cli-tool">Install the AWS CLI Tool</a></li>
-      <li><a href="#acquire-and-extract-the-dm-tarball">Acquire and Extract the DM Tarball</a></li>
-      <li><a href="#acquire-the-okera-cli">Acquire the Okera CLI</a></li>
-      <li><a href="#establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</a></li>
-      <li><a href="#configure-the-deployment-manager">Configure the Deployment Manager</a>
-        <ul>
-          <li><a href="#dm-configuration-options">DM Configuration Options</a></li>
-        </ul>
-      </li>
-      <li><a href="#start-the-deployment-manager">Start the Deployment Manager</a>
-        <ul>
-          <li><a href="#deployment-manager-config-validator">Deployment Manager Config Validator</a></li>
-        </ul>
-      </li>
-    </ul>
+  <li>
+    <p><a href="okera-installation-setting-up-deployment-manager">Setting up the Deployment Manager</a></p>
   </li>
-  <li><a href="#setting-up-a-odas-cluster">Setting up a ODAS Cluster</a>
-    <ul>
-      <li><a href="#configure-node-settings">Configure Node Settings</a></li>
-      <li><a href="#prep-the-cluster">Prep the Cluster</a></li>
-      <li><a href="#create-a-cluster">Create a Cluster</a>
-        <ul>
-          <li><a href="#restarting-a-failed-cluster-after-addressing-issues">Restarting a Failed Cluster after Addressing Issues</a></li>
-          <li><a href="#starting-multiple-okera-catalogs-sharing-the-same-metadata">Starting Multiple Okera Catalogs Sharing the Same Metadata</a></li>
-        </ul>
-      </li>
-    </ul>
+  <li>
+    <p><a href="okera-installation-setting-up-odas-cluster">Setting up the ODAS Cluster</a></p>
   </li>
 </ul>
 
 <!-- /TOC -->
-
-<h2 id="prerequisites">Prerequisites</h2>
-
-<h3 id="aws-requirements">AWS Requirements</h3>
-
-<p>Before installing Okera, the following AWS services must be set up.
-The AWS services include an S3 Bucket, RDS, and IAM credentials.</p>
-
-<ul>
-  <li>
-    <p><strong>S3 Bucket</strong></p>
-
-    <p>Okera uses the S3 bucket to store log files and to stage intermediate configuration files.
- The S3 bucket is set to readable and writable by all instances running Okera components.
- The S3 bucket is referred to as <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> later in this document.</p>
-  </li>
-  <li>
-    <p><strong>RDS instance</strong></p>
-
-    <p>Okera is backed by a relational database, either MySQL 5.6/5.7 or Aurora (MySQL 5.6.x/5.7.x compatible), provisioned with the configuration of your choice.
- Okera instances require read and write access to the <code class="highlighter-rouge">OKERA_DB_URL</code> database.</p>
-  </li>
-  <li>
-    <p><strong>IAM credentials</strong></p>
-
-    <p>Okera instances require read and write access to <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> and <code class="highlighter-rouge">OKERA_DB_URL</code>. The Deployment Manager requires the ability to provision instances.
- The cluster nodes require read credentials to your data.
- These credentials can be one IAM profile with all the credentials, or two separate roles.
- The IAM role for the Deployment Manager (DM) is referred to as <code class="highlighter-rouge">IAM_MANAGER</code> and the IAM role for the cluster nodes is referred to as <code class="highlighter-rouge">IAM_CLUSTER</code>.</p>
-  </li>
-</ul>
-
-<h3 id="deployment-manager-host-requirements">Deployment Manager Host Requirements</h3>
-
-<p>The Deployment Manager does not require a dedicated host, but its host must be separate from any clusters or nodes it manages.</p>
-
-<ul>
-  <li>Linux installed</li>
-  <li>Java 8 or higher installed (<a href="http://openjdk.java.net/install/index.html">OpenJDK</a> or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Oracle JVM</a>).</li>
-  <li><code class="highlighter-rouge">IAM_MANAGER</code> credentials</li>
-  <li>Minimum instance type: <code class="highlighter-rouge">t2.medium</code></li>
-  <li><code class="highlighter-rouge">awscli</code> installed</li>
-</ul>
-
-<h3 id="cluster-node-requirements">Cluster Node Requirements</h3>
-
-<p>The cluster nodes are created by the Deployment Manager based on a user-defined launch script.
-The cluster node requirements include:</p>
-
-<ul>
-  <li><strong>CentOS 7/RHEL 7</strong>
- Okera installs Java if not present.
- If your environment uses non-standard package management, see additional steps below.</li>
-  <li><code class="highlighter-rouge">IAM_CLUSTER</code> credentials</li>
-  <li>Minimum instance type: <code class="highlighter-rouge">t2.large</code> with a minimum of 40GB local storage</li>
-</ul>
-
-<h3 id="network-requirements">Network Requirements</h3>
-
-<p>There must be full network connectivity between the nodes in the cluster and the Deployment Manager.</p>
-
-<h3 id="cli-requirements">CLI Requirements</h3>
-
-<p>Any machine running the Okera CLI, <code class="highlighter-rouge">ocadm</code> must have network access to the Deployment Manager and cluster machines.
-The CLI can be installed on the Deployment Manager host or any workstation or development environment with network access to the Deployment Manager and the cluster.</p>
-
-<p>The CLI requirements include:</p>
-
-<ul>
-  <li>OS
-    <ul>
-      <li>RHEL 6 or later</li>
-      <li>Ubuntu 14.04 or later</li>
-      <li>OS X Darwin 10.11 (OS X El Capitan) or later</li>
-    </ul>
-  </li>
-  <li>Network access to DM and cluster nodes</li>
-</ul>
-
-<h3 id="supported-browsers">Supported Browsers</h3>
-
-<p>Okera’s Web UI is tested against the latest versions of the following browsers:</p>
-
-<ul>
-  <li>Google Chrome</li>
-  <li>Mozilla Firefox</li>
-  <li>Apple Safari</li>
-  <li>Microsoft Edge</li>
-</ul>
-
-<h2 id="setting-up-the-deployment-manager">Setting Up the Deployment Manager</h2>
-
-<h3 id="install-the-aws-cli-tool">Install the AWS CLI Tool</h3>
-
-<p>To install the awscli command-line tool on a newly provisioned Deployment Manager host, perform these commands.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum install wget
-<span class="nb">sudo </span>wget https://bootstrap.pypa.io/get-pip.py
-<span class="nb">sudo </span>python get-pip.py
-<span class="nb">sudo </span>pip install awscli
-aws configure
-</code></pre></div></div>
-
-<h3 id="acquire-and-extract-the-dm-tarball">Acquire and Extract the DM Tarball</h3>
-
-<p>Follow these steps to get the Deployment Manager tarball on the DM host.</p>
-
-<ol>
-  <li>Download and extract the Deployment Manager tarball.
-The recommended download location is <code class="highlighter-rouge">/opt/okera</code>, but it can be downloaded to anywhere.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /opt/okera <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /opt/okera
-</code></pre></div>    </div>
-  </li>
-  <li>Update ownership of the destination directory.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /opt/okera
-</code></pre></div>    </div>
-  </li>
-  <li>Get the tarball from S3.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.0-rc1/deployment-manager-1.2.0-rc1.tar.gz
-</code></pre></div>    </div>
-  </li>
-  <li>Extract the bits.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.2.0-rc1.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.2.0-rc1.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.2.0-rc1 deployment-manager
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h3 id="acquire-the-okera-cli">Acquire the Okera CLI</h3>
-
-<p>Perform this for any machine on which you want to run the Okera CLI tool.
-Download the shell binary for either Linux or OS X (depending on which OS is running the CLI).</p>
-<ul>
-  <li><strong>Linux</strong>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.0-rc1/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
-</code></pre></div>    </div>
-  </li>
-  <li><strong>OS X</strong>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.0-rc1/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h3 id="establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</h3>
-
-<p>Configure the logging and local install directories.
-These directories should be paths on the local file system.
-The install directory should be restored if this machine is moved.
-By default, the directories are <code class="highlighter-rouge">/var/log/okera</code> and <code class="highlighter-rouge">/etc/okera</code>.
-The directories can be changed by setting <code class="highlighter-rouge">DEPLOYMENT_MANAGER_LOG_DIR</code> and <code class="highlighter-rouge">OKERA_INSTALL_DIR</code> in the environment.</p>
-
-<p><strong>Example:</strong> Creating the Logging and Install Directories</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/okera
-<span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/okera
-<span class="nb">sudo </span>chmod 700 /etc/okera
-</code></pre></div></div>
-
-<p>The Deployment Manager user needs exclusive access to those directories.
-If the directories are created with a different user than the Deployment Manager user, run:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /var/log/okera
-<span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /etc/okera
-</code></pre></div></div>
-
-<h3 id="configure-the-deployment-manager">Configure the Deployment Manager</h3>
-
-<p>You must configure the Deployment Manager before it can be run.
-The configuration is done by using environment variables and before starting up the server.
-It is recommended that you copy the template configuration and update it.
-The steps below assume that the standard install paths were used.</p>
-
-<ol>
-  <li>Copy the Deployment Manager environment.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/okera/deployment-manager/conf/env-template.sh /etc/okera/env.sh
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Open and edit <code class="highlighter-rouge">env.sh</code>, modifying it as necessary.
-The config script from <code class="highlighter-rouge">/etc/okera/env.sh</code> is automatically loaded when starting the Deployment Manager.
-If this is the path used, it is not necessary to source the script.</p>
-  </li>
-  <li>Restart the deployment manager by running:
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h4 id="dm-configuration-options">DM Configuration Options</h4>
-
-<p>Below are common available Okera configuration options.
-They can be set as environment variables or in <code class="highlighter-rouge">/etc/okera/env.sh</code>, as explained above.
-They are loaded when the Deployment Manager starts.</p>
-
-<p>For additional Deployment Manager configuration options, see <a href="advanced-install#deployment-manager-configuration">Advanced Installation: DM Configs</a>.</p>
-
-<h5 id="okera_s3_staging_dir">OKERA_S3_STAGING_DIR</h5>
-
-<p>This directory is the <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> for logs and install files.
-It can exist anywhere in S3 that makes sense for your organization.
-Okera creates in this directory a number of required subdirectories.</p>
-
-<p><strong>Example:</strong> Setting the S3 staging directory</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_S3_STAGING_DIR</span><span class="o">=</span>s3://&lt;your_okera_dir&gt;
-</code></pre></div></div>
-
-<h5 id="relational-database-credentials">Relational Database Credentials</h5>
-
-<p>The settings <code class="highlighter-rouge">OKERA_DB_URL</code>, <code class="highlighter-rouge">OKERA_DB_USERNAME</code> <code class="highlighter-rouge">OKERA_DB_PASSWORD</code> are the end point and credentials for the DM’s RDB backend.
-The <code class="highlighter-rouge">OKERA_DB_URL</code> should be host:port (typically port <code class="highlighter-rouge">3306</code>) of the running MySQL/Aurora instance.</p>
-
-<p><strong>Example:</strong> Setting the database location and credentials</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_DB_URL</span><span class="o">=</span>okera.xyzzzz.rds.amazonaws.com:3306
-<span class="nb">export </span><span class="nv">OKERA_DB_USERNAME</span><span class="o">=</span>okera
-<span class="nb">export </span><span class="nv">OKERA_DB_PASSWORD</span><span class="o">=</span>&lt;password&gt;
-</code></pre></div></div>
-
-<h5 id="okera_catalog_admins">OKERA_CATALOG_ADMINS</h5>
-
-<p>ODAS clusters by default start up with one user which has admin on the system.
-The admin users can create and manage roles, grant roles to other users and read all datasets.
-This default user is the system user - the user that ODAS services use to authenticate itself and depends on how authentication was configured.</p>
-
-<p>With <strong>Kerberos</strong>, the admin user is the first part of the kerberos principal.</p>
-
-<p>When using <strong>JSON Web Tokens (JWT)</strong>, the admin user is the subject in the <code class="highlighter-rouge">OKERA_SYSTEM_TOKEN</code>.</p>
-
-<p>With no authentication, the admin user is ‘root’.
-To specify other admin users, edit the comma-separated list of admin users and groups.</p>
-
-<p><strong>Example:</strong> Setting the list of admin users and groups.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_CATALOG_ADMINS</span><span class="o">=</span>admin,username1,admin-group
-</code></pre></div></div>
-
-<p>Admins users can grant permissions to other users/groups including the ability to grant to other users.
-However, only admin users can create new roles.</p>
-
-<h5 id="okera_port_configuration">OKERA_PORT_CONFIGURATION</h5>
-
-<p>This configuration specifies the ports on which cluster services run.
-These ports do need to be available for all users connecting to Okera for metadata and data.
-The ports are contained in a comma-separated list of service:portname:port number.
-If the ports are not specified, Okera randomly selects available ports on which to expose these services.</p>
-
-<p>Below are the ports that are required for clients.</p>
-
-<ul>
-  <li><code class="highlighter-rouge">cdas_rest_server:api</code></li>
-  <li><code class="highlighter-rouge">cerebro_catalog:hms</code></li>
-  <li><code class="highlighter-rouge">cerebro_catalog:sentry</code></li>
-  <li><code class="highlighter-rouge">cerebro_planner:planner</code></li>
-  <li><code class="highlighter-rouge">cerebro_web:webui</code></li>
-  <li><code class="highlighter-rouge">cerebro_worker:worker</code></li>
-  <li><code class="highlighter-rouge">kubernetes_dashboard:admin_ui</code></li>
-  <li><code class="highlighter-rouge">grafana:ui</code></li>
-</ul>
-
-<p>An example configuration:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"okera_worker:worker:7185,cerebro_catalog:sentry:7182"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:7184"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_planner:planner:7183"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_catalog:hms:7180"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_web:webui:7186"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,grafana:ui:10000"</span>
-<span class="nb">export </span><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,kubernetes_dashboard:admin_ui:10001"</span>
-</code></pre></div></div>
-
-<h5 id="kerberos-configuration">Kerberos Configuration</h5>
-
-<p>To enable Kerberos, specify these configurations:</p>
-
-<ul>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code></p>
-
-    <p>Principal for non-REST Okera services.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_KERBEROS_HTTP_PRINCIPAL</code></p>
-
-    <p>Principal for REST Okera services.
- By convention, this configuration should start with <code class="highlighter-rouge">HTTP/</code> and is highly recommend for maintaining compatibility with existing tools.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_KERBEROS_KEYTAB_FILE</code></p>
-
-    <p>Path to the keytab file containing both principals.
- This path should be accessible from the Deployment Manager, either on the local file system or in S3.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_KERBEROS_ENABLED_REALMS</code></p>
-
-    <p>List of comma-separated cross realms from which to accept connections.
- This configuration does not need to be specified if only connections from the <code class="highlighter-rouge">OKERA_KERBEROS_PRINCIPAL</code> realm are allowed to connect.</p>
-  </li>
-</ul>
-
-<p><strong>Example:</strong> Setting up Kerberos principal variables</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_KERBEROS_PRINCIPAL</span><span class="o">=</span><span class="s2">"okera/cname.example.com@REALM.com"</span>
-<span class="nb">export </span><span class="nv">OKERA_KERBEROS_HTTP_PRINCIPAL</span><span class="o">=</span><span class="s2">"HTTP/cname.example.com@REALM.com"</span>
-<span class="nb">export </span><span class="nv">OKERA_KERBEROS_KEYTAB_FILE</span><span class="o">=</span><span class="s2">"/etc/okera.keytab"</span>
-</code></pre></div></div>
-
-<p>For more information on how to set up a Kerberized cluster, see <a href="kerberos-cluster-setup">Kerberos Cluster Setup</a>.</p>
-
-<h5 id="json-web-tokens-jwt-configuration">JSON Web Tokens (JWT) Configuration</h5>
-
-<p>To enable authentication using JSON Web Tokens (JWT), specify these configurations:</p>
-
-<ul>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_JWT_PUBLIC_KEY</code></p>
-
-    <p>Path to the public key to decrypt tokens.
- It must be accessible on the Deployment Manager machine, but can be on the local machine or in S3.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_JWT_ALGORITHM</code></p>
-
-    <p>Algorithm used to decrypt tokens.
- Must be set to <code class="highlighter-rouge">RSA256</code> or <code class="highlighter-rouge">RSA512</code>.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_JWT_AUTHENTICATION_SERVER_URL</code></p>
-
-    <p>URL used to authenticate JWT tokens.
- A POST call is issued to this URL, specifying the token to authenticate.
- This cannot be set if the <code class="highlighter-rouge">OKERA_JWT_PUBLIC_KEY</code> is set.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_SYSTEM_TOKEN</code></p>
-
-    <p>Path to a file that contains the token (on a single line) that Okera services uses to authenticate itself.
- The subject for this token acts as the Okera system user.</p>
-  </li>
-</ul>
-
-<p><strong>Example:</strong> Setting the JWT token variables with a local path</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_JWT_PUBLIC_KEY</span><span class="o">=</span><span class="s2">"/etc/jwt.512.pub"</span>
-<span class="nb">export </span><span class="nv">OKERA_JWT_ALGORITHM</span><span class="o">=</span><span class="s2">"RSA512"</span>
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Setting the JWT token variables for a REST call and a token to pass</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_JWT_AUTHENTICATION_SERVER_URL</span><span class="o">=</span><span class="s2">"http://sso/verify-token"</span>
-<span class="nb">export </span><span class="nv">OKERA_SYSTEM_TOKEN</span><span class="o">=</span><span class="s2">"/etc/okera.token"</span>
-</code></pre></div></div>
-
-<p>For more about authentication with JWTs, see <a href="odas-authentication#json-web-tokens">ODAS Authentication</a>.
-For more advanced configurations, see <a href="advanced-install#jwt">here</a>.</p>
-
-<h5 id="https-configuration">HTTPS Configuration</h5>
-
-<p>To enable HTTPS, specify the SSL certificate and private key that Okera uses.
-Setting the certificate and key enables HTTPS on the REST server and Web UI.</p>
-
-<ul>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_SSL_CERTIFICATE_FILE</code></p>
-
-    <p>Path to the certificate file.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_SSL_KEY_FILE</code></p>
-
-    <p>Path to the file with the private key.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_SSL_FQDN</code> (optional)</p>
-
-    <p>Fully qualified domain name for the cluster.
- If set, this must be a valid “Subject Alternate Name” in the certificate.
- This can be the fully qualified domain name for any node in this cluster (typically the CNAME for the REST service).
- This is required for some clients, which often do not allow navigating IP addresses with SSL is enabled, such as newer versions of Chrome.</p>
-  </li>
-</ul>
-
-<p><strong>Example:</strong> Setting the HTTPS environment variables</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SSL_CERTIFICATE_FILE</span><span class="o">=</span>/etc/okera.cert
-<span class="nb">export </span><span class="nv">OKERA_SSL_KEY_FILE</span><span class="o">=</span>/etc/okera.key
-<span class="nb">export </span><span class="nv">OKERA_SSL_FQDN</span><span class="o">=</span>rest-server.okera.com
-</code></pre></div></div>
-
-<h5 id="ldap-configuration">LDAP Configuration</h5>
-
-<p>For information on how to set LDAP Basic Auth related environment variables, see <a href="secure-okera-rest-api-ldap#setting-up-ldap-related-configurations">LDAP Basic Auth</a>.</p>
-
-<p>For more details on interactions with authenticated Okera, see:</p>
-
-<ul>
-  <li><a href="odas-authentication">Authentication</a></li>
-  <li><a href="secure-deployment-manager-rest-api">Security</a></li>
-</ul>
-
-<h5 id="oauth-configuration">OAuth Configuration</h5>
-
-<p>Okera can be deployed with OAuth enabled for easier Web UI login. For more information, see</p>
-<ul>
-  <li><a href="secure-okera-rest-api-oauth">OAuth Guide</a>.</li>
-</ul>
-
-<h5 id="shared-cookie-configuration">Shared Cookie Configuration</h5>
-
-<p>The Okera Portal can be configured to use shared cookies for authentication.
-For this to work, Okera needs to be configured with the shared cookie name and the shared cookie domain.
-The following environment variables need to be set either on the Deployment Manager or on the <code class="highlighter-rouge">cerebro_web:webui</code> container.</p>
-
-<ul>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_SHARED_COOKIE_NAME</code></p>
-
-    <p>The name of the cookie that contains the login token.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">OKERA_SHARED_COOKIE_DOMAIN</code></p>
-
-    <p>The full name of the (sub)domain on which <code class="highlighter-rouge">OKERA_SHARED_COOKIE_NAME</code> is shared.
-This value will be passed verbatim to the browser’s cookie domain.</p>
-  </li>
-</ul>
-
-<p><strong>Example:</strong> Setting the Shared Cookie values</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SHARED_COOKIE_NAME</span><span class="o">=</span>my_company_token
-<span class="nb">export </span><span class="nv">OKERA_SHARED_COOKIE_DOMAIN</span><span class="o">=</span>subdomain1.example.com
-</code></pre></div></div>
-
-<p>Given the above example, the Okera Portal will attempt to read the cookie named <code class="highlighter-rouge">my_company_token</code> for a value assumed to be the token.
-The Okera Portal must be hosted on <code class="highlighter-rouge">subdomain1.example.com</code> or a subdomain of it in order to read that value.
-Additionally, if the Okera Portal generates a new token, it will write it to the <code class="highlighter-rouge">my_company_token</code> cookie, sharing it across <code class="highlighter-rouge">subdomain1.example.com</code>.</p>
-
-<h3 id="start-the-deployment-manager">Start the Deployment Manager</h3>
-
-<p>After setting the environment variables and sourcing them, start the Deployment Manager.</p>
-
-<p><strong>Example:</strong> Deployment Manager startup</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager
-</code></pre></div></div>
-
-<p>This should output <code class="highlighter-rouge">System up and running</code> and the server hostport.</p>
-
-<blockquote>
-  <p><strong>Note:</strong> This step is not expected to take more than 30 seconds.
-It usually indicates a configuration issue if the Deployment Manager does not come up in a reasonable amount of time.</p>
-</blockquote>
-
-<p>The Deployment Manager runs as a daemon
-Its logs can be viewed by entering:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>less /var/log/okera/deployment-manager.log
-</code></pre></div></div>
-
-<p>Any configuration issues should be visible at the end of the log.</p>
-
-<h4 id="deployment-manager-config-validator">Deployment Manager Config Validator</h4>
-
-<p>It is possible to run the Deployment Manager config validation without restarting the Deployment Manager process.
-This is convenient to test new configs or to quickly diagnose problematic configs.</p>
-
-<p>To run the Deployment Manager config validation without restarting the Deployment Manager, run the deployment-manager script with the <code class="highlighter-rouge">verify-configs-only</code> argument.</p>
-
-<p><strong>Example:</strong> Validating a DM config without starting the DM</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/okera/deployment-manager/bin/deployment-manager verify-configs-only
-...
-<span class="k">*************************************************************</span>
-  Config validation successful.
-<span class="k">*************************************************************</span>
-</code></pre></div></div>
-
-<h3 id="configure-ocadm">Configure ocadm</h3>
-
-<p>Configure ocadm to connect with a running Deployment Manager.</p>
-
-<p>Run the following:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/ocadm configure <span class="nt">--server</span> &lt;DM_host:port&gt;
-/opt/ocadm status
-</code></pre></div></div>
-
-<p>Running the <code class="highlighter-rouge">status</code> command should return the result:
-<code class="highlighter-rouge">Service available. Status: Running.</code></p>
-
-<h2 id="setting-up-a-odas-cluster">Setting up a ODAS Cluster</h2>
-
-<p>To create and launch a ODAS cluster, the Deployment Manager must be running.</p>
-
-<h3 id="configure-node-settings">Configure Node Settings</h3>
-
-<p>Cluster launch is broken up into two parts: actions required on the Deployment Manager and actions required on each launched EC2 instance.</p>
-
-<p>Actions required on the Deployment Manager are referred to as the <strong>launch script</strong> or <strong>cluster launch script</strong>.
-One of those two scripts are required, and when called, should provision either a new EC2 instance or a new autoscaling group, respectively.
-The configured script is run from the DM master and should specify all of the required configurations described in the Cluster machine section in the prerequisites (for example, VPC, security groups, IAM Roles, etc).
-This script is the best place to tag machines or do other setup required by your organization.
-Details about launch scripts and cluster launch scripts can be found in <a href="cluster-launch-plugin-api">Cluster Launch Plugin API</a>.</p>
-
-<p>Actions required on each launched EC2 machine are referred to as the <strong>init scripts</strong>.
-The init scripts are an optional set of scripts that run when the instance is launched on the instance machine.
-For example, one of these scripts could install any monitoring software that you use or configure the machine to use custom package repo locations.</p>
-
-<p>Okera has provided a template launch script in the <code class="highlighter-rouge">/opt/okera/deployment-manager/bin/start-ec2-machine-example.sh</code> directory.
-Copy the script and adapt it to your requirements.
-The user-configurable values are at the top of the file, marked <code class="highlighter-rouge">USER</code> in a comment.
-At a minimum, a subnet ID and security group ID must be added to the script.</p>
-
-<p><strong>Example:</strong> Migrating the launch script for editing</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/okera/deployment-manager/bin/start-ec2-machine-example.sh /etc/okera/launch-ec2.sh
-</code></pre></div></div>
-
-<p>To verify the launch script, Okera recommends running the script with the <code class="highlighter-rouge">--dryrun</code> optional.
-If the configurations are valid, the script should exit with a status of <code class="highlighter-rouge">0</code>.</p>
-
-<p><strong>Example:</strong> Launch script validation</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/okera/launch-ec2.sh <span class="nt">--dryrun</span>
-Dry run succeeded
-<span class="nb">echo</span> <span class="nv">$?</span>
-0
-</code></pre></div></div>
-
-<p>When a launch script is invoked without the <code class="highlighter-rouge">--dryrun</code> flag, it is expected to return a string of the form:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
-</code></pre></div></div>
-
-<p>Supplied cluster launch scripts do not need to support the –dryrun flag, as the associated
-AWS cli commands do not support that functionality.</p>
-
-<p>Cluster launch scripts are expected to return the same output as the launch scripts
-with the exception that cluster launch scripts can return n lines, where each is formatted:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
-</code></pre></div></div>
-<p>and each represent a host that was launched within the specified autoscaling group (ASG).</p>
-
-<blockquote>
-  <p><strong>Note:</strong> The public IP value is optional.
-If your setup does not use it, its spot will appear blank.</p>
-</blockquote>
-
-<h3 id="prep-the-cluster">Prep the Cluster</h3>
-
-<p>We’re almost ready to start a cluster from the CLI.</p>
-
-<p>First create an environment.
-An environment captures all the configurations required to launch clusters.</p>
-
-<p>Examples of environments might be for development or production, with the basic template:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>&lt;DM_path_to_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
-</code></pre></div></div>
-
-<p>To run your cluster on an AWS autoscaling group (ASG), specify a –clusterLaunchScript
-instead of a –launchScript (those two flags are mutually exclusive)</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>&lt;DM_path_to_cluster_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Environment definition</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>/etc/okera/launch-ec2.sh
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Environment definition that uses AWS ASGs</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>/etc/okera/launch-asg.sh
-</code></pre></div></div>
-
-<h3 id="create-a-cluster">Create a Cluster</h3>
-
-<p>Next we create at least one cluster in the environment.
-Multiple clusters can be created with the same environment.</p>
-
-<blockquote>
-  <p><strong>Note:</strong> See <a href="cluster-types">Cluster Types</a> for the available option when using the <code class="highlighter-rouge">--type</code> parameter.</p>
-</blockquote>
-
-<p>Cluster creation follows this template:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>&lt;cluster_name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;node_count&gt; <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>&lt;environment_ID&gt;
-</code></pre></div></div>
-
-<p>Where the <code class="highlighter-rouge">&lt;environment_ID&gt;</code> is the numeric ID assigned after environment creation in the previous section.</p>
-
-<p><strong>Example:</strong> Creating a new cluster for environment <code class="highlighter-rouge">1</code></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
-</code></pre></div></div>
-
-<p>List the running clusters.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters list
-</code></pre></div></div>
-
-<p>The newly created cluster should be returned and shown as “Provisioning”.
-You can see more details, including how long it has been in this state using the Okera CLI.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters status <span class="nt">--detail</span> &lt;cluster_ID&gt;
-</code></pre></div></div>
-
-<p>It might be convenient to watch the cluster until the state transitions to “READY”.
-It takes a few minutes to provision the machines, install ODAS, and start up all the services.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch ocadm clusters status &lt;cluster_ID&gt;
-</code></pre></div></div>
-
-<p><strong>At this point all of Okera is up and running!</strong></p>
-
-<p>To see the externally configured endpoints, run the <code class="highlighter-rouge">clusters endpoints</code> command.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters endpoints 1
-</code></pre></div></div>
-
-<blockquote>
-  <p><strong>Note:</strong> The host and port of the Web UI are listed with the component named <code class="highlighter-rouge">okera_web:webui</code>.
-The Web UI will respond at <code class="highlighter-rouge">http://&lt;host&gt;:&lt;port&gt;</code>, or <code class="highlighter-rouge">https://&lt;host&gt;:&lt;port&gt;</code> if using SSL.</p>
-</blockquote>
-
-<h4 id="restarting-a-failed-cluster-after-addressing-issues">Restarting a Failed Cluster after Addressing Issues</h4>
-
-<p>During an Okera environment creation, the launch scripts, init scripts, and config files are copied to the Okera install directory.
-Copying the config files is done to ensure that the clusters using that environment are unaffected by any new environments or clusters with different configurations.</p>
-
-<p>If the script or config files in the environment contain errors, then the errors need to be corrected and the affected clusters restarted.
-This includes issues with the <code class="highlighter-rouge">launch-ec2.sh</code> script and any specified init scripts.</p>
-
-<p>The Okera install scripts and config files are located at the <code class="highlighter-rouge">$OKERA_INSTALL_DIR/env/&lt;environment_id&gt;</code> directory.
-The <code class="highlighter-rouge">OKERA_INSTALL_DIR</code> environment variable defaults to <code class="highlighter-rouge">/etc/okera</code>.</p>
-
-<h4 id="starting-multiple-okera-catalogs-sharing-the-same-metadata">Starting Multiple Okera Catalogs Sharing the Same Metadata</h4>
-
-<p>Okera catalogs can be configured to share underlying metadata.
-This feature is supported for “active-passive” configurations.
-When creating the multiple clusters, supply the <code class="highlighter-rouge">catalogDbNamePrefix</code> option using the same argument value in both cases.
-Catalogs that share the same name also share the same metadata.</p>
-
-<p><strong>Example:</strong> Creating two clusters that share metadata:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1 <span class="nt">--catalogDbNamePrefix</span><span class="o">=</span>metadata
-ocadm clusters create <span class="nt">--name</span><span class="o">=</span>prod-backup <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1 <span class="nt">--catalogDbNamePrefix</span><span class="o">=</span>metadata
-</code></pre></div></div>
-
-<blockquote>
-  <p><strong>Note:</strong> If the <code class="highlighter-rouge">--catalogDbNamePrefix</code> was not explicitly specified during cluster
-creation, then it is the name of the cluster.</p>
-</blockquote>
 
 
     <div class="tags">
@@ -1342,17 +727,14 @@ creation, then it is the name of the cluster.</p>
 
 
 <footer>
-            <div class="row">
-                <div class="col-lg-12 footer">
-                  <img src="assets/images/icon-footer.png" class="logo" />
-                  <div class="footer-meta">
-               &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Aug 15, 2018
-                  </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+      </div>
+    </div>
+  </div>
 </footer>
-
 
         </div>
     <!-- /.row -->

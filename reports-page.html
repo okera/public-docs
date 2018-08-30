@@ -16,25 +16,30 @@
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<!-- Algolia Docusearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="theme/js/jquery.navgoco.min.js"></script>
-
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
 <script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
 
 <script>
 $( document ).ready(function() {
@@ -47,12 +52,16 @@ $( document ).ready(function() {
 });
 </script>
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
+
 
     <script>
         $(document).ready(function() {
@@ -107,65 +116,75 @@ $( document ).ready(function() {
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-wordmark"><a href="/">
-              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-8">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
             </div>
-
+            <form class="navbar-form" id="search-nav-container" role="search">
+                <div class="form-group">
+                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                </div>
+            </form>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
-                <!-- entries without drop-downs appear here -->
-
-
-
-
-                
-                
-                
-                <li><a href="search">Search</a></li>
-                
-                
-                
-                <li><a href="https://www.okera.com/blog" target="_blank">Okera Blog</a></li>
-                
-                
-                
-                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
-                
-                
-                
-                <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
-                
-                
-                <!-- comment out this block if you want to hide search
-                <li class="dropdown">
-
-                  <div id="search-demo-container">
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
                       <input type="text" name="q" id="search-input" placeholder="Search the docs...">
                       </form>
                   </div>
-
-                </li>
                 end search -->
-            </ul>
-        </div>
-        </div>
+        <!-- New Search Input  -->
+        <!-- <div class="navbar-form" id="search-demo-container">
+                    <input id="search-okera" type="text" placeholder="Search the docs...">
+                </div> -->
+        <!-- END SEARCH -->
         <!-- /.container -->
+    </div>
 </nav>
 
+<!-- Algolia Docusearch Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
+        indexName: 'okera',
+        inputSelector: '#search-okera',
+        debug: false // Set debug to true if you want to inspect the dropdown
+    });
+</script>
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -233,7 +252,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="install">Installation Guide</a> </li>
+          <li><a href="install">Installing the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -356,7 +396,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="authorization">Authorization Guide</a> </li>
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
           
           
           
@@ -593,7 +640,7 @@ $( document ).ready(function() {
          <p class="external">
              <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
          </p>
-         -->
+        -->
     
     <li>
     
@@ -609,7 +656,7 @@ $('#toc').on('click', 'a', function() {
   var target = $(this.getAttribute('href'))
     , scroll_target = target.offset().top
 
-  $(window).scrollTop(scroll_target - 10);
+  $(window).scrollTop(scroll_target - 80);
   return false
 })
 
@@ -644,19 +691,38 @@ $('#toc').on('click', 'a', function() {
     
 
   <h1 id="reports-page">Reports Page</h1>
-<p>The Okera Portal provides a <code class="highlighter-rouge">Reports</code> page for users with admin privileges to view metrics on datasets for which they are admins.
-The <code class="highlighter-rouge">Reports</code> page is driven from the Okera audit logs, which contain information on everything that happens in the Okera system (for more on the structure of the audit logs, see <a href="auditing">Auditing</a>). 
-Reports show various usage statistics over a recent time period including number of queries over time, number of queries per dataset, number of queries per application, and top users querying those datasets.</p>
+<p>The Okera Portal provides a <code class="highlighter-rouge">Reports</code> page for users with admin privileges to view usage metrics on datasets for which they are admins.
+The <code class="highlighter-rouge">Reports</code> page is driven from the Okera audit logs, which contain information on everything that happens in the Okera system (for more on the structure of the audit logs, see <a href="auditing">Auditing</a>).</p>
 
-<p>By default users will see aggregated metrics over all of their datasets over the past 24 hours, but it is possible to filter by database and pick a different time range.</p>
+<p><img src="assets/images/ui-screen-reports.png" alt="Okera Reports Page" /></p>
 
-<p>Users who do not have admin privileges on any dataset will not see the <code class="highlighter-rouge">Reports</code> tab.</p>
+<h2 id="enabling-the-reports-page">Enabling the Reports page</h2>
+<p>In order to see the <code class="highlighter-rouge">Reports</code> tab, users must have <code class="highlighter-rouge">SELECT</code> privileges on the view that powers the reports, <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>.
+To give a user access to reports, you must grant <code class="highlighter-rouge">SELECT</code> to one of the user’s roles to the audit view:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">on</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="o">&lt;</span><span class="k">role</span> <span class="k">to</span> <span class="n">see</span> <span class="n">reports</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>If a user has <code class="highlighter-rouge">SELECT</code> privileges on <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>, they will be able to visit the reports page and query the audit logs.
+However, the audit views are set up to only show data pertaining to the datasets a user has <code class="highlighter-rouge">ALL</code> privileges on.
+If a user has <code class="highlighter-rouge">ALL</code> privileges on any dataset or database, the reports will show data for the datasets for which they have <code class="highlighter-rouge">ALL</code>.</p>
+
+<p>In some Okera configurations, almost no users have <code class="highlighter-rouge">ALL</code> privileges on any dataset.
+In this case we suggest creating a special role that has <code class="highlighter-rouge">ALL</code> priviledges on the datasets for which users need to see reports.
+That special role can be granted to the groups that need access to reports.</p>
+
+<blockquote>
+  <p><strong>Note</strong>
+Users who do not have admin privileges on any dataset will not see any data in the <code class="highlighter-rouge">Reports</code> tab.</p>
+</blockquote>
 
 <h2 id="filtering-by-database">Filtering by database</h2>
 <p>By default <code class="highlighter-rouge">Reports</code> will show aggregated metrics for all of the datasets on which the current user has admin privileges.
 You can change which database or set of databases the reports show using the multi-select dropdown in the top right of the page labelled “My admin databases”.
 As the label implies, this dropdown contains a list of the databases in which you are the admin for at least one dataset.
 Selecting a database or multiple databases will cause the page to generate reports that include only the datasets for which you are admin in the selected databases.</p>
+
+<p><img src="assets/images/ui-screen-reports-filter-db.png" alt="Okera Reports Filter by Database" /></p>
 
 <h2 id="changing-the-time-range">Changing the time range</h2>
 <p>The default time range on the <code class="highlighter-rouge">Reports</code> page is “Last 24 hours”.
@@ -669,15 +735,17 @@ Using the dropdown labeled “Select a time range” you can change the timerang
   <li><strong>Yesterday</strong>: reports will show data for the calendar day prior to the current day.</li>
 </ul>
 
+<p><img src="assets/images/ui-detail-reports-timerange.png" alt="Okera Reports Time Picker" /></p>
+
 <h2 id="drilldowns">Drilldowns</h2>
-<p>Each report in the <code class="highlighter-rouge">Reports</code> page supports drilling down on the data to open a query in <code class="highlighter-rouge">Workspace</code>.
+<p>Each report in the <code class="highlighter-rouge">Reports</code> page supports drilling down on the data by clicking on the data point to open a query in <code class="highlighter-rouge">Workspace</code>.
 This allows users to explore the underlying data powering the reports and enables them to modify the query to find other insights.
 Each report has a slightly different drilldown query, but they all follow a similar pattern of a base query restricted by time, followed by additional constraints. For example, the drilldown for “Number of queries by dataset” looks like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select * from okera_system.reporting_audit_logs
-  where ymd&gt;='2018-08-12' and ymd&lt;='2018-08-13'
-  and start_unix_time&gt;=1534113600000 and start_unix_time&lt;=1534200600000
-  and client_application like 'hive%'
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
+  <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534113600000</span> <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534200600000</span>
+  <span class="k">and</span> <span class="n">client_application</span> <span class="k">like</span> <span class="s1">'hive%'</span>
 </code></pre></div></div>
 <p>There are a few things to note about this query:</p>
 <ul>
@@ -689,29 +757,45 @@ This is to capture all versions of “hive”.</li>
 </ul>
 
 <p>To run the query, click <code class="highlighter-rouge">Run</code>.
-You will see the audit log data for the specified time range. Note that results are restricted to the number of rows in the “Row limit” box. 
-If you need to see more results, we recommend you use the same query in an EMR cluster or whatever other client application you use to query data through Okera.</p>
+You will see the audit log data for the specified time range. Note that results are restricted to the number of rows in the “Row limit” box.
+If you need to see more results, you can use the same query in an EMR cluster or whatever other client application you use to query data through Okera.</p>
+
+<p><img src="assets/images/ui-screen-reports-workspace-drilldown.png" alt="Okera Reports Time Picker" /></p>
+
+<p><em>Example of a reports drilldown in workspace</em></p>
 
 <h2 id="understanding-the-reports">Understanding the reports</h2>
 <p>There are four reports displayed on the <code class="highlighter-rouge">Reports</code> page. They should mostly make sense without a lot of explanation, but each has a few details to note.</p>
 
+<ul>
+  <li><a href="#number-of-queries-over-time">Number of queries over time</a></li>
+  <li><a href="#number-of-queries-by-client-application">Number of queries by client application</a></li>
+  <li><a href="#number-of-queries-by-dataset">Number of queries by dataset</a></li>
+  <li><a href="#number-of-queries-by-dataset">Top users</a></li>
+</ul>
+
 <h3 id="number-of-queries-over-time">Number of queries over time</h3>
-<p>This report shows the number of queries that occurred during the selected time range as a trend with each point representing the sum of queries in a particular time bucket. 
+
+<p><img src="assets/images/ui-detail-reports-queries-over-time.png" alt="Okera Reports Queries over time" /></p>
+
+<p>This report shows the number of queries that occurred during the selected time range as a trend with each point representing the sum of queries in a particular time bucket.
 The total timerange is broken into buckets of a set size and the number of queries occurring during each bucket-sized span are summed to produce each point.
 For day-long time ranges, the buckets are 10 minutes, for week-long time ranges, the buckets are an hour and 40 minutes.
 Points’ timestamps represent the <em>end</em> of the bucket.
 So, in a “Last 24 hours” report, if the value or a point is 120, that means 120 queries occurred in the 10 minutes prior to the time on the point.</p>
 
-<p>“Number of queries over time” supports drilling down to see the actual list of queries in a particular bucket. 
+<p>“Number of queries over time” supports drilling down to see the actual list of queries in a particular bucket.
 To drill down, pick a bucket and click on it.
 You will be redirected to the <code class="highlighter-rouge">Workspace</code> page where the query to look up the time bucket in question will already be populated. It will look similar to:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select * from okera_system.reporting_audit_logs
-  where ymd&gt;='2018-08-06' and ymd&lt;='2018-08-13'
-  and start_unix_time&gt;=1533585000000
-  and start_unix_time&lt;=1534190400000
-  and start_unix_time&gt;=1533936000000
-  and start_unix_time&lt;=1533942000000
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
+  <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-06'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
+  <span class="c1">-- Timestamps below restrict data to timerange for reports ('Last 24 hours')</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1533585000000</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534190400000</span>
+  <span class="c1">-- Timestamps below restrict data to specific bucket that was clicked</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1533936000000</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1533942000000</span>
 </code></pre></div></div>
 
 <p>In addition to the details mentioned in the Drilldowns section above, this query has 4 unix timestamps.
@@ -719,49 +803,81 @@ The first two timestamps are part of the base query, restricting the data to the
 All of them intentionally restrict against <code class="highlighter-rouge">start_unix_time</code>, so we are counting when events started, not when they complete.</p>
 
 <h3 id="number-of-queries-by-client-application">Number of queries by client application</h3>
+
+<p><img src="assets/images/ui-detail-reports-queries-by-application.png" alt="Okera Reports All client applications" /></p>
+
 <p>This report shows the most popular client applications ranked by number of queries run in the given time range.
 The top ten client applications are represented as bars in a bar chart, and more applications will can be shown by clicking on the “All applications” button at the bottom of the panel.
 Mouseover on the bars in the chart will show the number of queries on the application.
 In the top ten bar chart, various versions of an application will be combined into one bar, but in the “All applications” modal, each version of an the application will be separated.</p>
 
+<p><img src="assets/images/ui-screen-reports-all-applications.png" alt="Okera Reports All client applications" /></p>
+
 <p>Clicking on any of the bars will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select * from okera_system.reporting_audit_logs
-  where ymd&gt;='2018-08-12' and ymd&lt;='2018-08-13'
-  and start_unix_time&gt;=1534113000000
-  and start_unix_time&lt;=1534200000000
-  and client_application like 'hive%'
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
+  <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534113000000</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534200000000</span>
+  <span class="k">and</span> <span class="n">client_application</span> <span class="k">like</span> <span class="s1">'hive%'</span>
 </code></pre></div></div>
 <p>As discussed in the Drilldowns section above, this query gets the audit logs in the current time range and filters by application name.
 It uses <code class="highlighter-rouge">like</code> to pick up all versions of the application, which is stored as a string with the name first, then version.</p>
 
 <h3 id="number-of-queries-by-dataset">Number of queries by dataset</h3>
-<p>This report is very similar to “Number of queries by client application”, showing the most queried datasets in the selected time range. 
+
+<p><img src="assets/images/ui-detail-reports-queries-by-dataset.png" alt="Okera Reports All client applications" /></p>
+
+<p>This report is very similar to “Number of queries by client application”, showing the most queried datasets in the selected time range.
 The top ten datasets are represented as bars in the bar chart, and the rest can be viewed by clicking “All datasets”.
 You may notice some entries include multiple datasets separated by commas.
 Those counts represent queries that included both of the datasets.
 Mouseover on the bars in the chart will show the number of queries on that dataset.</p>
 
 <p>Clicking on any of the bars will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select * from okera_system.reporting_audit_logs
-  where ymd&gt;='2018-08-12' and ymd&lt;='2018-08-13'
-  and start_unix_time&gt;=1534115400000
-  and start_unix_time&lt;=1534202400000
-  and (ae_table='okera_sample.users' or ae_view='okera_sample.users')
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
+  <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534115400000</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534202400000</span>
+  <span class="k">and</span> <span class="p">(</span><span class="n">ae_table</span><span class="o">=</span><span class="s1">'okera_sample.users'</span> <span class="k">or</span> <span class="n">ae_view</span><span class="o">=</span><span class="s1">'okera_sample.users'</span><span class="p">)</span>
 </code></pre></div></div>
 <p>In addition to the details mentioned in the Drilldowns section above, this query restricts <code class="highlighter-rouge">ae_table</code> or <code class="highlighter-rouge">ae_view</code> to the specified dataset.</p>
 
 <h3 id="top-users">Top users</h3>
-<p>As the name implies, this report shows a list of users in the system, ranked by how many queries they ran in the given timeframe. 
+
+<p><img src="assets/images/ui-detail-reports-top-users.png" alt="Okera Reports All client applications" /></p>
+
+<p>As the name implies, this report shows a list of users in the system, ranked by how many queries they ran in the given timeframe.
 Clicking on any row in the list will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select * from okera_system.reporting_audit_logs
-  where ymd&gt;='2018-08-12' and ymd&lt;='2018-08-13'
-  and start_unix_time&gt;=1534115400000
-  and start_unix_time&lt;=1534202400000
-  and user='sample_user'
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
+  <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534115400000</span>
+  <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534202400000</span>
+  <span class="k">and</span> <span class="k">user</span><span class="o">=</span><span class="s1">'sample_user'</span>
 </code></pre></div></div>
-<p>Like the other drilldowns, this query restricts results based on time, then adds an additional constraint. 
+<p>Like the other drilldowns, this query restricts results based on time, then adds an additional constraint.
 In this case, exact user name.</p>
+
+<h2 id="notes-on-implementation">Notes on implementation</h2>
+
+<h3 id="time-values">Time values</h3>
+<p>The times shown in the reports are all in client-local time.
+Times stored on the server (and therefore part of drilldowns) are stored as UTC time in milliseconds and represent when each event happened on the server.
+Each event is counted at its start time, not its end time.</p>
+
+<h3 id="when-is-data-available">When is data available?</h3>
+<p>Report data is updated every 5 minutes.
+Queries run in the last 5 minutes are being logged, but may not be reflected in the reports.
+Every five minutes a watcher task processes the audit logs, adding them to the corresponding queryable table.</p>
+
+<h3 id="what-is-being-counted">What is being counted?</h3>
+<p>Queries are not counted 1 to 1 in the audit logs; Okera logs more than one event per user query.
+For each query, Okera logs a <code class="highlighter-rouge">PLAN</code> event, plus some number of <code class="highlighter-rouge">SCAN</code> events depending on the scale of the data being scanned.
+For very large scans, the number of events logged can be very high.
+All of these events are shown in queries on the audit logs, but in reports most of them are rolled up into a small number of events.
+The reports reflect a low constant number of events per query.
+The exact number depends on the client and query type, but not on scale of data scanned.
+So, for similar queries from the same source, the numbers in the reports are consistent.</p>
 
 
     <div class="tags">
@@ -776,17 +892,14 @@ In this case, exact user name.</p>
 
 
 <footer>
-            <div class="row">
-                <div class="col-lg-12 footer">
-                  <img src="assets/images/icon-footer.png" class="logo" />
-                  <div class="footer-meta">
-               &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Aug 15, 2018
-                  </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+      </div>
+    </div>
+  </div>
 </footer>
-
 
         </div>
     <!-- /.row -->

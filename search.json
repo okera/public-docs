@@ -258,6 +258,30 @@
 
 
 {
+"url": "okera-prereq",
+"file": "content/topics/OkeraInstallationPrerequisites.md",
+}
+,
+
+
+
+{
+"url": "okera-installation-setting-up-deployment-manager",
+"file": "content/topics/OkeraInstallationSettingUpDeploymentManager.md",
+}
+,
+
+
+
+{
+"url": "okera-installation-setting-up-odas-cluster",
+"file": "content/topics/OkeraInstallationSettingUpOdasCluster.md",
+}
+,
+
+
+
+{
 "url": "okera-architecture-overview",
 "file": "content/topics/OverviewArchitecture.md",
 }
@@ -300,6 +324,14 @@
 {
 "url": "planner-integration",
 "file": "content/topics/PlannerIntegration.md",
+}
+,
+
+
+
+{
+"url": "privileges",
+"file": "content/topics/Privileges.md",
 }
 ,
 

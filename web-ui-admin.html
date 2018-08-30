@@ -16,25 +16,30 @@
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<!-- Algolia Docusearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="theme/js/jquery.navgoco.min.js"></script>
-
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
 <script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
 
 <script>
 $( document ).ready(function() {
@@ -47,12 +52,16 @@ $( document ).ready(function() {
 });
 </script>
 
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
+
 
     <script>
         $(document).ready(function() {
@@ -107,65 +116,75 @@ $( document ).ready(function() {
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-wordmark"><a href="/">
-              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-8">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
             </div>
-
+            <form class="navbar-form" id="search-nav-container" role="search">
+                <div class="form-group">
+                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                </div>
+            </form>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
-                <!-- entries without drop-downs appear here -->
-
-
-
-
-                
-                
-                
-                <li><a href="search">Search</a></li>
-                
-                
-                
-                <li><a href="https://www.okera.com/blog" target="_blank">Okera Blog</a></li>
-                
-                
-                
-                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
-                
-                
-                
-                <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
-                
-                
-                <!-- comment out this block if you want to hide search
-                <li class="dropdown">
-
-                  <div id="search-demo-container">
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
                       <input type="text" name="q" id="search-input" placeholder="Search the docs...">
                       </form>
                   </div>
-
-                </li>
                 end search -->
-            </ul>
-        </div>
-        </div>
+        <!-- New Search Input  -->
+        <!-- <div class="navbar-form" id="search-demo-container">
+                    <input id="search-okera" type="text" placeholder="Search the docs...">
+                </div> -->
+        <!-- END SEARCH -->
         <!-- /.container -->
+    </div>
 </nav>
 
+<!-- Algolia Docusearch Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
+        indexName: 'okera',
+        inputSelector: '#search-okera',
+        debug: false // Set debug to true if you want to inspect the dropdown
+    });
+</script>
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -233,7 +252,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="install">Installation Guide</a> </li>
+          <li><a href="install">Installing the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -356,7 +396,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="authorization">Authorization Guide</a> </li>
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
           
           
           
@@ -593,7 +640,7 @@ $( document ).ready(function() {
          <p class="external">
              <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
          </p>
-         -->
+        -->
     
     <li>
     
@@ -609,7 +656,7 @@ $('#toc').on('click', 'a', function() {
   var target = $(this.getAttribute('href'))
     , scroll_target = target.offset().top
 
-  $(window).scrollTop(scroll_target - 10);
+  $(window).scrollTop(scroll_target - 80);
   return false
 })
 
@@ -665,7 +712,7 @@ Here you can input any username or group name to understand their access on an o
 <p>Depending on if that user has access or not to the specified object, you will see this information:</p>
 
 <p><strong>Access Summary</strong>
-<br />Gives a quick summary on if that has user access or not, what level of access, to what data, and if they have the ability to grant or not for that object.</p>
+<br />Gives a quick summary on if that has user access or not, what level of access, to what data, and if they have the ability to grant or not for that object. To understand the privilege levels please see <a href="privileges">Privileges</a>.</p>
 
 <p><strong>Dataset Details Tab</strong>
 <br />Shows the dataset details, as well as the schema <em>as that particular user would see it</em>.</p>
@@ -697,9 +744,11 @@ The Workspace provides a powerful interface for performing DDL operations (for e
 <p>Simply type your query and click the <strong>Run</strong> button to run it.
 Your output will be displayed in the output box on the bottom.
 To write multiple queries at once, make sure the queries are separated by semicolons.</p>
-<blockquote>
-  <p>For example: ‘SELECT * FROM okera_sample.users; SHOW databases;’</p>
-</blockquote>
+
+<p>For example:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">role_one</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">role_two</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>Okera is compatible with most HiveQL DDL statements.
 To understand all supported SQL, visit <a href="supported-sql">Supported SQL</a>.</p>
@@ -707,15 +756,14 @@ To understand all supported SQL, visit <a href="supported-sql">Supported SQL</a>
 <blockquote>
   <p><strong>Warning</strong></p>
 
-  <p>Large limits can cause long-running and/or resource-intensive queries.
-If you leave the page, your query will continue to run.</p>
+  <p>If you leave the page, your query will continue to run.</p>
 </blockquote>
 
 <p><img src="assets/images/ui-screen-admin-workspace-annotated.png" alt="Okera Workspace Page" /></p>
 
 <p><strong>Recent Command History</strong>
 <br />To the right of the SQL input, you will see a list of your recent commands.
-Clicking on one re-stages the command in the input box.</p>
+Clicking on one re-stages the command in the input box ready to be used again.</p>
 
 <p><strong>Rerun or re-stage query</strong>
 <br />Next to previously run queries in the output box, you will see two icons.</p>
@@ -723,6 +771,12 @@ Clicking on one re-stages the command in the input box.</p>
 <p><img src="assets/images/ui-icon-rerun.png" alt="Okera Rerun icon" /> - Rerun the query</p>
 
 <p><img src="assets/images/ui-icon-restage.png" alt="Okera Restage icon" /> - Re-stage the query (load it into query box)</p>
+
+<h3 id="workspace-row-limit">Workspace Row Limit</h3>
+
+<p>Workspace’s terminal will only output MAX 500 rows per query.</p>
+
+<p>Workspace’s terminal has a limit set to MAX 750 rows of queries in total. Therefore if workspace history contains more than 750 rows of table output, older history entries will be dropped.</p>
 
 <h3 id="formatting-queries-using-keyboard-shortcuts">Formatting Queries Using Keyboard Shortcuts</h3>
 
@@ -744,13 +798,6 @@ Click and drag using the mouse left button or the touchpad.</p>
 
 <p><strong>Run Commands</strong> - To run queries you can either click the <strong>Run</strong> button or hold down <code class="highlighter-rouge">CMD</code> (Mac) or <code class="highlighter-rouge">CTRL</code>(Windows) key and press the <code class="highlighter-rouge">return</code> key.</p>
 
-<h3 id="terminal-output-query-limits">Terminal Output Query Limits</h3>
-
-<p>Workspace’s terminal will only output MAX 500 rows per query.</p>
-
-<p>Workspace’s terminal has a limit set to MAX 750 rows of queries in total.
-Therefore if workspace history contains more than 750 rows of table output, older history entries will be dropped.</p>
-
 
     <div class="tags">
         
@@ -764,17 +811,14 @@ Therefore if workspace history contains more than 750 rows of table output, olde
 
 
 <footer>
-            <div class="row">
-                <div class="col-lg-12 footer">
-                  <img src="assets/images/icon-footer.png" class="logo" />
-                  <div class="footer-meta">
-               &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Aug 15, 2018
-                  </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+      </div>
+    </div>
+  </div>
 </footer>
-
 
         </div>
     <!-- /.row -->

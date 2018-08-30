@@ -198,6 +198,24 @@
   
   
   <url>
+    <loc>http://127.0.0.1/okera-prereq</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/okera-installation-setting-up-deployment-manager</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/okera-installation-setting-up-odas-cluster</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/okera-architecture-overview</loc>
   </url>
   
@@ -229,6 +247,12 @@
   
   <url>
     <loc>http://127.0.0.1/planner-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/privileges</loc>
   </url>
   
   
