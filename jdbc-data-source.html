@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -703,6 +710,7 @@ The JDBC data sources supported out of the box are:</p>
   <li>MySQL (5.6,5.7)</li>
   <li>PostgreSQL (9.6)</li>
   <li>Snowflake</li>
+  <li>Amazon Redshift (using postgresql as ‘driver’)</li>
 </ul>
 
 <p>ODAS utilizes the drivers provided for JDBC sources to connect to the underlying database.
@@ -718,6 +726,10 @@ Users will be able to perform the same DDL and scan operations across different 
   <li>Snowflake : 3.6.8</li>
 </ul>
 
+<p><strong>Note</strong> Amazon Redshift is current supported via PostgreSQL driver. Amazon redshift uses PostgreSQL 8.0.2
+in OLAP mode and hence the PostgreSQL driver works for redshift as well.
+<strong>Reference:</strong> https://docs.aws.amazon.com/redshift/latest/dg/c_redshift-and-postgres-sql.html</p>
+
 <h2 id="getting-started">Getting Started</h2>
 
 <h3 id="configuration">Configuration</h3>
@@ -726,7 +738,23 @@ Users will be able to perform the same DDL and scan operations across different 
 For example, a S3 folder that is secured for access and is accessible from the application may be used.
 A sample properties file, <code class="highlighter-rouge">s3://okera/mysql-prod.properties</code>, would be:</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">driver=&lt;Driver</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">identify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">JDBC</span><span class="w"> </span><span class="err">driver</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">load&gt;</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">driver=mysql</span><span class="w">
+</span><span class="err">host=&lt;A</span><span class="w"> </span><span class="err">cloud</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">host</span><span class="w"> </span><span class="err">accessible</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">application&gt;</span><span class="w">
+</span><span class="err">port=&lt;Port</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">DB&gt;</span><span class="w">
+</span><span class="err">user=&lt;username&gt;</span><span class="w">
+</span><span class="err">password=&lt;password&gt;</span><span class="w">
+</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
+</span><span class="err">jdbc.schema.name&lt;Optional.</span><span class="w"> </span><span class="err">Specify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">used.</span><span class="w"> </span><span class="err">MySQL</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">support</span><span class="w"> </span><span class="err">schema&gt;</span><span class="w">
+</span><span class="err">table=&lt;Default</span><span class="w"> </span><span class="err">table</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">from&gt;</span><span class="w">
+</span><span class="err">fetchSize=</span><span class="mi">100000</span><span class="w">
+</span></code></pre></div></div>
+<p><strong>Note</strong> The <code class="highlighter-rouge">jdbc.schema.name</code> is not required for MySQL but its a required field for Snowflake and PostgreSQL.</p>
+
+<p><strong>fetchSize</strong> Use this parameter to control batch size for retrieval of data in batches.</p>
+
+<p>A sample properties file for PostgreSQL/Redshift would be:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">driver=postgresql</span><span class="w">
 </span><span class="err">host=&lt;A</span><span class="w"> </span><span class="err">cloud</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">host</span><span class="w"> </span><span class="err">accessible</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">application&gt;</span><span class="w">
 </span><span class="err">port=&lt;Port</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">DB&gt;</span><span class="w">
 </span><span class="err">user=&lt;username&gt;</span><span class="w">
@@ -734,9 +762,23 @@ A sample properties file, <code class="highlighter-rouge">s3://okera/mysql-prod.
 </span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
 </span><span class="err">jdbc.schema.name&lt;Optional.</span><span class="w"> </span><span class="err">Specify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">used&gt;</span><span class="w">
 </span><span class="err">table=&lt;Default</span><span class="w"> </span><span class="err">table</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">from&gt;</span><span class="w">
+</span><span class="err">fetchSize=</span><span class="mi">100000</span><span class="w">
 </span></code></pre></div></div>
+<p>A sample properties file for Snowflake would be:</p>
 
-<p>The <code class="highlighter-rouge">jdbc.schema.name</code> is not required for MySQL but its a required field for Snowflake and PostgreSQL.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">driver=snowflake</span><span class="w">
+</span><span class="err">host=&lt;snowflake</span><span class="w"> </span><span class="err">account&gt;.snowflakecomputing.com</span><span class="w">
+</span><span class="err">port=&lt;n/a</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">snowflake&gt;</span><span class="w">
+</span><span class="err">db=SNOWFLAKE_SAMPLE_DATA</span><span class="w">
+</span><span class="err">user=&lt;username&gt;</span><span class="w">
+</span><span class="err">password=&lt;password&gt;</span><span class="w">
+</span><span class="err">account=&lt;snowflake</span><span class="w"> </span><span class="err">account&gt;</span><span class="w">
+</span><span class="err">driver=snowflake</span><span class="w">
+</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
+</span><span class="err">jdbc.schema.name&lt;Optional.</span><span class="w"> </span><span class="err">Specify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">used&gt;</span><span class="w">
+</span><span class="err">table=&lt;Default</span><span class="w"> </span><span class="err">table</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">from&gt;</span><span class="w">
+</span></code></pre></div></div>
+<p><strong>Note</strong> for snowflake, ‘db’ parameter is mandatory. This should be the default database for connection.</p>
 
 <h3 id="initializating-metastore-information">Initializating Metastore Information</h3>
 
@@ -910,7 +952,9 @@ For example, if the underlying database is MySQL, the SQL string can be the supp
 The table name provided as part of this command is used as the alias of the resulting inline view of the converted SQL.
 Additionally, this removes the need to load all table definitions into the catalog.</p>
 
-<p><strong>Note:</strong> This feature is ONLY available for JDBC data source tables.</p>
+<blockquote>
+  <p><strong>Note:</strong> This feature is ONLY available for JDBC data source tables.</p>
+</blockquote>
 
 <p><strong>Example:</strong> Create a catalog table backed by a SQL string (inline view)</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">table_using_jdbc_complex_query</span>
@@ -923,7 +967,9 @@ Additionally, this removes the need to load all table definitions into the catal
 LEFT JOIN marketingdb.users u ON (u.userid = t.userid)'</span>
 </code></pre></div></div>
 
-<p><strong>Note:</strong> The describe operation on the table would display the full definition of the resulting schema.</p>
+<blockquote>
+  <p><strong>Note:</strong> The describe operation on the table would display the full definition of the resulting schema.</p>
+</blockquote>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESCRIBE</span> <span class="n">marketingdb</span><span class="p">.</span><span class="n">table_using_jdbc_complex_query</span><span class="p">;</span>
   <span class="n">txnid</span>  <span class="n">bigint</span>
@@ -980,7 +1026,9 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
 
 <p>The table can be used for complex joins with other tables as well.</p>
 
-<p><strong>Note:</strong> This is for representational purpose and we join to same users table to demo the capability</p>
+<blockquote>
+  <p><strong>Note:</strong> This is for representational purpose and we join to same users table to demo the capability</p>
+</blockquote>
 
 <p><strong>Example:</strong> Perform a complex join on datasets with inline views</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">n</span><span class="p">.</span><span class="o">*</span>
@@ -1002,6 +1050,7 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
       <th>MySQL</th>
       <th>PostgreSQL</th>
       <th>Snowflake</th>
+      <th>Redshift (using PostgreSQL driver)</th>
     </tr>
   </thead>
   <tbody>
@@ -1010,10 +1059,12 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
       <td>BOOL, BOOLEAN</td>
       <td>BOOL, BOOLEAN, BIT</td>
       <td>BOOL, BOOLEAN</td>
+      <td>BOOL, BOOLEAN</td>
     </tr>
     <tr>
       <td>tinyint</td>
       <td>TINYINT</td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1022,40 +1073,47 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
       <td>SMALLINT</td>
       <td>SMALLINT</td>
       <td> </td>
+      <td>SMALLINT, INT2</td>
     </tr>
     <tr>
       <td>int</td>
       <td>MEDIUMINT, INT</td>
       <td>INT, SERIAL</td>
       <td> </td>
+      <td>INTEGER, INT, INT4</td>
     </tr>
     <tr>
       <td>bigint</td>
       <td>BIGINT</td>
       <td>BIGINT, BIGSERIAL</td>
       <td>SMALLINT, INT, INTEGER, BIGINT, NUMBER</td>
+      <td>BIGINT, INT8</td>
     </tr>
     <tr>
       <td>double</td>
       <td>DOUBLE</td>
       <td>DOUBLE, MONEY, REAL</td>
       <td>DOUBLE, REAL</td>
+      <td>DOUBLE, FLOAT8, FLOAT, REAL, FLOAT4</td>
     </tr>
     <tr>
       <td>decimal(p,s)</td>
       <td>FLOAT(p,s), decimal(p,s)</td>
       <td>NUMERIC(p,s), DECIMAL(p,s)</td>
       <td>NUMERIC(p,s), DECIMAL(p,s)</td>
+      <td>DECIMAL(p,s), NUMERIC</td>
     </tr>
     <tr>
       <td>char(N)</td>
       <td>CHAR(N)</td>
       <td>CHAR(N)</td>
       <td> </td>
+      <td>CHAR, CHARACTER, NCHAR, BPCHAR</td>
     </tr>
     <tr>
       <td>char(2)</td>
       <td>ENUM</td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1064,16 +1122,19 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
       <td>SET</td>
       <td> </td>
       <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>varchar(N)</td>
       <td>VARCHAR(N)</td>
       <td>VARCHAR(N)</td>
       <td>CHAR(N), VARCHAR(N)</td>
+      <td>CHARACTER VARYING, NVARCHAR, TEXT</td>
     </tr>
     <tr>
       <td>varchar(255)</td>
       <td>TINYTEXT</td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1082,16 +1143,19 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
       <td>TEXT</td>
       <td> </td>
       <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>string</td>
       <td>MEDIUMTEXT, LONGTEXT, BLOB, TINYBLOB, MEDIUMBLOB, LONGBLOB, BINARY(N), VARBINARY(N)</td>
       <td>TEXT</td>
       <td>STRING, TEXT, BINARY(N), VARBINARY(N)</td>
+      <td> </td>
     </tr>
     <tr>
       <td>timestamp</td>
       <td>TIMESTAMP, TIME, DATETIME</td>
+      <td>TIMESTAMP</td>
       <td>TIMESTAMP</td>
       <td>TIMESTAMP</td>
     </tr>
@@ -1120,7 +1184,7 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>

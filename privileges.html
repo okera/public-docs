@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -692,7 +699,9 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="privileges">Privileges</h1>
 
-<p>The Okera Policy Engine supports the following privileges:</p>
+<p>In the role-based access control model supported by the Okera Platform, roles are granted access to resources by means of privileges.
+These vary in their functionality, based on the SQL operation they pertain to.
+The Okera Policy Engine supports the following privileges:</p>
 
 <table>
   <thead>
@@ -706,32 +715,32 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td><code class="highlighter-rouge">ALL</code></td>
       <td>Catalog, Database, Table</td>
-      <td>Grants full and unrestricted access to an object and any descendants. If WITH GRANT OPTION is added, this gives role that the ability to grant the specified permission to other principals. e.g <code class="highlighter-rouge">GRANT ALL on DATABASE okera_sample to role steward_role WITH GRANT OPTION</code></td>
+      <td>Grants full and unrestricted access to an object and any descendants. The <code class="highlighter-rouge">WITH GRANT OPTION</code> adds the ability to grant the specified permission to other roles. For example: <code class="highlighter-rouge">GRANT ALL ON DATABASE okera_sample TO ROLE steward_role WITH GRANT OPTION</code></td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">SELECT</code></td>
       <td>Catalog, Database, Table, Column</td>
-      <td>Grants <strong>read</strong> access to an object and any descendants.</td>
+      <td>Grants <em>read</em> access to an object and any descendants.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">SHOW</code></td>
       <td>Catalog, Database, Table</td>
-      <td>Grants <strong>read</strong> access to object <strong>metadata only</strong>. Cannot be granted at a column level. </td>
+      <td>Grants <em>read</em> access to object metadata only. Cannot be granted at a column level.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">INSERT</code></td>
       <td>Catalog, Database, Table, Column</td>
-      <td>Write access only to the object. Does not include read access.</td>
+      <td>Grants <em>write</em> access to the object. Does not include read access.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">CREATE</code></td>
       <td>Catalog, Database</td>
-      <td>Grants ability to create an object within the object e.g. <code class="highlighter-rouge">GRANT CREATE ON DATABASE  grants the ability to create a table within the database</code>.</td>
+      <td>Grants ability to create an object within another object, for instance, <code class="highlighter-rouge">GRANT CREATE ON DATABASE</code> grants the ability to create a table within the database.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">ALTER</code></td>
       <td>Catalog, Database, Table</td>
-      <td>Grants ability to edit metadata for specified object e.g alter table/view definition, add/drop/rename columns, change datatypes, partitions, storage locations, table properties</td>
+      <td>Grants ability to edit metadata for specified object, such as alter the table/view definition, add/drop/rename columns, change datatypes, partitions, storage locations, table properties.</td>
     </tr>
   </tbody>
 </table>
@@ -740,7 +749,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>All permissions are usually <em>scoped</em> at a specific <em>object</em> level.</p>
 
-<h3 id="objects">Objects</h3>
+<h3 id="object-types">Object Types</h3>
 
 <p>Here are the object types supported by Okera:</p>
 
@@ -756,10 +765,10 @@ $('#toc').on('click', 'a', function() {
     <tr>
       <td>Catalog</td>
       <td><code class="highlighter-rouge">CATALOG</code><sup>*</sup></td>
-      <td>Global scope for all objects in the Catalog. Previous syntax was Server.</td>
+      <td>Global scope for all objects in the Catalog.</td>
     </tr>
     <tr>
-      <td>Database    </td>
+      <td>Database</td>
       <td><code class="highlighter-rouge">DATABASE &lt;db_name&gt;</code></td>
       <td>Scope on a single database and all included objects</td>
     </tr>
@@ -781,7 +790,7 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<p><sup>* If you see SERVER, it’s from the old syntax for CATALOG </sup></p>
+<p><sup>*</sup> If you see <code class="highlighter-rouge">SERVER</code>, it refers to the old syntax for <code class="highlighter-rouge">CATALOG</code>.</p>
 
 <p>You can think of most of these like a hierarchy, with the exception of URIs.
 The latter is a separate object, while all the others subsume each other from left to right, as shown in the diagram.</p>
@@ -953,7 +962,7 @@ https://s3-us-west-2.amazonaws.com/cerebrodata-internal-release/docs-staging/faq
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>

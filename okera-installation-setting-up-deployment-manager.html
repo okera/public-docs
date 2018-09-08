@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -732,13 +739,13 @@ This set of steps is typically required once, to configure Okera to your environ
   <li>
     <p>Get the tarball from S3.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0-rc2/deployment-manager-1.2.0-rc2.tar.gz
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0/deployment-manager-1.2.0.tar.gz
 </code></pre></div>    </div>
   </li>
   <li>Extract the bits.</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   shell <span class="nb">tar </span>xzf deployment-manager-<span class="o">{</span>site.data.meta.product_version<span class="o">}}</span>.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.2.0-rc2.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.2.0-rc2 deployment-manager
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   shell <span class="nb">tar </span>xzf deployment-manager-<span class="o">{</span>site.data.meta.product_version<span class="o">}}</span>.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.2.0.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.2.0 deployment-manager
 </code></pre></div></div>
 
 <h2 id="acquire-the-okera-cli">Acquire the Okera CLI</h2>
@@ -750,14 +757,14 @@ Download the shell binary for either Linux or OS X (depending on which OS is run
   <li><strong>Linux</strong></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0-rc2/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <ul>
   <li><strong>OS X</strong></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0-rc2/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <h2 id="establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</h2>
@@ -1108,7 +1115,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>

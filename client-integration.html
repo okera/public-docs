@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -781,9 +788,11 @@ beeline&gt; select * from sample;
 access to the dataset, which is now accessible to all the Okera integrated clients.
 Other users accessing this dataset should see the request fail.</p>
 
-<p><strong>Note:</strong> These steps also assumes that the beeline client has access to this location.
+<blockquote>
+  <p><strong>Note:</strong> These steps also assumes that the beeline client has access to this location.
 This, for example, involves IAM roles or AWS access keys to be set up if the data is in
 S3.</p>
+</blockquote>
 
 <p>You may create a local cached dataset using “create table as select” statement. This
 data set (materialized view) is stored in the EMR local/shared hdfs. Note that this
@@ -1043,7 +1052,7 @@ Optional configuration for the hinted maximum number of tasks to generate per Pl
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>

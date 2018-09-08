@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -692,7 +699,7 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
-<h2 id="120-in-development">1.2.0 (in development)</h2>
+<h2 id="120-sep-2018">1.2.0 (sep 2018)</h2>
 
 <p>1.2.0 is the next major Okera release with significant new functionality and improvements throughout the platform.</p>
 
@@ -738,7 +745,19 @@ See <a href="supported-sql#last-partitionslast-files">here</a> for best practice
 
 <h4 id="pyokera">PyOkera</h4>
 
-<p>TODO</p>
+<ul>
+  <li>
+    <p>PyCerebro has been renamed PyOkera.
+The API is effectively unchanged except that now instead of importing ‘from cerebro’ you will need to import ‘from okera’.</p>
+  </li>
+  <li>
+    <p>Parallel Execution of Tasks.
+PyOkera will now schedule and execute worker tasks in parallel to minimize network latency.
+The scan_as_pandas() and scan_as_json() API calls will by default spawn worker processes to concurrently execute tasks where possible.
+The default number of local worker processes is defined as 2 times the number of CPU Cores on the machine on which it is being processed.
+This has demonstrated a reduction in run-time duration for queries by minimizing the network latency involved with establishing network connections with the Okera Worker Nodes.</p>
+  </li>
+</ul>
 
 <h4 id="performance">Performance</h4>
 
@@ -891,6 +910,7 @@ Previously, in same cases, this could fail if layers of views are used.</p>
 <ul>
   <li>Partitioned tables where the user only has <code class="highlighter-rouge">SHOW</code> access will mistakenly show the user as having access to the partitions columns in the UI.
 The UI properly shows that the other columns are inaccessible.</li>
+  <li>While multiple ODAS clusters can be configured to share their HMS and Sentry databases, datasets created by a 1.2.0 ODAS cluster cannot be read by ODAS clusters running earlier versions (1.1.x or earlier).</li>
 </ul>
 
 <h2 id="110-june-2018">1.1.0 (june 2018)</h2>
@@ -1190,7 +1210,7 @@ This will be remedied in the next release.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>

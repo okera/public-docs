@@ -90,7 +90,7 @@ ocadm clusters upgrade \
  --version <upgrade_version> <cluster_id>
 ```
 
-**Note:** Specified components take the form of `component:version`.
+> **Note:** Specified components take the form of `component:version`.
 
 **Example:** Upgrading cluster 2's ODAS components to version 1.0.0 and web UI to 1.0.1:
 ```shell

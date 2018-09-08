@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -813,9 +820,11 @@ The advantage of this approach is that ODAS continues to provide fine-grained ac
 </blockquote>
 
 <p><strong>Example:</strong> Creating external views with aggregate functions</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">VIEW</span> <span class="n">maxRevenue</span><span class="p">,</span> <span class="n">minRevenue</span>
-<span class="k">AS</span> <span class="k">SELECT</span> <span class="k">min</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span> <span class="k">max</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">cal_sales</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="s1">'california'</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">VIEW</span> <span class="n">revenue_cal</span>
+<span class="k">AS</span> <span class="k">SELECT</span> <span class="k">min</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span> <span class="k">as</span> <span class="n">minRevenue</span><span class="p">,</span>
+<span class="k">max</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span> <span class="k">as</span> <span class="n">maxRevenue</span>
+<span class="k">FROM</span> <span class="n">sales_transactions</span>
+<span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="s1">'california'</span>
 </code></pre></div></div>
 
 <p>Since compute applications do not accept the “<code class="highlighter-rouge">EXTERNAL</code> view” syntax, it can be executed using odb or Okera Web UI.</p>
@@ -1051,7 +1060,7 @@ If the smaller tables exceed the maximum configured size, the request fails at r
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>

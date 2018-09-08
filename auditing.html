@@ -540,6 +540,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -700,7 +707,8 @@ You can use the <a href="reports-page">Reports Page</a> in the UI to easily expl
 
 <h2 id="audit-log-format">Audit Log Format</h2>
 
-<p>Each audit log is a json record with this schema.
+<p>Each audit log is a json record with thw following schema.
+By default, the audit log data is mounted as a table: okera_system.audit_logs.
 These fields are considered stable and will not be removed in future releases.
 It is expected that more fields may be added in the future.</p>
 
@@ -714,64 +722,99 @@ It is expected that more fields may be added in the future.</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">request_time</code></td>
-      <td>string</td>
+      <td>ymd</td>
+      <td>STRING</td>
+      <td>The table partitioning string, derived from the request_time in the form of <code class="highlighter-rouge">YYYY-MM-DD</code>.</td>
+    </tr>
+    <tr>
+      <td>request_time</td>
+      <td>STRING</td>
       <td>Human-formatted GMT time when the request started.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">start_unix_time</code></td>
-      <td>int64</td>
-      <td>Unix epoch time at which the request completed (or failed).</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">end_unix_time</code></td>
-      <td>int64</td>
-      <td>Unix epoch time at which the audit entry was generated.</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">request_id</code></td>
-      <td>string</td>
+      <td>request_id</td>
+      <td>STRING</td>
       <td>Unique ID for this request.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">auth_failure</code></td>
-      <td>boolean</td>
+      <td>start_unix_time</td>
+      <td>BIGINT</td>
+      <td>Unix epoch time at which the request completed (or failed).</td>
+    </tr>
+    <tr>
+      <td>end_unix_time</td>
+      <td>BIGINT</td>
+      <td>Unix epoch time at which the audit entry was generated.</td>
+    </tr>
+    <tr>
+      <td>auth_failure</td>
+      <td>BOOLEAN</td>
       <td>Set to true if the request failed due to authorization or authentication failure.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">status</code></td>
-      <td>string</td>
+      <td>status</td>
+      <td>STRING</td>
       <td>Status message of the request. “ok” if the request succeeded; error details otherwise.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">user</code></td>
-      <td>string</td>
+      <td>user</td>
+      <td>STRING</td>
       <td>The effective user running the request. This is the user whose access permissions are used to validate the request.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">connected_user</code></td>
-      <td>string</td>
-      <td>The user that is authenticated at the network connection level. This can be different than <code class="highlighter-rouge">user</code> if the connected user is running on behalf of another user.</td>
+      <td>connected_user</td>
+      <td>STRING</td>
+      <td>The user that is authenticated at the network connection level. This can be different from ‘user’ if the ‘connected_user’ is running on behalf of another user.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">client_network_address</code></td>
-      <td>string</td>
+      <td>client_application</td>
+      <td>STRING</td>
+      <td>The client application, including client version, that originated the request. Examples: execute-ddl, presto (1.0.0)</td>
+    </tr>
+    <tr>
+      <td>client_network_address</td>
+      <td>STRING</td>
       <td>The client host and port.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">client_application</code></td>
-      <td>string</td>
-      <td>The client application, including client version, that originated the request. Examples: <code class="highlighter-rouge">execute-ddl</code>, <code class="highlighter-rouge">presto (1.0.0)</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">statement_type</code></td>
-      <td>string</td>
+      <td>statement_type</td>
+      <td>STRING</td>
       <td>The type of the request.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">statement</code></td>
-      <td>string</td>
+      <td>statement</td>
+      <td>STRING</td>
       <td>Log of the request. Depending on the statement type, this will vary in format but captures the request being made.</td>
+    </tr>
+    <tr>
+      <td>num_results_returned</td>
+      <td>BIGINT</td>
+      <td>The number of records returned by the query.</td>
+    </tr>
+    <tr>
+      <td>ae_database</td>
+      <td>STRING</td>
+      <td>A list of the databases accessed during the processing of the query.</td>
+    </tr>
+    <tr>
+      <td>ae_table</td>
+      <td>STRING</td>
+      <td>A list of the tables accessed during the processing of the query.</td>
+    </tr>
+    <tr>
+      <td>ae_view</td>
+      <td>STRING</td>
+      <td>A list of the views accessed during the processing of the query.</td>
+    </tr>
+    <tr>
+      <td>ae_function</td>
+      <td>STRING</td>
+      <td>A list of the functions executed during the processing of the query.</td>
+    </tr>
+    <tr>
+      <td>ae_role</td>
+      <td>STRING</td>
+      <td>A list of the roles modified during the processing of the query.</td>
     </tr>
   </tbody>
 </table>
@@ -784,11 +827,10 @@ Others found in the logs are not considered stable and are subject to deprecatio
 <h2 id="service-logs">Service Logs</h2>
 
 <p>The audit logs are prefixed in the service log with <code class="highlighter-rouge">Audit.log</code>, on a single line.
-For example, the service log with 3 entries may look like:</p>
+For example, the service log with 2 entries may look like:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proc stderr: I1114 16:00:32.785622   127] Audit.log: {"request_time":"2017-11-14 16:00:32.444431000","request_id":"5c4ea821bc255858:5c402db736b49f93","start_unix_time":1510675232444,"end_unix_time":1510704032785,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"127.0.0.1:48024","client_application":"execute-ddl","statement_type":"DDL","default_db":"default","statement":"CREATE DATABASE IF NOT EXISTS okera_sample;"}
-proc stderr: I1114 16:00:33.601177   128] Audit.log: {"request_time":"2017-11-14 16:00:32.801185000","request_id":"749a2d993fd0f15:dec37270e0b477bd","start_unix_time":1510675232801,"end_unix_time":1510704033601,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"127.0.0.1:48026","client_application":"execute-ddl","statement_type":"DDL","default_db":"default","statement":"CREATE EXTERNAL TABLE IF NOT EXISTS okera_sample.sample(record STRING)   LOCATION 'file:///opt/data/sample';"}
-proc stderr: I1114 16:00:33.658776   129] Audit.log: {"request_time":"2017-11-14 16:00:33.615871000","request_id":"9b4e49b3d3542e6a:c48ba960358f918f","start_unix_time":1510675233615,"end_unix_time":1510704033658,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"127.0.0.1:48028","client_application":"execute-ddl","statement_type":"DDL","default_db":"default","statement":"CREATE EXTERNAL TABLE IF NOT EXISTS okera_sample.users(     uid STRING,     dob STRING,     gender STRING,     ccn STRING)   STORED AS PARQUET LOCATION 'file:///opt/data/users';"}
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proc stderr: I0906 15:28:08.356360 15362 impala-server.cc:679] Audit.log: {"request_time":"2018-09-06 22:23:41.985291000","request_id":"c64016b99f9881c3:9e6d696c9fa975b3","start_unix_time":1536272621985,"end_unix_time":1536272622238,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"::ffff:10.36.0.1:57952","client_application":"okera-rest-server","num_results_returned":0,"statement_type":"DDL","default_db":"default","statement":"CREATE EXTERNAL TABLE okera_sample.sample (   record STRING ) STORED AS TEXTFILE LOCATION 'file:/opt/data/sample'","ae_database":"okera_sample","ae_function":"","ae_role":"","ae_table":"okera_sample.sample","ae_view":""}
+proc stderr: I0906 15:23:42.239003 15818 impala-server.cc:679] Audit.log: {"request_time":"2018-09-06 22:28:08.334158000","request_id":"574276652c04b479:494cb86e7e3638ba","start_unix_time":1536272888334,"end_unix_time":1536272888356,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"::ffff:10.36.0.1:60616","client_application":"okera-rest-server","num_results_returned":2,"statement_type":"INTERNAL_API","default_db":"default","statement":"TGetRoleProvenanceParams {   01: user (string) = \"root\", }","ae_database":"","ae_function":"","ae_role":"","ae_table":"","ae_view":""}
 </code></pre></div></div>
 
 
@@ -807,7 +849,7 @@ proc stderr: I1114 16:00:33.658776   129] Audit.log: {"request_time":"2017-11-14
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Aug 30, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
       </div>
     </div>
   </div>
