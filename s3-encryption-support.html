@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Okera Platform Quick Technical Solutions | Okera User Documentation</title>
+<title>S3 Encryption Support | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -613,14 +613,14 @@
           
           
           
-          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          <li class="active"><a href="s3-encryption-support">Supported S3 Encryption Types</a></li>
           
           
           
           
           
           
-          <li class="active"><a href="quick-recipes">Quick Recipes</a></li>
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
           
@@ -691,69 +691,147 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="okera-platform-quick-technical-solutions">Okera Platform Quick Technical Solutions</h1>
+  <h1 id="s3-encryption-support">S3 Encryption Support</h1>
 
-<p>These “recipes” offer simple solutions and workarounds for common tasks and sticking points.</p>
+<h2 id="introduction">Introduction</h2>
 
-<h2 id="administration">Administration</h2>
+<p>AWS S3 offers multiple <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingEncryption.html">encryption</a> options for stored data.</p>
 
-<h3 id="performing-a-rolling-restart">Performing a Rolling Restart</h3>
+<p>First, <em>server-side encryption</em> (SSE) can used to secure <em>data-at-rest</em>, which encypts the incoming object data as it is persisted into the storage layer.
+It protects user data from prying eyes that have access to the physical media.
+For example, assume a storage disk is replaced in an S3 data center and the replaced media is not immediately destroyed.
+In that case, someone could get hold of the disk and access the data that is stored.
+With SSE enabled, the incoming data is encrypted <em>before</em> it is stored and the encryption keys used are maintained separately.</p>
 
-<p>When Okera performs a rolling restart of its services, it  stops a given instance and then launches a replacement instance based on the same docker image. By stopping the instances one by one, this performs a rolling restart of the service. This can be done for any of the ODAS services.</p>
+<p>There are three ways to maintain the encryption keys for SSE:</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker stop <span class="o">[</span>CONTAINER ID]
+<ol>
+  <li>
+    <p>Amazon S3-managed Encryption Keys (SSE-S3)</p>
+
+    <p>In this scenario the keys are managed by S3 itself and are only usable for S3 services.</p>
+  </li>
+  <li>
+    <p>KMS-managed Encryption Keys (SSE-KMS)</p>
+
+    <p>Here the keys are managed by a <em>key management system</em> (KMS), which is a separate AWS service (part of the AWS IAM service).
+These keys can be used for multiple AWS services, including S3.
+Note that each object is encrypted using a dedicated key, and the KMS key is used to secure the per-object keys.</p>
+  </li>
+  <li>
+    <p>Customer-provided Encryption Keys (SSE-C)</p>
+
+    <p>The last option is for users to provide a key when writing and reading S3 objects.
+These keys have no relation to anything else in S3.</p>
+  </li>
+</ol>
+
+<p>Of note is that SSE is <strong>only</strong> protecting the data at rest, that is, how the data is delivered is a separate concern.</p>
+
+<p>This leads to the second encryption option for S3, which is <em>client-side encryption</em> (CSE).
+Here the client is tasked to encrypt the data before it is sent to S3 and handles the security of <em>data-in-transit</em>.
+In other words, when emplying CSE, the client is sending secure data to S3 which stores it as-is as the object data.
+Any possible eavesdropping on the network during the data transfer will not yield any readable data.
+This also applies to data-at-rest, since only encrypted data is stored by S3 transparently, covering both aspects of security.</p>
+
+<p>There are two ways of maintaining encryption keys for CSE:</p>
+
+<ol>
+  <li>
+    <p>KMS-managed Encryption Keys (CSE-KMS)</p>
+
+    <p>This is the same as for SSE, that is, the KMS in the IAM service is used to manage shared keys.
+The client can use the key ID (the ARN) to refer to a key, which is then accessed by the client for encryption and decryption purposes.
+Note that each object is encrypted using a dedicated key, and the KMS key is used to secure the per-object keys.</p>
+  </li>
+  <li>
+    <p>Client-side Master Keys (CSE-C)</p>
+
+    <p>Another option is to provide a local, client-side only key that is used to encrypt and decrypt locally.
+These keys are have no relation to anything else in AWS.</p>
+  </li>
+</ol>
+
+<p>Both methods can be combined too, in case where clients only sometimes encrypt data.
+For S3 and SSE, the CSE is completely transparent.</p>
+
+<h2 id="supported-encryption">Supported Encryption</h2>
+
+<p>The Okera Platform does not support <em>any</em> of the client-side encryption options, since S3 has no knowledge of the data being secured or not, and ODAS does not currently have a way to store this metadata.
+In other words, there is no metadata with the S3 object that could be used to determine the encryption type and key management option.</p>
+
+<p>For server-side encryption, Okera supports only SSE-S3 and SSE-KMS.
+The former is handled completely transparent and requires no changes to the Okera setup.</p>
+
+<p>In case of KMS-managed keys, the Okera servers need extra IAM permissions to access the KMS service and get the encryption keys, as referenced in the object metadata.
+For that, the <code class="highlighter-rouge">IAM_CLUSTER</code> role (see the <a href="https://docs.okera.com/okera-prereq#aws-requirements">Installation Prerequisites</a>  documentation) needs to be given the following extra KMS related permissions:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "kms:ListKeys",
+                "kms:Decrypt",
+                "kms:DescribeKey"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
 </code></pre></div></div>
 
-<p>This will stop the instance and it is automatically restarted. To see its progress, you can run:</p>
+<p>With these permissions the Okera workers are allowed to access the SSE secured objects, with S3 doing the actual work of accessing the keys and decrypting the data before the transfering the readable object content.</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker ps
-</code></pre></div></div>
+<p>For cross-account permissions you need to add the account under which the ODAS Workers are running as an <em>external account</em> to the AWS account’s IAM service that hosts the KMS-managed keys.</p>
 
-<p>Note the values in the <code class="highlighter-rouge">CREATED</code> column.
-This is the duration for which the current instance of a given docker container has been running.</p>
+<p><a name="Adding an external account to the AWS KMS"></a>
+<img src="assets/images/s3-kms-ext-acct.png" style="width: 100%; max-width:100%;" /></p>
 
-<h3 id="passing-hyphenated-names-via-rest-api">Passing Hyphenated Names via REST API</h3>
+<h3 id="support-matrix">Support Matrix</h3>
 
-<p>When passing <code class="highlighter-rouge">GRANT ROLE</code> to the <a href="catalog-rest-api">Catalog REST API</a>, hyphenated usernames will throw an error, due to a limitation in the REST service.</p>
+<p>The following table summarizes the supported S3 encryption types.</p>
 
-<p><strong>Example:</strong> Hyphenated group name with improper syntax</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:7184/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
- <span class="nt">-H</span> <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
- <span class="nt">-d</span> <span class="s1">'{"query":"GRANT ROLE winner TO GROUP the-a-team"}'</span>
-</code></pre></div></div>
-<p>This will return a syntax error.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Keys</th>
+      <th style="text-align: center">Supported</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Server</td>
+      <td style="text-align: left">S3-managed</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Server</td>
+      <td style="text-align: left">KMS-managed</td>
+      <td style="text-align: center">Yes<sup>1</sup></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Server</td>
+      <td style="text-align: left">Customer-provided</td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Client</td>
+      <td style="text-align: left">KMS-managed</td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Client</td>
+      <td style="text-align: left">Client-provided</td>
+      <td style="text-align: center">No</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>The solution is to contain the group name in escaped backticks.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:7184/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
- <span class="nt">-H</span> <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
- <span class="nt">-d</span> <span class="s1">'{"query":"GRANT ROLE winner TO GROUP \`the-a-team\`"}'</span>
-</code></pre></div></div>
-
-<h2 id="data-access">Data Access</h2>
-
-<h3 id="working-around-hives-show-create-view-limitation">Working around Hive’s SHOW CREATE VIEW Limitation</h3>
-
-<p>Using <code class="highlighter-rouge">SHOW CREATE VIEW</code> in Hive fails with a <code class="highlighter-rouge">NoViableAltException(303@[])</code> error due to a limitation in Hive, which does not support external storage handlers.
-Hive only permits <code class="highlighter-rouge">SHOW CREATE TABLE</code>, which shows the resulting (optionally joined) table.
-To see the definition, you have to use the <a href="okera-database-cli">odb utility</a>.</p>
-
-<p>Using the same commands here should return the expected result.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odb dataset hive-ddl <span class="s2">"show create table testdb.sampleview"</span>
-</code></pre></div></div>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request complete.
-Result: <span class="o">[</span><span class="s1">'CREATE VIEW testdb.sampleview AS\nSELECT sample.record FROM okera_sample.sample'</span><span class="o">]</span>
-</code></pre></div></div>
-
-<h3 id="converting-non-utf-8-encoding-during-query">Converting Non-UTF-8 Encoding During Query</h3>
-
-<p>If you have data encoded as other than UTF-8, it may not display as you prefer.
-If the data cannot be converted at its source or upon display, you may convert it at query time using <code class="highlighter-rouge">| iconv -f &lt;source_encoding&gt; -t utf-8</code>, where <code class="highlighter-rouge">&lt;source_encoding&gt;</code> is the source file’s encoding.</p>
-
-<p><strong>Example:</strong> Converting ISO-8859-1 encoding at query time</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://odas.example.com:5000/api/scan?user<span class="o">=</span>usertoken&amp;records<span class="o">=</span>1 <span class="se">\</span>
- <span class="nt">-H</span> <span class="s1">'Content-Type: application/json;'</span> <span class="se">\</span>
-    <span class="nt">--data</span> <span class="s1">'{"query": "SELECT * from your_table"}'</span> | iconv <span class="nt">-f</span> iso8859-1 <span class="nt">-t</span> utf-8
-</code></pre></div></div>
+<p>Notes: <sup>1</sup> Requires KMS permissions</p>
 
 
     <div class="tags">

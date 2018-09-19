@@ -15,13 +15,12 @@
 <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
 <!-- Old Algolia Instant Search -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
 <!-- End Old Algolia Instant Search -->
-<!-- Algolia Docusearch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
@@ -31,7 +30,8 @@
 <script src="theme/js/jquery.navgoco.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
@@ -41,15 +41,19 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
 <!-- End Old Algolia Instant Search -->
 
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
 <script>
-$( document ).ready(function() {
-  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
-  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
-  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
-  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
-  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
-  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
-});
+  $(document).ready(function () {
+    $("blockquote:contains('Note')").addClass("admonitionblock note");
+    $("blockquote:contains('Warning')").addClass("admonitionblock warning");
+    $("blockquote:contains('Tip')").addClass("admonitionblock tip");
+    $(".admonitionblock.note").prepend('<i class="fa fa-check admonition"></i>');
+    $(".admonitionblock.warning").prepend('<i class="fa fa-exclamation-triangle admonition"></i>');
+    $(".admonitionblock.tip").prepend('<i class="fa fa-lightbulb-o admonition"></i>');
+  });
 </script>
 
 
@@ -59,10 +63,6 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
-
-
     <script>
         $(document).ready(function() {
             // Initialize navgoco with default options
@@ -120,7 +120,7 @@ $( document ).ready(function() {
     <div class="container topnavlinks">
 
         <div class="row">
-            <div class="col-sm-4 col-md-8">
+            <div class="col-sm-4 col-md-3">
 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -154,12 +154,15 @@ $( document ).ready(function() {
                     </ul>
                 </div>
             </div>
-            <form class="navbar-form" id="search-nav-container" role="search">
+            <form class="aa-input-container navbar-form" id="aa-input-container" role="search">
                 <div class="form-group">
-                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                    <input id="aa-search-input" type="text" class="aa-input-search form-control" placeholder="Search"
+                        autocomplete="off">
                 </div>
             </form>
         </div>
+        <!-- Algolia Integrated search Script -->
+        <script type="text/javascript" src="theme/js/okera-integrated-search.js"></script>
         <!-- comment out this block if you want to hide jekyll search
                   <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
@@ -167,24 +170,8 @@ $( document ).ready(function() {
                       </form>
                   </div>
                 end search -->
-        <!-- New Search Input  -->
-        <!-- <div class="navbar-form" id="search-demo-container">
-                    <input id="search-okera" type="text" placeholder="Search the docs...">
-                </div> -->
-        <!-- END SEARCH -->
-        <!-- /.container -->
     </div>
 </nav>
-
-<!-- Algolia Docusearch Script -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-<script type="text/javascript"> docsearch({
-        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
-        indexName: 'okera',
-        inputSelector: '#search-okera',
-        debug: false // Set debug to true if you want to inspect the dropdown
-    });
-</script>
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -626,6 +613,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -633,7 +627,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="faq">Frequently Asked Questions</a> </li>
+          <li><a href="https://okera.zendesk.com/hc/en-us/categories/115000493607-FAQs" target="_blank">Frequently Asked Questions</a></li>
           
           
           
@@ -809,10 +803,11 @@ The steps below assume that the standard install paths were used.</p>
 </ol>
 
 <p>The config script from <code class="highlighter-rouge">/etc/okera/env.sh</code> is automatically loaded when starting the Deployment Manager.
-If this is the path used, it is not necessary to source the script.</p>
+If this is the path used, it is not necessary to source the script. 
+If any other path is used, <code class="highlighter-rouge">env.sh</code> must be sourced before starting the Deployment Manager.</p>
 
 <ol>
-  <li>Restart the deployment manager by running:</li>
+  <li>Start (or restart) the deployment manager by running:</li>
 </ol>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   shell /opt/okera/deployment-manager/bin/deployment-manager
@@ -840,7 +835,7 @@ Okera creates in this directory a number of required subdirectories.</p>
 
 <h4 id="relational-database-credentials">Relational Database Credentials</h4>
 
-<p>The settings <code class="highlighter-rouge">OKERA_DB_URL</code>, <code class="highlighter-rouge">OKERA_DB_USERNAME</code> <code class="highlighter-rouge">OKERA_DB_PASSWORD</code> are the end point and credentials for the DM’s RDB backend.
+<p>The settings <code class="highlighter-rouge">OKERA_DB_URL</code>, <code class="highlighter-rouge">OKERA_DB_USERNAME</code>, and <code class="highlighter-rouge">OKERA_DB_PASSWORD</code> are the end point and credentials for the DM’s RDB backend.
 The <code class="highlighter-rouge">OKERA_DB_URL</code> should be host:port (typically port <code class="highlighter-rouge">3306</code>) of the running MySQL/Aurora instance.</p>
 
 <p><strong>Example:</strong> Setting the database location and credentials</p>
@@ -876,7 +871,7 @@ However, only admin users can create new roles.</p>
 <h4 id="okera_port_configuration">OKERA_PORT_CONFIGURATION</h4>
 
 <p>This configuration specifies the ports on which cluster services run.
-These ports do need to be available for all users connecting to Okera for metadata and data.
+These ports must be available for all users connecting to Okera for metadata and data.
 The ports are contained in a comma-separated list of service:portname:port number.
 If the ports are not specified, Okera randomly selects available ports on which to expose these services.</p>
 
@@ -1115,7 +1110,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 18, 2018
       </div>
     </div>
   </div>

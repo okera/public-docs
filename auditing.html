@@ -15,13 +15,12 @@
 <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
 <!-- Old Algolia Instant Search -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
 <!-- End Old Algolia Instant Search -->
-<!-- Algolia Docusearch -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
@@ -31,7 +30,8 @@
 <script src="theme/js/jquery.navgoco.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
@@ -41,15 +41,19 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
 <!-- End Old Algolia Instant Search -->
 
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
 <script>
-$( document ).ready(function() {
-  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
-  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
-  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
-  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
-  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
-  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
-});
+  $(document).ready(function () {
+    $("blockquote:contains('Note')").addClass("admonitionblock note");
+    $("blockquote:contains('Warning')").addClass("admonitionblock warning");
+    $("blockquote:contains('Tip')").addClass("admonitionblock tip");
+    $(".admonitionblock.note").prepend('<i class="fa fa-check admonition"></i>');
+    $(".admonitionblock.warning").prepend('<i class="fa fa-exclamation-triangle admonition"></i>');
+    $(".admonitionblock.tip").prepend('<i class="fa fa-lightbulb-o admonition"></i>');
+  });
 </script>
 
 
@@ -59,10 +63,6 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
-
-
     <script>
         $(document).ready(function() {
             // Initialize navgoco with default options
@@ -120,7 +120,7 @@ $( document ).ready(function() {
     <div class="container topnavlinks">
 
         <div class="row">
-            <div class="col-sm-4 col-md-8">
+            <div class="col-sm-4 col-md-3">
 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -154,12 +154,15 @@ $( document ).ready(function() {
                     </ul>
                 </div>
             </div>
-            <form class="navbar-form" id="search-nav-container" role="search">
+            <form class="aa-input-container navbar-form" id="aa-input-container" role="search">
                 <div class="form-group">
-                    <input id="search-okera" type="text" class="form-control" placeholder="Search the docs...">
+                    <input id="aa-search-input" type="text" class="aa-input-search form-control" placeholder="Search"
+                        autocomplete="off">
                 </div>
             </form>
         </div>
+        <!-- Algolia Integrated search Script -->
+        <script type="text/javascript" src="theme/js/okera-integrated-search.js"></script>
         <!-- comment out this block if you want to hide jekyll search
                   <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
@@ -167,24 +170,8 @@ $( document ).ready(function() {
                       </form>
                   </div>
                 end search -->
-        <!-- New Search Input  -->
-        <!-- <div class="navbar-form" id="search-demo-container">
-                    <input id="search-okera" type="text" placeholder="Search the docs...">
-                </div> -->
-        <!-- END SEARCH -->
-        <!-- /.container -->
     </div>
 </nav>
-
-<!-- Algolia Docusearch Script -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-<script type="text/javascript"> docsearch({
-        apiKey: '0d3d7114a46452ccf7fa6e718e2f5429',
-        indexName: 'okera',
-        inputSelector: '#search-okera',
-        debug: false // Set debug to true if you want to inspect the dropdown
-    });
-</script>
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -626,6 +613,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -633,7 +627,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="faq">Frequently Asked Questions</a> </li>
+          <li><a href="https://okera.zendesk.com/hc/en-us/categories/115000493607-FAQs" target="_blank">Frequently Asked Questions</a></li>
           
           
           
@@ -699,18 +693,158 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="auditing">Auditing</h1>
 
-<p>All data and metadata requests are audited.
-All of these audit logs are generated by the Planner service.
-There may be additional audit logs by higher level services, such as the REST service and Web UI, but requests to get data or metadata will eventually go through the Planner.
-These logs are periodically uploaded to S3 in the cluster’s install location.
-You can use the <a href="reports-page">Reports Page</a> in the UI to easily explore and analyze these audit logs.</p>
+<h2 id="introduction">Introduction</h2>
+
+<p>A vital part of data governance is the ability to quickly and coherently respond to security threats.
+This is also critical for regulatory purposes and compliancy requests.
+Enterprises are often required to use company-wide <em>security information and event management</em> (SIEM) software that allows the correlation of audit log events generated by IT systems.
+For any data provided by the Okera Platform, there is a single audit log location with text files that contain JSON formated records for each monitored action.
+This includes all access to data and metadata, such as the Schema Registry to retrieve dataset information.</p>
+
+<p>Every access to the Okera Platform services is authenticated by the respective endpoint, and the access operation is written to the audit logs in great detail, containing not only the user making the request, but also the API that is used, if the request was successful, and so on.
+All requests eventually flow through the ODAS Planner(s) and Workers, irrespective of the API used.
+The Planner is used, among other things, to retrieve dataset definitions and plan the distribution of the query across all available cluster nodes.
+These requests are authenticated and authorized by the Planner, which then appends an audit event record to its local log.
+The Workers are responsible to serve the dataset rows as needed by the clients, applying any filtering or masking on the fly.
+Before any data is returned the client request is again authenticated, creating an audit event entry to be appended to the Worker’s local log.
+After serving data and upon concluding the client request, the Worker(s) also log the amount of data that was transmitted to and from the client, with which you can determine the usage for individuals and groups, and develop, for instance, charge-back models.</p>
+
+<h2 id="audit-logs">Audit Logs</h2>
+
+<p>The Planners, Workers, gateway servers, and so on are configured to upload their local log to a central storage location, usually the configured installation directory.
+For AWS, this is a directory in an S3 bucket the servers have write access to.
+The location is configured with the <code class="highlighter-rouge">OKERA_STAGING_DIR</code> environment variable set in the <code class="highlighter-rouge">env.sh</code> and before starting the Deployment Manager process.
+If you want to change this environment variable, you would need to update the <code class="highlighter-rouge">env.sh</code> file and restart the Deployment Manager.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Changing this setting only applies to cluster that are started thereafter.
+For an existing cluster a restart would be necessary to set the new log location.</p>
+</blockquote>
+
+<p>For example, here is what the content of a staging directory may look like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws s3 ls s3://acme-ops/prod-7/
+        PRE audit/
+        PRE canary/
+        PRE cdas_rest_server/
+        PRE cerebro_catalog/
+        PRE cerebro_planner/
+        PRE cerebro_web/
+        PRE cerebro_worker/
+        PRE clusters/
+        PRE zookeeper/
+...
+</code></pre></div></div>
+
+<p>The first directory shown, named <code class="highlighter-rouge">audit</code>, is the one containing the uploaded audit logs from all cluster nodes.
+For performance reasons the data is partitioned by day inside the audit directory:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws s3 ls s3://acme-ops/prod-7/audit/
+        PRE ymd=2018-09-05/
+        PRE ymd=2018-09-06/
+        PRE ymd=2018-09-07/
+        PRE ymd=2018-09-08/
+        PRE ymd=2018-09-09/
+        PRE ymd=2018-09-10/
+</code></pre></div></div>
+
+<p>Looking into a particular partition directory reveals the already uploaded logs, here one from a Planner and another from a Worker instance:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws s3 ls s3://acme-ops/prod-7/audit/ymd=2018-09-05/
+2018-09-06 08:18:06     814762 \
+  planner-10.1.10.181-0-731c5cf0-4917-4947-b199-7fb257efcfba_audit.log
+2018-09-10 15:25:00     143733 \
+  worker-10.1.10.181-0-3e80936e-30d0-4080-a519-f1676d6544bf_audit.log
+</code></pre></div></div>
+
+<p>The file name is comprises the service name, the internal IP address of the node hosting it, a squence number, and a UUID, making the log unique for a specific instance of a service.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> There is usually no need to know about those files and where they exactly came from.
+Using the provided audit table and views (see below) will handle the files implicitly when executing queries on top of them.</p>
+</blockquote>
+
+<p>You can use the <a href="reports-page">Reports Page</a> in the Okera Portal to easily explore and analyze these audit logs.
+Here an example of the raw JSON record that is appended to the audit log for every client access:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ "request_time":"2018-09-05 16:19:01.628368000",
+  "request_id":"97451917614274a8:bd6c2b3347c651a6",
+  "start_unix_time":1536164341628,
+  "end_unix_time":1536164342121,
+  "auth_failure":false,
+  "status":"ok",
+  "user":"root",
+  "connected_user":"root",
+  "client_network_address":"::1:52774",
+  "client_application":"okera-execute-ddl",
+  "num_results_returned":0,
+  "statement_type":"DDL",
+  "default_db":"default",
+  "statement":"CREATE ROLE IF NOT EXISTS okera_public_role",
+  "ae_database":"","ae_function":"",
+  "ae_role":"okera_public_role",
+  "ae_table":"","ae_view":""}
+</code></pre></div></div>
+
+<h3 id="other-logs">Other Logs</h3>
+
+<p>Planner(s) and Workers generate additional log files that contain <em>all</em> of the log events these processes generate, including the audit logs events.
+They are located in another top-level directory in the staging location, one per service type (see <a href="cluster-types">Cluster Types</a> for a list of services depending on the selected cluster type), and can be used by administrators for debugging purposes.
+For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws s3 ls s3://acme-ops/prod-7/cerebro_planner/
+2018-09-05 18:19:05     108632 2018-09-05-16-19-04-planner- \
+  10.1.10.181-0-07a6e2e5-2014-4f1d-8abc-14a04618b341.log
+2018-09-05 18:19:21      48361 2018-09-05-16-19-20-planner- \
+  10.1.10.181-1-7df31dc6-43bd-4265-aa54-f11f5d7b22a8.log
+2018-09-05 18:19:37        591 2018-09-05-16-19-36-planner- \
+  10.1.10.181-2-62e16fed-b2ba-4ce6-936a-c0911c37636a.log
+
+$ aws s3 ls s3://acme-ops/prod-7/cerebro_web/                                                                    130 ↵
+2018-09-05 18:20:21        405 2018-09-05-16-20-19-web- \
+  10.1.10.181-0-57950e12-360e-4629-bc89-763b567ad123.log
+2018-09-05 18:27:33         76 2018-09-05-16-27-32-web- \
+  10.1.10.181-1-acd846c6-6b32-4af7-99d0-880b9b0e3a46.log
+2018-09-05 18:52:39         76 2018-09-05-16-52-38-web- \
+  10.1.10.181-2-d41ad909-e46f-4b4d-b4a3-95a3ede57aa5.log
+
+$ aws s3 ls s3://acme-ops/prod-7/cdas_rest_server/
+2018-09-05 18:20:05      13763 2018-09-05-16-20-04-cdas-rest-server- \
+  10.1.10.181-0-ec031b3f-e971-4c38-adb4-01a6d9a28c42.log
+2018-09-05 18:20:21        532 2018-09-05-16-20-20-cdas-rest-server- \
+  10.1.10.181-1-1102aab4-8571-4d53-bffe-f51fe3084765.log
+2018-09-05 18:20:37        364 2018-09-05-16-20-36-cdas-rest-server- \
+  10.1.10.181-2-f512e3e5-80b9-42b5-97d0-26e9d8c8259f.log
+</code></pre></div></div>
+
+<p>The audit log records are prefixed in the mixed service logs with <code class="highlighter-rouge">Audit.log</code>, on a single line.
+For example, a service log with technical and audit log entries may look like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stderr: I0905 16:19:02.174656   228 impala-server.cc:1162] \
+  RegisterQuery(): query_id=bb4986e8cab0d521:823bc5dbc662b3b4
+stderr: I0905 16:19:02.266245   228 impala-server.cc:1212] \
+  UnregisterQuery(): query_id=bb4986e8cab0d521:823bc5dbc662b3b4
+stderr: I0905 16:19:02.267323   228 impala-server.cc:679] Audit.log: \
+  {"request_time":"2018-09-05 16:19:02.173889000","request_id": \
+  "ec4264da5511c330:a38cf5108c8b9b85","start_unix_time":1536164342173, \
+  "end_unix_time":1536164342267,"auth_failure":false,"status":"ok", \
+  "user":"root","connected_user":"root","client_network_address": \
+  "::1:52776","client_application":"okera-execute-ddl", \
+  "num_results_returned":0,"statement_type":"DDL","default_db":"default", \
+  "statement":"GRANT ROLE okera_public_role TO GROUP __okera_public_group", \
+  "ae_database":"","ae_function":"","ae_role":"","ae_table":"","ae_view":""}
+stdout: Connecting to planner localhost:12050
+</code></pre></div></div>
 
 <h2 id="audit-log-format">Audit Log Format</h2>
 
-<p>Each audit log is a json record with thw following schema.
-By default, the audit log data is mounted as a table: okera_system.audit_logs.
-These fields are considered stable and will not be removed in future releases.
-It is expected that more fields may be added in the future.</p>
+<p>Each audit log is a JSON record with the schema shown below.
+By default, the full audit log data is made available within the special <code class="highlighter-rouge">okera_system</code> database, as a table named <code class="highlighter-rouge">audit_logs</code>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The fields in the audit log schema are considered stable and will not be removed in future releases.
+It is expected that more fields are added in the future.</p>
+</blockquote>
 
 <table>
   <thead>
@@ -824,14 +958,49 @@ It is expected that more fields may be added in the future.</p>
 Others found in the logs are not considered stable and are subject to deprecation or unannounced removal.</p>
 </blockquote>
 
-<h2 id="service-logs">Service Logs</h2>
+<h2 id="audit-log-views">Audit Log Views</h2>
 
-<p>The audit logs are prefixed in the service log with <code class="highlighter-rouge">Audit.log</code>, on a single line.
-For example, the service log with 2 entries may look like:</p>
+<p>For convenience, the <code class="highlighter-rouge">okera_system</code> database is also providing special views on top of the raw audit log table.
+These views provide implicit filtering based on the partitioning information.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proc stderr: I0906 15:28:08.356360 15362 impala-server.cc:679] Audit.log: {"request_time":"2018-09-06 22:23:41.985291000","request_id":"c64016b99f9881c3:9e6d696c9fa975b3","start_unix_time":1536272621985,"end_unix_time":1536272622238,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"::ffff:10.36.0.1:57952","client_application":"okera-rest-server","num_results_returned":0,"statement_type":"DDL","default_db":"default","statement":"CREATE EXTERNAL TABLE okera_sample.sample (   record STRING ) STORED AS TEXTFILE LOCATION 'file:/opt/data/sample'","ae_database":"okera_sample","ae_function":"","ae_role":"","ae_table":"okera_sample.sample","ae_view":""}
-proc stderr: I0906 15:23:42.239003 15818 impala-server.cc:679] Audit.log: {"request_time":"2018-09-06 22:28:08.334158000","request_id":"574276652c04b479:494cb86e7e3638ba","start_unix_time":1536272888334,"end_unix_time":1536272888356,"auth_failure":false,"status":"ok","user":"root","connected_user":"root","client_network_address":"::ffff:10.36.0.1:60616","client_application":"okera-rest-server","num_results_returned":2,"statement_type":"INTERNAL_API","default_db":"default","statement":"TGetRoleProvenanceParams {   01: user (string) = \"root\", }","ae_database":"","ae_function":"","ae_role":"","ae_table":"","ae_view":""}
+<h3 id="daily-audit-log-view">Daily Audit Log View</h3>
+
+<p>The first view, named <code class="highlighter-rouge">daily_audit_logs</code>, restricts the data to the data of the last partition.
+Since the audit table is partitioned by day, this means the view returns the data of the current day.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The audit log views use the ODAS-specific <a href="supported-sql#last-partitionslast-files">LAST PARTITION</a> feature.</p>
+</blockquote>
+
+<p>For instance, the daily audit log view is defined like so:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">daily_audit_logs</span>
+<span class="k">COMMENT</span> <span class="s1">'Audited logs from the current day.'</span>
+<span class="k">AS</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">steward_audit_logs</span><span class="p">(</span><span class="k">LAST</span> <span class="n">PARTITION</span><span class="p">);</span>
 </code></pre></div></div>
+
+<h3 id="weekly-audit-log-view">Weekly Audit Log View</h3>
+
+<p>The <code class="highlighter-rouge">weekly_audit_logs</code> view is similar to the daily log view, but sets the number of partitions to return to seven, that is, one week.
+Using this view gives access to the last seven days, including the current day (which most likely is still accumulating data).</p>
+
+<h3 id="monthly-audit-log-view">Monthly Audit Log View</h3>
+
+<p>The <code class="highlighter-rouge">monthly_audit_logs</code> view is similar to the daily log view, but sets the number of partitions to return to thirty, that is, one month.
+Using this view gives access to the last thirty days, including the current day (which most likely is still accumulating data).</p>
+
+<h3 id="steward-audit-log-view">Steward Audit Log View</h3>
+
+<p>A more tailored audit log view is available as <code class="highlighter-rouge">steward_audit_logs</code>.
+It only returns audit log rows that refer to objects, that is, database, table, or view name, which the current user has administrative access to.
+For example, assuming there is a dataset named <code class="highlighter-rouge">salesdb.transactions</code> and a user <code class="highlighter-rouge">bob</code> that is part of the <code class="highlighter-rouge">sales_steward</code> role, a catalog or database administrator would need to grant the <code class="highlighter-rouge">ALL</code> privilege to the <code class="highlighter-rouge">sales_steward</code> role on the <code class="highlighter-rouge">salesdb.transactions</code> object so that user <code class="highlighter-rouge">bob</code> is able to see the audit log rows that pertain to that dataset.</p>
+
+<h3 id="reporting-audit-log-view">Reporting Audit Log View</h3>
+
+<p>The Okera Portal and its <a href="reports-page">Reports Page</a> use the <code class="highlighter-rouge">reporting_audit_logs</code> view that builds on the steward audit log view to provide access to the most important columns of the audit logs, while applying the same filtering.
+In other words, the user running reports will only see audit log records concerning objects they have full access to.
+The reporting view also filters out unnecessary audit records that would otherwise cause for the reports to show inaccurate aggregates.
+For example, the view filters out ODAS service internal communication, as well as one record for events that have both a start and end entry in the logs.</p>
 
 
     <div class="tags">
@@ -849,7 +1018,7 @@ proc stderr: I0906 15:23:42.239003 15818 impala-server.cc:679] Audit.log: {"requ
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 8, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 18, 2018
       </div>
     </div>
   </div>

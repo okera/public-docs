@@ -286,35 +286,6 @@ p.post-meta {
     text-transform: uppercase;
 }
 
-/*Search bar in nav*/
-
-#search-nav-container {
-    text-align: center;
-    width: 100%;
-    /*margin: 13px 0 0 20px;*/
-}
-
-#search-nav-container a:hover {
-    color: black;
-}
-
-#search-okera {
-    border: 4px;
-    border-radius: 2px;
-    padding: 10px 5px 5px 10px;
-    background: rgba(255, 255, 255, 0.7);
-    width: 300px;
-}
-
-#search-okera::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #4a4a4a;
-    opacity: 1;
-    /* Firefox */
-}
-
-/* end search */
-
 .filter-options {
     margin-bottom: 20px;
 }
@@ -1103,29 +1074,6 @@ a.no_icon:after {
     margin-bottom: 10px;
 }
 
-/* algolia search */
-
-.search {
-    text-align: left;
-}
-
-.search input {
-    font-size: 20px;
-    width: 300px;
-}
-
-.results {
-    margin: auto;
-    text-align: left;
-}
-
-.results ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-/* algolia */
-
 div.results {
     position: absolute;
     background-color: white;
@@ -1530,3 +1478,131 @@ img.zoom:hover {
     /* fixed header height*/
     margin: -80px 0 0;
 }
+
+/* ALGOLIA INTEGRATED SEARCH BAR IN NAV STYLES */
+
+.aa-input-container {
+    /*text-align: center;*/
+}
+
+.navbar-form .form-control {
+    width: 500px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .navbar-form .form-control {
+        width: 350px;
+    }
+    .aa-input-container {
+        text-align: center;
+    }
+}
+
+#aa-search-input {
+    border: 4px;
+    border-radius: 2px;
+    padding: 10px 5px 5px 10px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+#aa-search-input::placeholder {
+    color: #4a4a4a;
+    opacity: 1;
+}
+
+.aa-input-search {
+    border: 1px solid rgba(228, 228, 228, 0.6);
+    padding: 12px 28px 12px 12px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.aa-input-search::-webkit-search-decoration,
+.aa-input-search::-webkit-search-cancel-button,
+.aa-input-search::-webkit-search-results-button,
+.aa-input-search::-webkit-search-results-decoration {
+    display: none;
+}
+
+.aa-dropdown-menu {
+    background-color: #fff;
+    width: 100%;
+    margin-top: 5px;
+    box-sizing: border-box;
+    text-align: left;
+    border: 1px solid rgba(228, 228, 228, 0.6);
+}
+
+.aa-suggestion {
+    padding: 4px 10px 10px 12px;
+    cursor: pointer;
+    border-top: 1px solid rgba(228, 228, 228, 0.6);
+}
+
+.aa-suggestion:hover,
+.aa-suggestion.aa-cursor {
+    background-color: rgb(255, 247, 244);
+}
+
+/* Zendesk or Docs category heading styling */
+
+.aa-suggestions-category {
+    color: #fff;
+    letter-spacing: 0.05em;
+    background-color: #22283A;
+    padding: 5px 0 3px 10px;
+    font-size: 80%;
+    text-transform: uppercase;
+}
+
+.aa-suggestions-subheading {
+    color: #2b72bb;
+    font-size: 0.8em;
+}
+
+.aa-suggestions-preview {
+    color: #9b9b9b;
+    font-size: 0.8em;
+}
+
+p.aa-suggestions-preview {
+    margin-bottom: 5px;
+}
+
+/* highlight for matching snippet content value*/
+
+.ais-Highlight {
+    font-style: normal;
+    font-weight: 700;
+    background-color: rgb(255, 247, 244);
+    color: #4a4a4a;
+}
+
+/* Styling for matching words in results*/
+
+.aa-suggestion>span:first-child em,
+.aa-suggestion>span:last-child em {
+    font-weight: 700;
+    font-style: normal;
+    background-color: rgb(255, 247, 244);
+    padding: 2px 0 2px 2px;
+    color: #FF5b21;
+}
+
+/* Algolia Logo styling*/
+
+.branding {
+    font-size: 0.7em;
+    margin: 0.5em 0.2em;
+    float: right;
+    color: grey;
+}
+
+.branding img {
+    height: 1.3em;
+    margin: 0px 10px 5px 0px;
+}
+
+/* end search bar styling */
