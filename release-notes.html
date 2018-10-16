@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,37 +16,47 @@
 <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
 <link rel="stylesheet" href="theme/css/modern-business.css">
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
 <link rel="stylesheet" href="theme/css/asciidoctor.css">
 <link rel="stylesheet" href="theme/css/custom.css">
 <link rel="stylesheet" href="theme/css/boxshadowproperties.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="theme/js/jquery.navgoco.min.js"></script>
 
-
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
 <!-- Anchor.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
 <script src="theme/js/toc.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
 <script src="theme/js/customscripts.js"></script>
 
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
+
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
 <script>
-$( document ).ready(function() {
-  $( "blockquote:contains('Note')" ).addClass( "admonitionblock note" );
-  $( "blockquote:contains('Warning')" ).addClass( "admonitionblock warning" );
-  $( "blockquote:contains('Tip')" ).addClass( "admonitionblock tip" );
-  $( ".admonitionblock.note" ).prepend( '<i class="fa fa-check admonition"></i>' );
-  $( ".admonitionblock.warning" ).prepend( '<i class="fa fa-exclamation-triangle admonition"></i>' );
-  $( ".admonitionblock.tip" ).prepend( '<i class="fa fa-lightbulb-o admonition"></i>' );
-});
+  $(document).ready(function () {
+    $("blockquote:contains('Note')").addClass("admonitionblock note");
+    $("blockquote:contains('Warning')").addClass("admonitionblock warning");
+    $("blockquote:contains('Tip')").addClass("admonitionblock tip");
+    $(".admonitionblock.note").prepend('<i class="fa fa-check admonition"></i>');
+    $(".admonitionblock.warning").prepend('<i class="fa fa-exclamation-triangle admonition"></i>');
+    $(".admonitionblock.tip").prepend('<i class="fa fa-lightbulb-o admonition"></i>');
+  });
 </script>
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +64,6 @@ $( document ).ready(function() {
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
     <script>
         $(document).ready(function() {
             // Initialize navgoco with default options
@@ -107,65 +117,62 @@ $( document ).ready(function() {
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container topnavlinks">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-wordmark"><a href="/">
-              <img src="assets/images/okera-wordmark-white.png" alt="Okera wordmark" /></a>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
             </div>
-
+            <form class="aa-input-container navbar-form" id="aa-input-container" role="search">
+                <div class="form-group">
+                    <input id="aa-search-input" type="text" class="aa-input-search form-control" placeholder="Search"
+                        autocomplete="off">
+                </div>
+            </form>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- toggle sidebar button -->
-                <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
-                <!-- entries without drop-downs appear here -->
-
-
-
-
-                
-                
-                
-                <li><a href="search">Search</a></li>
-                
-                
-                
-                <li><a href="https://www.okera.com/blog" target="_blank">Okera Blog</a></li>
-                
-                
-                
-                <li><a href="https://okera.com" target="_blank">okera.com</a></li>
-                
-                
-                
-                <!-- entries with drop-downs appear here -->
-                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
-                
-                
-                <!-- comment out this block if you want to hide search
-                <li class="dropdown">
-
-                  <div id="search-demo-container">
+        <!-- Algolia Integrated search Script -->
+        <script type="text/javascript" src="theme/js/okera-integrated-search.js"></script>
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
                       <form action="/search" method="GET">
                       <input type="text" name="q" id="search-input" placeholder="Search the docs...">
                       </form>
                   </div>
-
-                </li>
                 end search -->
-            </ul>
-        </div>
-        </div>
-        <!-- /.container -->
+    </div>
 </nav>
-
 <!-- Page Content -->
 <div class="container">
   <div id="main">
@@ -233,7 +240,28 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="install">Installation Guide</a> </li>
+          <li><a href="install">Installing the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -356,7 +384,14 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="authorization">Authorization Guide</a> </li>
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
           
           
           
@@ -493,6 +528,13 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="emr-integration">EMR Integration</a> </li>
           
           
@@ -572,6 +614,20 @@ $( document ).ready(function() {
           
           
           
+          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -579,7 +635,7 @@ $( document ).ready(function() {
           
           
           
-          <li><a href="faq">Frequently Asked Questions</a> </li>
+          <li><a href="https://okera.zendesk.com/hc/en-us/categories/115000493607-FAQs" target="_blank">Frequently Asked Questions</a></li>
           
           
           
@@ -593,7 +649,7 @@ $( document ).ready(function() {
          <p class="external">
              <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
          </p>
-         -->
+        -->
     
     <li>
     
@@ -609,7 +665,7 @@ $('#toc').on('click', 'a', function() {
   var target = $(this.getAttribute('href'))
     , scroll_target = target.offset().top
 
-  $(window).scrollTop(scroll_target - 10);
+  $(window).scrollTop(scroll_target - 80);
   return false
 })
 
@@ -645,11 +701,37 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
+<h2 id="122-october-2018">1.2.2 (October 2018)</h2>
+
+<p>1.2.2 is a point release with some fixes to critical issues.</p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>
+    <p>Fixed ‘ocadm agent start-minion’ to aid in manual cluster repair</p>
+  </li>
+  <li>
+    <p>Properly return an error message for queries that contain a LEFT ANTI JOIN</p>
+  </li>
+  <li>
+    <p>Idle sessions now timeout by default with a timeout of 120 seconds.
+A session is considered idle if the client did not make any request in that time window.
+This config can be controlled via the planner or workers idle_session_timeout config.</p>
+  </li>
+  <li>
+    <p>A fix to optimize processing of datasets with large numbers of partitions.</p>
+  </li>
+  <li>
+    <p>Fix web UI’s ‘Preview Dataset’ so that it relies on LAST PARTITION</p>
+  </li>
+</ul>
+
 <h2 id="121-september-2018">1.2.1 (September 2018)</h2>
 
 <p>1.2.1 is a point release with some fixes to critical issues.</p>
 
-<h3 id="bug-fixes">Bug fixes</h3>
+<h3 id="bug-fixes-1">Bug fixes</h3>
 
 <ul>
   <li>
@@ -677,27 +759,25 @@ $('#toc').on('click', 'a', function() {
 <p>Using the Okera Portal, users can now understand how the datasets in the system are being used.
 This can be useful for system administrators and data owners to understand which datasets are being used most often, by whom and with which applications.
 The reporting insights are built on the audits and automatically capture system activity.
-For more details, see TODO.</p>
+For more details, see <a href="reports-page">here</a>.</p>
 
 <h4 id="support-for-data-sources-using-jdbc">Support for data sources using JDBC</h4>
 
 <p>Okera Data Access Platform (ODAS) now supports data sources connected via JDBC, typically relational data bases.
 These datasets can now be registered in the Okera Catalog and then read and managed as any other Okera dataset.
-For more details on how to register and configure these sources, see TODO.</p>
+For more details on how to register and configure these sources, see <a href="jdbc-data-source">here</a>.</p>
 
 <h4 id="improved-access-level-granularity">Improved access level granularity</h4>
 
 <p>ODAS now supports richer access levels, in addition to <code class="highlighter-rouge">SELECT</code> and <code class="highlighter-rouge">ALL</code>.
-It is not possible to, for example,  grant users only the ability to find and look at metadata, only to alter dataset properties.
-For details and best practices, see TODO.</p>
-
-<p>We’ve also added the concept of <code class="highlighter-rouge">public role</code>, which can simplify permission management.
-For more details, see <a href="authorization#public-role">here</a>.</p>
+It is now possible to, for example, grant users only the ability to find and look at metadata, only to alter dataset properties.
+We’ve also added the concept of <code class="highlighter-rouge">public role</code>, which can simplify permission management.
+For details and best practices, see <a href="authorization">here</a>.</p>
 
 <h4 id="access-control-builtins">Access Control Builtins</h4>
 
 <p>ODAS now supports a family of access control builtins.
-These are intended to be used in view definitions and can dramatically simplify implementing fine grained access control
+These are intended to be used in view definitions and can dramatically simplify implementing fine grained access control.
 See this <a href="authorization-builtins">document</a> for more details.</p>
 
 <h4 id="improvements-to-last-sql-clause">Improvements to LAST SQL clause</h4>
@@ -705,13 +785,33 @@ See this <a href="authorization-builtins">document</a> for more details.</p>
 <p>ODAS supports the <code class="highlighter-rouge">LAST PARTITION</code> clause to facilitate sampling large datasets.
 In this release, this support was extended to support <code class="highlighter-rouge">LAST N PARTITIONS</code> and <code class="highlighter-rouge">LAST N FILES</code>.
 In addition, it is now possible to set this as metadata on the catalog object, to prevent queries trying to read all partitions.
-See TODO for best practices.</p>
+See <a href="supported-sql#last-partitionslast-files">here</a> for best practices.</p>
+
+<h4 id="improvements-to-workspace">Improvements to Workspace</h4>
+
+<p>Workspace can now run multiple queries at once and supports monospace format outputs and datetime queries.</p>
+
+<h4 id="pyokera">PyOkera</h4>
+
+<ul>
+  <li>
+    <p>PyCerebro has been renamed PyOkera.
+The API is effectively unchanged except that now instead of importing ‘from cerebro’ you will need to import ‘from okera’.</p>
+  </li>
+  <li>
+    <p>Parallel Execution of Tasks.
+PyOkera will now schedule and execute worker tasks in parallel to minimize network latency.
+The scan_as_pandas() and scan_as_json() API calls will by default spawn worker processes to concurrently execute tasks where possible.
+The default number of local worker processes is defined as 2 times the number of CPU Cores on the machine on which it is being processed.
+This has demonstrated a reduction in run-time duration for queries by minimizing the network latency involved with establishing network connections with the Okera Worker Nodes.</p>
+  </li>
+</ul>
 
 <h4 id="performance">Performance</h4>
 
 <ul>
   <li>
-    <p>Improvements to planner task generation.
+    <p>Improved planner task generation.
 One of the responsibilities of the planner is to break up the files that need to be read into tasks.
 In this release, we’ve implemented a new cost-based algorithm which should result in tasks that are more even.
 This should lead to less execution skew across tasks and overall reduction in job completion times.</p>
@@ -740,7 +840,7 @@ See <a href="advanced-install#jwt">advanced install</a> for more details.</p>
   </li>
 </ul>
 
-<h3 id="other-improvements">Other improvements</h3>
+<h4 id="other-improvements">Other improvements</h4>
 
 <ul>
   <li>
@@ -776,7 +876,8 @@ For example, <code class="highlighter-rouge">GRANT SHOW ON CATALOG TO ROLE commo
 In this case, the DeploymentManager just deploys ODAS services without managing machines or the Kubernetes <a href="advanced-install#external-kubernetes-cluster">install</a>.</p>
   </li>
   <li>
-    <p>The Okera portal can now store token credentials using cookies, allowing users to share credentials across web applications. (TODO)</p>
+    <p>The Okera portal can now store token credentials using cookies, allowing users to share credentials across web applications.
+-See <a href="install#shared-cookie-configuration">here</a> for configuration details.</p>
   </li>
   <li>
     <p>Added support for naming the sentryDB when creating a cluster.
@@ -794,7 +895,7 @@ See the <a href="faq#auto-partition-recovery">faq</a> for more details.</p>
   </li>
 </ul>
 
-<h3 id="changes-in-behavior">Changes in behavior</h3>
+<h4 id="changes-in-behavior">Changes in behavior</h4>
 
 <ul>
   <li>
@@ -805,11 +906,21 @@ See the <a href="faq#auto-partition-recovery">faq</a> for more details.</p>
 These can be overwritten using ALTER TABLE but will provide better behavior for the vast majority of use cases.</p>
   </li>
   <li>
-    <p>Okera portal no longer estimates the total number of datasets as this can cause performance issues with very large catalogs. (TODO)</p>
+    <p>Okera portal no longer estimates the total number of datasets as this can cause performance issues with very large catalogs.</p>
+  </li>
+  <li>
+    <p>Workspace will no longer render more than 500 rows per query.</p>
+  </li>
+  <li>
+    <p>Workspace terminal will drop older queries if the terminal output exceeds more than 750 rows of queries in total.
+This will improve workspace rendering speeds.</p>
+  </li>
+  <li>
+    <p>Post_scan request now utilizes the <code class="highlighter-rouge">pyokera</code> client.</p>
   </li>
 </ul>
 
-<h3 id="bug-fixes-1">Bug fixes</h3>
+<h3 id="bug-fixes-2">Bug fixes</h3>
 
 <ul>
   <li>
@@ -846,7 +957,8 @@ Previously, in same cases, this could fail if layers of views are used.</p>
 
 <ul>
   <li>Partitioned tables where the user only has <code class="highlighter-rouge">SHOW</code> access will mistakenly show the user as having access to the partitions columns in the UI.
-The UI properly shows that the other columns are inaccessible.</li>
+The UI properly shows that the other columns are inaccessible.
+-* While multiple ODAS clusters can be configured to share their HMS and Sentry databases, datasets created by a 1.2.0 ODAS cluster cannot be read by ODAS clusters running earlier versions (1.1.x or earlier).</li>
 </ul>
 
 <h2 id="110-june-2018">1.1.0 (june 2018)</h2>
@@ -1143,17 +1255,14 @@ This will be remedied in the next release.</p>
 
 
 <footer>
-            <div class="row">
-                <div class="col-lg-12 footer">
-                  <img src="assets/images/icon-footer.png" class="logo" />
-                  <div class="footer-meta">
-               &copy;2018 Okera, Inc. All rights reserved. <br />
- Site last generated: Sep 25, 2018
-                  </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Oct 16, 2018
+      </div>
+    </div>
+  </div>
 </footer>
-
 
         </div>
     <!-- /.row -->
@@ -1166,3 +1275,4 @@ This will be remedied in the next release.</p>
 </body>
 
 </html>
+
