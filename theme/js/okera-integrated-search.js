@@ -1,6 +1,6 @@
 //  This search uses the Algolia autcomplete js to integrate our docs search index and
 //  our zendesk search index
-//  Tutorial link with boilerplate below:  
+//  Tutorial link with boilerplate below:
 //  https://www.algolia.com/doc/tutorials/search-ui/autocomplete/how-to-display-results-from-multiple-indices-with-autocomplete-js/?language=php#teams-1
 
 var client = algoliasearch("Z4XANBDB47", "6f287f2adec130b7ad015e1e09a92a6d")
@@ -30,14 +30,35 @@ autocomplete('#aa-search-input', {
             templates: {
                 header: '<div class="aa-suggestions-category">Okera Documentation</div>',
                 suggestion: function (suggestion) {
-                    if (typeof suggestion.headings[1] !== 'undefined') {
-                        // if secondary heading exists show it
-                        return '<span class="aa-suggestions-okera-heading">' + suggestion._highlightResult.title.value + '</span><br><span class="aa-suggestions-subheading">' + suggestion._highlightResult.headings[1].value +
-                            '</span><br><p class="aa-suggestions-preview">' + suggestion._snippetResult.content.value + '</p>';
-                    } else {
-                        // otherwise don't show it
-                        return '<span class="aa-suggestions-okera-heading">' + suggestion._highlightResult.title.value + '</span><br>' +
+                    var headingToShow = '';
+                    if (
+                        // If there are any headings
+                        typeof suggestion.headings !== 'undefined' &&
+                        // If there are at least 2 entries in headings
+                        suggestion.headings.length > 1) {
+
+                        // Start at 1, we want to skip the first heading because it
+                        // is the title. Now, find the first defined entry in headings to show.
+                        for (var i = 1; i < suggestion.headings.length; i++) {
+                            if (suggestion.headings[i]) {
+                                headingToShow = suggestion.headings[i];
+                                break;
+                            }
+                        }
+                    }
+
+                    var headingHtml = '';
+                    if (headingToShow) {
+                        headingHtml = '<span class="aa-suggestions-subheading">' + headingToShow + '</span>';
+                    }
+
+                    if (typeof suggestion.title === 'undefined') {
+                        // if title is undefined, show the first heading
+                        return '<span class="aa-suggestions-okera-heading">' + suggestion.headings[0] +
                             '<p class="aa-suggestions-preview">' + suggestion._snippetResult.content.value + '</p>';
+                    } else {
+                        return '<span class="aa-suggestions-okera-heading">' + suggestion._highlightResult.title.value + '</span><br>' + headingHtml +
+                            '<br><p class="aa-suggestions-preview">' + suggestion._snippetResult.content.value + '</p>';
                     }
                 }
             }

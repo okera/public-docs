@@ -246,21 +246,21 @@
           
           
           
-          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -620,6 +620,13 @@
           
           
           
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -751,18 +758,110 @@ Note that Databricks has built-in support for the integration, but due to the na
 <p>The following steps are required to configure the Databricks Platform and prepare the Okera setup:</p>
 
 <ol>
-  <li>Enable the provision of the JWT token to the Okera client libraries by setting the <code class="highlighter-rouge">"userJwt"</code> option in the Databricks configuration.</li>
-  <li>Acquire the Databricks provided public key that is used to verify the JWT tokens (used below in the Okera configuration steps).</li>
+  <li>Enable the provision of the JWT token to the Okera client libraries by setting the <em>userJwt</em> option in the Databricks configuration.
+This requires contacting the Databricks support to enable this feature for your account.</li>
+  <li>Acquire the Databricks provided public key that is used to verify the JWT tokens (used below in the Okera configuration steps). 
+The key can be downloaded in the <em>Admin Console</em> within the Databricks UI.</li>
   <li>Copy the Okera provided libraries to the Databricks staging directory (usually in a shared “dbfs://…” location).</li>
-  <li>Set up the init script that copies the provided JARs to the cluster specific, local directories.</li>
+  <li>Set up the init script that copies the provided JARs to the cluster specific, local directories.
+ For example:
+ <img src="assets/images/integration-databricks-init.png" alt="Setting the Okera specific init script in Databricks" /></li>
   <li>Configure, among other settings, the ODAS hostname and port number to use (see the <a href="emr-integration#per-component-configuration">per-component configuration</a> documentation for details).
  For example (also showing more advanced settings):
  <img src="assets/images/integration-databricks-configs.png" alt="Per-cluster settings in Databricks" /></li>
 </ol>
 
 <blockquote>
-  <p><strong>Note:</strong> Most of these steps require a Databricks administrator to perform the necessary actions.
-They will have a documentation from the vendor explaining the details.</p>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>Most of these steps require a Databricks administrator to perform the necessary actions.</li>
+    <li>Okera recommends to use a Databricks Runtime Version of at least 4.3.
+Previous versions are known to have some technical issues in combination with the ODAS integration enabled.</li>
+    <li>See the official Databricks information about <a href="https://docs.databricks.com/user-guide/clusters/init-scripts.html">init scripts</a> and <a href="https://docs.databricks.com/user-guide/advanced/external-hive-metastore.html">external Hive Metastores</a> for details.</li>
+  </ul>
+</blockquote>
+
+<p><strong>Preparing the Libraries and Init Script</strong></p>
+
+<p>You can handle the preparatory work for steps #3 and #4 using a Databricks notebook.
+First, create a new Scala notebook as usual, named for example <code class="highlighter-rouge">bootstrap_okera</code> and copy the following into the first cell:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%sh
+<span class="c">#</span>
+<span class="c"># This cell downloads this version of the Okera client jars to a shared location. This by</span>
+<span class="c"># itself does not bootstrap any clusters.</span>
+<span class="c"># </span>
+<span class="c"># This should be run once every time the jars need to be updated and can take up to a minute.</span>
+<span class="c">#</span>
+<span class="nv">VERSION</span><span class="o">=</span>1.2.1
+
+mkdir <span class="nt">-p</span> /dbfs/okera/<span class="nv">$VERSION</span>/jars
+<span class="nb">cd</span> /dbfs/okera/<span class="nv">$VERSION</span>/jars
+cp <span class="nt">-R</span> /databricks/hive/<span class="k">*</span> <span class="nb">.</span>
+
+curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/okera-hive-metastore.jar 
+curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-spark-2.0.jar
+curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-hive.jar
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> Adjust the <code class="highlighter-rouge">VERSION</code> variable to the version of Okera you are using.</p>
+</blockquote>
+
+<p>In the next cell, copy and paste the following code:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//
+// This creates an init script that will place all the jars on new clusters. This can be specified
+// in the cluster create UI as an init script with the path 'dbfs://okera/init.sh'
+//
+</span><span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.2.1"</span>
+<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/okera/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
+#!/bin/sh
+
+# -------------------------------------------------------------------------------------------
+# Installs Okera JARs
+# -------------------------------------------------------------------------------------------
+
+cp /dbfs/okera/$VERSION/jars/okera-hive-metastore.jar /databricks/jars/
+cp /dbfs/okera/$VERSION/jars/recordservice-spark-2.0.jar /databricks/jars/
+cp /dbfs/okera/$VERSION/jars/recordservice-hive.jar /databricks/jars/
+"""</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> Adjust the <code class="highlighter-rouge">VERSION</code> variable to the version of Okera you are using.</p>
+</blockquote>
+
+<p>Run both cells to prepare the JARs and init script.</p>
+
+<p><u>Optional Steps</u></p>
+
+<p>The following code can be used for older versions of Databricks that do <strong>not</strong> have the above options available.
+See the comments in the code for where it is applicable.
+Copy and paste the code into another cell in the Scala notebook and execute it as necessary.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//
+// Only earlier versions of databricks, where the init script cannot be configured on the
+// cluster create page, the init script has to be copied to per cluster init directory.
+// Note in this case, you will have to run this for each new cluster.
+//
+</span><span class="k">val</span> <span class="nc">CLUSTER_NAME</span> <span class="k">=</span> <span class="o">&lt;</span><span class="nc">YOUR</span> <span class="nc">CLUSTER</span> <span class="nc">NAME</span><span class="o">&gt;</span>
+<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cp</span><span class="o">(</span><span class="n">s</span><span class="s">"dbfs:/okera/$VERSION/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"dbfs:/databricks/init/$CLUSTER_NAME/"</span><span class="o">)</span>
+
+<span class="c1">//
+// It is also possible to set the init script to be global, for all clusters. This can
+// be used to make all clusters Okera enabled. We do this by copying the same init
+// script to a global init directory.
+//
+// dbutils.fs.cp("dbfs:/okera/init.sh", s"dbfs:/databricks/init/")
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>Adjust the <code class="highlighter-rouge">&lt;YOUR CLUSTER NAME&gt;</code> placeholder to match the name of the Databricks cluster you are targeting.</li>
+    <li>Uncomment the last line as needed.</li>
+  </ul>
 </blockquote>
 
 <p>Once all steps are completed you can use the Databricks UI to spin up a cluster and continue with the Okera configuration, explained next.</p>
@@ -776,8 +875,9 @@ They will have a documentation from the vendor explaining the details.</p>
     <p>When setting up a ODAS cluster environment using the Deployment Manager, you have to use the Databricks provided public key and specify it as an <a href="odas-authentication#public-key-approach">environment variable</a>.</p>
 
     <p>For example, set the following variables in your specific <code class="highlighter-rouge">env.sh</code>:</p>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># export CEREBRO_JWT_PUBLIC_KEY="s3://acme-bucket/keys/databricks.pub"
-# export CEREBRO_JWT_ALGORITHM="RSA512"
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_JWT_PUBLIC_KEY</span><span class="o">=</span><span class="s2">"s3://acme-bucket/keys/databricks.pub"</span>
+<span class="nb">export </span><span class="nv">CEREBRO_JWT_ALGORITHM</span><span class="o">=</span><span class="s2">"RSA512"</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -786,8 +886,11 @@ They will have a documentation from the vendor explaining the details.</p>
 </ol>
 
 <p>Once these steps are completed, use the Deployment Manager to spin up an ODAS cluster with the specific environment.
-You should now be able to access data backed by Okera using Spark or a Notebook provided by Databricks.
-<strong>Note:</strong> Okera configurations in Databricks (i.e. connection and rpc timeout values) are applied at the notebook level (as opposed to per-user or per-cluster).</p>
+You should now be able to access data backed by Okera using Spark or a Notebook provided by Databricks.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Okera configurations in Databricks (that is, connection and RPC timeout values) are applied at the notebook level (as opposed to per-user or per-cluster).</p>
+</blockquote>
 
 <p>For additional information, see the <a href="odas-authentication#json-web-tokens">JWT documentation</a>.</p>
 
@@ -807,7 +910,7 @@ You should now be able to access data backed by Okera using Spark or a Notebook 
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 18, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
       </div>
     </div>
   </div>

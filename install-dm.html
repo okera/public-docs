@@ -246,21 +246,21 @@
           
           
           
-          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li class="active"><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a></li>
+          <li class="active"><a href="install-dm">Setting Up the Deployment Manager</a></li>
           
           
           
           
           
           
-          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -620,6 +620,13 @@
           
           
           
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -721,26 +728,28 @@ This set of steps is typically required once, to configure Okera to your environ
       <li>The recommended download location is <code class="highlighter-rouge">/opt/okera</code>, but it can be downloaded to anywhere.</li>
     </ul>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>mkdir <span class="nt">-p</span> /opt/okera <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /opt/okera
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /opt/okera <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /opt/okera
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Update ownership of the destination directory.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell <span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /opt/okera
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /opt/okera
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Get the tarball from S3.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0/deployment-manager-1.2.0.tar.gz
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.3/deployment-manager-1.2.3.tar.gz
 </code></pre></div>    </div>
   </li>
-  <li>Extract the bits.</li>
-</ol>
+  <li>
+    <p>Extract the bits.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   shell <span class="nb">tar </span>xzf deployment-manager-<span class="o">{</span>site.data.meta.product_version<span class="o">}}</span>.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.2.0.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.2.0 deployment-manager
-</code></pre></div></div>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.2.3.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.2.3.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.2.3 deployment-manager
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <h2 id="acquire-the-okera-cli">Acquire the Okera CLI</h2>
 
@@ -751,14 +760,14 @@ Download the shell binary for either Linux or OS X (depending on which OS is run
   <li><strong>Linux</strong></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.3/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <ul>
   <li><strong>OS X</strong></li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> shell curl <span class="nt">-O</span> https://s3.amazonaws.com/cerebrodata-release-useast/1.2.0/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.3/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <h2 id="establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</h2>
@@ -771,15 +780,14 @@ The directories can be changed by setting <code class="highlighter-rouge">DEPLOY
 
 <p><strong>Example:</strong> Creating the Logging and Install Directories</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell <span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/okera <span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/okera
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/okera <span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/okera
 <span class="nb">sudo </span>chmod 700 /etc/okera
 </code></pre></div></div>
 
 <p>The Deployment Manager user needs exclusive access to those directories.
 If the directories are created with a different user than the Deployment Manager user, run:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-shell <span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /var/log/okera
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /var/log/okera
 <span class="nb">echo</span> <span class="sb">`</span>whoami<span class="sb">`</span> | xargs <span class="nt">-I</span> <span class="s1">'{}'</span> <span class="nb">sudo </span>chown <span class="nt">-R</span> <span class="s1">'{}'</span> /etc/okera
 </code></pre></div></div>
 
@@ -794,7 +802,7 @@ The steps below assume that the standard install paths were used.</p>
   <li>
     <p>Copy the Deployment Manager environment.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell cp /opt/okera/deployment-manager/conf/env-template.sh /etc/okera/env.sh
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/okera/deployment-manager/conf/env-template.sh /etc/okera/env.sh
 </code></pre></div>    </div>
   </li>
   <li>
@@ -803,14 +811,14 @@ The steps below assume that the standard install paths were used.</p>
 </ol>
 
 <p>The config script from <code class="highlighter-rouge">/etc/okera/env.sh</code> is automatically loaded when starting the Deployment Manager.
-If this is the path used, it is not necessary to source the script. 
+If this is the path used, it is not necessary to source the script.
 If any other path is used, <code class="highlighter-rouge">env.sh</code> must be sourced before starting the Deployment Manager.</p>
 
 <ol>
   <li>Start (or restart) the deployment manager by running:</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   shell /opt/okera/deployment-manager/bin/deployment-manager
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /opt/okera/deployment-manager/bin/deployment-manager
 </code></pre></div></div>
 
 <h3 id="dm-configuration-options">DM Configuration Options</h3>
@@ -829,8 +837,7 @@ Okera creates in this directory a number of required subdirectories.</p>
 
 <p><strong>Example:</strong> Setting the S3 staging directory</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-<span class="nb">export </span><span class="nv">OKERA_S3_STAGING_DIR</span><span class="o">=</span>s3://&lt;your_okera_dir&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_S3_STAGING_DIR</span><span class="o">=</span>s3://&lt;your_okera_dir&gt;
 </code></pre></div></div>
 
 <h4 id="relational-database-credentials">Relational Database Credentials</h4>
@@ -840,8 +847,7 @@ The <code class="highlighter-rouge">OKERA_DB_URL</code> should be host:port (typ
 
 <p><strong>Example:</strong> Setting the database location and credentials</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-<span class="nb">export </span><span class="nv">OKERA_DB_URL</span><span class="o">=</span>okera.xyzzzz.rds.amazonaws.com:3306
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_DB_URL</span><span class="o">=</span>okera.xyzzzz.rds.amazonaws.com:3306
 <span class="nb">export </span><span class="nv">OKERA_DB_USERNAME</span><span class="o">=</span>okera
 <span class="nb">export </span><span class="nv">OKERA_DB_PASSWORD</span><span class="o">=</span>&lt;password&gt;
 </code></pre></div></div>
@@ -861,8 +867,7 @@ To specify other admin users, edit the comma-separated list of admin users and g
 
 <p><strong>Example:</strong> Setting the list of admin users and groups.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-<span class="nb">export </span><span class="nv">OKERA_CATALOG_ADMINS</span><span class="o">=</span>admin,username1,admin-group
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_CATALOG_ADMINS</span><span class="o">=</span>admin,username1,admin-group
 </code></pre></div></div>
 
 <p>Admins users can grant permissions to other users/groups including the ability to grant to other users.
@@ -890,8 +895,7 @@ If the ports are not specified, Okera randomly selects available ports on which 
 
 <p>An example configuration:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"okera_worker:worker:7185,cerebro_catalog:sentry:7182"</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"okera_worker:worker:7185,cerebro_catalog:sentry:7182"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:7184"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_planner:planner:7183"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_catalog:hms:7180"</span>
@@ -1037,6 +1041,35 @@ Setting the certificate and key enables HTTPS on the REST server and Web UI.</p>
   <li><a href="secure-okera-rest-api-oauth">OAuth Guide</a>.</li>
 </ul>
 
+<h5 id="shared-cookie-configuration">Shared Cookie Configuration</h5>
+
+<p>The Okera Web Portal can be configured to use shared cookies for authentication.
+For this to work, Okera needs to be configured with the shared cookie name and the shared cookie domain.
+The following environment variables need to be set either on the Deployment Manager or on the <code class="highlighter-rouge">cerebro_web:webui</code> container.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">OKERA_SHARED_COOKIE_NAME</code></p>
+
+    <p>The name of the cookie that contains the login token.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">OKERA_SHARED_COOKIE_DOMAIN</code></p>
+
+    <p>The full name of the (sub)domain on which <code class="highlighter-rouge">OKERA_SHARED_COOKIE_NAME</code> is shared.
+This value will be passed verbatim to the browser’s cookie domain.</p>
+  </li>
+</ul>
+
+<p><strong>Example:</strong> Setting the Shared Cookie values</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">OKERA_SHARED_COOKIE_NAME</span><span class="o">=</span>my_company_token
+<span class="nb">export </span><span class="nv">OKERA_SHARED_COOKIE_DOMAIN</span><span class="o">=</span>subdomain1.example.com
+</code></pre></div></div>
+
+<p>Given the above example, the Okera Web Portal will attempt to read the cookie named <code class="highlighter-rouge">my_company_token</code> for a value assumed to be the token.
+The Okera Web Portal must be hosted on <code class="highlighter-rouge">subdomain1.example.com</code> or a subdomain of it in order to read that value.
+Additionally, if the Okera Web Portal generates a new token, it will write it to the <code class="highlighter-rouge">my_company_token</code> cookie, sharing it across <code class="highlighter-rouge">subdomain1.example.com</code>.</p>
+
 <h3 id="start-the-deployment-manager">Start the Deployment Manager</h3>
 
 <p>After setting the environment variables and sourcing them, start the Deployment Manager.</p>
@@ -1092,7 +1125,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
 
 <h2 id="next">Next</h2>
 
-<p>Now you’re ready to <a href="okera-installation-setting-up-odas-cluster">create a cluster</a>.</p>
+<p>Now you’re ready to <a href="install-odas">create a cluster</a>.</p>
 
 
     <div class="tags">
@@ -1110,7 +1143,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 18, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
       </div>
     </div>
   </div>

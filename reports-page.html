@@ -246,21 +246,21 @@
           
           
           
-          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
           
           
           
@@ -620,6 +620,13 @@
           
           
           
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -692,12 +699,14 @@ $('#toc').on('click', 'a', function() {
     
 
   <h1 id="reports-page">Reports Page</h1>
+
 <p>The Okera Portal provides a <code class="highlighter-rouge">Reports</code> page for users with admin privileges to view usage metrics on datasets for which they are admins.
 The <code class="highlighter-rouge">Reports</code> page is driven from the Okera audit logs, which contain information on everything that happens in the Okera system (for more on the structure of the audit logs, see <a href="auditing">Auditing</a>).</p>
 
 <p><img src="assets/images/ui-screen-reports.png" alt="Okera Reports Page" /></p>
 
 <h2 id="enabling-the-reports-page">Enabling the Reports page</h2>
+
 <p>In order to see the <code class="highlighter-rouge">Reports</code> tab, users must have <code class="highlighter-rouge">SELECT</code> privileges on the view that powers the reports, <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>.
 To give a user access to reports, you must grant <code class="highlighter-rouge">SELECT</code> to one of the user’s roles to the audit view:</p>
 
@@ -709,15 +718,15 @@ However, the audit views are set up to only show data pertaining to the datasets
 If a user has <code class="highlighter-rouge">ALL</code> privileges on any dataset or database, the reports will show data for the datasets for which they have <code class="highlighter-rouge">ALL</code>.</p>
 
 <p>In some Okera configurations, almost no users have <code class="highlighter-rouge">ALL</code> privileges on any dataset.
-In this case we suggest creating a special role that has <code class="highlighter-rouge">ALL</code> priviledges on the datasets for which users need to see reports.
+In this case we suggest creating a special role that has <code class="highlighter-rouge">ALL</code> privileges on the datasets for which users need to see reports.
 That special role can be granted to the groups that need access to reports.</p>
 
 <blockquote>
-  <p><strong>Note</strong>
-Users who do not have admin privileges on any dataset will not see any data in the <code class="highlighter-rouge">Reports</code> tab.</p>
+  <p><strong>Note</strong>: Users who do not have admin privileges on any dataset will not see any data in the <code class="highlighter-rouge">Reports</code> tab.</p>
 </blockquote>
 
 <h2 id="filtering-by-database">Filtering by database</h2>
+
 <p>By default <code class="highlighter-rouge">Reports</code> will show aggregated metrics for all of the datasets on which the current user has admin privileges.
 You can change which database or set of databases the reports show using the multi-select dropdown in the top right of the page labelled “My admin databases”.
 As the label implies, this dropdown contains a list of the databases in which you are the admin for at least one dataset.
@@ -726,9 +735,10 @@ Selecting a database or multiple databases will cause the page to generate repor
 <p><img src="assets/images/ui-screen-reports-filter-db.png" alt="Okera Reports Filter by Database" /></p>
 
 <h2 id="changing-the-time-range">Changing the time range</h2>
+
 <p>The default time range on the <code class="highlighter-rouge">Reports</code> page is “Last 24 hours”.
-This means that every report on the page will be showing data only for queries that occured in the 24 hours prior to the page visit.
-Using the dropdown labeled “Select a time range” you can change the timerange used to generate the reports to one of the following options:</p>
+This means that every report on the page will be showing data only for queries that occurred in the 24 hours prior to the page visit.
+Using the dropdown labeled “Select a time range” you can change the time range used to generate the reports to one of the following options:</p>
 <ul>
   <li><strong>Last 24 hours (default)</strong>: reports will show data from the 24 hours prior to visiting the page.</li>
   <li><strong>Last 7 days</strong>: reports will show data for 7 days prior to visiting the page.</li>
@@ -739,6 +749,7 @@ Using the dropdown labeled “Select a time range” you can change the timerang
 <p><img src="assets/images/ui-detail-reports-timerange.png" alt="Okera Reports Time Picker" /></p>
 
 <h2 id="drilldowns">Drilldowns</h2>
+
 <p>Each report in the <code class="highlighter-rouge">Reports</code> page supports drilling down on the data by clicking on the data point to open a query in <code class="highlighter-rouge">Workspace</code>.
 This allows users to explore the underlying data powering the reports and enables them to modify the query to find other insights.
 Each report has a slightly different drilldown query, but they all follow a similar pattern of a base query restricted by time, followed by additional constraints. For example, the drilldown for “Number of queries by dataset” looks like this:</p>
@@ -748,6 +759,7 @@ Each report has a slightly different drilldown query, but they all follow a simi
   <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534113600000</span> <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534200600000</span>
   <span class="k">and</span> <span class="n">client_application</span> <span class="k">like</span> <span class="s1">'hive%'</span>
 </code></pre></div></div>
+
 <p>There are a few things to note about this query:</p>
 <ul>
   <li>We are selecting from <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>, this is a special system view that has permissions so users will only see data for datasets on which they have admin privileges.</li>
@@ -766,6 +778,7 @@ If you need to see more results, you can use the same query in an EMR cluster or
 <p><em>Example of a reports drilldown in workspace</em></p>
 
 <h2 id="understanding-the-reports">Understanding the reports</h2>
+
 <p>There are four reports displayed on the <code class="highlighter-rouge">Reports</code> page. They should mostly make sense without a lot of explanation, but each has a few details to note.</p>
 
 <ul>
@@ -780,7 +793,7 @@ If you need to see more results, you can use the same query in an EMR cluster or
 <p><img src="assets/images/ui-detail-reports-queries-over-time.png" alt="Okera Reports Queries over time" /></p>
 
 <p>This report shows the number of queries that occurred during the selected time range as a trend with each point representing the sum of queries in a particular time bucket.
-The total timerange is broken into buckets of a set size and the number of queries occurring during each bucket-sized span are summed to produce each point.
+The total time range is broken into buckets of a set size and the number of queries occurring during each bucket-sized span are summed to produce each point.
 For day-long time ranges, the buckets are 10 minutes, for week-long time ranges, the buckets are an hour and 40 minutes.
 Points’ timestamps represent the <em>end</em> of the bucket.
 So, in a “Last 24 hours” report, if the value or a point is 120, that means 120 queries occurred in the 10 minutes prior to the time on the point.</p>
@@ -800,7 +813,7 @@ You will be redirected to the <code class="highlighter-rouge">Workspace</code> p
 </code></pre></div></div>
 
 <p>In addition to the details mentioned in the Drilldowns section above, this query has 4 unix timestamps.
-The first two timestamps are part of the base query, restricting the data to the outer timerange of the timechart (“Last 24 hours”, “Last 7 days”, etc.), and the second timestamps restrict the range to the specific bucket that was clicked.
+The first two timestamps are part of the base query, restricting the data to the outer time range of the time chart (“Last 24 hours”, “Last 7 days”, etc.), and the next two timestamps restrict the range to the specific bucket that was clicked.
 All of them intentionally restrict against <code class="highlighter-rouge">start_unix_time</code>, so we are counting when events started, not when they complete.</p>
 
 <h3 id="number-of-queries-by-client-application">Number of queries by client application</h3>
@@ -822,6 +835,7 @@ In the top ten bar chart, various versions of an application will be combined in
   <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534200000000</span>
   <span class="k">and</span> <span class="n">client_application</span> <span class="k">like</span> <span class="s1">'hive%'</span>
 </code></pre></div></div>
+
 <p>As discussed in the Drilldowns section above, this query gets the audit logs in the current time range and filters by application name.
 It uses <code class="highlighter-rouge">like</code> to pick up all versions of the application, which is stored as a string with the name first, then version.</p>
 
@@ -836,42 +850,49 @@ Those counts represent queries that included both of the datasets.
 Mouseover on the bars in the chart will show the number of queries on that dataset.</p>
 
 <p>Clicking on any of the bars will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
   <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534115400000</span>
   <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534202400000</span>
   <span class="k">and</span> <span class="p">(</span><span class="n">ae_table</span><span class="o">=</span><span class="s1">'okera_sample.users'</span> <span class="k">or</span> <span class="n">ae_view</span><span class="o">=</span><span class="s1">'okera_sample.users'</span><span class="p">)</span>
 </code></pre></div></div>
+
 <p>In addition to the details mentioned in the Drilldowns section above, this query restricts <code class="highlighter-rouge">ae_table</code> or <code class="highlighter-rouge">ae_view</code> to the specified dataset.</p>
 
 <h3 id="top-users">Top users</h3>
 
 <p><img src="assets/images/ui-detail-reports-top-users.png" alt="Okera Reports All client applications" /></p>
 
-<p>As the name implies, this report shows a list of users in the system, ranked by how many queries they ran in the given timeframe.
+<p>As the name implies, this report shows a list of users in the system, ranked by how many queries they ran in the given time frame.
 Clicking on any row in the list will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
   <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&gt;=</span><span class="mi">1534115400000</span>
   <span class="k">and</span> <span class="n">start_unix_time</span><span class="o">&lt;=</span><span class="mi">1534202400000</span>
   <span class="k">and</span> <span class="k">user</span><span class="o">=</span><span class="s1">'sample_user'</span>
 </code></pre></div></div>
+
 <p>Like the other drilldowns, this query restricts results based on time, then adds an additional constraint.
 In this case, exact user name.</p>
 
 <h2 id="notes-on-implementation">Notes on implementation</h2>
 
 <h3 id="time-values">Time values</h3>
+
 <p>The times shown in the reports are all in client-local time.
 Times stored on the server (and therefore part of drilldowns) are stored as UTC time in milliseconds and represent when each event happened on the server.
 Each event is counted at its start time, not its end time.</p>
 
 <h3 id="when-is-data-available">When is data available?</h3>
+
 <p>Report data is updated every 5 minutes.
 Queries run in the last 5 minutes are being logged, but may not be reflected in the reports.
-Every five minutes a watcher task processes the audit logs, adding them to the corresponding queryable table.</p>
+Every five minutes a watcher task processes the audit logs, adding them to the corresponding query-able table.</p>
 
 <h3 id="what-is-being-counted">What is being counted?</h3>
+
 <p>Queries are not counted 1 to 1 in the audit logs; Okera logs more than one event per user query.
 For each query, Okera logs a <code class="highlighter-rouge">PLAN</code> event, plus some number of <code class="highlighter-rouge">SCAN</code> events depending on the scale of the data being scanned.
 For very large scans, the number of events logged can be very high.
@@ -896,7 +917,7 @@ So, for similar queries from the same source, the numbers in the reports are con
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 18, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
       </div>
     </div>
   </div>

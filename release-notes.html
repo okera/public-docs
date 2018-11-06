@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -701,11 +700,50 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
+<h2 id="123-november-2018---in-development">1.2.3 (November 2018 - In Development)</h2>
+
+<p>1.2.3 is a point release with some fixes to critical issues.</p>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+
+<ul>
+  <li>
+    <p>Fix web UI’s ‘Preview Dataset’ by removing its reliance on LAST PARTITION, which
+was not working for views.</p>
+  </li>
+  <li>
+    <p>Fix web UI’s ‘Preview Dataset’ by making scans with record limits much faster
+for partitioned datasets, significantly reducing the likelihood of timeouts.
+In the event of a timeout, a more accurate error message is now shown.</p>
+  </li>
+  <li>
+    <p>Significantly improve the performance of the web UI’s Dataset List when the total
+number of datasets is large (1000+).</p>
+  </li>
+  <li>
+    <p>The machines in the ODAS cluster will now install Java 8 if Java is not already installed.
+ODAS has always required Java 8 but some newer linux distros have updated the default java version to java 11, which is not compatible.
+This version is now properly pinned to Java 8.</p>
+  </li>
+  <li>
+    <p>ODAS clusters will by default start up with multiple planners.
+This previously could be optionally specified when creating the cluster but defaulted to a single planner.
+As part of this change, a client now has sticky sessions meaning clients will be pinned to a planner for some duration, allowing APIs such as scan_paged to work correctly.</p>
+  </li>
+  <li>
+    <p>Fixed issue with idle session expiry.
+Previously some idle sessions were not tracked correctly and did not expire as promptly as expected.</p>
+  </li>
+  <li>
+    <p>Fixed client side issue scanning some complex schemas with a particular combination of nested structs.</p>
+  </li>
+</ul>
+
 <h2 id="122-october-2018">1.2.2 (October 2018)</h2>
 
 <p>1.2.2 is a point release with some fixes to critical issues.</p>
 
-<h2 id="bug-fixes">Bug Fixes</h2>
+<h2 id="bug-fixes-1">Bug Fixes</h2>
 
 <ul>
   <li>
@@ -723,6 +761,10 @@ This config can be controlled via the planner or workers idle_session_timeout co
     <p>A fix to optimize processing of datasets with large numbers of partitions.</p>
   </li>
   <li>
+    <p>JDBC data source scans can now be run in parallel.
+The JDBC type table should have a valid numeric column type ‘mapred.jdbc.scan.key’ defined in the catalog tblproperties to enable this mode.</p>
+  </li>
+  <li>
     <p>Fix web UI’s ‘Preview Dataset’ so that it relies on LAST PARTITION</p>
   </li>
 </ul>
@@ -731,7 +773,7 @@ This config can be controlled via the planner or workers idle_session_timeout co
 
 <p>1.2.1 is a point release with some fixes to critical issues.</p>
 
-<h3 id="bug-fixes-1">Bug fixes</h3>
+<h3 id="bug-fixes-2">Bug fixes</h3>
 
 <ul>
   <li>
@@ -877,7 +919,7 @@ In this case, the DeploymentManager just deploys ODAS services without managing 
   </li>
   <li>
     <p>The Okera portal can now store token credentials using cookies, allowing users to share credentials across web applications.
--See <a href="install#shared-cookie-configuration">here</a> for configuration details.</p>
+-See <a href="install-dm#shared-cookie-configuration">here</a> for configuration details.</p>
   </li>
   <li>
     <p>Added support for naming the sentryDB when creating a cluster.
@@ -920,7 +962,7 @@ This will improve workspace rendering speeds.</p>
   </li>
 </ul>
 
-<h3 id="bug-fixes-2">Bug fixes</h3>
+<h3 id="bug-fixes-3">Bug fixes</h3>
 
 <ul>
   <li>
@@ -1258,7 +1300,7 @@ This will be remedied in the next release.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Oct 16, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
       </div>
     </div>
   </div>
@@ -1275,4 +1317,3 @@ This will be remedied in the next release.</p>
 </body>
 
 </html>
-

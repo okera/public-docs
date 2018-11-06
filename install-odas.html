@@ -246,21 +246,21 @@
           
           
           
-          <li><a href="okera-prereq">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="okera-installation-setting-up-deployment-manager">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li class="active"><a href="okera-installation-setting-up-odas-cluster">Setting Up the ODAS Cluster</a></li>
+          <li class="active"><a href="install-odas">Setting Up the ODAS Cluster</a></li>
           
           
           
@@ -620,6 +620,13 @@
           
           
           
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="quick-recipes">Quick Recipes</a> </li>
           
           
@@ -728,8 +735,7 @@ At a minimum, a subnet ID and security group ID must be added to the script.</p>
 
 <p><strong>Example:</strong> Migrating the launch script for editing</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-cp /opt/okera/deployment-manager/bin/start-ec2-machine-example.sh /etc/okera/launch-ec2.sh
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp /opt/okera/deployment-manager/bin/start-ec2-machine-example.sh /etc/okera/launch-ec2.sh
 </code></pre></div></div>
 
 <p>To verify the launch script, Okera recommends running the script with the <code class="highlighter-rouge">--dryrun</code> optional.
@@ -737,8 +743,7 @@ If the configurations are valid, the script should exit with a status of <code c
 
 <p><strong>Example:</strong> Launch script validation</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-/etc/okera/launch-ec2.sh <span class="nt">--dryrun</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/okera/launch-ec2.sh <span class="nt">--dryrun</span>
 Dry run succeeded
 <span class="nb">echo</span> <span class="nv">$?</span>
 0
@@ -746,8 +751,7 @@ Dry run succeeded
 
 <p>When a launch script is invoked without the <code class="highlighter-rouge">--dryrun</code> flag, it is expected to return a string of the form:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
 </code></pre></div></div>
 
 <p>Supplied cluster launch scripts do not need to support the –dryrun flag, as the associated
@@ -756,8 +760,7 @@ AWS cli commands do not support that functionality.</p>
 <p>Cluster launch scripts are expected to return the same output as the launch scripts
 with the exception that cluster launch scripts can return n lines, where each is formatted:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;instance_ID&gt;,&lt;public_IP&gt;,&lt;private_IP&gt;
 </code></pre></div></div>
 
 <p>and each represent a host that was launched within the specified autoscaling group (ASG).</p>
@@ -776,27 +779,23 @@ An environment captures all the configurations required to launch clusters.</p>
 
 <p>Examples of environments might be for development or production, with the basic template:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>&lt;DM_path_to_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>&lt;DM_path_to_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
 </code></pre></div></div>
 
 <p>To run your cluster on an AWS autoscaling group (ASG), specify a –clusterLaunchScript
 instead of a –launchScript (those two flags are mutually exclusive)</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>&lt;DM_path_to_cluster_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>&lt;environment_name&gt; <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>&lt;DM_path_to_cluster_launch_script&gt; <span class="nt">--initScripts</span><span class="o">=</span>&lt;comma-separated_list_of_launch_scripts&gt;
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Environment definition</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>/etc/okera/launch-ec2.sh
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--launchScript</span><span class="o">=</span>/etc/okera/launch-ec2.sh
 </code></pre></div></div>
 
 <p><strong>Example:</strong> Environment definition that uses AWS ASGs</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>/etc/okera/launch-asg.sh
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm environments create <span class="nt">--name</span><span class="o">=</span>DevEnv <span class="nt">--provider</span><span class="o">=</span>AWS <span class="nt">--clusterLaunchScript</span><span class="o">=</span>/etc/okera/launch-asg.sh
 </code></pre></div></div>
 
 <h2 id="create-a-cluster">Create a Cluster</h2>
@@ -810,44 +809,38 @@ Multiple clusters can be created with the same environment.</p>
 
 <p>Cluster creation follows this template:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm clusters create <span class="nt">--name</span><span class="o">=</span>&lt;cluster_name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;node_count&gt; <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>&lt;environment_ID&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>&lt;cluster_name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;node_count&gt; <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>&lt;environment_ID&gt;
 </code></pre></div></div>
 
 <p>Where the <code class="highlighter-rouge">&lt;environment_ID&gt;</code> is the numeric ID assigned after environment creation in the previous section.</p>
 
 <p><strong>Example:</strong> Creating a new cluster for environment <code class="highlighter-rouge">1</code></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm clusters create <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>fintech_prod <span class="nt">--numNodes</span><span class="o">=</span>1 <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
 </code></pre></div></div>
 
 <p>List the running clusters.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm clusters list
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters list
 </code></pre></div></div>
 
 <p>The newly created cluster should be returned and shown as “Provisioning”.
 You can see more details, including how long it has been in this state using the Okera CLI.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm clusters status <span class="nt">--detail</span> &lt;cluster_ID&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters status <span class="nt">--detail</span> &lt;cluster_ID&gt;
 </code></pre></div></div>
 
 <p>It might be convenient to watch the cluster until the state transitions to “READY”.
 It takes a few minutes to provision the machines, install ODAS, and start up all the services.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-watch ocadm clusters status &lt;cluster_ID&gt;
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>watch ocadm clusters status &lt;cluster_ID&gt;
 </code></pre></div></div>
 
 <p><strong>At this point all of Okera is up and running!</strong></p>
 
 <p>To see the externally configured endpoints, run the <code class="highlighter-rouge">clusters endpoints</code> command.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>shell
-ocadm clusters endpoints 1
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters endpoints 1
 </code></pre></div></div>
 
 <blockquote>
@@ -901,7 +894,7 @@ creation, then it is the name of the cluster.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Sep 18, 2018
+        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
       </div>
     </div>
   </div>

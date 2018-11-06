@@ -98,6 +98,14 @@
 
 
 {
+"url": "compatibility-guarantees",
+"file": "content/topics/CompatibilityGuarantees.md",
+}
+,
+
+
+
+{
 "url": "complex-types",
 "file": "content/topics/ComplexTypes.md",
 }
@@ -162,14 +170,6 @@
 
 
 {
-"url": "faq",
-"file": "content/topics/FAQ.md",
-}
-,
-
-
-
-{
 "url": "getting-started",
 "file": "content/topics/GettingStarted.md",
 }
@@ -196,6 +196,30 @@
 {
 "url": "install",
 "file": "content/topics/Install.md",
+}
+,
+
+
+
+{
+"url": "install-dm",
+"file": "content/topics/InstallDM.md",
+}
+,
+
+
+
+{
+"url": "install-odas",
+"file": "content/topics/InstallODAS.md",
+}
+,
+
+
+
+{
+"url": "install-prereqs",
+"file": "content/topics/InstallPrereqs.md",
 }
 ,
 
@@ -260,30 +284,6 @@
 {
 "url": "okera-database-cli",
 "file": "content/topics/Odb.md",
-}
-,
-
-
-
-{
-"url": "okera-prereq",
-"file": "content/topics/OkeraInstallationPrerequisites.md",
-}
-,
-
-
-
-{
-"url": "okera-installation-setting-up-deployment-manager",
-"file": "content/topics/OkeraInstallationSettingUpDeploymentManager.md",
-}
-,
-
-
-
-{
-"url": "okera-installation-setting-up-odas-cluster",
-"file": "content/topics/OkeraInstallationSettingUpOdasCluster.md",
 }
 ,
 
@@ -496,6 +496,14 @@
 {
 "url": "cluster-administration",
 "file": "content/topics/ClusterAdmin.md",
+}
+,
+
+
+
+{
+"url": "contenttopicsFAQ.html",
+"file": "content/topics/FAQ.md",
 }
 
 

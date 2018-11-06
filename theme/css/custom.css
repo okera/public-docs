@@ -1571,24 +1571,25 @@ p.aa-suggestions-preview {
     margin-bottom: 5px;
 }
 
+/* Styling for matching words in title */
+
+.aa-suggestions-okera-heading.aa-suggestion>span:first-child em,
+.aa-suggestions-okera-heading.aa-suggestion>span:last-child em {
+    font-weight: 700;
+    font-style: normal;
+    background-color: rgb(255, 255, 255);
+    padding: 2px 0 2px 2px;
+    color: #FF5b21;
+}
+
 /* highlight for matching snippet content value*/
 
 .ais-Highlight {
     font-style: normal;
     font-weight: 700;
-    background-color: rgb(255, 247, 244);
+    background-color: rgba(255, 219, 121, 0.4);
+    padding: 1px;
     color: #4a4a4a;
-}
-
-/* Styling for matching words in results*/
-
-.aa-suggestion>span:first-child em,
-.aa-suggestion>span:last-child em {
-    font-weight: 700;
-    font-style: normal;
-    background-color: rgb(255, 247, 244);
-    padding: 2px 0 2px 2px;
-    color: #FF5b21;
 }
 
 /* Algolia Logo styling*/
