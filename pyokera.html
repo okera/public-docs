@@ -497,6 +497,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -731,7 +738,7 @@ If running against an older version, scans will fail with a message to upgrade t
       <li>pip</li>
       <li>six</li>
       <li>bit_array</li>
-      <li>thriftpy</li>
+      <li>thriftpy2</li>
       <li>numpy *</li>
       <li>pandas *</li>
     </ul>
@@ -770,7 +777,7 @@ Pip assumes that Python3 is already installed on the system.</p>
     <p>To confirm that the install was successful, try importing it from the interpreter and getting the version.</p>
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">okera.odas</span>
 <span class="n">okera</span><span class="o">.</span><span class="n">odas</span><span class="o">.</span><span class="n">version</span><span class="p">()</span>
-<span class="c"># Should output the version string, for example 1.2.3</span>
+<span class="c"># Should output the version string, for example 1.3.0</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -787,7 +794,7 @@ After installing the dependencies, perform the following steps.</p>
 
 <ol>
   <li>Download the library.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.3/client/pyokera.egg
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.3.0/client/pyokera.egg
 </code></pre></div>    </div>
   </li>
   <li>Install the library.
@@ -817,8 +824,8 @@ For example, the base RHEL7 AMI on Amazon AWS.</p>
 <span class="nb">sudo </span>yum install <span class="nt">-y</span> gcc-c++ python34.x86_64 python34-devel
 curl <span class="s2">"https://bootstrap.pypa.io/get-pip.py"</span> <span class="nt">-o</span> <span class="s2">"get-pip.py"</span>
 <span class="nb">sudo </span>python3 get-pip.py
-<span class="nb">sudo </span>pip3 install six bit_array thriftpy
-curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.3/client/pyokera.egg
+<span class="nb">sudo </span>pip3 install six bit_array <span class="nv">thriftpy2</span><span class="o">==</span>0.3.12
+curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.3.0/client/pyokera.egg
 <span class="nb">sudo </span>easy_install pyokera.egg
 
 <span class="c"># Optional packages (installing pandas can take a while)</span>
@@ -835,8 +842,8 @@ pip3 install Cython numpy pandas
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://bootstrap.pypa.io/get-pip.py"</span> <span class="nt">-o</span> <span class="s2">"get-pip.py"</span>
 <span class="nb">sudo </span>python3 get-pip.py
-<span class="nb">sudo</span> /usr/local/bin/pip3 install six bit_array thriftpy
-curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.2.3/client/pyokera.egg
+<span class="nb">sudo</span> /usr/local/bin/pip3 install six bit_array <span class="nv">thriftpy2</span><span class="o">==</span>0.3.12
+curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.3.0/client/pyokera.egg
 <span class="nb">sudo </span>easy_install-3.4 pyokera.egg
 
 <span class="c"># Optional packages (installing pandas can take a while)</span>
@@ -1045,7 +1052,7 @@ The <code class="highlighter-rouge">scan_as_json()</code> API returns the result
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
       </div>
     </div>
   </div>

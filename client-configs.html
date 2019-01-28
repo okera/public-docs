@@ -497,6 +497,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -768,35 +775,43 @@ adjusted if the the client observes timeout behavior.</p>
 
 <p><strong>recordservice.planner.retry.attempts</strong></p>
 
-<p>Optional configuration for the maximum number of attempts to retry RPCs with planner.</p>
+<p>Optional configuration for the maximum number of attempts to retry RPCs with planner.
+Default value is 5.</p>
 
 <p><strong>recordservice.worker.retry.attempts</strong></p>
 
-<p>Optional configuration for the maximum number of attempts to retry RPCs with worker.</p>
+<p>Optional configuration for the maximum number of attempts to retry RPCs with worker.
+Default value is 5.</p>
 
 <p><strong>recordservice.planner.retry.sleepMs</strong></p>
 
-<p>Optional configuration for sleep between retry attempts with planner.</p>
+<p>Optional configuration for sleep between retry attempts with planner.
+Default initial value is 300. This grows exponentially.</p>
 
 <p><strong>recordservice.worker.retry.sleepMs</strong></p>
 
-<p>Optional configuration for sleep between retry attempts with worker.</p>
+<p>Optional configuration for sleep between retry attempts with worker.
+Default initial value is 300. This grows exponentially.</p>
 
 <p><strong>recordservice.planner.connection.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout when initially connecting to the planner service.</p>
+<p>Optional configuration for timeout when initially connecting to the planner service.
+Default value is 10000.</p>
 
 <p><strong>recordservice.worker.connection.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout when initially connecting to the worker service.</p>
+<p>Optional configuration for timeout when initially connecting to the worker service.
+Default value is 10000.</p>
 
 <p><strong>recordservice.planner.rpc.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout for planner RPCs (after connection is established).</p>
+<p>Optional configuration for timeout for planner RPCs (after connection is established).
+Default value is 120000.</p>
 
 <p><strong>recordservice.worker.rpc.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout for worker RPCs (after connection is established).</p>
+<p>Optional configuration for timeout for worker RPCs (after connection is established).
+Default value is 120000.</p>
 
 <h2 id="performance-related-configs">Performance related configs</h2>
 
@@ -806,11 +821,13 @@ these as the server will compute a good value automatically.</p>
 <p><strong>recordservice.task.fetch.size</strong></p>
 
 <p>Optional configuration option for performance tuning that configures the max number of
-records returned when fetching results from the workers.</p>
+records returned when fetching results from the workers.
+Defaule value is 50000.</p>
 
 <p><strong>recordservice.task.plan.maxTasks</strong></p>
 
-<p>Optional configuration for the hinted maximum number of tasks to generate per PlanRequest.</p>
+<p>Optional configuration for the hinted maximum number of tasks to generate per PlanRequest.
+Default value is determined by the server.</p>
 
 
     <div class="tags">
@@ -828,7 +845,7 @@ records returned when fetching results from the workers.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
       </div>
     </div>
   </div>

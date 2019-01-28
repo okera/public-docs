@@ -51,6 +51,22 @@ ocadm clusters update --numPlanners=<number> <cluster_id>
 > The planner number cannot exceed the cluster size.
 > It requires restarting the cluster for the change to take effect.
 
+## Restarting a cluster
+
+ocadm supports restarting the entire cluster or just a single service:
+
+**Example:** Restarting all the services
+
+```shell
+ocadm clusters restart 1
+```
+
+**Example:** Restarting just the planner
+
+```shell
+ocadm clusters restart --service cerebro_planner 1
+```
+
 ## Enabling Termination Protection
 
 Clusters can be configured to use EC2's termination protection feature.
@@ -156,7 +172,7 @@ A service successfully passing its health check does not preclude it from return
 Rather, it indicates that the service was able to startup successfully, including passing all initial service configuration validations.
 The service responded to the most recent Deployment Manager request to its health check endpoint.
 
-## Cluster diagnosis
+## Cluster diagnostics
 
 It may occasionally be helpful to gather system logs from the nodes in a cluster when
 a functional issue or performance issue occurs. A cluster can be commanded to compile

@@ -497,6 +497,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -715,20 +722,8 @@ For more about advanced networking operations, see <a href="advanced-install#oke
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">443</code></td>
-      <td>Kubernetes Master Communication</td>
-      <td>internal</td>
-      <td style="text-align: center">No</td>
-    </tr>
-    <tr>
       <td><code class="highlighter-rouge">5000-13050</code></td>
-      <td>Kubernetes Dynamic Range</td>
-      <td>external</td>
-      <td style="text-align: center">Yes</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">5000</code></td>
-      <td>ODAS REST Server</td>
+      <td>Full Services Port Range - For testing only</td>
       <td>external</td>
       <td style="text-align: center">Yes</td>
     </tr>
@@ -740,13 +735,13 @@ For more about advanced networking operations, see <a href="advanced-install#oke
     </tr>
     <tr>
       <td><code class="highlighter-rouge">6783</code></td>
-      <td>Kubernetes Weave</td>
+      <td>Kubernetes Weave (TCP)</td>
       <td>internal</td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">11050</code></td>
-      <td>Okera Planner Web UI</td>
+      <td><code class="highlighter-rouge">10000</code></td>
+      <td>Grafana Dashboard UI</td>
       <td>external</td>
       <td style="text-align: center">Yes</td>
     </tr>
@@ -757,50 +752,56 @@ For more about advanced networking operations, see <a href="advanced-install#oke
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">10000</code></td>
-      <td>Grafana Dashboard UI</td>
+      <td><code class="highlighter-rouge">5000</code></td>
+      <td>ODAS REST Server</td>
       <td>external</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">8083</code></td>
-      <td>Okera Web UI</td>
+      <td>ODAS Web UI</td>
       <td>external</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">8085</code></td>
-      <td>Okera Master Host</td>
+      <td>ODAS Agent</td>
       <td>internal</td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">9098</code></td>
-      <td>Okera Canary</td>
+      <td>ODAS Canary</td>
       <td>internal</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
+      <td><code class="highlighter-rouge">11050</code></td>
+      <td>ODAS Planner Web UI</td>
+      <td>external</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">11060</code></td>
-      <td>Sentry</td>
+      <td>ODAS Sentry</td>
       <td>internal</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">11061</code></td>
-      <td>Okera HMS</td>
+      <td>ODAS HMS</td>
       <td>internal</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">12050</code></td>
-      <td>Planner</td>
+      <td>ODAS Planner</td>
       <td>external</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">13050</code></td>
-      <td>Okera Worker</td>
+      <td>ODAS Worker</td>
       <td>external</td>
       <td style="text-align: center">Yes</td>
     </tr>
@@ -823,7 +824,7 @@ For more about advanced networking operations, see <a href="advanced-install#oke
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
       </div>
     </div>
   </div>

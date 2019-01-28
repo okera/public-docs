@@ -114,6 +114,14 @@
 
 
 {
+"url": "data-registration",
+"file": "content/topics/DataRegistration.md",
+}
+,
+
+
+
+{
 "url": "data-types",
 "file": "content/topics/DataType.md",
 }

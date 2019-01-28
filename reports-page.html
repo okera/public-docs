@@ -497,6 +497,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -729,8 +736,12 @@ That special role can be granted to the groups that need access to reports.</p>
 
 <p>By default <code class="highlighter-rouge">Reports</code> will show aggregated metrics for all of the datasets on which the current user has admin privileges.
 You can change which database or set of databases the reports show using the multi-select dropdown in the top right of the page labelled “My admin databases”.
-As the label implies, this dropdown contains a list of the databases in which you are the admin for at least one dataset.
 Selecting a database or multiple databases will cause the page to generate reports that include only the datasets for which you are admin in the selected databases.</p>
+
+<blockquote>
+  <p><strong>Note:</strong>
+If you do not see any reports when you select a database, you may not have admin access to that data. Please verify using the Permissions page or talk to your administrator.</p>
+</blockquote>
 
 <p><img src="assets/images/ui-screen-reports-filter-db.png" alt="Okera Reports Filter by Database" /></p>
 
@@ -785,7 +796,8 @@ If you need to see more results, you can use the same query in an EMR cluster or
   <li><a href="#number-of-queries-over-time">Number of queries over time</a></li>
   <li><a href="#number-of-queries-by-client-application">Number of queries by client application</a></li>
   <li><a href="#number-of-queries-by-dataset">Number of queries by dataset</a></li>
-  <li><a href="#number-of-queries-by-dataset">Top users</a></li>
+  <li><a href="#top-users">Top users</a></li>
+  <li><a href="#number-of-queries-by-duration">Number of queries by duration</a></li>
 </ul>
 
 <h3 id="number-of-queries-over-time">Number of queries over time</h3>
@@ -877,6 +889,22 @@ Clicking on any row in the list will drill down to the <code class="highlighter-
 <p>Like the other drilldowns, this query restricts results based on time, then adds an additional constraint.
 In this case, exact user name.</p>
 
+<h3 id="number-of-queries-by-duration">Number of queries by duration</h3>
+
+<p><img src="assets/images/ui-detail-reports-queries-by-duration.png" alt="Okera Reports Queries by duration" /></p>
+
+<p>This report shows the number of queries in the given time frame, grouped by the duration they took to run.</p>
+
+<p>Clicking on any row in the list will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
+  <span class="k">WHERE</span> <span class="n">ymd</span> <span class="k">BETWEEN</span> <span class="s1">'2019-01-04'</span> <span class="k">AND</span> <span class="s1">'2019-01-05'</span>
+  <span class="k">AND</span> <span class="n">start_unix_time</span> <span class="k">BETWEEN</span> <span class="mi">1546565400000</span> <span class="k">AND</span> <span class="mi">1546652400000</span>
+  <span class="k">and</span> <span class="n">filename_matches</span><span class="p">(</span><span class="s1">'cdas*|planner*'</span><span class="p">)</span>
+  <span class="k">and</span> <span class="n">end_unix_time</span> <span class="o">-</span> <span class="n">start_unix_time</span> <span class="o">&gt;</span> <span class="mi">50</span>
+  <span class="k">and</span> <span class="n">end_unix_time</span> <span class="o">-</span> <span class="n">start_unix_time</span> <span class="o">&lt;=</span> <span class="mi">150</span>
+</code></pre></div></div>
+
 <h2 id="notes-on-implementation">Notes on implementation</h2>
 
 <h3 id="time-values">Time values</h3>
@@ -917,7 +945,7 @@ So, for similar queries from the same source, the numbers in the reports are con
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
       </div>
     </div>
   </div>

@@ -497,6 +497,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -897,6 +904,11 @@ This is specifically useful to add or replace existing definitions per table at 
 <span class="o">]</span>
 </code></pre></div></div>
 
+<h3 id="scan-records-in-parallel">Scan records in parallel</h3>
+
+<p>Data from JDBC data sources are scanned in parallel provided there is a valid numeric field specified in the tblproperties with the key <code class="highlighter-rouge">mapred.jdbc.scan.key</code>. Note, if the JDBC source table has a single numeric field as primarykey, the <code class="highlighter-rouge">mapred.jdbc.scan.key</code> key is auto-populated with that field as value when the catalog table is created. However, users can override this value by specifying another column in the table thats of numeric type. Internally, the query to the JDBC data source is split into query for ranges of 100K of the <code class="highlighter-rouge">mapred.jdbc.scan.key</code>.
+The range size (fetch size) can be controlled by the <code class="highlighter-rouge">fetchSize</code> property in the properties file.</p>
+
 <h2 id="other-jdbc-operations">Other JDBC Operations</h2>
 
 <p>Besides regular scans, you can also include the JDBC-based datasets into more complex SQL queries.</p>
@@ -1185,7 +1197,7 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2018 Okera, Inc. All rights reserved.  Site last generated: Nov 5, 2018
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
       </div>
     </div>
   </div>
