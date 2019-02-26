@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -491,13 +498,6 @@
           
           
           <li><a href="reports-page">Reports Page</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="data-registration">Data Registration</a> </li>
           
           
           
@@ -815,21 +815,6 @@ different signatures.</p>
 <span class="c1">-- For example</span>
 <span class="k">DROP</span> <span class="k">FUNCTION</span> <span class="n">okera_sample</span><span class="p">.</span><span class="n">mask</span><span class="p">(</span><span class="n">STRING</span><span class="p">)</span>
 </code></pre></div></div>
-<h3 id="globally-available-udf">Globally available UDF</h3>
-<p>Few custom functions are generic and can be used across databases. With global UDF capability, you can reuse commonly used functions not available in builtins, across databases.</p>
-
-<h4 id="creating-global-udf">Creating global UDF</h4>
-<p>To use UDF across databases, create the UDF in the global database <code class="highlighter-rouge">_okera_globals</code>.</p>
-
-<h4 id="accessing-global-udf">Accessing global UDF</h4>
-<p>By default all users have read access to this database. The global UDF can be accessed by qualifying the UDF with/without the namespace.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT touppercase(record) FROM okera_sample.sample
--- Or
-SELECT _okera_globals.touppercase(record) FROM okera_sample.sample
-</code></pre></div></div>
-
-<p>If the UDF shares the same name as a builtin function, the lookup precedence (when namespace not specified) will be builtin and global respectively.</p>
 
 <h2 id="using-the-udf-directly">Using the UDF directly</h2>
 
@@ -1098,7 +1083,7 @@ on a top-level S3 bucket, or any arbitrarily deep subdirectory.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

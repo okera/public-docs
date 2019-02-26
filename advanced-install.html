@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li class="active"><a href="advanced-install">Advanced Installation Options</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -491,13 +498,6 @@
           
           
           <li><a href="reports-page">Reports Page</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="data-registration">Data Registration</a> </li>
           
           
           
@@ -940,16 +940,20 @@ These ports are not user configurable and are required for cluster creation, man
   </thead>
   <tbody>
     <tr>
+      <td><code class="highlighter-rouge">443</code></td>
+      <td>Kubernetes Master Communication</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">6443</code></td>
       <td>Kubernetes API Server</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">6783</code></td>
-      <td>Kubernetes Weave (TCP)</td>
+      <td>Kubernetes Weave</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">8085</code></td>
-      <td>ODAS Agent</td>
+      <td>Okera Master Host</td>
     </tr>
   </tbody>
 </table>
@@ -991,17 +995,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
   <tbody>
     <tr>
       <td><code class="highlighter-rouge">5000-13050</code></td>
-      <td>Full Services Port Range - For testing only</td>
-      <td>external</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">10000</code></td>
-      <td>Grafana Dashboard UI</td>
-      <td>external</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">10001</code></td>
-      <td>Kubernetes Web UI</td>
+      <td>Kubernetes Dynamic Range</td>
       <td>external</td>
     </tr>
     <tr>
@@ -1010,51 +1004,52 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
       <td>external</td>
     </tr>
     <tr>
+      <td><code class="highlighter-rouge">11050</code></td>
+      <td>Okera Planner Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">10001</code></td>
+      <td>Kubernetes Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">10000</code></td>
+      <td>Grafana Dashboard UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">8083</code></td>
-      <td>ODAS Web UI</td>
+      <td>Okera Web UI</td>
       <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">9098</code></td>
-      <td>ODAS Canary</td>
+      <td>Okera Canary</td>
       <td>internal</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">11050</code></td>
-      <td>ODAS Planner Web UI</td>
-      <td>external</td>
-    </tr>
-    <tr>
       <td><code class="highlighter-rouge">11060</code></td>
-      <td>ODAS Sentry</td>
+      <td>Sentry</td>
       <td>internal</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">11061</code></td>
-      <td>ODAS HMS</td>
+      <td>Okera HMS</td>
       <td>internal</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">12050</code></td>
-      <td>ODAS Planner</td>
+      <td>Planner</td>
       <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">13050</code></td>
-      <td>ODAS Worker</td>
+      <td>Okera Worker</td>
       <td>external</td>
     </tr>
   </tbody>
 </table>
-
-<h4 id="jvm-certificate-store-configuration">JVM Certificate Store Configuration</h4>
-
-<p>Okera supports the ability to autonomously install JVM Certificate Store compatible certificates onto a cluster during bootup.  This can be used to install self-signed certificates or any certificate that is not properly chained to a Certificate Authority.  It requires the certificate files be stored at an accessible S3 path is configurable via the <code class="highlighter-rouge">/etc/okera/env.sh</code> configuration file by specifying a comma delimited list of S3 file paths as the value for the CUSTOM_CERTS variable:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SERVICE_ENVIRONMENT_CONFIGS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$SERVICE_ENVIRONMENT_CONFIGS</span><span class="s2">;CUSTOM_CERTS=s3://&lt;bucket&gt;/&lt;cert_file1&gt;,s3://&lt;bucket&gt;/&lt;cert_file2&gt;,..."</span>
-</code></pre></div></div>
-
-<p>During container bootup, the certificate files specified in the CUSTOM_CERTS variable will be downloaded and installed automatically.</p>
 
 
     <div class="tags">
@@ -1072,7 +1067,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

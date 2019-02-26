@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -497,13 +504,6 @@
           
           
           
-          <li><a href="data-registration">Data Registration</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -707,6 +707,14 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
+<h2 id="131-feb-2019">1.3.1 (Feb 2019)</h2>
+
+<ul>
+  <li>This release contains a hot fix for the large partitions optimization introduced in 1.3.0 release.
+Due to this issue, the filters on partition columns in certain cases result in full table scan and
+can result in incorrect results.</li>
+</ul>
+
 <h2 id="130-jan-2019---in-development">1.3.0 (Jan 2019 - In Development)</h2>
 
 <p>1.3.0 is the next major Okera release with significant new functionality and improvements throughout the platform.</p>
@@ -715,21 +723,14 @@ $('#toc').on('click', 'a', function() {
 
 <h4 id="dataset-registration">Dataset Registration</h4>
 
-<p>Datasets can now be registered in bulk through the Okera Web Portal.
-Choose an S3 path to crawl, and ODAS will inspect all files in that S3 path, finding possible datasets.
-Those datasets can be verified, modified, and registered one at a time or in bulk as needed.
-See <a href="data-registration">docs</a> for details.</p>
+<h4 id="pyokera">PyOkera</h4>
 
 <h4 id="monitoring">Monitoring</h4>
 
 <p>ODAS clusters leverage grafana for monitoring and has been updated substantially in this release.
 The metrics are now backed by Prometheus and the out of box monitoring dashboards have been improved.
-See <a href="kubernetes-dashboard-quickstart">docs</a> for details.</p>
-
-<h4 id="support-for-parquet-formats">Support for Parquet formats</h4>
-
-<p>Parquet formats are now fully supported with exception to complex types on Map. Full details,
-see <a href="complex-types">docs</a></p>
+In addition, it is now possible to generate dashboards for Okera specific metrics (e.g. records scanned) in addition to general process metrics (e.g. CPU).
+See TODO for details.</p>
 
 <h4 id="other-improvements">Other improvements</h4>
 
@@ -738,86 +739,22 @@ see <a href="complex-types">docs</a></p>
     <p>AWS EMR support extended through 5.17.</p>
   </li>
   <li>
-    <p>PyOkera is now supported on python 3.6 and 3.7.<br />
-We recommend all clients update to the 1.3.0 PyOkera version.</p>
+    <p>PyOkera is now supported on python 3.6 and 3.7.</p>
   </li>
   <li>
-    <p>Added support for <code class="highlighter-rouge">DESCRIBE DATABASE &lt;db_name&gt;</code>. See <a href="supported-sql#describe-database-statement">describe database</a></p>
+    <p>Added support for <code class="highlighter-rouge">DESCRIBE DATABASE &lt;db_name&gt;</code></p>
   </li>
   <li>
-    <p>Partitioned column information in <code class="highlighter-rouge">DESCRIBE FORMATTED &lt;view_name&gt;</code> command output. See <a href="supported-sql#describe-statement">describe statement</a></p>
-  </li>
-  <li>
-    <p>Base tables referenced in the view in <code class="highlighter-rouge">DESCRIBE FORMATTED &lt;view_name&gt;</code> command output. See <a href="supported-sql#describe-statement">describe statement</a></p>
-  </li>
-  <li>
-    <p>Global UDF support.<br />
-User defined functions can now be created and shared across database. Access them without the need to qualify everytime.
-More details <a href="extending-odas#globally-available-udf">here</a>.</p>
-  </li>
-  <li>
-    <p>Planner UDF caching.<br />
-Hadoop clients (for example Hive and Spark running on EMR) will load the UDFs on startup.
-For large catalogs (specifically number of databases), this can impact client startup time.
-In this release, the registered UDFs are cached on the planner, with a default time to live (TTL) of 30 seconds.
-This should significantly speedup client start up time in these cases.</p>
-  </li>
-  <li>
-    <p>Added support for <code class="highlighter-rouge">SHOW GRANT GROUP</code> and <code class="highlighter-rouge">SHOW GRANT USER</code>.<br />
-These provide convinient ways to list all the grants for a group or user, in addition to <code class="highlighter-rouge">SHOW GRANT ROLE</code>.</p>
-  </li>
-  <li>
-    <p>It is now possible to create a table against a fully qualified path.<br />
+    <p>It is not possible to create a table against a fully qualified path.
 Previously, tables (and partitions) had to be created over a directory.
-It is now possible to create a table over a single file, simply using the full path as the <code class="highlighter-rouge">LOCATION</code>.
-For more details, see <a href="supported-sql#create-table-over-a-single-file">supported sql</a>.</p>
+It is not possible to create a table over a single file, simply using the full path as the <code class="highlighter-rouge">LOCATION</code>.
+TODO: this needs updates to schema design and supported SQL.</p>
   </li>
   <li>
-    <p>ODAS clusters will now default to starting up with multiple planners.<br />
+    <p>ODAS clusters will now default to starting up with multiple planners.
 For clusters (larger than 1 node), the default number of planners will be greater than 1.
 This offers better availability and load balancing.
 This value can still be controlled as before, by specifying the <code class="highlighter-rouge">--numPlanners</code> option when creating the cluster.</p>
-  </li>
-  <li>
-    <p>ocadm now supports restarting a single service in a running cluster.<br />
-Previously, it was only possible to restart the entire cluster (all services).
-See <code class="highlighter-rouge">ocadm clusters restart help</code> for details.</p>
-  </li>
-  <li>
-    <p>Grafana and monitoring improvements.<br />
-ODAS clusters leverage grafana for monitoring and has been updated substantially in this release.
-The metrics are now backed by Prometheus and the out of box monitoring dashboards have been improved.
-See <a href="kubernetes-dashboard-quickstart">docs</a> for details.</p>
-  </li>
-  <li>
-    <p>Idle clients now timeout after 120 seconds.<br />
-A client is considered idle if it has no active requests for more than the configured time.
-Idle clients will now timeout after 120 seconds and the queries associated with that client will be cancelled.
-Note that requests that take a long time and keep the server busy are not considered idle.
-This config can be controlled by the <code class="highlighter-rouge">idle_session_timeout</code> service config.</p>
-  </li>
-  <li>
-    <p>(beta) ODAS workers cache bytes from storage<br />
-ODAS workers now support a variant of LRU caching which automatically caches bytes from the storage system.
-This is only supported for the file system datasources: S3 and HDFS.
-This cache is enabled by default but defaults to a small size (1GB per worker).
-The cache size can be configured via the worker config <code class="highlighter-rouge">io_cache_size</code> which controls the size in bytes.
-Setting it to a value <code class="highlighter-rouge">&lt;= 0</code> disables the cache.</p>
-  </li>
-  <li>
-    <p>Performance enhancements for heavily partitioned tables.<br />
-This release has some significant performance improvements for operations on partitioned tables.
-The automatic partition recovery that scans for new folders added on s3, is optimized to run faster than before.
-Similarly operations like <code class="highlighter-rouge">ALTER TABLE ADD PARTITION</code>, <code class="highlighter-rouge">ALTER TABLE RECOVER PARTITIONS</code> are optimized by effectively scanning changes on s3 buckets and also using more parallel ways to manage HMS partitions.
-On the scan side, if the number of partitions are greater that 200, we now load the partition metadata
-in the workers instead of the planner. Loading metadata for large partitions in the planner was resulting in
-timeouts of queries. The planner would now roundrobin the partitions (based on number of partitions) to the workers and the workers would now load the partitions metadata for the partitions that it has to fetch the records. This ensures queries do not timeout at planning phase and the overall time to execute queries for
-the partitioned table is faster.</p>
-  </li>
-  <li>
-    <p>JDBC queries can now run in parallel.<br />
-JDBC queries are now run in parallel provided there is a suitable numeric type field specified in the
-<code class="highlighter-rouge">mapred.jdbc.scan.key</code> as tblproperty in the catalog table. See <a href="jdbc-data-source#scan-records-in-parallel">scan records in parallel</a></p>
   </li>
 </ul>
 
@@ -825,19 +762,20 @@ JDBC queries are now run in parallel provided there is a suitable numeric type f
 
 <ul>
   <li>
-    <p>Package path for Java client has been renamed to <code class="highlighter-rouge">com.okera.*</code>.<br />
+    <p>Package path for Java client has been renamed to <code class="highlighter-rouge">com.okera.*</code>
 This should not impact typical use cases as backward compatible classes have been added.
 For example, there exists two copies of <code class="highlighter-rouge">RecordServiceHiveInputFormat</code> in the old and new namespace.
 Clients that were developed against the Java client library will need to be updated.</p>
   </li>
   <li>
-    <p>The default LDAP port changed from 389 to 636.<br />
+    <p>The default LDAP port changed from 389 to 636.
 Previously, if unspecified, ODAS defaults to SSL enabled connecting to the server on port 389 for LDAP.
 This configuration is atypical, as 389 is the default non-SSL enabled port.
-This release changes the default to use the standard port (636) by default as SSL is enabled by default.
-For users that are explicitly specifying this configuration (<code class="highlighter-rouge">LDAP_PORT</code>), this will have no impact.</p>
+This release changes the default to use the standard port (636) by default as SSL is enabled by default.</p>
   </li>
 </ul>
+
+<p>For users that are explicitly specifying this configuration (<code class="highlighter-rouge">LDAP_PORT</code>), this will have no impact.</p>
 
 <h2 id="123-december-2018">1.2.3 (December 2018)</h2>
 
@@ -964,7 +902,7 @@ See <a href="supported-sql#last-partitionslast-files">here</a> for best practice
 
 <p>Workspace can now run multiple queries at once and supports monospace format outputs and datetime queries.</p>
 
-<h4 id="pyokera">PyOkera</h4>
+<h4 id="pyokera-1">PyOkera</h4>
 
 <ul>
   <li>
@@ -1431,7 +1369,7 @@ This will be remedied in the next release.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

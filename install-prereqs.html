@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li class="active"><a href="install-prereqs">Okera Installation Prerequisites</a></li>
+          <li class="active"><a href="install-prereqs">Installation Prerequisites</a></li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -497,13 +504,6 @@
           
           
           
-          <li><a href="data-registration">Data Registration</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -710,7 +710,7 @@ $('#toc').on('click', 'a', function() {
 <!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 <ul>
-  <li><a href="#aws-requirements">AWS Requirements</a></li>
+  <li><a href="#cloud-specific-requirements">Cloud Specific Requirements</a></li>
   <li><a href="#deployment-manager-host-requirements">Deployment Manager Host Requirements</a></li>
   <li><a href="#cluster-node-requirements">Cluster Node Requirements</a></li>
   <li><a href="#network-requirements">Network Requirements</a></li>
@@ -720,34 +720,9 @@ $('#toc').on('click', 'a', function() {
 
 <!-- /TOC -->
 
-<p>Before installing Okera, the following AWS services must be set up.
-The AWS services include an S3 Bucket, RDS, and IAM credentials.</p>
+<h2 id="cloud-specific-requirements">Cloud Specific Requirements</h2>
 
-<ul>
-  <li>
-    <p><strong>S3 Bucket</strong></p>
-
-    <p>Okera uses the S3 bucket to store log files and to stage intermediate configuration files.
- The S3 bucket is set to readable and writable by all instances running Okera components.
- The S3 bucket is referred to as <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> later in this document.</p>
-  </li>
-  <li>
-    <p><strong>RDS instance</strong></p>
-
-    <p>Okera is backed by a relational database, either MySQL 5.6, or newer, or Aurora (MySQL 5.6+ compatible), provisioned with the configuration of your choice.
- Okera instances require read and write access to the <code class="highlighter-rouge">OKERA_DB_URL</code> database.</p>
-  </li>
-  <li>
-    <p><strong>IAM credentials</strong></p>
-
-    <p>Okera instances require read and write access to <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> and <code class="highlighter-rouge">OKERA_DB_URL</code>.
- The Deployment Manager requires the ability to provision instances.
- The cluster nodes require read credentials to your data.
- These credentials can be one IAM profile with all the credentials, or two separate roles.
- If encryption is being used with keys in KMS, these roles will also need KMS access.
- The IAM role for the Deployment Manager (DM) is referred to as <code class="highlighter-rouge">IAM_MANAGER</code> and the IAM role for the cluster nodes is referred to as <code class="highlighter-rouge">IAM_CLUSTER</code>.</p>
-  </li>
-</ul>
+<p>For Amazon Web Services see <a href="awsguide#aws-prerequisites">AWS Prerequisites</a>.</p>
 
 <h2 id="deployment-manager-host-requirements">Deployment Manager Host Requirements</h2>
 
@@ -756,21 +731,8 @@ The AWS services include an S3 Bucket, RDS, and IAM credentials.</p>
 <ul>
   <li>Linux installed</li>
   <li>Java 8 or higher installed (<a href="http://openjdk.java.net/install/index.html">OpenJDK</a> or <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Oracle JVM</a>).</li>
-  <li><code class="highlighter-rouge">IAM_MANAGER</code> credentials</li>
-  <li>Minimum instance type: <code class="highlighter-rouge">t2.medium</code></li>
-  <li><code class="highlighter-rouge">awscli</code> installed</li>
+  <li>For <strong>AWS</strong> related node requirements see the <a href="awsguide#okera-prerequisites">AWS Guide</a>.</li>
 </ul>
-
-<h3 id="install-the-aws-cli-tool">Install the AWS CLI Tool</h3>
-
-<p>To install the awscli command-line tool on a newly provisioned Deployment Manager host, perform these commands.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>yum install wget
-<span class="nb">sudo </span>wget https://bootstrap.pypa.io/get-pip.py
-<span class="nb">sudo </span>python get-pip.py
-<span class="nb">sudo </span>pip install awscli
-aws configure
-</code></pre></div></div>
 
 <h2 id="cluster-node-requirements">Cluster Node Requirements</h2>
 
@@ -778,20 +740,17 @@ aws configure
 The cluster node requirements include:</p>
 
 <ul>
-  <li><strong>CentOS 7/RHEL 7</strong>
- Okera installs Java if not present.
- The AMI can be a stock RHEL image or one maintained by your enterprise with additional components pre-installed.</li>
-  <li><code class="highlighter-rouge">IAM_CLUSTER</code> credentials</li>
-  <li>Minimum instance type: <code class="highlighter-rouge">t2.large</code> with a minimum of 40GB local storage</li>
+  <li><strong>CentOS 7/RHEL 7</strong> - Okera installs Java if not present.</li>
+  <li>For <strong>AWS</strong> related node requirements see the <a href="awsguide#okera-prerequisites">AWS Guide</a>.</li>
 </ul>
 
 <h2 id="network-requirements">Network Requirements</h2>
 
 <p>There must be full network connectivity between the nodes in the cluster and the Deployment Manager.</p>
 
-<h2 id="cli-requirements">CLI Requirements</h2>
+<h2 id="okera-cli-requirements">Okera CLI Requirements</h2>
 
-<p>Any machine running the Okera CLI, <code class="highlighter-rouge">ocadm</code> must have network access to the Deployment Manager and cluster machines.
+<p>Any machine running the Okera CLI (that is, command-line tools), <code class="highlighter-rouge">ocadm</code> must have network access to the Deployment Manager and cluster machines.
 The CLI can be installed on the Deployment Manager host or any workstation or development environment with network access to the Deployment Manager and the cluster.</p>
 
 <p>The CLI requirements include:</p>
@@ -838,7 +797,7 @@ The CLI can be installed on the Deployment Manager host or any workstation or de
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

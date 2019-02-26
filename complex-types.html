@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -497,13 +504,6 @@
           
           
           
-          <li><a href="data-registration">Data Registration</a> </li>
-          
-          
-          
-          
-          
-          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -707,29 +707,29 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="complex-data-types">Complex Data Types</h1>
 
-<p>This document details the support for complex types in ODAS.</p>
-
-<p>The suppored types include:</p>
+<p>This document describes ODAS’s support for complex types.
+Complex types usually consist of:</p>
 
 <ul>
   <li>structs</li>
   <li>arrays</li>
-  <li>maps (limited support; see below for details)</li>
-  <li>unions (limited support; see below for details)</li>
+  <li>maps</li>
+  <li>unions</li>
 </ul>
 
-<p>There is no plan to support unions or enums in ODAS, excepting in special cases for Avro. See details below.</p>
+<p>ODAS currently supports arrays, maps and lists.
+There is no plan to support unions (see exception for Avro below).</p>
 
 <h2 id="file-format-support">File format support</h2>
 
-<p>Complex type support applies to data stored in Avro and Parquet formats.</p>
+<p>Complex types are only supported when the underlying data files are in Avro format.</p>
 
-<h2 id="structs">Structs</h2>
+<h2 id="struct">Struct</h2>
 
-<p>ODAS supports struct types with up to 100 levels of nesting. Struct types are useful for logs, event data, and other records that use JSON.</p>
+<p>ODAS supports struct types with up to 100 levels of nesting.
+Struct types are useful to model nested data, such as logs or event data that originated as JSON.</p>
 
-<p>Several examples below are based on the following schema below to illustrate how ODAS supports structs.</p>
-
+<p>As a running example, let’s use this JSON data.</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
   </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alice"</span><span class="p">,</span><span class="w">
@@ -741,9 +741,10 @@ $('#toc').on('click', 'a', function() {
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<h3 id="using-a-create-ddl-statement-with-avro-formatted-json-data">Using a CREATE DDL statement with Avro-formatted JSON data</h3>
+<h3 id="create-ddl">CREATE DDL</h3>
 
-<p>ODAS supports the HiveQL DDL for table creation. To create a table using our example schema (assuming Avro format):</p>
+<p>The syntax for creating the table is compatible with HiveQL, using the struct type and listing the fields inside.
+For this schema:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">users</span><span class="p">(</span>
   <span class="n">uid</span> <span class="n">BIGINT</span><span class="p">,</span>
@@ -756,7 +757,7 @@ $('#toc').on('click', 'a', function() {
 <span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-users/'</span>
 </code></pre></div></div>
 
-<p>A description of this table will return:</p>
+<p>Describing the table should look like:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">users</span><span class="p">;</span>
 <span class="n">uid</span>	<span class="n">bigint</span>
@@ -768,66 +769,53 @@ $('#toc').on('click', 'a', function() {
 <span class="n">age</span>	<span class="n">int</span>
 </code></pre></div></div>
 
-<h4 id="creating-a-ddl-with-file-based-avro-schema">Creating a DDL with file-based Avro schema</h4>
+<h4 id="create-ddl-for-avro">Create DDL for Avro</h4>
 
-<p>If a schema is stored in an <code class="highlighter-rouge">.avsc</code> file, the <code class="highlighter-rouge">CREATE</code> statement can use that file in lieu of an explicit schema definition. Given a <code class="highlighter-rouge">users.avsc</code> file, for example, you could write:</p>
+<p>If the schemas are available in avro, we recommend creating the table using the schema file directly, rather than replicating it in the DDL statement.</p>
+
+<p>For example, in the above <code class="highlighter-rouge">users</code> example, if the avro schema file (typically .avsc, a human-readable json file), you could do:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">users</span>
 <span class="k">LIKE</span> <span class="n">AVRO</span> <span class="s1">'s3://path/to/schemas/users.avsc'</span>
 <span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-users/'</span>
 </code></pre></div></div>
 
-<p>This approach offers several advantages:</p>
+<p>In this case, ODAS will parse the schema file and automatically populate the expected schema.</p>
+
+<p>This approach alleviates a few issues:</p>
 <ul>
-  <li>It is less error-prone than typing or a cut-and-paste operation.</li>
-  <li>It is the only option for large, detailed schema, in particular any schema that contains a struct whose serialized values exceed 4kb. Any attempt to paste such a schema into a CREATE statement would fail and report the field is too long.</li>
-  <li>If a field name is typed incorrectly in HiveQL, the engine can only infer a new field is being declared, resulting in a schema change instead of an error. Reading from a schema file will avoid this potential confusion.</li>
-  <li>Some valid Avro artifacts, such as an empty struct, have no analog in HiveQL. The ODAS engine can however handle these cases transparently when they are read from an Avro schema file.</li>
+  <li>Schemas can be long and for nested types in particular, can be error prone to replicate.</li>
+  <li>Avro resolves schemas by name, meaning the engine cannot tell a typo from a new field (schema evolution) which can be difficult to track down.</li>
+  <li>Some avro constructs don’t map to a SQL data model and our engine will automatically handle those.
+For example, Avro allows records that have no fields, but it is not possible to create a table with an empty struct.
+This conversion is handled automatically.</li>
+  <li>If the schema is very big (contains structs that serialize to over 4K characters), then specifying it as a file is the only option.
+If the schema is explicitly typed, it will error with an error saying the field is over 4K characters.</li>
 </ul>
 
-<h5 id="using-a-non-standard-avro-schema-file">Using a non-standard Avro schema file</h5>
+<h3 id="create-view">CREATE VIEW</h3>
 
-<p>ODAS assumes the given Avro path will point to a well-formed <a href="https://avro.apache.org/docs/1.8.1/spec.html#schemas">Avro JSON schema</a>. The ODAS engine can also read an Avro schema that has been embedded in a JSON object.</p>
+<p>A view can be created on subfields of complex type fields. Since fields may not contain a dot(.),
+they need to be aliased.</p>
 
-<p>Say there is an <code class="highlighter-rouge">avro-json.json</code> file that includes the following elements:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="err">'owner'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'user'</span><span class="p">,</span><span class="w">
-    </span><span class="err">'custom'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">'key'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'value'</span><span class="p">,</span><span class="w">
-        </span><span class="err">'path'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">avro</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">escaped</span><span class="w"> </span><span class="err">json</span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>You can write a <code class="highlighter-rouge">CREATE TABLE</code> statement to read the <code class="highlighter-rouge">avro-json.json</code> file and extract the Avro schema by setting the <code class="highlighter-rouge">avro.schema.field.path</code> table property as follows:</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">example</span>
-<span class="k">LIKE</span> <span class="n">AVRO</span> <span class="s1">'s3://data/schemas/avro-json.json'</span>
-<span class="n">STORED</span> <span class="k">AS</span> <span class="n">AVRO</span> <span class="k">LOCATION</span> <span class="s1">'s3://data/rs-complex-users/'</span>
-<span class="n">TBLPROPERTIES</span><span class="p">(</span><span class="s1">'avro.schema.field.path'</span><span class="o">=</span><span class="s1">'custom.path'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>ODAS will locate the schema using the JSON identifier <code class="highlighter-rouge">custom.path</code>.</p>
-
-<h3 id="using-create-view-with-complex-type-subfields">Using CREATE VIEW with complex type subfields</h3>
-
-<p>You can create views using just a subfield of a complex type. Column names in a view cannot contain a dot(.), so it’s necessary to give them an alias:</p>
+<p>Example:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">user_city</span> <span class="k">AS</span> <span class="k">SELECT</span> <span class="k">user</span><span class="p">,</span> <span class="n">address</span><span class="p">.</span><span class="n">city</span> <span class="k">AS</span> <span class="n">cityname</span> <span class="k">FROM</span> <span class="n">users</span>
 </code></pre></div></div>
-<p>Omitting the alias will throw an error:</p>
+<p>If alias is not specified as in</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">user_city</span> <span class="k">AS</span> <span class="k">Select</span> <span class="k">user</span><span class="p">,</span> <span class="n">address</span><span class="p">.</span><span class="n">city</span> <span class="k">from</span> <span class="n">users</span>
 </code></pre></div></div>
+<p>ODAS would return an error like
+<code class="highlighter-rouge">Could not execute ddl., detail:AnalysisException: Invalid column/field name: address.city</code></p>
 
-<p><code class="highlighter-rouge">Could not execute ddl., detail:AnalysisException: Invalid column/field name: address.city</code></p>
+<h3 id="scanning-via-rest-api">Scanning via REST API</h3>
 
-<h3 id="scanning-data-with-the-odas-rest-api">Scanning data with the ODAS REST API</h3>
-
-<p>The REST API supports JSON be default. Invoking the curl utility against the <code class="highlighter-rouge">users</code> table endpoint will return:</p>
+<p>The REST API has always returned JSON and fully supports nested types.
+For example, curling this endpoint now returns:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl REST_SERVER:PORT/api/scan/users
-<span class="o">[</span>
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">"uid"</span>: 100,
         <span class="s2">"user"</span>: <span class="s2">"alice"</span>,
@@ -850,41 +838,42 @@ $('#toc').on('click', 'a', function() {
 </code></pre></div></div>
 
 <blockquote>
-  <p><strong>Note:</strong> This example omits the authentication headers for brevity. See (REST API OAuth](catalog-rest-api#authentication) for details.</p>
+  <p><strong>Note:</strong> Correct auth headers are required. See (REST API OAuth](catalog-rest-api#authentication) for details.</p>
 </blockquote>
 
-<h3 id="scanning-a-table-via-sparksql">Scanning a table via SparkSQL</h3>
+<h3 id="scanning-via-sparksql">Scanning via SparkSQL</h3>
 
-<p>ODAS support for struct types aligns with Spark’s record type. Some representative queries on the <code class="highlighter-rouge">users</code> table include:</p>
+<p>Support for struct types behaves as expected in Spark, integrating with Spark’s record type.
+For example, valid queries on this table include:</p>
 
 <ul>
-  <li>Creating an ephemeral table:
+  <li>Create an ephemeral table. Note in EMR (or any Hive Metastore integrated Hadoop install, this step
+can be omitted and instead queries can just be against <code class="highlighter-rouge">db.table</code>.)
     <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="n">s</span><span class="s">"""
         |CREATE TEMPORARY TABLE users
         |USING com.cerebro.recordservice.spark.DefaultSource
         |OPTIONS (RecordServiceTable 'users')
    """</span><span class="o">.</span><span class="n">stripMargin</span><span class="o">)</span>
 </code></pre></div>    </div>
-    <p>Note: in EMR (or any ODAP configuration that uses an external Hive Metastore), you can omit this step and just write queries against <code class="highlighter-rouge">db.table</code>.)</p>
   </li>
-  <li>Returning a record count:
+  <li>Just return the count:
     <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT count(*) from users"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
 </code></pre></div>    </div>
   </li>
-  <li>Selecting the first column:
+  <li>Select just the first column:
     <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT uid from users"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
 </code></pre></div>    </div>
-    <p>Recall the <em>type</em> of the <code class="highlighter-rouge">uid</code> field is <code class="highlighter-rouge">BIGINT</code>.</p>
+    <p>The <em>type</em> of this is <code class="highlighter-rouge">BIGINT</code>.</p>
   </li>
-  <li>Selecting the first column and a subfield of the struct. This request flattens the nested type:
+  <li>Select the first column and a field in the struct. This “flattens” the nested type:
     <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT uid, address.city from users"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
 </code></pre></div>    </div>
   </li>
-  <li>Selecting the first column and the column containing a struct:
+  <li>Select the first column and the column with the struct:
     <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT uid, address from users"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
 </code></pre></div>    </div>
   </li>
-  <li>Selecting all fields from the table:
+  <li>Select all the fields from the data:
     <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">val</span> <span class="n">row</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT * from users"</span><span class="o">).</span><span class="n">collect</span><span class="o">()(</span><span class="mi">0</span><span class="o">)</span>  <span class="c1">// Row for 'alice'
 </span> <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="mi">100</span><span class="o">)</span>
  <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="s">"alice"</span><span class="o">)</span>
@@ -892,15 +881,15 @@ $('#toc').on('click', 'a', function() {
  <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">Row</span><span class="o">](</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="s">"wa"</span><span class="o">)</span>
  <span class="n">assert</span><span class="o">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">==</span> <span class="mi">25</span><span class="o">)</span>
 </code></pre></div>    </div>
-    <p>The top-level record consists of four fields <code class="highlighter-rouge">[BIGINT, STRING, STRUCT, INT]</code>.</p>
+    <p>The top level record consists of 4 fields <code class="highlighter-rouge">[BIGINT, STRING, STRUCT, INT]</code>.</p>
   </li>
 </ul>
 
-<h3 id="scanning-via-apache-hive">Scanning via Apache Hive</h3>
+<h3 id="scanning-via-hive">Scanning via Hive</h3>
 
-<p>The Avro struct type maps to Hive’s struct type.
-For example, describing the <code class="highlighter-rouge">users</code> schema:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   hive&gt; describe users<span class="p">;</span>
+<p>The struct type maps to hive’s struct type.
+For example, to describe the schema:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   hive&gt; describe users
 </code></pre></div></div>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   OK
    uid                 	bigint
@@ -909,7 +898,7 @@ For example, describing the <code class="highlighter-rouge">users</code> schema:
    age                 	int
 </code></pre></div></div>
 
-<p>A few more examples of Hive DDL-based scans:</p>
+<p>Here are a few more examples of scans:</p>
 
 <p><em>Query</em></p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users<span class="p">;</span>
@@ -921,7 +910,7 @@ For example, describing the <code class="highlighter-rouge">users</code> schema:
 </code></pre></div></div>
 
 <p><em>Query</em></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>uid, user from users<span class="p">;</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>uid, <span class="sb">`</span>user<span class="sb">`</span> from users<span class="p">;</span>
 </code></pre></div></div>
 <p><em>Results</em></p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
@@ -948,7 +937,7 @@ For example, describing the <code class="highlighter-rouge">users</code> schema:
 </code></pre></div></div>
 
 <p><em>Query</em></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users where uid <span class="o">=</span> 100<span class="p">;</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users where uid <span class="o">=</span> 100
 </code></pre></div></div>
 <p><em>Results</em></p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
@@ -956,7 +945,7 @@ For example, describing the <code class="highlighter-rouge">users</code> schema:
 </code></pre></div></div>
 
 <p><em>Query</em></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>address.city, count<span class="o">(</span><span class="k">*</span><span class="o">)</span> from users group by address.city<span class="p">;</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select </span>address.city, count<span class="o">(</span><span class="k">*</span><span class="o">)</span> from users group by address.city
 </code></pre></div></div>
 <p><em>Results</em></p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
@@ -965,7 +954,7 @@ san francisco	1
 </code></pre></div></div>
 
 <p><em>Query</em></p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users where address.state <span class="o">=</span> <span class="s1">'wa'</span><span class="p">;</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; <span class="k">select</span> <span class="k">*</span> from users where address.state <span class="o">=</span> <span class="s1">'wa'</span>
 </code></pre></div></div>
 <p><em>Results</em></p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
@@ -973,9 +962,10 @@ san francisco	1
 san francisco	1
 </code></pre></div></div>
 
-<h3 id="scanning-table-data-with-presto">Scanning table data with Presto</h3>
+<h3 id="scanning-via-presto">Scanning via Presto</h3>
 
-<p>Presto supports struct types. The examples below reflect the expected Presto experience.</p>
+<p>Presto has support for struct types.
+The behavior should be a typical Presto experience.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; describe recordservice.default.users<span class="p">;</span>
 </code></pre></div></div>
@@ -988,7 +978,7 @@ san francisco	1
  age     | integer                          |       |
 </code></pre></div></div>
 
-<p>Some additional examples:</p>
+<p>Here are some example scans.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>presto&gt; <span class="k">select</span> <span class="k">*</span> from recordservice.default.users<span class="p">;</span>
 </code></pre></div></div>
@@ -1058,7 +1048,8 @@ san francisco	1
 
 <h2 id="array">Array</h2>
 
-<p>The DDL for creating tables that include array types is standard HiveQL:</p>
+<p>The DDL for creating tables with an array type is identical to standard HiveQL.
+For example,</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">user_phone_numbers</span><span class="p">(</span>
    <span class="n">phone_numbers</span> <span class="n">struct</span><span class="o">&lt;</span>
@@ -1070,20 +1061,24 @@ san francisco	1
 <span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-users/'</span>
 </code></pre></div></div>
 
-<p>The table description should appear as follows:</p>
+<p>Describing the table should look like:</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">user_phone_numbers</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">phone_numbers</span><span class="p">;</span>
 <span class="n">uid</span>	<span class="n">bigint</span>
 <span class="n">numbers</span> <span class="n">array</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
-<span class="k">user</span> <span class="n">string</span>
+<span class="n">name</span> <span class="n">string</span>
 </code></pre></div></div>
 
-<h3 id="scanning-with-the-rest-api">Scanning with the REST API</h3>
+<h3 id="scanning-via-rest-api-1">Scanning via REST API</h3>
 
-<p>The REST API returns arrays as a JSON ordered list. A curl on the endpoint for the <code class="highlighter-rouge">user_phone_numbers</code> table would return:</p>
+<p>The REST API has always returned JSON.
+Arrays are returned as a json list.
+For example, curling this endpoint now returns:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl REST_SERVER:PORT/api/scan/user_phone_numbers?records<span class="o">=</span>1
-<span class="o">[</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>
     <span class="o">{</span>
         <span class="s2">"phone_numbers"</span>: <span class="o">{</span>
             <span class="s2">"uid"</span>: 123,
@@ -1097,9 +1092,11 @@ san francisco	1
 <span class="o">]</span>
 </code></pre></div></div>
 
-<h3 id="scanning-with-the-sparksql">Scanning with the SparkSQL</h3>
+<h3 id="scanning-via-sparksql-1">Scanning via SparkSQL</h3>
 
-<p>ODAS support for array types aligns with Spark’s array type. To create an ephemeral view:</p>
+<p>Support for array types behaves as expected in Spark, integrating with Spark’s array type.</p>
+
+<p>Select with all fields and array field only are shown below.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="n">s</span><span class="s">"""
     |CREATE TEMPORARY VIEW user_phone_numbers
@@ -1107,8 +1104,6 @@ san francisco	1
     |OPTIONS (RecordServiceTable 'rs_complex.user_phone_numbers')
 """</span><span class="o">.</span><span class="n">stripMargin</span><span class="o">)</span>
 </code></pre></div></div>
-
-<p>A <code class="highlighter-rouge">SELECT</code> on all fields, including the array type, will return:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"SELECT * FROM user_phone_numbers"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
 <span class="o">+--------------------+</span>
@@ -1130,11 +1125,11 @@ san francisco	1
 <span class="kt">+--------------------+</span>
 </code></pre></div></div>
 
-<h3 id="scanning-table-data-with-apache-hive">Scanning table data with Apache Hive</h3>
+<h3 id="scanning-via-hive-1">Scanning via Hive</h3>
 
-<p>Support for array types also aligns with Hive’s array type.</p>
+<p>Support for array types integrates with Hive’s array type.</p>
 
-<p>A <code class="highlighter-rouge">SELECT</code>`on all fields including an array type and one on the array type alone are shown below:</p>
+<p>Select with all fields and array field only are shown below.</p>
 
 <pre><code class="language-hive">hive&gt; SELECT * FROM user_phone_numbers
 {"uid":123,"numbers":["111-222-3333","444-555-6666"],"user":"john"}
@@ -1148,11 +1143,11 @@ san francisco	1
 ["111-222-5555"]
 </code></pre>
 
-<h3 id="scanning-table-data-with-presto-1">Scanning table data with Presto</h3>
+<h3 id="scanning-via-presto-1">Scanning via Presto</h3>
 
-<p>Support for array types also aligns with Presto’s array type.</p>
+<p>Support for array types integrates with Presto’s array type.</p>
 
-<p>A <code class="highlighter-rouge">SELECT</code> on all the fields including an array type and the array type by itself are shown below:</p>
+<p>Select just the array field and user name from the data:</p>
 
 <pre><code class="language-presto">presto&gt; select * from recordservice.rs_complex.user_phone_numbers;
                        phone_numbers
@@ -1170,82 +1165,18 @@ san francisco	1
  [111-222-5555]
 </code></pre>
 
-<h2 id="map">Map</h2>
+<h2 id="union-avro">Union (Avro)</h2>
 
-<h3 id="scope-of-support">Scope of support</h3>
+<p>Avro uses unions to represent nullable types by expressing it as a union of the NULL type and the actual type.
+All types in ODAS are nullable, and this specific use of Avro unions is supported.
+Other uses, such as a union between a string and int, are not supported.</p>
 
-<p>Maps are supported for map&lt;string, primitiveType&gt; implementations. Mapping to a complex type (e.g., map&lt;string, complexType&gt; is not yet supported.</p>
+<h2 id="enums-avro">Enums (Avro)</h2>
 
-<h3 id="using-map-types">Using Map types</h3>
-
-<p>The DDL for creating tables with a map type corresponds to standard HiveQL:</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">user_phone_numbers_map</span><span class="p">(</span>
-   <span class="n">uid</span> <span class="n">BIGINT</span><span class="p">,</span>
-   <span class="n">username</span> <span class="n">STRING</span><span class="p">,</span>
-   <span class="n">contact_numbers</span> <span class="k">MAP</span><span class="o">&lt;</span><span class="n">STRING</span><span class="p">,</span> <span class="n">STRING</span><span class="o">&gt;</span>
-<span class="p">)</span> <span class="n">STORED</span> <span class="k">AS</span> <span class="n">AVRO</span>
-<span class="k">LOCATION</span> <span class="s1">'s3://okera/rs-complex-map-userphones'</span>
-</code></pre></div></div>
-
-<p>A description of this table should return:</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="k">describe</span> <span class="n">user_phone_numbers_map</span><span class="p">;</span>
-<span class="n">uid</span>	<span class="n">bigint</span>
-<span class="n">username</span> <span class="n">string</span>
-<span class="n">contact_numbers</span> <span class="k">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;</span>
-</code></pre></div></div>
-
-<h3 id="scanning-with-the-rest-api-1">Scanning with the REST API</h3>
-
-<p>The REST API returns Map types as a JSON object in the form of name-value pairs. A curl on the endpoint for the <code class="highlighter-rouge">user_phone_numbers_map</code> table should return:</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> curl REST_SERVER:PORT/api/scan/user_phone_numbers_map?records<span class="o">=</span>1&amp;format<span class="o">=</span>1
-<span class="o">[</span>
-    <span class="o">{</span>
-        <span class="s2">"uid"</span>: 1,
-        <span class="s2">"username"</span>: <span class="s2">"Alex"</span>,
-        <span class="s2">"contact_numbers"</span>: <span class="o">{</span>
-            <span class="s2">"work"</span>: <span class="s2">"444-555-6666"</span>,
-            <span class="s2">"home"</span>: <span class="s2">"111-222-3333"</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">]</span>
-</code></pre></div></div>
-
-<h3 id="scanning-table-data-via-sparksql">Scanning table data via SparkSQL</h3>
-
-<p>ODAS support for map types aligns with Spark’s map type. A select on all fields including a map type returns:</p>
-
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scala</span><span class="o">&gt;</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">"select * from rs_complex.user_phone_numbers_map"</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
-<span class="o">+---+--------+--------------------+</span>
-<span class="o">|</span><span class="n">uid</span><span class="o">|</span><span class="n">username</span><span class="o">|</span>     <span class="n">contact_numbers</span><span class="o">|</span>
-<span class="o">+---+--------+--------------------+</span>
-<span class="o">|</span>  <span class="mi">1</span><span class="o">|</span>    <span class="nc">Alex</span><span class="o">|[</span><span class="kt">work</span> <span class="kt">-&gt;</span> <span class="err">444</span><span class="kt">-</span><span class="err">555</span><span class="kt">-...|</span>
-<span class="kt">|</span>  <span class="err">2</span><span class="kt">|</span> <span class="kt">Melinda|</span><span class="o">[</span><span class="kt">work</span> <span class="kt">-&gt;</span> <span class="err">444</span><span class="kt">-</span><span class="err">555</span><span class="kt">-...|</span>
-<span class="kt">+---+--------+--------------------+</span>
-</code></pre></div></div>
-
-<h3 id="scanning-table-data-with-apache-hive-1">Scanning table data with Apache Hive</h3>
-
-<p>Support for map types also aligns with Hive’s map type. A <code class="highlighter-rouge">SELECT</code> on all fields including a map type will return:</p>
-
-<pre><code class="language-hive">hive&gt; SELECT * FROM rs_complex.user_phone_numbers_map;
-OK
-1	Alex	{"work":"444-555-6666","home":"111-222-3333"}
-2	Melinda	{"work":"444-555-8888","home":"111-222-7777"}
-</code></pre>
-
-<h2 id="limited-support-for-unions-in-avro">Limited support for unions in Avro</h2>
-
-<p>The Avro specification uses unions only to incorporate the NULL type into all other types, thus making all Avro types nullable.
-All types in ODAS are also nullable. In this context, the specific case for Avro unions is supported. Any other use case, such as accepting a union between a string and int type, is not supported.</p>
-
-<h2 id="support-for-the-enum-type-in-avro">Support for the enum type in Avro</h2>
-
-<p>The Avro specification defines enums as a complex type; ODAS does not. A table or view in ODAS cannot define a column with the <code class="highlighter-rouge">ENUM</code> type).</p>
-
-<p>The ODAS engine will, however, convert any Avro field of enum type to a string if the corresponding table column is declared as <code class="highlighter-rouge">STRING</code>. This behavior matches what Hive does under the same conditions.</p>
+<p>Enum is a type specific to Avro which Avro considers as a complex type.
+We do not support enum as a catalog type (i.e. it is not possible to create a table and specify a column as <code class="highlighter-rouge">ENUM</code>).
+Instead, create the column with the type <code class="highlighter-rouge">STRING</code> and the enum will be transparently converted.
+This is the identical behavior as Hive.</p>
 
 
     <div class="tags">
@@ -1263,7 +1194,7 @@ All types in ODAS are also nullable. In this context, the specific case for Avro
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

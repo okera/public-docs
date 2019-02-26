@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -491,13 +498,6 @@
           
           
           <li><a href="reports-page">Reports Page</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="data-registration">Data Registration</a> </li>
           
           
           
@@ -904,11 +904,6 @@ This is specifically useful to add or replace existing definitions per table at 
 <span class="o">]</span>
 </code></pre></div></div>
 
-<h3 id="scan-records-in-parallel">Scan records in parallel</h3>
-
-<p>Data from JDBC data sources are scanned in parallel provided there is a valid numeric field specified in the tblproperties with the key <code class="highlighter-rouge">mapred.jdbc.scan.key</code>. Note, if the JDBC source table has a single numeric field as primarykey, the <code class="highlighter-rouge">mapred.jdbc.scan.key</code> key is auto-populated with that field as value when the catalog table is created. However, users can override this value by specifying another column in the table thats of numeric type. Internally, the query to the JDBC data source is split into query for ranges of 100K of the <code class="highlighter-rouge">mapred.jdbc.scan.key</code>.
-The range size (fetch size) can be controlled by the <code class="highlighter-rouge">fetchSize</code> property in the properties file.</p>
-
 <h2 id="other-jdbc-operations">Other JDBC Operations</h2>
 
 <p>Besides regular scans, you can also include the JDBC-based datasets into more complex SQL queries.</p>
@@ -1197,7 +1192,7 @@ The <code class="highlighter-rouge">WHERE</code> clauses can be applied on the t
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

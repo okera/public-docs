@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -491,13 +498,6 @@
           
           
           <li><a href="reports-page">Reports Page</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="data-registration">Data Registration</a> </li>
           
           
           
@@ -786,9 +786,6 @@ Okera supports the following SQL statements to give or remove access to roles:</
 <span class="k">SHOW</span>
    <span class="n">ROLES</span> <span class="p">[</span><span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span><span class="p">]</span>
 
-
-<span class="k">SHOW</span> <span class="k">GRANT</span> <span class="o">&lt;</span><span class="n">principal_type</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">principal</span><span class="o">&gt;</span>
-
 <span class="o">&lt;</span><span class="n">privilege_level</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
     <span class="k">ALL</span>
   <span class="o">|</span> <span class="k">SELECT</span>
@@ -803,12 +800,6 @@ Okera supports the following SQL statements to give or remove access to roles:</
   <span class="o">|</span> <span class="k">DATABASE</span> <span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span>
   <span class="o">|</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
   <span class="o">|</span> <span class="n">URI</span> <span class="o">&lt;</span><span class="n">uri</span><span class="o">&gt;</span>
-<span class="err">}</span>
-
-<span class="o">&lt;</span><span class="n">principal_type</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
-    <span class="k">ROLE</span>
-  <span class="o">|</span> <span class="k">GROUP</span>
-  <span class="o">|</span> <span class="k">USER</span>
 <span class="err">}</span>
 </code></pre></div></div>
 
@@ -825,12 +816,12 @@ Okera supports the following SQL statements to give or remove access to roles:</
 
 <p>The following short examples show how these statements are used:</p>
 
-<p><strong>Example:</strong> Granting full read access for a table to a role</p>
+<p><strong>Example: Granting full read access for a table to a role</strong></p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><strong>Example:</strong> Granting read access for specific columns of a table to a role</p>
+<p><strong>Example: Granting read access for specific columns of a table to a role</strong></p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="p">(</span><span class="n">txnid</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
 </code></pre></div></div>
@@ -842,12 +833,12 @@ Okera supports the following SQL statements to give or remove access to roles:</
 
 <p>Combining a role with a group of users is shown in the next set of examples:</p>
 
-<p><strong>Example:</strong> Granting a role to a user group</p>
+<p><strong>Example: Granting a role to a user group</strong></p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">test</span>
 </code></pre></div></div>
 
-<p><strong>Example:</strong> Granting a role to a specific user</p>
+<p><strong>Example: Granting a role to a specific user</strong></p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">janedoe</span>
 </code></pre></div></div>
@@ -860,21 +851,6 @@ bar(|) for alternates. Either pattern matches</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="n">ROLES</span> <span class="k">LIKE</span> <span class="s1">'*sales*'</span>
 <span class="k">SHOW</span> <span class="n">ROLES</span> <span class="k">LIKE</span> <span class="s1">'sales*|marketing*'</span>
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Showing grants for a particular role</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span>
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Showing grants for a particular group</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">GRANT</span> <span class="k">GROUP</span> <span class="k">admin</span>
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Showing grants for a particular user</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">GRANT</span> <span class="k">USER</span> <span class="n">okera</span>
 </code></pre></div></div>
 
 <h2 id="best-practices">Best Practices</h2>
@@ -1047,7 +1023,7 @@ By default, this role has SELECT access to the database <code class="highlighter
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

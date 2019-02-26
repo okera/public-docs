@@ -6,6 +6,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/awsguide</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/advanced-install</loc>
   </url>
   
@@ -85,12 +91,6 @@
   
   <url>
     <loc>http://127.0.0.1/complex-types</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://127.0.0.1/data-registration</loc>
   </url>
   
   

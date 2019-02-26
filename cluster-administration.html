@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -491,13 +498,6 @@
           
           
           <li><a href="reports-page">Reports Page</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="data-registration">Data Registration</a> </li>
           
           
           
@@ -757,20 +757,6 @@ The planner number cannot exceed the cluster size.
 It requires restarting the cluster for the change to take effect.</p>
 </blockquote>
 
-<h2 id="restarting-a-cluster">Restarting a cluster</h2>
-
-<p>ocadm supports restarting the entire cluster or just a single service:</p>
-
-<p><strong>Example:</strong> Restarting all the services</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters restart 1
-</code></pre></div></div>
-
-<p><strong>Example:</strong> Restarting just the planner</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters restart <span class="nt">--service</span> cerebro_planner 1
-</code></pre></div></div>
-
 <h2 id="enabling-termination-protection">Enabling Termination Protection</h2>
 
 <p>Clusters can be configured to use EC2’s termination protection feature.
@@ -871,7 +857,7 @@ Lower-numbered services having issues preclude a higher-numbered service from co
 Rather, it indicates that the service was able to startup successfully, including passing all initial service configuration validations.
 The service responded to the most recent Deployment Manager request to its health check endpoint.</p>
 
-<h2 id="cluster-diagnostics">Cluster diagnostics</h2>
+<h2 id="cluster-diagnosis">Cluster diagnosis</h2>
 
 <p>It may occasionally be helpful to gather system logs from the nodes in a cluster when
 a functional issue or performance issue occurs. A cluster can be commanded to compile
@@ -928,7 +914,7 @@ This policy could be fine tuned in the future if needed.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>

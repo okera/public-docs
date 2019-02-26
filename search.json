@@ -2,6 +2,14 @@
 
 
 {
+"url": "awsguide",
+"file": "content/topics/AWSGuide.md",
+}
+,
+
+
+
+{
 "url": "advanced-install",
 "file": "content/topics/AdvancedInstall.md",
 }
@@ -108,14 +116,6 @@
 {
 "url": "complex-types",
 "file": "content/topics/ComplexTypes.md",
-}
-,
-
-
-
-{
-"url": "data-registration",
-"file": "content/topics/DataRegistration.md",
 }
 ,
 

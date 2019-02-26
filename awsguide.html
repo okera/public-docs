@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Okera Installation - AWS Guide | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
+
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("blockquote:contains('Note')").addClass("admonitionblock note");
+    $("blockquote:contains('Warning')").addClass("admonitionblock warning");
+    $("blockquote:contains('Tip')").addClass("admonitionblock tip");
+    $(".admonitionblock.note").prepend('<i class="fa fa-check admonition"></i>');
+    $(".admonitionblock.warning").prepend('<i class="fa fa-exclamation-triangle admonition"></i>');
+    $(".admonitionblock.tip").prepend('<i class="fa fa-lightbulb-o admonition"></i>');
+  });
+</script>
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
+            </div>
+            <form class="aa-input-container navbar-form" id="aa-input-container" role="search">
+                <div class="form-group">
+                    <input id="aa-search-input" type="text" class="aa-input-search form-control" placeholder="Search"
+                        autocomplete="off">
+                </div>
+            </form>
+        </div>
+        <!-- Algolia Integrated search Script -->
+        <script type="text/javascript" src="theme/js/okera-integrated-search.js"></script>
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+                end search -->
+    </div>
+</nav>
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Introduction to Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Installing Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install">Installation Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="awsguide">AWS Guide</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-authentication">Authentication Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="support-versions">Versions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administering ODAS Clusters</a>
+      <ul>
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Catalog</a>
+      <ul>
+          
+          
+          
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization-builtins">Authorization Builtin Functions</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="jdbc-data-source">JDBC Data Source</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-odas">Extending ODAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Web UI</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="datasets-page">Datasets Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="permissions-page">Permissions Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="reports-page">Reports Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Client Configuration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="earlier-release-notes">Earlier Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="https://okera.zendesk.com/hc/en-us/categories/115000493607-FAQs" target="_blank">Frequently Asked Questions</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+        -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 80);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="okera-installation---aws-guide">Okera Installation - AWS Guide</h1>
+
+<p>This document addresses all the Amazon Web Services (AWS) specific steps that are required to set up a working Okera Data Access Services cluster.
+The general installation instructions are linked where applicable.</p>
+
+<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#aws-architecture-overview">AWS Architecture Overview</a></li>
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li><a href="#configure-aws-resources">Configure AWS Resources</a></li>
+  <li><a href="#operations">Operations</a></li>
+  <li><a href="#additional-notes">Additional Notes</a></li>
+</ul>
+
+<!-- /TOC -->
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The Okera Data Access Platform (ODAP) consists of two components:</p>
+
+<ul>
+  <li>Deployment Manager (DM)</li>
+  <li>Okera Data Access Services (ODAS)</li>
+</ul>
+
+<p>The DM is a specific application that is used to manage one or more ODAS cluster.
+It is typically the first thing that is installed and is used to handle all further management tasks.
+The state of the DM, which includes the list of deployed and managed clusters, is stored in a transactional database management system (RDBMS).
+For ODAS clusters, the state is also persisted in an RDBMS, which is often the same that is used for the DM (but can also be configured to use a different instance).
+Both DM and ODAS need industry-standard server hard- and software, as outlined in the <a href="install-prereqs">Installation Prerequisites</a>.</p>
+
+<p>When deployed in AWS, Okera makes use of many of the provided AWS services, which are explained in the next section.</p>
+
+<h2 id="aws-architecture-overview">AWS Architecture Overview</h2>
+
+<p>The most basic setup of ODAP within AWS is shown in this diagram:</p>
+
+<p><a name="aws-arch-overview"></a>
+<img src="assets/images/aws-arch-overview.png" style="width: 100%; max-width:100%;" /></p>
+
+<p>The basic setup has the following properties:</p>
+
+<ul>
+  <li>Both DM and ODAS are deployed as AWS EC2 instances, running in the customer VPC.
+ For resiliency, the ODAS instances are (optionally) maintained as an Auto Scale Group (ASG).</li>
+  <li>Both DM and ODAS instances are assigned their own subnet(s) and security group(s).</li>
+  <li>A shared RDBMS is provided by AWS RDS, where MySQL (or compatible, such as Aurora) is used, with the ability to replicate data to a slave in another availability zone (AZ).
+  This is for resilience against AZ failures, so that a copy of the state data is accessible.</li>
+  <li>The shared RDBMS runs in the same subnet as ODAP.</li>
+  <li>Both DM and ODAS instance types are assigned a special AWS IAM role.
+  For the DM the role includes the ability to talk to RDS and S3, as well as being able to start EC2 instances.
+  For the ODAS machines the role includes access to RDS, S3, and EC2.</li>
+  <li>The ODAS machines may access user and group membership information, which may be provided by AWS Directory Services.</li>
+  <li>Other AWS services such as EMR can be configured to use ODAS as a data access service.</li>
+  <li>Third-party vendor services may also be configured to access ODAS, through some means of network connectivity, such as VPC Peering.</li>
+  <li>DNS, by means of AWS Route53, may be used to assign other host names to the EC2 instances.</li>
+</ul>
+
+<p>For more complex setups, there are advanced installation features:</p>
+
+<ul>
+  <li>When using Amazon Aurora, data should be replicated across multiple AWS regions to keep the Okera state related data safe and available.</li>
+  <li>For failover safety, it is also recommended to have S3 buckets replicated across the same multiple Regions.</li>
+  <li>Multiple subnets may be used to divide external facing services from internal ones.
+  This also applies to security groups, which should be split between administrative and service-level access.</li>
+  <li>A Network Load balancer (NLB) can be used to decouple services endpoints from internal IP addresses or ephemeral hostnames.</li>
+</ul>
+
+<p>This guide will discuss the basic setup only.
+Experienced administrators can use the above advanced choices to implement a resilient and highly available service.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Okera does not need any AWS keys or secrets to work.</p>
+</blockquote>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<h3 id="aws-prerequisites">AWS Prerequisites</h3>
+
+<p>Before installing Okera, the following AWS services must be set up.
+The AWS services include an S3 Bucket, an RDS instance, and IAM credentials.</p>
+
+<ul>
+  <li>
+    <p><strong>S3 Bucket</strong></p>
+
+    <p>Okera uses a dedicated S3 bucket to store log files and to stage intermediate configuration files.
+ The S3 bucket is set to readable and writable by all instances running Okera components.
+ The S3 bucket is referred to as <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> throughout the documentation.</p>
+  </li>
+  <li>
+    <p><strong>RDS Instance</strong></p>
+
+    <p>Okera is backed by a relational database, either MySQL 5.6, or newer, or Aurora (MySQL 5.6+ compatible), provisioned with the configuration of your choice.
+ Okera instances require read and write access to the <code class="highlighter-rouge">OKERA_DB_URL</code> database (which includes the ability to create the tables, insert and delete records, and so on).</p>
+  </li>
+  <li>
+    <p><strong>IAM Credentials</strong></p>
+
+    <p>Okera instances require read and write access to the S3 bucket set by <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> and RDS instance set by <code class="highlighter-rouge">OKERA_DB_URL</code>.
+ The Deployment Manager requires the ability to provision instances.
+ The cluster nodes require read credentials to data stored in S3 buckets, and read access to some EC2 details for management purposes.
+ These credentials can be one IAM profile with all the credentials, or two separate roles (assumed the default for this document).
+ If encryption is being used with keys in KMS, these roles will also need KMS access (see <a href="s3-encryption-support">S3 Encryption Support</a>).
+ The IAM role for the Deployment Manager (DM) is referred to as <code class="highlighter-rouge">IAM_MANAGER</code> and the IAM role for the cluster nodes is referred to as <code class="highlighter-rouge">IAM_CLUSTER</code>.</p>
+  </li>
+</ul>
+
+<p>See <a href="#configure-aws-resources">Configure AWS Resources</a>, which addresses the required resources in details.</p>
+
+<h3 id="okera-host-prerequisites">Okera Host Prerequisites</h3>
+
+<p>The following are specific AWS related host requirements. See <a href="install-prereqs">Installation Prerequisites</a> for general host requirements.</p>
+
+<ul>
+  <li>
+    <p><strong>Deployment Manager Host Requirements</strong></p>
+
+    <ul>
+      <li>Assign the <code class="highlighter-rouge">IAM_MANAGER</code> IAM role to the EC2 instance.</li>
+      <li>Minimum instance type should be <code class="highlighter-rouge">t2.medium</code>.
+  Also see <a href="cluster-sizing">Cluster Sizing</a> for more details on instance sizing.</li>
+      <li>Ensure the <code class="highlighter-rouge">awscli</code> command-line tool is installed (see below).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Install the AWS CLI Tool</strong></p>
+
+    <p>Install the <code class="highlighter-rouge">awscli</code> command-line tool on a newly provisioned Deployment Manager host, using these commands:</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>yum install wget
+  <span class="nb">sudo </span>wget https://bootstrap.pypa.io/get-pip.py
+  <span class="nb">sudo </span>python get-pip.py
+  <span class="nb">sudo </span>pip install awscli
+  aws configure
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Cluster Node Requirements</strong></p>
+
+    <ul>
+      <li>Use a CentOS 7/RHEL 7 AMI.
+  The AMI can be a stock RHEL image or one maintained by your enterprise with additional components pre-installed.</li>
+      <li>Assign the <code class="highlighter-rouge">IAM_CLUSTER</code> IAM role to the EC2 instances.</li>
+      <li>Minimum instance type should be <code class="highlighter-rouge">t2.large</code> with a minimum of 40GB local storage.
+  Also see <a href="cluster-sizing">Cluster Sizing</a> for more details on instance sizing.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="configure-aws-resources">Configure AWS Resources</h2>
+
+<p>The following details the setup of the necessary AWS resources, as listed above.
+Most steps require administrative (or otherwise privileged) access to the <a href="https://console.aws.amazon.com">AWS Console</a>.</p>
+
+<h3 id="aws-iam-roles">AWS IAM Roles</h3>
+
+<p>Following the general steps to create an IAM role, as outlined in the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#create-iam-role">AWS Documentation</a>, perform these steps to create the necessary Okera roles:</p>
+
+<ol>
+  <li>
+    <p>Open the IAM console at <a href="https://console.aws.amazon.com/iam/">https://console.aws.amazon.com/iam/</a>.</p>
+  </li>
+  <li>
+    <p>In the navigation pane, choose <strong>Roles, Create role</strong>.</p>
+  </li>
+  <li>
+    <p>On the <strong>Select role type</strong> page, choose <strong>AWS Service</strong> and the <strong>EC2</strong> use case.
+ Choose <strong>Next: Permissions</strong>.</p>
+  </li>
+  <li>
+    <p>On the <strong>Attach permissions policy</strong> page, select the following AWS managed policies:</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">AmazonRDSFullAccess</code></li>
+      <li><code class="highlighter-rouge">AmazonS3FullAccess</code></li>
+      <li><code class="highlighter-rouge">AmazonEC2FullAccess</code></li>
+      <li><code class="highlighter-rouge">IAMFullAccess</code></li>
+    </ul>
+
+    <p>Then click on <strong>Next: Tags</strong> button.</p>
+  </li>
+  <li>
+    <p>Add any tags you want, though none are needed by Okera.
+ Choose <strong>Next: Review</strong>.</p>
+  </li>
+  <li>
+    <p>On the <strong>Review</strong> page, type a name for the role, such as <code class="highlighter-rouge">OkeraDmRole</code> and choose <strong>Create role</strong>.</p>
+  </li>
+</ol>
+
+<p>This screenshot shows the review page, with the role for the DM:</p>
+
+<p><a name="aws-arch-createrole"></a>
+<img src="assets/images/aws-arch-createrole.png" style="width: 90%; max-width:90%;" /></p>
+
+<p>Repeat the steps to create another IAM role, for the ODAS cluster nodes, while instead selecting these permissions:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">AmazonRDSFullAccess</code></li>
+  <li><code class="highlighter-rouge">AmazonS3FullAccess</code></li>
+  <li><code class="highlighter-rouge">AmazonEC2ReadOnlyAccess</code></li>
+</ul>
+
+<p>Enter <code class="highlighter-rouge">OkeraOdasRole</code> for the role name and choose <strong>Create role</strong>.</p>
+
+<blockquote>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>If <strong>encryption</strong> is being used with keys in KMS, these roles will also need KMS access (see <a href="s3-encryption-support">S3 Encryption Support</a>).</li>
+    <li>Endusers do <strong>not</strong> need these roles to use the Okera services.</li>
+    <li>The is <strong>no</strong> need to create IAM users or any other IAM resource.</li>
+  </ul>
+</blockquote>
+
+<h3 id="aws-security-groups">AWS Security Groups</h3>
+
+<p>Following the general steps to create a Security Group, as outlined in the <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#CreatingSecurityGroups">AWS Documentation</a>, perform these steps to create the necessary Okera security groups:</p>
+
+<ol>
+  <li>
+    <p>Open the Amazon VPC console at <a href="https://console.aws.amazon.com/vpc/">https://console.aws.amazon.com/vpc/</a>.</p>
+  </li>
+  <li>
+    <p>In the navigation pane, choose <strong>Security Groups</strong>.</p>
+  </li>
+  <li>
+    <p>Choose <strong>Create Security Group</strong>.</p>
+  </li>
+  <li>
+    <p>Enter a name of the security group, such as <code class="highlighter-rouge">OkeraOdasServices</code> and provide a description of your choice.</p>
+  </li>
+  <li>
+    <p>Select the ID of your VPC from the <strong>VPC</strong> menu.</p>
+  </li>
+  <li>
+    <p>Use the <strong>Add Rule</strong> button to add the following <strong>Inbound</strong> rules:</p>
+
+    <blockquote>
+      <p><strong>Note:</strong> This assumes the <a href="https://docs.okera.com/service-port-assignments">default ports</a> were chosen for the ODAS services, and that they should be accessible by machines outside of the current security group. Also see <a href="install-dm#okera_port_configuration">Port Configuration</a>.</p>
+    </blockquote>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Protocol</th>
+          <th>Port Range</th>
+          <th>Source</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">5000</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>ODAS REST Server</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">11050</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>Okera Planner Web UI</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">10001</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>Kubernetes Web UI</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">10000</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>Grafana Dashboard UI</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">8083</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>Okera Web UI</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">12050</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>Planner</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">13050</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>Okera Worker</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p><strong>Note:</strong> If you use <code class="highlighter-rouge">0.0.0.0/0</code> as the source value, you enable all IPv4 addresses to access your instances using HTTP or HTTPS.
+  To restrict access, enter a specific IP address or range of addresses.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Add any other existing Security Groups to this new group as needed.</p>
+  </li>
+  <li>
+    <p>Choose the <strong>Create</strong> button to finalize the new security group.</p>
+  </li>
+</ol>
+
+<p>The following shows the *Create group** dialog as the Okera group is created:</p>
+
+<p><a name="aws-arch-createsg"></a>
+<img src="assets/images/aws-arch-createsg.png" style="width: 90%; max-width:90%;" /></p>
+
+<blockquote>
+  <p><strong>Note:</strong> Typically setting any <strong>Outbound</strong> rules is not required.</p>
+</blockquote>
+
+<p>Next, edit the new group and add itself to the list of <strong>Inbound</strong> rules, allowing full communication between the DM and ODAS nodes.
+Click on the <strong>Inbound</strong> tab and select <strong>Edit</strong> and <strong>Add Rule</strong>, then specify the following new entry:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Protocol</th>
+      <th>Port Range</th>
+      <th>Source</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>All traffic</td>
+      <td>All</td>
+      <td>All</td>
+      <td>&lt;security-group-id&gt;</td>
+      <td>Self reference.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Replace <code class="highlighter-rouge">&lt;security-group-id&gt;</code> with the ID of the newly created security group.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Okera does not require the definition of access control lists (ACLs).</p>
+</blockquote>
+
+<h3 id="aws-resource-tagging">AWS Resource Tagging</h3>
+
+<p>Both the DM and ODAS machines support tagging of the used resources.
+Since the DM is usually set up using the <a href="https://aws.amazon.com/ec2/getting-started/">EC2 Wizard</a>, there is a step included to tag the machine as needed.
+For ODAS machines, the resource tagging is part of the EC2 <a href="https://docs.okera.com/cluster-launch-plugin-api">launch scripts</a>.
+Okera ships with examples for regular EC2 and ASG launching.
+Here is the section from the regular EC2 launch script that allows setting custom tags for the created EC2 machines:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+ ################################################################################
+# USER:
+# Add any tags to the launched instances. This is an example of how to add tags.
+################################################################################
+add-tag $instance_id LaunchedBy Okera
+
+wait-for-instance-state $instance_id "running"
+debug "$instance_id running."
+...
+</code></pre></div></div>
+
+<p>Once the AWS resources are provisioned and configured, continue with the <a href="install-dm">Installation of the Deployment Manager</a>.</p>
+
+<h2 id="operations">Operations</h2>
+
+<p>The next subsections address specific topics regarding the operations of ODAS clusters.</p>
+
+<h3 id="health-checks">Health Checks</h3>
+
+<p>Okera comes with its own health check system, whose state is exposed by internal APIs.
+Administrators can use the Deployment Manager and the provided <code class="highlighter-rouge">ocadm</code> CLI tool to determine the state of the DM and each managed ODAS cluster.
+For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ocadm status
+Service available. Status: Running
+
+$ ocadm clusters status 1
+READY
+
+$ ocadm clusters status 1 --detail
+{
+    "timestamp": "2019-01-29 18:31:35.485",
+    "message": "All services running.",
+    "elapsedTime": "3h12m41s997ms",
+    "code": "READY"
+}
+</code></pre></div></div>
+
+<p>The API and <a href="https://docs.okera.com/cluster-administration">CLI tool</a> can be used to automate the monitoring and alerting needed to detect service problems.
+In addition, ODAS clusters can be enabled to provision graphing of metrics using Grafana as the dashboard, and showing service details using the Kubernetes dashboard.
+See <a href="https://docs.okera.com/kubernetes-dashboard-quickstart">Monitoring</a> for details.</p>
+
+<h3 id="software-updates">Software Updates</h3>
+
+<p>Updating ODAP requires two steps:</p>
+
+<ol>
+  <li>
+    <p>Update DM to the new version</p>
+
+    <p>Newer versions of DMs are backwards compatible (unless stated otherwise in the release notes).
+ That means, the new DM instance can manage the running ODAS cluster from a previous version.</p>
+  </li>
+  <li>
+    <p>Create replacement ODAS clusters</p>
+
+    <p>The easiest way to update ODAS clusters is to replace them with newer ones.
+ This has the advantage that the new clusters can be tested and prepared before being activated.
+ Since each ODAS cluster based on a shared nothing, massively parallel processing architecture, they can be replaced without any detrimental effect.</p>
+  </li>
+</ol>
+
+<h3 id="failure-scenarios">Failure Scenarios</h3>
+
+<p>The following failure scenarios discuss the implications:</p>
+
+<ul>
+  <li>
+    <p><strong>Instance Failure</strong></p>
+
+    <p>This applies when one of the EC2 fails.
+  The administrator can add new instance as needed, or in case of using the ASG launch script, rely on the ASG to backfill the instance.</p>
+  </li>
+  <li>
+    <p><strong>AZ or Region Failure</strong></p>
+
+    <p>All the state of the ODAP components is stored in an RDBMS, which should be configured in a replicated setup, across multiple AWS Regions.
+  That way, losing entire clusters, such as during an AZ or Region failure, does not cause loss of service.
+  It does require monitoring and automated deployment of new ODAS clusters in the failover locations.</p>
+  </li>
+  <li>
+    <p><strong>Storage Capacity Issues</strong></p>
+
+    <p>ODAS does not store local data.
+  Log files are periodically uploaded to the S3 staging bucket for the cluster.
+  This means that storage on the EC2 side is not an issue.
+  For S3 there is no concern about storage limitations, as the majority of the ODAS cluster files are small in comparison, and S3 is not bound in size.</p>
+  </li>
+</ul>
+
+<h3 id="service-recovery">Service Recovery</h3>
+
+<p>In case of a large failure, such as a region outage, the following steps can be taken:</p>
+
+<ol>
+  <li>Decide which region to migrate to.</li>
+  <li>Activate the database replica in that region, making it the new master.</li>
+  <li>Provision a DM machine.</li>
+  <li>Deploy new ODAS clusters.</li>
+  <li>Update DNS or LB target groups to match the new location.</li>
+</ol>
+
+<p>The steps about provisioning a DM and ODAS clusters can be highly automated.
+A standby DM instance can be kept running or stopped, until it is needed.
+Deploying ODAS clusters is a matter of minutes.</p>
+
+<p>This should keep the RPO of the state data to what is offered by the AWS database replication service, and the RTO to mere minutes.</p>
+
+<h3 id="perform-recovery-testing">Perform Recovery Testing</h3>
+
+<p>It is advised to test failover scenarios on a regular basis.
+Following the steps in the previous subsection, a customer can stand up a replacement DM and ODAS cluster in another region, test its functionality, and then terminate (or stop in case of the DM) it once the test is complete.</p>
+
+<h2 id="additional-notes">Additional Notes</h2>
+
+<h3 id="okera-cost-model">Okera Cost Model</h3>
+
+<p>Okera offers an annual subscription rate that is based on an annual platform fee, plus a variable fee based on the size of the data lake.
+Please contact info@okera.com for more information.</p>
+
+<h3 id="aws-billable-services">AWS Billable Services</h3>
+
+<p>The following table list the AWS resources used by Okera and states if they are required and billable:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th style="text-align: center">Required</th>
+      <th style="text-align: center">Billable</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EC2</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+      <td>Free tier instance types are not recommended by Okera.</td>
+    </tr>
+    <tr>
+      <td>EBS</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+      <td>Many instance types only offer EBS as instance storage.</td>
+    </tr>
+    <tr>
+      <td>RDS/Aurora</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+      <td>Free tier instance types are not recommended by Okera.</td>
+    </tr>
+    <tr>
+      <td>S3</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+      <td>Okera needs a storage bucket for logs and staging files. Cost is dependent on how many of these objects are retained.</td>
+    </tr>
+    <tr>
+      <td>VPC</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">No</td>
+      <td>Only additional services for VPCs, like a NAT Gateway, are billable.</td>
+    </tr>
+    <tr>
+      <td>CloudTrail</td>
+      <td style="text-align: center">No</td>
+      <td style="text-align: center">Yes</td>
+      <td>Only if enabled for related services, such as EC2 instances.</td>
+    </tr>
+    <tr>
+      <td>CloudWatch</td>
+      <td style="text-align: center">No</td>
+      <td style="text-align: center">Yes</td>
+      <td>Only if enabled for related services, such as EC2 instances.</td>
+    </tr>
+    <tr>
+      <td>Route 53</td>
+      <td style="text-align: center">No</td>
+      <td style="text-align: center">Yes</td>
+      <td>Only if custom hostnames are configured as DNS records.</td>
+    </tr>
+    <tr>
+      <td>Directory Service</td>
+      <td style="text-align: center">No</td>
+      <td style="text-align: center">Yes</td>
+      <td>Only if used in combination with ODAS.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="okera-support-levels">Okera Support Levels</h3>
+
+<p>See the <a href="https://okera.zendesk.com/hc/en-us/articles/360016333854">“How to get Support”</a> FAQ entry for details on how to get in contact with the Okera Support department.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Support is bundled with the annual subscription fees and does <strong>not</strong> incur additional costs.</p>
+</blockquote>
+
+<p>The following table lists how Okera is prioritizing the severity of issues that are reported, along with the service-level agreement (SLA) for each.
+The latter describes how quickly issues will be addressed and the amount of time spent to resolve them.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Severity</th>
+      <th>Description</th>
+      <th>SLA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1 – Critical</td>
+      <td><ul><li>The issue brings production system down and makes it unusable for all or most users.</li><li>There is no known workaround available.</li></ul></td>
+      <td><ul><li>Respond within 1 business hour if outage occurs during business hours Pacific Time.</li><li>Respond within 3 hours if outage occurs outside of business hours Pacific Time.</li><li>Work round the clock till resolved with updates every 4 hours.</li></ul></td>
+    </tr>
+    <tr>
+      <td>2 – High</td>
+      <td><ul><li>The issue impacts production systems and results in a degraded or unusable experience for all or most users.</li><li>This could include excessively slow system response times.Some functionality may be available or can be restored with a workaround.</li></ul></td>
+      <td><ul><li>Respond within 3 business hours.</li><li>Work during business hours till resolved.</li></ul></td>
+    </tr>
+    <tr>
+      <td>3 – Medium</td>
+      <td><ul><li>Most parts of the system are functional.</li><li>This issue does not cause material impact on customer experience and has no significant risk to the business.</li></ul></td>
+      <td><ul><li>Respond within 1 business day</li></ul></td>
+    </tr>
+    <tr>
+      <td>4 – Low</td>
+      <td><ul><li>Cosmetic defects that don’t impact system functionality.</li><li>This issue does not cause downtime.</li></ul></td>
+      <td><ul><li>Respond within 5 business days.</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
+      </div>
+    </div>
+  </div>
+</footer>
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

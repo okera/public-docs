@@ -227,7 +227,7 @@
       
   
   <li>
-      <a href="#">Installing the Deployment Manager</a>
+      <a href="#">Installing Okera</a>
       <ul>
           
           
@@ -239,28 +239,28 @@
           
           
           
-          <li><a href="install">Installing the Deployment Manager</a> </li>
+          <li><a href="install">Installation Overview</a> </li>
           
           
           
           
           
           
-          <li><a href="install-prereqs">Okera Installation Prerequisites</a> </li>
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
           
           
           
           
           
           
-          <li><a href="install-dm">Setting Up the Deployment Manager</a> </li>
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
           
           
           
           
           
           
-          <li><a href="install-odas">Setting Up the ODAS Cluster</a> </li>
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
           
           
           
@@ -268,6 +268,13 @@
           
           
           <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
           
           
           
@@ -491,13 +498,6 @@
           
           
           <li><a href="reports-page">Reports Page</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="data-registration">Data Registration</a> </li>
           
           
           
@@ -995,7 +995,7 @@ This is not available from, for example, hive CLI.</p>
 In ODAS, only lossless type promotion is implicit (for example, INT -&gt; BIGINT).
 Explicit <code class="highlighter-rouge">cast()</code> functions may need to be added for existing SQL statements.</p>
 
-<h4 id="disallowing-explicit-partitioning-clause-when-creating-views">Disallowing Explicit Partitioning Clause when Creating Views</h4>
+<h4 id="disallowing-explicit-partitioning-clause-when-creating-views">Disallowing Explicit Partitioning Clause when Creating Views**</h4>
 
 <p>Hive/HiveQL is used for creating views with an explicit partitioning clause.</p>
 
@@ -1010,57 +1010,6 @@ The partitioning on the base table is preserved for the view.</p>
 
 <p>This is disallowed.
 It is unclear what the semantics are, if the partitioning specified in the view is different from the base table, and what the resulting performance implications might be.</p>
-
-<h4 id="alter-database-set-dbproperties-statement">ALTER DATABASE SET DBPROPERTIES STATEMENT</h4>
-
-<p>Users can add additional properties to a catalog database using the <code class="highlighter-rouge">ALTER DATABASE SET DBPROPERTIES</code> command.</p>
-
-<p><strong>Example:</strong></p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="o">&lt;</span><span class="n">db_name</span><span class="o">&gt;</span> <span class="k">SET</span> <span class="n">DBPROPERTIES</span> <span class="p">(</span><span class="s1">'description'</span><span class="o">=</span><span class="s1">'Marketing database'</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h4 id="describe-statement">DESCRIBE STATEMENT</h4>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESCRIBE</span> <span class="p">[</span><span class="n">FORMATTED</span><span class="p">]</span> <span class="k">table_name</span><span class="o">|</span><span class="n">view_name</span>
-</code></pre></div></div>
-
-<p>This statement would display the definition of the table or view. If <em>FORMATTED</em> keyword is specified, additional
-details of the definition would be displayed.</p>
-
-<p><strong>Example usage:</strong></p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESCRIBE</span> <span class="n">tpch</span><span class="p">.</span><span class="n">nation</span>
-</code></pre></div></div>
-
-<p><strong>Example usage on view:</strong></p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESCRIBE</span> <span class="n">FORMATTED</span> <span class="n">partdb</span><span class="p">.</span><span class="n">ymdata_view</span>
-</code></pre></div></div>
-
-<p>The <code class="highlighter-rouge">DESCRIBE FORMATTED</code> on a view has two important information about the view definition. The base tables used in the view and the information about partitioned columns in the view. In the below example, the view partdb.ymdata_view is a view on top of the table partdb.ymdata (sample year-month data). The partitioned columns on the partdb.ymdata table are year,month and that information is displayed as part of view definition as below.</p>
-
-<p><strong>Example output in the ‘FORMATTED’ display for a view with partitioned columns:</strong></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    partitioned_cols    	year,month
-    tables              	partdb.ymdata
-</code></pre></div></div>
-
-<h4 id="describe-database-statement">DESCRIBE DATABASE STATEMENT</h4>
-
-<p>Describe sql statement has been extended to describe the properties of a database object.</p>
-
-<p><strong>Example:</strong></p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DESCRIBE</span> <span class="k">DATABASE</span> <span class="n">jdbc_demo</span>
-</code></pre></div></div>
-<h5 id="property-value">Property Value</h5>
-
-<p>dbname = jdbc_demo<br />
-type =  REGULAR<br />
-Owner =  root<br />
-driver =  mysql<br />
-mapred.jdbc.schema.name =<br />
-mapred.input.table.name = jdbc_demo.transactions_schemaed_demo<br />
-mapred.jdbc.driver.class = mysql<br />
-credentials.file = /opt/conf/jdbc_demo.conf<br />
-mapred.jdbc.db.name = jdbc_demo<br />
-mapred.jdbc.credentials.file = /opt/conf/jdbc_demo.conf<br /></p>
 
 <h2 id="data-manipulation-language-dml-statements">Data Manipulation Language (DML) Statements</h2>
 
@@ -1135,7 +1084,7 @@ If the smaller tables exceed the maximum configured size, the request fails at r
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jan 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Feb 25, 2019
       </div>
     </div>
   </div>
