@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -787,7 +801,8 @@ The directories can be changed by setting <code class="highlighter-rouge">DEPLOY
 
 <p><strong>Example:</strong> Creating the Logging and Install Directories</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/okera <span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/okera
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /var/log/okera
+<span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/okera
 <span class="nb">sudo </span>chmod 700 /etc/okera
 </code></pre></div></div>
 
@@ -884,31 +899,41 @@ However, only admin users can create new roles.</p>
 
 <p>This configuration specifies the ports on which cluster services run.
 These ports must be available for all users connecting to Okera for metadata and data.
-The ports are contained in a comma-separated list of service:portname:port number.
+The ports are contained in a comma-separated list of <code class="highlighter-rouge">service:portname:port</code> number.
 If the ports are not specified, Okera randomly selects available ports on which to expose these services.</p>
 
 <p>Below are the ports that are required for clients.</p>
 
 <ul>
+  <li><code class="highlighter-rouge">cerebro_planner:planner</code></li>
+  <li><code class="highlighter-rouge">cerebro_worker:worker</code></li>
   <li><code class="highlighter-rouge">cdas_rest_server:api</code></li>
+  <li><code class="highlighter-rouge">cerebro_web:webui</code></li>
   <li><code class="highlighter-rouge">cerebro_catalog:hms</code></li>
   <li><code class="highlighter-rouge">cerebro_catalog:sentry</code></li>
-  <li><code class="highlighter-rouge">cerebro_planner:planner</code></li>
-  <li><code class="highlighter-rouge">cerebro_web:webui</code></li>
-  <li><code class="highlighter-rouge">cerebro_worker:worker</code></li>
   <li><code class="highlighter-rouge">kubernetes_dashboard:admin_ui</code></li>
   <li><code class="highlighter-rouge">grafana:ui</code></li>
 </ul>
 
-<p>An example configuration:</p>
+<blockquote>
+  <p><strong>Tip:</strong> There are also two variables that can be used to set the built-in web UIs of the Planner and Worker processes.
+These are <code class="highlighter-rouge">cerebro_planner:webui</code> and <code class="highlighter-rouge">cerebro_worker:webui</code> respectively.
+They are usually only needed for cluster administrators.</p>
+</blockquote>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"okera_worker:worker:7185,cerebro_catalog:sentry:7182"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:7184"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_planner:planner:7183"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_catalog:hms:7180"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,okera_web:webui:7186"</span>
+<p>An example configuration (showing the <a href="service-port-assignments">default ports</a>):</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"cerebro_planner:planner:12050"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_worker:worker:13050"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:5000"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_web:webui:8083"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_catalog:sentry:11060"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_catalog:hms:9083"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_planner:webui:11050"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_worker:webui:11051"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,grafana:ui:10000"</span>
-<span class="nb">export </span><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,kubernetes_dashboard:admin_ui:10001"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,kubernetes_dashboard:admin_ui:10001"</span>
+<span class="nb">export </span><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">"</span>
 </code></pre></div></div>
 
 <h5 id="kerberos-configuration">Kerberos Configuration</h5>

@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li class="active"><a href="client-configs">Client Configuration</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="client-configs">Hive and Spark Client Integration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -775,35 +789,43 @@ adjusted if the the client observes timeout behavior.</p>
 
 <p><strong>recordservice.planner.retry.attempts</strong></p>
 
-<p>Optional configuration for the maximum number of attempts to retry RPCs with planner.</p>
+<p>Optional configuration for the maximum number of attempts to retry RPCs with planner.
+Default value is 5.</p>
 
 <p><strong>recordservice.worker.retry.attempts</strong></p>
 
-<p>Optional configuration for the maximum number of attempts to retry RPCs with worker.</p>
+<p>Optional configuration for the maximum number of attempts to retry RPCs with worker.
+Default value is 5.</p>
 
 <p><strong>recordservice.planner.retry.sleepMs</strong></p>
 
-<p>Optional configuration for sleep between retry attempts with planner.</p>
+<p>Optional configuration for sleep between retry attempts with planner.
+Default initial value is 300. This grows exponentially.</p>
 
 <p><strong>recordservice.worker.retry.sleepMs</strong></p>
 
-<p>Optional configuration for sleep between retry attempts with worker.</p>
+<p>Optional configuration for sleep between retry attempts with worker.
+Default initial value is 300. This grows exponentially.</p>
 
 <p><strong>recordservice.planner.connection.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout when initially connecting to the planner service.</p>
+<p>Optional configuration for timeout when initially connecting to the planner service.
+Default value is 10000.</p>
 
 <p><strong>recordservice.worker.connection.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout when initially connecting to the worker service.</p>
+<p>Optional configuration for timeout when initially connecting to the worker service.
+Default value is 10000.</p>
 
 <p><strong>recordservice.planner.rpc.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout for planner RPCs (after connection is established).</p>
+<p>Optional configuration for timeout for planner RPCs (after connection is established).
+Default value is 120000.</p>
 
 <p><strong>recordservice.worker.rpc.timeoutMs</strong></p>
 
-<p>Optional configuration for timeout for worker RPCs (after connection is established).</p>
+<p>Optional configuration for timeout for worker RPCs (after connection is established).
+Default value is 120000.</p>
 
 <h2 id="performance-related-configs">Performance related configs</h2>
 
@@ -813,11 +835,13 @@ these as the server will compute a good value automatically.</p>
 <p><strong>recordservice.task.fetch.size</strong></p>
 
 <p>Optional configuration option for performance tuning that configures the max number of
-records returned when fetching results from the workers.</p>
+records returned when fetching results from the workers.
+Defaule value is 50000.</p>
 
 <p><strong>recordservice.task.plan.maxTasks</strong></p>
 
-<p>Optional configuration for the hinted maximum number of tasks to generate per PlanRequest.</p>
+<p>Optional configuration for the hinted maximum number of tasks to generate per PlanRequest.
+Default value is determined by the server.</p>
 
 
     <div class="tags">

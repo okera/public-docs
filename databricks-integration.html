@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Databricks Integration | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
+
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("blockquote:contains('Note')").addClass("admonitionblock note");
+    $("blockquote:contains('Warning')").addClass("admonitionblock warning");
+    $("blockquote:contains('Tip')").addClass("admonitionblock tip");
+    $(".admonitionblock.note").prepend('<i class="fa fa-check admonition"></i>');
+    $(".admonitionblock.warning").prepend('<i class="fa fa-exclamation-triangle admonition"></i>');
+    $(".admonitionblock.tip").prepend('<i class="fa fa-lightbulb-o admonition"></i>');
+  });
+</script>
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
+            </div>
+            <form class="aa-input-container navbar-form" id="aa-input-container" role="search">
+                <div class="form-group">
+                    <input id="aa-search-input" type="text" class="aa-input-search form-control" placeholder="Search"
+                        autocomplete="off">
+                </div>
+            </form>
+        </div>
+        <!-- Algolia Integrated search Script -->
+        <script type="text/javascript" src="theme/js/okera-integrated-search.js"></script>
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+                end search -->
+    </div>
+</nav>
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Introduction to Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Installing Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install">Installation Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-authentication">Authentication Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="support-versions">Versions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administering ODAS Clusters</a>
+      <ul>
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Catalog</a>
+      <ul>
+          
+          
+          
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization-builtins">Authorization Builtin Functions</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="jdbc-data-source">JDBC Data Source</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-odas">Extending ODAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Web UI</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="datasets-page">Datasets Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="permissions-page">Permissions Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="reports-page">Reports Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="databricks-integration">Databricks Integration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="earlier-release-notes">Earlier Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="https://okera.zendesk.com/hc/en-us/categories/115000493607-FAQs" target="_blank">Frequently Asked Questions</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+        -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 80);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="databricks-integration">Databricks Integration</h1>
+
+<h2 id="databricks-introduction">Databricks Introduction</h2>
+
+<p>Okera has an integration with <a href="https://databricks.com/product/unified-analytics-platform">Databricks Analytics Platform</a>, which offers a commercial Spark and Notebook server (among other things).
+Combining both systems allows the Databricks users to seamlessly use the data access and schema registry services provided by Okera.</p>
+
+<p>The integration uses standard technologies and is mostly a configuration task for administrators.
+Both systems can be set up separately and eventually connected to each other with the steps outlined in the <a href="#databricks-integration-configuration">Configuration</a> section.
+Once enabled, the authenticated Databricks users are allowed access to all Okera managed datasets, based on their personal authorization profile.
+The benefit of this integration is that all access to data is attributed to the proper users accounts (as opposed to a shared technical user account), and therefore reflects properly in the Okera audit event log.
+In addition, any granted access to the user (which is based on the combination of the roles assigned to the user’s groups, which is discussed in <a href="authorization">Authorization</a>) is enforced as expected, and any security changes are enforced immediately.</p>
+
+<h2 id="databricks-authentication-flow">Databricks Authentication Flow</h2>
+
+<p>Before enabling the integration between Okera and Databricks, it is helpful to understand the overall flow of authentication between the two platforms.
+The following diagram shows this in context, and has numbers for each step that are explained next:</p>
+
+<p><a name="Authentication flow using Databricks"></a>
+<img src="assets/images/integration-databricks.png" style="width: 100%; max-width:100%;" /></p>
+
+<p>The flow is as such:</p>
+
+<ol>
+  <li>Any user who is communicating with the Databricks Platform needs to authenticate itself first.</li>
+  <li>The Databricks Platform uses its own database to track known users and their authorizations.</li>
+  <li>As soon as a user is requesting or accessing data in Spark or a Notebook from a datasource that is backed by Okera, the Databricks Platform is providing a JWT user token to the Okera client libraries.
+ The user token is signed by a private key that is owned by Databricks.</li>
+  <li>The JWT token contains the Databricks user name, which is the user’s email address.</li>
+  <li>Upon receiving the request, the Okera processes will verify the provided token using the Databricks provided public key.</li>
+  <li>Okera then uses the configured group mapping method to retrieve the user groups associated with the email prefix.</li>
+  <li>With the groups available, the Okera Planner can retrieve the associated Policy Engine roles and verify the request, while enforcing the matching role-based access control rules.</li>
+</ol>
+
+<p>Notes:</p>
+
+<ul>
+  <li>Using the email prefix only, which is the part of the email before the “@” symbol, is common practice and done the same way for Kerberos principals.</li>
+  <li>Looking up user groups based on the email prefix may require special handling, which is possible using the pluggable group mapping support.</li>
+  <li>Okera also supports pluggable JWT token verification mechanisms, including the option to call an external verification endpoint.</li>
+</ul>
+
+<h2 id="databricks-integration-configuration">Databricks Integration Configuration</h2>
+
+<p>The next sections explain how administrators can enable the integration between the two platforms.
+Note that Databricks has built-in support for the integration, but due to the nature of two separately developed software systems (for the sake of flexibility), the setup requires a few manual steps.</p>
+
+<h3 id="databricks-steps">Databricks Steps</h3>
+
+<p>The following general steps are required to configure the Databricks Platform and prepare the Okera setup:</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The details about the steps are explained in more detail in the subsequent sections.</p>
+</blockquote>
+
+<ol>
+  <li>Enable the provision of the JWT token to the Okera client libraries by setting the <em>userJwt</em> option in the Databricks configuration.
+This requires contacting the Databricks support to enable this feature for your account.</li>
+  <li>Acquire the Databricks provided public key that is used to verify the JWT tokens (used below in the Okera configuration steps).</li>
+  <li>Copy the Okera provided libraries to the Databricks staging directory (usually in a shared location).</li>
+  <li>Set up the init script that copies the provided JARs to the cluster specific, local directories.</li>
+  <li>Configure, among other settings, the ODAS hostname and port number to use (see the <a href="emr-integration#per-component-configuration">per-component configuration</a> documentation for details).</li>
+</ol>
+
+<p>Notes:</p>
+<ul>
+  <li>Some of these steps require a Databricks administrator to perform the necessary actions.</li>
+  <li>Okera recommends to use a Databricks Runtime Version of at least 4.3.
+  Previous versions are known to have some technical issues in combination with the ODAS integration enabled.</li>
+  <li>See the official Databricks information about <a href="https://docs.databricks.com/user-guide/clusters/init-scripts.html">init scripts</a> and <a href="https://docs.databricks.com/user-guide/advanced/external-hive-metastore.html">external Hive Metastores</a> for more details.</li>
+</ul>
+
+<p><strong>Acquiring the public SSL key</strong></p>
+
+<p>For the <em>userJWT</em> feature to work a public key pair is needed.
+In practice, Databricks reuses the same key pair that is used to secure its web-based UIs with SSL.
+In other words, you can acquire the public key needed for Okera to validate the Databricks generated JWT tokens by saving the public key that is used by its websites.
+For example, using a command-line tool, you can get the key like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ openssl s_client -connect &lt;customer_id&gt;.cloud.databricks.com:443 | openssl x509 -pubkey -noout
+depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root CA
+verify return:1
+depth=1 C = US, O = DigiCert Inc, CN = DigiCert SHA2 Secure Server CA
+verify return:1
+depth=0 C = US, ST = California, L = San Francisco, O = "Databricks, Inc.", CN = *.cloud.databricks.com
+verify return:1
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo128B8UT3MyFSXiKCcCB
+TGktHi9wWaj7lZeqS58C0JiwYSgq6hIrE9rfmlv3O1V73mpSKyL90DX8dJ4/8n8C
+dtzzEMVz7pePm94KcZa+dReve0vqsrMp5uHJG51LOBDrMwDIgHvpm2jLsKrmdxdb
++ty97dqpmDNF46uEqbgAIWPMAH+7Et41XpifLgsFK/m37a99CukP8aVNL9EVWS2C
+yy/xlIAEJmhzpedZIt9Ro/NGeTzXz+O/JNQiI9OU21Uij0bEc0JVXMJzRCMHyvzo
+ugYnXmJxAH4n+ZMghKSKPM9SpfvPDDllqixlRygOp1VjWjyXc1ow1NVoF2A8Tx7p
+PwIDAQAB
+-----END PUBLIC KEY-----
+</code></pre></div></div>
+
+<p>The lines starting with dashes and everything in between is the public key that needs to be saved in a new text file and configured below.</p>
+
+<p><strong>Preparing the Libraries and Init Script</strong></p>
+
+<p>The Databricks <a href="https://docs.databricks.com/user-guide/advanced/external-hive-metastore.html#spark-specific-options">documentation</a> recommends to download the required Hive JARs to the provided, shared Databricks File System (DBFS) first, and then refer to the JARs using a configuration parameter.</p>
+
+<blockquote>
+  <p><strong>Warning:</strong> If you do not download the Hive JARs and provision them at cluster start time, Databricks will fetch the JARs on your behalf remotely every single time a cluster is started.
+This will incur considerable extra time for the download and will slow down the cluster startup time noticeably.</p>
+</blockquote>
+
+<p>The proper JAR files are staged in a temporary location, that can be determined from the cluster log files.
+Follow the linked Databricks documentation to copy the JARs, listed here in an annotated and extended form, as applicable for the Okera setup:</p>
+
+<ol>
+  <li>Create a new Databricks cluster with <code class="highlighter-rouge">spark.sql.hive.metastore.jars</code> set to <code class="highlighter-rouge">maven</code> and <code class="highlighter-rouge">spark.sql.hive.metastore.version</code> to match the version of your metastore.
+You can get the version, for example, by searching for <code class="highlighter-rouge">hive-metastore</code> on the <a href="https://docs.databricks.com/release-notes/runtime/5.1.html#installed-python-libraries">5.1 release notes</a>.
+This would result in adding the following Spark configuration parameters:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> spark.sql.hive.metastore.jars maven
+ spark.sql.hive.metastore.version 1.2.1
+</code></pre></div>    </div>
+
+    <p>This should look similar to this screenshot:</p>
+
+    <p><a name="Setting Databricks parameters"></a>
+ <img src="assets/images/dbx-hive-jars1.png" style="width: 100%; max-width:100%;" /></p>
+
+    <p>Setting these parameters causes Databricks to provision the necessary Hive JAR files in a temporary location once the cluster is deployed.
+ Start the cluster and wait for it to be ready.</p>
+  </li>
+  <li>
+    <p>When the Databricks cluster is running, go to the “Cluster” page and click on the newly created cluster.
+Then click on the “Driver Logs” tab, and search the logs to find a line like the following:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 17/11/18 22:41:19 INFO IsolatedClientLoader: Downloaded metastore jars to &lt;path&gt;
+</code></pre></div>    </div>
+    <p>The directory <code class="highlighter-rouge">&lt;path&gt;</code> is the location of downloaded JARs in the driver node of the cluster.</p>
+
+    <p>Alternatively you can run the following code in a Scala notebook to print the location of the JARs:</p>
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">%</span><span class="n">scala</span>
+ <span class="k">import</span> <span class="nn">com.typesafe.config.ConfigFactory</span>
+ <span class="k">import</span> <span class="nn">com.databricks.backend.daemon.dbutils.FileInfo</span>
+ <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">ls</span><span class="o">(</span><span class="s">"file://"</span> <span class="o">+</span> <span class="nc">ConfigFactory</span><span class="o">.</span><span class="n">load</span><span class="o">().</span><span class="n">getString</span><span class="o">(</span><span class="s">"java.io.tmpdir"</span><span class="o">))</span>
+   <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">"hive"</span><span class="o">))</span>
+   <span class="o">.</span><span class="n">foreach</span><span class="o">{</span><span class="n">x</span><span class="k">:</span><span class="kt">FileInfo</span> <span class="o">=&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">"Hive path is: "</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">path</span><span class="o">)}</span>
+</code></pre></div>    </div>
+    <p>The output should be similar to something like this:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Hive path is: file:/local_disk0/tmp/hive-v1_2-521e6cc2-d3ee-4623-8192-126ef03e7ed5/
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Once the Hive JARs are provisioned it is necessary to copy them to a permanent location.
+To do that, create a new notebook, named, for instance, “Okera Setup”, and run <code class="highlighter-rouge">%sh cp -r &lt;path&gt; /dbfs/tmp/hive_&lt;version&gt;_jars</code>, replacing <code class="highlighter-rouge">&lt;path&gt;</code> with your cluster’s specific path and <code class="highlighter-rouge">&lt;version&gt;</code> with the Hive version for the cluster, for example <code class="highlighter-rouge">1_2_1</code>.
+This will copy the temporary directory to a directory in DBFS called <code class="highlighter-rouge">hive_&lt;version&gt;_jars</code>.
+The full command may look like this example:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> %sh
+ <span class="c"># Note: Example only!</span>
+ cp <span class="nt">-r</span> /local_disk0/tmp/hive-v1_2-521e6cc2-d3ee-4623-8192-126ef03e7ed5 /dbfs/tmp/hive_1_2_1_jars
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p><strong>Note:</strong> Throughout this document the DBFS path <code class="highlighter-rouge">/tmp/</code> is used, which is the same a <code class="highlighter-rouge">/dbfs/tmp/</code> when using the FUSE mounted filesystem on each Databricks node.
+You can use another path as well, but need to ensure you have read and write permissions.
+Using <code class="highlighter-rouge">/tmp</code> is always possible and is the reason it used here.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Okera requires specific client libraries to be installed in the same JARs directory as used for the Hive integration.
+It is recommended to create a copy of the persisted Hive JAR directory and add the Okera JARs to that copy.
+Using the same notebook from above, copy the following into the next cell:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> %sh
+ <span class="c">#</span>
+ <span class="c"># This cell downloads this version of the Okera client JARs to a shared</span>
+ <span class="c"># location. This by itself does not bootstrap any clusters.</span>
+ <span class="c">#</span>
+ <span class="c"># This should be run once every time the JARs need to be updated and</span>
+ <span class="c"># can take up to a minute.</span>
+ <span class="c">#</span>
+ <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"1.3.0"</span>
+ <span class="nv">HIVE_JARS</span><span class="o">=</span><span class="s2">"hive_1_2_1_jars"</span>
+
+ mkdir <span class="nt">-p</span> /dbfs/tmp/okera/<span class="nv">$VERSION</span>/jars
+ <span class="nb">cd</span> /dbfs/tmp/okera/<span class="nv">$VERSION</span>/jars
+ cp <span class="nt">-r</span> /dbfs/tmp/<span class="nv">$HIVE_JARS</span>/<span class="k">*</span> <span class="nb">.</span>
+
+ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/okera-hive-metastore.jar
+ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-spark-2.0.jar
+ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-hive.jar
+</code></pre></div>    </div>
+
+    <p>Adjust the <code class="highlighter-rouge">VERSION</code> and <code class="highlighter-rouge">HIVE_JARS</code> variables to the version of Okera and Hive you are using.</p>
+  </li>
+  <li>
+    <p>In the next cell, copy and paste the following code to create an cluster <em>init</em> script:</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">%</span><span class="n">scala</span>
+ <span class="c1">//
+</span> <span class="c1">// This creates an init script that will place all the jars on new cluster.
+</span> <span class="c1">// This can be specified in the cluster create UI as an init script with
+</span> <span class="c1">// the path 'dbfs://okera/init-okera.sh'
+</span> <span class="c1">//
+</span> <span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.3.0"</span>
+
+ <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/tmp/okera/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
+ #!/bin/sh
+ # Copy the staged Hive and Okera JARs to a node-local directory
+ echo "Copying staged Okera JARs to node..."
+ mkdir -p /databricks/okera_jars
+ cp -r /dbfs/tmp/okera/$VERSION/jars/* /databricks/okera_jars/
+ # Installs Okera JARs into the node-wide Databricks JARs directory
+ echo "Copying Okera JARs to shared directory..."
+ cp /databricks/okera_jars/okera-hive-metastore.jar /databricks/jars/
+ cp /databricks/okera_jars/recordservice-spark-2.0.jar /databricks/jars/
+ cp /databricks/okera_jars/recordservice-hive.jar /databricks/jars/
+ """</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre></div>    </div>
+
+    <p>Adjust the <code class="highlighter-rouge">VERSION</code> variable to the version of Okera you are using.
+ Run both cells to prepare the JARs and init script.</p>
+  </li>
+  <li>
+    <p>Edit the Spark configuration for the Databricks cluster again and set <code class="highlighter-rouge">spark.sql.hive.metastore.jars</code> to use the node-local directory the init script is creating.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> spark.sql.hive.metastore.jars /databricks/okera_jars/*
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p><strong>Note:</strong> The location must include the trailing <code class="highlighter-rouge">/*</code>.
+This will instruct Spark to load all the JAR files from that directory.</p>
+    </blockquote>
+
+    <p>Remove the <code class="highlighter-rouge">spark.sql.hive.metastore.version</code> parameter as it is not needed anymore.
+ In addition, add any other settings needed to configure the connectivity between the Databricks and ODAS clusters.
+ This includes setting the endpoint for the ODAS Planner with its port, and the maximum number of tasks to run on the compute engine.</p>
+
+    <p>For instance, a more complete set of parameters may look like this:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hive.metastore.rawstore.impl com.cerebro.hive.metastore.CerebroObjectStore
+ recordservice.planner.hostports &lt;odas_planner_host&gt;:&lt;odas_planner_port&gt;
+ spark.recordservice.planner.hostports &lt;odas_planner_host&gt;:&lt;odas_planner_port&gt;
+ recordservice.task.plan.maxTasks &lt;max_tasks&gt;
+ spark.recordservice.task.plan.maxTasks &lt;max_tasks&gt;
+ spark.sql.hive.metastore.jars /databricks/okera_jars/*
+</code></pre></div>    </div>
+
+    <p>Replace the placeholders as described throughout the document.</p>
+  </li>
+  <li>
+    <p>Switch to the “Init Scripts” tab and add the init script created in the previous step.
+For example:</p>
+
+    <p><a name="Setting the Databricks init script"></a>
+ <img src="assets/images/dbx-init-scripts.png" style="width: 90%; max-width:90%;" /></p>
+  </li>
+  <li>Restart the cluster.</li>
+</ol>
+
+<p><u>Optional Steps</u></p>
+
+<p>The following code can be used for older versions of Databricks that do <strong>not</strong> have the above options available.
+See the comments in the code for where it is applicable.
+Copy and paste the code into another cell in the Scala notebook and execute it as necessary.</p>
+
+<blockquote>
+  <p><strong>Warning:</strong> Read the <a href="https://docs.databricks.com/user-guide/clusters/init-scripts.html#cluster-named-init-scripts-deprecated">Databricks documentation</a> carefully about using the deprecated <em>cluster-named</em> init script feature.</p>
+</blockquote>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//
+// Only earlier versions of databricks, where the init script cannot be
+// configured on the cluster create page, the init script has to be copied
+// to per cluster init directory. Note in this case, you will have to run
+// this for each new cluster.
+//
+</span><span class="k">val</span> <span class="nc">CLUSTER_NAME</span> <span class="k">=</span> <span class="o">&lt;</span><span class="nc">YOUR</span> <span class="nc">CLUSTER</span> <span class="nc">NAME</span><span class="o">&gt;</span>
+<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cp</span><span class="o">(</span><span class="n">s</span><span class="s">"dbfs:/tmp/okera/$VERSION/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"dbfs:/databricks/init/$CLUSTER_NAME/"</span><span class="o">)</span>
+
+<span class="c1">//
+// It is also possible to set the init script to be global, for all clusters.
+// This can be used to make all clusters Okera enabled. We do this by copying
+// the same init script to a global init directory.
+//
+// dbutils.fs.cp("dbfs:/tmp/okera/init.sh", s"dbfs:/databricks/init/")
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>Adjust the <code class="highlighter-rouge">&lt;YOUR CLUSTER NAME&gt;</code> placeholder to match the name of the Databricks cluster you are targeting.</li>
+    <li>Uncomment the last line as needed.</li>
+  </ul>
+</blockquote>
+
+<p>Once all steps are completed you can use the Databricks UI to spin up a cluster and continue with the Okera configuration, explained next.</p>
+
+<h3 id="okera-steps">Okera Steps</h3>
+
+<p>For Okera, the steps are as such:</p>
+
+<ol>
+  <li>
+    <p>When setting up a ODAS cluster environment using the Deployment Manager, you have to use the Databricks provided public key and specify it as an <a href="odas-authentication#public-key-approach">environment variable</a>.</p>
+
+    <p>For example, set the following variables in your specific <code class="highlighter-rouge">env.sh</code>:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_JWT_PUBLIC_KEY</span><span class="o">=</span><span class="s2">"s3://acme-bucket/keys/databricks.pub"</span>
+<span class="nb">export </span><span class="nv">CEREBRO_JWT_ALGORITHM</span><span class="o">=</span><span class="s2">"RSA512"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Optionally configure a <a href="odas-authentication#group-resolution">group resolution</a> option that works for your environment.</p>
+  </li>
+</ol>
+
+<p>Once these steps are completed, use the Deployment Manager to spin up an ODAS cluster with the specific environment.
+You should now be able to access data backed by Okera using Spark or a Notebook provided by Databricks.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Okera configurations in Databricks (that is, connection and RPC timeout values) are applied at the notebook level (as opposed to per-user or per-cluster).</p>
+</blockquote>
+
+<p>For additional information, see the <a href="odas-authentication#json-web-tokens">JWT documentation</a>.</p>
+
+<h2 id="updating-odas">Updating ODAS</h2>
+
+<p>When you update your ODAS version you will need to also update the client libraries used on the Databricks side.
+Generally the Okera client libraries are compatible with different ODAS versions, but keeping both in sync is recommended by Okera to potentially unlock all improvements made by a new version.</p>
+
+<h3 id="databricks-steps-1">Databricks Steps</h3>
+
+<p>All that is needed is to run steps from the above Databricks steps that update the version numbers for the libraries staging and their use in the init script.
+In particular, do the following:</p>
+
+<ol>
+  <li>
+    <p>Update the <code class="highlighter-rouge">VERSION</code> variable in the setup notebook you used to provision the cluster, setting it to the version you are updating to.
+For example, here we updated from version <code class="highlighter-rouge">1.3.0</code> to <code class="highlighter-rouge">1.3.1</code> of Okera:</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> %sh
+ <span class="c">#</span>
+ <span class="c"># This cell downloads this version of the Okera client JARs to a shared</span>
+ <span class="c"># location. This by itself does not bootstrap any clusters.</span>
+ <span class="c">#</span>
+ <span class="c"># This should be run once every time the JARs need to be updated and</span>
+ <span class="c"># can take up to a minute.</span>
+ <span class="c">#</span>
+ <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"1.3.1"</span> <span class="c"># &lt;- Updated to 1.3.1</span>
+ <span class="nv">HIVE_JARS</span><span class="o">=</span><span class="s2">"hive_1_2_1_jars"</span>
+
+ mkdir <span class="nt">-p</span> /dbfs/tmp/okera/<span class="nv">$VERSION</span>/jars
+ <span class="nb">cd</span> /dbfs/tmp/okera/<span class="nv">$VERSION</span>/jars
+ cp <span class="nt">-r</span> /dbfs/tmp/<span class="nv">$HIVE_JARS</span>/<span class="k">*</span> <span class="nb">.</span>
+
+ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/okera-hive-metastore.jar
+ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-spark-2.0.jar
+ curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-hive.jar
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Then update the init script cell to match the same version:</p>
+
+    <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">%</span><span class="n">scala</span>
+ <span class="c1">//
+</span> <span class="c1">// This creates an init script that will place all the jars on new cluster.
+</span> <span class="c1">// This can be specified in the cluster create UI as an init script with
+</span> <span class="c1">// the path 'dbfs://okera/init-okera.sh'
+</span> <span class="c1">//
+</span> <span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.3.1"</span> <span class="c1">// &lt;- Updated to 1.3.1
+</span>
+ <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/tmp/okera/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
+ #!/bin/sh
+ # Copy the staged Hive and Okera JARs to a node-local directory
+ echo "Copying staged Okera JARs to node..."
+ mkdir -p /databricks/okera_jars
+ cp -r /dbfs/tmp/okera/$VERSION/jars/* /databricks/okera_jars/
+ # Installs Okera JARs into the node-wide Databricks JARs directory
+ echo "Copying Okera JARs to shared directory..."
+ cp /databricks/okera_jars/okera-hive-metastore.jar /databricks/jars/
+ cp /databricks/okera_jars/recordservice-spark-2.0.jar /databricks/jars/
+ cp /databricks/okera_jars/recordservice-hive.jar /databricks/jars/
+ """</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run both cells and restart the Databricks cluster</p>
+  </li>
+</ol>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Mar 28, 2019
+      </div>
+    </div>
+  </div>
+</footer>
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

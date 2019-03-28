@@ -34,6 +34,7 @@ ocadm clusters update --numNodes=20 1
 
 This command is used to scale a cluster up or down in size.
 Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.
+For clusters that are running on AWS ASGs, Okera will update the ASGs configuration and that will trigger the launching or termination of EC2 instances. The Deployment Manager master will observe this change and adjust the cluster membership accordingly.
 
 > **Note:** The cluster must have been created using either the `--launchScript` or
 `--clusterLaunchScript` options.
@@ -50,6 +51,22 @@ ocadm clusters update --numPlanners=<number> <cluster_id>
 > **Note**
 > The planner number cannot exceed the cluster size.
 > It requires restarting the cluster for the change to take effect.
+
+## Restarting a cluster
+
+ocadm supports restarting the entire cluster or just a single service:
+
+**Example:** Restarting all the services
+
+```shell
+ocadm clusters restart 1
+```
+
+**Example:** Restarting just the planner
+
+```shell
+ocadm clusters restart --service cerebro_planner 1
+```
 
 ## Enabling Termination Protection
 
@@ -156,7 +173,7 @@ A service successfully passing its health check does not preclude it from return
 Rather, it indicates that the service was able to startup successfully, including passing all initial service configuration validations.
 The service responded to the most recent Deployment Manager request to its health check endpoint.
 
-## Cluster diagnosis
+## Cluster diagnostics
 
 It may occasionally be helpful to gather system logs from the nodes in a cluster when
 a functional issue or performance issue occurs. A cluster can be commanded to compile
@@ -200,3 +217,10 @@ Any changes made directly to the Sentry database in the Catalog might take up to
 Planner nodes cache the role and permissions information from the Catalog.
 When multiple Planner nodes are present in a ODAS cluster, a policy is followed of eventual consistency for maintaining cache coherence.
 This policy could be fine tuned in the future if needed.
+
+## Dealing with problematic EC2 instances
+
+Occasionally, an EC2 instance may behave in an undesirable manner (for example, the network interface may start throwing errors).
+For clusters running on ASGs, the simplest solution is to terminate the EC2 instance.
+The AWS ASG will detect the termination and replace the EC2 instance.
+Similarly, the Okera Deployment Manager master will observe the cluster membership change and reconfigure the cluster services accordingly.

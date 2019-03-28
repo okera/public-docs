@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -806,10 +820,15 @@ The AWS services include an S3 Bucket, an RDS instance, and IAM credentials.</p>
   <li>
     <p><strong>IAM Credentials</strong></p>
 
-    <p>Okera instances require read and write access to the S3 bucket set by <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code> and RDS instance set by <code class="highlighter-rouge">OKERA_DB_URL</code>.
- The Deployment Manager requires the ability to provision instances.
- The cluster nodes require read credentials to data stored in S3 buckets, and read access to some EC2 details for management purposes.
- These credentials can be one IAM profile with all the credentials, or two separate roles (assumed the default for this document).
+    <p>In general, all Okera components (that is DM and ODAS) require read and write access to the S3 bucket set by <code class="highlighter-rouge">OKERA_S3_STAGING_DIR</code>, and RDS instance set by <code class="highlighter-rouge">OKERA_DB_URL</code>.
+ On top of that, the following is needed:</p>
+
+    <ul>
+      <li>The DM requires the ability to provision EC2 instances.</li>
+      <li>The ODAS cluster nodes require (at least) read credentials to data stored in S3 buckets.</li>
+    </ul>
+
+    <p>These credentials can be one IAM profile with all the credentials, or two separate roles (assumed to be the default for this document).
  If encryption is being used with keys in KMS, these roles will also need KMS access (see <a href="s3-encryption-support">S3 Encryption Support</a>).
  The IAM role for the Deployment Manager (DM) is referred to as <code class="highlighter-rouge">IAM_MANAGER</code> and the IAM role for the cluster nodes is referred to as <code class="highlighter-rouge">IAM_CLUSTER</code>.</p>
   </li>
@@ -884,7 +903,6 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
       <li><code class="highlighter-rouge">AmazonRDSFullAccess</code></li>
       <li><code class="highlighter-rouge">AmazonS3FullAccess</code></li>
       <li><code class="highlighter-rouge">AmazonEC2FullAccess</code></li>
-      <li><code class="highlighter-rouge">IAMFullAccess</code></li>
     </ul>
 
     <p>Then click on <strong>Next: Tags</strong> button.</p>
@@ -908,7 +926,6 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
 <ul>
   <li><code class="highlighter-rouge">AmazonRDSFullAccess</code></li>
   <li><code class="highlighter-rouge">AmazonS3FullAccess</code></li>
-  <li><code class="highlighter-rouge">AmazonEC2ReadOnlyAccess</code></li>
 </ul>
 
 <p>Enter <code class="highlighter-rouge">OkeraOdasRole</code> for the role name and choose <strong>Create role</strong>.</p>
@@ -963,16 +980,9 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
-          <td><code class="highlighter-rouge">5000</code></td>
+          <td><code class="highlighter-rouge">10000</code></td>
           <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
-          <td>ODAS REST Server</td>
-        </tr>
-        <tr>
-          <td>Custom TCP</td>
-          <td>TCP</td>
-          <td><code class="highlighter-rouge">11050</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
-          <td>Okera Planner Web UI</td>
+          <td>Grafana Dashboard UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
@@ -984,30 +994,44 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
-          <td><code class="highlighter-rouge">10000</code></td>
+          <td><code class="highlighter-rouge">5000</code></td>
           <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
-          <td>Grafana Dashboard UI</td>
+          <td>ODAS REST Server</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">8083</code></td>
           <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
-          <td>Okera Web UI</td>
+          <td>ODAS Web UI</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">11050</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>ODAS Planner Web UI</td>
+        </tr>
+        <tr>
+          <td>Custom TCP</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">11051</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>ODAS Worker Web UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">12050</code></td>
           <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
-          <td>Planner</td>
+          <td>ODAS Planner</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">13050</code></td>
           <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
-          <td>Okera Worker</td>
+          <td>ODAS Worker</td>
         </tr>
       </tbody>
     </table>

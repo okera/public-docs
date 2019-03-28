@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -751,7 +765,7 @@ A sample properties file, <code class="highlighter-rouge">s3://okera/mysql-prod.
 </span><span class="err">port=&lt;Port</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">DB&gt;</span><span class="w">
 </span><span class="err">user=&lt;username&gt;</span><span class="w">
 </span><span class="err">password=&lt;password&gt;</span><span class="w">
-</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
+</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">catalog</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
 </span><span class="err">jdbc.schema.name&lt;Optional.</span><span class="w"> </span><span class="err">Specify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">used.</span><span class="w"> </span><span class="err">MySQL</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">support</span><span class="w"> </span><span class="err">schema&gt;</span><span class="w">
 </span><span class="err">table=&lt;Default</span><span class="w"> </span><span class="err">table</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">from&gt;</span><span class="w">
 </span><span class="err">fetchSize=</span><span class="mi">100000</span><span class="w">
@@ -767,7 +781,7 @@ A sample properties file, <code class="highlighter-rouge">s3://okera/mysql-prod.
 </span><span class="err">port=&lt;Port</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">DB&gt;</span><span class="w">
 </span><span class="err">user=&lt;username&gt;</span><span class="w">
 </span><span class="err">password=&lt;password&gt;</span><span class="w">
-</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
+</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">catalog</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
 </span><span class="err">jdbc.schema.name&lt;Optional.</span><span class="w"> </span><span class="err">Specify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">used&gt;</span><span class="w">
 </span><span class="err">table=&lt;Default</span><span class="w"> </span><span class="err">table</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">from&gt;</span><span class="w">
 </span><span class="err">fetchSize=</span><span class="mi">100000</span><span class="w">
@@ -781,8 +795,7 @@ A sample properties file, <code class="highlighter-rouge">s3://okera/mysql-prod.
 </span><span class="err">user=&lt;username&gt;</span><span class="w">
 </span><span class="err">password=&lt;password&gt;</span><span class="w">
 </span><span class="err">account=&lt;snowflake</span><span class="w"> </span><span class="err">account&gt;</span><span class="w">
-</span><span class="err">driver=snowflake</span><span class="w">
-</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">DB</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
+</span><span class="err">jdbc.db.name=&lt;Default</span><span class="w"> </span><span class="err">catalog</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">connect</span><span class="w"> </span><span class="err">to.</span><span class="w"> </span><span class="err">Note</span><span class="p">,</span><span class="w"> </span><span class="err">skipping</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">result</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">errors&gt;</span><span class="w">
 </span><span class="err">jdbc.schema.name&lt;Optional.</span><span class="w"> </span><span class="err">Specify</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">schema</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">used&gt;</span><span class="w">
 </span><span class="err">table=&lt;Default</span><span class="w"> </span><span class="err">table</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">query</span><span class="w"> </span><span class="err">from&gt;</span><span class="w">
 </span></code></pre></div></div>
@@ -838,6 +851,11 @@ However, if you wish to refresh the entire table definition again from the datab
 
 <p><strong>Example:</strong> Overwrite the existing definition for a table</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">marketingdb</span> <span class="k">LOAD</span> <span class="n">DEFINITIONS</span> <span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="n">OVERWRITE</span>
+</code></pre></div></div>
+
+<p>Not specifying a table name in the arguments above would load all the tables from the jdbc data source.
+<strong>Example:</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">marketingdb</span> <span class="k">LOAD</span> <span class="n">DEFINITIONS</span> <span class="p">()</span> <span class="n">OVERWRITE</span>
 </code></pre></div></div>
 
 <h3 id="recover-column-definitions">Recover Column Definitions</h3>
@@ -903,6 +921,13 @@ This is specifically useful to add or replace existing definitions per table at 
 .....
 <span class="o">]</span>
 </code></pre></div></div>
+
+<h3 id="scan-records-in-parallel">Scan records in parallel</h3>
+
+<p>Data from JDBC data sources are scanned in parallel provided there is a valid numeric field specified in the tblproperties with the key <code class="highlighter-rouge">mapred.jdbc.scan.key</code>. Note, if the JDBC source table has a single numeric field as primarykey, the <code class="highlighter-rouge">mapred.jdbc.scan.key</code> key is auto-populated with that field as value when the catalog table is created. However, users can override this value by specifying another column in the table thats of numeric type. Internally, the query to the JDBC data source is split into query for ranges of 100K of the <code class="highlighter-rouge">mapred.jdbc.scan.key</code>.
+The range size (fetch size) can be controlled by the <code class="highlighter-rouge">fetchSize</code> property in the properties file.</p>
+
+<p><strong>Note</strong> ScanKey concept might not apply for all data sources. For example, Aws Athena.</p>
 
 <h2 id="other-jdbc-operations">Other JDBC Operations</h2>
 

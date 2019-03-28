@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -753,6 +767,16 @@ Example:
     <span class="s2">"dashboard-admin-token"</span>: <span class="s2">"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWNybXcxIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJlYjAyYWZlNC00NzBkLTExZTgtYjY2My0wMjY2OTBkNWEyY2MiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06YWRtaW4tdXNlciJ9.N_8CqLphJwawm0oazVepaSD7PqN1HBzAsy4lbdHXTpdwAPyrRHJV_lM4_VloZMq9Wbpe2npqtG7aSTgyK1ESryRt0ReT3H_JnnUSQ4t-UU1OugfTDQ5Fh6w-at7EAjxAM8_HTdpB71Hz_LkACslHKWE2tRtyyKVcZ_Lrdxg8lYzcdG2Si4-qctbc69R-mjks08yzghLK1mWJh8PQhI_peBG7qELq7BxlNqsvSLL46POErTFN8hlKCyV7wN7RsLZSTSVOyikPFbSKojjCcyo2GEuAI5n2ZidACnwdekJrZOKjXs2_ZwifLIVmxSDEw6UjTqUHnaumgoym6K7v7Nc6Gw"</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<h3 id="logging-into-grafana">Logging into grafana</h3>
+
+<p>The default credentials for grafana are admin/admin and will prompt you to change the password on first login.</p>
+
+<p>All the metrics exposed by grafana are aggregate (e.g. no per user or per query) metrics and no modifications to the cluster can be made through grafana.</p>
+
+<p>By default, dashboards for per-pod and per-node metrics are exposed.</p>
+
+<p>For more details on how to use grafana, including building alerts or custom dashboards, see the grafana <a href="https://grafana.com/">docs</a>.</p>
 
 <h3 id="logging-into-the-dashboard">Logging into the dashboard</h3>
 

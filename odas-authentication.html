@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -760,9 +774,14 @@ In this case, group names are case insensitive.</p>
   <p><strong>Note:</strong> This approach currently assumes that the configured REST endpoint supports GET requests and that the expected format is <code class="highlighter-rouge">&lt;url&gt;</code>/<code class="highlighter-rouge">&lt;username&gt;</code> .</p>
 </blockquote>
 
-<p>Approach 2 and/or 3 will used if <em>only</em> JWT support is configured (a system token is specified).
+<ol>
+  <li>By querying the configured LDAP server for group membership for the specified user.</li>
+</ol>
+
+<p>Approach 2, 3 and/or 4 will used if <em>only</em> JWT support is configured (a system token is specified).
 If the configuration OKERA_GROUP_RESOLVER_URL is set, then approach 2 will be used with approach 3 used as a fallback (only after approach 2 was attempted).
 If OKERA_GROUP_RESOLVER_URL is unset, then approach 2 will be used exclusively.
+If the configuration OKERA_GROUP_RESOLVER_LDAP_HOST is set, then approach 2 will be used with approach 4 used as a fallback (only after approach 2 was attempted).
 In all other situations, including if both JWT and Kerberos are configured, approach 1 will be used for all users, including those that authenticate via a JWT.</p>
 
 <h3 id="case-sensitivity">Case Sensitivity</h3>
@@ -997,7 +1016,13 @@ Example:</p>
 }
 </code></pre></div></div>
 
-<h4 id="group-resolution-via-rest-endpoints">Group resolution via REST endpoints</h4>
+<h3 id="using-both-approaches-for-jwt-validation">Using Both Approaches for JWT Validation</h3>
+
+<p>If you have the requirement to support both approaches, configure the environment variables for both, and each is instantiated.
+The external endpoint is used first.
+If the JWT is not validated by that service, it is passed to the public-key authenticator for validation.</p>
+
+<h4 id="group-resolution-via-rest-endpoints">Group Resolution via REST Endpoints</h4>
 
 <p>The endpoint for validating JWTs is not expected to return group information.
 If your environment uses a REST endpoint for that, then that endpoint should be configured via the OKERA_GROUP_RESOLVER_URL environment variable.
@@ -1086,8 +1111,7 @@ export </span><span class="nv">OKERA_TOKEN_RETRIEVAL_SCRIPT</span><span class="o
 
 <h4 id="presto">Presto</h4>
 
-<p>Presto requires that the environment variable be exported in the configuration file for the
- service itself, located at <code class="highlighter-rouge">/etc/init/presto-server.conf</code>.
+<p>Presto requires that the environment variable be exported in the configuration file for the service itself, located at <code class="highlighter-rouge">/etc/init/presto-server.conf</code>.
 Add it to the bottom of the block that looks like this:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...

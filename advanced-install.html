@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -940,20 +954,16 @@ These ports are not user configurable and are required for cluster creation, man
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">443</code></td>
-      <td>Kubernetes Master Communication</td>
-    </tr>
-    <tr>
       <td><code class="highlighter-rouge">6443</code></td>
       <td>Kubernetes API Server</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">6783</code></td>
-      <td>Kubernetes Weave</td>
+      <td>Kubernetes Weave (TCP)</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">8085</code></td>
-      <td>Okera Master Host</td>
+      <td>ODAS Agent</td>
     </tr>
   </tbody>
 </table>
@@ -995,22 +1005,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
   <tbody>
     <tr>
       <td><code class="highlighter-rouge">5000-13050</code></td>
-      <td>Kubernetes Dynamic Range</td>
-      <td>external</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">5000</code></td>
-      <td>ODAS REST Server</td>
-      <td>external</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">11050</code></td>
-      <td>Okera Planner Web UI</td>
-      <td>external</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">10001</code></td>
-      <td>Kubernetes Web UI</td>
+      <td>Full Services Port Range - For testing only</td>
       <td>external</td>
     </tr>
     <tr>
@@ -1019,37 +1014,66 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
       <td>external</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">8083</code></td>
-      <td>Okera Web UI</td>
+      <td><code class="highlighter-rouge">10001</code></td>
+      <td>Kubernetes Web UI</td>
       <td>external</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">9098</code></td>
-      <td>Okera Canary</td>
+      <td><code class="highlighter-rouge">5000</code></td>
+      <td>ODAS REST Server</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">8083</code></td>
+      <td>ODAS Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">9083</code></td>
+      <td>ODAS HMS</td>
       <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">9098</code></td>
+      <td>ODAS Canary</td>
+      <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">11050</code></td>
+      <td>ODAS Planner Web UI</td>
+      <td>external</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">11051</code></td>
+      <td>ODAS Worker Web UI</td>
+      <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">11060</code></td>
-      <td>Sentry</td>
-      <td>internal</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">11061</code></td>
-      <td>Okera HMS</td>
+      <td>ODAS Sentry</td>
       <td>internal</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">12050</code></td>
-      <td>Planner</td>
+      <td>ODAS Planner</td>
       <td>external</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">13050</code></td>
-      <td>Okera Worker</td>
+      <td>ODAS Worker</td>
       <td>external</td>
     </tr>
   </tbody>
 </table>
+
+<h4 id="jvm-certificate-store-configuration">JVM Certificate Store Configuration</h4>
+
+<p>Okera supports the ability to autonomously install JVM Certificate Store compatible certificates onto a cluster during bootup.  This can be used to install self-signed certificates or any certificate that is not properly chained to a Certificate Authority.  It requires the certificate files be stored at an accessible S3 path is configurable via the <code class="highlighter-rouge">/etc/okera/env.sh</code> configuration file by specifying a comma delimited list of S3 file paths as the value for the CUSTOM_CERTS variable:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SERVICE_ENVIRONMENT_CONFIGS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$SERVICE_ENVIRONMENT_CONFIGS</span><span class="s2">;CUSTOM_CERTS=s3://&lt;bucket&gt;/&lt;cert_file1&gt;,s3://&lt;bucket&gt;/&lt;cert_file2&gt;,..."</span>
+</code></pre></div></div>
+
+<p>During container bootup, the certificate files specified in the CUSTOM_CERTS variable will be downloaded and installed automatically.</p>
 
 
     <div class="tags">

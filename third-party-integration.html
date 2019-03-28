@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li class="active"><a href="third-party-integration">Integration Overview</a></li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li class="active"><a href="third-party-integration">Third-Party Integration</a></li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -709,197 +723,22 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="goals-and-intended-audience">Goals and Intended Audience</h2>
 
-<p>This document describes the integration between Okera and other software systems.
-It describes the technical details of how both systems work together to provide a seamless experience to the platform users.
-The intended audience is technical staff and administrators who are tasked to set up the integration.</p>
+<p>The linked documents below describe the integration between Okera and other software systems.  They describe the technical details of how both systems work together to provide a seamless experience to the platform users.  The intended audience for these documents are technical staff and administrators who are tasked with setting up the integration.</p>
 
-<h2 id="databricks-integration">Databricks Integration</h2>
-
-<h3 id="databricks-introduction">Databricks Introduction</h3>
-
-<p>Okera has an integration with <a href="https://databricks.com/product/unified-analytics-platform">Databricks Analytics Platform</a>, which offers a commercial Spark and Notebook server (among other things).
-Combining both systems allows the Databricks users to seamlessly use the data access and schema registry services provided by Okera.</p>
-
-<p>The integration uses standard technologies and is mostly a configuration task for administrators.
-Both systems can be set up separately and eventually connected to each other with the steps outlined in the <a href="#databricks-integration-configuration">Configuration</a> section.
-Once enabled, the authenticated Databricks users are allowed access to all Okera managed datasets, based on their personal authorization profile.
-The benefit of this integration is that all access to data is attributed to the proper users accounts (as opposed to a shared technical user account), and therefore reflects properly in the Okera audit event log.
-In addition, any granted access to the user (which is based on the combination of the roles assigned to the user’s groups, which is discussed in <a href="authorization">Authorization</a>) is enforced as expected, and any security changes are enforced immediately.</p>
-
-<h3 id="databricks-authentication-flow">Databricks Authentication Flow</h3>
-
-<p>Before enabling the integration between Okera and Databricks, it is helpful to understand the overall flow of authentication between the two platforms.
-The following diagram shows this in context, and has numbers for each step that are explained next:</p>
-
-<p><a name="Authentication flow using Databricks"></a>
-<img src="assets/images/integration-databricks.png" style="width: 100%; max-width:100%;" /></p>
-
-<p>The flow is as such:</p>
-
-<ol>
-  <li>Any user who is communicating with the Databricks Platform needs to authenticate itself first.</li>
-  <li>The Databricks Platform uses its own database to track known users and their authorizations.</li>
-  <li>As soon as a user is requesting or accessing data in Spark or a Notebook from a datasource that is backed by Okera, the Databricks Platform is providing a JWT user token to the Okera client libraries.
- The user token is signed by a private key that is owned by Databricks.</li>
-  <li>The JWT token contains the Databricks user name, which is the user’s email address.</li>
-  <li>Upon receiving the request, the Okera processes will verify the provided token using the Databricks provided public key.</li>
-  <li>Okera then uses the configured group mapping method to retrieve the user groups associated with the email prefix.</li>
-  <li>With the groups available, the Okera Planner can retrieve the associated Policy Engine roles and verify the request, while enforcing the matching role-based access control rules.</li>
-</ol>
-
-<p>Notes:</p>
+<h2 id="index-of-integrations">Index of Integrations</h2>
 
 <ul>
-  <li>Using the email prefix only, which is the part of the email before the “@” symbol, is common practice and done the same way for Kerberos principals.</li>
-  <li>Looking up user groups based on the email prefix may require special handling, which is possible using the pluggable group mapping support.</li>
-  <li>Okera also supports pluggable JWT token verification mechanisms, including the option to call an external verification endpoint.</li>
+  <li><a href="planner-integration">Okera Planner Integration</a> - How to integrate the Okera Planner with external tools</li>
+  <li><a href="pyokera">Okera Python Integration</a> - How to integrate with Okera’s Python library</li>
+  <li><a href="catalog-rest-api">Okera REST API Integration</a> - Documents the REST API for interop purposes</li>
+  <li><a href="emr-integration">AWS EMR Integration</a> - How to integrate Okera with AWS EMR</li>
+  <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> - How to integrate Okera with Cloudera CDH</li>
+  <li><a href="databricks-integration">Databricks Integration</a> - How to integrate Okera with Databricks</li>
+  <li><a href="client-integration">Hadoop Client Integration</a> - How to integrate Okera with Hadoop clients</li>
+  <li><a href="client-configs">Hive and Spark Client Integration</a> - Details about client configuration options for Hive and Spark</li>
+  <li><a href="hive-best-practices">Hive Integration - Best Practices</a> - Explains best practices when integrating with Hive</li>
+  <li><a href="tableau-web-data-connector">Tableau WDC Integration</a> - How to integrate Okera with Tableau</li>
 </ul>
-
-<h3 id="databricks-integration-configuration">Databricks Integration Configuration</h3>
-
-<p>The next sections explain how administrators can enable the integration between the two platforms.
-Note that Databricks has built-in support for the integration, but due to the nature of two separately developed software systems (for the sake of flexibility), the setup requires a few manual steps.</p>
-
-<h4 id="databricks-steps">Databricks Steps</h4>
-
-<p>The following steps are required to configure the Databricks Platform and prepare the Okera setup:</p>
-
-<ol>
-  <li>Enable the provision of the JWT token to the Okera client libraries by setting the <em>userJwt</em> option in the Databricks configuration.
-This requires contacting the Databricks support to enable this feature for your account.</li>
-  <li>Acquire the Databricks provided public key that is used to verify the JWT tokens (used below in the Okera configuration steps). 
-The key can be downloaded in the <em>Admin Console</em> within the Databricks UI.</li>
-  <li>Copy the Okera provided libraries to the Databricks staging directory (usually in a shared “dbfs://…” location).</li>
-  <li>Set up the init script that copies the provided JARs to the cluster specific, local directories.
- For example:
- <img src="assets/images/integration-databricks-init.png" alt="Setting the Okera specific init script in Databricks" /></li>
-  <li>Configure, among other settings, the ODAS hostname and port number to use (see the <a href="emr-integration#per-component-configuration">per-component configuration</a> documentation for details).
- For example (also showing more advanced settings):
- <img src="assets/images/integration-databricks-configs.png" alt="Per-cluster settings in Databricks" /></li>
-</ol>
-
-<blockquote>
-  <p><strong>Notes:</strong></p>
-  <ul>
-    <li>Most of these steps require a Databricks administrator to perform the necessary actions.</li>
-    <li>Okera recommends to use a Databricks Runtime Version of at least 4.3.
-Previous versions are known to have some technical issues in combination with the ODAS integration enabled.</li>
-    <li>See the official Databricks information about <a href="https://docs.databricks.com/user-guide/clusters/init-scripts.html">init scripts</a> and <a href="https://docs.databricks.com/user-guide/advanced/external-hive-metastore.html">external Hive Metastores</a> for details.</li>
-  </ul>
-</blockquote>
-
-<p><strong>Preparing the Libraries and Init Script</strong></p>
-
-<p>You can handle the preparatory work for steps #3 and #4 using a Databricks notebook.
-First, create a new Scala notebook as usual, named for example <code class="highlighter-rouge">bootstrap_okera</code> and copy the following into the first cell:</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%sh
-<span class="c">#</span>
-<span class="c"># This cell downloads this version of the Okera client jars to a shared location. This by</span>
-<span class="c"># itself does not bootstrap any clusters.</span>
-<span class="c"># </span>
-<span class="c"># This should be run once every time the jars need to be updated and can take up to a minute.</span>
-<span class="c">#</span>
-<span class="nv">VERSION</span><span class="o">=</span>1.2.1
-
-mkdir <span class="nt">-p</span> /dbfs/okera/<span class="nv">$VERSION</span>/jars
-<span class="nb">cd</span> /dbfs/okera/<span class="nv">$VERSION</span>/jars
-cp <span class="nt">-R</span> /databricks/hive/<span class="k">*</span> <span class="nb">.</span>
-
-curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/okera-hive-metastore.jar 
-curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-spark-2.0.jar
-curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/<span class="nv">$VERSION</span>/client/recordservice-hive.jar
-</code></pre></div></div>
-
-<blockquote>
-  <p><strong>Note:</strong> Adjust the <code class="highlighter-rouge">VERSION</code> variable to the version of Okera you are using.</p>
-</blockquote>
-
-<p>In the next cell, copy and paste the following code:</p>
-
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//
-// This creates an init script that will place all the jars on new clusters. This can be specified
-// in the cluster create UI as an init script with the path 'dbfs://okera/init.sh'
-//
-</span><span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.2.1"</span>
-<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/okera/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
-#!/bin/sh
-
-# -------------------------------------------------------------------------------------------
-# Installs Okera JARs
-# -------------------------------------------------------------------------------------------
-
-cp /dbfs/okera/$VERSION/jars/okera-hive-metastore.jar /databricks/jars/
-cp /dbfs/okera/$VERSION/jars/recordservice-spark-2.0.jar /databricks/jars/
-cp /dbfs/okera/$VERSION/jars/recordservice-hive.jar /databricks/jars/
-"""</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p><strong>Note:</strong> Adjust the <code class="highlighter-rouge">VERSION</code> variable to the version of Okera you are using.</p>
-</blockquote>
-
-<p>Run both cells to prepare the JARs and init script.</p>
-
-<p><u>Optional Steps</u></p>
-
-<p>The following code can be used for older versions of Databricks that do <strong>not</strong> have the above options available.
-See the comments in the code for where it is applicable.
-Copy and paste the code into another cell in the Scala notebook and execute it as necessary.</p>
-
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//
-// Only earlier versions of databricks, where the init script cannot be configured on the
-// cluster create page, the init script has to be copied to per cluster init directory.
-// Note in this case, you will have to run this for each new cluster.
-//
-</span><span class="k">val</span> <span class="nc">CLUSTER_NAME</span> <span class="k">=</span> <span class="o">&lt;</span><span class="nc">YOUR</span> <span class="nc">CLUSTER</span> <span class="nc">NAME</span><span class="o">&gt;</span>
-<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cp</span><span class="o">(</span><span class="n">s</span><span class="s">"dbfs:/okera/$VERSION/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"dbfs:/databricks/init/$CLUSTER_NAME/"</span><span class="o">)</span>
-
-<span class="c1">//
-// It is also possible to set the init script to be global, for all clusters. This can
-// be used to make all clusters Okera enabled. We do this by copying the same init
-// script to a global init directory.
-//
-// dbutils.fs.cp("dbfs:/okera/init.sh", s"dbfs:/databricks/init/")
-</span></code></pre></div></div>
-
-<blockquote>
-  <p><strong>Notes:</strong></p>
-  <ul>
-    <li>Adjust the <code class="highlighter-rouge">&lt;YOUR CLUSTER NAME&gt;</code> placeholder to match the name of the Databricks cluster you are targeting.</li>
-    <li>Uncomment the last line as needed.</li>
-  </ul>
-</blockquote>
-
-<p>Once all steps are completed you can use the Databricks UI to spin up a cluster and continue with the Okera configuration, explained next.</p>
-
-<h4 id="okera-steps">Okera Steps</h4>
-
-<p>For Okera, the steps are as such:</p>
-
-<ol>
-  <li>
-    <p>When setting up a ODAS cluster environment using the Deployment Manager, you have to use the Databricks provided public key and specify it as an <a href="odas-authentication#public-key-approach">environment variable</a>.</p>
-
-    <p>For example, set the following variables in your specific <code class="highlighter-rouge">env.sh</code>:</p>
-
-    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CEREBRO_JWT_PUBLIC_KEY</span><span class="o">=</span><span class="s2">"s3://acme-bucket/keys/databricks.pub"</span>
-<span class="nb">export </span><span class="nv">CEREBRO_JWT_ALGORITHM</span><span class="o">=</span><span class="s2">"RSA512"</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Optionally configure a <a href="odas-authentication#group-resolution">group resolution</a> option that works for your environment.</p>
-  </li>
-</ol>
-
-<p>Once these steps are completed, use the Deployment Manager to spin up an ODAS cluster with the specific environment.
-You should now be able to access data backed by Okera using Spark or a Notebook provided by Databricks.</p>
-
-<blockquote>
-  <p><strong>Note:</strong> Okera configurations in Databricks (that is, connection and RPC timeout values) are applied at the notebook level (as opposed to per-user or per-cluster).</p>
-</blockquote>
-
-<p>For additional information, see the <a href="odas-authentication#json-web-tokens">JWT documentation</a>.</p>
 
 
     <div class="tags">

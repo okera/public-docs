@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -736,7 +750,8 @@ Scaling is performed from the CLI using the update command:</p>
 </code></pre></div></div>
 
 <p>This command is used to scale a cluster up or down in size.
-Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.</p>
+Okera manages the underlying machines life cycle by launching new ones, and terminating scaled down ones, as required.
+For clusters that are running on AWS ASGs, Okera will update the ASGs configuration and that will trigger the launching or termination of EC2 instances. The Deployment Manager master will observe this change and adjust the cluster membership accordingly.</p>
 
 <blockquote>
   <p><strong>Note:</strong> The cluster must have been created using either the <code class="highlighter-rouge">--launchScript</code> or
@@ -756,6 +771,20 @@ The optimal number of planners depends on the environment and workload. For user
 The planner number cannot exceed the cluster size.
 It requires restarting the cluster for the change to take effect.</p>
 </blockquote>
+
+<h2 id="restarting-a-cluster">Restarting a cluster</h2>
+
+<p>ocadm supports restarting the entire cluster or just a single service:</p>
+
+<p><strong>Example:</strong> Restarting all the services</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters restart 1
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Restarting just the planner</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters restart <span class="nt">--service</span> cerebro_planner 1
+</code></pre></div></div>
 
 <h2 id="enabling-termination-protection">Enabling Termination Protection</h2>
 
@@ -857,7 +886,7 @@ Lower-numbered services having issues preclude a higher-numbered service from co
 Rather, it indicates that the service was able to startup successfully, including passing all initial service configuration validations.
 The service responded to the most recent Deployment Manager request to its health check endpoint.</p>
 
-<h2 id="cluster-diagnosis">Cluster diagnosis</h2>
+<h2 id="cluster-diagnostics">Cluster diagnostics</h2>
 
 <p>It may occasionally be helpful to gather system logs from the nodes in a cluster when
 a functional issue or performance issue occurs. A cluster can be commanded to compile
@@ -897,6 +926,13 @@ Any changes made directly to the Sentry database in the Catalog might take up to
 <p>Planner nodes cache the role and permissions information from the Catalog.
 When multiple Planner nodes are present in a ODAS cluster, a policy is followed of eventual consistency for maintaining cache coherence.
 This policy could be fine tuned in the future if needed.</p>
+
+<h2 id="dealing-with-problematic-ec2-instances">Dealing with problematic EC2 instances</h2>
+
+<p>Occasionally, an EC2 instance may behave in an undesirable manner (for example, the network interface may start throwing errors).
+For clusters running on ASGs, the simplest solution is to terminate the EC2 instance.
+The AWS ASG will detect the termination and replace the EC2 instance.
+Similarly, the Okera Deployment Manager master will observe the cluster membership change and reconfigure the cluster services accordingly.</p>
 
 
     <div class="tags">

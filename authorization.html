@@ -504,6 +504,13 @@
           
           
           
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
           
           
@@ -520,42 +527,7 @@
           
           
           
-          <li><a href="catalog-rest-api">REST API</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Client Configuration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Client Integration</a> </li>
+          <li><a href="third-party-integration">Integration Overview</a> </li>
           
           
           
@@ -569,14 +541,56 @@
           
           
           
-          <li><a href="third-party-integration">Third-Party Integration</a> </li>
+          <li><a href="pyokera">Native Python Integration</a> </li>
           
           
           
           
           
           
-          <li><a href="odas-cdh-integration">CDH Integration</a> </li>
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
           
           
           
@@ -816,12 +830,12 @@ Okera supports the following SQL statements to give or remove access to roles:</
 
 <p>The following short examples show how these statements are used:</p>
 
-<p><strong>Example: Granting full read access for a table to a role</strong></p>
+<p><strong>Example:</strong> Granting full read access for a table to a role</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><strong>Example: Granting read access for specific columns of a table to a role</strong></p>
+<p><strong>Example:</strong> Granting read access for specific columns of a table to a role</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="p">(</span><span class="n">txnid</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
 </code></pre></div></div>
@@ -833,12 +847,12 @@ Okera supports the following SQL statements to give or remove access to roles:</
 
 <p>Combining a role with a group of users is shown in the next set of examples:</p>
 
-<p><strong>Example: Granting a role to a user group</strong></p>
+<p><strong>Example:</strong> Granting a role to a user group</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">test</span>
 </code></pre></div></div>
 
-<p><strong>Example: Granting a role to a specific user</strong></p>
+<p><strong>Example:</strong> Granting a role to a specific user</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">janedoe</span>
 </code></pre></div></div>

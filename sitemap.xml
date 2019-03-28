@@ -96,6 +96,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/data-registration</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/data-types</loc>
   </url>
   
@@ -324,13 +330,19 @@
   
   
   <url>
-    <loc>http://127.0.0.1/tableau-web-data-connector</loc>
+    <loc>http://127.0.0.1/third-party-integration</loc>
   </url>
   
   
   
   <url>
-    <loc>http://127.0.0.1/third-party-integration</loc>
+    <loc>http://127.0.0.1/databricks-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/tableau-web-data-connector</loc>
   </url>
   
   

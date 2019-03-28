@@ -122,6 +122,14 @@
 
 
 {
+"url": "data-registration",
+"file": "content/topics/DataRegistration.md",
+}
+,
+
+
+
+{
 "url": "data-types",
 "file": "content/topics/DataType.md",
 }
@@ -426,16 +434,24 @@
 
 
 {
-"url": "tableau-web-data-connector",
-"file": "content/topics/TableauWDC.md",
+"url": "third-party-integration",
+"file": "content/topics/ThirdPartyIntegration.md",
 }
 ,
 
 
 
 {
-"url": "third-party-integration",
-"file": "content/topics/ThirdPartyIntegration.md",
+"url": "databricks-integration",
+"file": "content/topics/ThirdPartyIntegration_Databricks.md",
+}
+,
+
+
+
+{
+"url": "tableau-web-data-connector",
+"file": "content/topics/ThirdPartyIntegration_TableauWDC.md",
 }
 ,
 
