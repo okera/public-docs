@@ -934,7 +934,7 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
   <p><strong>Notes:</strong></p>
   <ul>
     <li>If <strong>encryption</strong> is being used with keys in KMS, these roles will also need KMS access (see <a href="s3-encryption-support">S3 Encryption Support</a>).</li>
-    <li>Endusers do <strong>not</strong> need these roles to use the Okera services.</li>
+    <li>End users do <strong>not</strong> need these roles to use the Okera services.</li>
     <li>The is <strong>no</strong> need to create IAM users or any other IAM resource.</li>
   </ul>
 </blockquote>
@@ -960,10 +960,11 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
     <p>Select the ID of your VPC from the <strong>VPC</strong> menu.</p>
   </li>
   <li>
-    <p>Use the <strong>Add Rule</strong> button to add the following <strong>Inbound</strong> rules:</p>
+    <p>Use the <strong>Add Rule</strong> button to add the following <strong>Inbound</strong> rules that pertain to machines outside of the security group:</p>
 
     <blockquote>
-      <p><strong>Note:</strong> This assumes the <a href="https://docs.okera.com/service-port-assignments">default ports</a> were chosen for the ODAS services, and that they should be accessible by machines outside of the current security group. Also see <a href="install-dm#okera_port_configuration">Port Configuration</a>.</p>
+      <p><strong>Note:</strong> This assumes the <a href="https://docs.okera.com/service-port-assignments">default ports</a> were chosen for the ODAS services, and that they should be accessible by machines outside of the current security group.
+Also see <a href="install-dm#okera_port_configuration">Port Configuration</a>.</p>
     </blockquote>
 
     <table>
@@ -977,6 +978,13 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>SSH</td>
+          <td>TCP</td>
+          <td><code class="highlighter-rouge">22</code></td>
+          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td>SSH access</td>
+        </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
@@ -1037,8 +1045,8 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
     </table>
 
     <blockquote>
-      <p><strong>Note:</strong> If you use <code class="highlighter-rouge">0.0.0.0/0</code> as the source value, you enable all IPv4 addresses to access your instances using HTTP or HTTPS.
-  To restrict access, enter a specific IP address or range of addresses.</p>
+      <p><strong>Note:</strong> If you use <code class="highlighter-rouge">0.0.0.0/0</code> as the source value, you enable all IPv4 addresses to access these ports.
+To restrict access, enter a specific IP address or range of addresses.</p>
     </blockquote>
   </li>
   <li>
@@ -1058,8 +1066,9 @@ Most steps require administrative (or otherwise privileged) access to the <a hre
   <p><strong>Note:</strong> Typically setting any <strong>Outbound</strong> rules is not required.</p>
 </blockquote>
 
-<p>Next, edit the new group and add itself to the list of <strong>Inbound</strong> rules, allowing full communication between the DM and ODAS nodes.
-Click on the <strong>Inbound</strong> tab and select <strong>Edit</strong> and <strong>Add Rule</strong>, then specify the following new entry:</p>
+<p>Next, edit the new group and add additional rules that only apply to machines within the same security group, including the access to the MySQL RDS instance.
+Click on the <strong>Inbound</strong> tab and select <strong>Edit</strong>.
+Then, for each entry in the following table, click on <strong>Add Rule</strong> and enter the given details:</p>
 
 <table>
   <thead>
@@ -1073,11 +1082,67 @@ Click on the <strong>Inbound</strong> tab and select <strong>Edit</strong> and <
   </thead>
   <tbody>
     <tr>
-      <td>All traffic</td>
-      <td>All</td>
-      <td>All</td>
-      <td>&lt;security-group-id&gt;</td>
-      <td>Self reference.</td>
+      <td>MYSQL/Aurora</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">3306</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>MySQL RDS instance</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">6443</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>Kubernetes API Server</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">6783</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>Kubernetes Weave (TCP)</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">10250</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>Kubernetes Kubelet Server</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">8085</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>ODAS Agent</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">9083</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>ODAS HMS</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">9091</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>ODAS ZooKeeper</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">9098</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>ODAS Canary</td>
+    </tr>
+    <tr>
+      <td>Custom TCP</td>
+      <td>TCP</td>
+      <td><code class="highlighter-rouge">11060</code></td>
+      <td><code class="highlighter-rouge">&lt;security-group-id&gt;</code></td>
+      <td>ODAS Sentry</td>
     </tr>
   </tbody>
 </table>
@@ -1346,7 +1411,7 @@ The latter describes how quickly issues will be addressed and the amount of time
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Mar 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
       </div>
     </div>
   </div>

@@ -962,6 +962,10 @@ These ports are not user configurable and are required for cluster creation, man
       <td>Kubernetes Weave (TCP)</td>
     </tr>
     <tr>
+      <td><code class="highlighter-rouge">10250</code></td>
+      <td>Kubernetes Kubelet Server</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">8085</code></td>
       <td>ODAS Agent</td>
     </tr>
@@ -1005,7 +1009,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
   <tbody>
     <tr>
       <td><code class="highlighter-rouge">5000-13050</code></td>
-      <td>Full Services Port Range - For testing only</td>
+      <td>Full Services Port Range - Use for testing only!</td>
       <td>external</td>
     </tr>
     <tr>
@@ -1031,6 +1035,11 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
     <tr>
       <td><code class="highlighter-rouge">9083</code></td>
       <td>ODAS HMS</td>
+      <td>internal</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">9091</code></td>
+      <td>ODAS ZooKeeper</td>
       <td>internal</td>
     </tr>
     <tr>
@@ -1091,7 +1100,7 @@ In cases where ports are partially assigned, Kubernetes will assign ports to the
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Mar 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
       </div>
     </div>
   </div>

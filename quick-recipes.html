@@ -745,14 +745,14 @@ This is the duration for which the current instance of a given docker container 
 <p>When passing <code class="highlighter-rouge">GRANT ROLE</code> to the <a href="catalog-rest-api">Catalog REST API</a>, hyphenated usernames will throw an error, due to a limitation in the REST service.</p>
 
 <p><strong>Example:</strong> Hyphenated group name with improper syntax</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:7184/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:5000/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
  <span class="nt">-H</span> <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
  <span class="nt">-d</span> <span class="s1">'{"query":"GRANT ROLE winner TO GROUP the-a-team"}'</span>
 </code></pre></div></div>
 <p>This will return a syntax error.</p>
 
 <p>The solution is to contain the group name in escaped backticks.</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:7184/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://okera-catalog.example.com:5000/api/hive-ddl?user=usertoken'</span> <span class="se">\</span>
  <span class="nt">-H</span> <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
  <span class="nt">-d</span> <span class="s1">'{"query":"GRANT ROLE winner TO GROUP \`the-a-team\`"}'</span>
 </code></pre></div></div>
@@ -799,7 +799,7 @@ If the data cannot be converted at its source or upon display, you may convert i
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Mar 28, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
       </div>
     </div>
   </div>
