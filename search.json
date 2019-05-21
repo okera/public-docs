@@ -2,6 +2,14 @@
 
 
 {
+"url": "authorization-abac",
+"file": "content/topics/ABAC.md",
+}
+,
+
+
+
+{
 "url": "awsguide",
 "file": "content/topics/AWSGuide.md",
 }
@@ -52,6 +60,14 @@
 {
 "url": "odas-cdh-integration",
 "file": "content/topics/CDHIntegration.md",
+}
+,
+
+
+
+{
+"url": "release-notes-13next",
+"file": "content/topics/CHANGES-13next.md",
 }
 ,
 
@@ -226,6 +242,14 @@
 
 
 {
+"url": "install-gravity",
+"file": "content/topics/InstallGravity.md",
+}
+,
+
+
+
+{
 "url": "install-odas",
 "file": "content/topics/InstallODAS.md",
 }
@@ -378,6 +402,22 @@
 
 
 {
+"url": "aws-cloudtrail-integration",
+"file": "content/topics/QuickStart_AWS_CloudTrail.md",
+}
+,
+
+
+
+{
+"url": "autotagging-configuration",
+"file": "content/topics/QuickStart_Autotagging.md",
+}
+,
+
+
+
+{
 "url": "release-notes",
 "file": "content/topics/ReleaseNotes.md",
 }
@@ -426,8 +466,24 @@
 
 
 {
+"url": "standalone-jdbc-cluster",
+"file": "content/topics/StandaloneJdbcCluster.md",
+}
+,
+
+
+
+{
 "url": "supported-sql",
 "file": "content/topics/SupportedSQL.md",
+}
+,
+
+
+
+{
+"url": "managing-tags",
+"file": "content/topics/TagsPage.md",
 }
 ,
 
@@ -468,6 +524,14 @@
 {
 "url": "web-ui-basics",
 "file": "content/topics/WebUIUser.md",
+}
+,
+
+
+
+{
+"url": "workspace-page",
+"file": "content/topics/Workspace.md",
 }
 ,
 
@@ -520,14 +584,6 @@
 {
 "url": "cluster-administration",
 "file": "content/topics/ClusterAdmin.md",
-}
-,
-
-
-
-{
-"url": "contenttopicsFAQ.html",
-"file": "content/topics/FAQ.md",
 }
 
 

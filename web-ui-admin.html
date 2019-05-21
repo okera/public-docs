@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li class="active"><a href="web-ui-admin">Okera Portal for Admins</a></li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -721,13 +763,41 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="okera-portal-for-administrators">Okera Portal for Administrators</h1>
 
-<p><em>If you have ALL access on a particular object (database or dataset)</em>, you have access to its administrative features and are considered an <em>admin</em> for that object.</p>
+<h2 id="managing-access-to-ui-features">Managing access to UI features</h2>
+
+<p>Admins can control access to certain UI features by granting access to certain system views, or by using our out of the box access roles <code class="highlighter-rouge">okera_workspace_role</code> and <code class="highlighter-rouge">okera_reports_role</code>.</p>
 
 <blockquote>
-  <p><strong>Tip:</strong> For basic features accessible to all Okera users, see <a href="web-ui-basics">Okera Portal for Analysts</a>.</p>
+  <p><strong>Note</strong> These system views do not contain any data, their sole purpose is to control access.</p>
+</blockquote>
+
+<h3 id="granting-access-to-workspace">Granting access to Workspace</h3>
+
+<p>To grant access to the Workspace page, simply grant a role access to the internal <code class="highlighter-rouge">okera_system.ui_workspace</code> view.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">ui_workspace</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">steward</span><span class="p">;</span>
+</code></pre></div></div>
+<p>We have also included an out of the box role <code class="highlighter-rouge">okera_workspace_role</code>, so you can simply grant that role to any groups that need access to the workspace feature.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">okera_workspace_role</span> <span class="k">to</span> <span class="k">GROUP</span> <span class="n">marketing_stewards</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="granting-access-to-reports-page">Granting access to Reports Page</h3>
+
+<p>To grant access to the Reports page, simply grant a role access to the internal <code class="highlighter-rouge">okera_system.ui_reports</code> view. Note that this view does not contain any data, its sole purpose is to control access to reporting.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">ui_reports</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">steward</span><span class="p">;</span>
+</code></pre></div></div>
+<p>We have also included an out of the box role <code class="highlighter-rouge">okera_reports_role</code>, so you can simply grant that role to any groups that need access to the Reports feature.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">okera_reports_role</span> <span class="k">to</span> <span class="k">GROUP</span> <span class="n">marketing_stewards</span><span class="p">;</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong>Note</strong> Users will still need to have ALL access on some datasets to actually see reports for those datasets.</p>
 </blockquote>
 
 <h2 id="user-permissions-lookup">User Permissions Lookup</h2>
+
+<p><em>If you have ALL access on a particular object (database or dataset)</em>, you have access to its administrative features and are considered an <em>admin</em> for that object.</p>
 
 <p>As an Admin you will also see a user/group input box on the Permissions page next to database and dataset.
 Here you can input any username or group name to understand their access on an object.</p>
@@ -746,7 +816,7 @@ Here you can input any username or group name to understand their access on an o
 <p><strong>Dataset Details Tab</strong>
 <br />Shows the dataset details, as well as the schema <em>as that particular user would see it</em>.</p>
 
-<p><strong>User Tab</strong>
+<p><strong>Groups Tab</strong>
 <br />If the user has access, this tab shows the list of groups responsible for that user’s access to the specified database or dataset.</p>
 
 <p><strong>Database Tab</strong>
@@ -759,73 +829,10 @@ If the user only has access to specific datasets inside that database, it will s
 <br />Shows the full list of groups that have access to the specified database or dataset.
 Any group not in the available list has no access to the specified database or dataset.</p>
 
-<h2 id="workspace">Workspace</h2>
+<p><strong>Attribute Expressions</strong>
+<br />In any detail section for groups providing access, if some attributes are granting access per Attribute Based Access Control, you will see those expressions listed alongside the role specified in the grant:</p>
 
-<blockquote>
-  <p><strong>Note</strong></p>
-
-  <p>The <strong>Workspace</strong> is only available to you if you have administrator permissions.
-The Workspace provides a powerful interface for performing DDL operations (for example, SHOW, GRANT, CREATE) for Admins, as well as running basic SQL queries.</p>
-</blockquote>
-
-<p>The Workspace <strong>automatically authenticates as the logged in user</strong>, so there’s no need to provide any credentials.</p>
-
-<p>Simply type your query and click the <strong>Run</strong> button to run it.
-Your output will be displayed in the output box on the bottom.
-To write multiple queries at once, make sure the queries are separated by semicolons.</p>
-
-<p>For example:</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">role_one</span><span class="p">;</span>
-<span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">role_two</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>Okera is compatible with most HiveQL DDL statements.
-To understand all supported SQL, visit <a href="supported-sql">Supported SQL</a>.</p>
-
-<blockquote>
-  <p><strong>Warning</strong></p>
-
-  <p>If you leave the page, your query will continue to run.</p>
-</blockquote>
-
-<p><img src="assets/images/ui-screen-admin-workspace-annotated.png" alt="Okera Workspace Page" /></p>
-
-<p><strong>Recent Command History</strong>
-<br />To the right of the SQL input, you will see a list of your recent commands.
-Clicking on one re-stages the command in the input box ready to be used again.</p>
-
-<p><strong>Rerun or re-stage query</strong>
-<br />Next to previously run queries in the output box, you will see two icons.</p>
-
-<p><img src="assets/images/ui-icon-rerun.png" alt="Okera Rerun icon" /> - Rerun the query</p>
-
-<p><img src="assets/images/ui-icon-restage.png" alt="Okera Restage icon" /> - Re-stage the query (load it into query box)</p>
-
-<h3 id="workspace-row-limit">Workspace Row Limit</h3>
-
-<p>Workspace’s terminal will only output MAX 500 rows per query.</p>
-
-<p>Workspace’s terminal has a limit set to MAX 750 rows of queries in total. Therefore if workspace history contains more than 750 rows of table output, older history entries will be dropped.</p>
-
-<h3 id="formatting-queries-using-keyboard-shortcuts">Formatting Queries Using Keyboard Shortcuts</h3>
-
-<p>The editor in workspace supports the following keyboard keys and key combinations for formatting your queries and other SQL statements:</p>
-
-<p><strong>Tab Stops</strong> - To insert a tab stop in a line (in 4 character intervals), use the <code class="highlighter-rouge">TAB</code> key:</p>
-
-<ul>
-  <li>If the cursor is at the beginning of the line, 4 blank spaces are inserted.</li>
-  <li>If the cursor is in the line, enough blank spaces are added to reach the next tab stop.</li>
-</ul>
-
-<p><strong>Comments</strong> - To comment out a line (or multiple lines), place the cursor anywhere in the line (or highlight the desired lines), hold down the <code class="highlighter-rouge">CMD</code> (Mac) or <code class="highlighter-rouge">CTRL</code> (Windows) key and type a forward slash, <code class="highlighter-rouge">/</code></p>
-
-<p><strong>Multiple Cursors</strong> - To add multiple cursors in the input box, hold down the <code class="highlighter-rouge">CMD</code> (Mac) or <code class="highlighter-rouge">CTRL</code>(Windows) key and click in each new location using the mouse left button or the touchpad.</p>
-
-<p><strong>Select Text Area</strong> - To select a text area, hold down the <code class="highlighter-rouge">OPTION</code> (Mac) or <code class="highlighter-rouge">ALT</code> (Windows) key. The cursor turns into a crosshair.
-Click and drag using the mouse left button or the touchpad.</p>
-
-<p><strong>Run Commands</strong> - To run queries you can either click the <strong>Run</strong> button or hold down <code class="highlighter-rouge">CMD</code> (Mac) or <code class="highlighter-rouge">CTRL</code>(Windows) key and press the <code class="highlighter-rouge">return</code> key.</p>
+<p><img src="assets/images/ui-screen-permissions-attributes.png" alt="Okera Attribute Permissions" /></p>
 
 
     <div class="tags">
@@ -843,7 +850,7 @@ Click and drag using the mouse left button or the touchpad.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

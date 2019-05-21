@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="databricks-integration">Databricks Integration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li class="active"><a href="databricks-integration">Databricks Integration</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -902,7 +944,7 @@ Using the same notebook from above, copy the following into the next cell:</p>
  <span class="c"># This should be run once every time the JARs need to be updated and</span>
  <span class="c"># can take up to a minute.</span>
  <span class="c">#</span>
- <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"1.3.0"</span>
+ <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"1.4.0"</span>
  <span class="nv">HIVE_JARS</span><span class="o">=</span><span class="s2">"hive_1_2_1_jars"</span>
 
  mkdir <span class="nt">-p</span> /dbfs/tmp/okera/<span class="nv">$VERSION</span>/jars
@@ -925,9 +967,9 @@ Using the same notebook from above, copy the following into the next cell:</p>
 </span> <span class="c1">// This can be specified in the cluster create UI as an init script with
 </span> <span class="c1">// the path 'dbfs:/tmp/okera/init-okera.sh'
 </span> <span class="c1">//
-</span> <span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.3.0"</span>
+</span> <span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.4.0"</span>
 
- <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/tmp/okera/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
+ <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/tmp/okera/init-okera.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
  #!/bin/sh
  # Copy the staged Hive and Okera JARs to a node-local directory
  echo "Copying staged Okera JARs to node..."
@@ -998,14 +1040,14 @@ Copy and paste the code into another cell in the Scala notebook and execute it a
 // this for each new cluster.
 //
 </span><span class="k">val</span> <span class="nc">CLUSTER_NAME</span> <span class="k">=</span> <span class="o">&lt;</span><span class="nc">YOUR</span> <span class="nc">CLUSTER</span> <span class="nc">NAME</span><span class="o">&gt;</span>
-<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cp</span><span class="o">(</span><span class="n">s</span><span class="s">"dbfs:/tmp/okera/$VERSION/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"dbfs:/databricks/init/$CLUSTER_NAME/"</span><span class="o">)</span>
+<span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">cp</span><span class="o">(</span><span class="n">s</span><span class="s">"dbfs:/tmp/okera/$VERSION/init-okera.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"dbfs:/databricks/init/$CLUSTER_NAME/"</span><span class="o">)</span>
 
 <span class="c1">//
 // It is also possible to set the init script to be global, for all clusters.
 // This can be used to make all clusters Okera enabled. We do this by copying
 // the same init script to a global init directory.
 //
-// dbutils.fs.cp("dbfs:/tmp/okera/init.sh", s"dbfs:/databricks/init/")
+// dbutils.fs.cp("dbfs:/tmp/okera/init-okera.sh", s"dbfs:/databricks/init/")
 </span></code></pre></div></div>
 
 <blockquote>
@@ -1092,7 +1134,7 @@ For example, here we updated from version <code class="highlighter-rouge">1.3.0<
 </span> <span class="c1">//
 </span> <span class="k">val</span> <span class="nc">VERSION</span> <span class="k">=</span> <span class="s">"1.3.1"</span> <span class="c1">// &lt;- Updated to 1.3.1
 </span>
- <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/tmp/okera/init.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
+ <span class="n">dbutils</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">put</span><span class="o">(</span><span class="n">s</span><span class="s">"/tmp/okera/init-okera.sh"</span><span class="o">,</span> <span class="n">s</span><span class="s">"""
  #!/bin/sh
  # Copy the staged Hive and Okera JARs to a node-local directory
  echo "Copying staged Okera JARs to node..."
@@ -1127,7 +1169,7 @@ For example, here we updated from version <code class="highlighter-rouge">1.3.0<
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -801,6 +843,69 @@ This allows creating tables without first having to create the parent directory 
 
 <p>Note that tables created this way may not read correctly if the client is bypassing ODAS.
 For example, Hive clients that are directly reading this table without ODAS, may fail.</p>
+
+<h4 id="create-table-with-storage-file-format">Create table with storage file format</h4>
+
+<p>ODAS supports specifying the underlying storage type file format when creating a table.
+The storage type can be specified using the <code class="highlighter-rouge">STORED AS &lt;format-type&gt;</code> command.
+The Valid storage types are,</p>
+<ul>
+  <li>AVRO</li>
+  <li>PARQUET</li>
+  <li>TEXTFILE</li>
+  <li>JSON</li>
+  <li>JDBC</li>
+</ul>
+
+<p><strong>Example:</strong> <code class="highlighter-rouge">CREATE</code> a table with <code class="highlighter-rouge">STORED AS JSON</code> format</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">tbl</span><span class="p">(</span><span class="n">s</span> <span class="n">string</span><span class="p">,</span> <span class="n">value</span> <span class="n">int</span><span class="p">)</span>
+<span class="n">STORED</span> <span class="k">AS</span> <span class="n">JSON</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://bucket/path_to_dataset_as_json/'</span>
+</code></pre></div></div>
+
+<p>The above command can be used for other file formats as listed above.</p>
+
+<h4 id="create-table-with-auto-inference-of-datatypes">Create table with auto inference of datatypes</h4>
+
+<p>ODAS supports creating tables for which fields are auto-inferred by specifying a sample data file.
+The <code class="highlighter-rouge">CREATE</code> command can be run with an option <code class="highlighter-rouge">LIKE &lt;path_to_sample_file&gt;</code> command.</p>
+
+<p>The auto inference is currently supported for,</p>
+<ul>
+  <li>AVRO</li>
+  <li>PARQUET</li>
+  <li>TEXTFILE</li>
+  <li>JSON</li>
+</ul>
+
+<p><strong>Example:</strong> <code class="highlighter-rouge">CREATE</code> a table with <code class="highlighter-rouge">LIKE &lt;json_file&gt;</code></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">tbl</span><span class="p">(</span><span class="n">s</span> <span class="n">string</span><span class="p">,</span> <span class="n">value</span> <span class="n">int</span><span class="p">)</span>
+<span class="k">LIKE</span> <span class="n">JSON</span> <span class="s1">'s3://bucket/path_to_dataset_as_json/sample_json.json'</span>
+<span class="n">STORED</span> <span class="k">AS</span> <span class="n">JSON</span>
+<span class="k">LOCATION</span> <span class="s1">'s3://bucket/path_to_dataset_as_json/'</span>
+</code></pre></div></div>
+
+<p>The above command can be used for other file formats as listed above.</p>
+<blockquote>
+  <p><strong>Note</strong> The auto-inference for JSON is entirely based on the data provided in the json
+file and based on the sample data; the field types can vary. Its recommended to review and amend as necessary.
+For example, if the sample data has values for a column named <code class="highlighter-rouge">volume</code> as 300000, 400000,
+the data type for that column would be <code class="highlighter-rouge">INT</code> and if its actually a <code class="highlighter-rouge">BIGINT</code>, the users need
+to amend it post table creation.</p>
+</blockquote>
+
+<h4 id="change-partition-location">CHANGE PARTITION LOCATION</h4>
+
+<p>ODAS allows changing the file location of any particular partition in an external table using sql, after the external table has been created. An example is shown below.</p>
+
+<p><strong>Usage:</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tbl</span> <span class="n">PARTITION</span> <span class="p">(</span><span class="n">part1</span><span class="o">=</span><span class="nv">"partition_name"</span><span class="p">)</span> <span class="k">SET</span> <span class="k">LOCATION</span> <span class="s1">'s3://bucket/path_to_dataset'</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Change the location for partition <code class="highlighter-rouge">snap_dt="20170809"</code></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">hp_test</span><span class="p">.</span><span class="n">cerebro_hr_emp</span> <span class="n">PARTITION</span> <span class="p">(</span><span class="n">snap_dt</span><span class="o">=</span><span class="nv">"20170809"</span><span class="p">)</span> <span class="k">SET</span> <span class="k">LOCATION</span>
+<span class="s1">'s3://qhrcntrl/hr/appl/dde/cln/worker_non_api_cln.dat/snap_dt=20170809'</span>
+</code></pre></div></div>
 
 <h4 id="registering-hive-serializationdeserialization-serde-libraries">Registering Hive Serialization/Deserialization (SerDe) Libraries</h4>
 
@@ -1149,7 +1254,7 @@ If the smaller tables exceed the maximum configured size, the request fails at r
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

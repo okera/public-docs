@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -758,6 +800,11 @@ The Okera Policy Engine supports the following privileges:</p>
       <td><code class="highlighter-rouge">CREATE</code></td>
       <td>Catalog, Database</td>
       <td>Grants ability to create an object within another object, for instance, <code class="highlighter-rouge">GRANT CREATE ON DATABASE</code> grants the ability to create a table within the database.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CREATE_AS_OWNER</code></td>
+      <td>Catalog</td>
+      <td>Grants ability to create a database and automatically receive ALL privileges on that database e.g. <code class="highlighter-rouge">GRANT CREATE_AS_OWNER ON CATALOG</code> Note: CREATE_AS_OWNER does not cascade to all tables. You will not be able to create tables inside databases you have not created.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">ALTER</code></td>
@@ -984,7 +1031,7 @@ https://s3-us-west-2.amazonaws.com/cerebrodata-internal-release/docs-staging/faq
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

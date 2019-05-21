@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li class="active"><a href="emr-integration">AWS EMR Integration</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li class="active"><a href="emr-integration">AWS EMR Integration</a></li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -742,7 +784,7 @@ It assumes that the ODAS cluster is already running.</p>
 An EMR cluster that is using multiple components should apply each configuration.</p>
 
 <blockquote>
-  <p><strong>Note:</strong> EMR versions 5.1.0 through 5.17.0 are supported by the latest bootstrap scripts.
+  <p><strong>Note:</strong> EMR versions 5.1.0 through 5.20.0 are supported by the latest bootstrap scripts.
 <strong>Note:</strong> Presto support is enabled only starting in EMR 5.3.0</p>
 </blockquote>
 
@@ -783,8 +825,8 @@ This is useful to set env variables like HTTP_PROXY, OKERA_BITS_REGION.</li>
   <li>See <a href="client-integration#required">Client Integration</a> for information on the <code class="highlighter-rouge">&lt;hostports&gt;</code> parameter</li>
 </ul>
 
-<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.3.4 release, provide the arguments <code class="highlighter-rouge">1.3.4 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
-If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.3.4 spark-2.x hive</code>.</p>
+<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.4.0 release, provide the arguments <code class="highlighter-rouge">1.4.0 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
+If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.4.0 spark-2.x hive</code>.</p>
 
 <p>The complete list of supported components are:</p>
 <ul>
@@ -943,7 +985,7 @@ Since we’re starting with Hive, Presto and Spark, specify <code class="highlig
 
 <p>For example, copy and paste this (and adjust as needed) into the “Optional arguments” box:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.3.4 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.4.0 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
 </code></pre></div></div>
 
 <p>Notes:</p>
@@ -1320,6 +1362,10 @@ Instead, altering the location is done through a native Okera client like the od
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">odb</span> <span class="n">dataset</span> <span class="n">hive</span><span class="o">-</span><span class="n">ddl</span> <span class="nv">"alter table okera.users set location 's3a://okera/correctedlocation'"</span>
 </code></pre></div></div>
 
+<p>ODAS only supports using the cluster-local storage on a given EMR cluster.
+Distributed file systems like EFS are not supported.
+Using them, especially if mounted on multiple EMR clusters, can cause authentication issues preventing the use of ODAS.</p>
+
 <h4 id="limitations">Limitations</h4>
 
 <blockquote>
@@ -1341,7 +1387,7 @@ For example, <code class="highlighter-rouge">SHOW ROLES</code> does not list the
 
 <p><strong>Example:</strong></p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odas-emr-bootstrap.sh 1.3.4 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odas-emr-bootstrap.sh 1.4.0 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
 </code></pre></div></div>
 
 <p>See the <a href="#emr-node-bootstrap">EMR Node Bootstrap</a> section for more details.</p>
@@ -1453,7 +1499,7 @@ start hive-server2
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

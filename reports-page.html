@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li class="active"><a href="reports-page">Reports Page</a></li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -728,22 +770,14 @@ The <code class="highlighter-rouge">Reports</code> page is driven from the Okera
 
 <h2 id="enabling-the-reports-page">Enabling the Reports page</h2>
 
-<p>In order to see the <code class="highlighter-rouge">Reports</code> tab, users must have <code class="highlighter-rouge">SELECT</code> privileges on the view that powers the reports, <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>.
-To give a user access to reports, you must grant <code class="highlighter-rouge">SELECT</code> to one of the user’s roles to the audit view:</p>
+<p>See <a href="web-ui-admin#granting-access-to-reports-page">here</a> for how to enable access to the reports page.</p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">on</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="o">&lt;</span><span class="k">role</span> <span class="k">to</span> <span class="n">see</span> <span class="n">reports</span><span class="o">&gt;</span>
-</code></pre></div></div>
-
-<p>If a user has <code class="highlighter-rouge">SELECT</code> privileges on <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>, they will be able to visit the reports page and query the audit logs.
-However, the audit views are set up to only show data pertaining to the datasets a user has <code class="highlighter-rouge">ALL</code> privileges on.
-If a user has <code class="highlighter-rouge">ALL</code> privileges on any dataset or database, the reports will show data for the datasets for which they have <code class="highlighter-rouge">ALL</code>.</p>
-
-<p>In some Okera configurations, almost no users have <code class="highlighter-rouge">ALL</code> privileges on any dataset.
+<p>Note that even though a user has access to the Reports page, the audit views are set up to only show audit logs pertaining to the datasets a user has <code class="highlighter-rouge">ALL</code> privileges on. In some Okera configurations, almost no users have <code class="highlighter-rouge">ALL</code> privileges on any dataset.
 In this case we suggest creating a special role that has <code class="highlighter-rouge">ALL</code> privileges on the datasets for which users need to see reports.
 That special role can be granted to the groups that need access to reports.</p>
 
 <blockquote>
-  <p><strong>Note</strong>: Users who do not have admin privileges on any dataset will not see any data in the <code class="highlighter-rouge">Reports</code> tab.</p>
+  <p><strong>Note</strong>: Users who do not have admin privileges on any dataset will not be able to see any reports under the <code class="highlighter-rouge">Reports</code> tab.</p>
 </blockquote>
 
 <h2 id="filtering-by-database">Filtering by database</h2>
@@ -919,6 +953,23 @@ In this case, exact user name.</p>
   <span class="k">and</span> <span class="n">end_unix_time</span> <span class="o">-</span> <span class="n">start_unix_time</span> <span class="o">&lt;=</span> <span class="mi">150</span>
 </code></pre></div></div>
 
+<h2 id="restricting-time-range">Restricting time range</h2>
+<p>Reporting time ranges can be restricted via the environment variable <code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE</code>.
+This may be necessary in environments with huge data volumes.
+If reporting times out for longer time ranges, you may wish to restrict these longer times.</p>
+
+<p>The format of this string should be a comma-delimited pair representing the inclusive boundaries to filter the existing reporting periods (currently ‘Last 24 hours’, ‘7 days’, ‘2 weeks’, and ‘1 month’) supported in the web UI.</p>
+
+<p>Supported inputs are all integer values of <strong>hours</strong>, <strong>days</strong>, <strong>weeks</strong>, and <strong>months</strong>.
+As an example, if you only want reporting options between 5 days and 3 weeks, you would set the environment variable <code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE=5days,3weeks</code>. This would result in the Reports page time range dropdown only showing ‘7 days’ and ‘2 weeks’ as those are the only options within that range supported by the UI.”</p>
+
+<blockquote>
+  <p><strong>Known issue</strong> <code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE</code> must be set through the <code class="highlighter-rouge">SERVICE_ENVIRONMENT_CONFIGS</code> environment variable in <code class="highlighter-rouge">env.sh</code> instead of on its own.
+For example</p>
+  <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SERVICE_ENVIRONMENT_CONFIGS</span><span class="o">=</span><span class="s2">"OKERA_REPORTING_TIME_RANGE=5days,3weeks"</span>
+</code></pre></div>  </div>
+</blockquote>
+
 <h2 id="notes-on-implementation">Notes on implementation</h2>
 
 <h3 id="time-values">Time values</h3>
@@ -959,7 +1010,7 @@ So, for similar queries from the same source, the numbers in the reports are con
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

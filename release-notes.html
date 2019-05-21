@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -721,12 +763,140 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
+<h2 id="140">1.4.0</h2>
+
+<h3 id="new-features">New features</h3>
+
+<h4 id="tags">Tags</h4>
+
+<p>Tags can now be assigned to datasets or columns to mark the type of data they contain. For example, a ‘Sensitive’ tag can be created and assigned to any columns containing sensitive data. The Datasets page can be filtered by these tags to view only datasets or columns with certain attributes.
+Complex-type columns can be tagged, but not nested elements within a complex type.</p>
+
+<p>Tags may only be created and assigned by users in admin roles and will be visible to all users. Admin users may also give other roles the ability to assign tags in the Workspace page.</p>
+
+<p>Any user may still create Private Tags for their own use.</p>
+
+<ul>
+  <li>See the <a href="managing-tags">docs</a> for more details.</li>
+</ul>
+
+<h4 id="auto-tagger">Auto-tagger</h4>
+
+<p>In order to reduce the manual work of tagging, an Auto-Tagger can be configured to detect when a column is likely to contain a certain type of formatted data, such as a Phone Number or Social Security Number and will apply the relevant tag to that column. This occurs when a new dataset is discovered on the Data Registration page.</p>
+
+<ul>
+  <li>See the <a href="autotagging-configuration">Quick Start Guide: Configuring Auto-Tagger</a> document for details.</li>
+</ul>
+
+<h4 id="attribute-based-access-grants-abac">Attribute-Based Access Grants (ABAC)</h4>
+
+<p>Admin users can now grant access to tables based on tags. For example, an admin may grant users access to all data tagged as ‘Sales’ inside a particular database. This allows access grants to be based on data attributes instead of only on technical metadata (e.g database name or dataset name). Please note that ABAC grants are currently only fully supported on tables and not views. ABAC grants on views will only be enforced when tags are on the view level, but not on the column level. For ABAC grants on tables, both table level and column level grants are fully supported. Full support for views is coming soon. All existing RBAC grants remain unaffected and you can still create RBAC grants. ABAC and RBAC grants are additive, which means if either grant give the user access, the user will be able to see that table.</p>
+
+<ul>
+  <li>See the <a href="authorization-abac">docs</a> for more details as well as the <a href="authorization-abac#abac-faqs">ABAC FAQs</a>.</li>
+</ul>
+
+<h4 id="jdbc-support">JDBC Support</h4>
+
+<p>Added a JDBC endpoint and native Presto support.
+A new cluster type, STANDALONE_JDBC_CLUSTER, is now available.
+Specifying STANDALONE_JDBC_CLUSTER will bring up a cluster that includes Presto and exposes a JDBC endpoint for use with Tableau and other JDBC-enabled analytics clients.</p>
+
+<h4 id="json-file-format">JSON file format</h4>
+
+<ul>
+  <li>JSON file formats are now supported by ODAS.</li>
+  <li>All data types similar to avro and parquet are supported with the exception of maps. Maps can already be represented as valid json structure.</li>
+  <li>JSON tables can be created via <a href="supported-sql#create-table-with-auto-inference-of-datatypes">auto-inference</a>
+or <a href="supported-sql#create-table-with-storage-file-format">stored-as-json</a> syntax</li>
+  <li>See the <a href="complex-types#json-file-format">docs</a> for more details.</li>
+  <li>JSON files are now supported in the data registration wizard.</li>
+</ul>
+
+<h4 id="date-type">DATE type</h4>
+<ul>
+  <li>DATE type is now supported.</li>
+  <li>See the <a href="data-types">docs</a> for more details.</li>
+</ul>
+
+<h4 id="aws-cloudtrail-integration">AWS CloudTrail Integration</h4>
+<ul>
+  <li>Okera can consume AWS CloudTrail API event logs to more accurately determine when it is appropriate to perform maintenance operations. For example, the automatic discovery of new datasets and dataset partitions can occur faster and more efficiently when Okera receives direct notifications from AWS regarding S3 write operations.  Without CloudTrail event consumption, Okera will fall back onto a polling model for detection of dataset changes.  Refer to the <a href="aws-cloudtrail-integration">Quick Start Guide: AWS CloudTrail Integration</a> document for details.</li>
+</ul>
+
+<h3 id="performance-improvements">Performance Improvements</h3>
+
+<ul>
+  <li>The improvements includes specific optimizations for partitions metadata handling to
+improve performance on scanning data with partition filters.</li>
+  <li>Introduced new compression method (zstd) for efficient transfer between ODAS cluster and clients like
+spark and hive. The default compression is now zstd.</li>
+  <li>Introducing Okera SQL Extensions to our spark client.
+    <ul>
+      <li>This is an extension capability provided by spark using which we can augment the spark
+plan to pass additional information to ODAS.</li>
+      <li>This is primarily for two optimizations at this point,
+        <ul>
+          <li>To push down functions that are supported by ODAS like CAST/UPPER/LOWER/UNIX_TIMESTAMP</li>
+          <li>Implemented metadata only optimization for queries that have aggregation on just partition columns
+This is inspired from spark’s own version of such optimization as <a href="https://github.com/apache/spark/blob/master/sql/core/src/main/scala/org/apache/spark/sql/execution/OptimizeMetadataOnlyQuery.scala">here</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="other-improvements">Other Improvements</h3>
+
+<ul>
+  <li>AWS Athena can be registered and used as a JDBC data source. See <a href="jdbc-data-source">docs</a></li>
+  <li>New <code class="highlighter-rouge">CREATE_AS_OWNER</code> <a href="#privileges">privilege</a> that grants ability to create a database and automatically receive ALL privileges on that database. Note: <code class="highlighter-rouge">CREATE_AS_OWNER</code> does not cascade to all tables. You will not be able to create tables inside databases you have not created with this privilege.</li>
+  <li>Cluster name may be customized and will display in the navigation bar. See <a href="advanced-install#okera_cluster_label">docs</a></li>
+  <li>Crawlers may now be deleted on the Data Registration page.</li>
+  <li>Crawlers can now discover JSON data types on the Data Registration page.</li>
+  <li>The Permission page now displays the full list of permissions for the column, dataset, database, and server scopes affecting a given database. For example, if there is a group that only has access to the selected database, then that group will appear in the full list.</li>
+  <li>The Permission page indicates any Attribute Based Access Control expressions granting a group’s level of access.</li>
+  <li>Improved error messaging throughout the Okera Web UI, specifically in the Workspace page and Dataset Preview.</li>
+  <li>Decimal types in i32 and i64 storage formats are supported with latest versions of Parquet, instead of just fixed_length_byte_array. Starting from 1.4.0 version, ODAS supports handling these additional i32 and i64 decimal storage formats along with fixed_length_byte_array.</li>
+  <li>ODAS shares existing HMSs which contain ORC files created by hive. However, the metadata load will fail for such cases. With 1.4.0 version of ODAS, we support ORC file format for metadata load. <em>Note</em> scans will still fail for ORC files with ‘ORC files are not currently supported.’ error.</li>
+  <li>Extended support for <code class="highlighter-rouge">MAP</code> complex types. It is now possible to use <code class="highlighter-rouge">MAP&lt;STRING, STRUCT&gt;</code> and <code class="highlighter-rouge">MAP&lt;STRING, ARRAY&gt;</code>.</li>
+</ul>
+
+<h3 id="incompatible-changes">Incompatible changes</h3>
+
+<ul>
+  <li>The default resolution of parquet schema has been changed to be by name. To be explicit, this flag is now by default set to true, <code class="highlighter-rouge">default_parquet_resolve_by_name=true</code>.
+Prior to 1.4 the default was by ordinal (position).</li>
+  <li>The way access is controlled for the Workspace and Reports features in the UI has changed. Current users may need their access updated as a result:
+    <ul>
+      <li>Where before a user needed ALL or SELECT access on <em>any</em> dataset in the Okera catalog to access Workspace, that user now needs SELECT access on <code class="highlighter-rouge">okera_system.ui_workspace</code>. See <a href="web-ui-admin#granting-access-to-workspace">docs</a> for more info.</li>
+      <li>Where before a user needed ALL or SELECT access on okera_system.reporting_audit_logs to access Reports, that user now needs SELECT access on <code class="highlighter-rouge">okera_system.ui_reports</code>. See <a href="web-ui-admin#granting-access-to-reports-page">docs</a> for more info.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="known-issues">Known Issues</h3>
+<ul>
+  <li>The following Okera configurations cannot be set directly in <code class="highlighter-rouge">env.sh</code> and must instead be listed in the <code class="highlighter-rouge">SERVICE_ENVIRONMENT_CONFIGS</code> environment variable in <code class="highlighter-rouge">env.sh</code>:
+    <ul>
+      <li><code class="highlighter-rouge">OKERA_CLOUDTRAIL_SERVICE_CONFIGURATION</code></li>
+      <li><code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Example <code class="highlighter-rouge">env.sh</code> for this case:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SERVICE_ENVIRONMENT_CONFIGS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$SERVICE_ENVIRONMENT_CONFIGS</span><span class="s2">;OKERA_CLOUDTRAIL_SERVICE_CONFIGURATION=s3://my_bucket/my_cloudtrail.conf;OKERA_REPORTING_TIME_RANGE=5days,3weeks"</span>
+</code></pre></div></div>
+
 <h2 id="134-mar-2019">1.3.4 (Mar 2019)</h2>
 
 <p>This release contains the following changes</p>
 
 <ul>
   <li>Enhancement to ALTER TABLE statement to allow partition location change.</li>
+  <li>Support for scanning alternate partition location outside the table base path.</li>
   <li>Adjust health-check frequency to accommodate longer cluster start times.</li>
   <li>Optimized concurrent loading of metadata in workers, to prevent overloading the catalog with calls.</li>
   <li>Reduce noise from logs from in-memory cache management and repeated log entries
@@ -737,9 +907,10 @@ from custom UDF log errors.</li>
   <li>Fixed a memory leak that occurs in the REST container when a query invoked via Workspace times out.</li>
   <li>Fixed an env variable that controls the number of PyOkera worker processes in the REST container.</li>
   <li>Increased the number of Gunicorn worker processes in the REST container from 4 to 8.</li>
+  <li>Support for EMR5.20. ODAS now handles backward compatibility breaking changes in Presto SPI.</li>
 </ul>
 
-<h3 id="known-issues">Known issues</h3>
+<h3 id="known-issues-1">Known issues</h3>
 
 <ul>
   <li>Hive does not support scanning partitions where the partition name and the physical location do not match.
@@ -782,11 +953,11 @@ See <a href="kubernetes-dashboard-quickstart">docs</a> for details.</p>
 <p>Parquet formats are now fully supported with exception to complex types on Map. Full details,
 see <a href="complex-types">docs</a></p>
 
-<h4 id="other-improvements">Other improvements</h4>
+<h4 id="other-improvements-1">Other improvements</h4>
 
 <ul>
   <li>
-    <p>AWS EMR support extended through 5.17.</p>
+    <p>AWS EMR support extended and can be seen on https://docs.okera.com/support-versions.</p>
   </li>
   <li>
     <p>PyOkera is now supported on python 3.6 and 3.7.<br />
@@ -872,7 +1043,7 @@ JDBC queries are now run in parallel provided there is a suitable numeric type f
   </li>
 </ul>
 
-<h3 id="incompatible-changes">Incompatible changes</h3>
+<h3 id="incompatible-changes-1">Incompatible changes</h3>
 
 <ul>
   <li>
@@ -1064,7 +1235,7 @@ See <a href="advanced-install#jwt">advanced install</a> for more details.</p>
   </li>
 </ul>
 
-<h4 id="other-improvements-1">Other improvements</h4>
+<h4 id="other-improvements-2">Other improvements</h4>
 
 <ul>
   <li>
@@ -1177,7 +1348,7 @@ Previously, in same cases, this could fail if layers of views are used.</p>
   <li>Deprecated the CEREBRO_INSTALL_DIR and DEPLOYMENT_MANAGER_INSTALL_DIR environment variables. OKERA_INSTALL_DIR should be used.</li>
 </ul>
 
-<h3 id="known-issues-1">Known issues</h3>
+<h3 id="known-issues-2">Known issues</h3>
 
 <ul>
   <li>Partitioned tables where the user only has <code class="highlighter-rouge">SHOW</code> access will mistakenly show the user as having access to the partitions columns in the UI.
@@ -1224,7 +1395,7 @@ automatically serializable to JSON.</p>
   </li>
 </ul>
 
-<h3 id="known-issues-2">Known issues</h3>
+<h3 id="known-issues-3">Known issues</h3>
 <ul>
   <li>Support for AWS AutoScalingGroups (ASGs) is in beta and not recommended for production use.
 There may be issues scaling an ASG cluster down, depending on which EC2 VM is terminated.</li>
@@ -1415,7 +1586,7 @@ were made to the user bootstrapping and setup scripts. See the [emr docs][emr-in
 
 <ul>
   <li>
-    <p>Added support for <code class="highlighter-rouge">BINARY</code> and <code class="highlighter-rouge">REAL</code> data types. See the data types <a href="data-types">docs</a>.</p>
+    <p>Added support for <code class="highlighter-rouge">BINARY</code> and <code class="highlighter-rouge">REAL</code> data types. See the data types <a href="data-type">docs</a>.</p>
   </li>
   <li>
     <p>Support for registering bucketed tables and views using lateral views. Note that since
@@ -1454,7 +1625,7 @@ Client can now control the rounding behavior in the application and cast the typ
 
 <p><strong>Deployment Manager now requires java 8</strong></p>
 
-<h3 id="known-issues-3">Known issues</h3>
+<h3 id="known-issues-4">Known issues</h3>
 
 <p><strong>Using AWS autoscaling groups</strong></p>
 
@@ -1482,7 +1653,7 @@ This will be remedied in the next release.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

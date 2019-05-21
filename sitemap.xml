@@ -6,6 +6,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/authorization-abac</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/awsguide</loc>
   </url>
   
@@ -43,6 +49,12 @@
   
   <url>
     <loc>http://127.0.0.1/odas-cdh-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/release-notes-13next</loc>
   </url>
   
   
@@ -174,6 +186,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/install-gravity</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/install-odas</loc>
   </url>
   
@@ -288,6 +306,18 @@
   
   
   <url>
+    <loc>http://127.0.0.1/aws-cloudtrail-integration</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/autotagging-configuration</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/release-notes</loc>
   </url>
   
@@ -324,7 +354,19 @@
   
   
   <url>
+    <loc>http://127.0.0.1/standalone-jdbc-cluster</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/supported-sql</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/managing-tags</loc>
   </url>
   
   
@@ -355,6 +397,12 @@
   
   <url>
     <loc>http://127.0.0.1/web-ui-basics</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://127.0.0.1/workspace-page</loc>
   </url>
   
   
@@ -395,12 +443,6 @@
   
   <url>
     <loc>http://127.0.0.1/cluster-administration</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://127.0.0.1/content/topics/FAQ.html</loc>
   </url>
   
   

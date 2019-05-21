@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -777,6 +819,7 @@ In practice though it is more common to create broader groups with more than one
 </blockquote>
 
 <h2 id="privileges-and-scope">Privileges and Scope</h2>
+
 <p>For role-based access control, each role can be assigned a permission, called a privilege, to a specific object, at the scope of the object type.
 See <a href="privileges">Privileges</a> for an explanation of all the privileges and scopes supported by The Okera Policy Engine.</p>
 
@@ -800,6 +843,8 @@ Okera supports the following SQL statements to give or remove access to roles:</
 <span class="k">SHOW</span>
    <span class="n">ROLES</span> <span class="p">[</span><span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">pattern</span><span class="o">&gt;</span><span class="p">]</span>
 
+<span class="k">SHOW</span> <span class="k">GRANT</span> <span class="o">&lt;</span><span class="n">principal_type</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">principal</span><span class="o">&gt;</span>
+
 <span class="o">&lt;</span><span class="n">privilege_level</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
     <span class="k">ALL</span>
   <span class="o">|</span> <span class="k">SELECT</span>
@@ -815,9 +860,20 @@ Okera supports the following SQL statements to give or remove access to roles:</
   <span class="o">|</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
   <span class="o">|</span> <span class="n">URI</span> <span class="o">&lt;</span><span class="n">uri</span><span class="o">&gt;</span>
 <span class="err">}</span>
+
+<span class="o">&lt;</span><span class="n">principal_type</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
+    <span class="k">ROLE</span>
+  <span class="o">|</span> <span class="k">GROUP</span>
+  <span class="o">|</span> <span class="k">USER</span>
+<span class="err">}</span>
 </code></pre></div></div>
 
-<p>Further, the following commands can be used to add to and remove roles from user groups:</p>
+<blockquote>
+  <p><strong>Note:</strong> Revoking permissions is always done in a cascading manner.
+This means when, for example, revoking permission at the database level, all dataset level permissions are also removed.</p>
+</blockquote>
+
+<p>In addition, the following commands can be used to add to and remove roles from user groups:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span>
     <span class="k">ROLE</span> <span class="o">&lt;</span><span class="n">role_name</span><span class="o">&gt;</span>
@@ -857,14 +913,30 @@ Okera supports the following SQL statements to give or remove access to roles:</
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">janedoe</span>
 </code></pre></div></div>
 
-<p><strong>Example:</strong> show roles matching pattern</p>
+<p><strong>Example:</strong> Showing roles matching pattern</p>
 
-<p>pattern is case insensitive. This includes
-star(*) as wild card to match any number of characters
-bar(|) for alternates. Either pattern matches</p>
+<blockquote>
+  <p><strong>Note:</strong> The pattern is case insensitive.
+It supports star (“*”) as a wild card to match any number of characters and bar(“|”) for specifying more than one pattern (where any of them may match and therefore apply).</p>
+</blockquote>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="n">ROLES</span> <span class="k">LIKE</span> <span class="s1">'*sales*'</span>
 <span class="k">SHOW</span> <span class="n">ROLES</span> <span class="k">LIKE</span> <span class="s1">'sales*|marketing*'</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Showing grants for a particular role</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">admin_role</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Showing grants for a particular group</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">GRANT</span> <span class="k">GROUP</span> <span class="k">admin</span>
+</code></pre></div></div>
+
+<p><strong>Example:</strong> Showing grants for a particular user</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">GRANT</span> <span class="k">USER</span> <span class="n">okera</span>
 </code></pre></div></div>
 
 <h2 id="best-practices">Best Practices</h2>
@@ -1017,7 +1089,7 @@ Otherwise it is advised to use specific names for local database, for example, b
 <p>Starting in ODAS 1.2.0, users automatically have the <code class="highlighter-rouge">okera_public_role</code> role regardless of the user’s groups.
 The only special property of this role is that all users have it, without needing to be granted the role.
 Otherwise, the role behaves like any other and catalog admins can grant and revoke privileges to and from this role.
-By default, this role has SELECT access to the database <code class="highlighter-rouge">okera_sample</code> which includes some sample data and diganostic views.</p>
+By default, this role has SELECT access to the database <code class="highlighter-rouge">okera_sample</code> which includes some sample data and diagnostic views.</p>
 
 <p>We expect this role to be used to grant access to the public portion of the catalog.</p>
 
@@ -1037,7 +1109,7 @@ By default, this role has SELECT access to the database <code class="highlighter
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

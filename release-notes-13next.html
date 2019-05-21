@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content=" ">
+<title>Release Notes | Okera User Documentation</title>
+<link rel="stylesheet" href="theme/css/syntax.css">
+<link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
+
+<script src="https://use.fontawesome.com/d9343c4626.js"></script>
+
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="theme/css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+<!-- Old Algolia Instant Search -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css"> -->
+<!-- End Old Algolia Instant Search -->
+<link rel="stylesheet" href="theme/css/asciidoctor.css">
+<link rel="stylesheet" href="theme/css/custom.css">
+<link rel="stylesheet" href="theme/css/boxshadowproperties.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="theme/js/jquery.navgoco.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="theme/js/toc.js"></script>
+<script src="theme/js/customscripts.js"></script>
+
+<!-- Old Algolia Instant Search -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script> -->
+<!-- End Old Algolia Instant Search -->
+
+<!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
+<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("blockquote:contains('Note')").addClass("admonitionblock note");
+    $("blockquote:contains('Warning')").addClass("admonitionblock warning");
+    $("blockquote:contains('Tip')").addClass("admonitionblock tip");
+    $(".admonitionblock.note").prepend('<i class="fa fa-check admonition"></i>');
+    $(".admonitionblock.warning").prepend('<i class="fa fa-exclamation-triangle admonition"></i>');
+    $(".admonitionblock.tip").prepend('<i class="fa fa-lightbulb-o admonition"></i>');
+  });
+</script>
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-wordmark">
+                        <a href="/">
+                            <img src="assets/images/okera-wordmark-white.svg" alt="Okera wordmark" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <!-- toggle sidebar button -->
+                        <!-- <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li> -->
+                        <!-- entries without drop-downs appear here -->
+
+                            
+                        <li>
+                            <a href="https://okera.com" target="_blank">okera.com</a>
+                        </li>
+                          
+                        <!-- entries with drop-downs appear here -->
+                        <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                         
+                    </ul>
+                </div>
+            </div>
+            <form class="aa-input-container navbar-form" id="aa-input-container" role="search">
+                <div class="form-group">
+                    <input id="aa-search-input" type="text" class="aa-input-search form-control" placeholder="Search"
+                        autocomplete="off">
+                </div>
+            </form>
+        </div>
+        <!-- Algolia Integrated search Script -->
+        <script type="text/javascript" src="theme/js/okera-integrated-search.js"></script>
+        <!-- comment out this block if you want to hide jekyll search
+                  <div class="navbar-form" id="search-demo-container">
+                      <form action="/search" method="GET">
+                      <input type="text" name="q" id="search-input" placeholder="Search the docs...">
+                      </form>
+                  </div>
+                end search -->
+    </div>
+</nav>
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+<ul id="mysidebar" class="nav affix">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a href="#">Introduction to Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="product-overview">Product Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-overview">Okera Data Access Service Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-overview">Okera Catalog Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Installing Okera</a>
+      <ul>
+          
+          
+          
+          <li><a href="getting-started">Getting Started</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install">Installation Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-prereqs">Installation Prerequisites</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-dm">Setting up the Deployment Manager</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="install-odas">Setting up the ODAS Cluster</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="advanced-install">Advanced Installation Options</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="awsguide">AWS Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-authentication">Authentication Guide</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kerberos-cluster-setup">Kerberos</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-ldap">LDAP Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-okera-rest-api-oauth">OAuth Authentication</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="secure-deployment-manager-rest-api">Deployment Manager REST Security</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="support-versions">Versions</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Administering ODAS Clusters</a>
+      <ul>
+          
+          
+          
+          <li><a href="cluster-administration">Cluster Administration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-types">Cluster Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-sizing">Cluster Sizing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="memory-usage">Platform Memory Usage</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="ip-address-management">IP Address Management</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="kubernetes-dashboard-quickstart">Cluster Monitoring with Kubernetes Addons</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="cluster-launch-plugin-api">Cluster Launch API</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Catalog</a>
+      <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization">Role-based Access Control</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="privileges">Privileges</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="schema-design">Schema Design</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="authorization-builtins">Authorization Builtin Functions</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="auditing">Auditing</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="okera-database-cli">Database CLI</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="supported-sql">Supported SQL</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="jdbc-data-source">JDBC Data Source</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-types">Supported Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="complex-types">Complex Data Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="extending-odas">Extending ODAS</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Using the Web UI</a>
+      <ul>
+          
+          
+          
+          <li><a href="web-ui-basics">Okera Portal Basics</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="datasets-page">Datasets Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="permissions-page">Permissions Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="reports-page">Reports Page</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="data-registration">Data Registration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a href="#">Reference</a>
+      <ul>
+          
+          
+          
+          <li><a href="release-notes">Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="earlier-release-notes">Earlier Release Notes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="service-port-assignments">Service Ports</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="s3-encryption-support">Supported S3 Encryption Types</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="compatibility-guarantees">Compatibility Guarantees</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="quick-recipes">Quick Recipes</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="https://okera.zendesk.com/hc/en-us/categories/115000493607-FAQs" target="_blank">Frequently Asked Questions</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+        -->
+    
+    <li>
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2', title: 'On This Page' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 80);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+    </li>
+    
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            
+
+<div class="post-content">
+
+   
+
+    
+
+
+    
+
+  <h1 id="release-notes">Release Notes</h1>
+
+<h2 id="13next12-march-2019">1.3.next.12 (March 2019)</h2>
+
+<p>1.3.next.12 contains some minor features from the upcoming 1.4 release, performance, stability and configuration improvements.
+These release notes capture the delta from 1.3.next.10.</p>
+
+<h3 id="minor-features">Minor Features</h3>
+
+<ul>
+  <li>
+    <p>Date data type support for parquet files</p>
+  </li>
+  <li>
+    <p>Support for parquet format v2 decimals where the decimal is stored as i32 and i64.
+Previously, decimals were always stored using the FIXED_LENGTH_BYTE_ARRAY storage type, which has always been supported.</p>
+  </li>
+</ul>
+
+<h3 id="performance">Performance</h3>
+
+<ul>
+  <li>
+    <p>Optimized partition pruning performance for complex expressions.
+Expressions that could not be expressed as a simple range query (e.g. equals, in, greater than) are now evaluated much faster.</p>
+  </li>
+  <li>
+    <p>Catalog (e.g. HiveMetastore) metadata is no longer loaded in parallel on the ODAS workers.
+Loading in parallel can be beneficial for query latency in some cases but could overwhelm the underlying metadata services.
+This has been disabled.</p>
+  </li>
+</ul>
+
+<h3 id="functional">Functional</h3>
+
+<ul>
+  <li>
+    <p>Disabled optimization to avoid loading partition location metadata which was used in some paths for tables with many partitions.
+This leads to correctness issues for tables that have a different structure.
+This optimization is removed and now all paths are loaded from HiveMetaStore.</p>
+  </li>
+  <li>
+    <p>ODAS planner can now load ORC files, allowing metadata operations (for example <code class="highlighter-rouge">describe</code>) to operate correctly.
+Note: Scanning ORC files is still not supported.</p>
+  </li>
+  <li>
+    <p>Handle empty delimiters for TEXT tables.
+Previously, these tables would fail to load.</p>
+  </li>
+</ul>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>A few configuration defaults have changed to produce better behavior for typical workloads out of the box.</p>
+
+<ul>
+  <li>
+    <p>Default worker batch size increased from 5000 to 20000</p>
+  </li>
+  <li>
+    <p>The ODAS workers now default to resolving parquet schemas by name.</p>
+  </li>
+  <li>
+    <p>Planner session affinity is disabled.
+This behavior is not well suited for a single multi-tenant compute cluster, for example a single Databricks Spark Cluster.
+The benefits session affinity brings is not net beneficial.</p>
+  </li>
+  <li>
+    <p>Simplified planner health check from <code class="highlighter-rouge">show databases</code> to <code class="highlighter-rouge">select 1</code>.
+<code class="highlighter-rouge">show databases</code> was generating metadata load, which can lead to performance degradation in some environments.</p>
+  </li>
+  <li>
+    <p>Automatic partition recovery is disabled.
+This functionality is non-critical and generates more metadata load which can degrade system performance.</p>
+  </li>
+</ul>
+
+<h3 id="maintenance">Maintenance</h3>
+
+<p>Note for Nielsen: This are minor improvements from our 1.3.4 maintenance release that is not specific for Nielsen.</p>
+
+<ul>
+  <li>
+    <p>Reduce the amount of memory that can be accmulated in the REST server.</p>
+  </li>
+  <li>
+    <p>Improvements to default parallelism for pyokera when used in the REST server.
+The previous value was based on the number of cores on the machine, which was too large for big machines.</p>
+  </li>
+  <li>
+    <p>Reduce memory pooling in connection handling in ODAS planner and workers.
+This improves its stability and efficiency.</p>
+  </li>
+  <li>
+    <p>Reduced verbosity of some innocuous warnings that were logged at an inappropriate level.</p>
+  </li>
+</ul>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+
+</div>
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-lg-12 footer">
+      <div class="footer-meta">
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
+      </div>
+    </div>
+  </div>
+</footer>
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+</html>

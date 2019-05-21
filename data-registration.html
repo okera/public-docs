@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -723,7 +765,7 @@ $('#toc').on('click', 'a', function() {
 
 <p><em>Only users who have ‘ALL’ access at the ‘CATALOG’ scope have access to Data Registration.</em></p>
 
-<p>The Data Registration feature allows data administrators to crawl S3 paths and automatically discover data sets, infer their schema, and easily register them in the catalog.</p>
+<p>The Data Registration feature allows data administrators to crawl S3 paths and automatically discover data sets, infer their schema, and easily register them in the catalog. When configured, tags can also automatically be applied during data discovery and registration to aid in categorizing, searching, and applying access controls to newly registered datasets.</p>
 
 <h2 id="create-a-crawler">Create a crawler</h2>
 <p>A crawler automatically connects to your S3 data store and discovers the tables there.</p>
@@ -747,7 +789,7 @@ Please make sure Okera already has read access to your bucket. You won’t be ab
 
 <blockquote>
   <p><strong>Note</strong>
-Currently the crawler is only able to detect Parquet, Avro and CSV file formats.</p>
+Currently the crawler is only able to detect Parquet, Avro, JSON and CSV file formats.</p>
 </blockquote>
 
 <p><img src="assets/images/ui-screen-unregistered-tables.png" alt="Unregistered tables" /></p>
@@ -780,7 +822,7 @@ You can preview the table with its schema.</p>
 <p><img src="assets/images/ui-screen-registration-preview.png" alt="Preview table" /></p>
 
 <p><strong>View/Edit schema</strong><br />
-For Parquet and Avro files you can view the schema and verify it’s correct. As these are self-describing files you cannot edit these schemas during registration – if you wish to make a change to the schema you must edit the schema definition in the file.</p>
+For Parquet, Avro and JSON files you can view the schema and verify it’s correct. As these are self-describing files you cannot edit these schemas during registration – if you wish to make a change to the schema you must edit the schema definition in the file.</p>
 
 <p>For CSV files you can edit the column names and types, as well as set the ‘skip n lines’ option. You can also view the inferred delimiter. If the inferred delimiter is incorrect see <a href="#the-inferred-delimiter-is-incorrect">here</a>. Once you’re done editing, click the ‘save’ button to apply your changes.</p>
 
@@ -799,6 +841,27 @@ When you click on “View SQL” you can see the SQL CREATE table statement for 
 
 <p><img src="assets/images/ui-screen-registration-success.png" alt="Registration Successful Dialog" /></p>
 
+<h3 id="automatic-tags">Automatic tags</h3>
+
+<p>Automatic tagging can reduce the manual work of tagging by detecting when a column is likely to contain a certain type of formatted data, such as a phone number, and then applying the relevant tag to that column.
+Automatic tags can be applied during data registration.
+When Auto-Tagging is configured, during the registration crawl the Auto-Tagger samples each dataset and applies a tag if a specified pattern is matched. For more on Auto-Tagger configuration, see <a href="/autotagging-configuration">Configuration Steps</a>.</p>
+
+<h4 id="validating-auto-tags">Validating Auto-Tags</h4>
+<p>If Auto-tagger has been configured on the cluster, tags will be applied to newly discovered datasets on the Data Registration page.
+When a crawler is finished crawling and is marked ‘Ready to Register’, click on it to view the unregistered datasets.</p>
+
+<p><img src="assets/images/ui-unregistered-datasets.png" alt="Unregistered datasets" /></p>
+
+<p>Then click ‘Edit Schema’ on any unregistered dataset to view its schema.
+If Auto-Tagger has detected certain formatted data, it will have automatically tagged the columns with that data.</p>
+
+<p><img src="assets/images/ui-unregistered-auto-tags.png" alt="Auto-tags in registration" /></p>
+
+<p>To delete an auto-tag that has been applied to a column, click the ‘X’ on any tags you wish to delete.
+When you have finished deleting tags, click ‘Save’.
+When you register the dataset, you will see that the tags have been applied.</p>
+
 <h3 id="errors-during-registration">Errors during registration</h3>
 <p>In some cases there might be an error during registration e.g. Table already exists with the same name. The registration for that table will fail and you will be notified in the post registration dialog. You can see the specific error by clicking the error icon so you can try to rectify it before attempting to register the table again.</p>
 
@@ -812,7 +875,7 @@ When you click on “View SQL” you can see the SQL CREATE table statement for 
 <p>You can delete a crawler by running <code class="highlighter-rouge">DROP crawler &lt;crawler_name&gt; CASCADE</code> in Workspace. Dropping a crawler does not affect any tables that were already registered from that crawler. Any in-progress changes to <strong>unregistered</strong> tables will be lost.</p>
 
 <h3 id="my-file-wasnt-discovered-by-the-crawler">My file wasn’t discovered by the crawler</h3>
-<p>There may be some cases where the crawler is not able to discover a table or infer its schema correctly. Currently the crawler is only able to detect Parquet, Avro and CSV file formats. Please check that the filename has the file format specified e.g <code class="highlighter-rouge">sample.txt</code>.</p>
+<p>There may be some cases where the crawler is not able to discover a table or infer its schema correctly. Currently the crawler is only able to detect Parquet, Avro, JSON and CSV file formats. Please check that the filename has the file format specified e.g <code class="highlighter-rouge">sample.json</code>.</p>
 
 <blockquote>
   <p><strong>Note</strong>
@@ -868,7 +931,7 @@ s3://bucket/year<span class="o">=</span>YYY3/
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

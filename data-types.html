@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -740,6 +782,7 @@ within a table.</p>
   <li>VARCHAR</li>
   <li>CHAR</li>
   <li>DECIMAL</li>
+  <li>DATE</li>
   <li>TIMESTAMP</li>
   <li>BINARY</li>
   <li>REAL</li>
@@ -810,6 +853,12 @@ Some platforms do not not support the full range of types that ODAS does.</p>
       <td>double</td>
     </tr>
     <tr>
+      <td style="text-align: left">date</td>
+      <td style="text-align: left">int32</td>
+      <td style="text-align: left">IntegerType</td>
+      <td>int</td>
+    </tr>
+    <tr>
       <td style="text-align: left">timestamp</td>
       <td style="text-align: left">int96</td>
       <td style="text-align: left">TimestampType</td>
@@ -852,6 +901,9 @@ Some platforms do not not support the full range of types that ODAS does.</p>
 
 <ul>
   <li>The string and binary data types are stored as a binary blob and not interpreted in any way.</li>
+  <li>DATE type is now supported. The display format is “YYYY-MM-DD”.
+It is stored internally as an int number of days since unix epoch.
+Note that timestamp literal is accepted in the filters. The time portion is ignored.</li>
   <li>REAL type is now supported in ODAS. Since, Hive does not support REAL data type, odb may be
 used to create a field with REAL datatype. DOUBLE type can be used as an alias for REAL.</li>
   <li>For complex datatypes, refer to <a href="/complex-types">complex types</a></li>
@@ -859,6 +911,9 @@ used to create a field with REAL datatype. DOUBLE type can be used as an alias f
 rest server The rest server client may choose to convert it back to decimal type as needed.
 Note that most compute engines/applications connect to ODAS planner directly and support and
 retrieve decimal type directly.</li>
+  <li>ODAS supports the above mentioned data types for <a href="complex-types#JSON-file-format">JSON file formats</a>.
+Since everything is stored as a string, there is no tight mapping and the users need to select the
+appropriate data type in the table creation or use the <a href="supported-sql#create-table-with-auto-inference-of-datatypes">auto-inference</a> by providing sample JSON file.</li>
 </ul>
 
 
@@ -877,7 +932,7 @@ retrieve decimal type directly.</li>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>

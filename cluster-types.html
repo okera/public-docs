@@ -346,6 +346,13 @@
           
           
           
+          <li><a href="standalone-jdbc-cluster">Standalone JDBC Cluster</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="cluster-sizing">Cluster Sizing</a> </li>
           
           
@@ -385,8 +392,108 @@
       
   
   <li>
+      <a href="#">Integrating with ODAS</a>
+      <ul>
+          
+          
+          
+          <li><a href="third-party-integration">Integration Overview</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="planner-integration">Planner Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="pyokera">Native Python Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="catalog-rest-api">REST API Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="emr-integration">AWS EMR Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="databricks-integration">Databricks Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-integration">Hadoop Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="aws-cloudtrail-integration">AWS CloudTrail Integration Quick Start</a> </li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
       <a href="#">Using the Catalog</a>
       <ul>
+          
+          
+          
+          <li><a href="authorization-abac">Attribute-based Access Control</a> </li>
+          
+          
+          
           
           
           
@@ -497,6 +604,13 @@
           
           
           
+          <li><a href="workspace-page">Workspace</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="reports-page">Reports Page</a> </li>
           
           
@@ -511,93 +625,21 @@
           
           
           
+          <li><a href="managing-tags">Managing Tags</a> </li>
+          
+          
+          
+          
+          
+          
+          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          
+          
+          
+          
+          
+          
           <li><a href="web-ui-admin">Okera Portal for Admins</a> </li>
-          
-          
-          
-          
-      </ul>
-   </li>
-     
-      
-  
-  <li>
-      <a href="#">Integrating with ODAS</a>
-      <ul>
-          
-          
-          
-          <li><a href="third-party-integration">Integration Overview</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="planner-integration">Planner Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="pyokera">Native Python Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="catalog-rest-api">REST API Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="emr-integration">AWS EMR Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="odas-cdh-integration">Cloudera CDH Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="databricks-integration">Databricks Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-integration">Hadoop Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="client-configs">Hive and Spark Client Integration</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="hive-best-practices">Hive Integration - Best Practices</a> </li>
-          
-          
-          
-          
-          
-          
-          <li><a href="tableau-web-data-connector">Tableau Integration</a> </li>
           
           
           
@@ -721,8 +763,8 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="cluster-types">Cluster Types</h1>
 
-<p>When starting an Okera ODAS cluster, you can specify the type of the cluster as part
-of the <code class="highlighter-rouge">ocadm clusters create</code> command, which is commonly used as such:</p>
+<p>When initializing an Okera ODAS cluster, you can specify the cluster type in 
+the <code class="highlighter-rouge">ocadm clusters create</code> command in the following form:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>&lt;Name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;Number of nodes&gt; <span class="se">\</span>
   <span class="nt">--type</span><span class="o">=</span>&lt;Cluster <span class="nb">type</span><span class="o">&gt;</span> <span class="nt">--environmentid</span><span class="o">=</span>&lt;ID from environments create&gt;
@@ -733,12 +775,10 @@ of the <code class="highlighter-rouge">ocadm clusters create</code> command, whi
   <span class="nt">--type</span><span class="o">=</span>STANDALONE_CLUSTER <span class="nt">--environmentid</span><span class="o">=</span>1
 </code></pre></div></div>
 
-<p>Each cluster type starts a specific set of services, which differ between the various
-types. While the purpose of each service is less of a concern (since they are managed
-by the Okera Deployment Manager and the Kubernetes Master), it is useful to understand
-which service may be in trouble when there are operational problems. For example, the
-following shows the output of the <code class="highlighter-rouge">ocadm clusters list</code> command, with one
-cluster having an issue with health checking the third service of a standalone cluster:</p>
+<p>Each cluster type supports a different set of services.
+It can be useful to know which services populate each cluster type in the event of an operational problem.
+Using the <code class="highlighter-rouge">ocadm clusters list</code> command output, you can infer which service is in trouble.
+The following example shows a STANDALONE_CLUSTER cluster stalling while checking the status of its third service:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ec2-user@ip-10-1-10-201 okera]<span class="nv">$ </span>./ocadm clusters list
 description      id  name               numNodes  numRunningServices    owner    statusCode    statusMessage                                                                                                                    <span class="nb">type</span>
@@ -747,12 +787,20 @@ description      id  name               numNodes  numRunningServices    owner   
                   3  staging-env-4290          2  2/7                   admin    CONCERNING    Health check unsuccessful. Unable to reach 10.1.10.164:7182: java.net.ConnectException: Connection refused <span class="o">(</span>Connection refused<span class="o">)</span>  STANDALONE_CLUSTER
 </code></pre></div></div>
 
-<p>The following lists the services started for each available cluster type, starting with
-the most common type, the <em>standalone</em> cluster. It contains everything needed to run a
-fully functional ODAS cluster. The <em>Accessible</em> column states if a particular service is
-accessible from outside of the ODAS cluster (also referred to as <em>exposed</em>).</p>
+<p>There are four cluster types supported:</p>
+<ul>
+  <li><code class="highlighter-rouge">STANDALONE_CLUSTER</code></li>
+  <li><code class="highlighter-rouge">STANDALONE_JDBC_CLUSTER</code></li>
+  <li><code class="highlighter-rouge">CATALOG_CLUSTER</code></li>
+  <li><code class="highlighter-rouge">DATA_ACCESS_CLUSTER</code></li>
+</ul>
+
+<p>Each type is discussed in detail below, including the purpose for which they are intended and the services they support.
+The <em>Accessible</em> column in each table indicates whether the service supports access from outside the ODAS cluster.</p>
 
 <h2 id="standalone-cluster">Standalone Cluster</h2>
+
+<p>Standalone, the most commonly-used type, is a fully-functional ODAS suite.</p>
 
 <p>Type: <code class="highlighter-rouge">STANDALONE_CLUSTER</code></p>
 
@@ -805,6 +853,72 @@ accessible from outside of the ODAS cluster (also referred to as <em>exposed</em
 
 <hr />
 
+<h2 id="standalone-jdbc-cluster">Standalone JDBC CLuster</h2>
+
+<p>This <a href="standadlone-jdbc-cluster">cluster type is new</a> with the 1.4.0 release. 
+It includes a Presto service that scales with the cluster so that ODBC/JDBC-based clients can have an out-of-the-box experience with ODAS.</p>
+
+<p>Type: <code class="highlighter-rouge">STANDADLONE_JDBC_CLUSTER</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">No.</th>
+      <th style="text-align: left">Service</th>
+      <th style="text-align: center">Accessible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: left">Canary</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: left">ZooKeeper</td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: left">Catalog</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: left">Planner</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: left">Worker</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: left">REST Server</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: left">Web UI</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: left">Presto Worker</td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: left">Presto UI</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
 <p>There are more specific cluster types, which are used less often though. These are
 needed when, for example, a single ODAS Catalog should be shared by multiple
 <em>data access</em> cluster instances.</p>
@@ -812,6 +926,8 @@ needed when, for example, a single ODAS Catalog should be shared by multiple
 <h2 id="catalog-only-cluster">Catalog-Only Cluster</h2>
 
 <p>Type: <code class="highlighter-rouge">CATALOG_CLUSTER</code></p>
+
+<p>Used with multiple DATA_ACCESS_CLUSTER instances to provide a shared ODAS Catalog service.</p>
 
 <table>
   <thead>
@@ -858,6 +974,8 @@ needed when, for example, a single ODAS Catalog should be shared by multiple
 <h2 id="data-access-only-cluster">Data-Access-Only Cluster</h2>
 
 <p>Type: <code class="highlighter-rouge">DATA_ACCESS_CLUSTER</code></p>
+
+<p>Used to connect to a shared CATALOG_CLUSTER instance.</p>
 
 <table>
   <thead>
@@ -907,7 +1025,7 @@ needed when, for example, a single ODAS Catalog should be shared by multiple
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Apr 11, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
       </div>
     </div>
   </div>
