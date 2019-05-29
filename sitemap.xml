@@ -396,6 +396,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/onboarding-datasets</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/web-ui-admin</loc>
   </url>
   

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Okera Platform Architecture Overview | Okera User Documentation</title>
+<title>Tutorial: Onboarding datasets | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -216,7 +216,7 @@
           
           
           
-          <li class="active"><a href="okera-architecture-overview">Platform Architecture Overview</a></li>
+          <li><a href="okera-architecture-overview">Platform Architecture Overview</a> </li>
           
           
           
@@ -713,7 +713,7 @@
           
           
           
-          <li><a href="onboarding-datasets">Onboarding datasets</a> </li>
+          <li class="active"><a href="onboarding-datasets">Onboarding datasets</a></li>
           
           
           
@@ -777,150 +777,155 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="okera-platform-architecture-overview">Okera Platform Architecture Overview</h1>
+  <h1 id="tutorial-onboarding-datasets">Tutorial: Onboarding datasets</h1>
 
-<p>The <a href="catalog-overview">Catalog Overview</a> and <a href="odas-overview">ODAS Overview</a> documents introduce the two major components of the <em>Okera Active Data Access Platform</em> (ADAP, or Okera Platform for short).
-This document takes the next step, explaining the Platform’s architecture and showing the components in action for various client requests.</p>
+<p>This self-service tutorial guides you through a very common task: onboarding datasets containing sensitive data, e.g., those with <em>personally identifying information</em> (PII).</p>
 
-<h2 id="architecture">Architecture</h2>
+<p>Difficulty: Easy <br />
+Time needed: 30 mins</p>
 
-<p>On a more technical level, the Okera Platform is divided into services that are accessible for clients, and a few other services that are only accessible internally by administrators or other services.
-This is intentionally the case to reduce complexity and concentrate access for clients to just a few locations.
-The following diagram shows all of the platform services in context.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Onboarding a datasent into an ODAS cluster (one that your installed or a <em>proof-of-concept</em> cluster provided by Okera) requires performing the following steps:</p>
 
-<p><a name="architecture-overview-diagram"></a>
-<img src="assets/images/architecture-overview.png" style="width: 100%; max-width:100%;" /></p>
+<ul>
+  <li>Define a schema for the dataset</li>
+  <li>Identify sensitive columns</li>
+  <li>Define an access control view over the dataset</li>
+</ul>
 
-<p>First we will introduce how clients access the Okera Platform, and then break up the services shown in the diagram based on their scope.</p>
+<p>We detail eacvh of these steps below.</p>
 
-<h3 id="client-access">Client Access</h3>
+<h2 id="define-dataset-schema">Define Dataset Schema</h2>
 
-<p>The diagram starts in the top right corner with clients of varying kind communicating with the platform.
-There are three major access points:</p>
-
-<ol>
-  <li>
-    <p><strong>The Okera Portal Web UI</strong></p>
-
-    <p>Clients can use Okera Portal to interact with the underlying platform.
-The web UI provides access to the catalog services, such as the Schema Registry and the Policy Engine, and enables self-service dataset discovery.
-It also offers a workspace to issue SQL statements against the platform.
-Behind the scenes, this web application uses the REST API gateway service to interact with your platform’s services, just the way your bespoke or customized applications can.</p>
-  </li>
-  <li>
-    <p><strong>The REST gateway service</strong></p>
-
-    <p>Many clients have support for the ubiquitous REST protocol, avoiding most of the issues that arise when dealing with custom protocols.
-The REST gateway service gives access to the all necessary client API calls.
-This includes both the <strong>Schema Registry</strong> for creating, altering, or dropping various objects, as well as the <strong>Policy Engine</strong> for granting or revoking access related to all registered objects.
-See the <a href="catalog-rest-api">Catalog API</a> documentation for the list of supported REST calls.</p>
-  </li>
-  <li>
-    <p><strong>The provided client libraries</strong></p>
-
-    <p>Finally, Okera provides a set of libraries for interfacing directly with the Catalog and ODAS services, including Planners and the Workers.
-This is the recommended way to integrate with the Catalog and ODAS services.</p>
-  </li>
-</ol>
-
-<p>The <a href="#architecture-overview-diagram">Platform architecture diagram</a> has a dashed line that separates the <em>external services</em>, which provide the client connectivity, from the <em>internal support and management services</em>.
-The following discusses the external and internal components separately, and how they work together to provide the services to all clients alike.</p>
-
-<h3 id="client-accessible-components">Client Accessible Components</h3>
-
-<p>The <em>external</em> components in the architecture provide the major functionality of the platform, which is the data access and metadata management, as needed by clients such as interactive users to automated applications.</p>
-
-<p>Note how the above referred to <em>services</em>, such as the REST API, Planner, and Catalog services.
-For failover purposes and continuous availability of these services, it is common in practice to have each service running multiple times.
-This is explained in greater detail in the <a href="cluster-administration#scaling-an-existing-cluster">Cluster Administration</a> documentation.
-In short, you can use the provided administrative functionality to instruct the platform to add redundant instances of the services (expressed as multiple, stacked boxes in the diagram) so that in case of a node failure the system will continue to operate.</p>
-
-<p>The Planner service is also responsible for exposing the Catalog services: the Schema Registry and Policy Engine.
-In effect, the clients use the REST API or client libraries as proxies (as shown in the diagram) to these two Catalog services, provided by the Planner instances.
-The clients also communicate with the Planner as part of a query execution (see <a href="#communication">Communication</a> below).
-For a general overview of all available services and how they can be combined, please refer to the <a href="cluster-types">Cluster Types</a> documentation.</p>
-
-<p>The ODAS client libraries are used by many of the provided higher-level client integrations, including Hive, Presto, Spark, and others.
-This integration support is needed to hide Okera as much as possible behind common tools, with which users are already familiar.
-For example, enabling the Hive integration allows for existing Hive setups to switch from direct usage of underlying data sources to use ODAS instead.
-There is no need to alter any metadata at all.</p>
-
-<p>For Python, there are two different ways of communicating with an ODAS cluster: which is using the (legacy) REST API or the (newer) native <strong>PyOkera library</strong>.</p>
+<p>Okera needs to be provided with metadata to allow it to access data stored in a data lake.  ODAS provides two ways for users to create or update the metadata for datasets managed by the Schema Registry service: one can use SQL DDL statements in the Okera WebUI or command-line interface (CLI) to specify metadata; or one can use the Okera Data Registration service to crawl the underlying storage and find missing metadata automatically. In this tutorial, we will use an example dataset provided by Okera in a public AWS S3 bucket for which we have been explicitly provided the data schema. We will thus use SQL DDL statements to specify metadata, and use the Okera WebUI to execute all SQL DDL statements, using the Workspace tab</p>
 
 <blockquote>
-  <p><strong>Tip:</strong> Wherever possible, use PyOkera, as it performs markedly better than REST.</p>
+  <p><strong>Note:</strong> You need to have administrative permissions to see the Workspace tab.
+It is sufficient to have admin permissions on the database where you use for this tutorial.</p>
 </blockquote>
 
-<h3 id="internal-and-management-components">Internal and Management Components</h3>
+<p>The example dataset we will use is located at <code class="highlighter-rouge">s3://okera-datasets-useast/transactions</code> and contains a CSV file that has <em>sales transactions</em> in it. We will use a database named <code class="highlighter-rouge">demo</code> for this tutorial, which can be created using:</p>
 
-<p>Note that these are intentionally referred to as <em>internal</em> services, as Okera may change these over time, as needed.
-Their purpose is to support the external services and enable administrators to manage the ODAS clusters.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">demo</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>For the latter, there is the option to maintain ODAS clusters using the <strong>Deployment Manager</strong> (DM), which is installed as the first component in the Okera Platform setup.
-See the <a href="cluster-administration">Cluster Administration</a> document for more details on how to manage ODAS clusters with the DM.</p>
+<p>The easiest way to get started with the dataset is to parse the CSV file at line boundaries, that is, define each line as a single <code class="highlighter-rouge">STRING</code> field:</p>
 
-<p>The DM uses Kubernetes (K8s) to manage the cluster services, including the redundant instance for fail-safety.
-Each service is packaged into its own image and started as a separate container in Kubernetes pods.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">demo</span><span class="p">.</span><span class="n">transactions_raw</span><span class="p">(</span><span class="n">record</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">COMMENT</span> <span class="nv">"Raw unschemaed transaction logs"</span>
+<span class="k">LOCATION</span> <span class="nv">"s3://okera-datasets-useast/transactions"</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>The DM does the following when creating new ODAS clusters (simplified):</p>
+<p>In the ODAS WebUI, this looks like this:</p>
 
-<ol>
-  <li>
-    <p>Launch script execution</p>
+<p><img src="assets/images/tut-onda-1.png" alt="The ODAS WebUI" /></p>
 
-    <p>This step provisions the compute resources; for example, the AWS EC2 instances as configured by the administrator.
-It also sets instance-specific <em>user data</em> (an EC2 concept) to trigger the next step as part of the instance creation.</p>
-  </li>
-  <li>
-    <p>ODAS Agent installation</p>
+<p>Notice the <code class="highlighter-rouge">Ok</code> in the <em>Output</em> section of the Workspace, which means the schema was created and can now be inspected.
+Switch to the <em>Dataset</em> tab in the WebUI, enter <code class="highlighter-rouge">demo</code> into the <em>Databases</em> filter, then select the newly created <code class="highlighter-rouge">transactions_raw</code> table.
+What you should see is similar to this:</p>
 
-    <p>The custom user data provided by the DM contains a shell script that installs the necessary base packages and binaries from a shared staging location (for example, S3, avoiding the need to connect to the Internet), including the DMs own Agent service.
-This happens on each of the provisioned instances, while the DM is waiting for all Agents to report for duty.</p>
-  </li>
-</ol>
+<p><img src="assets/images/tut-onda-2.png" alt="The Dataset Tab" /></p>
 
-<p>After the Agents have started on each node, these next steps happen (again, simplified):</p>
+<p>Then click in the <em>Preview</em> button, located in the top right-hand corner of the Preview tab, resulting in the following:</p>
 
-<ol>
-  <li>
-    <p>ODAS package installation</p>
+<p><img src="assets/images/tut-onda-3.png" alt="Previewing a Dataset" /></p>
 
-    <p>Each Agent installs all required ODAS packages on its host.</p>
-  </li>
-  <li>
-    <p>Kubernetes Master startup</p>
+<p>The reason you are able to preview the dataset is twofold: first, you are the owner of the dataset definition, and second, the storage location used is publicly available.</p>
 
-    <p>This starts the Kubernetes control plane services on the first provisioned EC2 instance.</p>
-  </li>
-  <li>
-    <p>Kubernetes Workers startup</p>
+<blockquote>
+  <p><strong>Warning:</strong> If you fail at this step it is most likely because you are unable to access the storage location.
+Remember this is not tied to your user, but the IAM profile used by the ODAS servers, and indicates that the
+IAM profile in use does not support accessing public S3 buckets.
+You must ensure that the servers can access the location at least to list its contents and read the files found.</p>
+</blockquote>
 
-    <p>The ODAS Agents on all other EC2 instances wait for the K8s master to be available, and then start all necessary K8s worker machine components.</p>
-  </li>
-  <li>
-    <p>Containers startup</p>
+<p>If all went as planned, you will see that each row in the <code class="highlighter-rouge">transactions</code> dataset contains reasonable data, including IDs, IP addresses, and possibly credit card numbers.
+We can now apply a richer schema to this data by executing the following command:</p>
 
-    <p>Finally, the Kubernetes takes over and starts the managed ODAS services by deploying the ODAS images as containers into pods.</p>
-  </li>
-</ol>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">demo</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">(</span>
+  <span class="n">txnid</span> <span class="n">BIGINT</span><span class="p">,</span> <span class="n">dt_time</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">sku</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">userid</span> <span class="n">INT</span><span class="p">,</span>
+  <span class="n">price</span> <span class="n">FLOAT</span><span class="p">,</span> <span class="n">creditcard</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">ip</span> <span class="n">STRING</span><span class="p">,</span> <span class="n">country</span> <span class="n">STRING</span><span class="p">)</span>
+<span class="k">COMMENT</span> <span class="nv">"Online transactions 2016"</span>
+<span class="k">ROW</span> <span class="n">FORMAT</span> <span class="n">DELIMITED</span>
+<span class="n">FIELDS</span> <span class="n">TERMINATED</span> <span class="k">BY</span> <span class="nv">","</span>
+<span class="k">LOCATION</span> <span class="nv">"s3://okera-datasets-useast/transactions"</span><span class="p">;</span>
+</code></pre></div></div>
 
-<p>Using the DM command-line tool or API allows an administrator to modify an ODAS cluster setup, which in turn may instruct Kubernetes to run more or fewer containers.</p>
+<p>Switching to the Dataset tab again and filtering the <code class="highlighter-rouge">demo</code> database, should now show a new dataset, named <code class="highlighter-rouge">transactions_schemaed</code>, and you can click on it to see the list of columns it contains.</p>
 
-<h2 id="communication">Communication</h2>
+<p><img src="assets/images/tut-onda-4.png" alt="Data Schema" /></p>
 
-<p>Once the cluster is operational, a client can communicate with the cluster services.
-Refer to the <a href="odas-authentication">Authentication</a> documentation for more details on how to secure the interactions between clients and an ODAS cluster.</p>
+<p>The previous command merely changed the metadata for the same files, but on access the Okera servers now parse each row into a set of columns, which is visible when you click on the Preview button for the new dataset:</p>
 
-<h3 id="read-request">Read Request</h3>
+<p><img src="assets/images/tut-onda-5.png" alt="Preview Schemaed Dataset" /></p>
 
-<p>The following sequence diagram shows how Presto, as an example interacts with ODAS after Okera integration is enabled (see <a href="client-integration#hadoop-ecosystem-tools-spark-mapreduce-hive-presto">Hadoop ecosystem tools integration</a>).</p>
+<h2 id="identify-sensitive-columns">Identify Sensitive Columns</h2>
 
-<p><img src="assets/images/architecture-dml-sequence-1.png" alt="Read Request Sequence Diagram" title="Sequence diagram for a read request" /></p>
+<p>The schema above indicates that the dataset contains columns that need to be protected from unauthorized access. We now
+enforce this by creating a new access control role using the ODAS <em>role-based access control</em> (RBAC) functionality:</p>
 
-<p>Depicted is a read request issued by Zeppelin (an interactive notebook service), showing the various calls made between the client and the services.
-Once a query is submitted in Zeppelin, it will use the Presto JDBC driver to plan and execute the request.
-The ODAS Planner is used to retrieve the dataset schema and instruct Presto how to distribute the query across its workers.
-Each worker is handed a list of tasks to perform, which is querying a subset of the resulting records.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">analysts</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">analysts</span> <span class="k">TO</span> <span class="k">GROUP</span> <span class="n">test</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>These DDL statements created a new role called <code class="highlighter-rouge">analysts</code> and grants all user from the group <code class="highlighter-rouge">test</code> access to it.
+In other words, <em>any</em> further permissions granted to the role <code class="highlighter-rouge">analysts</code> is automatically available to all users that are part of the group <code class="highlighter-rouge">test</code>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> ODAS is very flexible and can be <a href="https://docs.okera.com/odas-authentication#group-resolution">configured as needed</a> to support directory services (such as Active Directory or other LDAP servers) or even custom group resolution services.</p>
+</blockquote>
+
+<p>Now that we have a set of users that we can test with, who have the <code class="highlighter-rouge">analysts</code> role assigned to them, the easiest way to restrict access is to give them read permissions <em>only</em> on the non-sensitive data:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">(</span><span class="n">txnid</span><span class="p">,</span> <span class="n">dt_time</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span>
+<span class="k">ON</span> <span class="k">TABLE</span> <span class="n">demo</span><span class="p">.</span><span class="n">transactions_schemaed</span>
+<span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analysts</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A few notes:</p>
+
+<ul>
+  <li>You <em>must</em> grant explicit permissions for non-administrative users.
+Otherwise they will not be able to read the data at all, nor will they see the dataset listed in the Schema Registry.</li>
+  <li>For testing use another computer, another browser, or the <em>incognito</em> mode of the running  browser to log into the ODAS WebUI as second time.</li>
+</ul>
+
+<p>While this is a quick way of allowing access to partial data, it does not allow any further functionality, such as masking or filtering of data, which can be achieved using access control views.</p>
+
+<h2 id="define-access-control-views">Define Access Control Views</h2>
+
+<p>To get greater flexibility when defining access control you can employ access control views, which are like regular SQL <code class="highlighter-rouge">VIEW</code>s but are restricted to only the SQL functionality needed to restrict (or allow) access.
+To demonstrate this we create a view that <em>transforms</em> some column data based on the users permissions below:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">demo</span><span class="p">.</span><span class="n">transactions</span> <span class="k">AS</span>
+  <span class="k">SELECT</span>
+    <span class="n">txnid</span><span class="p">,</span>
+    <span class="n">dt_time</span><span class="p">,</span>
+    <span class="n">sku</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">userid</span><span class="p">))</span> <span class="k">AS</span> <span class="n">userid</span><span class="p">,</span>
+    <span class="n">price</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">creditcard</span><span class="p">,</span> <span class="n">mask_ccn</span><span class="p">(</span><span class="n">creditcard</span><span class="p">))</span> <span class="k">AS</span> <span class="n">creditcard</span><span class="p">,</span>
+    <span class="n">decode</span><span class="p">(</span><span class="k">user</span><span class="p">(),</span> <span class="nv">"admin"</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">fpt</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span> <span class="k">AS</span> <span class="n">STRING</span><span class="p">))</span> <span class="k">AS</span> <span class="n">ip</span><span class="p">,</span>
+    <span class="n">country</span>
+<span class="k">FROM</span> <span class="n">demo</span><span class="p">.</span><span class="n">transactions_schemaed</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">demo</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analysts</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>In essence, this view shows the same columns as long as you are considered an <code class="highlighter-rouge">admin</code> user.
+If you are non-admin user, the sensitive fields are transformed: the user ID is tokenized, the credit card number is masked, and the IP address is subject to a <em>format-preserving transformation</em> (FPT).
+The DDL also grants full access to the secure view for the test users.</p>
+
+<p>Switch to another browser session as a test user.
+Checking the WebUI, using the Dataset tab and clicking on the new view <code class="highlighter-rouge">transactions</code>, you can see the full access to the view:</p>
+
+<p><img src="assets/images/tut-onda-6.png" alt="Full Access to View" /></p>
+
+<p>But when you preview the dataset you will see the transformations applied on-the-fly, that is at query execution time:</p>
+
+<p><img src="assets/images/tut-onda-7.png" alt="Transformed Data Access" /></p>
+
+<p>You can read more about <a href="https://docs.okera.com/authorization">authorization</a> and the <a href="https://docs.okera.com/authorization-builtins">built-in functions</a> in our online docs.</p>
+
 
 
     <div class="tags">
