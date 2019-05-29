@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Getting Started with Okera | Okera User Documentation</title>
+<title>Okera and Domino Data Labs Integration | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -232,7 +232,7 @@
           
           
           
-          <li class="active"><a href="getting-started">Getting Started</a></li>
+          <li><a href="getting-started">Getting Started</a> </li>
           
           
           
@@ -761,130 +761,131 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="getting-started-with-okera">Getting Started with Okera</h1>
+  <h1 id="okera-and-domino-data-labs-integration">Okera and Domino Data Labs Integration</h1>
 
-<p>Let’s break down what you should know (or understand) about Okera under the hood.
-We will step through the different layers that make up your new platform for data access and governance.</p>
+<h2 id="environment-setup">Environment Setup</h2>
 
-<p>If you are totally unfamiliar with Okera, you should review our overview docs first.</p>
+<p>Domino has Environments, which are reusable environments that have any prerequisite software and settings installed on them. For example, the default “Domino Analytics Distribution” comes with Python 3.6 and R 3.4 installed, and can run Jupyter and Julia notebooks.</p>
 
-<ul>
-  <li><a href="product-overview">Okera Overview</a></li>
-  <li><a href="odas-overview">Okera Data Access Service Overview</a></li>
-  <li><a href="catalog-overview">Okera Catalog Overview</a></li>
-</ul>
+<p>Typical usage of Okera inside Domino Data Labs is done using Python, leveraging the PyOkera library. To add this to an Environment, you simply to add the following to an Environment <code class="highlighter-rouge">Dockerfile</code>:</p>
 
-<p>On this page, we will review some third-party resources you will need to be comfortable using in order to install and maintain an instance of Okera.
-Once you know what you’re getting into, we’ll send you to the <a href="install">Okera Installation page</a>, which will provide URLs for release artifacts.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN pip install pyokera
+</code></pre></div></div>
 
-<h2 id="amazon-web-services-aws">Amazon Web Services (AWS)</h2>
+<p>To do this:</p>
 
-<p>Presently, the Okera platform is designed to run on AWS.
-During the process of setting up Okera, you will configure AWS components.
-If your organization already uses AWS, these settings may already be known for your broader enterprise AWS environment.
-If you are an advanced AWS administrator, you may choose to use your preferred settings.</p>
+<ol>
+  <li>Click on the Environments tab on the left sidebar.</li>
+  <li>Select the “Domino Analytics Distribution py3.6 R3.4” default Environment.</li>
+  <li>Click the “Duplicate Environment” option in the top right</li>
+  <li>Rename from “Duplicate of Domino Analytics …” to “Okera-Enabled Domino Analytics …” by clicking on the name and editing the tex box.</li>
+  <li>Scroll down to the <code class="highlighter-rouge">Dockerfile</code> definition and click “Edit Dockerfile”</li>
+  <li>Leave the selection of “Custom Image” with the filled in text</li>
+  <li>In the end of the Dockerfile instructions, add <code class="highlighter-rouge">RUN pip install pyokera</code>, then scroll to the bottom and click “Build”</li>
+  <li>Once the image is built, in the Revisions page for your newly created Environment, click the Gear button next to the new revision and do “Set as Active”.</li>
+</ol>
 
-<p>If you are new to AWS, we have included some links in each section below to help get you up to speed.</p>
+<p>At this point, you have a new Environment that comes with PyOkera pre-installed. Note that this only has to be done once, typically by an administrator during initial set up.</p>
 
-<p>The full details are available in the <a href="awsguide">AWS Guide</a></p>
+<h2 id="projects-setup">Projects Setup</h2>
 
-<h3 id="amazon-elastic-compute-cloud-ec2">Amazon Elastic Compute Cloud (EC2)</h3>
+<p>Projects are collections of individual workspaces and jobs, and are tied to a specific Environment. You can launch ad-hoc notebooks or run scheduled jobs in them.</p>
 
-<p>Okera uses <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">EC2</a> to provision hosts for the Okera Data Access Service (ODAS) and associated operations.
-Okera’s Deployment Manager allows for custom Amazon Machine Images (AMI) to be defined in case your organization prefers to use their own.
-We don’t mind; just be sure that is built on <strong>RHEL or CentOS Linux, version 7</strong> or later (see <a href="#linux">Linux</a> below).</p>
+<p>You can create a new Project by:</p>
 
-<p><strong>Dependency: An AMI to base new instances on</strong></p>
+<ol>
+  <li>Click on the Projects tab on the left sidebar.</li>
+  <li>Click on “New Project” in the top left, and give it a name (e.g. <code class="highlighter-rouge">OkeraTest</code>) and whether you want it public or private.</li>
+  <li>Once it’s created, click on the Settings tab on the left sidebar and choose your previously created “Okera-Enabled” environment in the “Compute environment” setting. Make sure it is using the latest revision you built that includes PyOkera.</li>
+</ol>
 
-<h3 id="iam-roles">IAM Roles</h3>
+<p>At this point, you’re ready to create a simple notebook that uses PyOkera. Note that many users can share a specific project and that this does not have to be repeated.</p>
 
-<p>You’ll need to be familiar with <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html?icmpid=docs_ec2_console">AWS IAM Roles for EC2</a> for authenticating access to your EC2 instances.
-Okera requires that your Deployment Manager (and admin systems) have a specific IAM role, and your clusters have a different, likely more locked down, IAM role.
-We recommend using the following roles as starters and adjusting them as necessary for your specific environment.</p>
+<h2 id="workspace-setup">Workspace Setup</h2>
 
-<p><strong>Dependency: IAM roles</strong></p>
+<p>A workspace is just a running instance of a data science tool like Jupyter or RStudio. In this case, we will use Jupyter to show how to connect to your ODAS cluster.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Policies</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>IAM_MANAGER</td>
-      <td>AmazonRDSFullAccess<br />AmazonEC2FullAccess<br />AmazonS3FullAccess</td>
-    </tr>
-    <tr>
-      <td>IAM_CLUSTER</td>
-      <td>AmazonRDSFullAccess<br />AmazonS3FullAccess</td>
-    </tr>
-  </tbody>
-</table>
+<p>To create a workspace:</p>
 
-<p>Assuming you do not have compatible IAM roles already, create these two roles and assign them their attendant policies.</p>
+<ol>
+  <li>Click on the Workspaces tab on the left sidebar.</li>
+  <li>Choose Jupyter and give your Workspace a name, like <code class="highlighter-rouge">Okera Workspace</code>. Note that it should already be pre-selected to use your Okera-Enabled Environment that you configured in the Project settings.</li>
+  <li>Click “Launch Jupyter Workspace”, which will take you to the Jupyter File Viewer</li>
+  <li>In the File Viewer, we will create a new notebook - click on “New” dropdown button near the top left and select “Python 3”.</li>
+  <li>In the new Python Notebook, we will enter our script.</li>
+  <li>
+    <p>First, enter:</p>
 
-<h3 id="security-groups">Security Groups</h3>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> import okera.odas
+ okera.odas.version()
+</code></pre></div>    </div>
 
-<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">AWS Security Groups</a> are another security mechanism in the AWS environment.
-These are effectively virtual firewalls that allow you to block incoming and outgoing ports between specific machines.
-We assume that all ports between the DM and ODAS cluster are open and recommend locking down ports with other Security Groups.</p>
+    <p>and press Shift+Enter. This should print out <code class="highlighter-rouge">1.4.0.</code></p>
+  </li>
+  <li>
+    <p>Then, enter:</p>
 
-<p>As with anything security related, you’ll want to check with your Information Security team (or equivalent) for your organization’s best practices.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> from okera import context
+ ctx = context()
+ ctx.enable_token_auth(token_str='&lt;your token&gt;')
 
-<p><strong>Dependency: Security Group</strong></p>
+ with ctx.connect(host='&lt;your planner host/ip&gt;', port=12050) as conn:
+     df = conn.scan_as_pandas('SELECT * FROM okera_sample.sample', max_records=10000)
+     print(df)
+</code></pre></div>    </div>
 
-<p>While we recommend fine-tuning your security needs, AWS’s default security group makes a decent start.</p>
+    <p>Make sure to replace <code class="highlighter-rouge">&lt;your token&gt;</code> and <code class="highlighter-rouge">&lt;your planner host/ip&gt;</code> with your JWT token information and your ODAS Planner IP. If the planner is running on a port other than <code class="highlighter-rouge">12050</code>, replace that too. You can get these values from the ODAS UI (by clicking the About section at the top right) or by asking your administrator.</p>
 
-<h3 id="s3-buckets">S3 Buckets</h3>
+    <p>Once you have the right values, press Shift+Enter. This should print out:</p>
 
-<p>S3 buckets are the storage backbone for ODAS.
-We’ll need one for installation with read and write access accessible to your DM and all the ODAS cluster instances.
-ODAS requires read and write access to one bucket (or prefix in the bucket) for installation and logging.
-For the buckets containing your data, ODAS only requires read access.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                record
+ 0      b'This is a sample test file.'
+ 1  b'It should consist of two lines.'
+</code></pre></div>    </div>
+  </li>
+</ol>
 
-<p><strong>Dependency: One S3 installation bucket</strong></p>
+<p>Note that you or your administrator can set the connection parameters (such as the Planner host and port) in the Project definition as Environment Variables so that they’re available to all workspaces and jobs.</p>
 
-<h2 id="linux">Linux</h2>
+<h3 id="securing-your-token">Securing Your Token</h3>
 
-<p>The Okera platform runs on Linux.
-Linux commands will be provided during installation, but familiarity with these Linux commands and tools is helpful:</p>
+<p>It is not advised to put your token in every notebook you create, as it is both cumbersome and others may get access to it. Instead, you can configure it in your Domino account as a private Environment Variable that then becomes available in all notebooks and jobs that you run.</p>
 
-<ul>
-  <li><code class="highlighter-rouge">sudo</code></li>
-  <li><code class="highlighter-rouge">mkdir</code></li>
-  <li><code class="highlighter-rouge">chown</code></li>
-  <li><code class="highlighter-rouge">curl</code></li>
-  <li><code class="highlighter-rouge">tar</code></li>
-  <li><code class="highlighter-rouge">chmod</code></li>
-  <li><code class="highlighter-rouge">ln</code></li>
-  <li><code class="highlighter-rouge">export</code></li>
-</ul>
+<p>To set this up:</p>
 
-<h2 id="kubernetes">Kubernetes</h2>
+<ol>
+  <li>Go to your Account Settings by clicking on the Account silhouette.</li>
+  <li>Click on the “User Environment Variables” option or scroll down to it.</li>
+  <li>Create a new Environment Variable called <code class="highlighter-rouge">OKERA_TOKEN</code> with the value being set to your token and click “Set Variable”.</li>
+  <li>If you have a running Workspace, you’ll have to Stop it and then Relaunch it.</li>
+  <li>
+    <p>Once it’s relaunched, navigate to the notebook you had previously created, and add this to the script:</p>
 
-<p>Okera uses Kubernetes for back-end cluster management, monitoring, and port provisioning.
-We’ll let Kubernetes (also sometimes written <em>K8s</em>) <a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/">explain itself</a>, but understanding how Kubernetes works to maintain resources and enable cluster networking will be helpful if you have to troubleshoot the system in the future.
-We do explain the <a href="kubernetes-dashboard-quickstart">use of Kubernetes Dashboard</a> for monitoring Okera resources.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> import os
+ print(os.environ['OKERA_TOKEN'])
+</code></pre></div>    </div>
 
-<h2 id="docker">Docker</h2>
+    <p>and press Shift+Enter. This should print out your Okera token.</p>
+  </li>
+  <li>
+    <p>Replace the line which had your token with:</p>
 
-<p>In conjunction with Kubernetes, we use <a href="https://docs.docker.com/engine/docker-overview/#what-can-i-use-docker-for">Docker</a> to deliver the actual ODAS executables.
-One way to think of it is that the Deployment Manager spins up the cluster, Kubernetes coordinates the nodes and ports, and Docker runs the services.
-Docker containers create an encapsulated application package that includes OS, application, and any tools required to run that application.
-As long as your host operating system can run the Docker application, you can run pretty much any software in a Docker container.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> from okera import context
+ ctx = context()
+ ctx.enable_token_auth(token_str='&lt;your token&gt;')
+</code></pre></div>    </div>
 
-<p>Docker allows us to upgrade and improve on Okera applications without requiring you to have to upgrade your infrastructure as often or as dramatically as you would if our applications ran directly on your EC2 instances.
-Less change means less complications. We like that.</p>
+    <p>with</p>
 
-<p>As with Kubernetes, you will likely only have to work in the Docker layer if there is any troubleshooting required.
-In those cases, we’ll work with you and your team to get things back into working order.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> import os
+ from okera import context
+ ctx = context()
+ ctx.enable_token_auth(token_str=os.environ['OKERA_TOKEN'])
+</code></pre></div>    </div>
 
-<h2 id="installation">Installation</h2>
-
-<p>Now that you’re oriented, the fun can begin.
-Our <a href="install">Installation document</a> should be able to get you up and running with a suitable Deployment Manager and your first ODAS cluster.</p>
+    <p>and then re-run the cell using Shift+Enter. This should print out the same output as before, but it is now getting your token from the Environment Variable you set.</p>
+  </li>
+</ol>
 
 
     <div class="tags">

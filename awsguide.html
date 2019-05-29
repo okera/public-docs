@@ -1024,71 +1024,76 @@ Also see <a href="install-dm#okera_port_configuration">Port Configuration</a>.</
           <td>SSH</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">22</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;admin-cidr&gt;</code></td>
           <td>SSH access</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">10000</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>Grafana Dashboard UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">10001</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>Kubernetes Web UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">5000</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>ODAS REST Server</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">8083</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>ODAS Web UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">11050</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>ODAS Planner Web UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">11051</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>ODAS Worker Web UI</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">12050</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>ODAS Planner</td>
         </tr>
         <tr>
           <td>Custom TCP</td>
           <td>TCP</td>
           <td><code class="highlighter-rouge">13050</code></td>
-          <td><code class="highlighter-rouge">0.0.0.0/0</code></td>
+          <td><code class="highlighter-rouge">&lt;vpc-cidr&gt;</code></td>
           <td>ODAS Worker</td>
         </tr>
       </tbody>
     </table>
 
     <blockquote>
-      <p><strong>Note:</strong> If you use <code class="highlighter-rouge">0.0.0.0/0</code> as the source value, you enable all IPv4 addresses to access these ports.
-To restrict access, enter a specific IP address or range of addresses.</p>
+      <p><strong>Notes:</strong></p>
+      <ul>
+        <li>Replace <code class="highlighter-rouge">&lt;admin-cidr&gt;</code> with the CIDR containing the administrative hosts that are used to SSH into the cluster.</li>
+        <li>Replace <code class="highlighter-rouge">&lt;vpc-cidr&gt;</code> with the CIDR containing the hosts that need access to the Okera services.</li>
+        <li>A <em>CIDR</em> is a notation that contains a subnet with a network mask, for example, <code class="highlighter-rouge">10.0.0.0/24</code>.
+The CIDR is usually the same as configured for the VPC that is used for the compute engines.</li>
+      </ul>
     </blockquote>
   </li>
   <li>
@@ -1099,7 +1104,7 @@ To restrict access, enter a specific IP address or range of addresses.</p>
   </li>
 </ol>
 
-<p>The following shows the *Create group** dialog as the Okera group is created:</p>
+<p>The following shows the <strong>Create Security Group</strong> dialog as the Okera group is created:</p>
 
 <p><a name="aws-arch-createsg"></a>
 <img src="assets/images/aws-arch-createsg.png" style="width: 90%; max-width:90%;" /></p>
@@ -1453,7 +1458,7 @@ The latter describes how quickly issues will be addressed and the amount of time
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 21, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: May 28, 2019
       </div>
     </div>
   </div>

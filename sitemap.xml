@@ -132,6 +132,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/dominodataguide</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/emr-integration</loc>
   </url>
   
