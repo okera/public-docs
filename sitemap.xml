@@ -168,6 +168,12 @@
   
   
   <url>
+    <loc>http://127.0.0.1/gravity</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://127.0.0.1/hive-best-practices</loc>
   </url>
   
