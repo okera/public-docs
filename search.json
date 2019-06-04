@@ -522,14 +522,6 @@
 
 
 {
-"url": "tableau-web-data-connector",
-"file": "content/topics/ThirdPartyIntegration_TableauWDC.md",
-}
-,
-
-
-
-{
 "url": "onboarding-datasets",
 "file": "content/topics/TutorialOnboardingDatasets.md",
 }
