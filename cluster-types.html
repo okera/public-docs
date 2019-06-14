@@ -772,8 +772,7 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="cluster-types">Cluster Types</h1>
 
-<p>When initializing an Okera ODAS cluster, you can specify the cluster type in 
-the <code class="highlighter-rouge">ocadm clusters create</code> command in the following form:</p>
+<p>When initializing an Okera ODAS cluster, you can specify the cluster type in the <code class="highlighter-rouge">ocadm clusters create</code> command in the following form:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ocadm clusters create <span class="nt">--name</span><span class="o">=</span>&lt;Name&gt; <span class="nt">--numNodes</span><span class="o">=</span>&lt;Number of nodes&gt; <span class="se">\</span>
   <span class="nt">--type</span><span class="o">=</span>&lt;Cluster <span class="nb">type</span><span class="o">&gt;</span> <span class="nt">--environmentid</span><span class="o">=</span>&lt;ID from environments create&gt;
@@ -864,7 +863,7 @@ The <em>Accessible</em> column in each table indicates whether the service suppo
 
 <h2 id="standalone-jdbc-cluster">Standalone JDBC CLuster</h2>
 
-<p>This <a href="standadlone-jdbc-cluster">cluster type is new</a> with the 1.4.0 release. 
+<p>This <a href="standalone-jdbc-cluster">cluster type is new</a> with the 1.4.0 release.
 It includes a Presto service that scales with the cluster so that ODBC/JDBC-based clients can have an out-of-the-box experience with ODAS.</p>
 
 <p>Type: <code class="highlighter-rouge">STANDADLONE_JDBC_CLUSTER</code></p>
@@ -928,9 +927,8 @@ It includes a Presto service that scales with the cluster so that ODBC/JDBC-base
 
 <hr />
 
-<p>There are more specific cluster types, which are used less often though. These are
-needed when, for example, a single ODAS Catalog should be shared by multiple
-<em>data access</em> cluster instances.</p>
+<p>There are more specific cluster types, which are used less often though.
+These are needed when, for example, a single ODAS Catalog should be shared by multiple <em>data access</em> cluster instances.</p>
 
 <h2 id="catalog-only-cluster">Catalog-Only Cluster</h2>
 
@@ -1034,7 +1032,7 @@ needed when, for example, a single ODAS Catalog should be shared by multiple
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 4, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
       </div>
     </div>
   </div>

@@ -772,9 +772,7 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="secure-okera-rest-api-access-using-ldap">Secure Okera REST API Access Using LDAP</h1>
 
-<p>Okera now supports LDAP Basic Authentication. This document explains how to allow
-Okera users to authenticate using their Active Directory credentials using Basic
-authentication.</p>
+<p>Okera now supports LDAP Basic Authentication. This document explains how to allow Okera users to authenticate using their Active Directory credentials using Basic authentication.</p>
 
 <h2 id="ldap-basic-authentication">LDAP Basic Authentication</h2>
 
@@ -794,17 +792,16 @@ authentication.</p>
 
 <ul>
   <li>
-    <p><strong>Hostname</strong>
-This must be the IP address or the hostname of the Active Directory server
-instance you are using.</p>
+    <p><strong>Hostname</strong> -
+This must be the IP address or the hostname of the Active Directory server instance you are using.</p>
   </li>
   <li>
-    <p><strong>Port Number</strong>
+    <p><strong>Port Number</strong> -
 This is the port number on which the Active Directory instance is listening.
 This defaults to the SSL enabled LDAP port which is <code class="highlighter-rouge">636</code>.</p>
   </li>
   <li>
-    <p><strong>Base DN/Bind Template</strong>
+    <p><strong>Base DN/Bind Template</strong> -
 One of these need to be specified to construct the bind string against the LDAP server.
 See below for details.</p>
   </li>
@@ -812,60 +809,60 @@ See below for details.</p>
 
 <h3 id="setting-up-ldap-related-configurations">Setting up LDAP related configurations</h3>
 
-<p>To enable LDAP Basic authentication for ODAS access, set the following environment
-variables in your <code class="highlighter-rouge">/etc/okera/env.sh</code> file:</p>
+<p>To enable LDAP Basic authentication for ODAS access, set the following environment variables in your <code class="highlighter-rouge">/etc/okera/env.sh</code> file:</p>
 
 <ul>
   <li>
-    <p><strong>OKERA_LDAP_HOST</strong>
-e.g. <code class="highlighter-rouge">example.com</code> or <code class="highlighter-rouge">127.0.0.4</code>.</p>
+    <p><strong>OKERA_LDAP_HOST</strong></p>
+
+    <p>For example, <code class="highlighter-rouge">example.com</code> or <code class="highlighter-rouge">127.0.0.4</code>.</p>
   </li>
   <li>
-    <p><strong>OKERA_LDAP_PORT</strong>
-This has a <strong>default value of 636</strong> if not set.</p>
+    <p><strong>OKERA_LDAP_PORT</strong></p>
+
+    <p>This has a <strong>default value of 636</strong> if not set.</p>
   </li>
   <li>
-    <p><strong>OKERA_LDAP_USE_SSL</strong>
-By default, Okera assumes the LDAP server has SSL enabled.
-We recommend this for all production configurations in which case this config does not need to be specified.
-For test deployments, this can be set to <code class="highlighter-rouge">false</code> if the LDAP server does not have SSL enabled.</p>
+    <p><strong>OKERA_LDAP_USE_SSL</strong></p>
+
+    <p>By default, Okera assumes the LDAP server has SSL enabled.
+  We recommend this for all production configurations in which case this config does not need to be specified.
+  For test deployments, this can be set to <code class="highlighter-rouge">false</code> if the LDAP server does not have SSL enabled.</p>
   </li>
   <li>
-    <p><strong>OKERA_LDAP_BIND_TEMPLATE</strong>
-Template of the bind string when authenticating a user.
-Each bind template should contain a single ‘%s’, which is substituted with the user name trying to authenticate.
-For example, a bind template of <code class="highlighter-rouge">cn=%s,ou=ca,dc=domain,dc=com</code> with the user <code class="highlighter-rouge">Alice</code> trying to authenticate, the resulting binding string for the LDAP server would be: <code class="highlighter-rouge">cn=Alice,ou=ca,dc=domain,dc=com</code>.</p>
+    <p><strong>OKERA_LDAP_BIND_TEMPLATE</strong></p>
+
+    <p>Template of the bind string when authenticating a user.
+  Each bind template should contain a single ‘%s’, which is substituted with the user name trying to authenticate.
+  For example, a bind template of <code class="highlighter-rouge">cn=%s,ou=ca,dc=domain,dc=com</code> with the user <code class="highlighter-rouge">Alice</code> trying to authenticate, the resulting binding string for the LDAP server would be: <code class="highlighter-rouge">cn=Alice,ou=ca,dc=domain,dc=com</code>.</p>
+
+    <p>Multiple bind strings can be specified separated by <code class="highlighter-rouge">;</code>.
+  In this case, ODAS will try each bind string in order, authenticating the user on the first successful bind.
+  For example, if this config was set to: <code class="highlighter-rouge">cn=%s,ou=ca,dc=domain,dc=com;cn=%s,ou=wa,dc=domain,dc=com</code>, again with the user being Alice, ODAS will try binding with: <code class="highlighter-rouge">cn=Alice,ou=ca,dc=domain,dc=com</code> and if unsuccessful, try with <code class="highlighter-rouge">cn=Alice,ou=wa,dc=domain,dc=com</code>.
+  The user can authenticate if any of the binds succeeded and ODAS will not try the subsequent templates.</p>
+
+    <blockquote>
+      <p><strong>Note:</strong> This value cannot be set if either <code class="highlighter-rouge">OKERA_LDAP_BASE_DN</code> or <code class="highlighter-rouge">OKERA_LDAP_DOMAIN</code> is set.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong>OKERA_LDAP_BASE_DN</strong></p>
+
+    <p>Okera accepts the base DN in a particular notation as described here:
+  If your base DN is of the format <code class="highlighter-rouge">dc=example,dc=com</code>, the value to be passed in should be <code class="highlighter-rouge">example.com</code></p>
+  </li>
+  <li>
+    <p><strong>OKERA_LDAP_DOMAIN</strong></p>
+
+    <p>This is the default domain for users. For example, if set to <code class="highlighter-rouge">ALL USERS</code> and a user tries to log in with their username, <code class="highlighter-rouge">userid</code>,  Okera will authenticate (i.e. bind) with the LDAP server using <code class="highlighter-rouge">ALL USERS\\userid</code>.
+  If a domain is explicitly specified when logging in, Okera will ignore this value.
+  For example, in the same identical configuration, if the user explicitly logged in as <code class="highlighter-rouge">TEST DOMAIN\\userid</code>, then we will authenticate with LDAP using exactly that login.
+  By default, this is not set and there is no default domain.
+  If this is set, OKERA_LDAP_BASE_DN should not be set.</p>
   </li>
 </ul>
 
-<p>Multiple bind strings can be specified separated by <code class="highlighter-rouge">;</code>.
-In this case, ODAS will try each bind string in order, authenticating the user on the first successful bind.
-For example, if this config was set to: <code class="highlighter-rouge">cn=%s,ou=ca,dc=domain,dc=com;cn=%s,ou=wa,dc=domain,dc=com</code>, again with the user being Alice, ODAS will try binding with: <code class="highlighter-rouge">cn=Alice,ou=ca,dc=domain,dc=com</code> and if unsuccessful, try with <code class="highlighter-rouge">cn=Alice,ou=wa,dc=domain,dc=com</code>.
-The user can authenticate if any of the binds succeeded and ODAS will not try the subsequent templates.</p>
-
-<p>Note that this value cannot be set if either OKERA_LDAP_BASE_DN or OKERA_LDAP_DOMAIN is set.</p>
-
-<ul>
-  <li><strong>OKERA_LDAP_BASE_DN</strong></li>
-</ul>
-
-<p><strong>Please note:</strong> Okera accepts the base DN in a particular notation as described here.
-If your base DN is of the format <code class="highlighter-rouge">dc=example,dc=com</code>, the value to be passed in should
-be <code class="highlighter-rouge">example.com</code></p>
-
-<ul>
-  <li><strong>OKERA_LDAP_DOMAIN</strong>
-This is the default domain for users. For example, if set to <code class="highlighter-rouge">ALL USERS</code> and a user
-tries to log in with their username, <code class="highlighter-rouge">userid</code>,  Okera will authenticate (i.e. bind)
-with the LDAP server using <code class="highlighter-rouge">ALL USERS\\userid</code>. If a domain is explicitly specified when
-logging in, Okera will ignore this value. For example, in the same identical
-configuration, if the user explicitly logged in as <code class="highlighter-rouge">TEST DOMAIN\\userid</code>, then we will
-authenticate with LDAP using exactly that login. By default, this is not set and there
-is no default domain. If this is set, OKERA_LDAP_BASE_DN should not be set.</li>
-</ul>
-
-<p>For clarity, in your <code class="highlighter-rouge">/etc/okera/env.sh</code> file, the following variables need to be
-uncommented and set:</p>
+<p>For clarity, in your <code class="highlighter-rouge">/etc/okera/env.sh</code> file, the following variables need to be commented out and set:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
 <span class="c"># export OKERA_LDAP_HOST=your_ad_hostname</span>
@@ -873,8 +870,7 @@ uncommented and set:</p>
 <span class="c"># export OKERA_LDAP_BIND_TEMPLATE=your_bind_template</span>
 </code></pre></div></div>
 
-<p>For example, for an LDAP Host at <code class="highlighter-rouge">example.com:324</code>, and a bind template DN of <code class="highlighter-rouge">cn=%s,ou=ca,dc=example,dc=com</code>,
-the LDAP related variables will look like:</p>
+<p>For example, for an LDAP Host at <code class="highlighter-rouge">example.com:324</code>, and a bind template DN of <code class="highlighter-rouge">cn=%s,ou=ca,dc=example,dc=com</code>, the LDAP related variables will look like:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># set to enable ldap basic auth</span>
 <span class="nb">export </span><span class="nv">OKERA_LDAP_HOST</span><span class="o">=</span>example.com
@@ -884,8 +880,7 @@ the LDAP related variables will look like:</p>
 
 <h3 id="verify-ldap-basic-authentication-using-curl">Verify LDAP Basic authentication using curl</h3>
 
-<p>Before we begin this section, make sure you have a set of LDAP credentials that you
-intend to use for authentication:</p>
+<p>Before we begin this section, make sure you have a set of LDAP credentials that you intend to use for authentication:</p>
 
 <ul>
   <li>
@@ -936,13 +931,11 @@ intend to use for authentication:</p>
 
 <h3 id="use-okera-portal-to-authenticate-and-get-an-okera-token">Use Okera Portal to authenticate and get an Okera token</h3>
 
-<p>It is now possible to get an Okera token using the Okera Web UI. Point your browser to
-the login page in the Web UI and enter your credentials.</p>
+<p>It is now possible to get an Okera token using the Okera Web UI. Point your browser to the login page in the Web UI and enter your credentials.</p>
 
 <h3 id="exploring-ldap-related-logs">Exploring LDAP related logs</h3>
 
-<p>To verify if the LDAP related values are set as intended, and for LDAP related debugging,
-look for the following logs in your REST service.
+<p>To verify if the LDAP related values are set as intended, and for LDAP related debugging, look for the following logs in your REST service.
 You should see the following lines in your REST server logs:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># the general format of expected logs</span>
@@ -956,8 +949,7 @@ LDAP Server: 127.0.0.4:389
 LDAP Server Base DN: <span class="nv">dc</span><span class="o">=</span>example,dc<span class="o">=</span>com
 </code></pre></div></div>
 
-<p>If the above lines are not present, your REST service did not start with LDAP Basic
-authentication enabled.</p>
+<p>If the above lines are not present, your REST service did not start with LDAP Basic authentication enabled.</p>
 
 
     <div class="tags">
@@ -975,7 +967,7 @@ authentication enabled.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 4, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
       </div>
     </div>
   </div>
