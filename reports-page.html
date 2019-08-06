@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -972,13 +972,6 @@ If reporting times out for longer time ranges, you may wish to restrict these lo
 <p>Supported inputs are all integer values of <strong>hours</strong>, <strong>days</strong>, <strong>weeks</strong>, and <strong>months</strong>.
 As an example, if you only want reporting options between 5 days and 3 weeks, you would set the environment variable <code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE=5days,3weeks</code>. This would result in the Reports page time range dropdown only showing ‘7 days’ and ‘2 weeks’ as those are the only options within that range supported by the UI.”</p>
 
-<blockquote>
-  <p><strong>Known issue</strong> <code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE</code> must be set through the <code class="highlighter-rouge">SERVICE_ENVIRONMENT_CONFIGS</code> environment variable in <code class="highlighter-rouge">env.sh</code> instead of on its own.
-For example</p>
-  <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SERVICE_ENVIRONMENT_CONFIGS</span><span class="o">=</span><span class="s2">"OKERA_REPORTING_TIME_RANGE=5days,3weeks"</span>
-</code></pre></div>  </div>
-</blockquote>
-
 <h2 id="notes-on-implementation">Notes on implementation</h2>
 
 <h3 id="time-values">Time values</h3>
@@ -1019,7 +1012,7 @@ So, for similar queries from the same source, the numbers in the reports are con
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

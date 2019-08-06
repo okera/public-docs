@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content=" ">
-<title>Quick Start Guide: Configuring Auto-Tagger | Okera User Documentation</title>
+<title>Configuring Auto-tagging | Okera User Documentation</title>
 <link rel="stylesheet" href="theme/css/syntax.css">
 <link rel="icon" type="image/png" href="/assets/images/icon-favicon32.png">
 
@@ -625,7 +625,7 @@
           
           
           
-          <li class="active"><a href="autotagging-configuration">Configuring Auto-Tagger</a></li>
+          <li class="active"><a href="autotagging-configuration">Configuring Auto-tagging</a></li>
           
           
           
@@ -770,27 +770,35 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="quick-start-guide-configuring-auto-tagger">Quick Start Guide: Configuring Auto-Tagger</h1>
+  <h1 id="configuring-auto-tagging">Configuring Auto-tagging</h1>
 
 <h2 id="introduction">Introduction</h2>
 
-<p>The goal of this document is to provide all of the necessary information needed to configure and verify the Auto-Tagger feature in Okera.</p>
+<p>The goal of this document is to provide all of the necessary information needed to configure and verify the Auto-tagging feature in Okera.</p>
+<ul>
+  <li><a href="#enable-auto-tagging">Enable Auto-tagging</a></li>
+  <li><a href="#quickstart-out-of-the-box-auto-tagging">Quick-start Auto-tagging with out of the box rules</a></li>
+  <li><a href="#creating-auto-tagging-rules">Create your own Auto-tagging rules</a></li>
+  <li><a href="#troubleshooting-auto-tagging">Troubleshooting</a></li>
+</ul>
 
-<h2 id="what-is-auto-tagger">What is Auto-Tagger?</h2>
+<h2 id="what-is-auto-tagging">What is Auto-tagging?</h2>
 
-<p>The Auto-Tagger is a feature built into Okera that provides the ability to classify dataset data in a columnar manner.  At a high level, the Auto-Tagger samples data in a dataset and suggests Tags that are appropriate based on the sampled content and the evaluation of a set of <i>rules</i>.  Each rule defined as a Regular Expression and a tag name that should be set assuming a minimum number of regex matches for a column.  These rules can be configured to tag dataset columns as containing contextual data such as Phone Numbers, Social Security Numbers or other PII.</p>
+<p>Auto-tagging provides the ability to automate the tagging of columns based on the data inside them. At a high level, Okera samples the data as it’s <a href="data-registration#automated-tagging">crawled</a> and suggests tags that are appropriate based on the evaluation of a set of rules. These rules can be configured to tag dataset columns containing sensitive data such as Phone Numbers, Social Security Numbers or other PII.</p>
 
-<h2 id="configuring-okera-for-auto-tagger">Configuring Okera for Auto-Tagger</h2>
+<h2 id="enable-auto-tagging">Enable Auto-tagging</h2>
 
-<p>The Auto-Tagger is configured using a well-formed JSON document stored in cloud path that is accessible by Okera.  The location of this document is set in the cluster’s environment via the <code class="highlighter-rouge">OKERA_AUTOTAGGER_CONFIGURATION</code> environment variable.<br /></p>
+<p>Auto-tagging is configured using a well-formed JSON document stored in the cloud at a path that is accessible by Okera.  The location of this document is set in the cluster’s environment via the <code class="highlighter-rouge">OKERA_AUTOTAGGER_CONFIGURATION</code> environment variable.<br /></p>
 
-<p>For example, the following environment variable will cause the Planner to configure the Auto-Tagger feature with the settings specified in the document stored in S3:<br /></p>
+<p>For example, the following environment variable will cause the Planner to configure the Auto-Tagging feature with the settings specified in the document stored in S3:<br /></p>
 
 <p><code class="highlighter-rouge">export OKERA_AUTOTAGGER_CONFIGURATION=s3://bucket/path/to/autotagger-config.json</code></p>
 
-<h3 id="configure-okera-for-well-known-tags">Configure Okera for Well-Known Tags</h3>
+<p>Once enabled, the Auto-tagging rules specified in the json document will run when a new crawler is created on the <a href="data-registration#automated-tagging">data registration page</a>.</p>
 
-<p>The Okera Team has authored an out-of-the-box configuration file that contains a set of rules for some Well-Known tags.  The configuration file can be used as a starting point for customizing the Auto-Tagger for your specific business needs.</p>
+<h3 id="quickstart-out-of-the-box-auto-tagging">Quickstart: Out-of-the-box Auto-tagging</h3>
+
+<p>The Okera Team has authored an out-of-the-box configuration file that contains a set of rules for detecting common sensitive data. The configuration file can be used as a starting point for customizing the Auto-tagging for your specific business needs.</p>
 
 <p>The Well-Known tags configuration file can be downloaded from S3 at either of the following locations:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3://okera-release-useast/1.4.0/autotagger/autotagger-config-wellknowns.json
@@ -802,13 +810,17 @@ s3://okera-release-uswest/1.4.0/autotagger/autotagger-config-wellknowns.json
 <ol>
   <li>Download a copy of the autotagger-config-wellknowns.json file</li>
   <li>Copy the file to a cloud storage location (e.g. an S3 bucket/key path)</li>
-  <li>Set the OKERA_AUTOTAGGER_CONFIGURATION environment variable in your cluster’s env.sh and restart the Deployment Manager</li>
-  <li>Alternatively, you can set the environment variable in the cerebro-planner Kubernetes deployment</li>
+  <li>Set the <code class="highlighter-rouge">OKERA_AUTOTAGGER_CONFIGURATION</code> environment variable in your cluster’s env.sh and restart the Deployment Manager
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">OKERA_AUTOTAGGER_CONFIGURATION</span><span class="o">=</span>s3://bucket/path/to/autotagger-config.json
+</code></pre></div>    </div>
+  </li>
 </ol>
 
-<h2 id="authoring-auto-tagger-rules">Authoring Auto-Tagger Rules</h2>
+<p>You can then edit or update the rules in this configuration file as you want, and the registration crawler will evaluate all specified rules upon any new crawl.</p>
 
-<p>The configuration file for the Auto-Tagger is a well-formed JSON document containing an array name ‘rules’ with the following format:</p>
+<h2 id="creating-auto-tagging-rules">Creating Auto-tagging Rules</h2>
+
+<p>The configuration file for Auto-tagging is a well-formed JSON document containing an array name ‘rules’ with the following format:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
     <span class="s2">"rules"</span>: <span class="o">[</span>
@@ -819,20 +831,25 @@ s3://okera-release-uswest/1.4.0/autotagger/autotagger-config-wellknowns.json
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>A Rule contains the criteria describing when the Auto-Tagger should set a tag on a dataset column.  The Auto-Tagger will sample a number of rows from the dataset and evaluate each Rule’s expression to determine whether it matches or not.  After sampling all rows, if the percentage of matches is greater than the Rule’s minimumMatchRate, then the Auto-Tagger will set the tag for the dataset column.</p>
+<p>A Rule contains the criteria describing when to automatically set a tag on a dataset column.  Auto-tagging will sample a number of rows from the dataset and evaluate each Rule’s expression to determine whether it matches or not.  After sampling all rows, if the percentage of matches is greater than the Rule’s <code class="highlighter-rouge">minimumMatchRate</code>, then the tag will be set for the dataset column.</p>
+
+<blockquote>
+  <p>Note: If the <code class="highlighter-rouge">namespace</code> or <code class="highlighter-rouge">tag</code> specified doesn’t already exist, it will be automatically created.</p>
+</blockquote>
 
 <p>Each rule is a dictionary containing the following fields:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- description: a description of what this rule matches
-- namespace: a namespace name for the tag; this is good for grouping similar tags
-- tag: a tag name; this is the name of the tag that is set when the rule is evaluated
-- expression: a Java compatible Regular Expression that is encoded as a JSON string;
-- minimumRows: the minimum number of rows to sample before enabling this rule for evaluation; if a dataset does not contain the minimum number of row data then the tag will never be set
-- maximumRows: the maximum number of rows to sample; this limits the number of dataset rows sampled
-- minimumMatchRate: the percentage (expressed as a number between 0.0 and 1.0) of expression matches that a dataset column requires to warrant setting the tag
-</code></pre></div></div>
+<ul>
+  <li><code class="highlighter-rouge">description</code>: a description of what this rule matches</li>
+  <li><code class="highlighter-rouge">namespace</code>: a namespace name for the tag; this is good for grouping similar tags</li>
+  <li><code class="highlighter-rouge">tag</code>: a tag name; this is the name of the tag that is set when the rule is evaluated</li>
+  <li><code class="highlighter-rouge">expression</code>: a Java compatible Regular Expression that is encoded as a JSON string;</li>
+  <li><code class="highlighter-rouge">minimumRows</code>: the minimum number of rows to sample before enabling this rule for evaluation; if a dataset does not contain the minimum number of row data then the tag will never be set</li>
+  <li><code class="highlighter-rouge">maximumRows</code>: the maximum number of rows to sample; this limits the number of dataset rows sampled</li>
+  <li><code class="highlighter-rouge">minimumMatchRate</code>: the percentage (expressed as a number between 0.0 and 1.0) of expression matches that a dataset column requires to warrant setting the tag</li>
+</ul>
 
-<p>An example Auto-Tagger Rule:</p>
+<p>An example Auto-tagging rule:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
     <span class="s2">"description"</span>: <span class="s2">"Matches wellformed email addresses"</span>,
     <span class="s2">"namespace"</span>: <span class="s2">"autotagger"</span>,
@@ -844,13 +861,13 @@ s3://okera-release-uswest/1.4.0/autotagger/autotagger-config-wellknowns.json
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>In the above example, the Auto-Tagger will set the <code class="highlighter-rouge">autotagger:email</code> tag on each column in a dataset when that dataset has at least 10 rows of data and the <i>expression</i> evaluates to true for 50% of the sampled rows.  The Auto-Tagger will sample a maximum of 100 rows of data from the dataset.</p>
+<p>In the above example, Auto-tagging will set the <code class="highlighter-rouge">autotagger:email</code> tag on each column in a dataset when that dataset has at least 10 rows of data and the <i>expression</i> evaluates to true for 50% of the sampled rows.  A maximum of 100 rows of data will be sampled from the dataset to evaluate this rule.</p>
 
-<h2 id="troubleshooting-the-auto-tagger">Troubleshooting the Auto-Tagger</h2>
+<h2 id="troubleshooting-auto-tagging">Troubleshooting Auto-tagging</h2>
 
-<p>The Auto-Tagger will run automatically on datasets discovered by a Crawler if the <code class="highlighter-rouge">OKERA_AUTOTAGGER_CONFIGURATION</code> environment variable has been set.  The suggested tags are visible from the Data Registration page (click on <code class="highlighter-rouge">Edit Schema</code>).  If you’re finding that the Auto-Tagger is not setting tags as expected, try the following:</p>
+<p>Auto-tagging will run automatically on datasets discovered by a Crawler if the <code class="highlighter-rouge">OKERA_AUTOTAGGER_CONFIGURATION</code> environment variable has been set. The suggested tags are visible from the Data Registration page (click on <code class="highlighter-rouge">Edit Schema</code>). If you’re finding that the tags have not been set as expected, try the following:</p>
 
-<p>First, create a Crawler and verify that it has discovered some datasets that you expect the Auto-Tagger to tag.  Then do the following:<br /></p>
+<p>First, create a Crawler and verify that it has discovered some datasets that you expect Auto-tagging to be applied to.  Then do the following:<br /></p>
 
 <ol>
   <li>
@@ -881,7 +898,7 @@ s3://okera-release-uswest/1.4.0/autotagger/autotagger-config-wellknowns.json
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

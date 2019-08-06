@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -772,9 +772,61 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
+<h2 id="141">1.4.1</h2>
+
+<h3 id="new-features">New Features</h3>
+
+<h4 id="improved-cluster-deployment">Improved cluster deployment</h4>
+<p>Okera clusters can now be created without using the Deployment Manager.</p>
+
+<h4 id="support-for-granting-column-access-to-views">Support for granting column access to views</h4>
+<p>In previous Okera versions, it was not possible to grant column-level access on views, only tables. It is now possible to grant on columns in views as well.</p>
+
+<p>See the <a href="authorization#managing-data-access">docs</a> for more.</p>
+
+<h4 id="ldap-group-resolution">LDAP group resolution</h4>
+<p>Okera can now issue an <code class="highlighter-rouge">ldapsearch</code> to retrieve the groups associated with the username contained in a JWT if no groups are embedded in the JWT.</p>
+
+<p>See the <a href="odas-authentication#group-resolution-via-ldap">docs</a></p>
+
+<h3 id="other-improvements">Other Improvements</h3>
+<ul>
+  <li>Added a new way to set up automatic multi-tenant authentication for EMR and CDH integrations.</li>
+  <li>Added an ability to create one-node quickstart clusters that have out-of-the-box configuration including SSL, JWT, user/group settings.</li>
+  <li>Improved automatic service discovery for inter-service communication, allowing us to increase resiliency in the case of node failures.</li>
+  <li>Improved handling of unsupported or invalid views, typically inherited from an existing metastore. The view metadata can now be returned (but they are still un-queryable).</li>
+  <li>Okera now supports hms escaped partition paths. Additional characters that were not escaped previously can now be used in the partition path.
+For example, spaces and hyphens: <code class="highlighter-rouge">timestamp-partition/time_val=2019-06-11 00:00:00</code>.
+Note, partition paths with ‘=’ or ‘/’ are not yet supported.</li>
+  <li>Full support for complex <code class="highlighter-rouge">map</code> types in parquet data.</li>
+  <li>Added support for complex types of <code class="highlighter-rouge">map&lt;string, array&lt;string&gt;&gt;</code>.</li>
+  <li>Added a new builtin function, <code class="highlighter-rouge">current_date</code>, which is like <code class="highlighter-rouge">current_timestamp</code> but just returns the date portion.</li>
+  <li>Enabled selecting <code class="highlighter-rouge">current_date</code> and <code class="highlighter-rouge">current_timestamp</code> as columns, e.g. <code class="highlighter-rouge">select current_timestamp</code> vs <code class="highlighter-rouge">select current_timestamp()</code>.</li>
+  <li>Upgraded kube-prometheus to 0.1.0 (latest at time of publishing).</li>
+  <li>Added support for timestamps outside of typical data ranges.
+While we don’t expect a lot of user data from the dark ages, sentinel values in those ranges as well as year 0 are valid.
+They will be passed through without transformation so that the data values can be read.</li>
+  <li>Added better support for Hue when some fields are null.</li>
+  <li><code class="highlighter-rouge">REPORTING_TIME_RANGE</code> can now be set directly in <code class="highlighter-rouge">env.sh</code>.</li>
+  <li>Reduced number of retries and yield time for HDFS connection attempts.</li>
+  <li>Okera now escapes partition columns to support keywords as partition column names.</li>
+  <li>Fixed a bug where data registration crawlers were treating hidden files as possible dataset files.</li>
+  <li>Fixed a bad error message in the UI when a database was not found on the permissions page. The error is clearer now.</li>
+  <li>Removed CORS headers from REST Server.
+Fixed a security bug where the REST server was returning a wildcard hostname in its CORS headers.
+This has been fixed by removing CORS headers entirely.</li>
+  <li>Fixed a bug where if a view had any constant-time expressions such as <code class="highlighter-rouge">decode</code> we would not do any access checks.</li>
+  <li>Fixed a bug where in some cases, <code class="highlighter-rouge">select count(*)</code> did not work if a user only had column-level access.</li>
+  <li>Fixed to skip check for table format on views.</li>
+  <li>Fixed storage descriptor path for Databricks based on provider for spark.</li>
+  <li>Fixed column access check for <code class="highlighter-rouge">count(*)</code> on views.</li>
+  <li>Fixed an issue with spark and presto clients where <code class="highlighter-rouge">select *</code> queries returned incorrect results for users with partial access to views.</li>
+  <li>If <code class="highlighter-rouge">defaultdb</code> property is not provided, JDBC connections will now use jdbc.db.name as default db for connecting.</li>
+</ul>
+
 <h2 id="140">1.4.0</h2>
 
-<h3 id="new-features">New features</h3>
+<h3 id="new-features-1">New features</h3>
 
 <h4 id="tags">Tags</h4>
 
@@ -855,7 +907,7 @@ This is inspired from spark’s own version of such optimization as <a href="htt
   </li>
 </ul>
 
-<h3 id="other-improvements">Other Improvements</h3>
+<h3 id="other-improvements-1">Other Improvements</h3>
 
 <ul>
   <li>AWS Athena can be registered and used as a JDBC data source. See <a href="jdbc-data-source">docs</a></li>
@@ -868,7 +920,7 @@ This is inspired from spark’s own version of such optimization as <a href="htt
   <li>Improved error messaging throughout the Okera Web UI, specifically in the Workspace page and Dataset Preview.</li>
   <li>Decimal types in i32 and i64 storage formats are supported with latest versions of Parquet, instead of just fixed_length_byte_array. Starting from 1.4.0 version, ODAS supports handling these additional i32 and i64 decimal storage formats along with fixed_length_byte_array.</li>
   <li>ODAS shares existing HMSs which contain ORC files created by hive. However, the metadata load will fail for such cases. With 1.4.0 version of ODAS, we support ORC file format for metadata load. <em>Note</em> scans will still fail for ORC files with ‘ORC files are not currently supported.’ error.</li>
-  <li>Extended support for <code class="highlighter-rouge">MAP</code> complex types. It is now possible to use <code class="highlighter-rouge">MAP&lt;STRING, STRUCT&gt;</code> and <code class="highlighter-rouge">MAP&lt;STRING, ARRAY&gt;</code>.</li>
+  <li>Extended support for <code class="highlighter-rouge">MAP</code> complex types for PARQUET file formats. It is now possible to use <code class="highlighter-rouge">MAP&lt;STRING, STRUCT&gt;</code> and <code class="highlighter-rouge">MAP&lt;STRING, ARRAY&gt;</code>. Note, this is still not available for AVRO types.</li>
 </ul>
 
 <h3 id="incompatible-changes">Incompatible changes</h3>
@@ -898,6 +950,9 @@ Prior to 1.4 the default was by ordinal (position).</li>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SERVICE_ENVIRONMENT_CONFIGS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$SERVICE_ENVIRONMENT_CONFIGS</span><span class="s2">;OKERA_CLOUDTRAIL_SERVICE_CONFIGURATION=s3://my_bucket/my_cloudtrail.conf;OKERA_REPORTING_TIME_RANGE=5days,3weeks"</span>
 </code></pre></div></div>
+<ul>
+  <li>ABAC grants on views will only be enforced when tags are at the view level, but not at the column level i.e If you assign some tags on columns on a <strong>view</strong> and then create a grant on that view for only those columns, it will not be enforced. If however the tag is at the view level, the grant will be enforced. For ABAC grants on tables, both table level and column level grants are fully supported.</li>
+</ul>
 
 <h2 id="134-mar-2019">1.3.4 (Mar 2019)</h2>
 
@@ -962,7 +1017,7 @@ See <a href="kubernetes-dashboard-quickstart">docs</a> for details.</p>
 <p>Parquet formats are now fully supported with exception to complex types on Map. Full details,
 see <a href="complex-types">docs</a></p>
 
-<h4 id="other-improvements-1">Other improvements</h4>
+<h4 id="other-improvements-2">Other improvements</h4>
 
 <ul>
   <li>
@@ -1244,7 +1299,7 @@ See <a href="advanced-install#jwt">advanced install</a> for more details.</p>
   </li>
 </ul>
 
-<h4 id="other-improvements-2">Other improvements</h4>
+<h4 id="other-improvements-3">Other improvements</h4>
 
 <ul>
   <li>
@@ -1595,7 +1650,7 @@ were made to the user bootstrapping and setup scripts. See the [emr docs][emr-in
 
 <ul>
   <li>
-    <p>Added support for <code class="highlighter-rouge">BINARY</code> and <code class="highlighter-rouge">REAL</code> data types. See the data types <a href="data-type">docs</a>.</p>
+    <p>Added support for <code class="highlighter-rouge">BINARY</code> and <code class="highlighter-rouge">REAL</code> data types. See the data types <a href="data-types">docs</a>.</p>
   </li>
   <li>
     <p>Support for registering bucketed tables and views using lateral views. Note that since
@@ -1662,7 +1717,7 @@ This will be remedied in the next release.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -772,9 +772,15 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="data-registration">Data Registration</h1>
 
-<p><em>Only users who have ‘ALL’ access at the ‘CATALOG’ scope have access to Data Registration.</em></p>
+<p><em>Only System Admins (users who have ‘ALL’ access at the ‘CATALOG’ scope) have access to Data Registration.</em></p>
 
 <p>The Data Registration feature allows data administrators to crawl S3 paths and automatically discover data sets, infer their schema, and easily register them in the catalog. When configured, tags can also automatically be applied during data discovery and registration to aid in categorizing, searching, and applying access controls to newly registered datasets.</p>
+
+<ul>
+  <li><a href="#create-a-crawler">Creating a crawler</a></li>
+  <li><a href="#automated-tagging">Enable Autotagging</a></li>
+  <li><a href="#troubleshooting-and-common-questions">Troubleshooting and common questions</a></li>
+</ul>
 
 <h2 id="create-a-crawler">Create a crawler</h2>
 <p>A crawler automatically connects to your S3 data store and discovers the tables there.</p>
@@ -830,7 +836,7 @@ You can preview the table with its schema.</p>
 
 <p><img src="assets/images/ui-screen-registration-preview.png" alt="Preview table" /></p>
 
-<p><strong>View/Edit schema</strong><br />
+<p><strong>Edit schema</strong><br />
 For Parquet, Avro and JSON files you can view the schema and verify it’s correct. As these are self-describing files you cannot edit these schemas during registration – if you wish to make a change to the schema you must edit the schema definition in the file.</p>
 
 <p>For CSV files you can edit the column names and types, as well as set the ‘skip n lines’ option. You can also view the inferred delimiter. If the inferred delimiter is incorrect see <a href="#the-inferred-delimiter-is-incorrect">here</a>. Once you’re done editing, click the ‘save’ button to apply your changes.</p>
@@ -850,15 +856,12 @@ When you click on “View SQL” you can see the SQL CREATE table statement for 
 
 <p><img src="assets/images/ui-screen-registration-success.png" alt="Registration Successful Dialog" /></p>
 
-<h3 id="automatic-tags">Automatic tags</h3>
+<h2 id="automated-tagging">Automated tagging</h2>
 
-<p>Automatic tagging can reduce the manual work of tagging by detecting when a column is likely to contain a certain type of formatted data, such as a phone number, and then applying the relevant tag to that column.
-Automatic tags can be applied during data registration.
-When Auto-Tagging is configured, during the registration crawl the Auto-Tagger samples each dataset and applies a tag if a specified pattern is matched. For more on Auto-Tagger configuration, see <a href="/autotagging-configuration">Configuration Steps</a>.</p>
+<p>Automated tagging can reduce the manual work of tagging by detecting when a column is likely to contain a certain type of formatted data, such as a phone number, and then applying the relevant tag to that column. If Auto-tagging has been enabled on the cluster, you will see the auto-tags applied on newly discovered tables that have data that match the specified rules. For more information on configuring Auto-tagging, see <a href="/autotagging-configuration">here</a>.</p>
 
-<h4 id="validating-auto-tags">Validating Auto-Tags</h4>
-<p>If Auto-tagger has been configured on the cluster, tags will be applied to newly discovered datasets on the Data Registration page.
-When a crawler is finished crawling and is marked ‘Ready to Register’, click on it to view the unregistered datasets.</p>
+<h3 id="verifying-auto-tags">Verifying Auto-Tags</h3>
+<p>When a crawler is finished crawling and is marked ‘Ready to Register’, click on it to view the unregistered datasets.</p>
 
 <p><img src="assets/images/ui-unregistered-datasets.png" alt="Unregistered datasets" /></p>
 
@@ -871,17 +874,14 @@ If Auto-Tagger has detected certain formatted data, it will have automatically t
 When you have finished deleting tags, click ‘Save’.
 When you register the dataset, you will see that the tags have been applied.</p>
 
+<h2 id="troubleshooting-and-common-questions">Troubleshooting and common questions</h2>
+
 <h3 id="errors-during-registration">Errors during registration</h3>
 <p>In some cases there might be an error during registration e.g. Table already exists with the same name. The registration for that table will fail and you will be notified in the post registration dialog. You can see the specific error by clicking the error icon so you can try to rectify it before attempting to register the table again.</p>
 
 <p><img src="assets/images/ui-screen-registration-error-dialog-closeup.png" alt="Registration Error Dialog" /></p>
 
 <p><img src="assets/images/ui-screen-unregistered-error.png" alt="Unregistered table Error icon" /></p>
-
-<h2 id="common-questions-and-troubleshooting">Common questions and troubleshooting</h2>
-
-<h3 id="how-do-i-delete-a-crawler">How do I delete a crawler?</h3>
-<p>You can delete a crawler by running <code class="highlighter-rouge">DROP crawler &lt;crawler_name&gt; CASCADE</code> in Workspace. Dropping a crawler does not affect any tables that were already registered from that crawler. Any in-progress changes to <strong>unregistered</strong> tables will be lost.</p>
 
 <h3 id="my-file-wasnt-discovered-by-the-crawler">My file wasn’t discovered by the crawler</h3>
 <p>There may be some cases where the crawler is not able to discover a table or infer its schema correctly. Currently the crawler is only able to detect Parquet, Avro, JSON and CSV file formats. Please check that the filename has the file format specified e.g <code class="highlighter-rouge">sample.json</code>.</p>
@@ -909,18 +909,18 @@ s3://bucket/year<span class="o">=</span>YYY3/
 <h3 id="how-do-i-re-crawl-a-path">How do I re-crawl a path?</h3>
 <p>Each crawler only runs a single-time. If you wish to crawl the same path again, you can delete the crawler and recreate a new crawler on the same path. You should avoid having two crawlers with the same path. If the same tables have already been found by another crawler, they will not appear again on the duplicate crawler’s unregistered list.</p>
 
-<h2 id="errors-during-crawler-creation">Errors during crawler creation</h2>
+<h3 id="errors-during-crawler-creation">Errors during crawler creation</h3>
 
-<h3 id="crawler-source-path-s3a-is-not-accessible">Crawler source Path ‘s3a://…/’ is not accessible</h3>
+<h4 id="crawler-source-path-s3a-is-not-accessible">Crawler source Path ‘s3a://…/’ is not accessible</h4>
 <p>Okera does not have read access to this bucket, you will need to make sure the correct bucket policy has been added.</p>
 
-<h3 id="crawler-already-exists">Crawler already exists</h3>
+<h4 id="crawler-already-exists">Crawler already exists</h4>
 <p>The crawler name you’ve chosen already exists. You will need to choose a unique crawler name.</p>
 
-<h3 id="syntax-error">Syntax error</h3>
+<h4 id="syntax-error">Syntax error</h4>
 <p>Crawler name cannot contain spaces or special characters, except underscores e.g. <code class="highlighter-rouge">!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^`{|}~</code></p>
 
-<h3 id="bucket-does-not-exist">Bucket does not exist</h3>
+<h4 id="bucket-does-not-exist">Bucket does not exist</h4>
 <p>This bucket has not been found to exist in S3. Please check if the bucket path has been input correctly.</p>
 
 
@@ -940,7 +940,7 @@ s3://bucket/year<span class="o">=</span>YYY3/
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

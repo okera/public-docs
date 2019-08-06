@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -820,10 +820,6 @@ Bear in mind that only roles with access to the full catalog will see all the ob
 
 <p>To add a tag to a GRANT or REVOKE statement, declare it as an attribute in key-value form with a Boolean value (<code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>) – to define the access for a given object.</p>
 
-<blockquote>
-  <p><strong>Note:</strong> ABAC grants are currently only fully supported on tables and not views. ABAC grants on views will only be enforced when tags are on the view level, but not on the column level. For ABAC grants on tables, both table level and column level grants are fully supported. Full support for views is coming soon.</p>
-</blockquote>
-
 <p>For example, if you want the <code class="highlighter-rouge">auditor</code> role to read any column in the <code class="highlighter-rouge">sample.users</code> dataset that has been tagged <code class="highlighter-rouge">security.pii</code>:</p>
 
 <p><strong>Grant access to columns tagged <code class="highlighter-rouge">security.pii</code>:</strong></p>
@@ -962,7 +958,7 @@ A future release will support key-value pairs with non-Boolean values.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

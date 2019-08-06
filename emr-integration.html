@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -834,8 +834,8 @@ This is useful to set env variables like HTTP_PROXY, OKERA_BITS_REGION.</li>
   <li>See <a href="client-integration#required">Client Integration</a> for information on the <code class="highlighter-rouge">&lt;hostports&gt;</code> parameter</li>
 </ul>
 
-<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.4.0 release, provide the arguments <code class="highlighter-rouge">1.4.0 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
-If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.4.0 spark-2.x hive</code>.</p>
+<p>For example, to bootstrap a Spark 2 cluster from the Okera 1.4.1 release, provide the arguments <code class="highlighter-rouge">1.4.1 spark-2.x</code> (the <code class="highlighter-rouge">--planner-hostports</code> and other parameters are omitted for the sake of brevity).
+If running EMR with Spark 2 and Hive, provide <code class="highlighter-rouge">1.4.1 spark-2.x hive</code>.</p>
 
 <p>The complete list of supported components are:</p>
 <ul>
@@ -994,7 +994,7 @@ Since we’re starting with Hive, Presto and Spark, specify <code class="highlig
 
 <p>For example, copy and paste this (and adjust as needed) into the “Optional arguments” box:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.4.0 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.4.1 --planner-hostports odas-planner-1.internal.net:12050 hive presto spark-2.x
 </code></pre></div></div>
 
 <p>Notes:</p>
@@ -1396,7 +1396,7 @@ For example, <code class="highlighter-rouge">SHOW ROLES</code> does not list the
 
 <p><strong>Example:</strong></p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odas-emr-bootstrap.sh 1.4.0 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>odas-emr-bootstrap.sh 1.4.1 <span class="nt">--planner-hostports</span> odas-planner-1.internal.net:12050 presto
 </code></pre></div></div>
 
 <p>See the <a href="#emr-node-bootstrap">EMR Node Bootstrap</a> section for more details.</p>
@@ -1508,7 +1508,7 @@ start hive-server2
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

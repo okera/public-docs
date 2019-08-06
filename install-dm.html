@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -811,13 +811,13 @@ This set of steps is typically required once, to configure Okera to your environ
   <li>
     <p>Get the tarball from S3.</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.0/deployment-manager-1.4.0.tar.gz
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.1/deployment-manager-1.4.1.tar.gz
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Extract the bits.</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.4.0.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.4.0.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.4.0 deployment-manager
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.4.1.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.4.1.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.4.1 deployment-manager
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -831,14 +831,14 @@ Download the shell binary for either Linux or OS X (depending on which OS is run
   <li><strong>Linux</strong></li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.0/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.1/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <ul>
   <li><strong>OS X</strong></li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.0/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.1/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <h2 id="establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</h2>
@@ -1071,6 +1071,10 @@ They are usually only needed for cluster administrators.</p>
 
 <p>For more about authentication with JWTs, see <a href="odas-authentication#json-web-tokens">ODAS Authentication</a>.</p>
 
+<h5 id="required-group-membership">Required Group Membership</h5>
+
+<p>If needed, it is possible to configure a <a href="odas-authentication#required-groups">required group</a> for all non-admin ODAS users. We anticipate that most installations will not need this.</p>
+
 <h4 id="system-token-rotation">System Token Rotation</h4>
 
 <p>If you use a system token to authenticate communication between Okera services, it’s good practice to rotate the token in case the ODAS cluster remains in service beyond the token’s expiration date.
@@ -1238,7 +1242,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

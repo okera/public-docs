@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -774,7 +774,7 @@ $('#toc').on('click', 'a', function() {
 
 <h2 id="managing-access-to-ui-features">Managing access to UI features</h2>
 
-<p>Admins can control access to certain UI features by granting access to certain system views, or by using our out of the box access roles <code class="highlighter-rouge">okera_workspace_role</code> and <code class="highlighter-rouge">okera_reports_role</code>.</p>
+<p>Admins can control access to certain UI features by granting groups access to special feature access roles – <code class="highlighter-rouge">okera_workspace_role</code> and <code class="highlighter-rouge">okera_reports_role</code>, or by granting access to certain system views.</p>
 
 <blockquote>
   <p><strong>Note</strong> These system views do not contain any data, their sole purpose is to control access.</p>
@@ -782,23 +782,27 @@ $('#toc').on('click', 'a', function() {
 
 <h3 id="granting-access-to-workspace">Granting access to Workspace</h3>
 
-<p>To grant access to the Workspace page, simply grant a role access to the internal <code class="highlighter-rouge">okera_system.ui_workspace</code> view.</p>
+<p>To grant access to the Workspace page, simply grant the <code class="highlighter-rouge">okera_workspace_role</code> to any groups that need access to the workspace feature.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">okera_workspace_role</span> <span class="k">to</span> <span class="k">GROUP</span> <span class="n">marketing_stewards</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For more advanced role customization, you can also enable access to workspace by granting a role access to the internal <code class="highlighter-rouge">okera_system.ui_workspace</code> view. Note that this view does not contain any data, its sole purpose is to control access to Workspace.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">ui_workspace</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">steward</span><span class="p">;</span>
-</code></pre></div></div>
-<p>We have also included an out of the box role <code class="highlighter-rouge">okera_workspace_role</code>, so you can simply grant that role to any groups that need access to the workspace feature.</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">okera_workspace_role</span> <span class="k">to</span> <span class="k">GROUP</span> <span class="n">marketing_stewards</span><span class="p">;</span>
 </code></pre></div></div>
 
 <h3 id="granting-access-to-reports-page">Granting access to Reports Page</h3>
 
-<p>To grant access to the Reports page, simply grant a role access to the internal <code class="highlighter-rouge">okera_system.ui_reports</code> view. Note that this view does not contain any data, its sole purpose is to control access to reporting.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">ui_reports</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">steward</span><span class="p">;</span>
-</code></pre></div></div>
-<p>We have also included an out of the box role <code class="highlighter-rouge">okera_reports_role</code>, so you can simply grant that role to any groups that need access to the Reports feature.</p>
+<p>To grant access to the Reports page, simply grant the <code class="highlighter-rouge">okera_reports_role</code> to any groups that need access to the Reports feature.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ROLE</span> <span class="n">okera_reports_role</span> <span class="k">to</span> <span class="k">GROUP</span> <span class="n">marketing_stewards</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For more advanced role customization, you can also enable access to reporting by granting a role access to both the internal <code class="highlighter-rouge">okera_system.ui_reports</code> view as well as the <code class="highlighter-rouge">okera_system.reporting_audit_logs</code> view, so that they can query the underlying audit logs.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">ui_reports</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">steward</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span> <span class="k">to</span> <span class="k">ROLE</span> <span class="n">steward</span><span class="p">;</span>
 </code></pre></div></div>
 <blockquote>
   <p><strong>Note</strong> Users will still need to have ALL access on some datasets to actually see reports for those datasets.</p>
@@ -859,7 +863,7 @@ Any group not in the available list has no access to the specified database or d
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

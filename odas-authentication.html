@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -825,15 +825,29 @@ In this case, group names are case insensitive.</p>
   <p><strong>Note:</strong> This approach currently assumes that the configured REST endpoint supports GET requests and that the expected format is <code class="highlighter-rouge">&lt;url&gt;</code>/<code class="highlighter-rouge">&lt;username&gt;</code> .</p>
 </blockquote>
 
-<p>Approach 2 and/or 3 will be used if <em>only</em> JWT support is configured (a system token is specified).
+<ol>
+  <li>By querying the configured LDAP server for group membership for the specified user.</li>
+</ol>
+
+<p>Approach 2, 3 and/or 4 will be used if <em>only</em> JWT support is configured (a system token is specified).
 If the configuration OKERA_GROUP_RESOLVER_URL is set, then approach 2 will be used with approach 3 used as a fallback (only after approach 2 was attempted).
 If OKERA_GROUP_RESOLVER_URL is unset, then approach 2 will be used exclusively.
+If the configuration OKERA_GROUP_RESOLVER_LDAP_HOST is set, then approach 2 will be used with approach 4 used as a fallback (only after approach 2 was attempted).
 In all other situations, including if both JWT and Kerberos are configured, approach 1 will be used for all users, including those that authenticate via a JWT.</p>
 
 <h3 id="case-sensitivity">Case Sensitivity</h3>
 
 <p>In this case, case sensitivity pertains to the process of comparing the names of groups that a user is a member of to the names of groups that were granted a given role.
 A case-insensitive comparison would result in the names <code class="highlighter-rouge">admin</code>, <code class="highlighter-rouge">Admin</code> and <code class="highlighter-rouge">ADMIN</code> being viewed as equivalent where a case sensitive approach would consider those each unique.</p>
+
+<h3 id="required-groups">Required Groups</h3>
+
+<p>If your authentication system requires an organizational unit (OU) or other group entity to manage all ODAS users, use the OKERA_REQUIRED_GROUP_MEMBERSHIP property to specify it.
+This setting will be enforced for all users of the ODAS cluster.</p>
+
+<blockquote>
+  <p><strong>NOTE:</strong> Any users who have Catalog Administrator privileges are exempt from this check.</p>
+</blockquote>
 
 <h2 id="supported-configurations">Supported Configurations</h2>
 
@@ -941,6 +955,10 @@ In this example, specify <code class="highlighter-rouge">okera-service</code> fo
 
 <h2 id="okera-token-authentication">Okera Token Authentication</h2>
 
+<blockquote>
+  <p><strong>Note:</strong> It is general preferable to use JWTs for user authentication.</p>
+</blockquote>
+
 <p>Okera tokens are suitable when accessing through a client that may not have a Kerberized connection to ODAS.
 In this case, the user can request a token and make requests using the token.
 ODAS resolves the token to the user that originally requested it.</p>
@@ -988,6 +1006,21 @@ ODAS resolves the token to the user that originally requested it.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s1">'authorization: Bearer &lt;token&gt;'</span> &lt;ODAS_REST_host:port&gt;/api/databases
 </code></pre></div></div>
+
+<h1 id="general-information">General Information</h1>
+
+<p>Okera tokens include credentials and a signature that enables receivers to authenticate the user.
+The key that signs and verifies Okera tokens is tied to one cluster and cannot be shared with other clusters.
+Because of this, Okera tokens cannot be shared across ODAS clusters.</p>
+
+<h3 id="best-practices">Best Practices</h3>
+
+<p>Each request for an ODAS token generates a new one.
+Prefer using an existing (valid) token whenever possible.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> New tokens are cached for one hour on a per-user, per-planner basis. An existing token could be returned if a creation request occurs under these conditions.</p>
+</blockquote>
 
 <h2 id="jwt">JWT</h2>
 
@@ -1087,6 +1120,37 @@ As a REST call, it looks like this:</p>
 }
 </code></pre></div></div>
 
+<h4 id="group-resolution-via-ldap">Group resolution via LDAP</h4>
+
+<p>ODAS can be configured to query LDAP servers for group membership. To enable this, some set of these values must be configured, depending on your LDAP setup.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OKERA_GROUP_RESOLVER_LDAP_HOST="ldap://&lt;hostname&gt;"
+OKERA_GROUP_RESOLVER_LDAP_PORT=&lt;defaut is 389&gt;
+OKERA_GROUP_RESOLVER_LDAP_BASE_DN="dc=example,dc=company,dc=com"
+OKERA_GROUP_RESOLVER_LDAP_USER_SEARCH_FILTER="(&lt;user filter)"
+OKERA_GROUP_RESOLVER_LDAP_GROUP_SEARCH_FILTER="(&lt;group filter&gt;)"
+OKERA_GROUP_RESOLVER_LDAP_MEMBER_FIELD_NAME="&lt;member field name&gt;"
+OKERA_GROUP_RESOLVER_LDAP_USER="&lt;fully qualified user cn&gt;"
+OKERA_GROUP_RESOLVER_LDAP_PASSWORD="&lt;password&gt;"
+OKERA_GROUP_RESOLVER_LDAP_USE_SSL=[true|false]
+</code></pre></div></div>
+
+<p>As example, from an /etc/okera/env.sh file</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export OKERA_GROUP_RESOLVER_LDAP_HOST="ldap://10.1.10.149"
+export OKERA_GROUP_RESOLVER_LDAP_PORT=389
+export OKERA_GROUP_RESOLVER_LDAP_BASE_DN="dc=lab,dc=okera,dc=com"
+export OKERA_GROUP_RESOLVER_LDAP_USER_SEARCH_FILTER="(&amp;amp;(objectClass=Person)(cn={0}))"
+export OKERA_GROUP_RESOLVER_LDAP_GROUP_SEARCH_FILTER="(objectClass=groupOfNames)"
+export OKERA_GROUP_RESOLVER_LDAP_MEMBER_FIELD_NAME="member"
+export OKERA_GROUP_RESOLVER_LDAP_USER="cn=admin,dc=lab,dc=okera,dc=com"
+export OKERA_GROUP_RESOLVER_LDAP_PASSWORD="SuperGreatPassword"
+export OKERA_GROUP_RESOLVER_LDAP_USE_SSL=false
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>NOTE:</strong> All LDAP group names are down-cased for consistency.</p>
+</blockquote>
+
 <h2 id="using-a-jwt-with-curl">Using a JWT with Curl</h2>
 
 <p>Usage of the JWT token is identical to an Okera token.
@@ -1181,7 +1245,7 @@ env <span class="nv">OKERA_TOKEN_RETRIEVAL_SCRIPT</span><span class="o">=</span>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>

@@ -625,7 +625,7 @@
           
           
           
-          <li><a href="autotagging-configuration">Configuring Auto-Tagger</a> </li>
+          <li><a href="autotagging-configuration">Configuring Auto-tagging</a> </li>
           
           
           
@@ -866,7 +866,7 @@ Okera supports the following SQL statements to give or remove access to roles:</
 <span class="o">&lt;</span><span class="n">object_type_name</span><span class="o">&gt;</span><span class="p">:</span> <span class="err">{</span>
     <span class="k">CATALOG</span>
   <span class="o">|</span> <span class="k">DATABASE</span> <span class="o">&lt;</span><span class="n">database_name</span><span class="o">&gt;</span>
-  <span class="o">|</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
+  <span class="o">|</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">dataset_name</span><span class="o">&gt;</span>
   <span class="o">|</span> <span class="n">URI</span> <span class="o">&lt;</span><span class="n">uri</span><span class="o">&gt;</span>
 <span class="err">}</span>
 
@@ -900,7 +900,7 @@ This means when, for example, revoking permission at the database level, all dat
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p><strong>Example:</strong> Granting read access for specific columns of a table to a role</p>
+<p><strong>Example:</strong> Granting read access for specific columns of a table or a view to a role</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="p">(</span><span class="n">txnid</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sales</span><span class="p">.</span><span class="n">transactions</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_analysts</span><span class="p">;</span>
 </code></pre></div></div>
@@ -1118,7 +1118,7 @@ By default, this role has SELECT access to the database <code class="highlighter
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Jun 14, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 6, 2019
       </div>
     </div>
   </div>
