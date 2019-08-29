@@ -807,20 +807,22 @@ If you do not see any reports when you select a database, you may not have admin
 <p>The default time range on the <code class="highlighter-rouge">Reports</code> page is “Last 24 hours”.
 This means that every report on the page will be showing data only for queries that occurred in the 24 hours prior to the page visit.
 Using the dropdown labeled “Select a time range” you can change the time range used to generate the reports to one of the following options:</p>
+
 <ul>
   <li><strong>Last 24 hours (default)</strong>: reports will show data from the 24 hours prior to visiting the page.</li>
   <li><strong>Last 7 days</strong>: reports will show data for 7 days prior to visiting the page.</li>
-  <li><strong>Today</strong>: reports will show data for the current calendar day.</li>
-  <li><strong>Yesterday</strong>: reports will show data for the calendar day prior to the current day.</li>
+  <li><strong>Last 2 weeks</strong>: reports will show data for 2 weeks prior to visiting the page.</li>
+  <li><strong>Last month</strong>: reports will show data for one month prior to visiting the page.</li>
 </ul>
 
 <p><img src="assets/images/ui-detail-reports-timerange.png" alt="Okera Reports Time Picker" /></p>
 
 <h2 id="drilldowns">Drilldowns</h2>
 
-<p>Each report in the <code class="highlighter-rouge">Reports</code> page supports drilling down on the data by clicking on the data point to open a query in <code class="highlighter-rouge">Workspace</code>.
-This allows users to explore the underlying data powering the reports and enables them to modify the query to find other insights.
-Each report has a slightly different drilldown query, but they all follow a similar pattern of a base query restricted by time, followed by additional constraints. For example, the drilldown for “Number of queries by dataset” looks like this:</p>
+<p>You can drill down further on a report by clicking on any data point in the report. The drilldown displays a sample of up to 100 queries run for the selected data point.
+This allows users to explore the underlying data powering the reports.</p>
+
+<p>Each report has a slightly different drilldown query, but they all follow a similar pattern of a base query restricted by time, followed by additional constraints. For example, the drilldown for “Most queried datasets” looks like this:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
@@ -829,6 +831,7 @@ Each report has a slightly different drilldown query, but they all follow a simi
 </code></pre></div></div>
 
 <p>There are a few things to note about this query:</p>
+
 <ul>
   <li>We are selecting from <code class="highlighter-rouge">okera_system.reporting_audit_logs</code>, this is a special system view that has permissions so users will only see data for datasets on which they have admin privileges.</li>
   <li>We are restricting by <code class="highlighter-rouge">ymd</code> <strong>and</strong> <code class="highlighter-rouge">start_unix_time</code>. This seems redundant, but it helps performance by first choosing the right partition, then restricting data further based on timestamps.</li>
@@ -837,27 +840,30 @@ This is to capture all versions of “hive”.</li>
   <li>Timestamps are UTC timestamps in milliseconds.</li>
 </ul>
 
-<p>To run the query, click <code class="highlighter-rouge">Run</code>.
-You will see the audit log data for the specified time range. Note that results are restricted to the number of rows in the “Row limit” box.
+<p><img src="assets/images/ui-detail-reports-preview.png" alt="Okera Reports Drilldown Preview" /></p>
+
+<p>There is also a link that allows the users to open the query in <code class="highlighter-rouge">Workspace</code> where they can modify the query to find other insights.
+To try it, click on the link and you will navigate to the <code class="highlighter-rouge">Workspace</code> page.
+When there, click <code class="highlighter-rouge">Run</code> to run the query. You will see the audit log data for the specified time range. Note that results are restricted to the number of rows in the “Row limit” box.
 If you need to see more results, you can use the same query in an EMR cluster or whatever other client application you use to query data through Okera.</p>
 
-<p><img src="assets/images/ui-screen-reports-workspace-drilldown.png" alt="Okera Reports Time Picker" /></p>
+<p><img src="assets/images/ui-screen-reports-workspace-drilldown.png" alt="Okera Reports Workspace Drilldown" /></p>
 
 <p><em>Example of a reports drilldown in workspace</em></p>
 
 <h2 id="understanding-the-reports">Understanding the reports</h2>
 
-<p>There are four reports displayed on the <code class="highlighter-rouge">Reports</code> page. They should mostly make sense without a lot of explanation, but each has a few details to note.</p>
+<p>There are five reports displayed on the <code class="highlighter-rouge">Reports</code> page. They should mostly make sense without a lot of explanation, but each has a few details to note.</p>
 
 <ul>
-  <li><a href="#number-of-queries-over-time">Number of queries over time</a></li>
-  <li><a href="#number-of-queries-by-client-application">Number of queries by client application</a></li>
-  <li><a href="#number-of-queries-by-dataset">Number of queries by dataset</a></li>
-  <li><a href="#top-users">Top users</a></li>
-  <li><a href="#number-of-queries-by-duration">Number of queries by duration</a></li>
+  <li><a href="#queries-over-time">Queries over time</a></li>
+  <li><a href="#most-frequently-used-client-applications">Most frequently used client applications</a></li>
+  <li><a href="#most-queried-datasets">Most queried datasets</a></li>
+  <li><a href="#most-active-users">Most active users</a></li>
+  <li><a href="#queries-by-duration">Queries by duration of planner request</a></li>
 </ul>
 
-<h3 id="number-of-queries-over-time">Number of queries over time</h3>
+<h3 id="queries-over-time">Queries over time</h3>
 
 <p><img src="assets/images/ui-detail-reports-queries-over-time.png" alt="Okera Reports Queries over time" /></p>
 
@@ -867,9 +873,9 @@ For day-long time ranges, the buckets are 10 minutes, for week-long time ranges,
 Points’ timestamps represent the <em>end</em> of the bucket.
 So, in a “Last 24 hours” report, if the value or a point is 120, that means 120 queries occurred in the 10 minutes prior to the time on the point.</p>
 
-<p>“Number of queries over time” supports drilling down to see the actual list of queries in a particular bucket.
+<p>“Queries over time” supports drilling down to see a list of some of the queries run in a particular time bucket.”.
 To drill down, pick a bucket and click on it.
-You will be redirected to the <code class="highlighter-rouge">Workspace</code> page where the query to look up the time bucket in question will already be populated. It will look similar to:</p>
+You will see a modal that displays a sample of queries run in this time bucket. This modal is populated by a query similar to:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-06'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
@@ -885,9 +891,9 @@ You will be redirected to the <code class="highlighter-rouge">Workspace</code> p
 The first two timestamps are part of the base query, restricting the data to the outer time range of the time chart (“Last 24 hours”, “Last 7 days”, etc.), and the next two timestamps restrict the range to the specific bucket that was clicked.
 All of them intentionally restrict against <code class="highlighter-rouge">start_unix_time</code>, so we are counting when events started, not when they complete.</p>
 
-<h3 id="number-of-queries-by-client-application">Number of queries by client application</h3>
+<h3 id="most-frequently-used-client-applications">Most frequently used client applications</h3>
 
-<p><img src="assets/images/ui-detail-reports-queries-by-application.png" alt="Okera Reports All client applications" /></p>
+<p><img src="assets/images/ui-detail-reports-queries-by-application.png" alt="Okera Reports Queries by client applications" /></p>
 
 <p>This report shows the most popular client applications ranked by number of queries run in the given time range.
 The top ten client applications are represented as bars in a bar chart, and more applications will can be shown by clicking on the “All applications” button at the bottom of the panel.
@@ -896,7 +902,7 @@ In the top ten bar chart, various versions of an application will be combined in
 
 <p><img src="assets/images/ui-screen-reports-all-applications.png" alt="Okera Reports All client applications" /></p>
 
-<p>Clicking on any of the bars will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+<p>Click on any bar to see a drilldown of some of the queries run on that particular application. This modal is populated by a query similar to:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
@@ -908,17 +914,17 @@ In the top ten bar chart, various versions of an application will be combined in
 <p>As discussed in the Drilldowns section above, this query gets the audit logs in the current time range and filters by application name.
 It uses <code class="highlighter-rouge">like</code> to pick up all versions of the application, which is stored as a string with the name first, then version.</p>
 
-<h3 id="number-of-queries-by-dataset">Number of queries by dataset</h3>
+<h3 id="most-queried-datasets">Most queried datasets</h3>
 
-<p><img src="assets/images/ui-detail-reports-queries-by-dataset.png" alt="Okera Reports All client applications" /></p>
+<p><img src="assets/images/ui-detail-reports-queries-by-dataset.png" alt="Okera Reports Most queried datasets" /></p>
 
-<p>This report is very similar to “Number of queries by client application”, showing the most queried datasets in the selected time range.
+<p>This report is very similar to “Most frequently used client applications”, showing the most queried datasets in the selected time range.
 The top ten datasets are represented as bars in the bar chart, and the rest can be viewed by clicking “All datasets”.
 You may notice some entries include multiple datasets separated by commas.
 Those counts represent queries that included both of the datasets.
 Mouseover on the bars in the chart will show the number of queries on that dataset.</p>
 
-<p>Clicking on any of the bars will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+<p>Click on any bar to see a drilldown of some of the queries run on that particular dataset. This modal is populated by a query similar to:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
@@ -929,12 +935,12 @@ Mouseover on the bars in the chart will show the number of queries on that datas
 
 <p>In addition to the details mentioned in the Drilldowns section above, this query restricts <code class="highlighter-rouge">ae_table</code> or <code class="highlighter-rouge">ae_view</code> to the specified dataset.</p>
 
-<h3 id="top-users">Top users</h3>
+<h3 id="most-active-users">Most active users</h3>
 
-<p><img src="assets/images/ui-detail-reports-top-users.png" alt="Okera Reports All client applications" /></p>
+<p><img src="assets/images/ui-detail-reports-top-users.png" alt="Okera Reports Most active users" /></p>
 
 <p>As the name implies, this report shows a list of users in the system, ranked by how many queries they ran in the given time frame.
-Clicking on any row in the list will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+Click on any row to see a drilldown of some of the queries run by that particular user. This modal is populated by a query similar to:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">where</span> <span class="n">ymd</span><span class="o">&gt;=</span><span class="s1">'2018-08-12'</span> <span class="k">and</span> <span class="n">ymd</span><span class="o">&lt;=</span><span class="s1">'2018-08-13'</span>
@@ -946,13 +952,13 @@ Clicking on any row in the list will drill down to the <code class="highlighter-
 <p>Like the other drilldowns, this query restricts results based on time, then adds an additional constraint.
 In this case, exact user name.</p>
 
-<h3 id="number-of-queries-by-duration">Number of queries by duration</h3>
+<h3 id="queries-by-duration-of-planner-request">Queries by duration of planner request</h3>
 
-<p><img src="assets/images/ui-detail-reports-queries-by-duration.png" alt="Okera Reports Queries by duration" /></p>
+<p><img src="assets/images/ui-detail-reports-queries-by-duration.png" alt="Okera Reports Queries by duration of planner request" /></p>
 
-<p>This report shows the number of queries in the given time frame, grouped by the duration they took to run.</p>
+<p>This report shows how long query planner requests took to run. Queries are grouped into specific time ranges for planner request duration.</p>
 
-<p>Clicking on any row in the list will drill down to the <code class="highlighter-rouge">Workspace</code> with a query similar to this one populated:</p>
+<p>Click on any row to see a drilldown of some of the queries run for that duration range. This modal is populated by a query similar to:</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">okera_system</span><span class="p">.</span><span class="n">reporting_audit_logs</span>
   <span class="k">WHERE</span> <span class="n">ymd</span> <span class="k">BETWEEN</span> <span class="s1">'2019-01-04'</span> <span class="k">AND</span> <span class="s1">'2019-01-05'</span>
@@ -963,6 +969,7 @@ In this case, exact user name.</p>
 </code></pre></div></div>
 
 <h2 id="restricting-time-range">Restricting time range</h2>
+
 <p>Reporting time ranges can be restricted via the environment variable <code class="highlighter-rouge">OKERA_REPORTING_TIME_RANGE</code>.
 This may be necessary in environments with huge data volumes.
 If reporting times out for longer time ranges, you may wish to restrict these longer times.</p>
@@ -1012,7 +1019,7 @@ So, for similar queries from the same source, the numbers in the reports are con
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

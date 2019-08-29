@@ -777,14 +777,6 @@ You can easily understand whether or not you have access to it, and find out wha
 
 <p><img src="assets/images/ui-screen-permissions.png" alt="Okera Permissions page" /></p>
 
-<blockquote>
-  <p><strong>Note</strong> You can look up any database name, even if it’s not automatically listed in the dropdown.
-Simply type the database name and select the “Create option…”. The databases in the
-dropdown are ones you already have some level of access to.</p>
-</blockquote>
-
-<p><img src="assets/images/ui-detail-database-create-option.gif" alt="Okera Lookup Database" /></p>
-
 <p>Use the database and dataset input boxes to look up any object.
 If you have access to the specified object, you will see this information:</p>
 
@@ -816,6 +808,88 @@ Any group not in the available list has no access to the specified database or d
   <p><strong>Tip:</strong> If you’re an Admin, you are able to look up any user’s or group’s access on an object, see <a href="web-ui-admin">Okera Portal for Admins</a>.</p>
 </blockquote>
 
+<h2 id="policy-builder">Policy Builder</h2>
+<p><em>Only users who have admin privileges, users with ‘ALL’ access at the ‘CATALOG’ scope, or users with grant privileges on at least one database/dataset will be able to create access policies.
+Additionally, users may only create access policies on databases and datasets that they have grant privileges on.</em></p>
+
+<p><strong>Access Policies</strong>
+<br />An access policy grants specific permissions on specific data to a role. For example, an administrator may grant read-only permissions on a marketing database to a marketing analyst role.</p>
+
+<p>You can specify the type of data that a role should or should not have access to by limiting an access policy to certain tags. For example, an administrator may grant an analyst role access to everything in a database except for data tagged as ‘sensitive’.</p>
+
+<p>The Policy Builder lets you create access policies on any data that you have grant permissions on via a simple, natural language form.</p>
+
+<p><strong>Creating an Access Policy with the Policy Builder</strong>
+<br />To create an access policy, navigate to the Permissions page and click ‘Create New Access Policy’ at the top of the page:</p>
+
+<p><img src="assets/images/ui-policy-builder-access.png" alt="Okera Policy Builder Create Button" /></p>
+
+<p>The Policy Builder will appear:</p>
+
+<p><img src="assets/images/ui-policy-builder-empty-modal.png" alt="Okera Policy Builder Empty Modal" /></p>
+
+<h3 id="selecting-data">Selecting Data</h3>
+
+<p>Start by selecting the database or dataset that you want to allow access to. The dataset dropdown will remain disabled until you select a database.</p>
+
+<p><img src="assets/images/ui-policy-builder-database-dataset.png" alt="Okera Policy Builder Database and Dataset Dropdowns" /></p>
+
+<h3 id="limiting-access-with-tags">Limiting Access with Tags</h3>
+
+<p>Both tag fields are optional but may be used to further clarify what type of data the role should have access to.</p>
+
+<p>If you only want to allow access to a specific type of data, select the relevant tags from the ‘That is tagged as…’ dropdown:</p>
+
+<p><img src="assets/images/ui-policy-builder-tags-included.png" alt="Okera Policy Builder Tags Included Dropdown" /></p>
+
+<p>Selecting a tag from this dropdown will only allow the role access to columns in your selected database or dataset that have this tag. In the example above, a role would only have access to columns tagged as ‘department: sales’ within the transactions dataset.</p>
+
+<p>If you want to prevent the role from accessing a specific type of data, select the relevant tags from the ‘Except for data tagged as…’ dropdown:</p>
+
+<p><img src="assets/images/ui-policy-builder-tags-excluded.png" alt="Okera Policy Builder Tags Excluded Dropdown" /></p>
+
+<p>Selecting a tag from this dropdown will <strong>not</strong> allow the role to access any columns in your selected database or dataset that have this tag. In the example above, a role would have access to everything <strong>except</strong> columns tagged as ‘security: pii’ in the transactions dataset.</p>
+
+<p>If you select multiple tags from this dropdown from either of the tag dropdowns, you must specify whether access is limited to any of these tags (an ‘OR’ statement) or all of these tags (an ‘AND’ statement):</p>
+
+<p><img src="assets/images/ui-policy-builder-any-of-all.png" alt="Okera Policy Builder Any-Of or All Options" /></p>
+
+<p>See <a href="managing-tags">Managing Tags</a> for more information on creating tags and assigning them to columns.</p>
+
+<h3 id="selecting-a-role">Selecting a Role</h3>
+
+<p>Now that you have specified the data to be accessed, you must specify which role should have access. To do this, type a role into the role input field:</p>
+
+<p><img src="assets/images/ui-policy-builder-role-validation.png" alt="Okera Policy Builder Role Validation" /></p>
+
+<h3 id="policy-summary">Policy Summary</h3>
+
+<p>As you provide information, the Policy Summary to the right of the workspace will dynamically update to show you a preview of the current policy.</p>
+
+<p><img src="assets/images/ui-policy-builder-summary.png" alt="Okera Policy Builder Policy Summary" /></p>
+
+<p>The Policy Summary defaults to a natural language format, but you may also use the toggle buttons in the top right corner of the summary to view your policy as a SQL statement.</p>
+
+<p><img src="assets/images/ui-policy-builder-sql-summary.png" alt="Okera Policy Builder SQL Policy Summary" /></p>
+
+<h3 id="creating-a-policy">Creating a Policy</h3>
+
+<p>Once you have completed all the required fields, click ‘Create Policy’ to create your policy. If your policy was successfully created, you will see a success message.</p>
+
+<p><img src="assets/images/ui-policy-builder-success-modal.png" alt="Okera Policy Builder Success Modal" /></p>
+
+<p>To verify that your policy has allowed the right role access to the right data, click ‘Look Up Permissions’. You will be returned to the Permissions page, which will display the permissions on your selected database or dataset. Find the permissions for your selected role on this page to verify the effects of your policy.</p>
+
+<p><strong>Conflicting Policies</strong></p>
+
+<p>If the policy you are attempting to create shares the same data, role, and at least one tag with an existing access policy, you will see a “Conflicting Policy” error.</p>
+
+<p><img src="assets/images/ui-policy-builder-conflicting-error.png" alt="Okera Policy Builder Conflicting Grant Error" /></p>
+
+<p>If you want to make changes to your new policy so that it does not conflict with the existing one, select ‘Edit Policy’ and change the role, data, or tags of your new policy.</p>
+
+<p>If you want to replace the existing policy with your new one, you first must revoke the existing policy. To do this, click ‘Go to Workspace’. You will be redirected to the Workspace to revoke all existing policies that have the same role, data, and tag. You may then return to the Permissions page and try to create your new policy again.</p>
+
 
     <div class="tags">
         
@@ -832,7 +906,7 @@ Any group not in the available list has no access to the specified database or d
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

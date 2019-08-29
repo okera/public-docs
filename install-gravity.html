@@ -778,7 +778,7 @@ $('#toc').on('click', 'a', function() {
   <li><a href="#downloading-and-installing-a-cluster">Downloading the package</a></li>
   <li><a href="#create-a-cluster">Create a Cluster</a></li>
   <li><a href="#update-to-a-quickstart-cluster">Update a Cluster</a></li>
-  <li><a href="#configure-a-cluster">Update a Cluster</a></li>
+  <li><a href="#configure-a-cluster">Configure a Cluster</a></li>
   <li><a href="#expand-a-cluster">Expand a Cluster</a></li>
   <li><a href="#shrink-a-cluster">Shrink a Cluster</a></li>
   <li><a href="#okctl-and-gravity">CLI tools</a></li>
@@ -1079,24 +1079,62 @@ launched operation "2b9bbed5-f306-4462-a0bc-8e5b77bdca97", use 'gravity status' 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ okctl --help
 usage: okctl [&lt;flags&gt;] &lt;command&gt; [&lt;args&gt; ...]
 
-the ODAS Controller.
+the ODAS Controller
 
 Flags:
-      --help           Show context-sensitive help (also try --help-long and --help-man).
-  -c, --config=CONFIG  Config file to use
+      --help                   Show context-sensitive help (also try --help-long and --help-man).
+  -v, --debug                  Show debug output (WARNING: this will output sensitive information to your shell)
+      --kubeconfig=KUBECONFIG  Kubernetes config to use
+      --cluster=CLUSTER        Kubernetes cluster to use as defined in KUBECONFIG
+      --context=CONTEXT        Kubernetes contex to use as defined in KUBECONFIG
+      --namespace=NAMESPACE    Kubernetes namespace to use
 
 Commands:
   help [&lt;command&gt;...]
     Show help.
 
-  validate
-    Validate that all set configurations are valid and functional.
+  version
+    Output the version of okctl
 
-  update [&lt;flags&gt;]
-    Update configuration of a running cluster.
+  validate --config=CONFIG
+    Validate that all set configurations are valid and functional
 
-  prepare [&lt;flags&gt;]
-    Prepare configurations to create a new a cluster.
+  endpoints [&lt;flags&gt;]
+    List valid endpoints for ODAS
+
+  update --config=CONFIG [&lt;flags&gt;]
+    Update configuration of a running cluster
+
+  prepare --config=CONFIG [&lt;flags&gt;]
+    Prepare configurations to create a new cluster
+
+  deploy [&lt;flags&gt;]
+    Deploy the specified resources to Kubernetes (shortcut for 'kubectl apply -f')
+
+  upgrade [&lt;flags&gt;] &lt;version&gt;
+    Upgrade the ODAS resources to a new version
+
+  tokens init
+    Initialize JWT keys
+
+  tokens create [&lt;flags&gt;] &lt;username&gt; [&lt;groups&gt;...]
+    Create a new JWT token for a specific username
+
+  tokens show &lt;username&gt;
+    Show a token for a specific username
+
+  users create [&lt;flags&gt;] &lt;username&gt; &lt;password&gt; [&lt;groups&gt;...]
+    [non-production only] Create a new user
+
+  users delete &lt;username&gt;
+    [non-production only] Delete a user
+
+  status
+    Query the status of the current ODAS cluster
+
+  export-config [&lt;flags&gt;]
+    Export the configuration of a running cluster
+
 </code></pre></div></div>
 
 <p>Additionally, this package contains a tool called <code class="highlighter-rouge">gravity</code> to help create entirely self-contained Kubernetes deployments that include ODAS</p>
@@ -1117,7 +1155,7 @@ Commands:
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

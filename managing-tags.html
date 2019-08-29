@@ -807,13 +807,13 @@ Deleting tags can affect data security and discoverability.</p>
 <p>Creating access policies with tags will enable you to grant access based on attributes (e.g. limiting access to data based on its sensitivity level).</p>
 
 <p>You may create attribute-based access policies on the <strong>Workspace</strong> page. For example:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRANT SELECT ON TABLE okera_sample.sample HAS ATTRIBUTE (security.high=true AND security.medium=true) TO ROLE sales_analyst;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRANT SELECT ON TABLE okera_sample.sample HAVING ATTRIBUTE IN (security.high, security.medium) TO ROLE sales_analyst;
 </code></pre></div></div>
 
-<p>You may also use ‘AND’ in order to grant more than one tag access policy at a time.</p>
+<p>You may also remove the key word “IN” and the parentheses and use ‘AND’ in order to grant more than one tag access policy at a time.</p>
 
 <p>You may also revoke attribute-based access policies on the <strong>Workspace</strong> page. For example:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REVOKE SELECT ON TABLE okera_sample.sample HAS ATTRIBUTE (security.high=true AND security.medium=true) FROM ROLE sales_analyst;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>REVOKE SELECT ON TABLE okera_sample.sample HAVING ATTRIBUTE security.high AND security.medium FROM ROLE sales_analyst;
 </code></pre></div></div>
 
 <h2 id="assigning-a-tag">Assigning a tag</h2>
@@ -829,6 +829,10 @@ Deleting tags can affect data security and discoverability.</p>
 <p><img src="assets/images/ui-tags-page-assign-tag-modal.png" alt="Assign a tag modal" /></p>
 
 <p>To assign a tag to a column, open the Dataset Details view and go to the Schema. Under the Tags column, click ‘Click to Add’ or the edit icon.</p>
+<blockquote>
+  <p><strong>Note</strong>
+Tags cannot be assigned to partitioned columns or to nested fields of complex types.</p>
+</blockquote>
 
 <p><img src="assets/images/ui-tags-page-column-add-tags.png" alt="Assign a tag to a dataset column" /></p>
 
@@ -864,7 +868,7 @@ REVOKE REMOVE_ATTRIBUTE ON TABLE okera_sample.sample FROM ROLE okera_public_role
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

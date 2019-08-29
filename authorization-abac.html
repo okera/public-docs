@@ -818,23 +818,23 @@ Bear in mind that only roles with access to the full catalog will see all the ob
 
 <h2 id="granting-access-with-tags">Granting Access with Tags</h2>
 
-<p>To add a tag to a GRANT or REVOKE statement, declare it as an attribute in key-value form with a Boolean value (<code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>) – to define the access for a given object.</p>
+<p>To add a tag to a GRANT or REVOKE statement, declare it by adding <code class="highlighter-rouge">IN ("your tag")</code> for the case of “any of” and <code class="highlighter-rouge">"your first tag" AND "your second tag"</code> for the case of “all of” – to define the access for a given object.</p>
 
 <p>For example, if you want the <code class="highlighter-rouge">auditor</code> role to read any column in the <code class="highlighter-rouge">sample.users</code> dataset that has been tagged <code class="highlighter-rouge">security.pii</code>:</p>
 
 <p><strong>Grant access to columns tagged <code class="highlighter-rouge">security.pii</code>:</strong></p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sample</span><span class="p">.</span><span class="n">users</span> <span class="n">HAS</span> <span class="n">ATTRIBUTE</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span><span class="o">=</span><span class="k">true</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">auditor</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sample</span><span class="p">.</span><span class="n">users</span> <span class="k">HAVING</span> <span class="n">ATTRIBUTE</span> <span class="k">IN</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">auditor</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>Note it is still possible to grant access to all columns at once by omitting the <code class="highlighter-rouge">HAS ATTRIBUTE</code> condition. All existing RBAC grants are not affected, and you can still create
+<p>Note it is still possible to grant access to all columns at once by omitting the <code class="highlighter-rouge">HAVING ATTRIBUTE</code> condition. All existing RBAC grants are not affected, and you can still create
 new RBAC grants. Tags are simply conditions that can be added to a grant.</p>
 
 <p>Now say you want the <code class="highlighter-rouge">analyst</code> role to access the same table, but only for columns with no PII data:</p>
 
 <p><strong>Grant access to columns that are not tagged <code class="highlighter-rouge">security.pii</code></strong></p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sample</span><span class="p">.</span><span class="n">users</span> <span class="n">HAS</span> <span class="n">ATTRIBUTE</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span> <span class="o">!=</span> <span class="k">true</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">sample</span><span class="p">.</span><span class="n">users</span> <span class="k">HAVING</span> <span class="n">ATTRIBUTE</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">analyst</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>The inequality test allows the admin to express the opposite condition.
@@ -844,20 +844,16 @@ In this example, the role <code class="highlighter-rouge">analyst</code> sees no
 
 <p><strong>Grant access to all datasets/columns in a database that do not have one tag but do have another:</strong></p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">sales</span> <span class="n">HAS</span> <span class="n">ATTRIBUTE</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span> <span class="o">!=</span> <span class="k">true</span> <span class="k">AND</span> <span class="n">dept</span><span class="p">.</span><span class="n">sales</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_bi</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">sales</span> <span class="k">HAVING</span> <span class="n">ATTRIBUTE</span> <span class="k">IN</span> <span class="p">(</span><span class="n">dept</span><span class="p">.</span><span class="n">sales</span><span class="p">)</span> <span class="k">AND</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">sales_bi</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p><strong>Grant access to all datasets/columns in a database that have one or more specified tags:</strong></p>
 
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">sales</span> <span class="n">HAS</span> <span class="n">ATTRIBUTE</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span> <span class="o">=</span> <span class="k">true</span> <span class="k">OR</span> <span class="n">dept</span><span class="p">.</span><span class="n">audit</span> <span class="o">=</span> <span class="k">true</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">auditor</span><span class="p">;</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">sales</span> <span class="k">HAVING</span> <span class="n">ATTRIBUTE</span> <span class="k">IN</span> <span class="p">(</span><span class="k">security</span><span class="p">.</span><span class="n">pii</span><span class="p">,</span> <span class="n">dept</span><span class="p">.</span><span class="n">audit</span><span class="p">)</span> <span class="k">TO</span> <span class="k">ROLE</span> <span class="n">auditor</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>In the first example, both conditions must be true for the <code class="highlighter-rouge">sales_bi</code> role to read from the <code class="highlighter-rouge">sales</code> database.
 In the second example, the <code class="highlighter-rouge">auditor</code> role can read any object for which either condition is true.</p>
-
-<blockquote>
-  <p><strong>Note</strong> ABAC Grants currently only support database or table scope. You cannot grant at the catalog scope.</p>
-</blockquote>
 
 <h2 id="listing-permissions">Listing Permissions</h2>
 
@@ -931,8 +927,7 @@ This model aligns well with role-based access control (RBAC).</p>
 
 <p>The attribute <code class="highlighter-rouge">security.pii</code>, for example, could be applied to datasets in all departments, but only a role with access to all metadata can see where it is used. If attribute is used in the <code class="highlighter-rouge">sales</code> database but not <code class="highlighter-rouge">administration</code>, for example, users of the <code class="highlighter-rouge">administration</code> database can’t see the attribute is in use.</p>
 
-<p>Attributes makes it easier to define data by its business meaning, and to integrate ODAS access controls with mature catalogging solutions that support attributes.
-A future release will support key-value pairs with non-Boolean values.</p>
+<p>Attributes makes it easier to define data by its business meaning, and to integrate ODAS access controls with mature cataloging solutions that support attributes.</p>
 
 <h2 id="abac-faqs">ABAC FAQs</h2>
 
@@ -958,7 +953,7 @@ A future release will support key-value pairs with non-Boolean values.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

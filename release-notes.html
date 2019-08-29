@@ -772,9 +772,59 @@ $('#toc').on('click', 'a', function() {
 
   <h1 id="release-notes">Release Notes</h1>
 
-<h2 id="141">1.4.1</h2>
+<h2 id="150">1.5.0</h2>
 
 <h3 id="new-features">New Features</h3>
+
+<h4 id="policy-builder">Policy builder</h4>
+<p>A new interactive policy builder in the Okera Portal.
+Table access policies and fine-grained permissions can now be granted through the UI.</p>
+
+<p>See the <a href="permissions-page#creating-a-policy">docs on creating a policy</a> for more</p>
+
+<h4 id="attribute-based-access-control-updates">Attribute-based access control updates</h4>
+<p>Updated syntax and and other improvements to attribute-based access control (ABAC).</p>
+
+<p>See the <a href="authorization-abac">ABAC docs</a> for more.</p>
+
+<h3 id="other-improvements">Other improvements</h3>
+<ul>
+  <li>Azure: added experimental support for ADLS Gen2 - users can now <code class="highlighter-rouge">CREATE EXTERNAL TABLE</code> on data that is stored in Gen2 storage, and query that data.</li>
+  <li>Added <code class="highlighter-rouge">IF EXISTS</code> to <code class="highlighter-rouge">DROP ROLE</code>, so you can now do <code class="highlighter-rouge">DROP ROLE IF EXISTS &lt;role&gt;</code>.</li>
+  <li>Changed to how we deploy ZooKeeper on Kubernetes to better handle node failures.</li>
+  <li>Updated the underlying Thrift library to version 11 to stay more current.
+This should have no user-visible impact.</li>
+  <li>Improvements to <code class="highlighter-rouge">ALTER TABLE &lt;table&gt; RECOVER PARTITIONS</code> to improve its runtime.
+There is more work planned for future releases.</li>
+  <li>Added a new table property that allows <code class="highlighter-rouge">CREATE TABLE &lt;name&gt; LIKE &lt;FILETYPE&gt;</code> to handle cases where a partition column and data column exist with the same name.</li>
+  <li>Improved handling of automatic file type detection in crawlers for Avro and JSON files.</li>
+  <li>The <code class="highlighter-rouge">mask()</code> UDF is now always available.</li>
+  <li>Permission model now supports CREATE_AS_OWNER, which lets users create objects in the catalog and be given owner (i.e. ALL) privileges on the new object.
+This can be used to create per user (staging) tables or to support distributed stewardship.</li>
+  <li>Fixed a bug where it was not possible to override the database named used for the CATALOG_DB_OKERA_DB database.</li>
+  <li>Fixed a bug where you could create grants that were invalid and would fail downstream - we now fail them at the point of creation.</li>
+  <li>Added a <code class="highlighter-rouge">num_results_read</code> column to <code class="highlighter-rouge">okera_system.audit_logs</code>, denoting the number of records read during a particular operation.</li>
+  <li>Support for special characters in column names. Okera now expands the special characters supported in column names on par with ANSI-SQL specification. Characters that are still not supported in the column name are <code class="highlighter-rouge">.</code>, <code class="highlighter-rouge">`</code>, <code class="highlighter-rouge">:</code> and <code class="highlighter-rouge">!</code>. The special characters in a column name can be escaped by backticks. For example, if the column name is <code class="highlighter-rouge">Special Chars (name)</code> then the column name can be specified as,
+<code class="highlighter-rouge">CREATE TABLE special_chars.sample `Special Chars (name)` STRING</code></li>
+  <li>The cerebro-web Kubernetes service was removed. All functionality is now consolidated into the cdas-rest-server service.
+Note: on using the Deployment Manager to upgrade from previous versions to 1.5.0, the cerebro-web service will continue to exist after the upgrade.
+The service is vestigial, however, and should not be used. If there is need to remove this service entirely, please open a support ticket.</li>
+  <li>Improved robustness of service discovery in several places.</li>
+  <li>Added <code class="highlighter-rouge">CEREBRO_EXTERNAL_PLANNER_HOST</code> and <code class="highlighter-rouge">CEREBRO_EXTERNAL_PLANNER_PORT</code>, which can be set to override the planner’s external host/port shown in the UI.</li>
+</ul>
+
+<h3 id="incompatible-changes">Incompatible changes</h3>
+<ul>
+  <li>Any external tooling checking for the existence of the cerebro-web service will no longer function.
+These tools should be updated to point at the cdas-rest-server service, which now encompasses the functionality.</li>
+  <li>Removed <code class="highlighter-rouge">okera_system.weekly_audit_logs</code> and <code class="highlighter-rouge">okera_system.monthly_audit_logs</code> views, since the UI preview was not functioning properly for them.</li>
+  <li><code class="highlighter-rouge">OKERA_PORT_CONFIGURATION</code>, set in <code class="highlighter-rouge">env.sh</code> for Deployment Manager installs, no longer recognizes the <code class="highlighter-rouge">cerebro_web:webui</code> port.
+Please change this value to <code class="highlighter-rouge">cdas_rest_server:webui</code> for new clusters.</li>
+</ul>
+
+<h2 id="141">1.4.1</h2>
+
+<h3 id="new-features-1">New Features</h3>
 
 <h4 id="improved-cluster-deployment">Improved cluster deployment</h4>
 <p>Okera clusters can now be created without using the Deployment Manager.</p>
@@ -789,7 +839,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>See the <a href="odas-authentication#group-resolution-via-ldap">docs</a></p>
 
-<h3 id="other-improvements">Other Improvements</h3>
+<h3 id="other-improvements-1">Other Improvements</h3>
 <ul>
   <li>Added a new way to set up automatic multi-tenant authentication for EMR and CDH integrations.</li>
   <li>Added an ability to create one-node quickstart clusters that have out-of-the-box configuration including SSL, JWT, user/group settings.</li>
@@ -826,7 +876,7 @@ This has been fixed by removing CORS headers entirely.</li>
 
 <h2 id="140">1.4.0</h2>
 
-<h3 id="new-features-1">New features</h3>
+<h3 id="new-features-2">New features</h3>
 
 <h4 id="tags">Tags</h4>
 
@@ -907,7 +957,7 @@ This is inspired from spark’s own version of such optimization as <a href="htt
   </li>
 </ul>
 
-<h3 id="other-improvements-1">Other Improvements</h3>
+<h3 id="other-improvements-2">Other Improvements</h3>
 
 <ul>
   <li>AWS Athena can be registered and used as a JDBC data source. See <a href="jdbc-data-source">docs</a></li>
@@ -923,7 +973,7 @@ This is inspired from spark’s own version of such optimization as <a href="htt
   <li>Extended support for <code class="highlighter-rouge">MAP</code> complex types for PARQUET file formats. It is now possible to use <code class="highlighter-rouge">MAP&lt;STRING, STRUCT&gt;</code> and <code class="highlighter-rouge">MAP&lt;STRING, ARRAY&gt;</code>. Note, this is still not available for AVRO types.</li>
 </ul>
 
-<h3 id="incompatible-changes">Incompatible changes</h3>
+<h3 id="incompatible-changes-1">Incompatible changes</h3>
 
 <ul>
   <li>The default resolution of parquet schema has been changed to be by name. To be explicit, this flag is now by default set to true, <code class="highlighter-rouge">default_parquet_resolve_by_name=true</code>.
@@ -1017,7 +1067,7 @@ See <a href="kubernetes-dashboard-quickstart">docs</a> for details.</p>
 <p>Parquet formats are now fully supported with exception to complex types on Map. Full details,
 see <a href="complex-types">docs</a></p>
 
-<h4 id="other-improvements-2">Other improvements</h4>
+<h4 id="other-improvements-3">Other improvements</h4>
 
 <ul>
   <li>
@@ -1107,7 +1157,7 @@ JDBC queries are now run in parallel provided there is a suitable numeric type f
   </li>
 </ul>
 
-<h3 id="incompatible-changes-1">Incompatible changes</h3>
+<h3 id="incompatible-changes-2">Incompatible changes</h3>
 
 <ul>
   <li>
@@ -1299,7 +1349,7 @@ See <a href="advanced-install#jwt">advanced install</a> for more details.</p>
   </li>
 </ul>
 
-<h4 id="other-improvements-3">Other improvements</h4>
+<h4 id="other-improvements-4">Other improvements</h4>
 
 <ul>
   <li>
@@ -1717,7 +1767,7 @@ This will be remedied in the next release.</p>
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

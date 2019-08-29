@@ -811,13 +811,13 @@ This set of steps is typically required once, to configure Okera to your environ
   <li>
     <p>Get the tarball from S3.</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.1/deployment-manager-1.4.1.tar.gz
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.5.0/deployment-manager-1.5.0.tar.gz
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Extract the bits.</p>
 
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.4.1.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.4.1.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.4.1 deployment-manager
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tar </span>xzf deployment-manager-1.5.0.tar.gz <span class="o">&amp;&amp;</span> rm deployment-manager-1.5.0.tar.gz <span class="o">&amp;&amp;</span> ln <span class="nt">-sfn</span> deployment-manager-1.5.0 deployment-manager
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -831,14 +831,14 @@ Download the shell binary for either Linux or OS X (depending on which OS is run
   <li><strong>Linux</strong></li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.1/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.5.0/cli/linux/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <ul>
   <li><strong>OS X</strong></li>
 </ul>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.4.1/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://s3.amazonaws.com/okera-release-useast/1.5.0/cli/darwin/ocadm <span class="o">&amp;&amp;</span> chmod +x ocadm
 </code></pre></div></div>
 
 <h2 id="establish-dm-logging-and-install-paths">Establish DM Logging and Install Paths</h2>
@@ -958,7 +958,7 @@ If the ports are not specified, Okera randomly selects available ports on which 
   <li><code class="highlighter-rouge">cerebro_planner:planner</code></li>
   <li><code class="highlighter-rouge">cerebro_worker:worker</code></li>
   <li><code class="highlighter-rouge">cdas_rest_server:api</code></li>
-  <li><code class="highlighter-rouge">cerebro_web:webui</code></li>
+  <li><code class="highlighter-rouge">cdas_rest_server:webui</code></li>
   <li><code class="highlighter-rouge">cerebro_catalog:hms</code></li>
   <li><code class="highlighter-rouge">cerebro_catalog:sentry</code></li>
   <li><code class="highlighter-rouge">kubernetes_dashboard:admin_ui</code></li>
@@ -976,7 +976,7 @@ They are usually only needed for cluster administrators.</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"cerebro_planner:planner:12050"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_worker:worker:13050"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:api:5000"</span>
-<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_web:webui:8083"</span>
+<span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cdas_rest_server:webui:8083"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_catalog:sentry:11060"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_catalog:hms:9083"</span>
 <span class="nv">OKERA_PORT_CONFIGURATION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OKERA_PORT_CONFIGURATION</span><span class="s2">,cerebro_planner:webui:11050"</span>
@@ -1144,7 +1144,7 @@ Setting the certificate and key enables HTTPS on the REST server and Web UI.</p>
 
 <p>The Okera Web Portal can be configured to use shared cookies for authentication.
 For this to work, Okera needs to be configured with the shared cookie name and the shared cookie domain.
-The following environment variables need to be set either on the Deployment Manager or on the <code class="highlighter-rouge">cerebro_web:webui</code> container.</p>
+The following environment variables need to be set either on the Deployment Manager or on the <code class="highlighter-rouge">cdas_rest_server</code> service.</p>
 
 <ul>
   <li>
@@ -1242,7 +1242,7 @@ This is convenient to test new configs or to quickly diagnose problematic config
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

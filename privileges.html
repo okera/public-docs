@@ -812,8 +812,8 @@ The Okera Policy Engine supports the following privileges:</p>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">CREATE_AS_OWNER</code></td>
-      <td>Catalog</td>
-      <td>Grants ability to create a database and automatically receive ALL privileges on that database e.g. <code class="highlighter-rouge">GRANT CREATE_AS_OWNER ON CATALOG</code> Note: CREATE_AS_OWNER does not cascade to all tables. You will not be able to create tables inside databases you have not created.</td>
+      <td>Catalog, Database</td>
+      <td>Grants ability to create an object (database, table or view) and automatically receive ALL privileges on the object you created e.g. <code class="highlighter-rouge">GRANT CREATE_AS_OWNER ON CATALOG</code> Note: CREATE_AS_OWNER on <code class="highlighter-rouge">Catalog</code> scope does not cascade to all databases. You will not be able to create datasets inside databases you have not created.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">ALTER</code></td>
@@ -868,7 +868,7 @@ The Okera Policy Engine supports the following privileges:</p>
   </tbody>
 </table>
 
-<p><sup>*</sup> If you see <code class="highlighter-rouge">SERVER</code>, it refers to the old syntax for <code class="highlighter-rouge">CATALOG</code>.</p>
+<p><sup>*</sup> If you see the term <code class="highlighter-rouge">SERVER</code>, it refers to the old syntax for <code class="highlighter-rouge">CATALOG</code>.</p>
 
 <p>You can think of most of these like a hierarchy, with the exception of URIs.
 The latter is a separate object, while all the others subsume each other from left to right, as shown in the diagram.</p>
@@ -1036,7 +1036,7 @@ https://s3-us-west-2.amazonaws.com/cerebrodata-internal-release/docs-staging/faq
   <div class="row">
     <div class="col-lg-12 footer">
       <div class="footer-meta">
-        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 12, 2019
+        &copy;2019 Okera, Inc. All rights reserved.  Site last generated: Aug 29, 2019
       </div>
     </div>
   </div>

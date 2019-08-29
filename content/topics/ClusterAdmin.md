@@ -88,6 +88,9 @@ ocadm clusters update --terminationProtectionEnabled=true 5
 
 ## Upgrading an Existing Cluster
 
+> **WARNING**: The Deployment Manager version must be equal to or greater than the version the cluster is being upgraded to.
+For example, in order to update to version 1.4.0, you must have a DM with version 1.4.0 or greater. 
+
 An existing cluster can be upgraded with a new version of ODAS components.
 The CLI command is used to upgrade one or more components.
 After upgrading the cluster, it is restarted with the upgraded components.
